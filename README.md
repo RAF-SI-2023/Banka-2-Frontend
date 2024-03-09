@@ -1,3 +1,24 @@
+
+# Pravila
+ - Koristiti camelCase
+ - Koristiti nazive na engleskom
+ - Ne koristiti skracenice
+ - Za datum i vreme koristiti epoch time,
+ - Pre komitovanja izmena potrebno je pokrenuti aplikaciju i uveriti se da sve radi ispravno
+ - Pre komitovanja izmena potrebano je odraditi “Reformat Code”
+   - U InteliJ to se radi tako sto desnim klikom klikne na klasu sa kojom ste radili i odaberete “Reformat code” i odaberite sledece:
+     - “Optimize imports”
+     - “Rearrange entities”
+     - “Cleanup code"
+   - u VScode-u komandom Alt + Shift + F, odaberete "format on save" checkbox u settings-u, i sacuvate
+     
+## Workflow
+- Potrebno je forkovati (fork) `dev` granu glavnog projekata u vase lokalne repozitorijume i da radite na svom forku
+- Kada hocete da odratite merge sa glavnim projektom potrebno je da kreirate `Pull request` sa vaseg forka i da izaberete da hocete da mergujete sa `dev` granom glavnog projeta
+
+
+
+
 # Banka2Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.12.
