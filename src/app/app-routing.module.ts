@@ -14,11 +14,10 @@ const routes: Routes = [
   { component: LoginComponent, path: "login" },
   { component: CreateBankProfileComponent, path: "create-bank-profile" },
   { component: HomeComponent, path: "home", canActivate: [authGuard], canDeactivate: [authGuard] },
+  { component: PaperStocksComponent, path: "paper-stocks", canActivate: [authGuard], canDeactivate: [authGuard] },
   { component: UserpanelComponent, path: "userpanel", canActivate: [authGuard], canDeactivate: [authGuard] },
   { component: AdminpanelComponent, path: "adminpanel", canActivate: [authGuard], canDeactivate: [authGuard] },
-  { component: CreateBankAccountComponent, path: "create-bank-account", canActivate: [authGuard], canDeactivate: [authGuard] },
-  { component: PaperStocksComponent, path: "paper-stocks", canActivate: [authGuard], canDeactivate: [authGuard] }
-
+  { component: CreateBankAccountComponent, path: "create-bank-account", canActivate: [authGuard], canDeactivate: [authGuard] }
 ];
 
 @NgModule({
