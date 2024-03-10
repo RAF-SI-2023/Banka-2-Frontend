@@ -11,8 +11,8 @@ import { AdminpanelComponent } from './components/adminpanel/adminpanel.componen
 import { CreateBankAccountComponent } from './components/create-bank-account/create-bank-account.component';
 import { CreateBankProfileComponent } from './components/create-bank-profile/create-bank-profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {AlertInterceptor} from "./interceptors/alert.interceptor";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import { AlertInterceptor } from "./interceptors/alert.interceptor";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 @NgModule({
   declarations: [

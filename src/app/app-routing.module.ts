@@ -10,7 +10,7 @@ import { UserpanelComponent } from './components/userpanel/userpanel.component';
 import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { component: LandingComponent, path: " " },
+  { component: LandingComponent, path: "" },
   { component: LoginComponent, path: "login" },
   { component: CreateBankProfileComponent, path: "create-bank-profile" },
   { component: HomeComponent, path: "home", canActivate: [authGuard], canDeactivate: [authGuard] },
