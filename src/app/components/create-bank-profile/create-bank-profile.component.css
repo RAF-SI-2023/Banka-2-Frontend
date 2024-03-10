@@ -1,0 +1,17 @@
+.registration-process {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.registration-process .step {
+    margin-bottom: 20px;
+}
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+button {
+    margin-right: 8px;
+}
