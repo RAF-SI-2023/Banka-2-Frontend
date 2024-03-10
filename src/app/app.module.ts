@@ -17,6 +17,7 @@ import { CreateBankAccountComponent } from './components/create-bank-account/cre
 import { CreateBankProfileComponent } from './components/create-bank-profile/create-bank-profile.component';
 import { NavigationMenuComponent } from './components/navigation-menu/navigation-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PaperStocksComponent } from './components/paper-stocks/paper-stocks.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminpanelComponent,
     CreateBankAccountComponent,
     CreateBankProfileComponent,
-    NavigationMenuComponent
+    NavigationMenuComponent,
+    PaperStocksComponent
   ],
   imports: [
     BrowserModule,
