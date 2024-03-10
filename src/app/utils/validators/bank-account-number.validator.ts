@@ -1,4 +1,4 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
+import {AbstractControl, ValidationErrors, ValidatorFn} from "@angular/forms";
 
 export function bankAccountNumberValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -8,7 +8,7 @@ export function bankAccountNumberValidator(): ValidatorFn {
       return null;
     }
 
-    const pattern = /^[0-9]{6,}$/; // Minimum length of 6 digits
+    const pattern = /^\d{3}-\d{4}-\d{9}$/; // Format: 3 digits for bank, 4 digits for branch, 9 digits for account number
     const isValid = pattern.test(value);
 
     return isValid ? null : { invalidBankAccountNumber: true };
