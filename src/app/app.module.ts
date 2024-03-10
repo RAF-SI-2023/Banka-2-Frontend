@@ -18,7 +18,9 @@ import { CreateBankProfileComponent } from './components/create-bank-profile/cre
 import { NavigationMenuComponent } from './components/navigation-menu/navigation-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaperStocksComponent } from './components/paper-stocks/paper-stocks.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AlertInterceptor } from "./interceptors/alert.interceptor";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -41,7 +43,11 @@ import { PaperStocksComponent } from './components/paper-stocks/paper-stocks.com
     MatButtonModule,
     MatIconModule, 
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AlertInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
