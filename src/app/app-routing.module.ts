@@ -8,7 +8,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserpanelComponent } from './components/userpanel/userpanel.component';
 import { authGuard } from './guards/auth.guard';
-
+import { PaperStocksComponent } from './components/paper-stocks/paper-stocks.component';
 const routes: Routes = [
   { component: LandingComponent, path: " " },
   { component: LoginComponent, path: "login" },
@@ -16,7 +16,9 @@ const routes: Routes = [
   { component: HomeComponent, path: "home", canActivate: [authGuard], canDeactivate: [authGuard] },
   { component: UserpanelComponent, path: "userpanel", canActivate: [authGuard], canDeactivate: [authGuard] },
   { component: AdminpanelComponent, path: "adminpanel", canActivate: [authGuard], canDeactivate: [authGuard] },
-  { component: CreateBankAccountComponent, path: "create-bank-account", canActivate: [authGuard], canDeactivate: [authGuard] }
+  { component: CreateBankAccountComponent, path: "create-bank-account", canActivate: [authGuard], canDeactivate: [authGuard] },
+  { component: PaperStocksComponent, path: "paper-stocks", canActivate: [authGuard], canDeactivate: [authGuard] }
+
 ];
 
 @NgModule({
