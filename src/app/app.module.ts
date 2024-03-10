@@ -10,6 +10,9 @@ import { UserpanelComponent } from './components/userpanel/userpanel.component';
 import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
 import { CreateBankAccountComponent } from './components/create-bank-account/create-bank-account.component';
 import { CreateBankProfileComponent } from './components/create-bank-profile/create-bank-profile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AlertInterceptor} from "./interceptors/alert.interceptor";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -24,9 +27,14 @@ import { CreateBankProfileComponent } from './components/create-bank-profile/cre
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AlertInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
