@@ -4,19 +4,23 @@
 
 /* Define primary and accent colors */
 :root {
-  --primary: #3f51b5; /* Indigo */
-  --accent: #e91e63; /* Pink */
+  --primary: #3f51b5;
+  /* Indigo */
+  --accent: #e91e63;
+  /* Pink */
 }
 
 /* Apply the theme to Angular Material components */
 /* For example, changing the primary color of the toolbar */
 .mat-toolbar {
   background-color: var(--primary);
-  color: white; /* Text color */
+  color: white;
+  /* Text color */
 }
 
 /* Define global styles */
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
