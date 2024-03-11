@@ -1,1 +1,24 @@
 <p>create-bank-account works!</p>
+
+<div class="toolbar">
+  <span>Banka-2 Frontend</span>
+</div>
+
+<div class="container">
+  <h2>Kreiranje Bankarskog Računa</h2>
+  <form>
+    <div class="form-field">
+      <label for="name">Name:</label>
+      <input [(ngModel)]="name" id="name" name="name" type="text">
+    </div>
+    <div class="form-field">
+      <label for="lastName">LastName:</label>
+      <input [(ngModel)]="lastName" id="lastName" name="lastName" type="text">
+    </div>
+    <div class="form-field">
+      <label for="email">Email:</label>
+      <input [(ngModel)]="email" id="email" name="email" type="email">
+    </div>
+    <button class="submit-button" type="submit">Kreiraj Račun</button>
+  </form>
+</div>

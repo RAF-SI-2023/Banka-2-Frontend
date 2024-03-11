@@ -1,0 +1,28 @@
+.toolbar {
+  background-color: #1976d2; /* toolbar color */
+  color: #ffffff; /* text color */
+  height: 64px; /* height of toolbar */
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  padding: 20px;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.submit-button {
+  background-color: #1976d2; /* button color */
+  color: #ffffff; /* text on button color */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #1565c0;npm install
+}
