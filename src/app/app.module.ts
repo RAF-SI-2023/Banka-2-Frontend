@@ -11,7 +11,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { LandingComponent } from './components/landing/landing.component';
@@ -43,7 +42,6 @@ import { AlertInterceptor } from "./interceptors/alert.interceptor";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NoopAnimationsModule,
     MatTabsModule,
     MatToolbarModule,
     MatFormFieldModule,
