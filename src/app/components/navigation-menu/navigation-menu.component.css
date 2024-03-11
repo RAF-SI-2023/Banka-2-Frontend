@@ -8,5 +8,7 @@
 }
 
 .icon {
-    margin-top: 5px;
+    padding-top: 10px;
+    margin: 5px;
+    height: fit-content;
 }
