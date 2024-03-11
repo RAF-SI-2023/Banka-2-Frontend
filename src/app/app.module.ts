@@ -26,6 +26,8 @@ import { NavigationMenuComponent } from './components/navigation-menu/navigation
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AlertInterceptor } from "./interceptors/alert.interceptor";
 import {NgOptimizedImage} from "@angular/common";
+import {MatCardModule} from "@angular/material/card";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import {NgOptimizedImage} from "@angular/common";
     MatButtonModule,
     MatStepperModule,
     ReactiveFormsModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    MatCardModule,
+    MatCheckboxModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
