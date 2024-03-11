@@ -14,6 +14,13 @@ export function passwordValidator(): ValidatorFn {
     const hasSpecialCharacters = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(value);
     const passwordValid = hasUpperCase && hasLowerCase && hasNumeric && hasSpecialCharacters;
 
-    return !passwordValid ? {invalidPassword: true} : null;
+    return !passwordValid ? {
+      invalidPassword: {
+        hasUpperCase,
+        hasLowerCase,
+        hasNumeric,
+        hasSpecialCharacters
+      }
+    } : null;
   }
 }

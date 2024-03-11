@@ -23,9 +23,11 @@ export function phoneNumberValidator(): ValidatorFn {
 
     let isValid = false;
     for (const countryCode of countryCodes) {
+
       const {code, minLength, maxLength} = countryCode;
       const startsWithCountryCode = value.startsWith(code);
-      const hasOnlyDigitsAfterCountryCode = new RegExp(`^${code}[0-9]+$`).test(value);
+      const escapedCode = escapeRegExp(code);
+      const hasOnlyDigitsAfterCountryCode = new RegExp(`^${escapedCode}[0-9]+$`).test(value);
       const isValidLength = value.length >= minLength && value.length <= maxLength;
 
       if (startsWithCountryCode && hasOnlyDigitsAfterCountryCode && isValidLength) {
@@ -40,4 +42,8 @@ export function phoneNumberValidator(): ValidatorFn {
 
     return null; // Phone number is valid
   };
+
+  function escapeRegExp(str: string) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+  }
 }

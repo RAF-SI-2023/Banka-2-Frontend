@@ -28,6 +28,7 @@ import { AlertInterceptor } from "./interceptors/alert.interceptor";
 import {NgOptimizedImage} from "@angular/common";
 import {MatCardModule} from "@angular/material/card";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     AdminpanelComponent,
     CreateBankAccountComponent,
     CreateBankProfileComponent,
-    NavigationMenuComponent
+    NavigationMenuComponent,
+    BankAccountMaskDirective
   ],
   imports: [
     BrowserModule,
