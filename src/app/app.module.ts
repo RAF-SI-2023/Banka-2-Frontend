@@ -42,7 +42,9 @@ import { AlertInterceptor } from "./interceptors/alert.interceptor";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     MatTabsModule,
+    MatIconModule,
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
