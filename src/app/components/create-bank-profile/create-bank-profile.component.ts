@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {bankAccountNumberValidator, phoneNumberValidator} from "../../utils/validators";
+import {emailValidator} from "../../utils/validators/email.validator";
 
 
 @Component({
@@ -18,12 +20,12 @@ export class CreateBankProfileComponent {
 
 
   basicInfoForm = new FormGroup({
-    accountNumber: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]),
+    accountNumber: new FormControl('', [Validators.required, bankAccountNumberValidator()]),
   });
 
   contactInfoForm = new FormGroup({
-    phoneNumber: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]), // Primer validacije telefona
-    email: new FormControl('', [Validators.required, Validators.email])
+    phoneNumber: new FormControl('', [Validators.required, phoneNumberValidator()]),
+    email: new FormControl('', [Validators.required, emailValidator()])
   });
 
   activationCodeForm = new FormGroup({

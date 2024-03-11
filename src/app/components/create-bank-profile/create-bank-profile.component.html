@@ -1,148 +1,151 @@
-<div class="registration-process">
-  <div *ngIf="currentStep === 1" class="step">
-    <h2>1. Korisnički račun</h2>
-    <form [formGroup]="basicInfoForm">
-      <mat-form-field appearance="fill">
-        <mat-label>Broj računa/kartice/kredita</mat-label>
-        <input
-          matInput
-          placeholder="Unesite broj računa"
-          formControlName="accountNumber"
-          required
-        />
-        <mat-error *ngIf="basicInfoForm.controls.accountNumber.invalid">
-          Unesite validan broj računa.
-        </mat-error>
-      </mat-form-field>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="goToNextStep()"
-        [disabled]="!basicInfoForm.valid"
-      >
-        Nastavi
-      </button>
-    </form>
+<section class="container">
+  <div class="registration-process">
+    <div *ngIf="currentStep === 1" class="step">
+      <h2>1. Korisnički račun</h2>
+      <form [formGroup]="basicInfoForm">
+        <mat-form-field appearance="fill">
+          <mat-label>Broj računa/kartice/kredita</mat-label>
+          <input
+            matInput
+            placeholder="Unesite broj računa"
+            formControlName="accountNumber"
+            appBankAccountMask
+            required
+          />
+          <mat-error *ngIf="basicInfoForm.controls.accountNumber.invalid">
+            Unesite validan broj računa.
+          </mat-error>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="goToNextStep()"
+          [disabled]="!basicInfoForm.valid"
+        >
+          Nastavi
+        </button>
+      </form>
+    </div>
+
+    <!-- Unos osnovnih podataka -->
+    <div *ngIf="currentStep === 2" class="step">
+      <h2>2. Osnovni podaci</h2>
+      <form [formGroup]="contactInfoForm">
+        <mat-form-field appearance="fill">
+          <mat-label>Broj mobilnog telefona</mat-label>
+          <input
+            matInput
+            placeholder="Unesite broj telefona"
+            formControlName="phoneNumber"
+            required
+          />
+          <mat-error *ngIf="contactInfoForm.get('phoneNumber')?.hasError('invalidPhoneNumber')">
+            Unesite validan broj telefona.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>E-mail</mat-label>
+          <input
+            matInput
+            type="email"
+            placeholder="Unesite vašu e-mail adresu"
+            formControlName="email"
+            required
+          />
+          <mat-error *ngIf="contactInfoForm.controls.email.invalid">
+            Unesite validan e-mail.
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button (click)="goToPreviousStep()">
+          Nazad
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="goToNextStep()"
+          [disabled]="!contactInfoForm.valid"
+        >
+          Nastavi
+        </button>
+      </form>
+    </div>
+
+    <!-- Step 2 -->
+    <div *ngIf="currentStep === 3" class="step">
+      <h2>3. UNOS AKTIVACIONOG KODA</h2>
+      <form [formGroup]="activationCodeForm">
+        <p>
+          Klikom na dugme Generiši aktivacioni kod, aktivacioni kod Vam se šalje
+          na email
+        </p>
+        <button mat-raised-button color="warn">GENERIŠI AKTIVACIONI KOD</button>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Aktivacioni kod</mat-label>
+          <input
+            matInput
+            placeholder="Unesite aktivacioni kod"
+            formControlName="activationCode"
+            required
+          />
+          <mat-error *ngIf="activationCodeForm.controls.activationCode.invalid">
+            Unesite validan aktivacioni kod.
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button (click)="goToPreviousStep()">
+          Nazad
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="goToNextStep()"
+          [disabled]="!activationCodeForm.valid"
+        >
+          Nastavi
+        </button>
+      </form>
+    </div>
+
+    <!-- Step 3 -->
+    <div *ngIf="currentStep === 4" class="step">
+      <h2>4. KREIRANJE LOZINKE</h2>
+      <form>
+        <mat-form-field appearance="fill">
+          <mat-label>Lozinka</mat-label>
+          <input
+            matInput
+            type="password"
+            placeholder="Kreirajte lozinku"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Ponovi lozinku</mat-label>
+          <input
+            matInput
+            type="password"
+            placeholder="Ponovite lozinku"
+            required
+          />
+        </mat-form-field>
+
+        <button mat-raised-button (click)="goToPreviousStep()">
+          Nazad
+        </button>
+
+        <button mat-raised-button color="primary" routerLink="/login">
+          Kreiraj nalog
+        </button>
+        <!--
+        <button mat-raised-button (click)="logFormData($event)" type="button">
+          Ispiši podatke iz forme
+        </button>
+        -->
+      </form>
+    </div>
   </div>
-
-  <!-- Unos osnovnih podataka -->
-  <div *ngIf="currentStep === 2" class="step">
-    <h2>2. Osnovni podaci</h2>
-    <form [formGroup]="contactInfoForm">
-      <mat-form-field appearance="fill">
-        <mat-label>Broj mobilnog telefona</mat-label>
-        <input
-          matInput
-          placeholder="Unesite broj telefona"
-          formControlName="phoneNumber"
-          required
-        />
-        <mat-error *ngIf="contactInfoForm.controls.phoneNumber.invalid">
-          Unesite validan broj telefona.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>E-mail</mat-label>
-        <input
-          matInput
-          type="email"
-          placeholder="Unesite vašu e-mail adresu"
-          formControlName="email"
-          required
-        />
-        <mat-error *ngIf="contactInfoForm.controls.email.invalid">
-          Unesite validan e-mail.
-        </mat-error>
-      </mat-form-field>
-
-      <button mat-raised-button color="primary" (click)="goToPreviousStep()">
-        Nazad
-      </button>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="goToNextStep()"
-        [disabled]="!contactInfoForm.valid"
-      >
-        Nastavi
-      </button>
-    </form>
-  </div>
-
-  <!-- Step 2 -->
-  <div *ngIf="currentStep === 3" class="step">
-    <h2>3. UNOS AKTIVACIONOG KODA</h2>
-    <form [formGroup]="activationCodeForm">
-      <p>
-        Klikom na dugme Generiši aktivacioni kod, aktivacioni kod Vam se šalje
-        na email
-      </p>
-      <button mat-raised-button color="warn">GENERIŠI AKTIVACIONI KOD</button>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Aktivacioni kod</mat-label>
-        <input
-          matInput
-          placeholder="Unesite aktivacioni kod"
-          formControlName="activationCode"
-          required
-        />
-        <mat-error *ngIf="activationCodeForm.controls.activationCode.invalid">
-          Unesite validan aktivacioni kod.
-        </mat-error>
-      </mat-form-field>
-
-      <button mat-raised-button color="primary" (click)="goToPreviousStep()">
-        Nazad
-      </button>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="goToNextStep()"
-        [disabled]="!activationCodeForm.valid"
-      >
-        Nastavi
-      </button>
-    </form>
-  </div>
-
-  <!-- Step 3 -->
-  <div *ngIf="currentStep === 4" class="step">
-    <h2>4. KREIRANJE LOZINKE</h2>
-    <form>
-      <mat-form-field appearance="fill">
-        <mat-label>Lozinka</mat-label>
-        <input
-          matInput
-          type="password"
-          placeholder="Kreirajte lozinku"
-          required
-        />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Ponovi lozinku</mat-label>
-        <input
-          matInput
-          type="password"
-          placeholder="Ponovite lozinku"
-          required
-        />
-      </mat-form-field>
-
-      <button mat-raised-button color="primary" (click)="goToPreviousStep()">
-        Nazad
-      </button>
-
-      <button mat-raised-button color="primary" routerLink="/login">
-        Kreiraj nalog
-      </button>
-      <!--
-      <button mat-raised-button (click)="logFormData($event)" type="button">
-        Ispiši podatke iz forme
-      </button>
-      -->
-    </form>
-  </div>
-</div>
+</section>
