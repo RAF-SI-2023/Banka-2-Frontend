@@ -6,19 +6,11 @@
 
 <div class="container">
   <h2>Kreiranje Bankarskog Računa</h2>
-  <form>
-    <div class="form-field">
-      <label for="name">Name:</label>
-      <input [(ngModel)]="name" id="name" name="name" type="text">
-    </div>
-    <div class="form-field">
-      <label for="lastName">LastName:</label>
-      <input [(ngModel)]="lastName" id="lastName" name="lastName" type="text">
-    </div>
-    <div class="form-field">
-      <label for="email">Email:</label>
-      <input [(ngModel)]="email" id="email" name="email" type="email">
-    </div>
-    <button class="submit-button" type="submit">Kreiraj Račun</button>
+  <form (submit)="submitForm()">
+    <input formControlName="name" id="name" name="name" type="text">
+    <input formControlName="lastName" id="lastName" name="lastName" type="text">
+    <input formControlName="email" id="email" name="email" type="email">
+    <button type="submit">Submit</button>
   </form>
+
 </div>
