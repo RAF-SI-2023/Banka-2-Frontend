@@ -1,79 +1,80 @@
 .container {
-    display: grid;
-    place-items: center;
-    height: 100vh;
-    background-image: url('src/assets/wave-background.svg');
-    overflow: hidden;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 0 2rem;
-  }
-  
-  mat-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  mat-card-content {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-  }
-  
-  .home-link {
-    height: fit-content;
-    padding: 1rem;
-  }
-  
-  .title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: fit-content;
-    gap: 0.5rem;
-  }
-  
-  .title h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    padding-top: 1rem;
-  }
-  
-  .form-inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    width: 100%;
-    padding-top: 1rem;
-  }
-  
-  mat-checkbox {
-    margin-bottom: 1rem;
-  }
-  
-  .buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-  }
-  
-  .sign-up {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
-  
-  .sign-up p {
-    text-align: left;
-    font-size: 0.8rem;
-    color: #616161;
-  }
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background-image: url('src/assets/wave-background.svg');
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0 2rem;
+}
+
+mat-card {
+box-shadow: 2px -2px lightblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.home-link {
+  height: fit-content;
+  padding: 1rem;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  gap: 0.5rem;
+}
+
+.title h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  padding-top: 1rem;
+}
+
+.form-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  padding-top: 1rem;
+}
+
+mat-checkbox {
+  margin-bottom: 1rem;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.sign-up p {
+  text-align: left;
+  font-size: 0.8rem;
+  color: #616161;
+}
