@@ -1,1 +1,47 @@
-
+<section class="container">
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title>
+          <a mat-button routerLink="/" class="home-link">
+            <div class="title">
+              <h1>BANKA</h1>
+              <img ngSrc="../../../assets/logo/banka-2-logo-no-bg.svg" alt="Icon" height="64" width="64">
+            </div>
+          </a>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="card-content">
+        <form class="form-inputs">
+  
+          <mat-form-field>"
+            <mat-label>Email</mat-label>
+            <input matInput type="email" placeholder="Unesite e-mail adresu" formControlName="email" required>
+            <mat-error>Email je obavezan</mat-error>
+            <mat-error>Pogrešan format Email-a</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field>
+            <mat-label>Lozinka</mat-label>
+            <input matInput type='text' placeholder="Unesite lozinku"
+              formControlName="password" required>
+            <button mat-icon-button matSuffix type="button" 
+              [attr.aria-label]="'Hide password'" >
+              <mat-icon>123</mat-icon>
+            </button>
+            <mat-error >Lozinka je obavezna</mat-error>
+            <mat-error >Pogrešni kredencijali, molimo pokušajte ponovo</mat-error>
+          </mat-form-field>
+          <mat-checkbox formControlName="remember">Zapamti me?</mat-checkbox>
+  
+          <div class="buttons">
+            <button mat-raised-button color="accent" type="submit" routerLink="/home">Uloguj se</button>
+            <div class="sign-up">
+              <p>Nemate korisnički profil? Napravite ga:</p>
+              <button mat-raised-button routerLink="/create-bank-profile">Napravi profil</button>
+            </div>
+          </div>
+  
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </section>
