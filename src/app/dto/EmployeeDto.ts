@@ -6,4 +6,5 @@ export interface EmployeeDto extends UserDto {
     gender: string;
     position: string;
     department: string;
+    active: boolean;
 }
