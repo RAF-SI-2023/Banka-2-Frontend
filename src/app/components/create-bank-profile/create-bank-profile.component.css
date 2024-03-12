@@ -51,7 +51,9 @@ mat-form-field {
     margin-bottom: 20px;
 }
 
-button {
-    margin-right: 8px;
-    margin-bottom: 1rem;
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
 }

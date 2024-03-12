@@ -54,6 +54,10 @@ mat-card-content {
   padding-top: 1rem;
 }
 
+mat-checkbox {
+  margin-bottom: 1rem;
+}
+
 .buttons {
   display: flex;
   flex-direction: column;
