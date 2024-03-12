@@ -1,0 +1,103 @@
+section {
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+}
+
+#mainContainer {
+  display: flex;
+  flex-direction: row;
+  height: fit-content;
+  width: 90%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background: #3f51b5;
+  border-radius: 5px;
+  border-color: #999;
+  border-width: 2px;
+  border-style: solid;
+}
+
+#optionsContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 20%;
+  padding: 15px;
+  border-right-style: solid;
+  border-color: #999;
+}
+
+#tableContainer {
+  display: grid;
+  height: 100%;
+  width: 90%;
+  min-height: 632px;
+  background: #eee;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.textContainer {
+  color: #eee;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-items: end;
+  width: 100%;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+#paginatorContainer {
+  display: block;
+  flex-direction: column;
+  align-self: end;
+  width: 100%;
+}
