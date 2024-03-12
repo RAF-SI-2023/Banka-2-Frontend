@@ -29,6 +29,8 @@ import { BankAccountMaskDirective } from './directives/bank-account-mask.directi
 
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AlertInterceptor } from "./interceptors/alert.interceptor";
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { AlertInterceptor } from "./interceptors/alert.interceptor";
     ReactiveFormsModule,
     NgOptimizedImage,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

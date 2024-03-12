@@ -1,0 +1,70 @@
+<div id="container">
+  <div id="mainContainer">
+
+    <div id="optionsContainer">
+      <h3 class="textContainer">Lista korisnika</h3>
+
+      <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input #input (keyup)="applyFilter($event)" matInput placeholder="Ex. Mia">
+      </mat-form-field>
+
+      <div class="buttonContainer">
+        <button color="accent" mat-raised-button>Dodaj korisnika</button>
+      </div>
+
+      <div class="buttonContainer">
+        <button color="accent" mat-raised-button>Primary</button>
+      </div>
+
+
+    </div>
+
+    <div id="tableContainer">
+
+      <div class="mat-elevation-z8" style="box-shadow: none">
+        <table [dataSource]="dataSource" mat-table matSort>
+
+          <!-- ID Column -->
+          <ng-container matColumnDef="id">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header> ID</th>
+            <td *matCellDef="let row" mat-cell> {{ row.id }}</td>
+          </ng-container>
+
+          <!-- Progress Column -->
+          <ng-container matColumnDef="progress">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header> Progress</th>
+            <td *matCellDef="let row" mat-cell> {{ row.progress }}%</td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header> Name</th>
+            <td *matCellDef="let row" mat-cell> {{ row.name }}</td>
+          </ng-container>
+
+          <!-- Fruit Column -->
+          <ng-container matColumnDef="fruit">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header> Fruit</th>
+            <td *matCellDef="let row" mat-cell> {{ row.fruit }}</td>
+          </ng-container>
+
+          <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+          <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr *matNoDataRow class="mat-row">
+            <td class="mat-cell" colspan="4">No data matching the filter "{{ input.value }}"</td>
+          </tr>
+        </table>
+
+      </div>
+
+      <div id="paginatorContainer">
+        <mat-paginator [pageSize]="10" aria-label="Select page of users"></mat-paginator>
+      </div>
+
+    </div>
+
+  </div>
+</div>
