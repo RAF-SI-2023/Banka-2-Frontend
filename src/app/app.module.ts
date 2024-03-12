@@ -11,6 +11,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgOptimizedImage } from "@angular/common";
+import { MatCardModule } from "@angular/material/card";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 import { AppComponent } from './app.component';
 import { LandingComponent } from './components/landing/landing.component';
@@ -22,13 +25,10 @@ import { AdminpanelComponent } from './components/adminpanel/adminpanel.componen
 import { CreateBankAccountComponent } from './components/create-bank-account/create-bank-account.component';
 import { CreateBankProfileComponent } from './components/create-bank-profile/create-bank-profile.component';
 import { NavigationMenuComponent } from './components/navigation-menu/navigation-menu.component';
+import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
 
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AlertInterceptor } from "./interceptors/alert.interceptor";
-import {NgOptimizedImage} from "@angular/common";
-import {MatCardModule} from "@angular/material/card";
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
 
 @NgModule({
   declarations: [

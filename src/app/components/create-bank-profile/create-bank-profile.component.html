@@ -5,23 +5,13 @@
       <form [formGroup]="basicInfoForm">
         <mat-form-field appearance="fill">
           <mat-label>Broj računa/kartice/kredita</mat-label>
-          <input
-            matInput
-            placeholder="Unesite broj računa"
-            formControlName="accountNumber"
-            appBankAccountMask
-            required
-          />
+          <input matInput placeholder="Unesite broj računa" formControlName="accountNumber" appBankAccountMask
+            required />
           <mat-error *ngIf="basicInfoForm.controls.accountNumber.invalid">
             Unesite validan broj računa.
           </mat-error>
         </mat-form-field>
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="goToNextStep()"
-          [disabled]="!basicInfoForm.valid"
-        >
+        <button mat-raised-button color="primary" (click)="goToNextStep()" [disabled]="!basicInfoForm.valid">
           Nastavi
         </button>
       </form>
@@ -33,12 +23,7 @@
       <form [formGroup]="contactInfoForm">
         <mat-form-field appearance="fill">
           <mat-label>Broj mobilnog telefona</mat-label>
-          <input
-            matInput
-            placeholder="Unesite broj telefona"
-            formControlName="phoneNumber"
-            required
-          />
+          <input matInput placeholder="Unesite broj telefona" formControlName="phoneNumber" required />
           <mat-error *ngIf="contactInfoForm.get('phoneNumber')?.hasError('invalidPhoneNumber')">
             Unesite validan broj telefona.
           </mat-error>
@@ -46,13 +31,7 @@
 
         <mat-form-field appearance="fill">
           <mat-label>E-mail</mat-label>
-          <input
-            matInput
-            type="email"
-            placeholder="Unesite vašu e-mail adresu"
-            formControlName="email"
-            required
-          />
+          <input matInput type="email" placeholder="Unesite vašu e-mail adresu" formControlName="email" required />
           <mat-error *ngIf="contactInfoForm.controls.email.invalid">
             Unesite validan e-mail.
           </mat-error>
@@ -61,12 +40,7 @@
         <button mat-raised-button (click)="goToPreviousStep()">
           Nazad
         </button>
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="goToNextStep()"
-          [disabled]="!contactInfoForm.valid"
-        >
+        <button mat-raised-button color="primary" (click)="goToNextStep()" [disabled]="!contactInfoForm.valid">
           Nastavi
         </button>
       </form>
@@ -84,12 +58,7 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Aktivacioni kod</mat-label>
-          <input
-            matInput
-            placeholder="Unesite aktivacioni kod"
-            formControlName="activationCode"
-            required
-          />
+          <input matInput placeholder="Unesite aktivacioni kod" formControlName="activationCode" required />
           <mat-error *ngIf="activationCodeForm.controls.activationCode.invalid">
             Unesite validan aktivacioni kod.
           </mat-error>
@@ -98,12 +67,7 @@
         <button mat-raised-button (click)="goToPreviousStep()">
           Nazad
         </button>
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="goToNextStep()"
-          [disabled]="!activationCodeForm.valid"
-        >
+        <button mat-raised-button color="primary" (click)="goToNextStep()" [disabled]="!activationCodeForm.valid">
           Nastavi
         </button>
       </form>
@@ -115,22 +79,12 @@
       <form>
         <mat-form-field appearance="fill">
           <mat-label>Lozinka</mat-label>
-          <input
-            matInput
-            type="password"
-            placeholder="Kreirajte lozinku"
-            required
-          />
+          <input matInput type="password" placeholder="Kreirajte lozinku" required />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Ponovi lozinku</mat-label>
-          <input
-            matInput
-            type="password"
-            placeholder="Ponovite lozinku"
-            required
-          />
+          <input matInput type="password" placeholder="Ponovite lozinku" required />
         </mat-form-field>
 
         <button mat-raised-button (click)="goToPreviousStep()">
@@ -138,7 +92,7 @@
         </button>
 
         <button mat-raised-button color="primary" routerLink="/login">
-          Kreiraj nalog
+          Kreiraj profil
         </button>
         <!--
         <button mat-raised-button (click)="logFormData($event)" type="button">

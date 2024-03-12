@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {bankAccountNumberValidator, phoneNumberValidator} from "../../utils/validators";
-import {emailValidator} from "../../utils/validators/email.validator";
-
+import { bankAccountNumberValidator, phoneNumberValidator } from "../../utils/validators";
+import { emailValidator } from "../../utils/validators/email.validator";
 
 @Component({
   selector: 'app-create-bank-profile',
@@ -10,14 +9,12 @@ import {emailValidator} from "../../utils/validators/email.validator";
   styleUrls: ['./create-bank-profile.component.css']
 })
 export class CreateBankProfileComponent {
-
   currentStep = 1;
   accountNumber: string = '';
   phoneNumber: string = '';
   email: string = '';
   activationCode: string = '';
   password: string = '';
-
 
   basicInfoForm = new FormGroup({
     accountNumber: new FormControl('', [Validators.required, bankAccountNumberValidator()]),
@@ -64,8 +61,6 @@ export class CreateBankProfileComponent {
     console.log('E-mail:', this.contactInfoForm.get('email')?.value);
     console.log('Aktivacioni kod:', this.activationCodeForm.get('activationCode')?.value);
 
-
     console.log('Lozinka:', this.password);
   }
-
 }

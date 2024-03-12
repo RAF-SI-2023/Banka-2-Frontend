@@ -11,7 +11,7 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content class="card-content">
-      <form  class="form-inputs" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <form class="form-inputs" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
         <mat-form-field>
           <mat-label>Email</mat-label>
@@ -22,8 +22,10 @@
 
         <mat-form-field>
           <mat-label>Lozinka</mat-label>
-          <input matInput [type]="passwordHidden ? 'password' : 'text'" placeholder="Lozinka" formControlName="password" required>
-          <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHidden">
+          <input matInput [type]="passwordHidden ? 'password' : 'text'" placeholder="Lozinka" formControlName="password"
+            required>
+          <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()"
+            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHidden">
             <mat-icon>{{passwordHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
           <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Lozinka je obavezna</mat-error>
@@ -34,8 +36,8 @@
         <div class="buttons">
           <button mat-raised-button color="accent" type="submit" routerLink="/home">Login</button>
           <div class="sign-up">
-            <p>Nemate nalog? Registrujte se.</p>
-            <button mat-raised-button routerLink="/create-bank-profile">Kreiraj nalog</button>
+            <p>Nemate korisnički profil? Napravite ga:</p>
+            <button mat-raised-button routerLink="/create-bank-profile">Napravi profil</button>
           </div>
         </div>
 

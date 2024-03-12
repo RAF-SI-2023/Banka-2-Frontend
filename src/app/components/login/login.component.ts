@@ -1,6 +1,6 @@
-import {Component, signal} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
-import {emailValidator} from "../../utils/validators/email.validator";
+import { Component, signal } from '@angular/core';
+import { FormBuilder, Validators } from "@angular/forms";
+import { emailValidator } from "../../utils/validators/email.validator";
 
 @Component({
   selector: 'app-login',
@@ -17,10 +17,10 @@ export class LoginComponent {
     remember: [false]
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   onSubmit() {
-    if(this.loginForm.valid){
+    if (this.loginForm.valid) {
       // Send the form data to the backend
     }
   }

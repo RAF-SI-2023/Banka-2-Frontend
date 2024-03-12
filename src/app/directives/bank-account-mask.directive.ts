@@ -1,11 +1,11 @@
-import {Directive, ElementRef, HostListener} from '@angular/core';
+import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[appBankAccountMask]'
 })
 export class BankAccountMaskDirective {
 
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef) { }
 
   @HostListener('input', ['$event']) onInput(event: any) {
     const input = event.target;
