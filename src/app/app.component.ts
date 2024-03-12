@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Banka-2-Frontend';
+  router = inject(Router)
+  showToolbar: boolean = true;
+
+  constructor(){}
+  ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        // Determine if toolbar should be displayed based on current route
+        const excludedRoutes = ['/', '/login', '/create-bank-profile'];
+        this.showToolbar = !excludedRoutes.includes(event.url);
+      }
+    });
+  }
 }

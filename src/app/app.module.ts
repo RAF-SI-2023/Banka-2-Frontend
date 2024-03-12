@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {inject, NgModule} from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -67,5 +67,4 @@ import { AlertInterceptor } from "./interceptors/alert.interceptor";
   }],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
