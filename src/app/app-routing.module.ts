@@ -6,7 +6,6 @@ import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { CreateBankProfileComponent } from './components/create-bank-profile/create-bank-profile.component';
 import { HomeComponent } from './components/home/home.component';
-import { PaperStocksComponent } from './components/paper-stocks/paper-stocks.component';
 import { UserpanelComponent } from './components/userpanel/userpanel.component';
 import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
 import { CreateBankAccountComponent } from './components/create-bank-account/create-bank-account.component';
@@ -16,7 +15,6 @@ const routes: Routes = [
   { component: LoginComponent, path: "login" },
   { component: CreateBankProfileComponent, path: "create-bank-profile" },
   { component: HomeComponent, path: "home", canActivate: [authGuard], canDeactivate: [authGuard] },
-  { component: PaperStocksComponent, path: "paper-stocks", canActivate: [authGuard], canDeactivate: [authGuard] },
   { component: UserpanelComponent, path: "userpanel", canActivate: [authGuard], canDeactivate: [authGuard] },
   { component: AdminpanelComponent, path: "adminpanel", canActivate: [authGuard], canDeactivate: [authGuard] },
   { component: CreateBankAccountComponent, path: "create-bank-account", canActivate: [authGuard], canDeactivate: [authGuard] }
