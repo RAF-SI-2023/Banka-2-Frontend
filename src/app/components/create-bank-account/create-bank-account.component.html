@@ -1,17 +1,22 @@
 <section class="container">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Card with title</mat-card-title>
-      <mat-card-subtitle>Subtitle</mat-card-subtitle>
+      <mat-card-title>Kreiranje Bankovnog Računa</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      Card content
+      <div class="form-inputs">
+        <mat-tab-group>
+            <mat-tab *ngFor="let option of accountTypeOptions" [label]="option.label">
+              <div class="tab-content">
+                <app-domestic-form *ngIf="option.value === 'TEKUĆI'"
+                                   [currencyOptions]="currencyOptions"
+                                   [domesticCurrencyAccountTypeOptions]="domesticCurrencyAccountTypeOptions"></app-domestic-form>
+                <app-foreign-form *ngIf="option.value === 'DEVIZNI'"
+                                  [currencyOptions]="currencyOptions"></app-foreign-form>
+              </div>
+            </mat-tab>
+        </mat-tab-group>
+      </div>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
   </mat-card>
 </section>
-
-
