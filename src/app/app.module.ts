@@ -1,4 +1,4 @@
-import { inject, NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -10,7 +10,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgOptimizedImage } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
 import { MatCheckboxModule } from "@angular/material/checkbox";
@@ -28,6 +28,10 @@ import { BankAccountMaskDirective } from './directives/bank-account-mask.directi
 
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AlertInterceptor } from "./interceptors/alert.interceptor";
+import {MatSelectModule} from "@angular/material/select";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { DomesticFormComponent } from './components/create-bank-account/domestic-form/domestic-form.component';
+import { ForeignFormComponent } from './components/create-bank-account/foreign-form/foreign-form.component';
 import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 
@@ -42,7 +46,9 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     CreateBankAccountComponent,
     CreateBankProfileComponent,
     NavigationMenuComponent,
-    BankAccountMaskDirective
+    BankAccountMaskDirective,
+    DomesticFormComponent,
+    ForeignFormComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +66,10 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     MatCardModule,
     MatCheckboxModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule,
+    FormsModule,
+    MatButtonToggleModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
