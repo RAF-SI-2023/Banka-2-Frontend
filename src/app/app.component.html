@@ -1,2 +1,4 @@
 <app-navigation-menu *ngIf="showToolbar"></app-navigation-menu>
-<router-outlet></router-outlet>
+<section [style.padding-top.px]="showToolbar ? 32 : 0">
+  <router-outlet></router-outlet>
+</section>
