@@ -10,6 +10,7 @@ export class AlertInterceptor implements HttpInterceptor {
   constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    console.log('intercepted')
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         let errorMessage = "An unknown error occurred!";
@@ -41,9 +42,10 @@ export class AlertInterceptor implements HttpInterceptor {
         }
 
         this.snackBar.open(errorMessage, "Close", {
-          duration: 2000,
+          duration: 4000,
           verticalPosition: 'top',
-          horizontalPosition: 'right'
+          horizontalPosition: 'right',
+          panelClass: ['error-snackbar']
         });
 
         throw error;

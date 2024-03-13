@@ -1,6 +1,8 @@
-import { Component, signal } from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
 import { emailValidator } from "../../utils/validators/email.validator";
+import {AuthService} from "../../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -8,8 +10,10 @@ import { emailValidator } from "../../utils/validators/email.validator";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  authService = inject(AuthService);
+  router = inject(Router);
   passwordHidden = true;
-  badCredentialsError = false;
+  serverResponseError = '';
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, emailValidator()]],
@@ -21,7 +25,19 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      // Send the form data to the backend
+      this.authService.login({
+        email: this.loginForm.value.email!,
+        password: this.loginForm.value.password!
+      }).subscribe(
+        () => {
+          this.router.navigate(['/home']);
+        },
+        (error) => {
+          this.serverResponseError = error.message;
+        }
+      );
+    }else{
+      this.loginForm.markAllAsTouched();
     }
   }
 

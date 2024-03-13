@@ -29,12 +29,12 @@
             <mat-icon>{{passwordHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
           <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Lozinka je obavezna</mat-error>
-          <mat-error *ngIf="badCredentialsError">Pogrešni kredencijali, molimo pokušajte ponovo</mat-error>
         </mat-form-field>
+        <mat-error *ngIf="serverResponseError">{{serverResponseError}}</mat-error>
         <mat-checkbox formControlName="remember">Zapamti me?</mat-checkbox>
 
         <div class="buttons">
-          <button mat-raised-button color="accent" type="submit" routerLink="/home">Uloguj se</button>
+          <button mat-raised-button color="accent" type="submit">Uloguj se</button>
           <div class="sign-up">
             <p>Nemate korisnički profil? Napravite ga:</p>
             <button mat-raised-button routerLink="/create-bank-profile">Napravi profil</button>
