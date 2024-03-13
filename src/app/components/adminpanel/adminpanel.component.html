@@ -1,26 +1,23 @@
+<!--<app-navigation-menu></app-navigation-menu>-->
 <div id="container">
   <div id="mainContainer">
 
-    <div id="optionsContainer">
-      <h3 class="textContainer">Lista korisnika</h3>
+    <div class="optionsContainer">
 
-      <mat-form-field>
-        <mat-label>Search</mat-label>
-        <input #input (keyup)="applyFilter($event)" matInput placeholder="Ex. Mia">
-      </mat-form-field>
+      <div class="formContainer">
+        <mat-form-field class="form">
+          <mat-label>Search</mat-label>
+          <input #input (keyup)="applyFilter($event)" matInput placeholder="Ex. Mia">
+        </mat-form-field>
+      </div>
 
       <div class="buttonContainer">
         <button color="accent" mat-raised-button>Dodaj korisnika</button>
       </div>
 
-      <div class="buttonContainer">
-        <button color="accent" mat-raised-button>Primary</button>
-      </div>
-
-
     </div>
 
-    <div id="tableContainer">
+    <div class="tableContainer">
 
       <div class="mat-elevation-z8" style="box-shadow: none">
         <table [dataSource]="dataSource" mat-table matSort>
@@ -60,11 +57,11 @@
 
       </div>
 
-      <div id="paginatorContainer">
-        <mat-paginator [pageSize]="10" aria-label="Select page of users"></mat-paginator>
-      </div>
-
     </div>
+    <div id="paginatorContainer">
+      <mat-paginator [hidePageSize]="true"  [pageSize]="10"></mat-paginator>
+    </div>
+    <div class="botContainer"></div>
 
   </div>
 </div>
