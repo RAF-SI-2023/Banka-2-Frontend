@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { LandingComponent } from './components/landing/landing.component';
@@ -74,7 +74,6 @@ import { AlertInterceptor } from "./interceptors/alert.interceptor";
     MatSelectModule,
     MatSnackBarModule,
     MatButtonToggleModule,
-    login-api-service,
     HttpClientModule,
     MatSortModule
   ],

@@ -1,3 +1,3 @@
-export interface LoginResponseDto{
+export interface LoginResponseDto {
   access_token: string;
 }

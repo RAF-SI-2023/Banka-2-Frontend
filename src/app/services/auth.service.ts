@@ -1,10 +1,10 @@
-import {inject, Injectable} from '@angular/core';
-import {environment} from "../../environments/environment.development";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {catchError, Observable, tap, throwError} from "rxjs";
-import {LoginResponseDto} from "../dto/response/login-response.dto";
-import {LoginRequestDto} from "../dto/request/login-request.dto";
-import {Router} from "@angular/router";
+import { inject, Injectable } from '@angular/core';
+import { environment } from "../../environments/environment.development";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { catchError, Observable, tap, throwError } from "rxjs";
+import { LoginResponseDto } from "../dto/response/login-response.dto";
+import { LoginRequestDto } from "../dto/request/login-request.dto";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +23,10 @@ export class AuthService {
         email: credentials.email,
         password: credentials.password
       }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
   }
 
   isLoggedIn() {

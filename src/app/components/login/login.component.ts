@@ -1,8 +1,8 @@
-import {Component, inject, signal} from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
 import { emailValidator } from "../../utils/validators/email.validator";
-import {AuthService} from "../../services/auth.service";
-import {Router} from "@angular/router";
+import { AuthService } from "../../services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -36,7 +36,7 @@ export class LoginComponent {
           this.serverResponseError = error.message;
         }
       );
-    }else{
+    } else {
       this.loginForm.markAllAsTouched();
     }
   }

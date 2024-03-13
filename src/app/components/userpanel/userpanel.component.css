@@ -11,7 +11,7 @@
 }
 
 mat-card {
-box-shadow: -2px 2px lightblue;
+  box-shadow: -2px 2px lightblue;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -2,15 +2,18 @@
   <form class="form-inputs" [formGroup]="foreignBankAccountForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
       <mat-label>Broj računa</mat-label>
-      <input matInput placeholder="Broj računa" formControlName="accountNumber" required>
-      <mat-error *ngIf="foreignBankAccountForm.get('accountNumber')?.hasError('required')">Broj računa je obavezan</mat-error>
-      <mat-error *ngIf="foreignBankAccountForm.get('accountNumber')?.hasError('invalidBankAccountNumber')">Pogrešan format računa</mat-error>
+      <input matInput placeholder="Unesite broj računa" formControlName="accountNumber" appBankAccountMask required>
+      <mat-error *ngIf="foreignBankAccountForm.get('accountNumber')?.hasError('required')">Broj računa je
+        obavezan</mat-error>
+      <mat-error *ngIf="foreignBankAccountForm.get('accountNumber')?.hasError('invalidBankAccountNumber')">Pogrešan
+        format računa</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input matInput type="email" placeholder="john@example.com" formControlName="email" required>
+      <input matInput type="email" placeholder="Unesite e-mail adresu" formControlName="email" required>
       <mat-error *ngIf="foreignBankAccountForm.get('email')?.hasError('required')">Email je obavezan</mat-error>
-      <mat-error *ngIf="foreignBankAccountForm.get('email')?.hasError('invalidEmail')">Pogrešan format Email-a</mat-error>
+      <mat-error *ngIf="foreignBankAccountForm.get('email')?.hasError('invalidEmail')">Pogrešan format
+        Email-a</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Valuta</mat-label>

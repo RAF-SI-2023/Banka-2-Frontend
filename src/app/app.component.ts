@@ -1,5 +1,5 @@
-import {Component, inject} from '@angular/core';
-import {NavigationEnd, Router} from "@angular/router";
+import { Component, inject } from '@angular/core';
+import { NavigationEnd, Router } from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ export class AppComponent {
   router = inject(Router)
   showToolbar: boolean = true;
 
-  constructor(){}
+  constructor() { }
   ngOnInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {

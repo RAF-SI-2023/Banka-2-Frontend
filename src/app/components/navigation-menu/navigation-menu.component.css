@@ -1,7 +1,8 @@
 .navbar {
-  position: fixed;
-  z-index: 999;
+    position: fixed;
+    z-index: 999;
 }
+
 .padding {
     flex: 1 1 auto;
 }

@@ -1,7 +1,9 @@
 .container {
   position: relative;
-  overflow: auto; /* Enable content scrolling */
-  min-height: calc(100vh - 90px); /* Adjust according to your navbar height */
+  overflow: auto;
+  /* Enable content scrolling */
+  min-height: calc(100vh - 90px);
+  /* Adjust according to your navbar height */
   padding: 0 2rem;
 }
 
@@ -15,6 +17,6 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  z-index: -1; /* Ensure the background is behind other content */
+  z-index: -1;
+  /* Ensure the background is behind other content */
 }
-
