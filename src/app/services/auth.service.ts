@@ -1,7 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {environment} from "../../environments/environment.development";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {catchError, Observable, tap, throwError} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 import {LoginResponseDto} from "../dto/login-response.dto";
 import {AuthCredentialsDto} from "../dto/auth-credentials.dto";
 import {Router} from "@angular/router";
