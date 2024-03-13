@@ -26,6 +26,7 @@ import { CreateBankProfileComponent } from './components/create-bank-profile/cre
 import { NavigationMenuComponent } from './components/navigation-menu/navigation-menu.component';
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
 
+import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AlertInterceptor } from "./interceptors/alert.interceptor";
 import {MatSelectModule} from "@angular/material/select";
@@ -34,6 +35,7 @@ import { DomesticFormComponent } from './components/create-bank-account/domestic
 import { ForeignFormComponent } from './components/create-bank-account/foreign-form/foreign-form.component';
 import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -68,8 +70,10 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     MatTableModule,
     MatPaginatorModule,
     MatSelectModule,
+    MatSnackBarModule,
     FormsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    HttpClientModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
