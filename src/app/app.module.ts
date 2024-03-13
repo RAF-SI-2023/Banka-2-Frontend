@@ -34,6 +34,7 @@ import { DomesticFormComponent } from './components/create-bank-account/domestic
 import { ForeignFormComponent } from './components/create-bank-account/foreign-form/foreign-form.component';
 import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     MatPaginatorModule,
     MatSelectModule,
     FormsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatSortModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
