@@ -33,7 +33,7 @@ export class LoginComponent {
           this.router.navigate(['/home']);
         },
         (error) => {
-          this.serverResponseError = error.message;
+          this.serverResponseError = 'Pogrešan email ili lozinka';
         }
       );
     } else {
