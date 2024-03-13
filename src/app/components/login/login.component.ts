@@ -30,6 +30,7 @@ export class LoginComponent {
         password: this.loginForm.value.password!
       }).subscribe(
         () => {
+          console.log('Logged in')
           this.router.navigate(['/home']);
         },
         (error) => {
