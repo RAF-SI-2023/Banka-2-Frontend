@@ -8,6 +8,7 @@ import {EmployeeDto} from "../dto/EmployeeDto";
 import {ApiRoutes} from "./api-routes";
 import {PermissionDto} from "../dto/permissions.dto";
 import {RolesDto} from "../dto/roles.dto";
+import {tap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,12 @@ export class AuthService {
         headers: {
           'Content-Type': 'application/json'
         }
-      })
+      }).pipe(
+        tap((response) => {
+          localStorage.setItem('token', response.token);
+        }
+      )
+    );
   }
 
   activateEmployee(credentials: AuthCredentialsDto) {
@@ -60,5 +66,6 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }
