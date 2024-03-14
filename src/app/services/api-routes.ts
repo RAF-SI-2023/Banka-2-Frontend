@@ -19,5 +19,11 @@ export const ApiRoutes = {
     changePasswordSubmit: '/users/changePasswordSubmit',
     activateEmployee: '/users/activateEmployee',
     changePassword: '/users/changePassword',
+  },
+  accounts: {
+    createAccountForeign: '/accounts/create-account/foreign',
+    createAccountDomestic: '/accounts/create-account/domestic',
+    codeConfirmation: '/accounts/code-confirmation',
+    associateProfileInit: '/accounts/associate-profile-initialization',
   }
 }
