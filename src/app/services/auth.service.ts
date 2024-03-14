@@ -50,11 +50,7 @@ export class AuthService {
       {
         email: credentials.email,
         password: credentials.password
-      }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+      })
   }
 
   getPermissions() {
