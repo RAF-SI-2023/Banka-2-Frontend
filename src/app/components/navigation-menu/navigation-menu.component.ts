@@ -18,7 +18,7 @@ export class NavigationMenuComponent {
     this.role = this.authService.getRoleFromToken();
   }
 
-  checkTokenRole(roleArray: string[]) {
+  async checkTokenRole(roleArray: string[]) {
     if(!this.role) return false;
     return roleArray.includes(this.role);
   }
