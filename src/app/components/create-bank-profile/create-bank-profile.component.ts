@@ -174,6 +174,7 @@ export class CreateBankProfileComponent implements OnInit{
     }
   }
 
+
   sendActivationCode(){
     this.bankProfileService.codeConfirmation(this.activationCode, this.primaryAccountNumber).subscribe(
       (response) => {
