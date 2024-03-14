@@ -1,5 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
+import {Role} from "../../dto/decoded-token.dto";
 
 @Component({
   selector: 'app-navigation-menu',
@@ -8,8 +9,12 @@ import {AuthService} from "../../services/auth.service";
 })
 export class NavigationMenuComponent {
   authService = inject(AuthService);
-
+  role: Role | null = null;
   logout() {
     this.authService.logout();
+  }
+
+  ngOnInit() {
+    this.role = this.authService.getRoleFromToken();
   }
 }
