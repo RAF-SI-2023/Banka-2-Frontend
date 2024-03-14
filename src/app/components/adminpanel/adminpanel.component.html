@@ -13,7 +13,6 @@
           (click)="(selectedRow?.active) ? deactivateEmployee() : activateEmployee()">
           {{ selectedRow?.active ? 'Deaktiviraj zaposlenog' : 'Aktiviraj zaposlenog' }}
         </button>
-        <button mat-raised-button class="buttons" color="accent">Dodaj korisnika</button>
         <button mat-raised-button (click)="updateUser()" class="buttons" color="accent" [disabled]="!selectedRow">Izmeni
           korisnika</button>
         <button mat-raised-button (click)="deleteUser()" class="buttons" color="warn" [disabled]="!selectedRow">Izbriši

@@ -34,6 +34,8 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatSelectModule } from "@angular/material/select";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
@@ -41,6 +43,7 @@ import { AlertInterceptor } from "./interceptors/alert.interceptor";
 import { UpdateDialogComponent } from './components/adminpanel/dialogs/update-dialog/update-dialog.component';
 import { AddDialogComponent } from './components/adminpanel/dialogs/add-dialog/add-dialog.component';
 import { ConfirmActionDialogComponent } from './components/adminpanel/dialogs/confirm-action-dialog/confirm-action-dialog.component';
+import { PhoneNumberValidatorDirective } from './directives/phone-number-validator.directive';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,8 @@ import { ConfirmActionDialogComponent } from './components/adminpanel/dialogs/co
     ForeignFormComponent,
     UpdateDialogComponent,
     AddDialogComponent,
-    ConfirmActionDialogComponent
+    ConfirmActionDialogComponent,
+    PhoneNumberValidatorDirective
   ],
   imports: [
     BrowserModule,
@@ -83,7 +87,9 @@ import { ConfirmActionDialogComponent } from './components/adminpanel/dialogs/co
     MatButtonToggleModule,
     HttpClientModule,
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

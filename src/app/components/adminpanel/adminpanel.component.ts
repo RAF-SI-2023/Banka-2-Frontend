@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from "@angular/material/table";
 import { validateHorizontalPosition } from "@angular/cdk/overlay";
 import { MatPaginator } from "@angular/material/paginator";
@@ -107,17 +107,13 @@ export class AdminpanelComponent implements AfterViewInit {
   }
 
   addUser(): void {
-    if (this.selectedRow != null) {
-      const dialogRef = this.dialog.open(AddDialogComponent, {
-        data: { selectedRow: this.selectedRow }
-      });
+    const dialogRef = this.dialog.open(AddDialogComponent);
 
-      dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
-        this.selectedRow = null;
-        this.fetchData();
-      });
-    }
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.selectedRow = null;
+      this.fetchData();
+    });
   }
 
   updateUser(): void {
