@@ -17,4 +17,10 @@ export class NavigationMenuComponent {
   ngOnInit() {
     this.role = this.authService.getRoleFromToken();
   }
+
+  checkTokenRole(roleArray: string[]) {
+    if(!this.role) return false;
+    return roleArray.includes(this.role);
+  }
+
 }
