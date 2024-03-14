@@ -3,8 +3,22 @@
     <mat-card-header>
       <mat-card-title>
         <div class="title">
-          <h2>Admin Adminovic</h2>
-          <img ngSrc="../../../assets/logo/bank-2-logo.svg" alt="Icon" height="64" width="64" border-radius="50%">
+          <h2>
+            {{
+              privateClient
+                ? privateClient.name
+                : corporateClient
+                ? corporateClient.name
+                : "Nepoznati Korisnik"
+            }}
+          </h2>
+          <img
+            src="../../../assets/logo/bank-2-logo.svg"
+            alt="Icon"
+            height="64"
+            width="64"
+            style="border-radius: 50%"
+          />
         </div>
       </mat-card-title>
     </mat-card-header>
@@ -12,46 +26,67 @@
       <table>
         <tbody>
           <tr>
-            <td>&nbsp;<b>Informacije</b></td>
-            <td>&nbsp;</td>
-          </tr>
-          <br>
-          <tr>
-            <td>&nbsp;Limit</td>
-            <td>&nbsp;JMBG</td>
+            <td><b>Username:</b></td>
+            <td>{{ user?.username }}</td>
           </tr>
           <tr>
-            <td>&nbsp;10000</td>
-            <td>&nbsp;040399392094</td>
-          </tr>
-          <br>
-          <tr>
-            <td>&nbsp;<b>Kontakt</b></td>
-            <td>&nbsp;</td>
-          </tr>
-          <br>
-          <tr>
-            <td>&nbsp;Broj telefona</td>
-            <td>&nbsp;Email</td>
+            <td><b>Email:</b></td>
+            <td>{{ user?.email }}</td>
           </tr>
           <tr>
-            <td>&nbsp;06632345253</td>
-            <td>&nbsp;admin@gmail.com</td>
+            <td><b>Telefon:</b></td>
+            <td>{{ user?.phone }}</td>
           </tr>
-          <br>
-          <br>
           <tr>
-            <td>
-            </td>
-            <td>
-              <button mat-raised-button>Promeni šifru</button>
-            </td>
+            <td><b>Adresa:</b></td>
+            <td>{{ user?.address }}</td>
+          </tr>
+          <tr>
+            <td><b>Datum rođenja:</b></td>
+            <td>{{ user?.dateOfBirth }}</td>
+          </tr>
+          <tr>
+            <td><b>Uloga:</b></td>
+            <td>{{ user?.role }}</td>
+          </tr>
+          <tr>
+            <td><b>Dozvole:</b></td>
+            <td>{{ user?.permissions?.join(", ") }}</td>
+          </tr>
+          <tr>
+            <td><b>Aktivan:</b></td>
+            <td>{{ user?.active ? "Da" : "Ne" }}</td>
+          </tr>
+
+          <tr *ngIf="privateClient">
+            <td><b>Ime:</b></td>
+            <td>{{ privateClient.name }}</td>
+          </tr>
+          <tr *ngIf="privateClient">
+            <td><b>Prezime:</b></td>
+            <td>{{ privateClient.surname }}</td>
+          </tr>
+          <tr *ngIf="privateClient">
+            <td><b>Pol:</b></td>
+            <td>{{ privateClient.gender }}</td>
+          </tr>
+          <tr *ngIf="privateClient">
+            <td><b>Primarni broj računa:</b></td>
+            <td>{{ privateClient.primaryAccountNumber }}</td>
+          </tr>
+
+          <tr *ngIf="corporateClient">
+            <td><b>Naziv kompanije:</b></td>
+            <td>{{ corporateClient.name }}</td>
+          </tr>
+          <tr *ngIf="corporateClient">
+            <td><b>Primarni broj računa:</b></td>
+            <td>{{ corporateClient.primaryAccountNumber }}</td>
           </tr>
         </tbody>
       </table>
 
-
-
+      <button mat-raised-button>Promeni šifru</button>
     </mat-card-content>
   </mat-card>
 </section>
