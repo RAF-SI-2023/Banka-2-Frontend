@@ -9,6 +9,9 @@ import { UserDto } from 'src/app/dto/UserDto';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateDialogComponent } from './dialogs/update-dialog/update-dialog.component';
+import { AddDialogComponent } from './dialogs/add-dialog/add-dialog.component';
 
 @Component({
   selector: 'app-adminpanel',
@@ -24,7 +27,7 @@ export class AdminpanelComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort | undefined;
   protected readonly validateHorizontalPosition = validateHorizontalPosition;
 
-  constructor(private http: HttpClient, private authService: AuthService, private userService: UserService) {
+  constructor(private http: HttpClient, private authService: AuthService, private userService: UserService, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource();
     this.fetchData();
   }
@@ -45,11 +48,18 @@ export class AdminpanelComponent implements AfterViewInit {
     }
   }
 
-  selectRow(row: UserDto) {
+  selectRow(row: UserDto): void {
     if (this.selectedRow?.id != row.id) {
       this.selectedRow = row;
       console.log(this.selectedRow);
     }
+  }
+
+  selectedRowRole(): string {
+    if (this.selectedRow?.role != null) {
+      return this.selectedRow?.role;
+    }
+    return '';
   }
 
   fetchData(): void {
@@ -64,6 +74,64 @@ export class AdminpanelComponent implements AfterViewInit {
           return throwError(() => error);
         })
       ).subscribe();
+  }
+
+  activateEmployee(): void {
+    if (this.selectedRow != null && this.selectedRow.role == 'EMPLOYEE') {
+      this.userService.putActivateEmployee(this.selectedRow.id)
+        .pipe(
+          catchError(error => {
+            console.error('Error loading data.', error);
+            return throwError(() => error);
+          })
+        ).subscribe(() => {
+          this.fetchData();
+          this.selectedRow = null;
+        });
+    }
+  }
+
+  deactivateEmployee(): void {
+    if (this.selectedRow != null && this.selectedRow.role == 'EMPLOYEE') {
+      this.userService.putDeactivateEmployee(this.selectedRow.id)
+        .pipe(
+          catchError(error => {
+            console.error('Error loading data.', error);
+            return throwError(() => error);
+          })
+        ).subscribe(() => {
+          this.fetchData();
+          this.selectedRow = null;
+        });
+    }
+  }
+
+  addUser(): void {
+    if (this.selectedRow != null) {
+      const dialogRef = this.dialog.open(AddDialogComponent, {
+        data: { selectedRow: this.selectedRow }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+        this.selectedRow = null;
+        this.fetchData();
+      });
+    }
+  }
+
+  updateUser(): void {
+    if (this.selectedRow != null) {
+      const dialogRef = this.dialog.open(UpdateDialogComponent, {
+        data: { selectedRow: this.selectedRow }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+        this.selectedRow = null;
+        this.fetchData();
+      });
+    }
   }
 
   deleteUser(): void {

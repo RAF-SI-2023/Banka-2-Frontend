@@ -1,0 +1,68 @@
+<h2 mat-dialog-title>Dodaj korisnika</h2>
+<mat-dialog-content class="mat-typography">
+    <form>
+        <div>
+            <table cellspacing="0">
+                <tr>
+                    <td><mat-form-field class="full-width">
+                            <mat-label>Datum rođenja</mat-label>
+                            <input matInput [(ngModel)]="this.newSelectedRow.dateOfBirth" name="dateOfBirth">
+                        </mat-form-field></td>
+                    <td><mat-form-field class="full-width">
+                            <mat-label>Broj telefona</mat-label>
+                            <input matInput [(ngModel)]="this.newSelectedRow.phone" name="phone">
+                        </mat-form-field></td>
+                </tr>
+            </table>
+
+            <p>
+                <mat-form-field class="full-width">
+                    <mat-label>Adresa</mat-label>
+                    <input matInput [(ngModel)]="this.newSelectedRow.address" name="address">
+                </mat-form-field>
+            </p>
+        </div>
+
+        <div *ngIf="checkDto() == 'PRIVATE' || checkDto() == 'CORPORATE' || checkDto() == 'EMPLOYEE'">
+            <p>
+                <mat-form-field class="full-width">
+                    <mat-label>Ime</mat-label>
+                    <input matInput [(ngModel)]="this.newSelectedRow.name" name="name">
+                </mat-form-field>
+            </p>
+        </div>
+
+        <div *ngIf="checkDto() == 'PRIVATE' || checkDto() == 'EMPLOYEE'">
+            <p>
+                <mat-form-field class="full-width">
+                    <mat-label>Prezime</mat-label>
+                    <input matInput [(ngModel)]="this.newSelectedRow.surname" name="surname">
+                </mat-form-field>
+
+                <mat-form-field class="full-width" *ngIf="this.newSelectedRow instanceof PrivateClientDto">
+                    <mat-label>Pol</mat-label>
+                    <input matInput [(ngModel)]="this.newSelectedRow.gender" name="gender">
+                </mat-form-field>
+            </p>
+        </div>
+
+        <div *ngIf="checkDto() == 'EMPLOYEE'">
+            <p>
+                <mat-form-field class="full-width">
+                    <mat-label>Pozicija</mat-label>
+                    <input matInput [(ngModel)]="this.newSelectedRow.position" name="position">
+                </mat-form-field>
+
+                <mat-form-field class="full-width" *ngIf="this.newSelectedRow instanceof PrivateClientDto">
+                    <mat-label>Odeljenje</mat-label>
+                    <input matInput [(ngModel)]="this.newSelectedRow.department" name="department">
+                </mat-form-field>
+            </p>
+        </div>
+
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Zatvori</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="addUser()">Izmeni</button>
+</mat-dialog-actions>

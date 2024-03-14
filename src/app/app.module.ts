@@ -33,10 +33,14 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatSortModule } from "@angular/material/sort";
 import { MatSelectModule } from "@angular/material/select";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AlertInterceptor } from "./interceptors/alert.interceptor";
+import { UpdateDialogComponent } from './components/adminpanel/dialogs/update-dialog/update-dialog.component';
+import { AddDialogComponent } from './components/adminpanel/dialogs/add-dialog/add-dialog.component';
+import { ConfirmActionDialogComponent } from './components/adminpanel/dialogs/confirm-action-dialog/confirm-action-dialog.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +55,10 @@ import { AlertInterceptor } from "./interceptors/alert.interceptor";
     NavigationMenuComponent,
     BankAccountMaskDirective,
     DomesticFormComponent,
-    ForeignFormComponent
+    ForeignFormComponent,
+    UpdateDialogComponent,
+    AddDialogComponent,
+    ConfirmActionDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +82,8 @@ import { AlertInterceptor } from "./interceptors/alert.interceptor";
     MatSnackBarModule,
     MatButtonToggleModule,
     HttpClientModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

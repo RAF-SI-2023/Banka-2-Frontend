@@ -9,10 +9,15 @@
           </mat-form-field>
         </div>
 
-        <button class="buttons" color="accent" mat-raised-button>Aktiviraj korisnika</button>
-        <button class="buttons" color="accent" mat-raised-button>Dodaj korisnika</button>
-        <button class="buttons" color="accent" mat-raised-button>Izmeni korisnika</button>
-        <button (click)="deleteUser()" class="buttons" color="warn" mat-raised-button>Izbriši korisnika</button>
+        <button mat-raised-button class="buttons" color="accent" [disabled]="selectedRowRole() != 'EMPLOYEE'"
+          (click)="(selectedRow?.active) ? deactivateEmployee() : activateEmployee()">
+          {{ selectedRow?.active ? 'Deaktiviraj zaposlenog' : 'Aktiviraj zaposlenog' }}
+        </button>
+        <button mat-raised-button class="buttons" color="accent">Dodaj korisnika</button>
+        <button mat-raised-button (click)="updateUser()" class="buttons" color="accent" [disabled]="!selectedRow">Izmeni
+          korisnika</button>
+        <button mat-raised-button (click)="deleteUser()" class="buttons" color="warn" [disabled]="!selectedRow">Izbriši
+          korisnika</button>
       </div>
     </mat-card-header>
 

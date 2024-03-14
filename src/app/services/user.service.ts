@@ -26,6 +26,36 @@ export class UserService {
     return this.httpClient.get<UserDto | PrivateClientDto | CorporateClientDto>(`${environment.apiUrl}/users/${userId}`, { headers });
   }
 
+  // PUT metode
+  // (url, null, headers) umesto (url, headers) jer je PUT request lose napisan na back-u, trebao je da bude GET
+  putActivateEmployee(id: number) {
+    const headers = this.authService.getHeaders();
+    return this.httpClient.put<UserDto[]>(environment.apiUrl + ApiRoutes.users.activateEmployee + `/${id}`, null, { headers });
+  }
+
+  // (url, null, headers) umesto (url, headers) jer je PUT request lose napisan na back-u, trebao je da bude GET
+  putDeactivateEmployee(id: number) {
+    const headers = this.authService.getHeaders();
+    return this.httpClient.put<UserDto[]>(environment.apiUrl + ApiRoutes.users.deactivateEmployee + `/${id}`, null, { headers });
+  }
+
+  putUpdatePrivateClient(user: UserDto) {
+    const headers = this.authService.getHeaders();
+    return this.httpClient.put<UserDto[]>(environment.apiUrl + ApiRoutes.users.updatePrivateClient, user, { headers });
+  }
+
+  putUpdateCorporateClient(user: UserDto) {
+    const headers = this.authService.getHeaders();
+    return this.httpClient.put<UserDto[]>(environment.apiUrl + ApiRoutes.users.updateCorporateClient, user, { headers });
+  }
+
+  putUpdateEmployee(user: UserDto) {
+    const headers = this.authService.getHeaders();
+    return this.httpClient.put<UserDto[]>(environment.apiUrl + ApiRoutes.users.updateEmployee, user, { headers });
+  }
+
+  // POST metode
+
   // DELETE metode
   delete(email: string) {
     const headers = this.authService.getHeaders();
