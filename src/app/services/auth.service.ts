@@ -10,6 +10,8 @@ import { PermissionDto } from "../dto/permissions.dto";
 import { RolesDto } from "../dto/roles.dto";
 import { tap } from "rxjs";
 import { HttpHeaders } from '@angular/common/http';
+import {jwtDecode} from "jwt-decode";
+import {DecodedTokenDto} from "../dto/decoded-token.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +63,14 @@ export class AuthService {
 
   getRoles() {
     return this.http.get<RolesDto[]>(`${this.apiUrl}${this.authUrls.allRoles}`);
+  }
+
+  getRoleFromToken() {
+    if(this.token){
+      const decodedToken = jwtDecode<DecodedTokenDto>(this.token);
+      return decodedToken.role;
+    }
+    return null;
   }
 
   getHeaders() {

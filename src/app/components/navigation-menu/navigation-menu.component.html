@@ -6,6 +6,6 @@
 
     <div class="padding"></div>
     <a mat-button routerLink="/userpanel">User Panel</a>
-    <a mat-button routerLink="/adminpanel">Admin Panel</a>
+    <a *ngIf="role === 'ADMIN' || role === 'EMPLOYEE'" mat-button routerLink="/adminpanel">Admin Panel</a>
     <a mat-raised-button color="accent" class="logout-button" (click)="logout()">Logout</a>
 </mat-toolbar>
