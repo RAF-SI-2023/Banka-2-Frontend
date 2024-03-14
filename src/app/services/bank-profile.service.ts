@@ -5,6 +5,8 @@ import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {PrivateClientDto} from "../dto/PrivateClientDto";
 import {CorporateClientDto} from "../dto/CorporateClientDto";
+import {PrivateClientRequestDto} from "../dto/private-client-request.dto";
+import {CorporateClientRequestDto} from "../dto/corporate-client-request.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -27,16 +29,19 @@ export class BankProfileService {
     );
   }
 
-  postBasicInfoPrivateClient(client: PrivateClientDto) {
+  postBasicInfoPrivateClient(client: PrivateClientRequestDto) {
     return this.http.post<boolean>(`${this.bankApi}${this.usersUrls.privateClient}`, client);
   }
 
-  postBasicInfoCorporateClient(client: CorporateClientDto) {
+  postBasicInfoCorporateClient(client: CorporateClientRequestDto) {
     return this.http.post<boolean>(`${this.bankApi}${this.usersUrls.corporateClient}`, client);
   }
 
-  codeConfirmation() {
-    return this.http.post<boolean>(`${this.iAmApi}${this.accountUrls.codeConfirmation}`, {});
+  codeConfirmation(code: string, accountNumber: string) {
+    return this.http.post<boolean>(`${this.iAmApi}${this.accountUrls.codeConfirmation}/${accountNumber}`, {
+        code: code
+      }
+    );
   }
 
   passwordActivation(email: string, password: string) {
