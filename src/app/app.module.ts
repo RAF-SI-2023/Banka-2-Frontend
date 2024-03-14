@@ -44,6 +44,7 @@ import { UpdateDialogComponent } from './components/adminpanel/dialogs/update-di
 import { AddDialogComponent } from './components/adminpanel/dialogs/add-dialog/add-dialog.component';
 import { ConfirmActionDialogComponent } from './components/adminpanel/dialogs/confirm-action-dialog/confirm-action-dialog.component';
 import { PhoneNumberValidatorDirective } from './directives/phone-number-validator.directive';
+import { PasswordChangeComponent } from './components/password-change/password-change.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { PhoneNumberValidatorDirective } from './directives/phone-number-validat
     UpdateDialogComponent,
     AddDialogComponent,
     ConfirmActionDialogComponent,
-    PhoneNumberValidatorDirective
+    PhoneNumberValidatorDirective,
+    PasswordChangeComponent
   ],
   imports: [
     BrowserModule,
