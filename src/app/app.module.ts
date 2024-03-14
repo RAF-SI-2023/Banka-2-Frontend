@@ -43,8 +43,6 @@ import { AlertInterceptor } from "./interceptors/alert.interceptor";
 import { UpdateDialogComponent } from './components/adminpanel/dialogs/update-dialog/update-dialog.component';
 import { AddDialogComponent } from './components/adminpanel/dialogs/add-dialog/add-dialog.component';
 import { ConfirmActionDialogComponent } from './components/adminpanel/dialogs/confirm-action-dialog/confirm-action-dialog.component';
-import { MatDatepickerModule } from "@angular/material/datepicker";
-import { MatNativeDateModule } from '@angular/material/core';
 import { PhoneNumberValidatorDirective } from './directives/phone-number-validator.directive';
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
 
