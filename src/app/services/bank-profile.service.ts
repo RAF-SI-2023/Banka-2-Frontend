@@ -22,7 +22,7 @@ export class BankProfileService {
   constructor() { }
 
   associateProfileInitialization(accountNumber: string) {
-    return this.http.post<boolean>(`${this.iAmApi}${this.accountUrls.associateProfileInit}`,
+    return this.http.post<boolean>(`${this.bankApi}${this.accountUrls.associateProfileInit}`,
 {
         accountNumber: accountNumber
       }
