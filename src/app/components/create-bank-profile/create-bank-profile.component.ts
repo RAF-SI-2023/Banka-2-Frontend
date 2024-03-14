@@ -90,9 +90,8 @@ export class CreateBankProfileComponent implements OnInit{
 
     if (this.currentStep === 1 && this.basicInfoForm.valid) {
       this.primaryAccountNumber = this.basicInfoForm.controls.primaryAccountNumber.value as string;
-
-      this.currentStep++;
-      // this.bankAccountNumberSubmit();
+      // this.currentStep++;
+      this.bankAccountNumberSubmit();
     } else if (this.currentStep === 2 && this.contactInfoForm.valid) {
       this.phone = this.contactInfoForm.controls.phone.value as string;
       this.email = this.contactInfoForm.controls.email.value as string;
@@ -103,13 +102,13 @@ export class CreateBankProfileComponent implements OnInit{
       this.selectedGender = this.contactInfoForm.controls.gender.value as string;
       this.selectedBankProfileType = this.contactInfoForm.controls.selectedBankProfileType.value as string;
 
-      this.currentStep++;
-      // this.createBankProfile();
+      // this.currentStep++;
+      this.createBankProfile();
     } else if (this.currentStep === 3 && this.activationCodeForm.valid) {
       this.activationCode = this.activationCodeForm.controls.activationCode.value as string;
 
-      this.currentStep++;
-      // this.sendActivationCode()
+      // this.currentStep++;
+      this.sendActivationCode()
     }else if(this.currentStep === 4 && this.passwordForm.valid) {
       this.password = this.passwordForm.controls.password.value as string;
       this.passwordRepeat = this.passwordForm.controls.passwordRepeat.value as string;
@@ -127,7 +126,8 @@ export class CreateBankProfileComponent implements OnInit{
         this.currentStep++;
       },
       (error) => {
-        this.accountNumberError = error.message ? error.message : 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+        // this.accountNumberError = error.message ? error.message : 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+        this.accountNumberError = 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
       }
     );
   }
@@ -149,7 +149,8 @@ export class CreateBankProfileComponent implements OnInit{
           this.currentStep++;
         },
         (error) => {
-          this.basicInfoError = error.message ? error.message : 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+          // this.basicInfoError = error.message ? error.message : 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+          this.basicInfoError = 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
         }
       )
     }else if (this.selectedBankProfileType === 'CORPORATE'){
@@ -166,7 +167,8 @@ export class CreateBankProfileComponent implements OnInit{
           this.currentStep++;
         },
         (error) => {
-          this.basicInfoError = error.message ? error.message : 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+          // this.basicInfoError = error.message ? error.message : 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+          this.basicInfoError = 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
         }
       )
     }
@@ -178,7 +180,8 @@ export class CreateBankProfileComponent implements OnInit{
         this.currentStep++;
       },
       (error) => {
-        this.activationCodeError = error.message ? error.message : 'Greška prilikom slanja aktivacionog koda. Pokušajte ponovo.';
+        // this.activationCodeError = error.message ? error.message : 'Greška prilikom slanja aktivacionog koda. Pokušajte ponovo.';
+        this.activationCodeError = 'Greška prilikom slanja aktivacionog koda. Pokušajte ponovo.';
       }
     )
   }
