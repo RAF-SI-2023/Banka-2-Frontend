@@ -10,7 +10,9 @@ import { CorporateClientDto } from '../../dto/CorporateClientDto';
   styleUrls: ['./userpanel.component.css']
 })
 export class UserpanelComponent {
-  user: UserDto | PrivateClientDto | CorporateClientDto | null = null;
+  user: UserDto | null = null;
+  privateClient: PrivateClientDto | null = null;
+  corporateClient: CorporateClientDto | null = null;
   isPrivateClient: boolean = false;
   isCorporateClient: boolean = false;
 
@@ -25,14 +27,13 @@ export class UserpanelComponent {
   fetchUserDetails(): void {
     this.userService.getUserById().subscribe({
       next: (user: UserDto) => {
+        this.user = user;
         if ('surname' in user) {
-          let privateUser = user as PrivateClientDto;
-          console.log(privateUser.surname);
-          this.setUserDetails(privateUser, true);
+          this.privateClient = user as PrivateClientDto;
+          this.corporateClient = null;
         } else if ('primaryAccountNumber' in user) {
-          let corporateUser = user as CorporateClientDto;
-          console.log(corporateUser.primaryAccountNumber);
-          this.setUserDetails(corporateUser, false);
+          this.corporateClient = user as CorporateClientDto;
+          this.privateClient = null;
         }
       },
       error: (error) => {
