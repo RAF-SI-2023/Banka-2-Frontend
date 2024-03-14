@@ -10,7 +10,14 @@ export class AlertInterceptor implements HttpInterceptor {
   constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('intercepted')
+    const token = localStorage.getItem('token') ?? '';
+
+    request = request.clone({
+      setHeaders: {
+        Authorization: token ? `Bearer ${token}` : '',
+      }
+    });
+
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         let errorMessage = "An unknown error occurred!";
