@@ -2,12 +2,10 @@
     display: grid;
     place-items: center;
     height: 100vh;
-    background-image: url('src/assets/wave-background.svg');
-    overflow: hidden;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 0 2rem;
+    padding: 2rem 2rem;
 }
 
 mat-card {
@@ -17,7 +15,7 @@ mat-card {
     align-items: center;
     gap: 1rem;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
 }
 
 mat-card-content {
@@ -55,5 +53,12 @@ mat-form-field {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
+}
+
+.input-row{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
     width: 100%;
 }
