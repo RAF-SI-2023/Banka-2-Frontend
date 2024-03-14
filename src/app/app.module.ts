@@ -41,6 +41,8 @@ import { AlertInterceptor } from "./interceptors/alert.interceptor";
 import { UpdateDialogComponent } from './components/adminpanel/dialogs/update-dialog/update-dialog.component';
 import { AddDialogComponent } from './components/adminpanel/dialogs/add-dialog/add-dialog.component';
 import { ConfirmActionDialogComponent } from './components/adminpanel/dialogs/confirm-action-dialog/confirm-action-dialog.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -60,31 +62,33 @@ import { ConfirmActionDialogComponent } from './components/adminpanel/dialogs/co
     AddDialogComponent,
     ConfirmActionDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgOptimizedImage,
-    MatTabsModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatStepperModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatButtonToggleModule,
-    HttpClientModule,
-    MatSortModule,
-    MatDialogModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgOptimizedImage,
+        MatTabsModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatStepperModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        MatButtonToggleModule,
+        HttpClientModule,
+        MatSortModule,
+        MatDialogModule,
+        MatDatepickerModule,
+        MatNativeDateModule
+    ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AlertInterceptor,

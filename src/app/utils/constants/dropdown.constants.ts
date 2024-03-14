@@ -19,6 +19,14 @@ export const DropdownOptions = {
     { label: 'Tekući', value: 'TEKUĆI' },
     { label: 'Devizni', value: 'DEVIZNI' },
   ],
+  bankProfileType: [
+    { label: 'Fizičko lice', value: 'PRIVATE' },
+    { label: 'Pravno lice', value: 'CORPORATE'}
+  ],
+  gender: [
+    { label: 'Muški', value: 'MALE' },
+    { label: 'Ženski', value: 'FEMALE' }
+  ],
 }
 
 
