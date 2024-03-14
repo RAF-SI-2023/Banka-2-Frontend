@@ -38,14 +38,12 @@ export class BankProfileService {
   }
 
   codeConfirmation(code: string, accountNumber: string) {
-    return this.http.post<boolean>(`${this.iAmApi}${this.accountUrls.codeConfirmation}/${accountNumber}`, {
-        code: code
-      }
+    return this.http.post<boolean>(`${this.iAmApi}${this.accountUrls.codeConfirmation}/${accountNumber}`, code
     );
   }
 
   passwordActivation(email: string, password: string) {
-    return this.http.put<boolean>(`${this.iAmApi}${this.usersUrls.passwordActivation}/${email}`,
+    return this.http.put<boolean>(`${this.iAmApi}${this.usersUrls.passwordActivation}/${email}/password-activation`,
 {
         password: password
       }

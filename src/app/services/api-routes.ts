@@ -14,7 +14,7 @@ export const ApiRoutes = {
     delete: '/users/delete',
     privateClient: '/users/public/private-client',
     corporateClient: '/users/public/corporate-client',
-    passwordActivation: '/users/public/password-activation',
+    passwordActivation: '/users/public',
     updatePrivateClient: '/users/updatePrivateClient',
     updateEmployee: '/users/updateEmployee',
     updateCorporateClient: '/users/updateCorporateClient',

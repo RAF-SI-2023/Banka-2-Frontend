@@ -36,6 +36,7 @@
           <mat-form-field appearance="fill">
             <mat-label>Broj mobilnog telefona</mat-label>
             <input matInput placeholder="Unesite broj telefona" formControlName="phone" required />
+            <mat-error *ngIf="contactInfoForm.controls.phone.invalid && !contactInfoForm.get('phone')?.hasError('invalidPhoneNumber')">Broj telefona je obavezan..</mat-error>
             <mat-error *ngIf="contactInfoForm.get('phone')?.hasError('invalidPhoneNumber')">Unesite validan broj
               telefona.</mat-error>
           </mat-form-field>
@@ -43,7 +44,7 @@
           <mat-form-field appearance="fill">
             <mat-label>E-mail</mat-label>
             <input matInput type="email" placeholder="Unesite e-mail adresu" formControlName="email" required />
-            <mat-error *ngIf="contactInfoForm.controls.email.invalid">Tip je obavezan.</mat-error>
+            <mat-error *ngIf="contactInfoForm.controls.email.invalid">Unesite validan e-mail.</mat-error>
           </mat-form-field>
 
           <mat-form-field>
@@ -51,7 +52,7 @@
             <mat-select formControlName="selectedBankProfileType">
               <mat-option *ngFor="let option of bankProfileType" [value]="option.value">{{ option.label }}</mat-option>
             </mat-select>
-            <mat-error *ngIf="contactInfoForm.controls.selectedBankProfileType.invalid">Unesite validan e-mail.</mat-error>
+            <mat-error *ngIf="contactInfoForm.controls.selectedBankProfileType.invalid">Tip je obavezan.</mat-error>
           </mat-form-field>
 
           <div class="input-row">
@@ -136,7 +137,8 @@
 
           <div class="buttons">
             <button mat-raised-button (click)="goToPreviousStep()">Nazad</button>
-            <button mat-raised-button color="accent" (click)="goToNextStep()">Kreiraj profil</button>
+            <button mat-raised-button color="accent" (click)="goToNextStep()"
+                    [disabled]="!passwordForm.valid">Kreiraj profil</button>
           </div>
         </form>
       </div>
