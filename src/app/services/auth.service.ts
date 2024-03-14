@@ -1,14 +1,15 @@
-import {inject, Injectable} from '@angular/core';
-import {environment} from "../../environments/environment.development";
-import {HttpClient} from "@angular/common/http";
-import {LoginResponseDto} from "../dto/login-response.dto";
-import {AuthCredentialsDto} from "../dto/auth-credentials.dto";
-import {Router} from "@angular/router";
-import {EmployeeDto} from "../dto/EmployeeDto";
-import {ApiRoutes} from "./api-routes";
-import {PermissionDto} from "../dto/permissions.dto";
-import {RolesDto} from "../dto/roles.dto";
-import {tap} from "rxjs";
+import { inject, Injectable } from '@angular/core';
+import { environment } from "../../environments/environment.development";
+import { HttpClient } from "@angular/common/http";
+import { LoginResponseDto } from "../dto/login-response.dto";
+import { AuthCredentialsDto } from "../dto/auth-credentials.dto";
+import { Router } from "@angular/router";
+import { EmployeeDto } from "../dto/EmployeeDto";
+import { ApiRoutes } from "./api-routes";
+import { PermissionDto } from "../dto/permissions.dto";
+import { RolesDto } from "../dto/roles.dto";
+import { tap } from "rxjs";
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,8 @@ export class AuthService {
   http = inject(HttpClient);
   router = inject(Router);
 
+  token = localStorage.getItem('token');
+
   constructor() { }
 
   login(credentials: AuthCredentialsDto) {
@@ -29,13 +32,13 @@ export class AuthService {
         email: credentials.email,
         password: credentials.password
       }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).pipe(
-        tap((response) => {
-          localStorage.setItem('token', response.token);
-        }
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).pipe(
+      tap((response) => {
+        localStorage.setItem('token', response.token);
+      }
       )
     );
   }
@@ -46,10 +49,10 @@ export class AuthService {
         email: credentials.email,
         password: credentials.password
       }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
   }
 
   getPermissions() {
@@ -58,6 +61,12 @@ export class AuthService {
 
   getRoles() {
     return this.http.get<RolesDto[]>(`${this.apiUrl}${this.authUrls.allRoles}`);
+  }
+
+  getHeaders() {
+    return this.token
+      ? new HttpHeaders().set('Authorization', `Bearer ${this.token}`)
+      : undefined;
   }
 
   isLoggedIn() {

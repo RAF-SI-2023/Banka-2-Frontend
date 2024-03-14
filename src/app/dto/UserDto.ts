@@ -7,4 +7,5 @@ export interface UserDto {
     username: string;
     role: string;
     permissions: string[];
+    active: boolean;
 }

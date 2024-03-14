@@ -1,9 +1,9 @@
 # Banka-2: Frontend
 ## Pravila
 - Koristiti camelCase
-- Koristiti nazive na engleskom jeziku
-- Ne koristiti skraćenice
-- Za datum i vreme koristiti epoch time
+- Ne koristiti skraćenice u kodu
+- Koristiti nazive na engleskom jeziku u kodu; prevesti ili transkribovati na srpski jezik za izgled
+- Koristiti epoch time za datum i vreme u kodu; prebaciti ga u yyyy-MM-dd HH:mm:ss standard za izgled
 - Pre commit-ovanja izmena potrebno je:
   - pokrenuti aplikaciju i uveriti se da sve radi ispravno
   - odraditi formatiranje koda:

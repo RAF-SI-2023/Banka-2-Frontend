@@ -1,53 +1,15 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {validateHorizontalPosition} from "@angular/cdk/overlay";
-import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MatTableDataSource } from "@angular/material/table";
+import { validateHorizontalPosition } from "@angular/cdk/overlay";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { AuthService } from 'src/app/services/auth.service';
+import { UserDto } from 'src/app/dto/UserDto';
+import { catchError, map } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
-}
-
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-  'el',
-];
-
-/**
- * @title Data table with sorting, pagination, and filtering.
- */
 @Component({
   selector: 'app-adminpanel',
   templateUrl: './adminpanel.component.html',
@@ -55,18 +17,16 @@ const NAMES: string[] = [
 })
 
 export class AdminpanelComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['id', 'email', 'username', 'dateOfBirth', 'phone', 'address', 'role', 'active'];
+  dataSource: MatTableDataSource<UserDto>;
+  selectedRow: UserDto | null = null;
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   @ViewChild(MatSort) sort: MatSort | undefined;
   protected readonly validateHorizontalPosition = validateHorizontalPosition;
 
-  constructor() {
-    // Create 100 users
-    const users = Array.from({length: 23}, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+  constructor(private http: HttpClient, private authService: AuthService, private userService: UserService) {
+    this.dataSource = new MatTableDataSource();
+    this.fetchData();
   }
 
   ngAfterViewInit() {
@@ -84,20 +44,40 @@ export class AdminpanelComponent implements AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
-}
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
+  selectRow(row: UserDto) {
+    if (this.selectedRow?.id != row.id) {
+      this.selectedRow = row;
+      console.log(this.selectedRow);
+    }
+  }
 
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-  };
+  fetchData(): void {
+    this.userService.getFindAll()
+      .pipe(
+        map(dataSource => {
+          this.dataSource.data = dataSource;
+          return dataSource;
+        }),
+        catchError(error => {
+          console.error('Error loading data.', error);
+          return throwError(() => error);
+        })
+      ).subscribe();
+  }
+
+  deleteUser(): void {
+    if (this.selectedRow != null) {
+      this.userService.delete(this.selectedRow.email)
+        .pipe(
+          catchError(error => {
+            console.error('Error loading data.', error);
+            return throwError(() => error);
+          })
+        ).subscribe(() => {
+          this.selectedRow = null;
+          this.fetchData();
+        });
+    }
+  }
 }
