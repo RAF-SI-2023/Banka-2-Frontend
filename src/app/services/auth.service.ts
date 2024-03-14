@@ -18,7 +18,7 @@ import {DecodedTokenDto} from "../dto/decoded-token.dto";
 })
 export class AuthService {
 
-  apiUrl = environment.apiUrl;
+  apiUrl = environment.iAmServiceApiUrl;
   authUrls = ApiRoutes.auth;
 
   http = inject(HttpClient);
