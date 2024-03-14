@@ -26,12 +26,36 @@
       <table>
         <tbody>
           <tr>
+            <td><b>Username:</b></td>
+            <td>{{ user?.username }}</td>
+          </tr>
+          <tr>
             <td><b>Email:</b></td>
             <td>{{ user?.email }}</td>
           </tr>
           <tr>
             <td><b>Telefon:</b></td>
             <td>{{ user?.phone }}</td>
+          </tr>
+          <tr>
+            <td><b>Adresa:</b></td>
+            <td>{{ user?.address }}</td>
+          </tr>
+          <tr>
+            <td><b>Datum rođenja:</b></td>
+            <td>{{ user?.dateOfBirth }}</td>
+          </tr>
+          <tr>
+            <td><b>Uloga:</b></td>
+            <td>{{ user?.role }}</td>
+          </tr>
+          <tr>
+            <td><b>Dozvole:</b></td>
+            <td>{{ user?.permissions?.join(", ") }}</td>
+          </tr>
+          <tr>
+            <td><b>Aktivan:</b></td>
+            <td>{{ user?.active ? "Da" : "Ne" }}</td>
           </tr>
 
           <tr *ngIf="privateClient">
