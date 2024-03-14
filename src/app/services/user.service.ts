@@ -22,8 +22,8 @@ export class UserService {
   // FIND BY ID
   getUserById() {
     const headers = this.authService.getHeaders();
-    const userId = localStorage.getItem('userId');
-    return this.httpClient.get<UserDto | PrivateClientDto | CorporateClientDto>(`${environment.iAmServiceApiUrl}/users/${userId}`, { headers });
+    const userId = localStorage.getItem('id');
+    return this.httpClient.get<UserDto | PrivateClientDto | CorporateClientDto>(environment.iAmServiceApiUrl + ApiRoutes.users.findById + '/' + userId, { headers });
   }
 
   // PUT metode
@@ -60,5 +60,21 @@ export class UserService {
   delete(email: string) {
     const headers = this.authService.getHeaders();
     return this.httpClient.delete<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.delete + `/${email}`, { headers });
+  }
+
+
+  changePasswordRequest (currentPassword:string,newPassword:string){
+    const headers = this.authService.getHeaders();
+    const email = localStorage.getItem("email");
+    console.log("ASDSADA "+environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`);
+    console.log("!!"+headers)
+    return this.httpClient.post(environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`, null,{ headers });
+  }
+  changePasswordSubmit(currentPassword:string,newPassword:string){
+    const headers = this.authService.getHeaders();
+    const email = localStorage.getItem("email");
+    console.log("ASDSADA"+environment.iAmServiceApiUrl + ApiRoutes.users.changePasswordSubmit + `/${email}`);
+
+     return this.httpClient.post(environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`, { headers });
   }
 }

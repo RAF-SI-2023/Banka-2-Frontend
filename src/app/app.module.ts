@@ -41,6 +41,7 @@ import { AlertInterceptor } from "./interceptors/alert.interceptor";
 import { UpdateDialogComponent } from './components/adminpanel/dialogs/update-dialog/update-dialog.component';
 import { AddDialogComponent } from './components/adminpanel/dialogs/add-dialog/add-dialog.component';
 import { ConfirmActionDialogComponent } from './components/adminpanel/dialogs/confirm-action-dialog/confirm-action-dialog.component';
+import { PasswordChangeComponent } from './components/password-change/password-change.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { ConfirmActionDialogComponent } from './components/adminpanel/dialogs/co
     ForeignFormComponent,
     UpdateDialogComponent,
     AddDialogComponent,
-    ConfirmActionDialogComponent
+    ConfirmActionDialogComponent,
+    PasswordChangeComponent
   ],
   imports: [
     BrowserModule,
