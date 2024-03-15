@@ -74,6 +74,7 @@ export class AuthService {
     return null;
   }
 
+
   getHeaders() {
     return this.token
       ? new HttpHeaders().set('Authorization', `Bearer ${this.token}`)
