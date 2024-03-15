@@ -9,15 +9,16 @@ import { HomeComponent } from './components/home/home.component';
 import { UserpanelComponent } from './components/userpanel/userpanel.component';
 import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
 import { CreateBankAccountComponent } from './components/create-bank-account/create-bank-account.component';
+import {roleGuard} from "./guards/role.guard";
 
 const routes: Routes = [
   { component: LandingComponent, path: "" },
   { component: LoginComponent, path: "login" },
   { component: CreateBankProfileComponent, path: "create-bank-profile" },
   { component: HomeComponent, path: "home", canActivate: [authGuard] },
-  { component: UserpanelComponent, path: "userpanel", canActivate: [authGuard] },
-  { component: AdminpanelComponent, path: "adminpanel", canActivate: [authGuard] },
-  { component: CreateBankAccountComponent, path: "create-bank-account", canActivate: [authGuard] }
+  { component: UserpanelComponent, path: "userpanel", canActivate: [roleGuard], data: { roles: ['ADMIN'] }},
+  { component: AdminpanelComponent, path: "adminpanel", canActivate: [roleGuard], data: { roles: ['ADMIN'] }},
+  { component: CreateBankAccountComponent, path: "create-bank-account", canActivate: [roleGuard], data: { roles: ['ADMIN'] }},
 ];
 
 @NgModule({
