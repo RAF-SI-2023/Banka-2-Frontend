@@ -70,7 +70,7 @@
           <div class="input-row">
             <mat-form-field>
               <mat-label>Datum rođenja</mat-label>
-              <input matInput formControlName="dateOfBirth" [matDatepicker]="picker">
+              <input matInput formControlName="dateOfBirth" (dateChange)="onDateChange($event)" [matDatepicker]="picker">
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>

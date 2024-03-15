@@ -30,13 +30,13 @@ export class UserService {
   // (url, null, headers) umesto (url, headers) jer je PUT request lose napisan na back-u, trebao je da bude GET
   putActivateEmployee(id: number) {
     const headers = this.authService.getHeaders();
-    return this.httpClient.put<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.activateEmployee + `/${id}`, null, { headers });
+    return this.httpClient.put<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.activateEmployee + `/${id}`, { headers });
   }
 
   // (url, null, headers) umesto (url, headers) jer je PUT request lose napisan na back-u, trebao je da bude GET
   putDeactivateEmployee(id: number) {
     const headers = this.authService.getHeaders();
-    return this.httpClient.put<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.deactivateEmployee + `/${id}`, null, { headers });
+    return this.httpClient.put<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.deactivateEmployee + `/${id}`, { headers });
   }
 
   putUpdatePrivateClient(user: UserDto) {
@@ -59,7 +59,7 @@ export class UserService {
   // DELETE metode
   delete(email: string) {
     const headers = this.authService.getHeaders();
-    return this.httpClient.delete<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.delete + `/${email}`, { headers });
+    return this.httpClient.delete<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.delete + `/${email}` , { headers });
   }
 
 
@@ -68,7 +68,7 @@ export class UserService {
     const email = localStorage.getItem("email");
     console.log("ASDSADA "+environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`);
     console.log("!!"+headers)
-    return this.httpClient.post(environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`, null,{ headers });
+    return this.httpClient.post(environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`,{ headers });
   }
   changePasswordSubmit(currentPassword:string,newPassword:string){
     const headers = this.authService.getHeaders();

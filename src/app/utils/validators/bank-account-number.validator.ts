@@ -8,7 +8,7 @@ export function bankAccountNumberValidator(): ValidatorFn {
       return null;
     }
 
-    const pattern = /^\d{3}-\d{4}-\d{9}$/; // Format: 3 digits for bank, 4 digits for branch, 9 digits for account number
+    const pattern = /^\d{3}\d{4}\d{9}$/; // Format: 3 digits for bank, 4 digits for branch, 9 digits for account number
     const isValid = pattern.test(value);
 
     return isValid ? null : { invalidBankAccountNumber: true };

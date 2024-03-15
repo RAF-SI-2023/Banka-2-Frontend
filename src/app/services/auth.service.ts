@@ -40,6 +40,11 @@ export class AuthService {
     }).pipe(
       tap((response) => {
         localStorage.setItem('token', response.token);
+        const tokenString = response.token;
+        const decodedToken: any = jwtDecode(tokenString);
+        localStorage.setItem('id', decodedToken.id);
+        localStorage.setItem('email', decodedToken.email);
+        localStorage.setItem('permissions', decodedToken.permissions)
       }
       )
     );

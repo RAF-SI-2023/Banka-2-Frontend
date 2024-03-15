@@ -30,21 +30,21 @@ export class BankProfileService {
   }
 
   postBasicInfoPrivateClient(client: PrivateClientRequestDto) {
-    return this.http.post<boolean>(`${this.bankApi}${this.usersUrls.privateClient}`, client);
+    return this.http.post<boolean>(`${this.iAmApi}${this.usersUrls.privateClient}`, client);
   }
 
   postBasicInfoCorporateClient(client: CorporateClientRequestDto) {
-    return this.http.post<boolean>(`${this.bankApi}${this.usersUrls.corporateClient}`, client);
+    return this.http.post<boolean>(`${this.iAmApi}${this.usersUrls.corporateClient}`, client);
   }
 
   codeConfirmation(code: string, accountNumber: string) {
-    return this.http.post<boolean>(`${this.iAmApi}${this.accountUrls.codeConfirmation}/${accountNumber}`, code
+    return this.http.post<boolean>(`${this.bankApi}${this.accountUrls.codeConfirmation}/${accountNumber}`, code
     );
   }
 
   passwordActivation(email: string, password: string) {
-    return this.http.put<boolean>(`${this.iAmApi}${this.usersUrls.passwordActivation}/${email}/password-activation`,
-{
+    return this.http.post<boolean>(`${this.iAmApi}${this.usersUrls.passwordActivation}/${email}/password-activation`,
+      {
         password: password
       }
     );

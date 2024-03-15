@@ -63,7 +63,7 @@ export class UpdateDialogComponent {
               return throwError(() => error);
             })
           ).subscribe(() => {
-
+            
           });
       } else if (this.checkDto() == 'EMPLOYEE') {
         this.userService.putUpdateEmployee(this.newSelectedRow)
@@ -73,7 +73,7 @@ export class UpdateDialogComponent {
               return throwError(() => error);
             })
           ).subscribe(() => {
-
+              
           });
       }
     }

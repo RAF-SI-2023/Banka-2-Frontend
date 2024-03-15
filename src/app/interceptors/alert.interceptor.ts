@@ -15,6 +15,7 @@ export class AlertInterceptor implements HttpInterceptor {
     request = request.clone({
       setHeaders: {
         Authorization: token ? `Bearer ${token}` : '',
+        'Content-Type': 'application/json'
       }
     });
 

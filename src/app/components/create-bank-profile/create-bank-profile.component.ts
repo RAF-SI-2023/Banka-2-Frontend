@@ -8,6 +8,8 @@ import {PrivateClientDto} from "../../dto/PrivateClientDto";
 import {CorporateClientDto} from "../../dto/CorporateClientDto";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+
 
 @Component({
   selector: 'app-create-bank-profile',
@@ -95,7 +97,7 @@ export class CreateBankProfileComponent implements OnInit{
     } else if (this.currentStep === 2 && this.contactInfoForm.valid) {
       this.phone = this.contactInfoForm.controls.phone.value as string;
       this.email = this.contactInfoForm.controls.email.value as string;
-      this.dateOfBirth = this.contactInfoForm.controls.dateOfBirth.value as string;
+      this.dateOfBirth = this.dateOfBirth;
       this.address = this.contactInfoForm.controls.address.value as string;
       this.name = this.contactInfoForm.controls.name.value as string;
       this.surname = this.contactInfoForm.controls.surname.value as string;
@@ -121,7 +123,7 @@ export class CreateBankProfileComponent implements OnInit{
   }
 
   bankAccountNumberSubmit(){
-    this.bankProfileService.associateProfileInitialization(this.primaryAccountNumber).subscribe(
+    this.bankProfileService.associateProfileInitialization(this.primaryAccountNumber.replaceAll('-', "")).subscribe(
       (response) => {
         this.currentStep++;
       },
@@ -141,7 +143,7 @@ export class CreateBankProfileComponent implements OnInit{
           address: this.address,
           name: this.name,
           surname: this.surname,
-          primaryAccountNumber: this.primaryAccountNumber,
+          primaryAccountNumber: this.primaryAccountNumber.replaceAll('-', ""),
           gender: this.selectedGender,
           username: this.email,
       }).subscribe(
@@ -160,7 +162,7 @@ export class CreateBankProfileComponent implements OnInit{
         dateOfBirth: this.dateOfBirth,
         address: this.address,
         name: this.name,
-        primaryAccountNumber: this.primaryAccountNumber,
+        primaryAccountNumber: this.primaryAccountNumber.replaceAll('-', ""),
         username: this.email,
       }).subscribe(
         (response) => {
@@ -176,7 +178,7 @@ export class CreateBankProfileComponent implements OnInit{
 
 
   sendActivationCode(){
-    this.bankProfileService.codeConfirmation(this.activationCode, this.primaryAccountNumber).subscribe(
+    this.bankProfileService.codeConfirmation(this.activationCode, this.primaryAccountNumber.replaceAll('-', "")).subscribe(
       (response) => {
         this.currentStep++;
       },
@@ -211,6 +213,12 @@ export class CreateBankProfileComponent implements OnInit{
     if (this.currentStep > 1) {
       this.currentStep--;
     }
+  }
+
+  onDateChange(event: MatDatepickerInputEvent<Date>) {
+    this.dateOfBirth = event.value ? event.value.getTime().toString() : '';
+    console.log('Date of birth:', this.dateOfBirth);
+
   }
 
   logFormData(event: Event) {
