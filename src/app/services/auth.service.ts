@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import {EventEmitter, inject, Injectable} from '@angular/core';
 import { environment } from "../../environments/environment.development";
 import { HttpClient } from "@angular/common/http";
 import { LoginResponseDto } from "../dto/login-response.dto";
@@ -11,7 +11,7 @@ import { RolesDto } from "../dto/roles.dto";
 import { tap } from "rxjs";
 import { HttpHeaders } from '@angular/common/http';
 import {jwtDecode} from "jwt-decode";
-import {DecodedTokenDto} from "../dto/decoded-token.dto";
+import {DecodedTokenDto, Role} from "../dto/decoded-token.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,8 @@ export class AuthService {
   router = inject(Router);
 
   token = localStorage.getItem('token');
-
+  // Add an EventEmitter
+  public roleUpdated: EventEmitter<Role | null> = new EventEmitter();
   constructor() { }
 
   login(credentials: AuthCredentialsDto) {
@@ -45,6 +46,8 @@ export class AuthService {
         localStorage.setItem('id', decodedToken.id);
         localStorage.setItem('email', decodedToken.email);
         localStorage.setItem('permissions', decodedToken.permissions)
+          // Emit an event when the user logs in to update the role
+          this.roleUpdated.emit(this.getRoleFromToken());
       }
       )
     );
