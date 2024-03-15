@@ -30,7 +30,8 @@ export class LoginComponent {
         password: this.loginForm.value.password!
       }).subscribe(
         () => {
-          this.router.navigate(['/home']);
+          window.location.href = '/home';
+          // this.router.navigate(['/home']);
         },
         (error) => {
           this.serverResponseError = 'Pogrešan email ili lozinka';
