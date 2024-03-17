@@ -15,66 +15,53 @@ export class UserService {
 
   // GET metode
   getFindAll() {
-    const headers = this.authService.getHeaders();
-    return this.httpClient.get<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.findAll, { headers });
+    return this.httpClient.get<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.findAll);
   }
 
   // FIND BY ID
   getUserById() {
-    const headers = this.authService.getHeaders();
     const userId = localStorage.getItem('id');
-    return this.httpClient.get<UserDto | PrivateClientDto | CorporateClientDto>(environment.iAmServiceApiUrl + ApiRoutes.users.findById + '/' + userId, { headers });
+    return this.httpClient.get<UserDto | PrivateClientDto | CorporateClientDto>(environment.iAmServiceApiUrl + ApiRoutes.users.findById + '/' + userId);
   }
 
   // PUT metode
   // (url, null, headers) umesto (url, headers) jer je PUT request lose napisan na back-u, trebao je da bude GET
   putActivateEmployee(id: number) {
-    const headers = this.authService.getHeaders();
-    return this.httpClient.put<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.activateEmployee + `/${id}`, { headers });
+    // const headers = this.authService.getHeaders();
+    return this.httpClient.put<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.activateEmployee + `/${id}`, {});
   }
 
   // (url, null, headers) umesto (url, headers) jer je PUT request lose napisan na back-u, trebao je da bude GET
   putDeactivateEmployee(id: number) {
-    const headers = this.authService.getHeaders();
-    return this.httpClient.put<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.deactivateEmployee + `/${id}`, { headers });
+    return this.httpClient.put<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.deactivateEmployee + `/${id}`, {});
   }
 
   putUpdatePrivateClient(user: UserDto) {
-    const headers = this.authService.getHeaders();
-    return this.httpClient.put<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.updatePrivateClient, user, { headers });
+    return this.httpClient.put<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.updatePrivateClient, user);
   }
 
   putUpdateCorporateClient(user: UserDto) {
-    const headers = this.authService.getHeaders();
-    return this.httpClient.put<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.updateCorporateClient, user, { headers });
+    return this.httpClient.put<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.updateCorporateClient, user);
   }
 
   putUpdateEmployee(user: UserDto) {
-    const headers = this.authService.getHeaders();
-    return this.httpClient.put<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.updateEmployee, user, { headers });
+    return this.httpClient.put<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.updateEmployee, user);
   }
 
   // POST metode
 
   // DELETE metode
   delete(email: string) {
-    const headers = this.authService.getHeaders();
-    return this.httpClient.delete<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.delete + `/${email}` , { headers });
+    return this.httpClient.delete<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.delete + `/${email}`);
   }
 
 
   changePasswordRequest (currentPassword:string,newPassword:string){
-    const headers = this.authService.getHeaders();
     const email = localStorage.getItem("email");
-    console.log("ASDSADA "+environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`);
-    console.log("!!"+headers)
-    return this.httpClient.post(environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`,{ headers });
+    return this.httpClient.post(environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`,{});
   }
   changePasswordSubmit(currentPassword:string,newPassword:string){
-    const headers = this.authService.getHeaders();
     const email = localStorage.getItem("email");
-    console.log("ASDSADA"+environment.iAmServiceApiUrl + ApiRoutes.users.changePasswordSubmit + `/${email}`);
-
-     return this.httpClient.post(environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`, { headers });
+    return this.httpClient.post(environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`, {});
   }
 }

@@ -14,12 +14,12 @@ import { UpdateDialogComponent } from './dialogs/update-dialog/update-dialog.com
 import { AddDialogComponent } from './dialogs/add-dialog/add-dialog.component';
 
 @Component({
-  selector: 'app-adminpanel',
-  templateUrl: './adminpanel.component.html',
-  styleUrls: ['./adminpanel.component.css']
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css']
 })
 
-export class AdminpanelComponent implements AfterViewInit {
+export class UsersComponent implements AfterViewInit {
   displayedColumns: string[] = ['id', 'email', 'username', 'dateOfBirth', 'phone', 'address', 'role', 'active'];
   dataSource: MatTableDataSource<UserDto>;
   selectedRow: UserDto | null = null;
