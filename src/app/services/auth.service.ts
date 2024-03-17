@@ -78,11 +78,11 @@ export class AuthService {
   }
 
 
-  getHeaders() {
-    return this.token
-      ? new HttpHeaders().set('Authorization', `Bearer ${this.token}`)
-      : undefined;
-  }
+  // getHeaders() {
+  //   return this.token
+  //     ? new HttpHeaders().set('Authorization', `Bearer ${this.token}`)
+  //     : undefined;
+  // }
 
   isLoggedIn() {
     return !!localStorage.getItem('token');

@@ -7,6 +7,7 @@ import { isEmployeeDto } from 'src/app/dto/EmployeeDto';
 import { UserService } from 'src/app/services/user.service';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import {MatDatepickerInputEvent} from "@angular/material/datepicker";
 
 @Component({
   selector: 'app-update-dialog',
@@ -63,7 +64,7 @@ export class UpdateDialogComponent {
               return throwError(() => error);
             })
           ).subscribe(() => {
-            
+
           });
       } else if (this.checkDto() == 'EMPLOYEE') {
         this.userService.putUpdateEmployee(this.newSelectedRow)
@@ -73,9 +74,13 @@ export class UpdateDialogComponent {
               return throwError(() => error);
             })
           ).subscribe(() => {
-              
+
           });
       }
     }
+  }
+
+  onDateChange(event: MatDatepickerInputEvent<Date>) {
+    this.newSelectedRow.dateOfBirth = event.value ? event.value.getTime().toString() : '';
   }
 }

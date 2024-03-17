@@ -92,6 +92,7 @@ export class CreateBankProfileComponent implements OnInit{
 
     if (this.currentStep === 1 && this.basicInfoForm.valid) {
       this.primaryAccountNumber = this.basicInfoForm.controls.primaryAccountNumber.value as string;
+      console.log('Primary account number:', this.primaryAccountNumber);
       // this.currentStep++;
       this.bankAccountNumberSubmit();
     } else if (this.currentStep === 2 && this.contactInfoForm.valid) {

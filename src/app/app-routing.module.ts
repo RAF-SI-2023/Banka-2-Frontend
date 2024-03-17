@@ -7,7 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CreateBankProfileComponent } from './components/create-bank-profile/create-bank-profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserpanelComponent } from './components/userpanel/userpanel.component';
-import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
+import { UsersComponent } from './components/users/users.component';
 import { CreateBankAccountComponent } from './components/create-bank-account/create-bank-account.component';
 import {roleGuard} from "./guards/role.guard";
 
@@ -17,7 +17,7 @@ const routes: Routes = [
   { component: CreateBankProfileComponent, path: "create-bank-profile" },
   { component: HomeComponent, path: "home", canActivate: [authGuard] },
   { component: UserpanelComponent, path: "userpanel", canActivate: [authGuard]},
-  { component: AdminpanelComponent, path: "adminpanel", canActivate: [roleGuard], data: { roles: ['ADMIN', 'EMPLOYEE'] }},
+  { component: UsersComponent, path: "users", canActivate: [roleGuard], data: { roles: ['ADMIN', 'EMPLOYEE'] }},
   { component: CreateBankAccountComponent, path: "create-bank-account", canActivate: [authGuard]},
 ];
 
