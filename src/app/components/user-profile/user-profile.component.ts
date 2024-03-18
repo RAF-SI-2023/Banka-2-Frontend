@@ -3,7 +3,8 @@ import { UserService } from '../../services/user.service';
 import { UserDto } from '../../dtos/user-dto';
 import { PrivateClientDto } from '../../dtos/private-client-dto';
 import { CorporateClientDto } from '../../dtos/corporate-client-dto';
-
+import { PasswordChangeComponent } from '../password-change/password-change.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -17,7 +18,7 @@ export class UserProfileComponent {
   isCorporateClient: boolean = false;
 
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.fetchUserDetails();
@@ -46,5 +47,16 @@ export class UserProfileComponent {
     this.user = user;
     this.isPrivateClient = isPrivate;
     this.isCorporateClient = !isPrivate;
+  }
+
+  openPasswordChangeDialog(): void {
+    const dialogRef = this.dialog.open(PasswordChangeComponent, {
+      //width: '300px' // Adjust width as needed
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // Handle any actions after dialog is closed
+    });
   }
 }

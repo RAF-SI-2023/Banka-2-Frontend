@@ -20,9 +20,9 @@ export const ApiRoutes = {
     createEmployee: '/users/createEmployee',
     updateCorporateClient: '/users/updateCorporateClient',
     deactivateEmployee: '/users/deactivateEmployee',
-    changePasswordSubmit: '/users/changePasswordSubmit',
+    changePasswordSubmit: '/users/password-change-confirmation',
     activateEmployee: '/users/activateEmployee',
-    changePassword: '/users/changePassword',
+    changePasswordRequest: '/users/password-change-initialization',
   },
   accounts: {
     createAccountForeign: '/accounts/create-account/foreign',
