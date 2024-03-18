@@ -1,11 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { catchError, Observable } from 'rxjs';
+import {catchError, Observable, throwError} from 'rxjs';
 import { MatSnackBar } from "@angular/material/snack-bar";
+import {AuthService} from "../services/auth.service";
 
 @Injectable()
 export class AlertInterceptor implements HttpInterceptor {
 
+  private authService = inject(AuthService);
   private snackBar = inject(MatSnackBar);
   constructor() { }
 
@@ -18,6 +20,14 @@ export class AlertInterceptor implements HttpInterceptor {
         'Content-Type': 'application/json'
       }
     });
+
+    if(token) {
+      if (this.authService.isTokenExpired()) {
+        // break from the interceptor chain and navigate to login page
+        this.authService.router.navigate(['/login']);
+        return throwError(() => "Vaša sesija je istekla!");
+      }
+    }
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
