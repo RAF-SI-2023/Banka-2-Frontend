@@ -6,6 +6,7 @@ import { PrivateClientDto } from '../dto/PrivateClientDto';
 import { CorporateClientDto } from '../dto/CorporateClientDto';
 import { environment } from 'src/environments/environment.development';
 import { ApiRoutes } from './api-routes';
+import { EmployeeDto } from '../dto/EmployeeDto';
 
 @Injectable({
   providedIn: 'root'
@@ -54,27 +55,33 @@ export class UserService {
     return this.httpClient.put<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.updateEmployee, user, { headers });
   }
 
-  // POST metode
+  // POST metoda za dodavanje zaposlenog
+  createEmployee(employee: EmployeeDto) {
+    const headers = this.authService.getHeaders();
+    const userId = localStorage.getItem('id');
+
+    return this.httpClient.post<EmployeeDto>(environment.iAmServiceApiUrl + ApiRoutes.users.createEmployee, employee, { headers });
+  }
 
   // DELETE metode
   delete(email: string) {
     const headers = this.authService.getHeaders();
-    return this.httpClient.delete<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.delete + `/${email}` , { headers });
+    return this.httpClient.delete<UserDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.delete + `/${email}`, { headers });
   }
 
 
-  changePasswordRequest (currentPassword:string,newPassword:string){
+  changePasswordRequest(currentPassword: string, newPassword: string) {
     const headers = this.authService.getHeaders();
     const email = localStorage.getItem("email");
-    console.log("ASDSADA "+environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`);
-    console.log("!!"+headers)
-    return this.httpClient.post(environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`,{ headers });
+    console.log("ASDSADA " + environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`);
+    console.log("!!" + headers)
+    return this.httpClient.post(environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`, { headers });
   }
-  changePasswordSubmit(currentPassword:string,newPassword:string){
+  changePasswordSubmit(currentPassword: string, newPassword: string) {
     const headers = this.authService.getHeaders();
     const email = localStorage.getItem("email");
-    console.log("ASDSADA"+environment.iAmServiceApiUrl + ApiRoutes.users.changePasswordSubmit + `/${email}`);
+    console.log("ASDSADA" + environment.iAmServiceApiUrl + ApiRoutes.users.changePasswordSubmit + `/${email}`);
 
-     return this.httpClient.post(environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`, { headers });
+    return this.httpClient.post(environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`, { headers });
   }
 }

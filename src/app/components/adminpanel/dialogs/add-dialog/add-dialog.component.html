@@ -1,9 +1,82 @@
-<h2 mat-dialog-title>Dodaj korisnika</h2>
+<h2 mat-dialog-title>Dodaj zaposlenog</h2>
 <mat-dialog-content class="mat-typography">
-    <form>
-    </form>
+  <form>
+    <mat-form-field appearance="fill">
+      <mat-label>Ime</mat-label>
+      <input matInput [(ngModel)]="name" name="name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Prezime</mat-label>
+      <input matInput [(ngModel)]="surname" name="surname" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Pol</mat-label>
+      <mat-select [(ngModel)]="gender" name="gender">
+        <mat-option value="M">Muški</mat-option>
+        <mat-option value="Ž">Ženski</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Pozicija</mat-label>
+      <input matInput [(ngModel)]="position" name="position" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Odeljenje</mat-label>
+      <input matInput [(ngModel)]="department" name="department" />
+    </mat-form-field>
+
+    <mat-checkbox [(ngModel)]="active" name="active">Aktivan</mat-checkbox>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Adresa</mat-label>
+      <input matInput [(ngModel)]="address" name="address" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Korisničko ime</mat-label>
+      <input matInput [(ngModel)]="username" name="username" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Uloga</mat-label>
+      <input matInput [(ngModel)]="role" name="role" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="email" type="email" name="email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Telefon</mat-label>
+      <input matInput [(ngModel)]="phone" name="phone" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Datum rođenja</mat-label>
+      <input
+        matInput
+        [(ngModel)]="dateOfBirth"
+        name="dateOfBirth"
+        type="date"
+      />
+    </mat-form-field>
+
+    <!-- TODO: dodavanje permisija -->
+  </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Zatvori</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="addUser()">Dodaj</button>
+  <button mat-button mat-dialog-close>Zatvori</button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+    (click)="addUser()"
+  >
+    Dodaj
+  </button>
 </mat-dialog-actions>
