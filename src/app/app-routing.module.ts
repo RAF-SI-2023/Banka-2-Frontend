@@ -10,16 +10,20 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { UsersComponent } from './components/users/users.component';
 import { CreateBankAccountComponent } from './components/create-bank-account/create-bank-account.component';
 import { roleGuard } from "./guards/role.guard";
+import {loginGuard} from "./guards/login.guard";
+import {Role} from "./dtos/decoded-token-dto";
 import { FinancialAssetsComponent } from './components/financial-assets/financial-assets.component';
 
 const routes: Routes = [
   { component: LandingComponent, path: "" },
-  { component: LoginComponent, path: "login" },
+  { component: LoginComponent, path: "login", canActivate: [loginGuard]},
   { component: CreateBankProfileComponent, path: "create-bank-profile" },
   { component: HomeComponent, path: "home", canActivate: [authGuard] },
   { component: UserProfileComponent, path: "user-profile", canActivate: [authGuard] },
-  { component: UsersComponent, path: "users", canActivate: [roleGuard], data: { roles: ['ADMIN', 'EMPLOYEE'] } },
-  { component: CreateBankAccountComponent, path: "create-bank-account", canActivate: [authGuard], data: { roles: ['ADMIN', 'EMPLOYEE'] } },
+  { component: UsersComponent, path: "users", canActivate: [roleGuard], data: { roles: [Role.ADMIN, Role.EMPLOYEE] } },
+  { component: CreateBankAccountComponent, path: "create-bank-account", canActivate: [authGuard], data: { roles: [Role.ADMIN, Role.EMPLOYEE]  } },
+  { component: UsersComponent, path: "users", canActivate: [roleGuard], data: { roles: [Role.ADMIN, Role.EMPLOYEE] } },
+  { component: CreateBankAccountComponent, path: "create-bank-account", canActivate: [authGuard], data: { roles: [Role.ADMIN, Role.EMPLOYEE] } },
   { component: FinancialAssetsComponent, path: "financial-assets",canActivate: [authGuard] },
 
 ];

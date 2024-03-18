@@ -5,7 +5,7 @@
     <!-- <a mat-button routerLink="/paper-stocks">Paper Stocks</a> -->
 
     <div class="padding"></div>
-    <a *ngIf="checkTokenRole(['ADMIN', 'EMPLOYEE'])" mat-button routerLink="/users">Users</a>
+    <a *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-button routerLink="/users">Users</a>
 
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Options">
         <mat-icon>more_vert</mat-icon>
