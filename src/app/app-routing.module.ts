@@ -10,6 +10,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { UsersComponent } from './components/users/users.component';
 import { CreateBankAccountComponent } from './components/create-bank-account/create-bank-account.component';
 import { roleGuard } from "./guards/role.guard";
+import { CurrencyExchangeComponent } from './components/currency-exchange/currency-exchange.component';
 
 const routes: Routes = [
   { component: LandingComponent, path: "" },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { component: UserProfileComponent, path: "user-profile", canActivate: [authGuard] },
   { component: UsersComponent, path: "users", canActivate: [roleGuard], data: { roles: ['ADMIN', 'EMPLOYEE'] } },
   { component: CreateBankAccountComponent, path: "create-bank-account", canActivate: [authGuard], data: { roles: ['ADMIN', 'EMPLOYEE'] } },
+  { component: CurrencyExchangeComponent, path: "currency-exchange" },
 ];
 
 @NgModule({

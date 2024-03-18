@@ -48,6 +48,7 @@ import { PhoneNumberValidatorDirective } from './directives/phone-number-validat
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { EpochToDatePipe } from './pipes/epoch-to-date.pipe';
+import { CurrencyExchangeComponent } from './components/currency-exchange/currency-exchange.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { EpochToDatePipe } from './pipes/epoch-to-date.pipe';
     PhoneNumberValidatorDirective,
     PasswordChangeComponent,
     NoPasteDirective,
-    EpochToDatePipe
+    EpochToDatePipe,
+    CurrencyExchangeComponent
   ],
   imports: [
     BrowserModule,
