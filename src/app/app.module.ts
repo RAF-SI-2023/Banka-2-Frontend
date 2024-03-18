@@ -4,8 +4,8 @@ import { AppComponent } from './app.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { UserpanelComponent } from './components/userpanel/userpanel.component';
-import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UsersComponent } from './components/users/users.component';
 import { CreateBankAccountComponent } from './components/create-bank-account/create-bank-account.component';
 import { CreateBankProfileComponent } from './components/create-bank-profile/create-bank-profile.component';
 import { NavigationMenuComponent } from './components/navigation-menu/navigation-menu.component';
@@ -21,6 +21,7 @@ import { NgOptimizedImage } from "@angular/common";
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -40,11 +41,13 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AlertInterceptor } from "./interceptors/alert.interceptor";
-import { UpdateDialogComponent } from './components/adminpanel/dialogs/update-dialog/update-dialog.component';
-import { AddDialogComponent } from './components/adminpanel/dialogs/add-dialog/add-dialog.component';
-import { ConfirmActionDialogComponent } from './components/adminpanel/dialogs/confirm-action-dialog/confirm-action-dialog.component';
+import { UpdateDialogComponent } from './components/users/dialogs/update-dialog/update-dialog.component';
+import { AddDialogComponent } from './components/users/dialogs/add-dialog/add-dialog.component';
+import { ConfirmActionDialogComponent } from './components/users/dialogs/confirm-action-dialog/confirm-action-dialog.component';
 import { PhoneNumberValidatorDirective } from './directives/phone-number-validator.directive';
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
+import { NoPasteDirective } from './directives/no-paste.directive';
+import { EpochToDatePipe } from './pipes/epoch-to-date.pipe';
 
 @NgModule({
   declarations: [
@@ -52,8 +55,8 @@ import { PasswordChangeComponent } from './components/password-change/password-c
     LandingComponent,
     LoginComponent,
     HomeComponent,
-    UserpanelComponent,
-    AdminpanelComponent,
+    UserProfileComponent,
+    UsersComponent,
     CreateBankAccountComponent,
     CreateBankProfileComponent,
     NavigationMenuComponent,
@@ -64,7 +67,9 @@ import { PasswordChangeComponent } from './components/password-change/password-c
     AddDialogComponent,
     ConfirmActionDialogComponent,
     PhoneNumberValidatorDirective,
-    PasswordChangeComponent
+    PasswordChangeComponent,
+    NoPasteDirective,
+    EpochToDatePipe
   ],
   imports: [
     BrowserModule,
@@ -78,6 +83,7 @@ import { PasswordChangeComponent } from './components/password-change/password-c
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
+    MatMenuModule,
     MatButtonModule,
     MatStepperModule,
     MatCardModule,

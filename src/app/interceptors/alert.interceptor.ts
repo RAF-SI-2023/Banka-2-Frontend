@@ -29,6 +29,9 @@ export class AlertInterceptor implements HttpInterceptor {
         } else {
           // Server-side errors
           switch (error.status) {
+            case 0:
+              errorMessage = "Request failed!";
+              break;
             case 401:
               errorMessage = "Unauthorized access!";
               // can possibly redirect to login page

@@ -1,7 +1,7 @@
-import {Component, Input} from '@angular/core';
-import {DropdownOption, DropdownOptions} from "../../../utils/constants";
-import {FormBuilder, Validators} from "@angular/forms";
-import {bankAccountNumberValidator, emailValidator} from "../../../utils/validators";
+import { Component, Input } from '@angular/core';
+import { DropdownOption, DropdownOptions } from "../../../utils/constants";
+import { FormBuilder, Validators } from "@angular/forms";
+import { bankAccountNumberValidator, emailValidator } from "../../../utils/validators";
 
 @Component({
   selector: 'app-domestic-form',
@@ -19,7 +19,7 @@ export class DomesticFormComponent {
     domesticCurrencyAccountType: ['', [Validators.required]],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   onSubmit() {
     console.log(this.domesticBankAccountForm.value);

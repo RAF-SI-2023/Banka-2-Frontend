@@ -1,12 +1,10 @@
-import {inject, Injectable} from '@angular/core';
-import {environment} from "../../environments/environment.development";
-import {ApiRoutes} from "./api-routes";
-import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
-import {PrivateClientDto} from "../dto/PrivateClientDto";
-import {CorporateClientDto} from "../dto/CorporateClientDto";
-import {PrivateClientRequestDto} from "../dto/private-client-request.dto";
-import {CorporateClientRequestDto} from "../dto/corporate-client-request.dto";
+import { inject, Injectable } from '@angular/core';
+import { environment } from "../../environments/environment.development";
+import { ApiRoutes } from "./api-routes";
+import { HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router";
+import { PrivateClientRequestDto } from "../dtos/private-client-request.dto";
+import { CorporateClientRequestDto } from "../dtos/corporate-client-request-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +21,7 @@ export class BankProfileService {
 
   associateProfileInitialization(accountNumber: string) {
     return this.http.post<boolean>(`${this.bankApi}${this.accountUrls.associateProfileInit}`,
-{
+      {
         accountNumber: accountNumber
       }
     );

@@ -15,7 +15,7 @@
 
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input matInput type="email" placeholder="Unesite e-mail adresu" formControlName="email" required>
+          <input matInput type="email" placeholder="Unesite email adresu" formControlName="email" required>
           <mat-error *ngIf="loginForm.get('email')?.hasError('required')">Email je obavezan</mat-error>
           <mat-error *ngIf="loginForm.get('email')?.hasError('invalidEmail')">Pogrešan format Email-a</mat-error>
         </mat-form-field>

@@ -5,7 +5,7 @@ import { validateHorizontalPosition } from "@angular/cdk/overlay";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { AuthService } from 'src/app/services/auth.service';
-import { UserDto } from 'src/app/dto/UserDto';
+import { UserDto } from 'src/app/dtos/user-dto';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
@@ -14,12 +14,12 @@ import { UpdateDialogComponent } from './dialogs/update-dialog/update-dialog.com
 import { AddDialogComponent } from './dialogs/add-dialog/add-dialog.component';
 
 @Component({
-  selector: 'app-adminpanel',
-  templateUrl: './adminpanel.component.html',
-  styleUrls: ['./adminpanel.component.css']
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css']
 })
 
-export class AdminpanelComponent implements AfterViewInit {
+export class UsersComponent implements AfterViewInit {
   displayedColumns: string[] = ['id', 'email', 'username', 'dateOfBirth', 'phone', 'address', 'role', 'active'];
   dataSource: MatTableDataSource<UserDto>;
   selectedRow: UserDto | null = null;
@@ -51,7 +51,6 @@ export class AdminpanelComponent implements AfterViewInit {
   selectRow(row: UserDto): void {
     if (this.selectedRow?.id != row.id) {
       this.selectedRow = row;
-      console.log(this.selectedRow);
     }
   }
 

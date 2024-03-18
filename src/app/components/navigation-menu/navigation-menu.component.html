@@ -5,7 +5,19 @@
     <!-- <a mat-button routerLink="/paper-stocks">Paper Stocks</a> -->
 
     <div class="padding"></div>
-    <a mat-button routerLink="/userpanel">User Panel</a>
-    <a *ngIf="checkTokenRole(['ADMIN', 'EMPLOYEE'])" mat-button routerLink="/adminpanel">Admin Panel</a>
-    <a mat-raised-button color="accent" class="logout-button" (click)="logout()">Logout</a>
+    <a *ngIf="checkTokenRole(['ADMIN', 'EMPLOYEE'])" mat-button routerLink="/users">Users</a>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Options">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/user-profile">
+            <mat-icon>person</mat-icon>
+            <span>User Profile</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+        </button>
+    </mat-menu>
 </mat-toolbar>

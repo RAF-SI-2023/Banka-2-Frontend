@@ -1,4 +1,4 @@
-export interface DecodedTokenDto{
+export interface DecodedTokenDto {
   sub: string;
   role: Role;
   permissions: string[];

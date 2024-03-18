@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { UserDto } from '../../dto/UserDto';
-import { PrivateClientDto } from '../../dto/PrivateClientDto';
-import { CorporateClientDto } from '../../dto/CorporateClientDto';
+import { UserDto } from '../../dtos/user-dto';
+import { PrivateClientDto } from '../../dtos/private-client-dto';
+import { CorporateClientDto } from '../../dtos/corporate-client-dto';
 
 @Component({
-  selector: 'app-userpanel',
-  templateUrl: './userpanel.component.html',
-  styleUrls: ['./userpanel.component.css']
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.css']
 })
-export class UserpanelComponent {
+export class UserProfileComponent {
   user: UserDto | null = null;
   privateClient: PrivateClientDto | null = null;
   corporateClient: CorporateClientDto | null = null;

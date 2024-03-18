@@ -16,9 +16,4 @@ export class LandingComponent {
   redirectToCreateBankProfile() {
     this.router.navigate(['/create-bank-profile']);
   }
-
 }
-
-
-
-

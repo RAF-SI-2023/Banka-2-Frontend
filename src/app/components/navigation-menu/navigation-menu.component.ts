@@ -1,7 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {AuthService} from "../../services/auth.service";
-import {Role} from "../../dto/decoded-token.dto";
-import {Subscription} from "rxjs";
+import { Component, inject } from '@angular/core';
+import { AuthService } from "../../services/auth.service";
+import { Role } from "../../dtos/decoded-token-dto";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-navigation-menu',
@@ -32,8 +32,7 @@ export class NavigationMenuComponent {
   }
 
   checkTokenRole(roleArray: string[]) {
-    if(!this.role) return false;
+    if (!this.role) return false;
     return roleArray.includes(this.role);
   }
-
 }

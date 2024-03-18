@@ -5,7 +5,8 @@
             <mat-form-field class="full-width">
                 <mat-label>Datum rođenja</mat-label>
                 <input matInput [(ngModel)]="this.newSelectedRow.dateOfBirth" [matDatepicker]="picker"
-                    name="dateOfBirth">
+                    name="dateOfBirth"
+                       (dateChange)="onDateChange($event)" >
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -61,7 +62,7 @@
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Zatvori</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="updateUser()"
+    <button mat-raised-button mat-dialog-close color="warn">Zatvori</button>
+    <button mat-raised-button [mat-dialog-close]="true" color="accent" cdkFocusInitial (click)="updateUser()"
         [disabled]="phoneInput.errors && phoneInput.touched">Izmeni</button>
 </mat-dialog-actions>
