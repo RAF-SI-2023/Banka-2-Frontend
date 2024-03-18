@@ -12,6 +12,8 @@ import { NavigationMenuComponent } from './components/navigation-menu/navigation
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
 import { DomesticFormComponent } from './components/create-bank-account/domestic-form/domestic-form.component';
 import { ForeignFormComponent } from './components/create-bank-account/foreign-form/foreign-form.component';
+import { FinancialAssetsComponent} from './components/financial-assets/financial-assets.component'
+
 
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -69,7 +71,8 @@ import { EpochToDatePipe } from './pipes/epoch-to-date.pipe';
     PhoneNumberValidatorDirective,
     PasswordChangeComponent,
     NoPasteDirective,
-    EpochToDatePipe
+    EpochToDatePipe,
+    FinancialAssetsComponent,
   ],
   imports: [
     BrowserModule,
