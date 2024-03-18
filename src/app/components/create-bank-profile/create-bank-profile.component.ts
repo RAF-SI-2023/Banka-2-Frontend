@@ -1,13 +1,13 @@
-import {Component, inject, OnInit} from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {bankAccountNumberValidator, passwordValidator, phoneNumberValidator} from "../../utils/validators";
+import { bankAccountNumberValidator, passwordValidator, phoneNumberValidator } from "../../utils/validators";
 import { emailValidator } from "../../utils/validators/email.validator";
-import {BankProfileService} from "../../services/bank-profile.service";
-import {DropdownOption, DropdownOptions} from "../../utils/constants";
-import {PrivateClientDto} from "../../dto/PrivateClientDto";
-import {CorporateClientDto} from "../../dto/CorporateClientDto";
-import {Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { BankProfileService } from "../../services/bank-profile.service";
+import { DropdownOption, DropdownOptions } from "../../utils/constants";
+import { PrivateClientDto } from "../../dtos/private-client-dto";
+import { CorporateClientDto } from "../../dtos/corporate-client-dto";
+import { Router } from "@angular/router";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 
@@ -16,7 +16,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
   templateUrl: './create-bank-profile.component.html',
   styleUrls: ['./create-bank-profile.component.css']
 })
-export class CreateBankProfileComponent implements OnInit{
+export class CreateBankProfileComponent implements OnInit {
   bankProfileService = inject(BankProfileService);
   router = inject(Router);
   snackbar = inject(MatSnackBar);
@@ -112,18 +112,18 @@ export class CreateBankProfileComponent implements OnInit{
 
       // this.currentStep++;
       this.sendActivationCode()
-    }else if(this.currentStep === 4 && this.passwordForm.valid) {
+    } else if (this.currentStep === 4 && this.passwordForm.valid) {
       this.password = this.passwordForm.controls.password.value as string;
       this.passwordRepeat = this.passwordForm.controls.passwordRepeat.value as string;
       if (this.password !== this.passwordRepeat) {
         this.passwordError = 'Lozinke se ne poklapaju';
-      }else{
+      } else {
         this.activatePassword();
       }
     }
   }
 
-  bankAccountNumberSubmit(){
+  bankAccountNumberSubmit() {
     this.bankProfileService.associateProfileInitialization(this.primaryAccountNumber.replaceAll('-', "")).subscribe(
       (response) => {
         this.currentStep++;
@@ -135,18 +135,18 @@ export class CreateBankProfileComponent implements OnInit{
     );
   }
 
-  createBankProfile(){
-    if(this.selectedBankProfileType === 'PRIVATE'){
+  createBankProfile() {
+    if (this.selectedBankProfileType === 'PRIVATE') {
       this.bankProfileService.postBasicInfoPrivateClient({
-          phone: this.phone,
-          email: this.email,
-          dateOfBirth: this.dateOfBirth,
-          address: this.address,
-          name: this.name,
-          surname: this.surname,
-          primaryAccountNumber: this.primaryAccountNumber.replaceAll('-', ""),
-          gender: this.selectedGender,
-          username: this.email,
+        phone: this.phone,
+        email: this.email,
+        dateOfBirth: this.dateOfBirth,
+        address: this.address,
+        name: this.name,
+        surname: this.surname,
+        primaryAccountNumber: this.primaryAccountNumber.replaceAll('-', ""),
+        gender: this.selectedGender,
+        username: this.email,
       }).subscribe(
         (response) => {
           this.currentStep++;
@@ -156,7 +156,7 @@ export class CreateBankProfileComponent implements OnInit{
           this.basicInfoError = 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
         }
       )
-    }else if (this.selectedBankProfileType === 'CORPORATE'){
+    } else if (this.selectedBankProfileType === 'CORPORATE') {
       this.bankProfileService.postBasicInfoCorporateClient({
         phone: this.phone,
         email: this.email,
@@ -178,7 +178,7 @@ export class CreateBankProfileComponent implements OnInit{
   }
 
 
-  sendActivationCode(){
+  sendActivationCode() {
     this.bankProfileService.codeConfirmation(this.activationCode, this.primaryAccountNumber.replaceAll('-', "")).subscribe(
       (response) => {
         this.currentStep++;
@@ -190,7 +190,7 @@ export class CreateBankProfileComponent implements OnInit{
     )
   }
 
-  activatePassword(){
+  activatePassword() {
     this.bankProfileService.passwordActivation(this.email, this.password).subscribe(
       (response) => {
         // this.router.navigate(['/login']);
@@ -207,7 +207,7 @@ export class CreateBankProfileComponent implements OnInit{
       duration: 3000,
     });
     this.router.navigate(['/login']);
-    }
+  }
 
 
   goToPreviousStep() {
@@ -231,7 +231,7 @@ export class CreateBankProfileComponent implements OnInit{
 
     console.log('Broj računa/kartice/kredita:', this.basicInfoForm.get('primaryAccountNumber')?.value);
     console.log('Broj mobilnog telefona:', this.contactInfoForm.get('phone')?.value);
-    console.log('E-mail:', this.contactInfoForm.get('email')?.value);
+    console.log('Email:', this.contactInfoForm.get('email')?.value);
     console.log('Aktivacioni kod:', this.activationCodeForm.get('activationCode')?.value);
 
     console.log('Lozinka:', this.password);

@@ -13,9 +13,11 @@
           (click)="(selectedRow?.active) ? deactivateEmployee() : activateEmployee()">
           {{ selectedRow?.active ? 'Deaktiviraj zaposlenog' : 'Aktiviraj zaposlenog' }}
         </button>
-        <button mat-raised-button (click)="updateUser()" class="buttons" color="accent" [disabled]="!selectedRow || selectedRowRole() == 'ADMIN'" >Izmeni
+        <button mat-raised-button (click)="updateUser()" class="buttons" color="accent"
+          [disabled]="!selectedRow || selectedRowRole() == 'ADMIN'">Izmeni
           korisnika</button>
-        <button mat-raised-button (click)="deleteUser()" class="buttons" color="warn" [disabled]="!selectedRow || selectedRowRole() == 'ADMIN'">Izbriši
+        <button mat-raised-button (click)="deleteUser()" class="buttons" color="warn"
+          [disabled]="!selectedRow || selectedRowRole() == 'ADMIN'">Izbriši
           korisnika</button>
       </div>
     </mat-card-header>
@@ -30,7 +32,7 @@
             </ng-container>
 
             <ng-container matColumnDef="email">
-              <th *matHeaderCellDef mat-header-cell mat-sort-header>E-mail adresa</th>
+              <th *matHeaderCellDef mat-header-cell mat-sort-header>Email adresa</th>
               <td *matCellDef="let row" mat-cell> {{ row.email }}</td>
             </ng-container>
 
@@ -41,7 +43,8 @@
 
             <ng-container matColumnDef="dateOfBirth">
               <th *matHeaderCellDef mat-header-cell mat-sort-header>Datum rođenja</th>
-              <td *matCellDef="let row" mat-cell> {{ row.dateOfBirth ? (row.dateOfBirth | epochToDate | date:'dd.MM.yyyy') : '' }}</td>
+              <td *matCellDef="let row" mat-cell> {{ row.dateOfBirth ? (row.dateOfBirth | epochToDate |
+                date:'dd.MM.yyyy') : '' }}</td>
             </ng-container>
 
             <ng-container matColumnDef="phone">

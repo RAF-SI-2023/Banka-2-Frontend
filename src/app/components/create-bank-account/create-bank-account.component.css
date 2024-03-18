@@ -5,7 +5,7 @@
   height: calc(100vh - 256px)
 }
 
-mat-card{
+mat-card {
   width: 400px;
 }
 
@@ -21,8 +21,8 @@ mat-card-content {
   width: 100%;
 }
 
-.tab-content{
- overflow: hidden;
+.tab-content {
+  overflow: hidden;
   height: fit-content;
 }
 
@@ -31,4 +31,3 @@ mat-card-content {
   flex-direction: column;
   width: 100%;
 }
-

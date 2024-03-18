@@ -21,7 +21,7 @@ export const DropdownOptions = {
   ],
   bankProfileType: [
     { label: 'Fizičko lice', value: 'PRIVATE' },
-    { label: 'Pravno lice', value: 'CORPORATE'}
+    { label: 'Pravno lice', value: 'CORPORATE' }
   ],
   gender: [
     { label: 'Muški', value: 'MALE' },

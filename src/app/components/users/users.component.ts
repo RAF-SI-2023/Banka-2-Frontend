@@ -5,7 +5,7 @@ import { validateHorizontalPosition } from "@angular/cdk/overlay";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { AuthService } from 'src/app/services/auth.service';
-import { UserDto } from 'src/app/dto/UserDto';
+import { UserDto } from 'src/app/dtos/user-dto';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
@@ -51,7 +51,6 @@ export class UsersComponent implements AfterViewInit {
   selectRow(row: UserDto): void {
     if (this.selectedRow?.id != row.id) {
       this.selectedRow = row;
-      console.log(this.selectedRow);
     }
   }
 

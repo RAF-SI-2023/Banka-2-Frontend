@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { UserpanelComponent } from './components/userpanel/userpanel.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UsersComponent } from './components/users/users.component';
 import { CreateBankAccountComponent } from './components/create-bank-account/create-bank-account.component';
 import { CreateBankProfileComponent } from './components/create-bank-profile/create-bank-profile.component';
@@ -21,6 +21,7 @@ import { NgOptimizedImage } from "@angular/common";
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -54,7 +55,7 @@ import { EpochToDatePipe } from './pipes/epoch-to-date.pipe';
     LandingComponent,
     LoginComponent,
     HomeComponent,
-    UserpanelComponent,
+    UserProfileComponent,
     UsersComponent,
     CreateBankAccountComponent,
     CreateBankProfileComponent,
@@ -68,7 +69,7 @@ import { EpochToDatePipe } from './pipes/epoch-to-date.pipe';
     PhoneNumberValidatorDirective,
     PasswordChangeComponent,
     NoPasteDirective,
-    EpochToDatePipe,
+    EpochToDatePipe
   ],
   imports: [
     BrowserModule,
@@ -82,6 +83,7 @@ import { EpochToDatePipe } from './pipes/epoch-to-date.pipe';
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
+    MatMenuModule,
     MatButtonModule,
     MatStepperModule,
     MatCardModule,

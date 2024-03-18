@@ -1,23 +1,21 @@
-import {EventEmitter, inject, Injectable} from '@angular/core';
+import { EventEmitter, inject, Injectable } from '@angular/core';
 import { environment } from "../../environments/environment.development";
 import { HttpClient } from "@angular/common/http";
-import { LoginResponseDto } from "../dto/login-response.dto";
-import { AuthCredentialsDto } from "../dto/auth-credentials.dto";
+import { LoginResponseDto } from "../dtos/login-response-dto";
+import { AuthCredentialsDto } from "../dtos/auth-credentials-dto";
 import { Router } from "@angular/router";
-import { EmployeeDto } from "../dto/EmployeeDto";
+import { EmployeeDto } from "../dtos/employee-dto";
 import { ApiRoutes } from "./api-routes";
-import { PermissionDto } from "../dto/permissions.dto";
-import { RolesDto } from "../dto/roles.dto";
+import { PermissionDto } from "../dtos/permissions-dto";
+import { RolesDto } from "../dtos/roles-dto";
 import { tap } from "rxjs";
-import { HttpHeaders } from '@angular/common/http';
-import {jwtDecode} from "jwt-decode";
-import {DecodedTokenDto, Role} from "../dto/decoded-token.dto";
+import { jwtDecode } from "jwt-decode";
+import { DecodedTokenDto, Role } from "../dtos/decoded-token-dto";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
   apiUrl = environment.iAmServiceApiUrl;
   authUrls = ApiRoutes.auth;
 
@@ -46,8 +44,8 @@ export class AuthService {
         localStorage.setItem('id', decodedToken.id);
         localStorage.setItem('email', decodedToken.email);
         localStorage.setItem('permissions', decodedToken.permissions)
-          // Emit an event when the user logs in to update the role
-          this.roleUpdated.emit(this.getRoleFromToken());
+        // Emit an event when the user logs in to update the role
+        this.roleUpdated.emit(this.getRoleFromToken());
       }
       )
     );
@@ -70,19 +68,12 @@ export class AuthService {
   }
 
   getRoleFromToken() {
-    if(this.token){
+    if (this.token) {
       const decodedToken = jwtDecode<DecodedTokenDto>(this.token);
       return decodedToken.role;
     }
     return null;
   }
-
-
-  // getHeaders() {
-  //   return this.token
-  //     ? new HttpHeaders().set('Authorization', `Bearer ${this.token}`)
-  //     : undefined;
-  // }
 
   isLoggedIn() {
     return !!localStorage.getItem('token');

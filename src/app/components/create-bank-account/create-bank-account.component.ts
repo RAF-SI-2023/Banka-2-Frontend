@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DropdownOptions, DropdownOption} from "../../utils/constants";
+import { DropdownOptions, DropdownOption } from "../../utils/constants";
 @Component({
   selector: 'app-create-bank-account',
   templateUrl: './create-bank-account.component.html',

@@ -17,17 +17,13 @@
         <form [formGroup]="basicInfoForm">
           <mat-form-field appearance="fill">
             <mat-label>Broj računa/kartice/kredita</mat-label>
-            <input matInput
-                   placeholder="Unesite broj računa"
-                   formControlName="primaryAccountNumber"
-                   appBankAccountMask
-                   appNoPaste
-                   required
-            />
+            <input matInput placeholder="Unesite broj računa" formControlName="primaryAccountNumber" appBankAccountMask
+              appNoPaste required />
             <mat-hint>Unesite broj računa ručno.</mat-hint>
-            <mat-error *ngIf="basicInfoForm.controls.primaryAccountNumber.invalid">Unesite validan broj računa.</mat-error>
+            <mat-error *ngIf="basicInfoForm.controls.primaryAccountNumber.invalid">Unesite validan broj
+              računa.</mat-error>
           </mat-form-field>
-          <mat-error *ngIf="accountNumberError" >{{accountNumberError}}</mat-error>
+          <mat-error *ngIf="accountNumberError">{{accountNumberError}}</mat-error>
 
           <div class="buttons">
             <button mat-raised-button color="accent" (click)="goToNextStep()"
@@ -42,15 +38,17 @@
           <mat-form-field appearance="fill">
             <mat-label>Broj mobilnog telefona</mat-label>
             <input matInput placeholder="Unesite broj telefona" formControlName="phone" required />
-            <mat-error *ngIf="contactInfoForm.controls.phone.invalid && !contactInfoForm.get('phone')?.hasError('invalidPhoneNumber')">Broj telefona je obavezan..</mat-error>
+            <mat-error
+              *ngIf="contactInfoForm.controls.phone.invalid && !contactInfoForm.get('phone')?.hasError('invalidPhoneNumber')">Broj
+              telefona je obavezan..</mat-error>
             <mat-error *ngIf="contactInfoForm.get('phone')?.hasError('invalidPhoneNumber')">Unesite validan broj
               telefona.</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <mat-label>E-mail</mat-label>
-            <input matInput type="email" placeholder="Unesite e-mail adresu" formControlName="email" required />
-            <mat-error *ngIf="contactInfoForm.controls.email.invalid">Unesite validan e-mail.</mat-error>
+            <mat-label>Email</mat-label>
+            <input matInput type="email" placeholder="Unesite email adresu" formControlName="email" required />
+            <mat-error *ngIf="contactInfoForm.controls.email.invalid">Unesite validan email.</mat-error>
           </mat-form-field>
 
           <mat-form-field>
@@ -76,7 +74,8 @@
           <div class="input-row">
             <mat-form-field>
               <mat-label>Datum rođenja</mat-label>
-              <input matInput formControlName="dateOfBirth" (dateChange)="onDateChange($event)" [matDatepicker]="picker">
+              <input matInput formControlName="dateOfBirth" (dateChange)="onDateChange($event)"
+                [matDatepicker]="picker">
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -95,7 +94,7 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <mat-error *ngIf="basicInfoError" >{{basicInfoError}}</mat-error>
+          <mat-error *ngIf="basicInfoError">{{basicInfoError}}</mat-error>
           <div class="buttons">
             <button mat-raised-button (click)="goToPreviousStep()">Nazad</button>
             <button mat-raised-button color="accent" (click)="goToNextStep()"
@@ -113,7 +112,7 @@
             <mat-error *ngIf="activationCodeForm.controls.activationCode.invalid">Unesite validan aktivacioni
               kod.</mat-error>
           </mat-form-field>
-          <mat-error *ngIf="activationCodeError" >{{activationCodeError}}</mat-error>
+          <mat-error *ngIf="activationCodeError">{{activationCodeError}}</mat-error>
 
           <div class="buttons">
             <button mat-raised-button (click)="goToPreviousStep()">Nazad</button>
@@ -129,22 +128,28 @@
           <mat-form-field appearance="fill">
             <mat-label>Lozinka</mat-label>
             <input matInput type="password" formControlName="password" placeholder="Napravite lozinku" required />
-            <mat-error *ngIf="passwordForm.controls.password.invalid && !passwordForm.get('password')?.hasError('invalidPassword')">Unesite validnu lozinku.</mat-error>
-            <mat-error *ngIf="passwordForm.get('password')?.hasError('invalidPassword')">Lozinka mora sadržati najmanje 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj i specijalan karakter.</mat-error>
+            <mat-error
+              *ngIf="passwordForm.controls.password.invalid && !passwordForm.get('password')?.hasError('invalidPassword')">Unesite
+              validnu lozinku.</mat-error>
+            <mat-error *ngIf="passwordForm.get('password')?.hasError('invalidPassword')">Lozinka mora sadržati najmanje
+              8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj i specijalan karakter.</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Ponovi lozinku</mat-label>
             <input matInput type="password" formControlName="passwordRepeat" placeholder="Ponovite lozinku" required />
-            <mat-error *ngIf="passwordForm.controls.passwordRepeat.invalid && !passwordForm.get('password')?.hasError('invalidPassword')">Unesite validnu lozinku.</mat-error>
-            <mat-error *ngIf="passwordForm.get('password')?.hasError('invalidPassword')">Lozinka mora sadržati najmanje 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj i specijalan karakter.</mat-error>
+            <mat-error
+              *ngIf="passwordForm.controls.passwordRepeat.invalid && !passwordForm.get('password')?.hasError('invalidPassword')">Unesite
+              validnu lozinku.</mat-error>
+            <mat-error *ngIf="passwordForm.get('password')?.hasError('invalidPassword')">Lozinka mora sadržati najmanje
+              8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj i specijalan karakter.</mat-error>
           </mat-form-field>
-          <mat-error *ngIf="passwordError" >{{passwordError}}</mat-error>
+          <mat-error *ngIf="passwordError">{{passwordError}}</mat-error>
 
           <div class="buttons">
             <button mat-raised-button (click)="goToPreviousStep()">Nazad</button>
-            <button mat-raised-button color="accent" (click)="goToNextStep()"
-                    [disabled]="!passwordForm.valid">Kreiraj profil</button>
+            <button mat-raised-button color="accent" (click)="goToNextStep()" [disabled]="!passwordForm.valid">Kreiraj
+              profil</button>
           </div>
         </form>
       </div>

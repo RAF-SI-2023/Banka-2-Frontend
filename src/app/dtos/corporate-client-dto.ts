@@ -1,4 +1,4 @@
-import { UserDto } from "./UserDto";
+import { UserDto } from "./user-dto";
 
 export interface CorporateClientDto extends UserDto {
     name: string;
