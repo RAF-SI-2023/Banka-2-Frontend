@@ -6,6 +6,7 @@ import { PrivateClientDto } from '../dtos/private-client-dto';
 import { CorporateClientDto } from '../dtos/corporate-client-dto';
 import { environment } from 'src/environments/environment.development';
 import { ApiRoutes } from './api-routes';
+import { EmployeeDto } from '../dtos/employee-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,12 @@ export class UserService {
   changePasswordSubmit(currentPassword: string, newPassword: string) {
     const email = localStorage.getItem("email");
     return this.httpClient.post(environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`, {});
+  }
+
+  // POST metoda za dodavanje zaposlenog
+  createEmployee(employee: EmployeeDto) {
+    const userId = localStorage.getItem('id');
+    return this.httpClient.post<EmployeeDto>(environment.iAmServiceApiUrl + ApiRoutes.users.createEmployee, employee);
   }
 
   // DELETE metode
