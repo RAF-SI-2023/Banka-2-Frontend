@@ -12,6 +12,7 @@ import { CreateBankAccountComponent } from './components/create-bank-account/cre
 import { roleGuard } from "./guards/role.guard";
 import {loginGuard} from "./guards/login.guard";
 import {Role} from "./dtos/decoded-token-dto";
+import { FinancialAssetsComponent } from './components/financial-assets/financial-assets.component';
 
 const routes: Routes = [
   { component: LandingComponent, path: "" },
@@ -21,6 +22,10 @@ const routes: Routes = [
   { component: UserProfileComponent, path: "user-profile", canActivate: [authGuard] },
   { component: UsersComponent, path: "users", canActivate: [roleGuard], data: { roles: [Role.ADMIN, Role.EMPLOYEE] } },
   { component: CreateBankAccountComponent, path: "create-bank-account", canActivate: [authGuard], data: { roles: [Role.ADMIN, Role.EMPLOYEE]  } },
+  { component: UsersComponent, path: "users", canActivate: [roleGuard], data: { roles: [Role.ADMIN, Role.EMPLOYEE] } },
+  { component: CreateBankAccountComponent, path: "create-bank-account", canActivate: [authGuard], data: { roles: [Role.ADMIN, Role.EMPLOYEE] } },
+  { component: FinancialAssetsComponent, path: "financial-assets",canActivate: [authGuard] },
+
 ];
 
 @NgModule({
