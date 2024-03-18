@@ -20,7 +20,7 @@ const routes: Routes = [
   { component: UserProfileComponent, path: "user-profile", canActivate: [authGuard] },
   { component: UsersComponent, path: "users", canActivate: [roleGuard], data: { roles: ['ADMIN', 'EMPLOYEE'] } },
   { component: CreateBankAccountComponent, path: "create-bank-account", canActivate: [authGuard], data: { roles: ['ADMIN', 'EMPLOYEE'] } },
-  { component: FinancialAssetsComponent, path: "financial-assets"},
+  { component: FinancialAssetsComponent, path: "financial-assets",canActivate: [authGuard] },
 
 ];
 
