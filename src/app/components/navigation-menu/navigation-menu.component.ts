@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import {ChangeDetectorRef, Component, inject, OnDestroy, OnInit} from '@angular/core';
 import { AuthService } from "../../services/auth.service";
 import { Role } from "../../dtos/decoded-token-dto";
 import { Subscription } from "rxjs";
@@ -8,9 +8,10 @@ import { Subscription } from "rxjs";
   templateUrl: './navigation-menu.component.html',
   styleUrls: ['./navigation-menu.component.css']
 })
-export class NavigationMenuComponent {
+export class NavigationMenuComponent implements OnInit, OnDestroy{
   // Add a subscription variable
-  private roleUpdateSubscription: Subscription | undefined;
+  private loginSubscription: Subscription | undefined;
+  private changeDetector = inject(ChangeDetectorRef);
   authService = inject(AuthService);
   role: Role | null = null;
   logout() {
@@ -21,18 +22,21 @@ export class NavigationMenuComponent {
     this.role = this.authService.getRoleFromToken();
 
     // Subscribe to role updates
-    this.roleUpdateSubscription = this.authService.roleUpdated.subscribe((role: Role | null) => {
-      this.role = role;
+    this.loginSubscription = this.authService.loginStatus.subscribe(() => {
+      this.role = this.authService.getRoleFromToken();
+      this.changeDetector.detectChanges();
     });
   }
 
   ngOnDestroy() {
     // Unsubscribe to prevent memory leaks
-    this.roleUpdateSubscription?.unsubscribe();
+    this.loginSubscription?.unsubscribe();
   }
 
   checkTokenRole(roleArray: string[]) {
     if (!this.role) return false;
     return roleArray.includes(this.role);
   }
+
+  protected readonly Role = Role;
 }
