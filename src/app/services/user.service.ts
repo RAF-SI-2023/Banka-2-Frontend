@@ -7,7 +7,9 @@ import { CorporateClientDto } from '../dtos/corporate-client-dto';
 import { environment } from 'src/environments/environment.development';
 import { ApiRoutes } from './api-routes';
 import { EmployeeDto } from '../dtos/employee-dto';
-
+import { AuthCredentialsDto } from '../dtos/auth-credentials-dto';
+import { passwordChangeTokenDto } from '../dtos/passwordChangeTokenDto';
+import { passwordChangeTokenNewPasswordDto } from '../dtos/passwordChangeTokenNewPasswordDto';
 @Injectable({
   providedIn: 'root'
 })
@@ -46,13 +48,12 @@ export class UserService {
   }
 
   // POST metode
-  changePasswordRequest(currentPassword: string, newPassword: string) {
-    const email = localStorage.getItem("email");
-    return this.httpClient.post(environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`, {});
+  changePasswordRequest (body: AuthCredentialsDto){
+    return this.httpClient.post<passwordChangeTokenDto[]>(environment.iAmServiceApiUrl + ApiRoutes.users.changePasswordRequest , body);
   }
-  changePasswordSubmit(currentPassword: string, newPassword: string) {
-    const email = localStorage.getItem("email");
-    return this.httpClient.post(environment.iAmServiceApiUrl + ApiRoutes.users.changePassword + `/${email}`, {});
+  changePasswordSubmit(paswordChangeToken:passwordChangeTokenNewPasswordDto){
+    const urlToken = paswordChangeToken.passwordChangeTokenDto.token;
+    return this.httpClient.post(environment.iAmServiceApiUrl + ApiRoutes.users.changePasswordSubmit + `/${urlToken}`, paswordChangeToken );
   }
 
   // POST metoda za dodavanje zaposlenog

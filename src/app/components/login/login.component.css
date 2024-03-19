@@ -72,3 +72,16 @@ mat-checkbox {
   font-size: 0.8rem;
   color: #616161;
 }
+
+.popup-link {
+  font-size: 14px; /* Font size */
+  color: #616161; /* Link color */
+  text-decoration: underline; /* Underline the text */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  margin-top: 10px; /* Add some top margin */
+  text-align: left; /* Align text to the left */
+}
+
+.popup-link:hover {
+  color: #0056b3; /* Change link color on hover */
+}
