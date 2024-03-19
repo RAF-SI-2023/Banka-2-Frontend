@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatTableDataSource } from "@angular/material/table";
-import { validateHorizontalPosition } from "@angular/cdk/overlay";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from '@angular/material/table';
+import { validateHorizontalPosition } from '@angular/cdk/overlay';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserDto } from 'src/app/dtos/user-dto';
 import { catchError, map } from 'rxjs/operators';
@@ -16,27 +16,38 @@ import { AddDialogComponent } from './dialogs/add-dialog/add-dialog.component';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'],
 })
-
 export class UsersComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'email', 'username', 'dateOfBirth', 'phone', 'address', 'role', 'active'];
+  displayedColumns: string[] = [
+    'id',
+    'email',
+    'username',
+    'dateOfBirth',
+    'phone',
+    'address',
+    'role',
+    'active',
+  ];
   dataSource: MatTableDataSource<UserDto>;
   selectedRow: UserDto | null = null;
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   @ViewChild(MatSort) sort: MatSort | undefined;
   protected readonly validateHorizontalPosition = validateHorizontalPosition;
 
-  constructor(private http: HttpClient, private authService: AuthService, private userService: UserService, public dialog: MatDialog) {
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private userService: UserService,
+    public dialog: MatDialog
+  ) {
     this.dataSource = new MatTableDataSource();
     this.fetchData();
   }
 
   ngAfterViewInit() {
-    if (this.paginator)
-      this.dataSource.paginator = this.paginator;
-    if (this.sort)
-      this.dataSource.sort = this.sort;
+    if (this.paginator) this.dataSource.paginator = this.paginator;
+    if (this.sort) this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -62,28 +73,32 @@ export class UsersComponent implements AfterViewInit {
   }
 
   fetchData(): void {
-    this.userService.getFindAll()
+    this.userService
+      .getFindAll()
       .pipe(
-        map(dataSource => {
+        map((dataSource) => {
           this.dataSource.data = dataSource;
           return dataSource;
         }),
-        catchError(error => {
+        catchError((error) => {
           console.error('Error loading data.', error);
           return throwError(() => error);
         })
-      ).subscribe();
+      )
+      .subscribe();
   }
 
   activateEmployee(): void {
     if (this.selectedRow != null && this.selectedRow.role == 'EMPLOYEE') {
-      this.userService.putActivateEmployee(this.selectedRow.id)
+      this.userService
+        .putActivateEmployee(this.selectedRow.id)
         .pipe(
-          catchError(error => {
+          catchError((error) => {
             console.error('Error loading data.', error);
             return throwError(() => error);
           })
-        ).subscribe(() => {
+        )
+        .subscribe(() => {
           this.fetchData();
           this.selectedRow = null;
         });
@@ -92,13 +107,15 @@ export class UsersComponent implements AfterViewInit {
 
   deactivateEmployee(): void {
     if (this.selectedRow != null && this.selectedRow.role == 'EMPLOYEE') {
-      this.userService.putDeactivateEmployee(this.selectedRow.id)
+      this.userService
+        .putDeactivateEmployee(this.selectedRow.id)
         .pipe(
-          catchError(error => {
+          catchError((error) => {
             console.error('Error loading data.', error);
             return throwError(() => error);
           })
-        ).subscribe(() => {
+        )
+        .subscribe(() => {
           this.fetchData();
           this.selectedRow = null;
         });
@@ -108,7 +125,7 @@ export class UsersComponent implements AfterViewInit {
   addUser(): void {
     const dialogRef = this.dialog.open(AddDialogComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
       this.selectedRow = null;
       this.fetchData();
@@ -118,10 +135,10 @@ export class UsersComponent implements AfterViewInit {
   updateUser(): void {
     if (this.selectedRow != null) {
       const dialogRef = this.dialog.open(UpdateDialogComponent, {
-        data: { selectedRow: this.selectedRow }
+        data: { selectedRow: this.selectedRow },
       });
 
-      dialogRef.afterClosed().subscribe(result => {
+      dialogRef.afterClosed().subscribe((result) => {
         console.log(`Dialog result: ${result}`);
         this.selectedRow = null;
         this.fetchData();
@@ -131,13 +148,15 @@ export class UsersComponent implements AfterViewInit {
 
   deleteUser(): void {
     if (this.selectedRow != null) {
-      this.userService.delete(this.selectedRow.email)
+      this.userService
+        .delete(this.selectedRow.email)
         .pipe(
-          catchError(error => {
+          catchError((error) => {
             console.error('Error loading data.', error);
             return throwError(() => error);
           })
-        ).subscribe(() => {
+        )
+        .subscribe(() => {
           this.selectedRow = null;
           this.fetchData();
         });

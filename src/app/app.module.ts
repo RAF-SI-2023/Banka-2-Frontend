@@ -12,7 +12,7 @@ import { NavigationMenuComponent } from './components/navigation-menu/navigation
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
 import { DomesticFormComponent } from './components/create-bank-account/domestic-form/domestic-form.component';
 import { ForeignFormComponent } from './components/create-bank-account/foreign-form/foreign-form.component';
-import { FinancialAssetsComponent } from './components/financial-assets/financial-assets.component'
+import { FinancialAssetsComponent } from './components/financial-assets/financial-assets.component';
 import { CurrencyExchangeComponent } from './components/currency-exchange/currency-exchange.component';
 import { PasswordForgotComponent } from './components/password-forgot/password-forgot.component';
 
@@ -20,7 +20,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgOptimizedImage } from "@angular/common";
+import { NgOptimizedImage } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,21 +29,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatCardModule } from "@angular/material/card";
-import { MatCheckboxModule } from "@angular/material/checkbox";
-import { MatTableModule } from "@angular/material/table";
-import { MatPaginatorModule } from "@angular/material/paginator";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
-import { MatSortModule } from "@angular/material/sort";
-import { MatSelectModule } from "@angular/material/select";
-import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { HttpClientModule } from '@angular/common/http';
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { AlertInterceptor } from "./interceptors/alert.interceptor";
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AlertInterceptor } from './interceptors/alert.interceptor';
 import { UpdateDialogComponent } from './components/users/dialogs/update-dialog/update-dialog.component';
 import { AddDialogComponent } from './components/users/dialogs/add-dialog/add-dialog.component';
 import { ConfirmActionDialogComponent } from './components/users/dialogs/confirm-action-dialog/confirm-action-dialog.component';
@@ -75,7 +75,7 @@ import { EpochToDatePipe } from './pipes/epoch-to-date.pipe';
     EpochToDatePipe,
     FinancialAssetsComponent,
     CurrencyExchangeComponent,
-    PasswordForgotComponent
+    PasswordForgotComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,13 +103,15 @@ import { EpochToDatePipe } from './pipes/epoch-to-date.pipe';
     MatSortModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AlertInterceptor,
-    multi: true
-  }],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AlertInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

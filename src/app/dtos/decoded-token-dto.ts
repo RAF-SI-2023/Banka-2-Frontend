@@ -12,5 +12,5 @@ export enum Role {
   EMPLOYEE = 'EMPLOYEE',
   SUPERVISOR = 'SUPERVISOR',
   AGENT = 'AGENT',
-  USER = 'USER'
+  USER = 'USER',
 }

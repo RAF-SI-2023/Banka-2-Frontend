@@ -1,20 +1,21 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { bankAccountNumberValidator, passwordValidator, phoneNumberValidator } from "../../utils/validators";
-import { emailValidator } from "../../utils/validators/email.validator";
-import { BankProfileService } from "../../services/bank-profile.service";
-import { DropdownOption, DropdownOptions } from "../../utils/constants";
-import { PrivateClientDto } from "../../dtos/private-client-dto";
-import { CorporateClientDto } from "../../dtos/corporate-client-dto";
-import { Router } from "@angular/router";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import {
+  bankAccountNumberValidator,
+  passwordValidator,
+  phoneNumberValidator,
+} from '../../utils/validators';
+import { emailValidator } from '../../utils/validators/email.validator';
+import { BankProfileService } from '../../services/bank-profile.service';
+import { DropdownOption, DropdownOptions } from '../../utils/constants';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-
 
 @Component({
   selector: 'app-create-bank-profile',
   templateUrl: './create-bank-profile.component.html',
-  styleUrls: ['./create-bank-profile.component.css']
+  styleUrls: ['./create-bank-profile.component.css'],
 })
 export class CreateBankProfileComponent implements OnInit {
   bankProfileService = inject(BankProfileService);
@@ -37,7 +38,7 @@ export class CreateBankProfileComponent implements OnInit {
   gender: string = '';
   bankProfileType: DropdownOption[] = DropdownOptions.bankProfileType;
   selectedBankProfileType: string = '';
-  genderOptions: DropdownOption[] = DropdownOptions.gender
+  genderOptions: DropdownOption[] = DropdownOptions.gender;
   selectedGender: string = '';
   // error message
   basicInfoError: string = '';
@@ -53,16 +54,20 @@ export class CreateBankProfileComponent implements OnInit {
   // error message
   passwordError: string = '';
 
-
   ngOnInit() {
     // Subscribe to changes of the selectedBankProfileType form control
-    this.contactInfoForm.get('selectedBankProfileType')?.valueChanges.subscribe(value => {
-      this.selectedBankProfileType = value!;
-    });
+    this.contactInfoForm
+      .get('selectedBankProfileType')
+      ?.valueChanges.subscribe((value) => {
+        this.selectedBankProfileType = value!;
+      });
   }
 
   basicInfoForm = new FormGroup({
-    primaryAccountNumber: new FormControl('', [Validators.required, bankAccountNumberValidator()]),
+    primaryAccountNumber: new FormControl('', [
+      Validators.required,
+      bankAccountNumberValidator(),
+    ]),
   });
 
   contactInfoForm = new FormGroup({
@@ -77,12 +82,18 @@ export class CreateBankProfileComponent implements OnInit {
   });
 
   activationCodeForm = new FormGroup({
-    activationCode: new FormControl('', [Validators.required, Validators.pattern(/^[0-9a-zA-Z]+$/)]) // Primer: samo alfanumerički kod
+    activationCode: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[0-9a-zA-Z]+$/),
+    ]), // Primer: samo alfanumerički kod
   });
 
   passwordForm = new FormGroup({
     password: new FormControl('', [Validators.required, passwordValidator()]),
-    passwordRepeat: new FormControl('', [Validators.required, passwordValidator()])
+    passwordRepeat: new FormControl('', [
+      Validators.required,
+      passwordValidator(),
+    ]),
   });
 
   goToNextStep() {
@@ -91,7 +102,8 @@ export class CreateBankProfileComponent implements OnInit {
     // and uncomment the function that increments the currentStep
 
     if (this.currentStep === 1 && this.basicInfoForm.valid) {
-      this.primaryAccountNumber = this.basicInfoForm.controls.primaryAccountNumber.value as string;
+      this.primaryAccountNumber = this.basicInfoForm.controls
+        .primaryAccountNumber.value as string;
       console.log('Primary account number:', this.primaryAccountNumber);
       // this.currentStep++;
       this.bankAccountNumberSubmit();
@@ -102,19 +114,23 @@ export class CreateBankProfileComponent implements OnInit {
       this.address = this.contactInfoForm.controls.address.value as string;
       this.name = this.contactInfoForm.controls.name.value as string;
       this.surname = this.contactInfoForm.controls.surname.value as string;
-      this.selectedGender = this.contactInfoForm.controls.gender.value as string;
-      this.selectedBankProfileType = this.contactInfoForm.controls.selectedBankProfileType.value as string;
+      this.selectedGender = this.contactInfoForm.controls.gender
+        .value as string;
+      this.selectedBankProfileType = this.contactInfoForm.controls
+        .selectedBankProfileType.value as string;
 
       // this.currentStep++;
       this.createBankProfile();
     } else if (this.currentStep === 3 && this.activationCodeForm.valid) {
-      this.activationCode = this.activationCodeForm.controls.activationCode.value as string;
+      this.activationCode = this.activationCodeForm.controls.activationCode
+        .value as string;
 
       // this.currentStep++;
-      this.sendActivationCode()
+      this.sendActivationCode();
     } else if (this.currentStep === 4 && this.passwordForm.valid) {
       this.password = this.passwordForm.controls.password.value as string;
-      this.passwordRepeat = this.passwordForm.controls.passwordRepeat.value as string;
+      this.passwordRepeat = this.passwordForm.controls.passwordRepeat
+        .value as string;
       if (this.password !== this.passwordRepeat) {
         this.passwordError = 'Lozinke se ne poklapaju';
       } else {
@@ -124,82 +140,102 @@ export class CreateBankProfileComponent implements OnInit {
   }
 
   bankAccountNumberSubmit() {
-    this.bankProfileService.associateProfileInitialization(this.primaryAccountNumber.replaceAll('-', "")).subscribe(
-      (response) => {
-        this.currentStep++;
-      },
-      (error) => {
-        // this.accountNumberError = error.message ? error.message : 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
-        this.accountNumberError = 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
-      }
-    );
+    this.bankProfileService
+      .associateProfileInitialization(
+        this.primaryAccountNumber.replaceAll('-', '')
+      )
+      .subscribe(
+        (response) => {
+          this.currentStep++;
+        },
+        (error) => {
+          // this.accountNumberError = error.message ? error.message : 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+          this.accountNumberError =
+            'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+        }
+      );
   }
 
   createBankProfile() {
     if (this.selectedBankProfileType === 'PRIVATE') {
-      this.bankProfileService.postBasicInfoPrivateClient({
-        phone: this.phone,
-        email: this.email,
-        dateOfBirth: this.dateOfBirth,
-        address: this.address,
-        name: this.name,
-        surname: this.surname,
-        primaryAccountNumber: this.primaryAccountNumber.replaceAll('-', ""),
-        gender: this.selectedGender,
-        username: this.email,
-      }).subscribe(
-        (response) => {
-          this.currentStep++;
-        },
-        (error) => {
-          // this.basicInfoError = error.message ? error.message : 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
-          this.basicInfoError = 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
-        }
-      )
+      this.bankProfileService
+        .postBasicInfoPrivateClient({
+          phone: this.phone,
+          email: this.email,
+          dateOfBirth: this.dateOfBirth,
+          address: this.address,
+          name: this.name,
+          surname: this.surname,
+          primaryAccountNumber: this.primaryAccountNumber.replaceAll('-', ''),
+          gender: this.selectedGender,
+          username: this.email,
+        })
+        .subscribe(
+          (response) => {
+            this.currentStep++;
+          },
+          (error) => {
+            // this.basicInfoError = error.message ? error.message : 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+            this.basicInfoError =
+              'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+          }
+        );
     } else if (this.selectedBankProfileType === 'CORPORATE') {
-      this.bankProfileService.postBasicInfoCorporateClient({
-        phone: this.phone,
-        email: this.email,
-        dateOfBirth: this.dateOfBirth,
-        address: this.address,
-        name: this.name,
-        primaryAccountNumber: this.primaryAccountNumber.replaceAll('-', ""),
-        username: this.email,
-      }).subscribe(
-        (response) => {
-          this.currentStep++;
-        },
-        (error) => {
-          // this.basicInfoError = error.message ? error.message : 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
-          this.basicInfoError = 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
-        }
-      )
+      this.bankProfileService
+        .postBasicInfoCorporateClient({
+          phone: this.phone,
+          email: this.email,
+          dateOfBirth: this.dateOfBirth,
+          address: this.address,
+          name: this.name,
+          primaryAccountNumber: this.primaryAccountNumber.replaceAll('-', ''),
+          username: this.email,
+        })
+        .subscribe(
+          (response) => {
+            this.currentStep++;
+          },
+          (error) => {
+            // this.basicInfoError = error.message ? error.message : 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+            this.basicInfoError =
+              'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+          }
+        );
     }
   }
 
-
   sendActivationCode() {
-    this.bankProfileService.codeConfirmation(this.activationCode, this.primaryAccountNumber.replaceAll('-', "")).subscribe(
-      (response) => {
-        this.currentStep++;
-      },
-      (error) => {
-        // this.activationCodeError = error.message ? error.message : 'Greška prilikom slanja aktivacionog koda. Pokušajte ponovo.';
-        this.activationCodeError = 'Greška prilikom slanja aktivacionog koda. Pokušajte ponovo.';
-      }
-    )
+    this.bankProfileService
+      .codeConfirmation(
+        this.activationCode,
+        this.primaryAccountNumber.replaceAll('-', '')
+      )
+      .subscribe(
+        (response) => {
+          this.currentStep++;
+        },
+        (error) => {
+          // this.activationCodeError = error.message ? error.message : 'Greška prilikom slanja aktivacionog koda. Pokušajte ponovo.';
+          this.activationCodeError =
+            'Greška prilikom slanja aktivacionog koda. Pokušajte ponovo.';
+        }
+      );
   }
 
   activatePassword() {
-    this.bankProfileService.passwordActivation(this.email, this.password).subscribe(
-      (response) => {
-        // this.router.navigate(['/login']);
-        this.creationSuccess();
-      },
-      (error) => {
-        this.passwordError = error.message ? error.message : 'Greška prilikom aktivacije lozinke. Pokušajte ponovo.';
-      }
-    )
+    this.bankProfileService
+      .passwordActivation(this.email, this.password)
+      .subscribe(
+        (response) => {
+          // this.router.navigate(['/login']);
+          this.creationSuccess();
+        },
+        (error) => {
+          this.passwordError = error.message
+            ? error.message
+            : 'Greška prilikom aktivacije lozinke. Pokušajte ponovo.';
+        }
+      );
   }
 
   creationSuccess() {
@@ -208,7 +244,6 @@ export class CreateBankProfileComponent implements OnInit {
     });
     this.router.navigate(['/login']);
   }
-
 
   goToPreviousStep() {
     if (this.currentStep > 1) {
@@ -219,7 +254,6 @@ export class CreateBankProfileComponent implements OnInit {
   onDateChange(event: MatDatepickerInputEvent<Date>) {
     this.dateOfBirth = event.value ? event.value.getTime().toString() : '';
     console.log('Date of birth:', this.dateOfBirth);
-
   }
 
   logFormData(event: Event) {
@@ -229,10 +263,19 @@ export class CreateBankProfileComponent implements OnInit {
     console.log('Osnovni podaci:', this.contactInfoForm.value);
     console.log('Aktivacioni kod:', this.activationCodeForm.value);
 
-    console.log('Broj računa/kartice/kredita:', this.basicInfoForm.get('primaryAccountNumber')?.value);
-    console.log('Broj mobilnog telefona:', this.contactInfoForm.get('phone')?.value);
+    console.log(
+      'Broj računa/kartice/kredita:',
+      this.basicInfoForm.get('primaryAccountNumber')?.value
+    );
+    console.log(
+      'Broj mobilnog telefona:',
+      this.contactInfoForm.get('phone')?.value
+    );
     console.log('Email:', this.contactInfoForm.get('email')?.value);
-    console.log('Aktivacioni kod:', this.activationCodeForm.get('activationCode')?.value);
+    console.log(
+      'Aktivacioni kod:',
+      this.activationCodeForm.get('activationCode')?.value
+    );
 
     console.log('Lozinka:', this.password);
   }

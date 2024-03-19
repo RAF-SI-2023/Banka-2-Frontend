@@ -1,11 +1,10 @@
 import { Directive, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[appNoPaste]'
+  selector: '[appNoPaste]',
 })
 export class NoPasteDirective {
-
-  constructor() { }
+  constructor() {}
 
   @HostListener('paste', ['$event']) onPaste(event: ClipboardEvent) {
     // Prevent default paste behavior

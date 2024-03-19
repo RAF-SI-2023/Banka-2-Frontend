@@ -58,19 +58,11 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Datum rođenja</mat-label>
-      <input
-        matInput
-        [(ngModel)]="dateOfBirth"
-        name="dateOfBirth"
-        type="date"
-      />
+      <input matInput [(ngModel)]="dateOfBirth" name="dateOfBirth" type="date" />
     </mat-form-field>
 
     <div *ngFor="let permision of availablePermissions">
-      <mat-checkbox
-        [checked]="permissions.includes(permision)"
-        (change)="updatePermissions($event, permision)"
-      >
+      <mat-checkbox [checked]="permissions.includes(permision)" (change)="updatePermissions($event, permision)">
         {{ permision }}
       </mat-checkbox>
     </div>
@@ -78,12 +70,7 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Zatvori</button>
-  <button
-    mat-button
-    [mat-dialog-close]="true"
-    cdkFocusInitial
-    (click)="addUser()"
-  >
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="addUser()">
     Dodaj
   </button>
 </mat-dialog-actions>

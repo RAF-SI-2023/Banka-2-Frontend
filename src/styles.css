@@ -1,11 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 /* Import Angular Material typography */
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 /* Define primary and accent colors */
 :root {
-  --primary: #3060EC !important;
-  --accent: #F5CF3D !important;
+  --primary: #3060ec !important;
+  --accent: #f5cf3d !important;
 }
 
 /* Apply the theme to Angular Material components */

@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  styleUrls: ['./user-profile.component.css'],
 })
 export class UserProfileComponent {
   user: UserDto | null = null;
@@ -17,13 +17,11 @@ export class UserProfileComponent {
   isPrivateClient: boolean = false;
   isCorporateClient: boolean = false;
 
-
-  constructor(private userService: UserService,public dialog: MatDialog) { }
+  constructor(private userService: UserService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.fetchUserDetails();
   }
-
 
   fetchUserDetails(): void {
     this.userService.getUserById().subscribe({
@@ -39,24 +37,24 @@ export class UserProfileComponent {
       },
       error: (error) => {
         console.error('Greška prilikom dohvatanja podataka o korisniku', error);
-      }
+      },
     });
   }
 
-  setUserDetails(user: UserDto | PrivateClientDto | CorporateClientDto, isPrivate: boolean): void {
+  setUserDetails(
+    user: UserDto | PrivateClientDto | CorporateClientDto,
+    isPrivate: boolean
+  ): void {
     this.user = user;
     this.isPrivateClient = isPrivate;
     this.isCorporateClient = !isPrivate;
   }
 
   openPasswordChangeDialog(): void {
-    const dialogRef = this.dialog.open(PasswordChangeComponent, {
-      //width: '300px' // Adjust width as needed
-    });
+    const dialogRef = this.dialog.open(PasswordChangeComponent, {});
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
-      // Handle any actions after dialog is closed
     });
   }
 }

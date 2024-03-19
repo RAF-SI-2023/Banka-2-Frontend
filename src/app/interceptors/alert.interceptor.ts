@@ -1,37 +1,44 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import {catchError, Observable, throwError} from 'rxjs';
-import { MatSnackBar } from "@angular/material/snack-bar";
-import {AuthService} from "../services/auth.service";
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+} from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AlertInterceptor implements HttpInterceptor {
-
   private authService = inject(AuthService);
   private snackBar = inject(MatSnackBar);
-  constructor() { }
+  constructor() {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
     const token = localStorage.getItem('token') ?? '';
 
     request = request.clone({
       setHeaders: {
         Authorization: token ? `Bearer ${token}` : '',
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
-    if(token) {
+    if (token) {
       if (this.authService.isTokenExpired()) {
-        // break from the interceptor chain and navigate to login page
         this.authService.router.navigate(['/login']);
-        return throwError(() => "Vaša sesija je istekla!");
+        return throwError(() => 'Vaša sesija je istekla!');
       }
     }
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        let errorMessage = "An unknown error occurred!";
+        let errorMessage = 'An unknown error occurred!';
 
         if (error.error instanceof ErrorEvent) {
           // Client-side errors
@@ -40,21 +47,21 @@ export class AlertInterceptor implements HttpInterceptor {
           // Server-side errors
           switch (error.status) {
             case 0:
-              errorMessage = "Request failed!";
+              errorMessage = 'Request failed!';
               break;
             case 401:
-              errorMessage = "Unauthorized access!";
+              errorMessage = 'Odbijen pristup!';
               // can possibly redirect to login page
               break;
             case 403:
-              errorMessage = "Access denied!";
+              errorMessage = 'Zabranjen pristup!';
               // can possibly redirect to forbidden page
               break;
             case 404:
-              errorMessage = "Resource not found!";
+              errorMessage = 'Stranica nije pronađena!';
               break;
             case 500:
-              errorMessage = "Internal server error!";
+              errorMessage = 'Interna greška servera!';
               break;
             default:
               errorMessage = `${error.message}`;
@@ -62,16 +69,15 @@ export class AlertInterceptor implements HttpInterceptor {
           }
         }
 
-        this.snackBar.open(errorMessage, "Close", {
+        this.snackBar.open(errorMessage, 'Close', {
           duration: 4000,
           verticalPosition: 'top',
           horizontalPosition: 'right',
-          panelClass: ['error-snackbar']
+          panelClass: ['error-snackbar'],
         });
 
         throw error;
-      }
-      )
-    )
+      })
+    );
   }
 }

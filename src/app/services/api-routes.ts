@@ -1,4 +1,3 @@
-
 export const ApiRoutes = {
   auth: {
     login: '/auth/login',
@@ -29,5 +28,5 @@ export const ApiRoutes = {
     createAccountDomestic: '/accounts/create-account/domestic',
     codeConfirmation: '/accounts/code-confirmation',
     associateProfileInit: '/accounts/associate-profile-initialization',
-  }
-}
+  },
+};

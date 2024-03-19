@@ -1,4 +1,4 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export const emailValidator = (): ValidatorFn => {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -13,4 +13,4 @@ export const emailValidator = (): ValidatorFn => {
 
     return isValid ? null : { invalidEmail: true };
   };
-}
+};

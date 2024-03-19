@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'epochToDate'
+  name: 'epochToDate',
 })
 export class EpochToDatePipe implements PipeTransform {
   transform(epoch: string): Date | null {

@@ -1,10 +1,10 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { inject } from "@angular/core";
-import { AuthService } from "../services/auth.service";
+import { inject } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 export const roleGuard: CanActivateFn = (route, state) => {
-  const router = inject(Router)
-  const authService = inject(AuthService)
+  const router = inject(Router);
+  const authService = inject(AuthService);
   const token = localStorage.getItem('token');
 
   if (!token) {

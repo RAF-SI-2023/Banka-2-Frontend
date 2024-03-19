@@ -1,20 +1,20 @@
-import { EventEmitter, inject, Injectable } from '@angular/core';
-import { environment } from "../../environments/environment.development";
-import { HttpClient } from "@angular/common/http";
-import { LoginResponseDto } from "../dtos/login-response-dto";
-import { AuthCredentialsDto } from "../dtos/auth-credentials-dto";
-import { Router } from "@angular/router";
-import { EmployeeDto } from "../dtos/employee-dto";
-import { ApiRoutes } from "./api-routes";
-import { PermissionDto } from "../dtos/permissions-dto";
-import { RolesDto } from "../dtos/roles-dto";
-import {BehaviorSubject, Subject, tap} from "rxjs";
-import { jwtDecode } from "jwt-decode";
-import { DecodedTokenDto, Role } from "../dtos/decoded-token-dto";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { inject, Injectable } from '@angular/core';
+import { environment } from '../../environments/environment.development';
+import { HttpClient } from '@angular/common/http';
+import { LoginResponseDto } from '../dtos/login-response-dto';
+import { AuthCredentialsDto } from '../dtos/auth-credentials-dto';
+import { Router } from '@angular/router';
+import { EmployeeDto } from '../dtos/employee-dto';
+import { ApiRoutes } from './api-routes';
+import { PermissionDto } from '../dtos/permissions-dto';
+import { RolesDto } from '../dtos/roles-dto';
+import { Subject, tap } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
+import { DecodedTokenDto, Role } from '../dtos/decoded-token-dto';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   apiUrl = environment.iAmServiceApiUrl;
@@ -27,41 +27,50 @@ export class AuthService {
   token = localStorage.getItem('token');
 
   public loginStatus: Subject<boolean> = new Subject<boolean>();
-  constructor() { }
+
+  constructor() {}
 
   login(credentials: AuthCredentialsDto) {
-    return this.http.post<LoginResponseDto>(`${this.apiUrl}${this.authUrls.login}`,
-      {
-        email: credentials.email,
-        password: credentials.password
-      }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).pipe(
-      tap((response) => {
-        localStorage.setItem('token', response.token);
-        const tokenString = response.token;
-        const decodedToken: any = jwtDecode(tokenString);
-        localStorage.setItem('id', decodedToken.id);
-        localStorage.setItem('email', decodedToken.email);
-        localStorage.setItem('permissions', decodedToken.permissions)
-        this.loginStatus.next(true);
-      }
+    return this.http
+      .post<LoginResponseDto>(
+        `${this.apiUrl}${this.authUrls.login}`,
+        {
+          email: credentials.email,
+          password: credentials.password,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
       )
-    );
+      .pipe(
+        tap((response) => {
+          localStorage.setItem('token', response.token);
+          const tokenString = response.token;
+          const decodedToken: any = jwtDecode(tokenString);
+          localStorage.setItem('id', decodedToken.id);
+          localStorage.setItem('email', decodedToken.email);
+          localStorage.setItem('permissions', decodedToken.permissions);
+          this.loginStatus.next(true);
+        })
+      );
   }
 
   activateEmployee(credentials: AuthCredentialsDto) {
-    return this.http.put<EmployeeDto>(`${this.apiUrl}${this.authUrls.activateEmployee}`,
+    return this.http.put<EmployeeDto>(
+      `${this.apiUrl}${this.authUrls.activateEmployee}`,
       {
         email: credentials.email,
-        password: credentials.password
-      })
+        password: credentials.password,
+      }
+    );
   }
 
   getPermissions() {
-    return this.http.get<PermissionDto[]>(`${this.apiUrl}${this.authUrls.allPermissions}`);
+    return this.http.get<PermissionDto[]>(
+      `${this.apiUrl}${this.authUrls.allPermissions}`
+    );
   }
 
   getRoles() {
@@ -97,11 +106,11 @@ export class AuthService {
     if (this.token) {
       const decodedToken = jwtDecode<DecodedTokenDto>(this.token);
       const expirationDate = new Date(decodedToken.exp * 1000);
-      if(expirationDate < new Date()) {
+      if (expirationDate < new Date()) {
         this.matSnackBar.open('Vaša sesija je istekla!', 'Zatvori', {
           verticalPosition: 'top',
-          horizontalPosition: 'center',
-          duration: 5000
+          horizontalPosition: 'right',
+          duration: 5000,
         });
         this.logout();
         return true;

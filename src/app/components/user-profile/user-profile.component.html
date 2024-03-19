@@ -5,20 +5,15 @@
         <div class="title">
           <h2>
             {{
-              privateClient
-                ? privateClient.name
-                : corporateClient
-                ? corporateClient.name
-                : "Nepoznati Korisnik"
+            privateClient
+            ? privateClient.name
+            : corporateClient
+            ? corporateClient.name
+            : "Nepoznati korisnik"
             }}
           </h2>
-          <img
-            src="../../../assets/logo/bank-2-logo.svg"
-            alt="Icon"
-            height="64"
-            width="64"
-            style="border-radius: 50%"
-          />
+          <img src="../../../assets/logo/bank-2-logo.svg" alt="Icon" height="64" width="64"
+            style="border-radius: 50%" />
         </div>
       </mat-card-title>
     </mat-card-header>

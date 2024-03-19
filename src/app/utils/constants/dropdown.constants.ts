@@ -1,6 +1,6 @@
 export interface DropdownOption {
-  label: string
-  value: string
+  label: string;
+  value: string;
 }
 export const DropdownOptions = {
   // Dropdown options for currency
@@ -21,12 +21,10 @@ export const DropdownOptions = {
   ],
   bankProfileType: [
     { label: 'Fizičko lice', value: 'PRIVATE' },
-    { label: 'Pravno lice', value: 'CORPORATE' }
+    { label: 'Pravno lice', value: 'CORPORATE' },
   ],
   gender: [
     { label: 'Muški', value: 'MALE' },
-    { label: 'Ženski', value: 'FEMALE' }
+    { label: 'Ženski', value: 'FEMALE' },
   ],
-}
-
-
+};

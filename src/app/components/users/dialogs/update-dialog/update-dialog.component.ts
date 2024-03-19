@@ -7,15 +7,18 @@ import { isEmployeeDto } from 'src/app/dtos/employee-dto';
 import { UserService } from 'src/app/services/user.service';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { MatDatepickerInputEvent } from "@angular/material/datepicker";
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-update-dialog',
   templateUrl: './update-dialog.component.html',
-  styleUrls: ['./update-dialog.component.css']
+  styleUrls: ['./update-dialog.component.css'],
 })
 export class UpdateDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private userService: UserService) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private userService: UserService
+  ) {
     this.checkDto();
   }
 
@@ -35,40 +38,42 @@ export class UpdateDialogComponent {
   updateUser(): void {
     if (this.newSelectedRow != null) {
       if (this.checkDto() == 'PRIVATE') {
-        this.userService.putUpdatePrivateClient(this.newSelectedRow)
+        this.userService
+          .putUpdatePrivateClient(this.newSelectedRow)
           .pipe(
-            catchError(error => {
+            catchError((error) => {
               console.error('Error loading data.', error);
               return throwError(() => error);
             })
-          ).subscribe(() => {
-
-          });
+          )
+          .subscribe(() => {});
       } else if (this.checkDto() == 'CORPORATE') {
-        this.userService.putUpdateCorporateClient(this.newSelectedRow)
+        this.userService
+          .putUpdateCorporateClient(this.newSelectedRow)
           .pipe(
-            catchError(error => {
+            catchError((error) => {
               console.error('Error loading data.', error);
               return throwError(() => error);
             })
-          ).subscribe(() => {
-
-          });
+          )
+          .subscribe(() => {});
       } else if (this.checkDto() == 'EMPLOYEE') {
-        this.userService.putUpdateEmployee(this.newSelectedRow)
+        this.userService
+          .putUpdateEmployee(this.newSelectedRow)
           .pipe(
-            catchError(error => {
+            catchError((error) => {
               console.error('Error loading data.', error);
               return throwError(() => error);
             })
-          ).subscribe(() => {
-
-          });
+          )
+          .subscribe(() => {});
       }
     }
   }
 
   onDateChange(event: MatDatepickerInputEvent<Date>) {
-    this.newSelectedRow.dateOfBirth = event.value ? event.value.getTime().toString() : '';
+    this.newSelectedRow.dateOfBirth = event.value
+      ? event.value.getTime().toString()
+      : '';
   }
 }

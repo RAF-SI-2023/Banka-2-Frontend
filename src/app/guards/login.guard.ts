@@ -1,10 +1,10 @@
-import {CanActivateFn, Router} from '@angular/router';
-import {inject} from "@angular/core";
-import {AuthService} from "../services/auth.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { CanActivateFn, Router } from '@angular/router';
+import { inject } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export const loginGuard: CanActivateFn = (route, state) => {
-  const router = inject(Router)
+  const router = inject(Router);
   const authService = inject(AuthService);
   const snackBar = inject(MatSnackBar);
 
@@ -15,7 +15,7 @@ export const loginGuard: CanActivateFn = (route, state) => {
     snackBar.open('Već ste ulogovani!', 'Zatvori', {
       verticalPosition: 'top',
       horizontalPosition: 'center',
-      duration: 3000
+      duration: 3000,
     });
     return false;
   }
