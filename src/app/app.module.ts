@@ -13,7 +13,8 @@ import { BankAccountMaskDirective } from './directives/bank-account-mask.directi
 import { DomesticFormComponent } from './components/create-bank-account/domestic-form/domestic-form.component';
 import { ForeignFormComponent } from './components/create-bank-account/foreign-form/foreign-form.component';
 import { FinancialAssetsComponent } from './components/financial-assets/financial-assets.component'
-
+import { CurrencyExchangeComponent } from './components/currency-exchange/currency-exchange.component';
+import { PasswordForgotComponent } from './components/password-forgot/password-forgot.component';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -50,7 +51,6 @@ import { PhoneNumberValidatorDirective } from './directives/phone-number-validat
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { EpochToDatePipe } from './pipes/epoch-to-date.pipe';
-import { CurrencyExchangeComponent } from './components/currency-exchange/currency-exchange.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +74,8 @@ import { CurrencyExchangeComponent } from './components/currency-exchange/curren
     NoPasteDirective,
     EpochToDatePipe,
     FinancialAssetsComponent,
-    CurrencyExchangeComponent
+    CurrencyExchangeComponent,
+    PasswordForgotComponent
   ],
   imports: [
     BrowserModule,
