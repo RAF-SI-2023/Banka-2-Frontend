@@ -25,6 +25,7 @@ import { NavigationMenuComponent } from './components/navigation-menu/navigation
 
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AlertInterceptor } from "./interceptors/alert.interceptor";
+import { HoverButtonComponent } from './special_effects/hover-button/hover-button.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AlertInterceptor } from "./interceptors/alert.interceptor";
     AdminpanelComponent,
     CreateBankAccountComponent,
     CreateBankProfileComponent,
-    NavigationMenuComponent
+    NavigationMenuComponent,
+    HoverButtonComponent
   ],
   imports: [
     BrowserModule,
