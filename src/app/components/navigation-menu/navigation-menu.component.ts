@@ -19,6 +19,7 @@ export class NavigationMenuComponent implements OnInit, OnDestroy {
   private changeDetector = inject(ChangeDetectorRef);
   authService = inject(AuthService);
   role: Role | null = null;
+
   logout() {
     this.authService.logout();
   }

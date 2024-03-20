@@ -13,7 +13,7 @@
       <input matInput type="email" placeholder="Unesite email adresu" formControlName="email" required>
       <mat-error *ngIf="domesticBankAccountForm.get('email')?.hasError('required')">Email je obavezan</mat-error>
       <mat-error *ngIf="domesticBankAccountForm.get('email')?.hasError('invalidEmail')">Pogrešan format
-        Email-a</mat-error>
+        email-a</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Valuta</mat-label>

@@ -16,7 +16,7 @@ export const ApiRoutes = {
     passwordActivation: '/users/public',
     updatePrivateClient: '/users/updatePrivateClient',
     updateEmployee: '/users/updateEmployee',
-    createEmployee: '/users/createEmployee',
+    createEmployee: '/users',
     updateCorporateClient: '/users/updateCorporateClient',
     deactivateEmployee: '/users/deactivateEmployee',
     changePasswordSubmit: '/users/password-change-confirmation',

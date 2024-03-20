@@ -10,22 +10,22 @@
         </div>
 
         <button mat-raised-button class="buttons" color="accent" [disabled]="selectedRowRole() != 'EMPLOYEE'" (click)="
-            selectedRow?.active ? deactivateEmployee() : activateEmployee()
+            selectedRowActive() ? deactivateEmployee() : activateEmployee()
           ">
           {{
-          selectedRow?.active
+          selectedRowActive()
           ? "Deaktiviraj zaposlenog"
           : "Aktiviraj zaposlenog"
           }}
         </button>
-        <button mat-raised-button class="buttons" color="primary" (click)="addUser()">
+        <button mat-raised-button class="buttons" color="accent" (click)="addUser()">
           Dodaj zaposlenog
         </button>
-        <button mat-raised-button (click)="updateUser()" class="buttons" color="accent"
+        <button mat-raised-button class="buttons" color="accent" (click)="updateUser()"
           [disabled]="!selectedRow || selectedRowRole() == 'ADMIN'">
           Izmeni korisnika
         </button>
-        <button mat-raised-button (click)="deleteUser()" class="buttons" color="warn"
+        <button mat-raised-button class="buttons" color="warn" (click)="deleteUser()"
           [disabled]="!selectedRow || selectedRowRole() == 'ADMIN'">
           Izbriši korisnika
         </button>

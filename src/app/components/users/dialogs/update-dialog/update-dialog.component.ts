@@ -15,14 +15,14 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
   styleUrls: ['./update-dialog.component.css'],
 })
 export class UpdateDialogComponent {
+  newSelectedRow = { ...this.data.selectedRow };
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private userService: UserService
   ) {
     this.checkDto();
   }
-
-  newSelectedRow = { ...this.data.selectedRow };
 
   checkDto(): string {
     if (isPrivateClientDto(this.data.selectedRow)) {

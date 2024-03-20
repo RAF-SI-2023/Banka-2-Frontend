@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { EmployeeDto } from 'src/app/dtos/employee-dto';
 
 @Component({
@@ -9,21 +9,19 @@ import { EmployeeDto } from 'src/app/dtos/employee-dto';
   styleUrls: ['./add-dialog.component.css'],
 })
 export class AddDialogComponent {
+  email: string = '';
   name: string = '';
   surname: string = '';
   gender: string = '';
+  dateOfBirth: number = 0;
+
+  phone: string = '';
+  address: string = '';
+
   position: string = '';
   department: string = '';
   active: boolean = true;
 
-  id: number = 0;
-  dateOfBirth: number = 0;
-  email: string = '';
-  phone: string = '';
-
-  address: string = '';
-  username: string = '';
-  role: string = '';
   availablePermissions: string[] = [
     'PERMISSION_1',
     'PERMISSION_2',
@@ -32,16 +30,13 @@ export class AddDialogComponent {
   ];
   permissions: string[] = [];
 
-  employeeForm = new FormGroup({
-    name: new FormControl(''),
-    surname: new FormControl(''),
-    gender: new FormControl(''),
-    position: new FormControl(''),
-    department: new FormControl(''),
-    active: new FormControl(false),
-  });
-
   constructor(private userService: UserService) {}
+
+  onDateChange(event: MatDatepickerInputEvent<Date>) {
+    this.dateOfBirth = Number(
+      event.value ? event.value.getTime().toString() : ''
+    );
+  }
 
   updatePermissions(event: any, permission: string) {
     if (event.checked) {
@@ -53,20 +48,20 @@ export class AddDialogComponent {
 
   addUser() {
     const employeeDto: EmployeeDto = {
+      id: 0,
+      dateOfBirth: this.dateOfBirth,
+      email: this.email,
+      username: this.email,
+      phone: this.phone,
+      address: this.address,
+      role: 'EMPLOYEE',
+      permissions: this.permissions,
       name: this.name,
       surname: this.surname,
       gender: this.gender,
       position: this.position,
       department: this.department,
       active: this.active,
-      dateOfBirth: this.dateOfBirth,
-      id: 0,
-      email: this.email,
-      phone: this.phone,
-      address: this.address,
-      username: this.username,
-      role: this.role,
-      permissions: this.permissions,
     };
 
     this.userService.createEmployee(employeeDto).subscribe({

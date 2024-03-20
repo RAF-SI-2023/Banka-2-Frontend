@@ -16,7 +16,7 @@ export const DropdownOptions = {
     { label: 'Student', value: 'STUDENT' },
   ],
   accountType: [
-    { label: 'Tekući', value: 'TEKUĆI' },
+    { label: 'Dinarski', value: 'DINARSKI' },
     { label: 'Devizni', value: 'DEVIZNI' },
   ],
   bankProfileType: [

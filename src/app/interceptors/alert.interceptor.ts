@@ -14,6 +14,7 @@ import { AuthService } from '../services/auth.service';
 export class AlertInterceptor implements HttpInterceptor {
   private authService = inject(AuthService);
   private snackBar = inject(MatSnackBar);
+
   constructor() {}
 
   intercept(

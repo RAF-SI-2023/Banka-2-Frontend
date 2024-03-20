@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateDialogComponent } from './dialogs/update-dialog/update-dialog.component';
 import { AddDialogComponent } from './dialogs/add-dialog/add-dialog.component';
+import { EmployeeDto } from 'src/app/dtos/employee-dto';
 
 @Component({
   selector: 'app-users',
@@ -66,10 +67,11 @@ export class UsersComponent implements AfterViewInit {
   }
 
   selectedRowRole(): string {
-    if (this.selectedRow?.role != null) {
-      return this.selectedRow?.role;
-    }
-    return '';
+    return this.selectedRow?.role ?? '';
+  }
+
+  selectedRowActive(): boolean {
+    return (this.selectedRow as EmployeeDto)?.active ?? false;
   }
 
   fetchData(): void {
