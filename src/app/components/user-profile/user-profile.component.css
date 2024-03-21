@@ -1,7 +1,7 @@
 .container {
   display: grid;
   place-items: center;
-  height: 100vh;
+  height: calc(100vh - 128px);
   padding: 0 2rem;
 }
 
@@ -28,6 +28,7 @@ mat-card-content {
 
 .title {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -71,4 +72,8 @@ mat-checkbox {
   text-align: left;
   font-size: 0.8rem;
   color: #616161;
+}
+
+#change-password-btn{
+  margin-top: 2rem;
 }
