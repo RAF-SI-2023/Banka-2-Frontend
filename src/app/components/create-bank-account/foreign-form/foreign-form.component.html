@@ -17,10 +17,10 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Valuta</mat-label>
-      <mat-select formControlName="currencyCode" placeholder="Izaberite valutu">
+      <mat-select formControlName="defaultCurrencyCode" placeholder="Izaberite valutu">
         <mat-option *ngFor="let option of currencyOptions" [value]="option.value">{{ option.label }}</mat-option>
       </mat-select>
-      <mat-error *ngIf="foreignBankAccountForm.get('currencyCode')?.hasError('required')">Valuta je obavezna</mat-error>
+      <mat-error *ngIf="foreignBankAccountForm.get('defaultCurrencyCode')?.hasError('required')">Valuta je obavezna</mat-error>
     </mat-form-field>
     <div class="buttons">
       <button mat-raised-button color="accent" type="submit">Kreiraj</button>

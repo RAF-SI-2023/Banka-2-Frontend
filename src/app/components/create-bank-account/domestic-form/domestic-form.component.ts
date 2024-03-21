@@ -1,10 +1,12 @@
-import { Component, Input } from '@angular/core';
+import {Component, inject, Input} from '@angular/core';
 import { DropdownOption } from '../../../utils/constants';
 import { FormBuilder, Validators } from '@angular/forms';
 import {
   bankAccountNumberValidator,
   emailValidator,
 } from '../../../utils/validators';
+import {BankService} from "../../../services/bank.service";
+import {DomesticAccountDto} from "../../../dtos/domestic-account-dto";
 
 @Component({
   selector: 'app-domestic-form',
@@ -14,6 +16,7 @@ import {
 export class DomesticFormComponent {
   @Input() currencyOptions!: DropdownOption[];
   @Input() domesticCurrencyAccountTypeOptions!: DropdownOption[];
+  bankService = inject(BankService)
 
   domesticBankAccountForm = this.fb.group({
     accountNumber: ['', [Validators.required, bankAccountNumberValidator()]],
@@ -25,6 +28,16 @@ export class DomesticFormComponent {
   constructor(private fb: FormBuilder) {}
 
   onSubmit() {
-    console.log(this.domesticBankAccountForm.value);
+   if(this.domesticBankAccountForm.valid){
+     const accountDetails = this.domesticBankAccountForm.value! as DomesticAccountDto;
+     this.bankService.createDomesticAccount(accountDetails).subscribe(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+   }
   }
 }

@@ -7,7 +7,8 @@ import { DropdownOptions, DropdownOption } from '../../utils/constants';
 })
 export class CreateBankAccountComponent {
   accountTypeOptions: DropdownOption[] = DropdownOptions.accountType;
-  currencyOptions: DropdownOption[] = DropdownOptions.currencyCode;
-  domesticCurrencyAccountTypeOptions: DropdownOption[] =
-    DropdownOptions.domesticCurrencyAccountType;
+  domesticCurrencyOptions: DropdownOption[] = DropdownOptions.domesticCurrencyCode;
+  foreignCurrencyOptions: DropdownOption[] = DropdownOptions.foreignCurrencyCode;
+  currencyAccountTypeOptions: DropdownOption[] =
+    DropdownOptions.currencyAccountType;
 }
