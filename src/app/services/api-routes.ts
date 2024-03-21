@@ -24,10 +24,11 @@ export const ApiRoutes = {
     changePasswordRequest: '/users/password-change-initialization',
   },
   accounts: {
+    associateProfileInit: '/accounts/associate-profile-initialization',
+    codeConfirmation: '/accounts/code-confirmation',
     createAccountForeign: '/accounts/create-account/foreign',
     createAccountDomestic: '/accounts/create-account/domestic',
-    codeConfirmation: '/accounts/code-confirmation',
-    associateProfileInit: '/accounts/associate-profile-initialization',
+    createAccountBusiness: '/accounts/create-account/business',
   },
   stocks: {
     findAllStocks: '/stock/all',

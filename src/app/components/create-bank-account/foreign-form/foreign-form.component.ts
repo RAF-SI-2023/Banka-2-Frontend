@@ -1,12 +1,12 @@
-import {Component, inject, Input} from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { DropdownOption } from '../../../utils/constants';
 import { FormBuilder, Validators } from '@angular/forms';
 import {
   bankAccountNumberValidator,
   emailValidator,
 } from '../../../utils/validators';
-import {BankService} from "../../../services/bank.service";
-import {ForeignAccountDto} from "../../../dtos/foreign-account-dto";
+import { BankService } from '../../../services/bank.service';
+import { ForeignAccountDto } from '../../../dtos/foreign-account-dto';
 
 @Component({
   selector: 'app-foreign-form',
@@ -25,9 +25,10 @@ export class ForeignFormComponent {
   constructor(private fb: FormBuilder) {}
 
   onSubmit() {
-    if(this.foreignBankAccountForm.valid){
-      const accountDetails = this.foreignBankAccountForm.value as ForeignAccountDto;
-      this.bankService.createForeignAccount(accountDetails).subscribe(
+    if (this.foreignBankAccountForm.valid) {
+      const accountDetails = this.foreignBankAccountForm
+        .value as ForeignAccountDto;
+      this.bankService.postCreateForeignAccount(accountDetails).subscribe(
         (response) => {
           console.log(response);
         },
