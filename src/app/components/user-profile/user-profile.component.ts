@@ -1,21 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { UserDto } from '../../dtos/user-dto';
-import { PrivateClientDto } from '../../dtos/private-client-dto';
-import { CorporateClientDto } from '../../dtos/corporate-client-dto';
+import {isPrivateClientDto, PrivateClientDto} from '../../dtos/private-client-dto';
+import {CorporateClientDto, isCorporateClientDto} from '../../dtos/corporate-client-dto';
 import { PasswordChangeComponent } from '../password-change/password-change.component';
 import { MatDialog } from '@angular/material/dialog';
+import {Role} from "../../dtos/decoded-token-dto";
+import {EmployeeDto} from "../../dtos/employee-dto";
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css'],
 })
 export class UserProfileComponent {
+  // user, for now, represents ADMIN
   user: UserDto | null = null;
+  employee: EmployeeDto | null = null;
   privateClient: PrivateClientDto | null = null;
   corporateClient: CorporateClientDto | null = null;
   isPrivateClient: boolean = false;
   isCorporateClient: boolean = false;
+  isEmployee: boolean = false;
 
   constructor(private userService: UserService, public dialog: MatDialog) {}
 
@@ -27,12 +32,22 @@ export class UserProfileComponent {
     this.userService.getUserById().subscribe({
       next: (user: UserDto) => {
         this.user = user;
-        if ('surname' in user) {
+
+        if (isPrivateClientDto(user)) {
           this.privateClient = user as PrivateClientDto;
           this.corporateClient = null;
-        } else if ('primaryAccountNumber' in user) {
+        } else if (isCorporateClientDto(user)) {
           this.corporateClient = user as CorporateClientDto;
           this.privateClient = null;
+        }
+        if(user.role === Role.ADMIN){
+          this.isPrivateClient = false;
+          this.isCorporateClient = false;
+          this.isEmployee = false;
+        }else if(user.role === Role.EMPLOYEE){
+          this.isPrivateClient = false;
+          this.isCorporateClient = false;
+          this.employee = user as EmployeeDto;
         }
       },
       error: (error) => {
@@ -57,4 +72,6 @@ export class UserProfileComponent {
       console.log('The dialog was closed');
     });
   }
+
+  protected readonly Role = Role;
 }
