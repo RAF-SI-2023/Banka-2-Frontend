@@ -6,6 +6,7 @@ import {
   phoneNumberValidator,
 } from '../../utils/validators';
 import { emailValidator } from '../../utils/validators/email.validator';
+import { UserService } from 'src/app/services/user.service';
 import { BankService } from '../../services/bank.service';
 import { DropdownOption, DropdownOptions } from '../../utils/constants';
 import { Router } from '@angular/router';
@@ -18,7 +19,8 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
   styleUrls: ['./create-bank-profile.component.css'],
 })
 export class CreateBankProfileComponent implements OnInit {
-  bankProfileService = inject(BankService);
+  userService = inject(UserService);
+  bankService = inject(BankService);
   router = inject(Router);
   snackbar = inject(MatSnackBar);
   currentStep = 1;
@@ -140,8 +142,8 @@ export class CreateBankProfileComponent implements OnInit {
   }
 
   bankAccountNumberSubmit() {
-    this.bankProfileService
-      .associateProfileInitialization(
+    this.bankService
+      .postAssociateProfileInitialization(
         this.primaryAccountNumber.replaceAll('-', '')
       )
       .subscribe(
@@ -158,8 +160,8 @@ export class CreateBankProfileComponent implements OnInit {
 
   createBankProfile() {
     if (this.selectedBankProfileType === 'PRIVATE') {
-      this.bankProfileService
-        .postBasicInfoPrivateClient({
+      this.userService
+        .postCreatePrivateClient({
           phone: this.phone,
           email: this.email,
           dateOfBirth: this.dateOfBirth,
@@ -181,8 +183,8 @@ export class CreateBankProfileComponent implements OnInit {
           }
         );
     } else if (this.selectedBankProfileType === 'CORPORATE') {
-      this.bankProfileService
-        .postBasicInfoCorporateClient({
+      this.userService
+        .postCreateCorporateClient({
           phone: this.phone,
           email: this.email,
           dateOfBirth: this.dateOfBirth,
@@ -205,8 +207,8 @@ export class CreateBankProfileComponent implements OnInit {
   }
 
   sendActivationCode() {
-    this.bankProfileService
-      .codeConfirmation(
+    this.bankService
+      .postCodeConfirmation(
         this.activationCode,
         this.primaryAccountNumber.replaceAll('-', '')
       )
@@ -223,19 +225,17 @@ export class CreateBankProfileComponent implements OnInit {
   }
 
   activatePassword() {
-    this.bankProfileService
-      .passwordActivation(this.email, this.password)
-      .subscribe(
-        (response) => {
-          // this.router.navigate(['/login']);
-          this.creationSuccess();
-        },
-        (error) => {
-          this.passwordError = error.message
-            ? error.message
-            : 'Greška prilikom aktivacije lozinke. Pokušajte ponovo.';
-        }
-      );
+    this.userService.postActivateClient(this.email, this.password).subscribe(
+      (response) => {
+        // this.router.navigate(['/login']);
+        this.creationSuccess();
+      },
+      (error) => {
+        this.passwordError = error.message
+          ? error.message
+          : 'Greška prilikom aktivacije lozinke. Pokušajte ponovo.';
+      }
+    );
   }
 
   creationSuccess() {

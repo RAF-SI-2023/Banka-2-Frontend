@@ -39,7 +39,7 @@ const routes: Routes = [
   },
   {
     component: StocksComponent,
-    path: 'financial-assets',
+    path: 'stocks',
     canActivate: [authGuard],
   },
   { component: CurrencyExchangeComponent, path: 'currency-exchange' },

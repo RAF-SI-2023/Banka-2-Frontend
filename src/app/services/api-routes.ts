@@ -29,4 +29,9 @@ export const ApiRoutes = {
     codeConfirmation: '/accounts/code-confirmation',
     associateProfileInit: '/accounts/associate-profile-initialization',
   },
+  stocks: {
+    findAllStocks: '/stock/all',
+    findStockById: '/stock',
+    findStockBySymbol: '/stock/stockSymbol',
+  },
 };

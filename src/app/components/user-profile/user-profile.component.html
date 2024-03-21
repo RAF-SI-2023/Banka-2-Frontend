@@ -3,21 +3,30 @@
     <mat-card-header>
       <mat-card-title>
         <div class="title">
-          <img src="../../../assets/logo/bank-2-logo.svg" alt="Icon" height="64" width="64"
-               style="border-radius: 50%" />
+          <img
+            src="../../../assets/logo/bank-2-logo.svg"
+            alt="Icon"
+            height="64"
+            width="64"
+            style="border-radius: 50%"
+          />
           <h2>
             {{
-            user?.role === Role.ADMIN ? "Admin" :
-              employee ? employee.name :
-            privateClient ? privateClient.name
-            : corporateClient
-            ? corporateClient.name
-            : "Nepoznati korisnik"
+              user?.role === Role.ADMIN
+                ? "Admin"
+                : employee
+                ? employee.name
+                : privateClient
+                ? privateClient.name
+                : corporateClient
+                ? corporateClient.name
+                : "Nepoznati korisnik"
             }}
           </h2>
         </div>
       </mat-card-title>
     </mat-card-header>
+
     <mat-card-content class="card-content">
       <table>
         <tbody>
@@ -103,7 +112,13 @@
         </tbody>
       </table>
 
-      <button mat-raised-button id="change-password-btn" (click)="openPasswordChangeDialog()">Promeni šifru</button>
+      <button
+        mat-raised-button
+        id="change-password-btn"
+        (click)="openPasswordChangeDialog()"
+      >
+        Promeni šifru
+      </button>
     </mat-card-content>
   </mat-card>
 </section>
