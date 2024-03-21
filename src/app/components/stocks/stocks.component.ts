@@ -1,32 +1,13 @@
-import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  price: number;
-  assetType: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Dunav osiguranje', price: 1.0079, assetType: 'akcija' },
-  { position: 2, name: 'Bambi', price: 4.0026, assetType: 'akcija' },
-  { position: 3, name: 'Krušik', price: 6.941, assetType: 'obaveznica' },
-  { position: 4, name: 'Zastava', price: 9.0122, assetType: 'obaveznica' },
-  { position: 5, name: 'Rade Končar', price: 10.811, assetType: 'akcija' },
-  { position: 6, name: 'Jaffa', price: 12.0107, assetType: 'obaveznica' },
-  { position: 7, name: 'Aviogeneks', price: 14.0067, assetType: 'akcija' },
-  { position: 8, name: 'Dijamant', price: 15.9994, assetType: 'akcija' },
-  {
-    position: 9,
-    name: 'Železnice Srbije',
-    price: 18.9984,
-    assetType: 'akcija',
-  },
-  { position: 10, name: 'Knjaz Miloš', price: 20.1797, assetType: 'akcija' },
-];
+import { MatPaginator } from '@angular/material/paginator';
+import { StockDto } from 'src/app/dtos/stock-dto';
+import { StockService } from 'src/app/services/stock.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Component({
   selector: 'stocks',
@@ -34,23 +15,67 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./stocks.component.css'],
 })
 export class StocksComponent implements AfterViewInit {
-  displayedColumns: string[] = ['position', 'name', 'price', 'assetType'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = [
+    'symbol',
+    'description',
+    'exchange',
+    'lastRefresh',
+    'price',
+    'high',
+    'low',
+    'change',
+    'volume',
+    'shares',
+    'yield',
+  ];
+  dataSource = new MatTableDataSource<StockDto>();
+  selectedRow: StockDto | null = null;
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) {}
+  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+  @ViewChild(MatSort) sort: MatSort | undefined;
 
-  @ViewChild(MatSort)
-  sort!: MatSort;
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private stockService: StockService
+  ) {
+    this.dataSource = new MatTableDataSource();
+    this.fetchAllData();
   }
 
-  announceSortChange(sortState: Sort) {
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
+  ngAfterViewInit() {
+    if (this.paginator) this.dataSource.paginator = this.paginator;
+    if (this.sort) this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
+  }
+
+  selectRow(row: StockDto): void {
+    if (this.selectedRow?.symbol != row.symbol) {
+      this.selectedRow = row;
+    }
+  }
+
+  fetchAllData(): void {
+    this.stockService
+      .getFindAllStocks()
+      .pipe(
+        map((dataSource) => {
+          this.dataSource.data = dataSource;
+          return dataSource;
+        }),
+        catchError((error) => {
+          console.error('Error loading data.', error);
+          return throwError(() => error);
+        })
+      )
+      .subscribe();
   }
 }

@@ -10,16 +10,13 @@ import { PermissionDto } from '../dtos/permissions-dto';
 import { RolesDto } from '../dtos/roles-dto';
 import { Subject, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
-import { DecodedTokenDto, Role } from '../dtos/decoded-token-dto';
+import { DecodedTokenDto } from '../dtos/decoded-token-dto';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  apiUrl = environment.iAmServiceApiUrl;
-  authUrls = ApiRoutes.auth;
-
   http = inject(HttpClient);
   router = inject(Router);
   matSnackBar = inject(MatSnackBar);
@@ -33,7 +30,7 @@ export class AuthService {
   login(credentials: AuthCredentialsDto) {
     return this.http
       .post<LoginResponseDto>(
-        `${this.apiUrl}${this.authUrls.login}`,
+        `${environment.iamServiceApiUrl}${ApiRoutes.auth.login}`,
         {
           email: credentials.email,
           password: credentials.password,
@@ -59,7 +56,7 @@ export class AuthService {
 
   activateEmployee(credentials: AuthCredentialsDto) {
     return this.http.put<EmployeeDto>(
-      `${this.apiUrl}${this.authUrls.activateEmployee}`,
+      `${environment.iamServiceApiUrl}${ApiRoutes.auth.activateEmployee}`,
       {
         email: credentials.email,
         password: credentials.password,
@@ -69,12 +66,14 @@ export class AuthService {
 
   getPermissions() {
     return this.http.get<PermissionDto[]>(
-      `${this.apiUrl}${this.authUrls.allPermissions}`
+      `${environment.iamServiceApiUrl}${ApiRoutes.auth.allPermissions}`
     );
   }
 
   getRoles() {
-    return this.http.get<RolesDto[]>(`${this.apiUrl}${this.authUrls.allRoles}`);
+    return this.http.get<RolesDto[]>(
+      `${environment.iamServiceApiUrl}${ApiRoutes.auth.allRoles}`
+    );
   }
 
   getToken() {
