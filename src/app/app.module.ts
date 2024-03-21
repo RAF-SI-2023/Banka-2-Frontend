@@ -17,7 +17,7 @@ import { CreateBankAccountComponent } from './components/create-bank-account/cre
 import { NavigationMenuComponent } from './components/navigation-menu/navigation-menu.component';
 import { DomesticFormComponent } from './components/create-bank-account/domestic-form/domestic-form.component';
 import { ForeignFormComponent } from './components/create-bank-account/foreign-form/foreign-form.component';
-import { FinancialAssetsComponent } from './components/financial-assets/financial-assets.component';
+import { StocksComponent } from './components/stocks/stocks.component';
 import { CurrencyExchangeComponent } from './components/currency-exchange/currency-exchange.component';
 import { PhoneNumberValidatorDirective } from './directives/phone-number-validator.directive';
 import { NoPasteDirective } from './directives/no-paste.directive';
@@ -73,7 +73,7 @@ import { EmailValidatorDirective } from './directives/email-validator.directive'
     NavigationMenuComponent,
     DomesticFormComponent,
     ForeignFormComponent,
-    FinancialAssetsComponent,
+    StocksComponent,
     CurrencyExchangeComponent,
     PhoneNumberValidatorDirective,
     NoPasteDirective,

@@ -6,7 +6,7 @@ import {
   phoneNumberValidator,
 } from '../../utils/validators';
 import { emailValidator } from '../../utils/validators/email.validator';
-import { BankProfileService } from '../../services/bank-profile.service';
+import { BankService } from '../../services/bank.service';
 import { DropdownOption, DropdownOptions } from '../../utils/constants';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,7 +18,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
   styleUrls: ['./create-bank-profile.component.css'],
 })
 export class CreateBankProfileComponent implements OnInit {
-  bankProfileService = inject(BankProfileService);
+  bankProfileService = inject(BankService);
   router = inject(Router);
   snackbar = inject(MatSnackBar);
   currentStep = 1;

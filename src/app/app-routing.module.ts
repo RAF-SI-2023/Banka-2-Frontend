@@ -12,7 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UsersComponent } from './components/users/users.component';
 import { CreateBankAccountComponent } from './components/create-bank-account/create-bank-account.component';
-import { FinancialAssetsComponent } from './components/financial-assets/financial-assets.component';
+import { StocksComponent } from './components/stocks/stocks.component';
 import { CurrencyExchangeComponent } from './components/currency-exchange/currency-exchange.component';
 
 const routes: Routes = [
@@ -38,7 +38,7 @@ const routes: Routes = [
     data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
   },
   {
-    component: FinancialAssetsComponent,
+    component: StocksComponent,
     path: 'financial-assets',
     canActivate: [authGuard],
   },

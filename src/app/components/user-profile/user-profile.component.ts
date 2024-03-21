@@ -1,12 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { UserDto } from '../../dtos/user-dto';
-import {isPrivateClientDto, PrivateClientDto} from '../../dtos/private-client-dto';
-import {CorporateClientDto, isCorporateClientDto} from '../../dtos/corporate-client-dto';
+import {
+  isPrivateClientDto,
+  PrivateClientDto,
+} from '../../dtos/private-client-dto';
+import {
+  CorporateClientDto,
+  isCorporateClientDto,
+} from '../../dtos/corporate-client-dto';
 import { PasswordChangeComponent } from '../password-change/password-change.component';
 import { MatDialog } from '@angular/material/dialog';
-import {Role} from "../../dtos/decoded-token-dto";
-import {EmployeeDto} from "../../dtos/employee-dto";
+import { Role } from '../../dtos/decoded-token-dto';
+import { EmployeeDto } from '../../dtos/employee-dto';
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -25,11 +32,12 @@ export class UserProfileComponent {
   constructor(private userService: UserService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.fetchUserDetails();
+    this.fetchUserData();
   }
 
-  fetchUserDetails(): void {
-    this.userService.getUserById().subscribe({
+  fetchUserData(): void {
+    const id = Number(localStorage.getItem('id'));
+    this.userService.getUserById(id).subscribe({
       next: (user: UserDto) => {
         this.user = user;
 
@@ -40,11 +48,11 @@ export class UserProfileComponent {
           this.corporateClient = user as CorporateClientDto;
           this.privateClient = null;
         }
-        if(user.role === Role.ADMIN){
+        if (user.role === Role.ADMIN) {
           this.isPrivateClient = false;
           this.isCorporateClient = false;
           this.isEmployee = false;
-        }else if(user.role === Role.EMPLOYEE){
+        } else if (user.role === Role.EMPLOYEE) {
           this.isPrivateClient = false;
           this.isCorporateClient = false;
           this.employee = user as EmployeeDto;

@@ -29,11 +29,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-  selector: 'financial-assets',
-  templateUrl: 'financial-assets.component.html',
-  styleUrls: ['./financial-assets.component.css'],
+  selector: 'stocks',
+  templateUrl: 'stocks.component.html',
+  styleUrls: ['./stocks.component.css'],
 })
-export class FinancialAssetsComponent implements AfterViewInit {
+export class StocksComponent implements AfterViewInit {
   displayedColumns: string[] = ['position', 'name', 'price', 'assetType'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 

@@ -9,7 +9,7 @@ import { CorporateClientRequestDto } from '../dtos/corporate-client-request-dto'
 @Injectable({
   providedIn: 'root',
 })
-export class BankProfileService {
+export class BankService {
   bankApi = environment.bankServiceApiUrl;
   iAmApi = environment.iAmServiceApiUrl;
   accountUrls = ApiRoutes.accounts;

@@ -36,6 +36,8 @@ export class UsersComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort | undefined;
   protected readonly validateHorizontalPosition = validateHorizontalPosition;
 
+  activeUser: UserDto | null = null;
+
   constructor(
     private http: HttpClient,
     private authService: AuthService,
@@ -43,7 +45,8 @@ export class UsersComponent implements AfterViewInit {
     public dialog: MatDialog
   ) {
     this.dataSource = new MatTableDataSource();
-    this.fetchData();
+    this.fetchAllData();
+    this.fetchActiveUserData();
   }
 
   ngAfterViewInit() {
@@ -74,13 +77,40 @@ export class UsersComponent implements AfterViewInit {
     return (this.selectedRow as EmployeeDto)?.active ?? false;
   }
 
-  fetchData(): void {
+  updateUserDisabled(): boolean {
+    if (
+      this.selectedRow?.role == 'ADMIN' ||
+      (this.activeUser?.role == 'EMPLOYEE' &&
+        this.selectedRow?.role == 'EMPLOYEE')
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  fetchAllData(): void {
     this.userService
       .getFindAll()
       .pipe(
         map((dataSource) => {
           this.dataSource.data = dataSource;
           return dataSource;
+        }),
+        catchError((error) => {
+          console.error('Error loading data.', error);
+          return throwError(() => error);
+        })
+      )
+      .subscribe();
+  }
+
+  fetchActiveUserData(): void {
+    this.userService
+      .getUserById(Number(localStorage.getItem('id')))
+      .pipe(
+        map((data) => {
+          this.activeUser = data;
+          return this.activeUser;
         }),
         catchError((error) => {
           console.error('Error loading data.', error);
@@ -101,7 +131,7 @@ export class UsersComponent implements AfterViewInit {
           })
         )
         .subscribe(() => {
-          this.fetchData();
+          this.fetchAllData();
           this.selectedRow = null;
         });
     }
@@ -118,7 +148,7 @@ export class UsersComponent implements AfterViewInit {
           })
         )
         .subscribe(() => {
-          this.fetchData();
+          this.fetchAllData();
           this.selectedRow = null;
         });
     }
@@ -130,7 +160,7 @@ export class UsersComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
       this.selectedRow = null;
-      this.fetchData();
+      this.fetchAllData();
     });
   }
 
@@ -143,7 +173,7 @@ export class UsersComponent implements AfterViewInit {
       dialogRef.afterClosed().subscribe((result) => {
         console.log(`Dialog result: ${result}`);
         this.selectedRow = null;
-        this.fetchData();
+        this.fetchAllData();
       });
     }
   }
@@ -160,7 +190,7 @@ export class UsersComponent implements AfterViewInit {
         )
         .subscribe(() => {
           this.selectedRow = null;
-          this.fetchData();
+          this.fetchAllData();
         });
     }
   }

@@ -27,8 +27,7 @@ export class UserService {
     );
   }
 
-  getUserById() {
-    const id = localStorage.getItem('id');
+  getUserById(id: number) {
     return this.httpClient.get<UserDto | PrivateClientDto | CorporateClientDto>(
       environment.iAmServiceApiUrl + ApiRoutes.users.findById + '/' + id
     );
