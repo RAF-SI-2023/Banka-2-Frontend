@@ -26,9 +26,9 @@ export class ForeignFormComponent {
 
   onSubmit() {
     if (this.foreignBankAccountForm.valid) {
-      const accountDetails = this.foreignBankAccountForm
-        .value as ForeignAccountDto;
-      this.bankService.postCreateForeignAccount(accountDetails).subscribe(
+      const account = this.foreignBankAccountForm.value as ForeignAccountDto;
+      account.accountNumber = account.accountNumber.replaceAll('-', '');
+      this.bankService.postCreateForeignAccount(account).subscribe(
         (response) => {
           console.log(response);
         },

@@ -31,14 +31,14 @@ export class BankService {
 
   postCreateDomesticAccount(account: DomesticAccountDto) {
     return this.httpClient.post<boolean>(
-      `${environment.iamServiceApiUrl}${ApiRoutes.accounts.createAccountDomestic}`,
+      `${environment.bankServiceApiUrl}${ApiRoutes.accounts.createAccountDomestic}`,
       account
     );
   }
 
   postCreateForeignAccount(account: ForeignAccountDto) {
     return this.httpClient.post<boolean>(
-      `${environment.iamServiceApiUrl}${ApiRoutes.accounts.createAccountForeign}`,
+      `${environment.bankServiceApiUrl}${ApiRoutes.accounts.createAccountForeign}`,
       account
     );
   }

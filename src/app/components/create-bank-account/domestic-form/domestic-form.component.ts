@@ -29,9 +29,10 @@ export class DomesticFormComponent {
 
   onSubmit() {
     if (this.domesticBankAccountForm.valid) {
-      const accountDetails = this.domesticBankAccountForm
-        .value! as DomesticAccountDto;
-      this.bankService.postCreateDomesticAccount(accountDetails).subscribe(
+      let account = this.domesticBankAccountForm.value! as DomesticAccountDto;
+      account.accountNumber = account.accountNumber.replaceAll('-', '');
+      console.log(account);
+      this.bankService.postCreateDomesticAccount(account).subscribe(
         (response) => {
           console.log(response);
         },
