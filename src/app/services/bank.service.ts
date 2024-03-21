@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { PrivateClientRequestDto } from '../dtos/private-client-request.dto';
 import { CorporateClientRequestDto } from '../dtos/corporate-client-request-dto';
+import {DomesticAccountDto} from "../dtos/domestic-account-dto";
+import {ForeignAccountDto} from "../dtos/foreign-account-dto";
 
 @Injectable({
   providedIn: 'root',
@@ -55,6 +57,29 @@ export class BankService {
       `${this.iAmApi}${this.usersUrls.passwordActivation}/${email}/password-activation`,
       {
         password: password,
+      }
+    );
+  }
+
+  createDomesticAccount(domesticAccount: DomesticAccountDto) {
+    return this.http.post<boolean>(
+      `${this.bankApi}${this.accountUrls.createAccountDomestic}`,
+      {
+        accountNumber: domesticAccount.accountNumber.replaceAll('-', ''),
+        email: domesticAccount.email,
+        currencyCode: domesticAccount.currencyCode,
+        domesticCurrencyAccountType: domesticAccount.domesticCurrencyAccountType,
+      }
+    );
+  }
+
+  createForeignAccount(foreignAccount: ForeignAccountDto) {
+    return this.http.post<boolean>(
+      `${this.bankApi}${this.accountUrls.createAccountForeign}`,
+      {
+        accountNumber: foreignAccount.accountNumber.replaceAll('-', ''),
+        email: foreignAccount.email,
+        defaultCurrencyCode: foreignAccount.defaultCurrencyCode,
       }
     );
   }

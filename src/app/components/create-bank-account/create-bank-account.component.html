@@ -8,10 +8,10 @@
         <mat-tab-group>
           <mat-tab *ngFor="let option of accountTypeOptions" [label]="option.label">
             <div class="tab-content">
-              <app-domestic-form *ngIf="option.value === 'DINARSKI'" [currencyOptions]="currencyOptions"
-                [domesticCurrencyAccountTypeOptions]="domesticCurrencyAccountTypeOptions"></app-domestic-form>
+              <app-domestic-form *ngIf="option.value === 'DINARSKI'" [currencyOptions]="domesticCurrencyOptions"
+                [domesticCurrencyAccountTypeOptions]="currencyAccountTypeOptions"></app-domestic-form>
               <app-foreign-form *ngIf="option.value === 'DEVIZNI'"
-                [currencyOptions]="currencyOptions"></app-foreign-form>
+                [currencyOptions]="foreignCurrencyOptions"></app-foreign-form>
             </div>
           </mat-tab>
         </mat-tab-group>

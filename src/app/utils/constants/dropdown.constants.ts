@@ -4,12 +4,21 @@ export interface DropdownOption {
 }
 export const DropdownOptions = {
   // Dropdown options for currency
-  currencyCode: [
+  domesticCurrencyCode: [
     { label: 'RSD', value: 'RSD' },
+  ],
+  foreignCurrencyCode: [
     { label: 'USD', value: 'USD' },
+    { label: 'EUR', value: 'EUR' },
+    { label: 'GBP', value: 'GBP' },
+    { label: 'CHF', value: 'CHF' },
+    { label: 'CAD', value: 'CAD' },
+    { label: 'AUD', value: 'AUD' },
+    { label: 'JPY', value: 'JPY' },
+    { label: 'CNY', value: 'CNY' },
   ],
   // Dropdown options for account type
-  domesticCurrencyAccountType: [
+  currencyAccountType: [
     { label: 'Personal', value: 'PERSONAL' },
     { label: 'Savings', value: 'SAVINGS' },
     { label: 'Retirement', value: 'RETIREMENT' },
