@@ -1,4 +1,4 @@
 export interface RolesDto {
-  id: number;
-  roleType: string;
+	id: number;
+	roleType: string;
 }

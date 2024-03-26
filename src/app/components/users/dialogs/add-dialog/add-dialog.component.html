@@ -1,79 +1,107 @@
-<h2 mat-dialog-title>Dodaj zaposlenog</h2>
+<h2 mat-dialog-title>
+	Dodaj zaposlenog
+</h2>
 <mat-dialog-content class="mat-typography size">
-  <form>
-    <div>
-      <mat-form-field class="full-width">
-        <mat-label>Email</mat-label>
-        <input matInput [(ngModel)]="email" type="email" name="email" appEmailValidator #emailInput="ngModel" />
-        <mat-error *ngIf="emailInput.errors && emailInput.touched">
-          Unesite validnu email adresu.
-        </mat-error>
-      </mat-form-field>
+	<form>
+		<div>
+			<mat-form-field class="full-width">
+				<mat-label>
+					Email
+				</mat-label>
+				<input matInput [(ngModel)]="email" type="email" name="email" appEmailValidator #emailInput="ngModel" />
+				<mat-error *ngIf="emailInput.errors && emailInput.touched">
+					Unesite validnu email adresu.
+				</mat-error>
+			</mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Ime</mat-label>
-        <input matInput [(ngModel)]="name" name="name" />
-      </mat-form-field>
+			<mat-form-field class="full-width">
+				<mat-label>
+					Ime
+				</mat-label>
+				<input matInput [(ngModel)]="name" name="name" />
+			</mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Prezime</mat-label>
-        <input matInput [(ngModel)]="surname" name="surname" />
-      </mat-form-field>
+			<mat-form-field class="full-width">
+				<mat-label>
+					Prezime
+				</mat-label>
+				<input matInput [(ngModel)]="surname" name="surname" />
+			</mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Pol</mat-label>
-        <mat-select [(ngModel)]="gender" name="gender">
-          <mat-option value="M">Muški</mat-option>
-          <mat-option value="Ž">Ženski</mat-option>
-        </mat-select>
-      </mat-form-field>
+			<mat-form-field class="full-width">
+				<mat-label>
+					Pol
+				</mat-label>
+				<mat-select [(ngModel)]="gender" name="gender">
+					<mat-option value="M">
+						Muški
+					</mat-option>
+					<mat-option value="Ž">
+						Ženski
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Datum rođenja</mat-label>
-        <input matInput [(ngModel)]="this.dateOfBirth" [matDatepicker]="picker" name="dateOfBirth"
-          (dateChange)="onDateChange($event)">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+			<mat-form-field class="full-width">
+				<mat-label>
+					Datum rođenja
+				</mat-label>
+				<input matInput [(ngModel)]="this.dateOfBirth" [matDatepicker]="picker" name="dateOfBirth"
+					(dateChange)="onDateChange($event)">
+				<mat-hint>MM/DD/YYYY</mat-hint>
+				<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+				<mat-datepicker #picker></mat-datepicker>
+			</mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Broj telefona</mat-label>
-        <input matInput [(ngModel)]="this.phone" name="phone" appPhoneNumberValidator #phoneInput="ngModel">
-        <mat-error *ngIf="phoneInput.errors && phoneInput.touched">
-          Unesite validan broj telefona.
-        </mat-error>
-      </mat-form-field>
+			<mat-form-field class="full-width">
+				<mat-label>
+					Broj telefona
+				</mat-label>
+				<input matInput [(ngModel)]="this.phone" name="phone" appPhoneNumberValidator #phoneInput="ngModel">
+				<mat-error *ngIf="phoneInput.errors && phoneInput.touched">
+					Unesite validan broj telefona.
+				</mat-error>
+			</mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Adresa</mat-label>
-        <input matInput [(ngModel)]="address" name="address" />
-      </mat-form-field>
+			<mat-form-field class="full-width">
+				<mat-label>
+					Adresa
+				</mat-label>
+				<input matInput [(ngModel)]="address" name="address" />
+			</mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Pozicija</mat-label>
-        <input matInput [(ngModel)]="position" name="position" />
-      </mat-form-field>
+			<mat-form-field class="full-width">
+				<mat-label>
+					Pozicija
+				</mat-label>
+				<input matInput [(ngModel)]="position" name="position" />
+			</mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Odeljenje</mat-label>
-        <input matInput [(ngModel)]="department" name="department" />
-      </mat-form-field>
+			<mat-form-field class="full-width">
+				<mat-label>
+					Odeljenje
+				</mat-label>
+				<input matInput [(ngModel)]="department" name="department" />
+			</mat-form-field>
 
-      <mat-checkbox class="full-width" [(ngModel)]="active" name="active">Aktivan</mat-checkbox>
+			<mat-checkbox class="full-width" [(ngModel)]="active" name="active">
+				Aktivan
+			</mat-checkbox>
 
-      <div *ngFor="let permission of availablePermissions">
-        <mat-checkbox class="full-width" [checked]="permissions.includes(permission)"
-          (change)="updatePermissions($event, permission)">
-          {{ permission }}
-        </mat-checkbox>
-      </div>
-    </div>
-  </form>
+			<div *ngFor="let permission of availablePermissions">
+				<mat-checkbox class="full-width" [checked]="permissions.includes(permission)"
+					(change)="updatePermissions($event, permission)">
+					{{ permission }}
+				</mat-checkbox>
+			</div>
+		</div>
+	</form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-raised-button mat-dialog-close color="warn">Zatvori</button>
-  <button mat-raised-button [mat-dialog-close]="true" color="accent" cdkFocusInitial (click)="addUser()">
-    Dodaj
-  </button>
+	<button mat-raised-button mat-dialog-close color="warn">
+		Zatvori
+	</button>
+	<button mat-raised-button [mat-dialog-close]="true" color="accent" cdkFocusInitial (click)="addUser()">
+		Dodaj
+	</button>
 </mat-dialog-actions>

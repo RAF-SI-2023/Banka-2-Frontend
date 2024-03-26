@@ -1,5 +1,5 @@
-export interface ForeignAccountDto{
-  accountNumber: string;
-  email: string;
-  defaultCurrencyCode: string;
+export interface ForeignAccountDto {
+	accountNumber: string;
+	email: string;
+	defaultCurrencyCode: string;
 }

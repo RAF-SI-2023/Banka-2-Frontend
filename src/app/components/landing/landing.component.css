@@ -1,56 +1,56 @@
 .container {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr;
-  place-items: center;
-  height: 100vh;
-  padding: 0 2rem;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	grid-template-rows: 1fr;
+	place-items: center;
+	height: 100vh;
+	padding: 0 2rem;
 }
 
 .left {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
 }
 
 h1 {
-  font-weight: 900;
-  font-size: 3.2rem;
-  color: #171717;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-  text-align: center;
+	font-weight: 900;
+	font-size: 3.2rem;
+	color: #171717;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	text-align: center;
 }
 
 .greeting {
-  font-weight: bold;
-  font-size: 2.4rem;
-  color: #efeef3;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-  text-align: center;
+	font-weight: bold;
+	font-size: 2.4rem;
+	color: #efeef3;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	text-align: center;
 }
 
 p {
-  margin-top: 15px;
-  font-size: 1rem;
-  color: #efeef3;
-  text-align: center;
+	margin-top: 15px;
+	font-size: 1rem;
+	color: #efeef3;
+	text-align: center;
 }
 
 .line {
-  max-width: 750px;
-  display: block;
-  margin: 0 auto;
+	max-width: 750px;
+	display: block;
+	margin: 0 auto;
 }
 
 .divButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
 }

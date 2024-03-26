@@ -1,87 +1,87 @@
 .container {
-  display: grid;
-  place-items: center;
-  height: 100vh;
-  padding: 0 2rem;
+	display: grid;
+	place-items: center;
+	height: 100vh;
+	padding: 0 2rem;
 }
 
 mat-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  width: 100%;
-  max-width: 400px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	width: 100%;
+	max-width: 400px;
 }
 
 mat-card-content {
-  display: flex;
-  flex-direction: column;
-  width: 90%;
+	display: flex;
+	flex-direction: column;
+	width: 90%;
 }
 
 .home-link {
-  height: fit-content;
-  padding: 1rem;
+	height: fit-content;
+	padding: 1rem;
 }
 
 .title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: fit-content;
-  gap: 0.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: fit-content;
+	gap: 0.5rem;
 }
 
 .title h1 {
-  font-size: 3rem;
-  font-weight: bold;
-  padding-top: 1rem;
+	font-size: 3rem;
+	font-weight: bold;
+	padding-top: 1rem;
 }
 
 .form-inputs {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  width: 100%;
-  padding-top: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	width: 100%;
+	padding-top: 1rem;
 }
 
 mat-checkbox {
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 .buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	width: 100%;
 }
 
 .sign-up {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-bottom: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin-bottom: 0.5rem;
 }
 
 .sign-up p {
-  text-align: left;
-  font-size: 0.8rem;
-  color: #616161;
+	text-align: left;
+	font-size: 0.8rem;
+	color: #616161;
 }
 
 .popup-link {
-  font-size: 14px; /* Font size */
-  color: #616161; /* Link color */
-  text-decoration: underline; /* Underline the text */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  margin-top: 10px; /* Add some top margin */
-  text-align: left; /* Align text to the left */
+	font-size: 14px; /* Font size */
+	color: #616161; /* Link color */
+	text-decoration: underline; /* Underline the text */
+	cursor: pointer; /* Change cursor to pointer on hover */
+	margin-top: 10px; /* Add some top margin */
+	text-align: left; /* Align text to the left */
 }
 
 .popup-link:hover {
-  color: #0056b3; /* Change link color on hover */
+	color: #0056b3; /* Change link color on hover */
 }

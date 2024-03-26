@@ -1,4 +1,4 @@
 export interface PermissionDto {
-  id: number;
-  permissionType: string;
+	id: number;
+	permissionType: string;
 }

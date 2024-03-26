@@ -10,72 +10,72 @@ import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 @Component({
-  selector: 'stocks',
-  templateUrl: 'stocks.component.html',
-  styleUrls: ['./stocks.component.css'],
+	selector: 'stocks',
+	templateUrl: 'stocks.component.html',
+	styleUrls: ['./stocks.component.css'],
 })
 export class StocksComponent implements AfterViewInit {
-  displayedColumns: string[] = [
-    'symbol',
-    'description',
-    'exchange',
-    'lastRefresh',
-    'price',
-    'high',
-    'low',
-    'change',
-    'volume',
-    'shares',
-    'yield',
-  ];
-  dataSource = new MatTableDataSource<StockDto>();
-  selectedRow: StockDto | null = null;
+	displayedColumns: string[] = [
+		'symbol',
+		'description',
+		'exchange',
+		'lastRefresh',
+		'price',
+		'high',
+		'low',
+		'change',
+		'volume',
+		'shares',
+		'yield',
+	];
+	dataSource = new MatTableDataSource<StockDto>();
+	selectedRow: StockDto | null = null;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
-  @ViewChild(MatSort) sort: MatSort | undefined;
+	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+	@ViewChild(MatSort) sort: MatSort | undefined;
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService,
-    private stockService: StockService
-  ) {
-    this.dataSource = new MatTableDataSource();
-    this.fetchAllData();
-  }
+	constructor(
+		private http: HttpClient,
+		private authService: AuthService,
+		private stockService: StockService,
+	) {
+		this.dataSource = new MatTableDataSource();
+		this.fetchAllData();
+	}
 
-  ngAfterViewInit() {
-    if (this.paginator) this.dataSource.paginator = this.paginator;
-    if (this.sort) this.dataSource.sort = this.sort;
-  }
+	ngAfterViewInit() {
+		if (this.paginator) this.dataSource.paginator = this.paginator;
+		if (this.sort) this.dataSource.sort = this.sort;
+	}
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+	applyFilter(event: Event) {
+		const filterValue = (event.target as HTMLInputElement).value;
+		this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
+		if (this.dataSource.paginator) {
+			this.dataSource.paginator.firstPage();
+		}
+	}
 
-  selectRow(row: StockDto): void {
-    if (this.selectedRow?.symbol != row.symbol) {
-      this.selectedRow = row;
-    }
-  }
+	selectRow(row: StockDto): void {
+		if (this.selectedRow?.symbol != row.symbol) {
+			this.selectedRow = row;
+		}
+	}
 
-  fetchAllData(): void {
-    this.stockService
-      .getFindAllStocks()
-      .pipe(
-        map((dataSource) => {
-          this.dataSource.data = dataSource;
-          return dataSource;
-        }),
-        catchError((error) => {
-          console.error('Error loading data.', error);
-          return throwError(() => error);
-        })
-      )
-      .subscribe();
-  }
+	fetchAllData(): void {
+		this.stockService
+			.getFindAllStocks()
+			.pipe(
+				map(dataSource => {
+					this.dataSource.data = dataSource;
+					return dataSource;
+				}),
+				catchError(error => {
+					console.error('Error loading data.', error);
+					return throwError(() => error);
+				}),
+			)
+			.subscribe();
+	}
 }

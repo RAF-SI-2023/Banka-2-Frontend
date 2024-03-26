@@ -1,45 +1,48 @@
 <mat-toolbar class="navbar mat-elevation-z2" color="primary">
-  <a mat-button routerLink="/home" class="icon">
-    <img
-      ngSrc="../../../assets/logo/bank-2-logo.svg"
-      alt="Icon"
-      height="40"
-      width="40"
-    />
-  </a>
-  <!-- <a mat-button routerLink="/paper-stocks">Paper Stocks</a> -->
+	<a mat-button routerLink="/home" class="icon">
+		<img ngSrc="../../../assets/logo/bank-2-logo.svg" alt="Icon" height="40" width="40" />
+	</a>
+	<!-- <a mat-button routerLink="/stocks">
+		Akcije
+	</a> -->
 
-  <div class="padding"></div>
-  <!--    <a *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-button routerLink="/users">Korisnici</a>-->
-  <!--    <a *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-button routerLink="/create-bank-account">Napravi bankovni račun</a>-->
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Options">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button
-      *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])"
-      mat-menu-item
-      routerLink="/users"
-    >
-      <mat-icon>groups</mat-icon>
-      <span>Korisnici</span>
-    </button>
-    <button
-      *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])"
-      mat-menu-item
-      routerLink="/create-bank-account"
-    >
-      <mat-icon>account_balance_wallet</mat-icon>
-      <span>Napravi bankovni račun</span>
-    </button>
-    <mat-divider></mat-divider>
-    <button mat-menu-item routerLink="/user-profile">
-      <mat-icon>person</mat-icon>
-      <span>Korisnički profil</span>
-    </button>
-    <button mat-menu-item (click)="logout()">
-      <mat-icon>logout</mat-icon>
-      <span>Izloguj se</span>
-    </button>
-  </mat-menu>
+	<div class="padding"></div>
+	<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Options">
+		<mat-icon>more_vert</mat-icon>
+	</button>
+	<mat-menu #menu="matMenu">
+		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/users">
+			<mat-icon>
+				groups
+			</mat-icon>
+			<span>
+				Korisnici
+			</span>
+		</button>
+		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/create-bank-account">
+			<mat-icon>
+				account_balance_wallet
+			</mat-icon>
+			<span>
+				Napravi bankovni račun
+			</span>
+		</button>
+		<mat-divider></mat-divider>
+		<button mat-menu-item routerLink="/user-profile">
+			<mat-icon>
+				person
+			</mat-icon>
+			<span>
+				Korisnički profil
+			</span>
+		</button>
+		<button mat-menu-item (click)="logout()">
+			<mat-icon>
+				logout
+			</mat-icon>
+			<span>
+				Izloguj se
+			</span>
+		</button>
+	</mat-menu>
 </mat-toolbar>

@@ -6,40 +6,40 @@ import { DomesticAccountDto } from '../dtos/domestic-account-dto';
 import { ForeignAccountDto } from '../dtos/foreign-account-dto';
 
 @Injectable({
-  providedIn: 'root',
+	providedIn: 'root',
 })
 export class BankService {
-  constructor(private httpClient: HttpClient) {}
+	constructor(private httpClient: HttpClient) {}
 
-  // AccountController
-  /// POST
-  postAssociateProfileInitialization(accountNumber: string) {
-    return this.httpClient.post<boolean>(
-      `${environment.bankServiceApiUrl}${ApiRoutes.accounts.associateProfileInit}`,
-      {
-        accountNumber: accountNumber,
-      }
-    );
-  }
+	// AccountController
+	/// POST
+	postAssociateProfileInitialization(accountNumber: string) {
+		return this.httpClient.post<boolean>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.associateProfileInit}`,
+			{
+				accountNumber: accountNumber,
+			},
+		);
+	}
 
-  postCodeConfirmation(code: string, accountNumber: string) {
-    return this.httpClient.post<boolean>(
-      `${environment.bankServiceApiUrl}${ApiRoutes.accounts.codeConfirmation}/${accountNumber}`,
-      code
-    );
-  }
+	postCodeConfirmation(code: string, accountNumber: string) {
+		return this.httpClient.post<boolean>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.codeConfirmation}/${accountNumber}`,
+			code,
+		);
+	}
 
-  postCreateDomesticAccount(account: DomesticAccountDto) {
-    return this.httpClient.post<boolean>(
-      `${environment.bankServiceApiUrl}${ApiRoutes.accounts.createAccountDomestic}`,
-      account
-    );
-  }
+	postCreateDomesticAccount(account: DomesticAccountDto) {
+		return this.httpClient.post<boolean>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.createAccountDomestic}`,
+			account,
+		);
+	}
 
-  postCreateForeignAccount(account: ForeignAccountDto) {
-    return this.httpClient.post<boolean>(
-      `${environment.bankServiceApiUrl}${ApiRoutes.accounts.createAccountForeign}`,
-      account
-    );
-  }
+	postCreateForeignAccount(account: ForeignAccountDto) {
+		return this.httpClient.post<boolean>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.createAccountForeign}`,
+			account,
+		);
+	}
 }

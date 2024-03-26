@@ -1,19 +1,19 @@
 .navbar {
-  position: fixed;
-  z-index: 999;
+	position: fixed;
+	z-index: 999;
 }
 
 .padding {
-  flex: 1 1 auto;
+	flex: 1 1 auto;
 }
 
 .logout-button {
-  margin-left: 30px;
-  margin-right: 5px;
+	margin-left: 30px;
+	margin-right: 5px;
 }
 
 .icon {
-  padding-top: 10px;
-  margin: 5px;
-  height: fit-content;
+	padding-top: 10px;
+	margin: 5px;
+	height: fit-content;
 }

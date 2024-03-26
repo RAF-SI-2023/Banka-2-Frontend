@@ -23,6 +23,7 @@ import { PhoneNumberValidatorDirective } from './directives/phone-number-validat
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
 import { EpochToDatePipe } from './pipes/epoch-to-date.pipe';
+import { EmailValidatorDirective } from './directives/email-validator.directive';
 
 // IMPORTS
 import { BrowserModule } from '@angular/platform-browser';
@@ -49,75 +50,76 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatListModule } from '@angular/material/list';
 
 // PROVIDERS
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
-import { EmailValidatorDirective } from './directives/email-validator.directive';
-import {MatListModule} from "@angular/material/list";
+
+// OTHER
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LandingComponent,
-    LoginComponent,
-    PasswordForgotComponent,
-    CreateBankProfileComponent,
-    HomeComponent,
-    UserProfileComponent,
-    PasswordChangeComponent,
-    UsersComponent,
-    AddDialogComponent,
-    UpdateDialogComponent,
-    ConfirmActionDialogComponent,
-    CreateBankAccountComponent,
-    NavigationMenuComponent,
-    DomesticFormComponent,
-    ForeignFormComponent,
-    StocksComponent,
-    CurrencyExchangeComponent,
-    PhoneNumberValidatorDirective,
-    NoPasteDirective,
-    BankAccountMaskDirective,
-    EpochToDatePipe,
-    EmailValidatorDirective,
-  ],
-    imports: [
-        HttpClientModule,
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NgOptimizedImage,
-        MatToolbarModule,
-        MatTabsModule,
-        MatIconModule,
-        MatMenuModule,
-        MatFormFieldModule,
-        MatButtonModule,
-        MatInputModule,
-        MatStepperModule,
-        MatCardModule,
-        MatCheckboxModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatSelectModule,
-        MatSnackBarModule,
-        MatSortModule,
-        MatButtonToggleModule,
-        MatDialogModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatListModule,
-    ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AlertInterceptor,
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent],
+	declarations: [
+		AppComponent,
+		LandingComponent,
+		LoginComponent,
+		PasswordForgotComponent,
+		CreateBankProfileComponent,
+		HomeComponent,
+		UserProfileComponent,
+		PasswordChangeComponent,
+		UsersComponent,
+		AddDialogComponent,
+		UpdateDialogComponent,
+		ConfirmActionDialogComponent,
+		CreateBankAccountComponent,
+		NavigationMenuComponent,
+		DomesticFormComponent,
+		ForeignFormComponent,
+		StocksComponent,
+		CurrencyExchangeComponent,
+		PhoneNumberValidatorDirective,
+		NoPasteDirective,
+		BankAccountMaskDirective,
+		EpochToDatePipe,
+		EmailValidatorDirective,
+	],
+	imports: [
+		HttpClientModule,
+		BrowserModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		FormsModule,
+		ReactiveFormsModule,
+		NgOptimizedImage,
+		MatToolbarModule,
+		MatTabsModule,
+		MatIconModule,
+		MatMenuModule,
+		MatFormFieldModule,
+		MatButtonModule,
+		MatInputModule,
+		MatStepperModule,
+		MatCardModule,
+		MatCheckboxModule,
+		MatTableModule,
+		MatPaginatorModule,
+		MatSelectModule,
+		MatSnackBarModule,
+		MatSortModule,
+		MatButtonToggleModule,
+		MatDialogModule,
+		MatDatepickerModule,
+		MatNativeDateModule,
+		MatListModule,
+	],
+	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: AlertInterceptor,
+			multi: true,
+		},
+	],
+	bootstrap: [AppComponent],
 })
 export class AppModule {}

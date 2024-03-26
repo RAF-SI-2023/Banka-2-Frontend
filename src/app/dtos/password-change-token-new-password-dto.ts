@@ -1,6 +1,6 @@
 import { passwordChangeTokenDto } from './password-change-token-dto';
 
 export interface passwordChangeTokenNewPasswordDto {
-  newPassword: string;
-  passwordChangeTokenDto: passwordChangeTokenDto;
+	newPassword: string;
+	passwordChangeTokenDto: passwordChangeTokenDto;
 }

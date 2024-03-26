@@ -1,124 +1,115 @@
 <section class="container">
-  <mat-card class="card mat-elevation-z8">
-    <mat-card-header>
-      <mat-card-title>
-        <div class="title">
-          <img
-            src="../../../assets/logo/bank-2-logo.svg"
-            alt="Icon"
-            height="64"
-            width="64"
-            style="border-radius: 50%"
-          />
-          <h2>
-            {{
-              user?.role === Role.ADMIN
-                ? "Admin"
-                : employee
-                ? employee.name
-                : privateClient
-                ? privateClient.name
-                : corporateClient
-                ? corporateClient.name
-                : "Nepoznati korisnik"
-            }}
-          </h2>
-        </div>
-      </mat-card-title>
-    </mat-card-header>
+	<mat-card class="card mat-elevation-z8">
+		<mat-card-header>
+			<mat-card-title>
+				<div class="title">
+					<img src="../../../assets/logo/bank-2-logo.svg" alt="Icon" height="64" width="64"
+						style="border-radius: 50%" />
+					<h2>
+						{{
+						user?.role === Role.ADMIN
+						? "Admin"
+						: employee
+						? employee.name
+						: privateClient
+						? privateClient.name
+						: corporateClient
+						? corporateClient.name
+						: "Nepoznati korisnik"
+						}}
+					</h2>
+				</div>
+			</mat-card-title>
+		</mat-card-header>
 
-    <mat-card-content class="card-content">
-      <table>
-        <tbody>
-          <!--   USER START     -->
-          <tr>
-            <td><b>Username:</b></td>
-            <td>{{ user?.username }}</td>
-          </tr>
-          <tr>
-            <td><b>Email:</b></td>
-            <td>{{ user?.email }}</td>
-          </tr>
-          <tr>
-            <td><b>Telefon:</b></td>
-            <td>{{ user?.phone }}</td>
-          </tr>
-          <tr>
-            <td><b>Adresa:</b></td>
-            <td>{{ user?.address }}</td>
-          </tr>
-          <tr>
-            <td><b>Datum rođenja:</b></td>
-            <td>{{ user?.dateOfBirth }}</td>
-          </tr>
-          <tr>
-            <td><b>Uloga:</b></td>
-            <td>{{ user?.role }}</td>
-          </tr>
-          <tr>
-            <td><b>Dozvole:</b></td>
-            <td>{{ user?.permissions?.join(", ") }}</td>
-          </tr>
-          <!--   USER END     -->
+		<mat-card-content class="card-content">
+			<table>
+				<tbody>
+					<!--   USER START     -->
+					<!-- <tr>
+						<td><b>Username:</b></td>
+						<td>{{ user?.username }}</td>
+					</tr> -->
+					<tr>
+						<td><b>Email:</b></td>
+						<td>{{ user?.email }}</td>
+					</tr>
+					<tr>
+						<td><b>Telefon:</b></td>
+						<td>{{ user?.phone }}</td>
+					</tr>
+					<tr>
+						<td><b>Adresa:</b></td>
+						<td>{{ user?.address }}</td>
+					</tr>
+					<tr>
+						<td><b>Datum rođenja:</b></td>
+						<td>{{ user?.dateOfBirth }}</td>
+					</tr>
+					<tr>
+						<td><b>Uloga:</b></td>
+						<td>{{ user?.role }}</td>
+					</tr>
+					<tr>
+						<td><b>Dozvole:</b></td>
+						<td>{{ user?.permissions?.join(", ") }}</td>
+					</tr>
+					<!--   USER END     -->
 
-          <!--   PRIVATE START     -->
-          <tr *ngIf="privateClient">
-            <td><b>Ime:</b></td>
-            <td>{{ privateClient.name }}</td>
-          </tr>
-          <tr *ngIf="privateClient">
-            <td><b>Prezime:</b></td>
-            <td>{{ privateClient.surname }}</td>
-          </tr>
-          <tr *ngIf="privateClient">
-            <td><b>Pol:</b></td>
-            <td>{{ privateClient.gender }}</td>
-          </tr>
-          <tr *ngIf="privateClient">
-            <td><b>Primarni broj računa:</b></td>
-            <td>{{ privateClient.primaryAccountNumber }}</td>
-          </tr>
-          <!--   PRIVATE END     -->
+					<!--   PRIVATE START     -->
+					<tr *ngIf="privateClient">
+						<td><b>Ime:</b></td>
+						<td>{{ privateClient.name }}</td>
+					</tr>
+					<tr *ngIf="privateClient">
+						<td><b>Prezime:</b></td>
+						<td>{{ privateClient.surname }}</td>
+					</tr>
+					<tr *ngIf="privateClient">
+						<td><b>Pol:</b></td>
+						<td>{{ privateClient.gender }}</td>
+					</tr>
+					<tr *ngIf="privateClient">
+						<td><b>Primarni broj računa:</b></td>
+						<td>{{ privateClient.primaryAccountNumber }}</td>
+					</tr>
+					<!--   PRIVATE END     -->
 
-          <!--   CORPORATE START     -->
-          <tr *ngIf="corporateClient">
-            <td><b>Naziv kompanije:</b></td>
-            <td>{{ corporateClient.name }}</td>
-          </tr>
-          <tr *ngIf="corporateClient">
-            <td><b>Primarni broj računa:</b></td>
-            <td>{{ corporateClient.primaryAccountNumber }}</td>
-          </tr>
-          <!--   CORPORATE END     -->
+					<!--   CORPORATE START     -->
+					<tr *ngIf="corporateClient">
+						<td><b>Naziv kompanije:</b></td>
+						<td>{{ corporateClient.name }}</td>
+					</tr>
+					<tr *ngIf="corporateClient">
+						<td><b>Primarni broj računa:</b></td>
+						<td>{{ corporateClient.primaryAccountNumber }}</td>
+					</tr>
+					<!--   CORPORATE END     -->
 
-          <!--   EMPLOYEE START     -->
-          <tr *ngIf="employee">
-            <td><b>Pol:</b></td>
-            <td>{{ employee.gender }}</td>
-          </tr>
-          <tr *ngIf="employee">
-            <td><b>Pozicija:</b></td>
-            <td>{{ employee.position }}</td>
-          </tr>
-          <tr *ngIf="employee">
-            <td><b>Odeljenje:</b></td>
-            <td>{{ employee.department }}</td>
-          </tr>
-          <tr *ngIf="employee">
-            <td><b>Aktivan:</b></td>
-            <td>{{ employee.active ? "Da" : "Ne" }}</td>
-          </tr>
-          <!--   EMPLOYEE END     -->
-        </tbody>
-      </table>
+					<!--   EMPLOYEE START     -->
+					<tr *ngIf="employee">
+						<td><b>Pol:</b></td>
+						<td>{{ employee.gender }}</td>
+					</tr>
+					<tr *ngIf="employee">
+						<td><b>Pozicija:</b></td>
+						<td>{{ employee.position }}</td>
+					</tr>
+					<tr *ngIf="employee">
+						<td><b>Odeljenje:</b></td>
+						<td>{{ employee.department }}</td>
+					</tr>
+					<tr *ngIf="employee">
+						<td><b>Aktivan:</b></td>
+						<td>{{ employee.active ? "Da" : "Ne" }}</td>
+					</tr>
+					<!--   EMPLOYEE END     -->
+				</tbody>
+			</table>
 
-      <button
-        mat-raised-button
-        id="change-password-btn"
-        (click)="openPasswordChangeDialog()"
-      >
-        Promeni šifru
-      </button>
-    </mat-card-content>
-  </mat-card>
+			<button mat-raised-button id="change-password-btn" (click)="openPasswordChangeDialog()">
+				Promeni lozinku
+			</button>
+		</mat-card-content>
+	</mat-card>
 </section>

@@ -1,6 +1,6 @@
-export interface DomesticAccountDto{
-  accountNumber: string;
-  email: string;
-  currencyCode: string;
-  domesticCurrencyAccountType: string;
+export interface DomesticAccountDto {
+	accountNumber: string;
+	email: string;
+	currencyCode: string;
+	domesticCurrencyAccountType: string;
 }

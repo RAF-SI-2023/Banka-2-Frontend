@@ -1,27 +1,27 @@
 .example-form {
-    min-width: 150px;
-    margin-left: 95px;
+	min-width: 150px;
+	margin-left: 95px;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .currency {
-    margin-right: 20px;
-    margin-top: 20px;
-    font-size: 18px;
+	margin-right: 20px;
+	margin-top: 20px;
+	font-size: 18px;
 }
 
 .table {
-    width: 50%;
-    margin: 0 auto;
-    margin-top: 70px;
+	width: 50%;
+	margin: 0 auto;
+	margin-top: 70px;
 }
 
 .convertButton {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
 }

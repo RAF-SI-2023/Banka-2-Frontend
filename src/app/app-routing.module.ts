@@ -16,37 +16,54 @@ import { StocksComponent } from './components/stocks/stocks.component';
 import { CurrencyExchangeComponent } from './components/currency-exchange/currency-exchange.component';
 
 const routes: Routes = [
-  { component: LandingComponent, path: '' },
-  { component: LoginComponent, path: 'login', canActivate: [loginGuard] },
-  { component: CreateBankProfileComponent, path: 'create-bank-profile' },
-  { component: HomeComponent, path: 'home', canActivate: [authGuard] },
-  {
-    component: UserProfileComponent,
-    path: 'user-profile',
-    canActivate: [authGuard],
-  },
-  {
-    component: UsersComponent,
-    path: 'users',
-    canActivate: [roleGuard],
-    data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
-  },
-  {
-    component: CreateBankAccountComponent,
-    path: 'create-bank-account',
-    canActivate: [authGuard],
-    data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
-  },
-  {
-    component: StocksComponent,
-    path: 'stocks',
-    canActivate: [authGuard],
-  },
-  { component: CurrencyExchangeComponent, path: 'currency-exchange' },
+	{
+		component: LandingComponent,
+		path: '',
+	},
+	{
+		component: LoginComponent,
+		path: 'login',
+		canActivate: [loginGuard],
+	},
+	{
+		component: CreateBankProfileComponent,
+		path: 'create-bank-profile',
+	},
+	{
+		component: HomeComponent,
+		path: 'home',
+		canActivate: [authGuard],
+	},
+	{
+		component: UserProfileComponent,
+		path: 'user-profile',
+		canActivate: [authGuard],
+	},
+	{
+		component: UsersComponent,
+		path: 'users',
+		canActivate: [roleGuard],
+		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
+	},
+	{
+		component: CreateBankAccountComponent,
+		path: 'create-bank-account',
+		canActivate: [authGuard],
+		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
+	},
+	{
+		component: StocksComponent,
+		path: 'stocks',
+		canActivate: [authGuard],
+	},
+	{
+		component: CurrencyExchangeComponent,
+		path: 'currency-exchange',
+	},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule],
 })
 export class AppRoutingModule {}
