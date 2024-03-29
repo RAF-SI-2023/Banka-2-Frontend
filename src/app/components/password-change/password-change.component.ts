@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { IamService } from '../../services/iam.service';
-import { passwordChangeTokenDto } from 'src/app/dtos/password-change-token-dto';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 import { AuthCredentialsDto } from 'src/app/dtos/auth-credentials-dto';
-import { passwordChangeTokenNewPasswordDto } from 'src/app/dtos/password-change-token-new-password-dto';
 
 @Component({
 	selector: 'app-password-change',
@@ -12,10 +12,6 @@ import { passwordChangeTokenNewPasswordDto } from 'src/app/dtos/password-change-
 })
 export class PasswordChangeComponent {
 	passwordChange: AuthCredentialsDto = { email: '', password: '' };
-	passwordChangeToken!: passwordChangeTokenDto;
-	passwordChangeTokenNewPasswordDto:
-		| passwordChangeTokenNewPasswordDto
-		| undefined;
 	newPassword: string = '';
 	confirmPassword: string = '';
 
@@ -28,9 +24,12 @@ export class PasswordChangeComponent {
 		if (this.newPassword !== this.confirmPassword) {
 			return;
 		}
-		let email = localStorage.getItem('email');
 
-		if (email == null) email = '';
+		let email = localStorage.getItem('email');
+		if (email == null) {
+			email = '';
+		}
+
 		this.passwordChange = {
 			email: email,
 			password: this.newPassword,
@@ -38,35 +37,17 @@ export class PasswordChangeComponent {
 
 		this.iamService
 			.postChangePasswordRequest(this.passwordChange)
-			.subscribe(
-				(response: any) => {
-					this.passwordChangeToken = response;
-					this.passwordChangeTokenNewPasswordDto = {
-						newPassword: this.newPassword,
-						passwordChangeTokenDto: this.passwordChangeToken,
-					};
-					console.log(this.passwordChangeTokenNewPasswordDto);
-					this.iamService
-						.postChangePasswordSubmit(
-							this.passwordChangeTokenNewPasswordDto,
-						)
-						.subscribe(
-							(result: any) => {
-								console.log(response);
-							},
-							error => {
-								console.error(
-									'Error calling another service:',
-									error,
-								);
-							},
-						);
-					this.dialogRef.close();
-				},
-				error => {
-					console.error('Error changing password:', error);
-				},
-			);
+			.pipe(
+				catchError(error => {
+					console.error('Error loading data.', error);
+					return throwError(() => error);
+				}),
+			)
+			.subscribe(() => {
+				(result: any) => {
+					console.log(result);
+				};
+			});
 	}
 
 	formValid(): boolean {

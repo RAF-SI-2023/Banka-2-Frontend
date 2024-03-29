@@ -47,9 +47,8 @@
 					Datum rođenja
 				</mat-label>
 				<input matInput [(ngModel)]="this.dateOfBirth" [matDatepicker]="picker" name="dateOfBirth"
-					(dateChange)="onDateChange($event)">
-				<mat-hint>MM/DD/YYYY</mat-hint>
-				<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+					placeholder="Izaberi datum">
+				<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 				<mat-datepicker #picker></mat-datepicker>
 			</mat-form-field>
 
