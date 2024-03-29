@@ -49,7 +49,7 @@ export class AddDialogComponent {
 	addUser() {
 		const employeeDto: EmployeeDto = {
 			id: 0,
-			dateOfBirth: this.dateOfBirth,
+			dateOfBirth: Number(this.dateOfBirth.toString()),
 			email: this.email,
 			username: this.email,
 			phone: this.phone,
