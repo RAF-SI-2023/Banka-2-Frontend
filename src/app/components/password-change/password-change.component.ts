@@ -16,7 +16,6 @@ export class PasswordChangeComponent {
 	passwordChangeTokenNewPasswordDto:
 		| passwordChangeTokenNewPasswordDto
 		| undefined;
-	currentPassword: string = '';
 	newPassword: string = '';
 	confirmPassword: string = '';
 
@@ -34,7 +33,7 @@ export class PasswordChangeComponent {
 		if (email == null) email = '';
 		this.passwordChange = {
 			email: email,
-			password: this.currentPassword,
+			password: this.newPassword,
 		};
 
 		this.iamService
@@ -72,7 +71,6 @@ export class PasswordChangeComponent {
 
 	formValid(): boolean {
 		return (
-			this.currentPassword !== '' &&
 			this.newPassword !== '' &&
 			this.confirmPassword !== '' &&
 			this.newPassword === this.confirmPassword
