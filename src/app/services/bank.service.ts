@@ -15,7 +15,7 @@ export class BankService {
 	/// POST
 	postAssociateProfileInitialization(accountNumber: string) {
 		return this.httpClient.post<boolean>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.associateProfileInit}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.associateProfileInitialization}`,
 			{
 				accountNumber: accountNumber,
 			},
@@ -31,14 +31,14 @@ export class BankService {
 
 	postCreateDomesticAccount(account: DomesticAccountDto) {
 		return this.httpClient.post<boolean>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.createAccountDomestic}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.createDomesticAccount}`,
 			account,
 		);
 	}
 
 	postCreateForeignAccount(account: ForeignAccountDto) {
 		return this.httpClient.post<boolean>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.createAccountForeign}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.createForeignAccount}`,
 			account,
 		);
 	}

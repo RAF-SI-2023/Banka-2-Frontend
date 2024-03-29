@@ -1,10 +1,10 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { emailValidator } from '../../utils/validators/email.validator';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { PasswordForgotComponent } from '../password-forgot/password-forgot.component';
 import { MatDialog } from '@angular/material/dialog';
+
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
@@ -50,16 +50,5 @@ export class LoginComponent {
 
 	togglePasswordVisibility() {
 		this.passwordHidden = !this.passwordHidden;
-	}
-
-	openforgotPassword(): void {
-		const dialogRef = this.dialog.open(PasswordForgotComponent, {
-			//width: '300px' // Adjust width as needed
-		});
-
-		dialogRef.afterClosed().subscribe(result => {
-			console.log('The dialog was closed');
-			// Handle any actions after dialog is closed
-		});
 	}
 }

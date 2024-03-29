@@ -1,4 +1,4 @@
-export interface passwordChangeTokenDto {
+export interface PasswordChangeTokenDto {
 	token: string;
 	expireTime: 0;
 	email: string;

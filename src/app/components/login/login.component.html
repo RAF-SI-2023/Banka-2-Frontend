@@ -43,7 +43,7 @@
 					</mat-error>
 				</mat-form-field>
 				<mat-error *ngIf="serverResponseError">{{serverResponseError}}</mat-error>
-				<mat-checkbox formControlName="remember">Zapamti me?</mat-checkbox>
+				<!-- <mat-checkbox formControlName="remember">Zapamti me?</mat-checkbox> -->
 
 				<div class="buttons">
 					<button mat-raised-button color="accent" type="submit">
@@ -58,9 +58,6 @@
 						</button>
 					</div>
 				</div>
-				<!-- <a class="popup-link" (click)="openforgotPassword()">
-					Zaboravili sifru
-				</a> -->
 			</form>
 		</mat-card-content>
 	</mat-card>

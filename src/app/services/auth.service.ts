@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { LoginResponseDto } from '../dtos/login-response-dto';
 import { AuthCredentialsDto } from '../dtos/auth-credentials-dto';
 import { Router } from '@angular/router';
-import { EmployeeDto } from '../dtos/employee-dto';
 import { ApiRoutes } from './api-routes';
 import { PermissionDto } from '../dtos/permissions-dto';
 import { RolesDto } from '../dtos/roles-dto';
@@ -57,16 +56,6 @@ export class AuthService {
 			);
 	}
 
-	activateEmployee(credentials: AuthCredentialsDto) {
-		return this.http.put<EmployeeDto>(
-			`${environment.iamServiceApiUrl}${ApiRoutes.auth.activateEmployee}`,
-			{
-				email: credentials.email,
-				password: credentials.password,
-			},
-		);
-	}
-
 	getPermissions() {
 		return this.http.get<PermissionDto[]>(
 			`${environment.iamServiceApiUrl}${ApiRoutes.auth.allPermissions}`,
@@ -89,10 +78,6 @@ export class AuthService {
 			return decodedToken.role;
 		}
 		return null;
-	}
-
-	isLoggedIn() {
-		return !!localStorage.getItem('token');
 	}
 
 	logout() {

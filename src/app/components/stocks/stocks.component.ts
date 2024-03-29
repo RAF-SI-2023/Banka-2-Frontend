@@ -65,7 +65,7 @@ export class StocksComponent implements AfterViewInit {
 
 	fetchAllData(): void {
 		this.stockService
-			.getFindAllStocks()
+			.getFindAll()
 			.pipe(
 				map(dataSource => {
 					this.dataSource.data = dataSource;

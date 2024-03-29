@@ -9,8 +9,7 @@ import { PrivateClientRequestDto } from '../dtos/private-client-request.dto';
 import { CorporateClientRequestDto } from '../dtos/corporate-client-request-dto';
 import { EmployeeDto } from '../dtos/employee-dto';
 import { AuthCredentialsDto } from '../dtos/auth-credentials-dto';
-import { passwordChangeTokenDto } from '../dtos/password-change-token-dto';
-import { passwordChangeTokenNewPasswordDto } from '../dtos/password-change-token-new-password-dto';
+import { PasswordChangeTokenDto } from '../dtos/password-change-token-dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -33,31 +32,19 @@ export class IamService {
 	}
 
 	/// POST
-	postActivateClient(email: string, password: string) {
+	postPasswordActivation(email: string, password: string) {
 		return this.httpClient.post<boolean>(
-			`${environment.iamServiceApiUrl}${ApiRoutes.users.passwordActivation}/${email}/password-activation`,
+			`${environment.iamServiceApiUrl}${ApiRoutes.users.passwordActivation}/${email}`,
 			{
 				password: password,
 			},
 		);
 	}
 
-	postChangePasswordRequest(body: AuthCredentialsDto) {
-		return this.httpClient.post<passwordChangeTokenDto[]>(
-			environment.iamServiceApiUrl + ApiRoutes.users.passwordChangeInit,
+	postPasswordChange(body: AuthCredentialsDto) {
+		return this.httpClient.post<PasswordChangeTokenDto[]>(
+			environment.iamServiceApiUrl + ApiRoutes.users.passwordChange,
 			body,
-		);
-	}
-
-	postChangePasswordSubmit(
-		paswordChangeToken: passwordChangeTokenNewPasswordDto,
-	) {
-		const urlToken = paswordChangeToken.passwordChangeTokenDto.token;
-		return this.httpClient.post(
-			environment.iamServiceApiUrl +
-				ApiRoutes.users.passwordChangeConf +
-				`/${urlToken}`,
-			paswordChangeToken,
 		);
 	}
 

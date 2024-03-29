@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
-import { PasswordForgotComponent } from './components/password-forgot/password-forgot.component';
 import { CreateBankProfileComponent } from './components/create-bank-profile/create-bank-profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
@@ -12,7 +11,6 @@ import { PasswordChangeComponent } from './components/password-change/password-c
 import { UsersComponent } from './components/users/users.component';
 import { AddDialogComponent } from './components/users/dialogs/add-dialog/add-dialog.component';
 import { UpdateDialogComponent } from './components/users/dialogs/update-dialog/update-dialog.component';
-import { ConfirmActionDialogComponent } from './components/users/dialogs/confirm-action-dialog/confirm-action-dialog.component';
 import { CreateBankAccountComponent } from './components/create-bank-account/create-bank-account.component';
 import { NavigationMenuComponent } from './components/navigation-menu/navigation-menu.component';
 import { DomesticFormComponent } from './components/create-bank-account/domestic-form/domestic-form.component';
@@ -63,7 +61,6 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 		AppComponent,
 		LandingComponent,
 		LoginComponent,
-		PasswordForgotComponent,
 		CreateBankProfileComponent,
 		HomeComponent,
 		UserProfileComponent,
@@ -71,7 +68,6 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 		UsersComponent,
 		AddDialogComponent,
 		UpdateDialogComponent,
-		ConfirmActionDialogComponent,
 		CreateBankAccountComponent,
 		NavigationMenuComponent,
 		DomesticFormComponent,

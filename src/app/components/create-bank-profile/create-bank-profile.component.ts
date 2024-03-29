@@ -239,17 +239,19 @@ export class CreateBankProfileComponent implements OnInit {
 	}
 
 	activatePassword() {
-		this.iamService.postActivateClient(this.email, this.password).subscribe(
-			response => {
-				// this.router.navigate(['/login']);
-				this.creationSuccess();
-			},
-			error => {
-				this.passwordError = error.message
-					? error.message
-					: 'Greška prilikom aktivacije lozinke. Pokušajte ponovo.';
-			},
-		);
+		this.iamService
+			.postPasswordActivation(this.email, this.password)
+			.subscribe(
+				response => {
+					// this.router.navigate(['/login']);
+					this.creationSuccess();
+				},
+				error => {
+					this.passwordError = error.message
+						? error.message
+						: 'Greška prilikom aktivacije lozinke. Pokušajte ponovo.';
+				},
+			);
 	}
 
 	creationSuccess() {

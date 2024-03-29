@@ -12,25 +12,25 @@ export class StockService {
 
 	// StockController
 	/// GET
-	getFindAllStocks() {
+	getFindAll() {
 		return this.httpClient.get<StockDto[]>(
-			environment.stockServiceApiUrl + ApiRoutes.stocks.findAllStocks,
+			environment.stockServiceApiUrl + ApiRoutes.stocks.findAll,
 		);
 	}
 
-	getFindStockById(id: number) {
+	getFindById(id: number) {
 		return this.httpClient.get<StockDto>(
 			environment.stockServiceApiUrl +
-				ApiRoutes.stocks.findStockById +
+				ApiRoutes.stocks.findById +
 				'/' +
 				id,
 		);
 	}
 
-	getFindStockBySymbol(symbol: string) {
+	getFindBySymbol(symbol: string) {
 		return this.httpClient.get<StockDto>(
 			environment.stockServiceApiUrl +
-				ApiRoutes.stocks.findStockBySymbol +
+				ApiRoutes.stocks.findBySymbol +
 				'/' +
 				symbol,
 		);

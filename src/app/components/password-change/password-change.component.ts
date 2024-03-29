@@ -36,7 +36,7 @@ export class PasswordChangeComponent {
 		};
 
 		this.iamService
-			.postChangePasswordRequest(this.passwordChange)
+			.postPasswordChange(this.passwordChange)
 			.pipe(
 				catchError(error => {
 					console.error('Error loading data.', error);
