@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Dodaj novog agenta</h2>
+<mat-dialog-content>
+  <form [formGroup]="agentForm">
+  
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="null">Otkaži</button>
+  <button mat-button [mat-dialog-close]="agentForm.value" [disabled]="!agentForm.valid">Sačuvaj</button>
+</mat-dialog-actions>

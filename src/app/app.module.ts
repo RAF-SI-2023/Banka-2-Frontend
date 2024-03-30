@@ -57,6 +57,7 @@ import { MatListModule } from '@angular/material/list';
 // PROVIDERS
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
+import { AddAgentDialogComponent } from './components/users/dialogs/add-agent-dialog/add-agent-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -83,6 +84,7 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 		EmailValidatorDirective,
 		ForexComponent,
 		OptionsComponent,
+  AddAgentDialogComponent,
 	],
 	imports: [
 		HttpClientModule,

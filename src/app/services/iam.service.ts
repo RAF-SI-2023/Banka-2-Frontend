@@ -10,12 +10,13 @@ import { CorporateClientRequestDto } from '../dtos/corporate-client-request-dto'
 import { EmployeeDto } from '../dtos/employee-dto';
 import { AuthCredentialsDto } from '../dtos/auth-credentials-dto';
 import { PasswordChangeTokenDto } from '../dtos/password-change-token-dto';
+import { AgentDto } from '../dtos/agent-dto';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class IamService {
-	constructor(private httpClient: HttpClient) {}
+	constructor(private httpClient: HttpClient) { }
 
 	// UserController
 	/// GET
@@ -69,6 +70,14 @@ export class IamService {
 		);
 	}
 
+	postCreateAgent(agentDto: AgentDto) {
+		return this.httpClient.post<AgentDto>(
+			`${environment.iamServiceApiUrl}${ApiRoutes.users.createAgent}`,
+			agentDto
+		);
+
+	}
+
 	/// PUT
 	putUpdateEmployee(user: UserDto) {
 		return this.httpClient.put<UserDto[]>(
@@ -87,7 +96,7 @@ export class IamService {
 	putUpdateCorporateClient(user: UserDto) {
 		return this.httpClient.put<UserDto[]>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.users.updateCorporateClient,
+			ApiRoutes.users.updateCorporateClient,
 			user,
 		);
 	}
@@ -95,8 +104,8 @@ export class IamService {
 	putActivateEmployee(id: number) {
 		return this.httpClient.put<UserDto[]>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.users.activateEmployee +
-				`/${id}`,
+			ApiRoutes.users.activateEmployee +
+			`/${id}`,
 			{},
 		);
 	}
@@ -104,8 +113,8 @@ export class IamService {
 	putDeactivateEmployee(id: number) {
 		return this.httpClient.put<UserDto[]>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.users.deactivateEmployee +
-				`/${id}`,
+			ApiRoutes.users.deactivateEmployee +
+			`/${id}`,
 			{},
 		);
 	}
