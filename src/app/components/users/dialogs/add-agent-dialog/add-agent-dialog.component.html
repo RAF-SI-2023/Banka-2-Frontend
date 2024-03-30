@@ -1,8 +1,59 @@
-<h2 mat-dialog-title>Dodaj novog agenta</h2>
 <mat-dialog-content>
-  <form [formGroup]="agentForm">
-  
-  </form>
+    <form [formGroup]="agentForm" (ngSubmit)="addAgent()">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+          <mat-error *ngIf="agentForm.get('email')?.errors?.['required']">Email je obavezan</mat-error>
+          <mat-error *ngIf="agentForm.get('email')?.errors?.['email']">Unesite validan email</mat-error>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Ime</mat-label>
+          <input matInput formControlName="name">
+          <mat-error *ngIf="agentForm.get('name')?.errors?.['required']">Ime je obavezno</mat-error>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Prezime</mat-label>
+          <input matInput formControlName="surname">
+          <mat-error *ngIf="agentForm.get('surname')?.errors?.['required']">Prezime je obavezno</mat-error>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Pol</mat-label>
+          <mat-select formControlName="gender">
+            <mat-option value="M">Muško</mat-option>
+            <mat-option value="Ž">Žensko</mat-option>
+          </mat-select>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Telefon</mat-label>
+          <input matInput formControlName="phone">
+          <mat-error *ngIf="agentForm.get('phone')?.errors?.['required']">Telefon je obavezan</mat-error>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Adresa</mat-label>
+          <input matInput formControlName="address">
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Limit</mat-label>
+          <input matInput type="number" formControlName="limit">
+          <mat-error *ngIf="agentForm.get('limit')?.errors?.['required']">Limit je obavezan</mat-error>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Preostalo od limita</mat-label>
+          <input matInput type="number" formControlName="leftOfLimit">
+          <mat-error *ngIf="agentForm.get('leftOfLimit')?.errors?.['required']">Ovo polje je obavezno</mat-error>
+        </mat-form-field>
+      
+      
+        <button mat-raised-button color="primary" type="submit" [disabled]="!agentForm.valid">Dodaj Agenta</button>
+      </form>
+      
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button [mat-dialog-close]="null">Otkaži</button>
