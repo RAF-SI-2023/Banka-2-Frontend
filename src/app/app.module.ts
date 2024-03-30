@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 // DECLARATIONS
+/// COMPONENTS
 import { AppComponent } from './app.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
@@ -17,6 +18,9 @@ import { DomesticFormComponent } from './components/create-bank-account/domestic
 import { ForeignFormComponent } from './components/create-bank-account/foreign-form/foreign-form.component';
 import { StocksComponent } from './components/stocks/stocks.component';
 import { CurrencyExchangeComponent } from './components/currency-exchange/currency-exchange.component';
+import { ForexComponent } from './components/forex/forex.component';
+import { OptionsComponent } from './components/options/options.component';
+/// DIRECTIVES/PIPES
 import { PhoneNumberValidatorDirective } from './directives/phone-number-validator.directive';
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
@@ -54,8 +58,6 @@ import { MatListModule } from '@angular/material/list';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
 
-// OTHER
-
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -79,6 +81,8 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 		BankAccountMaskDirective,
 		EpochToDatePipe,
 		EmailValidatorDirective,
+		ForexComponent,
+		OptionsComponent,
 	],
 	imports: [
 		HttpClientModule,
