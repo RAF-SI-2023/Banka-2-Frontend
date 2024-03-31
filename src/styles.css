@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+/* Import Angular Material typography */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+/* Define primary and accent colors */
+:root {
+	--primary: #3060ec !important;
+	--accent: #f5cf3d !important;
+}
+
+/* Apply the theme to Angular Material components */
+/* For example, changing the primary color of the toolbar */
+.mat-toolbar {
+	background-color: var(--primary) !important;
+	color: white;
+	/* Text color */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* Define global styles */
+html,
+body {
+	height: 100%;
+	margin: 0;
+	font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

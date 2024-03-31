@@ -1,1 +1,29 @@
-<p>landing works!</p>
+<div class="container">
+
+	<div class="left">
+		<span>
+			<h1>
+				DOBRODOŠLI U BANKU 2!
+			</h1>
+			<img src="../assets/yellow-line.png" class="line">
+		</span>
+		<img ngSrc="../../../assets/logo/banka-2-logo-no-bg.svg" width="420" height="420" alt="Logo" class="logo">
+	</div>
+
+	<div class="right">
+		<p class="greeting">
+			Zdravo!
+		</p>
+		<p>
+			Da biste pristupili aplikaciji, molimo Vas da se ulogujete ili napravite korisnički profil.
+		</p>
+		<div class="divButton">
+			<button mat-raised-button color="accent" class="buttons" (click)="redirectToLogin()">
+				Uloguj se
+			</button>
+			<button mat-raised-button class="buttons" (click)="redirectToCreateBankProfile()">
+				Napravi profil
+			</button>
+		</div>
+	</div>
+</div>

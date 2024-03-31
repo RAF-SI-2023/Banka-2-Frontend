@@ -1,0 +1,22 @@
+.container {
+	position: relative;
+	overflow: auto;
+	/* Enable content scrolling */
+	min-height: calc(100vh - 90px);
+	/* Adjust according to your navbar height */
+	padding: 0 2rem;
+}
+
+.background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url('src/assets/wave-background.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index: -1;
+	/* Ensure the background is behind other content */
+}

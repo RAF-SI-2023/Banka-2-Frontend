@@ -1,0 +1,117 @@
+<div class="container">
+	<form class="example-form">
+		<mat-form-field class="example-full-width">
+			<mat-label>
+				$
+			</mat-label>
+			<input matInput>
+		</mat-form-field>
+	</form>
+</div>
+
+<div class="container">
+	<p class="currency">
+		Iz valute:
+	</p>
+	<mat-form-field class="fromCurrency">
+		<select matNativeControl required>
+			<option value="hkd">HKD</option>
+			<option value="usd">USD</option>
+			<option value="aud">AUD</option>
+			<option value="eur">EUR</option>
+			<option value="sgd">SGD</option>
+			<option value="chf">CHF</option>
+			<option value="cad">CAD</option>
+			<option value="gbp">GBP</option>
+			<option value="nzd">NZD</option>
+			<option value="xag">XAG</option>
+			<option value="try">TRY</option>
+			<option value="corn">CORN</option>
+			<option value="xau">XAU</option>
+			<option value="zar">ZAR</option>
+			<option value="sugar">SUGAR</option>
+			<option value="ltc">LTC</option>
+			<option value="eth">ETH</option>
+			<option value="btc">BTC</option>
+			<option value="bch">BCH</option>
+			<option value="xrp">XRP</option>
+			<option value="nok">NOK</option>
+			<option value="cnh">CNH</option>
+			<option value="sek">SEK</option>
+		</select>
+	</mat-form-field>
+</div>
+
+<div class="container">
+	<p class="currency">
+		U valutu:
+	</p>
+	<mat-form-field class="toCurrency">
+		<select matNativeControl required>
+			<option value="hkd">HKD</option>
+			<option value="usd">USD</option>
+			<option value="aud">AUD</option>
+			<option value="eur">EUR</option>
+			<option value="sgd">SGD</option>
+			<option value="chf">CHF</option>
+			<option value="cad">CAD</option>
+			<option value="gbp">GBP</option>
+			<option value="nzd">NZD</option>
+			<option value="xag">XAG</option>
+			<option value="try">TRY</option>
+			<option value="corn">CORN</option>
+			<option value="xau">XAU</option>
+			<option value="zar">ZAR</option>
+			<option value="sugar">SUGAR</option>
+			<option value="ltc">LTC</option>
+			<option value="eth">ETH</option>
+			<option value="btc">BTC</option>
+			<option value="bch">BCH</option>
+			<option value="xrp">XRP</option>
+			<option value="nok">NOK</option>
+			<option value="cnh">CNH</option>
+			<option value="sek">SEK</option>
+		</select>
+	</mat-form-field>
+</div>
+
+<div class="convertButton">
+	<button mat-raised-button color="accent" class="buttons" (click)="convert()">
+		Konvertuj
+	</button>
+</div>
+
+<div class="table">
+	<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+		<ng-container matColumnDef="pair">
+			<th mat-header-cell *matHeaderCellDef>
+				Par
+			</th>
+			<td mat-cell *matCellDef="let element">
+				{{ element.pair }}
+			</td>
+		</ng-container>
+
+		<ng-container matColumnDef="exchangeRate">
+			<th mat-header-cell *matHeaderCellDef>
+				Kurs
+			</th>
+			<td mat-cell *matCellDef="let element">
+				{{ element.exchangeRate }}
+			</td>
+		</ng-container>
+
+		<ng-container matColumnDef="poslednjaIzmena">
+			<th mat-header-cell *matHeaderCellDef>
+				Poslednja izmena
+			</th>
+			<td mat-cell *matCellDef="let element">
+				{{ element.poslednjaIzmena }}
+			</td>
+		</ng-container>
+
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+	</table>
+</div>
