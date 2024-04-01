@@ -16,6 +16,7 @@ import { StocksComponent } from './components/stocks/stocks.component';
 import { CurrencyExchangeComponent } from './components/currency-exchange/currency-exchange.component';
 import { OptionsComponent } from './components/options/options.component';
 import { ForexComponent } from './components/forex/forex.component';
+import { CompaniesComponent } from './components/companies/companies.component';
 
 const routes: Routes = [
 	{
@@ -69,6 +70,10 @@ const routes: Routes = [
 	{
 		component: OptionsComponent,
 		path: 'options',
+	},
+	{
+		component: CompaniesComponent,
+		path: 'companies',
 	},
 ];
 

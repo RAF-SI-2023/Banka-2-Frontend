@@ -34,6 +34,16 @@ export const ApiRoutes = {
 		findById: '/stock/id',
 		findBySymbol: '/stock/stockSymbol',
 	},
+	companies:{
+		updateCompany: '/companies/update',
+		createCompany: '/companies/create',
+		findByPib: '/companies/pib',
+		findByIdentificationNumber: '/companies/identificationNumber',
+		findById: '/companies/id',
+		findAll: '/companies/all',
+		deleteByIdentificationNumber: 'companies/delete/identificationNumber',
+		deleteById: '/companies/delete/id'
+	},
 	exchange: {
 		findAll: '/exchange/all',
 		findById: '/exchange/id',
@@ -48,5 +58,5 @@ export const ApiRoutes = {
 
 		// TODO: zavisi od beka kako odluci da realizuje ovo
 		findInflationByCurrencyIdAndYear: '/currency/inflation/currency-id/year',
-	}
+	},
 };
