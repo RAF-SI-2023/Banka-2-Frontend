@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>
+	Informacije o korisniku
+</h2>
+<mat-dialog-content class="mat-typography size">
+	<div *ngIf="!isLoading" class="full-width">
+		<div class="info-row">
+			<span class="label">Datum rođenja:</span>
+			<span>{{ this.newSelectedRow.dateOfBirth }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Broj telefona:</span>
+			<span>{{ this.newSelectedRow.phone }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Adresa:</span>
+			<span>{{ this.newSelectedRow.address }}</span>
+		</div>
+		<div *ngIf="checkDto() === 'PRIVATE' || checkDto() === 'CORPORATE' || checkDto() === 'EMPLOYEE'" class="info-row">
+			<span class="label">Ime:</span>
+			<span>{{ this.newSelectedRow.name }}</span>
+		</div>
+		<div *ngIf="checkDto() === 'PRIVATE' || checkDto() === 'EMPLOYEE'" class="info-row">
+			<span class="label">Prezime:</span>
+			<span>{{ this.newSelectedRow.surname }}</span>
+		</div>
+		<div *ngIf="(checkDto() === 'PRIVATE' || checkDto() === 'EMPLOYEE')" class="info-row">
+			<span class="label">Pol:</span>
+			<span>{{ this.newSelectedRow.gender }}</span>
+		</div>
+		<div *ngIf="checkDto() === 'EMPLOYEE'" class="info-row">
+			<span class="label">Pozicija:</span>
+			<span>{{ this.newSelectedRow.position }}</span>
+		</div>
+		<div *ngIf="checkDto() === 'EMPLOYEE'" class="info-row">
+			<span class="label">Odeljenje:</span>
+			<span>{{ this.newSelectedRow.department }}</span>
+		</div>
+	</div>
+
+	<div *ngIf="isLoading" class="spinner-container">
+		<mat-progress-spinner diameter="50" mode="indeterminate"></mat-progress-spinner>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-raised-button mat-dialog-close color="warn">
+		Zatvori
+	</button>
+</mat-dialog-actions>

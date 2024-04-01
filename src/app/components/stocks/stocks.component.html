@@ -120,6 +120,7 @@
 
 						<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
 						<tr mat-row (click)="selectRow(row)"
+							(dblclick)="viewStock(row)"
 							[class.row-selected]="this.selectedRow?.symbol === row.symbol"
 							*matRowDef="let row; columns: displayedColumns"></tr>
 
