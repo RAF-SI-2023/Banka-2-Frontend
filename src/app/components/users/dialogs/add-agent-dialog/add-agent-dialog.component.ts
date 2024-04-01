@@ -1,39 +1,68 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IamService } from 'src/app/services/iam.service';
+import { AgentDto } from 'src/app/dtos/agent-dto';
 
 @Component({
   selector: 'app-add-agent-dialog',
   templateUrl: './add-agent-dialog.component.html',
   styleUrls: ['./add-agent-dialog.component.css'],
 })
-export class AddAgentDialogComponent implements OnInit {
-  agentForm!: FormGroup;
+export class AddAgentDialogComponent {
+
+  email: string = '';
+  dateOfBirth: number = 0;
+  username: string = '';
+  phone: string = '';
+  address: string = '';
+  role: string = '';
+
+  limit: number = 0;
+  leftOfLimit: number = 0;
+
+
+  availablePermissions: string[] = [
+    'PERMISSION_1',
+    'PERMISSION_2',
+    'PERMISSION_3',
+    'PERMISSION_4',
+  ];
+  permissions: string[] = [];
+
 
   constructor(private fb: FormBuilder, private iamService: IamService) { }
 
-  ngOnInit(): void {
-    this.agentForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
-      gender: [''],
-      phone: ['', Validators.required],
-      address: [''],
-      limit: [0, Validators.required],
-      leftOfLimit: [0, Validators.required],
-      permissions: this.fb.array([])
-    });
+
+
+  updatePermissions(event: any, permission: string) {
+    if (event.checked) {
+      this.permissions.push(permission);
+    } else {
+      this.permissions = this.permissions.filter(p => p !== permission);
+    }
   }
 
   addAgent() {
-    if (this.agentForm.valid) {
-      const agentData = this.agentForm.value;
-      console.log(agentData);
-      this.iamService.postCreateAgent(agentData).subscribe({
-        next: (response) => console.log('Agent dodat', response),
-        error: (error) => console.error('Greška pri dodavanju agenta', error)
-      });
-    }
+
+    const agentDto: AgentDto = {
+      id: 0,
+      email: this.email,
+      dateOfBirth: this.dateOfBirth,
+      username: this.username,
+      phone: this.phone,
+      address: this.address,
+      role: 'AGENT',
+      permissions: this.permissions,
+      limit: this.limit,
+      leftOfLimit: this.leftOfLimit
+    };
+
+
+    console.log(agentDto);
+    this.iamService.postCreateAgent(agentDto).subscribe({
+      next: (response) => console.log('Agent dodat', response),
+      error: (error) => console.error('Greška pri dodavanju agenta', error)
+    });
+
   }
 }

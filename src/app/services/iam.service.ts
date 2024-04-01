@@ -10,11 +10,8 @@ import { CorporateClientRequestDto } from '../dtos/corporate-client-request-dto'
 import { EmployeeDto } from '../dtos/employee-dto';
 import { AuthCredentialsDto } from '../dtos/auth-credentials-dto';
 import { PasswordChangeTokenDto } from '../dtos/password-change-token-dto';
-<<<<<<< HEAD
 import { AgentDto } from '../dtos/agent-dto';
-=======
 import { CompanyDto } from '../dtos/company-dto';
->>>>>>> 7757377e71547c4d8eb573e2c8cc2939344e413e
 
 @Injectable({
 	providedIn: 'root',
@@ -141,13 +138,13 @@ export class IamService {
 			environment.iamServiceApiUrl + ApiRoutes.companies.findAll,
 		);
 	}
-	
-	getFindCompanyById(id:number) {
+
+	getFindCompanyById(id: number) {
 		return this.httpClient.get<CompanyDto>(
-			environment.iamServiceApiUrl + ApiRoutes.companies.findById+ '/' + id,
+			environment.iamServiceApiUrl + ApiRoutes.companies.findById + '/' + id,
 		);
 	}
-	
+
 	getFindCompanyByIdentificationNumber() {
 		return this.httpClient.get<CompanyDto>(
 			environment.iamServiceApiUrl + ApiRoutes.companies.findByIdentificationNumber,
@@ -171,19 +168,19 @@ export class IamService {
 	putUpdateCompany(company: CompanyDto) {
 		return this.httpClient.put<CompanyDto>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.companies.updateCompany,
-				company,
+			ApiRoutes.companies.updateCompany,
+			company,
 		);
 	}
 
 	///DELETE
-	deleteCompanyById(id: number){
+	deleteCompanyById(id: number) {
 		this.httpClient.delete(
 			environment.iamServiceApiUrl + ApiRoutes.companies.deleteById + `/${id}`,
 		);
 	}
 
-	deleteCompanyByIdentificationNumber(identificationNumber: any){
+	deleteCompanyByIdentificationNumber(identificationNumber: any) {
 		this.httpClient.delete(
 			environment.iamServiceApiUrl + ApiRoutes.companies.deleteByIdentificationNumber + `/${identificationNumber}`,
 		);

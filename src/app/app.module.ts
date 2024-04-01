@@ -11,6 +11,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
 import { UsersComponent } from './components/users/users.component';
 import { AddDialogComponent } from './components/users/dialogs/add-dialog/add-dialog.component';
+import { AddAgentDialogComponent } from './components/users/dialogs/add-agent-dialog/add-agent-dialog.component';
 import { UpdateDialogComponent } from './components/users/dialogs/update-dialog/update-dialog.component';
 import { CreateBankAccountComponent } from './components/create-bank-account/create-bank-account.component';
 import { NavigationMenuComponent } from './components/navigation-menu/navigation-menu.component';
@@ -75,6 +76,7 @@ import { CompanyFormComponent } from './components/create-bank-account/company-f
     PasswordChangeComponent,
     UsersComponent,
     AddDialogComponent,
+    AddAgentDialogComponent,
     UpdateDialogComponent,
     CreateBankAccountComponent,
     NavigationMenuComponent,
