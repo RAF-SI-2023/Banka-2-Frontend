@@ -2,12 +2,14 @@
 	<mat-card>
 		<mat-card-header>
 			<div class="form">
-				<mat-form-field>
-					<mat-label>
-						Pretraži
-					</mat-label>
-					<input #input (keyup)="applyFilter($event)" matInput />
-				</mat-form-field>
+				<div>
+					<mat-form-field>
+						<mat-label>
+							Pretraži
+						</mat-label>
+						<input #input (keyup)="applyFilter($event)" matInput />
+					</mat-form-field>
+				</div>
 			</div>
 		</mat-card-header>
 
@@ -15,114 +17,91 @@
 			<div class="tableContainer">
 				<div class="mat-elevation-z8" style="box-shadow: none">
 					<table mat-table [dataSource]="dataSource" matSort>
-						<ng-container matColumnDef="symbol">
+						
+						<ng-container matColumnDef="id">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Symbol
+								ID
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.symbol }}
+								{{ row.id }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="description">
+						<ng-container matColumnDef="companyName">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Description
+								companyName
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.description }}
+								{{ row.companyName }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="exchange">
+						<ng-container matColumnDef="faxNumber">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Exchange
+								faxNumber
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.exchange }}
+								{{ row.faxNumber }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="lastRefresh">
+						<ng-container matColumnDef="phoneNumber">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Last Refresh
+								Broj telefona
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{
-								row.lastRefresh
-								? (row.lastRefresh | epochToDate | date : "dd.MM.yyyy")
-								: ""
-								}}
+								{{ row.phoneNumber }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="price">
+						<ng-container matColumnDef="pib">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Price
+								pib
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.price }}
+								{{ row.pib }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="high">
+						<ng-container matColumnDef="registryNumber">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								High
+								registryNumber
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.high }}
+								{{ row.registryNumber }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="low">
+						<ng-container matColumnDef="identificationNumber">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Low
+								identificationNumber
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.low }}
+								{{ row.identificationNumber }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="change">
+						<ng-container matColumnDef="activityCode">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Change
+								activityCode
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.change }}
+								{{ row.activityCode }}
 							</td>
 						</ng-container>
-
-						<ng-container matColumnDef="volume">
+						
+						<ng-container matColumnDef="address">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Volume
+								address
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.volume }}
+								{{ row.address }}
 							</td>
 						</ng-container>
-
-						<ng-container matColumnDef="shares">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Shares
-							</th>
-							<td *matCellDef="let row" mat-cell>
-								{{ row.shares }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="yield">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Yield
-							</th>
-							<td *matCellDef="let row" mat-cell>
-								{{ row.yield }}
-							</td>
-						</ng-container>
-
 						<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-						<tr mat-row (click)="selectRow(row)"
-							(dblclick)="viewStock(row)"
-							[class.row-selected]="this.selectedRow?.symbol === row.symbol"
-							*matRowDef="let row; columns: displayedColumns"></tr>
+						<tr mat-row (dblclick)="selectRow(row)" [class.row-selected]="this.selectedRow?.id === row.id"
+							*matRowDef="let row; columns: displayedColumns">
+						</tr>
 
 						<tr *matNoDataRow class="mat-row">
 							<td class="mat-cell" colspan="4">

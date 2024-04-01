@@ -6,36 +6,39 @@ import {
 	emailValidator,
 } from '../../../utils/validators';
 import { BankService } from '../../../services/bank.service';
-import { ForeignAccountDto } from '../../../dtos/foreign-account-dto';
-
+import { CompanyAccountDto } from 'src/app/dtos/company-account-dto';
 @Component({
-	selector: 'app-foreign-form',
-	templateUrl: './foreign-form.component.html',
-	styleUrls: ['./foreign-form.component.css'],
+  selector: 'app-company-form',
+  templateUrl: './company-form.component.html',
+  styleUrls: ['./company-form.component.css']
 })
-export class ForeignFormComponent {
-	@Input() currencyOptions!: DropdownOption[];
+export class CompanyFormComponent {
+  	@Input() currencyOptions!: DropdownOption[];
 	bankService = inject(BankService);
-	foreignBankAccountForm = this.fb.group({
+
+	companyBankAccountForm = this.fb.group({
 		accountNumber: [
 			'',
 			[Validators.required, bankAccountNumberValidator()],
 		],
 		email: ['', [Validators.required, emailValidator()]],
-		defaultCurrencyCode: ['', [Validators.required]],
+		currencyCode: ['', [Validators.required]],
+		PIB: ['', [Validators.required]],
+		identificationNumber: ['', [Validators.required]],
+
+
 	});
 
 	constructor(private fb: FormBuilder) {}
 
 	onSubmit() {
-		if (this.foreignBankAccountForm.valid) {
-			const account = this.foreignBankAccountForm
-				.value as ForeignAccountDto;
+		if (this.companyBankAccountForm.valid) {
+			const account = this.companyBankAccountForm.value  as CompanyAccountDto;
 			account.accountNumber = account.accountNumber.replaceAll('-', '');
-			this.bankService.postCreateForeignAccount(account).subscribe(
+			console.log(account);
+			this.bankService.postCreateCompanyAccount(account).subscribe(
 				response => {
 					console.log(response);
-					this.foreignBankAccountForm.reset();
 				},
 				error => {
 					console.log(error);

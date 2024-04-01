@@ -17,6 +17,14 @@
 		<mat-icon>more_vert</mat-icon>
 	</button>
 	<mat-menu #menu="matMenu">
+		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/companies">
+			<mat-icon>
+				groups
+			</mat-icon>
+			<span>
+				Firme
+			</span>
+		</button>
 		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/users">
 			<mat-icon>
 				groups
