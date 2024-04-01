@@ -60,6 +60,9 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 import { InfoDialogComponent } from './components/users/dialogs/info-dialog/info-dialog.component';
 import { StockInfoDialogComponent } from './components/stocks/dialogs/stock-info-dialog/stock-info-dialog.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { CompaniesComponent } from './components/companies/companies.component';
+import { SingleCompanyDialogComponent } from './components/companies/dialogs/single-company-dialog/single-company-dialog.component';
+import { CompanyFormComponent } from './components/create-bank-account/company-form/company-form.component';
 
 @NgModule({
 	declarations: [
@@ -88,6 +91,9 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 		OptionsComponent,
   InfoDialogComponent,
   StockInfoDialogComponent,
+  CompaniesComponent,
+  SingleCompanyDialogComponent,
+  CompanyFormComponent,
 	],
     imports: [
         HttpClientModule,
