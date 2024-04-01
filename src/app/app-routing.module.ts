@@ -25,7 +25,7 @@ const routes: Routes = [
 	{
 		component: LoginComponent,
 		path: 'login',
-		canActivate: [loginGuard],
+		// canActivate: [loginGuard],
 	},
 	{
 		component: CreateBankProfileComponent,
@@ -34,29 +34,29 @@ const routes: Routes = [
 	{
 		component: HomeComponent,
 		path: 'home',
-		canActivate: [authGuard],
+		// canActivate: [authGuard],
 	},
 	{
 		component: UserProfileComponent,
 		path: 'user-profile',
-		canActivate: [authGuard],
+		// canActivate: [authGuard],
 	},
 	{
 		component: UsersComponent,
 		path: 'users',
-		canActivate: [roleGuard],
+		// canActivate: [roleGuard],
 		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
 	},
 	{
 		component: CreateBankAccountComponent,
 		path: 'create-bank-account',
-		canActivate: [authGuard],
+		// canActivate: [authGuard],
 		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
 	},
 	{
 		component: StocksComponent,
 		path: 'stocks',
-		canActivate: [authGuard],
+		// canActivate: [authGuard],
 	},
 	{
 		component: CurrencyExchangeComponent,

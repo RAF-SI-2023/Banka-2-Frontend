@@ -83,6 +83,7 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 		EmailValidatorDirective,
 		ForexComponent,
 		OptionsComponent,
+		CurrencyExchangeComponent,
 	],
 	imports: [
 		HttpClientModule,

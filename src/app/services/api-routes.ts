@@ -34,4 +34,19 @@ export const ApiRoutes = {
 		findById: '/stock/id',
 		findBySymbol: '/stock/stockSymbol',
 	},
+	exchange: {
+		findAll: '/exchange/all',
+		findById: '/exchange/id',
+		findBySymbol: '/exchange/stockSymbol',
+		findByMICode: '/exchange/miCode',
+	},
+	currency: {
+		findAll: '/currency/all',
+		findById: '/currency/id',
+		findByCode: '/currency/code',
+		findInflationByCurrencyId: '/currency/inflation/currency-id',
+
+		// TODO: zavisi od beka kako odluci da realizuje ovo
+		findInflationByCurrencyIdAndYear: '/currency/inflation/currency-id/year',
+	}
 };
