@@ -39,6 +39,7 @@ export class DomesticFormComponent {
 			this.bankService.postCreateDomesticAccount(account).subscribe(
 				response => {
 					console.log(response);
+					this.domesticBankAccountForm.reset();
 				},
 				error => {
 					console.log(error);

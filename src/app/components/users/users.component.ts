@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UpdateDialogComponent } from './dialogs/update-dialog/update-dialog.component';
 import { AddDialogComponent } from './dialogs/add-dialog/add-dialog.component';
 import { EmployeeDto } from 'src/app/dtos/employee-dto';
+import {InfoDialogComponent} from "./dialogs/info-dialog/info-dialog.component";
 
 @Component({
 	selector: 'app-users',
@@ -174,6 +175,14 @@ export class UsersComponent implements AfterViewInit {
 				console.log(`Dialog result: ${result}`);
 				this.selectedRow = null;
 				this.fetchAllData();
+			});
+		}
+	}
+
+	viewUser(row: UserDto): void {
+		if (this.selectedRow != null) {
+			const dialogRef = this.dialog.open(InfoDialogComponent, {
+				data: { selectedRow: row },
 			});
 		}
 	}
