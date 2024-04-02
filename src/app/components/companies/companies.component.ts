@@ -63,18 +63,16 @@ export class CompaniesComponent implements AfterViewInit {
 		if (this.selectedRow?.id != row.id) {
 			this.selectedRow = row;
 		}
-		this.iamService
-			.getFindCompanyById(this.selectedRow.id)
-			.subscribe(Response => {
-				const data = Response;
-				const dialogRef = this.dialog.open(CompanyInfoDialogComponent, {
-					width: '500px', // Adjust width as needed
-					minHeight: '500px',
-					data: data,
-				});
-			});
 	}
 
+	viewCompany(row: CompanyDto): void {
+		if (this.selectedRow != null) {
+			const dialogRef = this.dialog.open(CompanyInfoDialogComponent, {
+				data: { selectedRow: row },
+			});
+		}
+	}
+	
 	fetchAllData(): void {
 		this.iamService
 			.getFindAllCompanies()

@@ -99,9 +99,9 @@
 							</td>
 						</ng-container>
 						<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-						<tr mat-row (dblclick)="selectRow(row)" [class.row-selected]="this.selectedRow?.id === row.id"
-							*matRowDef="let row; columns: displayedColumns">
-						</tr>
+						<tr mat-row (click)="selectRow(row)" (dblclick)="viewCompany(row)"
+							[class.row-selected]="this.selectedRow?.id === row.id"
+							*matRowDef="let row; columns: displayedColumns"></tr>
 
 						<tr *matNoDataRow class="mat-row">
 							<td class="mat-cell" colspan="4">
