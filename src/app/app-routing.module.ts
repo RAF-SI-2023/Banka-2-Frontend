@@ -44,8 +44,8 @@ const routes: Routes = [
 	{
 		component: UsersComponent,
 		path: 'users',
-		//canActivate: [roleGuard],
-		//data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
+		canActivate: [roleGuard],
+		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
 	},
 	{
 		component: CreateBankAccountComponent,

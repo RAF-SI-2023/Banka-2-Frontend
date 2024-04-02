@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ForexDto } from 'src/app/dtos/forex-dto';
-import { ForexService } from 'src/app/services/forex.service';
+import { StockService } from 'src/app/services/stock.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -39,7 +39,7 @@ export class ForexComponent implements AfterViewInit {
 	constructor(
 		private http: HttpClient,
 		private authService: AuthService,
-		private forexService: ForexService,
+		private stockService: StockService,
 	) {
 		this.dataSource = new MatTableDataSource();
 		this.fetchAllData();
@@ -66,8 +66,8 @@ export class ForexComponent implements AfterViewInit {
 	}
 
 	fetchAllData(): void {
-		this.forexService
-			.getFindAll()
+		this.stockService
+			.getFindAllForex()
 			.pipe(
 				map(dataSource => {
 					this.dataSource.data = dataSource;
