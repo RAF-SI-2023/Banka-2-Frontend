@@ -213,5 +213,4 @@ export class UsersComponent implements AfterViewInit {
 			console.log('Dialog closed', result);
 		});
 	}
-
 }

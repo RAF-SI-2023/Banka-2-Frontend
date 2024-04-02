@@ -1,8 +1,8 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {IamService} from "../../../../services/iam.service";
-import {StockDto} from "../../../../dtos/stock-dto";
-import {StockService} from "../../../../services/stock.service";
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { IamService } from "../../../../services/iam.service";
+import { StockDto } from "../../../../dtos/stock-dto";
+import { StockService } from "../../../../services/stock.service";
 
 @Component({
   selector: 'app-stock-info-dialog',

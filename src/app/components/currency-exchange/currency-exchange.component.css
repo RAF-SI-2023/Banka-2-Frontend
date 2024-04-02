@@ -18,10 +18,32 @@
 	width: 50%;
 	margin: 0 auto;
 	margin-top: 70px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 800px;
+
+}
+
+.tableData {
+	flex-grow: 1;
 }
 
 .convertButton {
 	display: flex;
 	justify-content: center;
 	margin-top: 10px;
+}
+
+.paginatorContainer {
+	display: block;
+	flex-direction: column;
+	align-self: end;
+	width: 100%;
+}
+
+.tableContainer {
+	display: flex;
+	gap: 32px;
+	margin-bottom: 32px;
 }

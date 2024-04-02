@@ -21,6 +21,11 @@ import { StocksComponent } from './components/stocks/stocks.component';
 import { CurrencyExchangeComponent } from './components/currency-exchange/currency-exchange.component';
 import { ForexComponent } from './components/forex/forex.component';
 import { OptionsComponent } from './components/options/options.component';
+import { InfoDialogComponent } from './components/users/dialogs/info-dialog/info-dialog.component';
+import { StockInfoDialogComponent } from './components/stocks/dialogs/stock-info-dialog/stock-info-dialog.component';
+import { CompaniesComponent } from './components/companies/companies.component';
+import { SingleCompanyDialogComponent } from './components/companies/dialogs/single-company-dialog/single-company-dialog.component';
+import { CompanyFormComponent } from './components/create-bank-account/company-form/company-form.component';
 /// DIRECTIVES/PIPES
 import { PhoneNumberValidatorDirective } from './directives/phone-number-validator.directive';
 import { NoPasteDirective } from './directives/no-paste.directive';
@@ -54,86 +59,83 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 // PROVIDERS
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
-import { InfoDialogComponent } from './components/users/dialogs/info-dialog/info-dialog.component';
-import { StockInfoDialogComponent } from './components/stocks/dialogs/stock-info-dialog/stock-info-dialog.component';
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { CompaniesComponent } from './components/companies/companies.component';
-import { SingleCompanyDialogComponent } from './components/companies/dialogs/single-company-dialog/single-company-dialog.component';
-import { CompanyFormComponent } from './components/create-bank-account/company-form/company-form.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LandingComponent,
-    LoginComponent,
-    CreateBankProfileComponent,
-    HomeComponent,
-    UserProfileComponent,
-    PasswordChangeComponent,
-    UsersComponent,
-    AddDialogComponent,
-    AddAgentDialogComponent,
-    UpdateDialogComponent,
-    CreateBankAccountComponent,
-    NavigationMenuComponent,
-    DomesticFormComponent,
-    ForeignFormComponent,
-    StocksComponent,
-    CurrencyExchangeComponent,
-    PhoneNumberValidatorDirective,
-    NoPasteDirective,
-    BankAccountMaskDirective,
-    EpochToDatePipe,
-    EmailValidatorDirective,
-    ForexComponent,
-    OptionsComponent,
-    InfoDialogComponent,
-    StockInfoDialogComponent,
-    CompaniesComponent,
-    SingleCompanyDialogComponent,
-    CompanyFormComponent,
-  ],
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgOptimizedImage,
-    MatToolbarModule,
-    MatTabsModule,
-    MatIconModule,
-    MatMenuModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    MatStepperModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatButtonToggleModule,
-    MatDialogModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatListModule,
-    MatProgressSpinnerModule,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AlertInterceptor,
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent],
+	declarations: [
+		AppComponent,
+		LandingComponent,
+		LoginComponent,
+		CreateBankProfileComponent,
+		HomeComponent,
+		UserProfileComponent,
+		PasswordChangeComponent,
+		UsersComponent,
+		AddDialogComponent,
+		UpdateDialogComponent,
+		CreateBankAccountComponent,
+		NavigationMenuComponent,
+		DomesticFormComponent,
+		ForeignFormComponent,
+		StocksComponent,
+		CurrencyExchangeComponent,
+		PhoneNumberValidatorDirective,
+		NoPasteDirective,
+		BankAccountMaskDirective,
+		EpochToDatePipe,
+		EmailValidatorDirective,
+		ForexComponent,
+		OptionsComponent,
+  		InfoDialogComponent,
+  		StockInfoDialogComponent,
+  		CompaniesComponent,
+  		SingleCompanyDialogComponent,
+  		CompanyFormComponent,
+  		InfoDialogComponent,
+		StockInfoDialogComponent,
+		CurrencyExchangeComponent,
+	],
+    imports: [
+        HttpClientModule,
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgOptimizedImage,
+        MatToolbarModule,
+        MatTabsModule,
+        MatIconModule,
+        MatMenuModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatInputModule,
+        MatStepperModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        MatSortModule,
+        MatButtonToggleModule,
+        MatDialogModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatListModule,
+        MatProgressSpinnerModule,
+    ],
+	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: AlertInterceptor,
+			multi: true,
+		},
+	],
+	bootstrap: [AppComponent],
 })
 export class AppModule { }
