@@ -17,7 +17,7 @@
 			<div class="tableContainer">
 				<div class="mat-elevation-z8" style="box-shadow: none">
 					<table mat-table [dataSource]="dataSource" matSort>
-						
+
 						<ng-container matColumnDef="id">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
 								ID
@@ -29,7 +29,7 @@
 
 						<ng-container matColumnDef="companyName">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								companyName
+								Ime kompanije
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.companyName }}
@@ -38,7 +38,7 @@
 
 						<ng-container matColumnDef="faxNumber">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								faxNumber
+								Broj faksa
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.faxNumber }}
@@ -56,7 +56,7 @@
 
 						<ng-container matColumnDef="pib">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								pib
+								PIB
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.pib }}
@@ -65,7 +65,7 @@
 
 						<ng-container matColumnDef="registryNumber">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								registryNumber
+								Registarski broj
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.registryNumber }}
@@ -74,7 +74,7 @@
 
 						<ng-container matColumnDef="identificationNumber">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								identificationNumber
+								Matični broj
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.identificationNumber }}
@@ -83,16 +83,16 @@
 
 						<ng-container matColumnDef="activityCode">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								activityCode
+								Šifra delatnosti
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.activityCode }}
 							</td>
 						</ng-container>
-						
+
 						<ng-container matColumnDef="address">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								address
+								Adresa
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.address }}

@@ -4,7 +4,7 @@
 			<mat-label>
 				Broj računa
 			</mat-label>
-			<input matInput placeholder="Unesite broj računa" formControlName="accountNumber" appBankAccountMask 
+			<input matInput placeholder="Unesite broj računa" formControlName="accountNumber" appBankAccountMask
 				required>
 			<mat-error *ngIf="companyBankAccountForm.get('accountNumber')?.hasError('required')">
 				Broj računa je obavezan.
@@ -13,7 +13,7 @@
 				Pogrešan format računa.
 			</mat-error>
 		</mat-form-field>
-		
+
 		<mat-form-field>
 			<mat-label>
 				Email
@@ -29,14 +29,15 @@
 
 		<mat-form-field>
 			<mat-label>
-				Identifikacioni Broj
+				Matični broj
 			</mat-label>
 			<input matInput placeholder="Unesite identifikacioni broj" formControlName="identificationNumber" required>
 			<mat-error *ngIf="companyBankAccountForm.get('email')?.hasError('required')">
-				Identifikacioni Broj je obavezan.
+				Matični broj je obavezan.
 			</mat-error>
 			<mat-error *ngIf="companyBankAccountForm.get('email')?.hasError('invalidEmail')">
-				Pogrešan format email-a.
+				Pogrešan format matičnog broj-a.
+				<!-- TODO: Staviti validaciju za matični broj ovde -->
 			</mat-error>
 		</mat-form-field>
 
@@ -46,10 +47,11 @@
 			</mat-label>
 			<input matInput placeholder="Unesite PIB" formControlName="PIB" required>
 			<mat-error *ngIf="companyBankAccountForm.get('email')?.hasError('required')">
-				Identifikacioni Broj je obavezan.
+				PIB je obavezan.
 			</mat-error>
 			<mat-error *ngIf="companyBankAccountForm.get('email')?.hasError('invalidEmail')">
-				Pogrešan format email-a.
+				Pogrešan format PIB-a.
+				<!-- TODO: Staviti validaciju za PIB ovde -->
 			</mat-error>
 		</mat-form-field>
 
@@ -66,7 +68,7 @@
 				Valuta je obavezna.
 			</mat-error>
 		</mat-form-field>
-		
+
 		<div class="buttons">
 			<button mat-raised-button color="accent" type="submit">
 				Napravi
@@ -74,4 +76,3 @@
 		</div>
 	</form>
 </section>
-

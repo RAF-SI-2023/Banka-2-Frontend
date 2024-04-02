@@ -8,10 +8,10 @@ import { StockService } from 'src/app/services/stock.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { UserDto } from "../../dtos/user-dto";
-import { InfoDialogComponent } from "../users/dialogs/info-dialog/info-dialog.component";
-import { StockInfoDialogComponent } from "./dialogs/stock-info-dialog/stock-info-dialog.component";
-import { MatDialog } from "@angular/material/dialog";
+import { UserDto } from '../../dtos/user-dto';
+import { UserInfoDialogComponent } from '../users/dialogs/user-info-dialog/user-info-dialog.component';
+import { StockInfoDialogComponent } from './dialogs/stock-info-dialog/stock-info-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
 	selector: 'stocks',
@@ -71,9 +71,8 @@ export class StocksComponent implements AfterViewInit {
 	viewStock(row: StockDto): void {
 		if (this.selectedRow != null) {
 			const dialogRef = this.dialog.open(StockInfoDialogComponent, {
-				data: { selectedRow: row  },
+				data: { selectedRow: row },
 			});
-
 		}
 	}
 

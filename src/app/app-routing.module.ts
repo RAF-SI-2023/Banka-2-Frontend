@@ -26,7 +26,7 @@ const routes: Routes = [
 	{
 		component: LoginComponent,
 		path: 'login',
-		// canActivate: [loginGuard],
+		canActivate: [loginGuard],
 	},
 	{
 		component: CreateBankProfileComponent,
@@ -35,45 +35,49 @@ const routes: Routes = [
 	{
 		component: HomeComponent,
 		path: 'home',
-		// canActivate: [authGuard],
+		canActivate: [authGuard],
 	},
 	{
 		component: UserProfileComponent,
 		path: 'user-profile',
-		// canActivate: [authGuard],
+		canActivate: [authGuard],
 	},
 	{
 		component: UsersComponent,
 		path: 'users',
-		// canActivate: [roleGuard],
+		canActivate: [roleGuard],
 		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
 	},
 	{
 		component: CreateBankAccountComponent,
 		path: 'create-bank-account',
-		// canActivate: [authGuard],
+		canActivate: [authGuard],
 		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
-	},
-	{
-		component: StocksComponent,
-		path: 'stocks',
-		// canActivate: [authGuard],
-	},
-	{
-		component: CurrencyExchangeComponent,
-		path: 'currency-exchange',
-	},
-	{
-		component: ForexComponent,
-		path: 'forex',
-	},
-	{
-		component: OptionsComponent,
-		path: 'options',
 	},
 	{
 		component: CompaniesComponent,
 		path: 'companies',
+		canActivate: [authGuard],
+	},
+	{
+		component: StocksComponent,
+		path: 'stocks',
+		canActivate: [authGuard],
+	},
+	{
+		component: CurrencyExchangeComponent,
+		path: 'currency-exchange',
+		canActivate: [authGuard],
+	},
+	{
+		component: ForexComponent,
+		path: 'forex',
+		canActivate: [authGuard],
+	},
+	{
+		component: OptionsComponent,
+		path: 'options',
+		canActivate: [authGuard],
 	},
 ];
 

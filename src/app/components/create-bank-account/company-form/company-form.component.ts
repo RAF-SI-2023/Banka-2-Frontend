@@ -8,12 +8,12 @@ import {
 import { BankService } from '../../../services/bank.service';
 import { CompanyAccountDto } from 'src/app/dtos/company-account-dto';
 @Component({
-  selector: 'app-company-form',
-  templateUrl: './company-form.component.html',
-  styleUrls: ['./company-form.component.css']
+	selector: 'app-company-form',
+	templateUrl: './company-form.component.html',
+	styleUrls: ['./company-form.component.css'],
 })
 export class CompanyFormComponent {
-  	@Input() currencyOptions!: DropdownOption[];
+	@Input() currencyOptions!: DropdownOption[];
 	bankService = inject(BankService);
 
 	companyBankAccountForm = this.fb.group({
@@ -25,15 +25,14 @@ export class CompanyFormComponent {
 		currencyCode: ['', [Validators.required]],
 		PIB: ['', [Validators.required]],
 		identificationNumber: ['', [Validators.required]],
-
-
 	});
 
 	constructor(private fb: FormBuilder) {}
 
 	onSubmit() {
 		if (this.companyBankAccountForm.valid) {
-			const account = this.companyBankAccountForm.value  as CompanyAccountDto;
+			const account = this.companyBankAccountForm
+				.value as CompanyAccountDto;
 			account.accountNumber = account.accountNumber.replaceAll('-', '');
 			console.log(account);
 			this.bankService.postCreateCompanyAccount(account).subscribe(

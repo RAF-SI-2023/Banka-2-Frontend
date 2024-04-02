@@ -10,13 +10,14 @@ import { throwError } from 'rxjs';
 import { IamService } from 'src/app/services/iam.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CompanyDto } from 'src/app/dtos/company-dto';
-import { SingleCompanyDialogComponent } from './dialogs/single-company-dialog/single-company-dialog.component';
+import { CompanyInfoDialogComponent } from './dialogs/company-info-dialog/company-info-dialog.component';
+
 @Component({
-  selector: 'app-companies',
-  templateUrl: './companies.component.html',
-  styleUrls: ['./companies.component.css']
+	selector: 'app-companies',
+	templateUrl: './companies.component.html',
+	styleUrls: ['./companies.component.css'],
 })
-export class CompaniesComponent implements AfterViewInit{
+export class CompaniesComponent implements AfterViewInit {
 	displayedColumns: string[] = [
 		'id',
 		'companyName',
@@ -62,14 +63,16 @@ export class CompaniesComponent implements AfterViewInit{
 		if (this.selectedRow?.id != row.id) {
 			this.selectedRow = row;
 		}
-		this.iamService.getFindCompanyById(this.selectedRow.id).subscribe(Response=>{
-			const data=Response;
-			const dialogRef = this.dialog.open(SingleCompanyDialogComponent, {
-				width: '500px', // Adjust width as needed
-				minHeight: '500px',
-				data: data
-			  });
-		});
+		this.iamService
+			.getFindCompanyById(this.selectedRow.id)
+			.subscribe(Response => {
+				const data = Response;
+				const dialogRef = this.dialog.open(CompanyInfoDialogComponent, {
+					width: '500px', // Adjust width as needed
+					minHeight: '500px',
+					data: data,
+				});
+			});
 	}
 
 	fetchAllData(): void {
@@ -88,6 +91,4 @@ export class CompaniesComponent implements AfterViewInit{
 			)
 			.subscribe();
 	}
-
-
 }

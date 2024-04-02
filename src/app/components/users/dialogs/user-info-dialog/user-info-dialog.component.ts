@@ -6,11 +6,11 @@ import {isCorporateClientDto} from "../../../../dtos/corporate-client-dto";
 import {isEmployeeDto} from "../../../../dtos/employee-dto";
 
 @Component({
-  selector: 'app-info-dialog',
-  templateUrl: './info-dialog.component.html',
-  styleUrls: ['./info-dialog.component.css']
+  selector: 'app-user-info-dialog',
+  templateUrl: './user-info-dialog.component.html',
+  styleUrls: ['./user-info-dialog.component.css']
 })
-export class InfoDialogComponent {
+export class UserInfoDialogComponent {
 	newSelectedRow = { ...this.data.selectedRow };
 	isLoading = true;
 	constructor(

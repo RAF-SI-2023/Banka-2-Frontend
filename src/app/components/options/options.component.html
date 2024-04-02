@@ -1,111 +1,111 @@
 <div class="container">
-    <div class="leftDiv">
-        <mat-form-field class="datePicker">
-            <mat-label>Odaberi datum</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-    </div>
-    <div class="rightDiv">
-        <mat-form-field class="lookup">
-            <input matInput (keyup)="Filterchange($event)" placeholder="Lookup" />
-        </mat-form-field>
-    </div>
+	<div class="leftDiv">
+		<mat-form-field class="datePicker">
+			<mat-label>Odaberi datum</mat-label>
+			<input matInput [matDatepicker]="picker">
+			<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>
+	</div>
+	<div class="rightDiv">
+		<mat-form-field class="lookup">
+			<input matInput (keyup)="Filterchange($event)" placeholder="Lookup" />
+		</mat-form-field>
+	</div>
 </div>
 
 <div class="headers">
-    <div class="header">
-        <h2 class="callsH">Calls</h2>
-    </div>
-    <div class="header">
-        <h2 class="putsH">Puts</h2>
-    </div>
+	<div class="header">
+		<h2 class="callsH">Calls</h2>
+	</div>
+	<div class="header">
+		<h2 class="putsH">Puts</h2>
+	</div>
 </div>
 <div class="table">
-    <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+	<table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-        <ng-container matColumnDef="lastPriceCalls">
-            <th mat-header-cell *matHeaderCellDef> Last Price </th>
-            <td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.lastPriceCalls}}
-            </td>
-        </ng-container>
+		<ng-container matColumnDef="lastPriceCalls">
+			<th mat-header-cell *matHeaderCellDef> Last Price </th>
+			<td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.lastPriceCalls}}
+			</td>
+		</ng-container>
 
-        <ng-container matColumnDef="thetaCalls">
-            <th mat-header-cell *matHeaderCellDef> Theta </th>
-            <td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.thetaCalls}}
-            </td>
-        </ng-container>
+		<ng-container matColumnDef="thetaCalls">
+			<th mat-header-cell *matHeaderCellDef> Theta </th>
+			<td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.thetaCalls}}
+			</td>
+		</ng-container>
 
-        <ng-container matColumnDef="bidCalls">
-            <th mat-header-cell *matHeaderCellDef> Bid </th>
-            <td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.bidCalls}} </td>
-        </ng-container>
+		<ng-container matColumnDef="bidCalls">
+			<th mat-header-cell *matHeaderCellDef> Bid </th>
+			<td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.bidCalls}} </td>
+		</ng-container>
 
-        <ng-container matColumnDef="askCalls">
-            <th mat-header-cell *matHeaderCellDef> Ask </th>
-            <td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.askCalls}} </td>
-        </ng-container>
+		<ng-container matColumnDef="askCalls">
+			<th mat-header-cell *matHeaderCellDef> Ask </th>
+			<td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.askCalls}} </td>
+		</ng-container>
 
-        <ng-container matColumnDef="volumeCalls">
-            <th mat-header-cell *matHeaderCellDef> Volume </th>
-            <td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.volumeCalls}}
-            </td>
-        </ng-container>
+		<ng-container matColumnDef="volumeCalls">
+			<th mat-header-cell *matHeaderCellDef> Volume </th>
+			<td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.volumeCalls}}
+			</td>
+		</ng-container>
 
-        <ng-container matColumnDef="openInterestCalls">
-            <th mat-header-cell *matHeaderCellDef> Open Interest </th>
-            <td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)">
-                {{element.openInterestCalls}}
-            </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="strike">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Strike </th>
-            <td mat-cell class="strike" *matCellDef="let element" (dblclick)="findOptionById(element)">
-                {{element.strike}}
-            </td>
-        </ng-container>
+		<ng-container matColumnDef="openInterestCalls">
+			<th mat-header-cell *matHeaderCellDef> Open Interest </th>
+			<td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)">
+				{{element.openInterestCalls}}
+			</td>
+		</ng-container>
 
 
-        <ng-container matColumnDef="lastPricePuts">
-            <th mat-header-cell *matHeaderCellDef> Last Price </th>
-            <td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.lastPricePuts}}
-            </td>
-        </ng-container>
-
-        <ng-container matColumnDef="thetaPuts">
-            <th mat-header-cell *matHeaderCellDef> Theta </th>
-            <td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.thetaPuts}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="bidPuts">
-            <th mat-header-cell *matHeaderCellDef> Bid </th>
-            <td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.bidPuts}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="askPuts">
-            <th mat-header-cell *matHeaderCellDef> Ask </th>
-            <td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.askPuts}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="volumePuts">
-            <th mat-header-cell *matHeaderCellDef> Volume </th>
-            <td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.volumePuts}}
-            </td>
-        </ng-container>
-
-        <ng-container matColumnDef="openInterestPuts">
-            <th mat-header-cell *matHeaderCellDef> Open Interest </th>
-            <td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)">
-                {{element.openInterestPuts}}
-            </td>
-        </ng-container>
+		<ng-container matColumnDef="strike">
+			<th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Strike </th>
+			<td mat-cell class="strike" *matCellDef="let element" (dblclick)="findOptionById(element)">
+				{{element.strike}}
+			</td>
+		</ng-container>
 
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+		<ng-container matColumnDef="lastPricePuts">
+			<th mat-header-cell *matHeaderCellDef> Last Price </th>
+			<td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.lastPricePuts}}
+			</td>
+		</ng-container>
 
-    </table>
+		<ng-container matColumnDef="thetaPuts">
+			<th mat-header-cell *matHeaderCellDef> Theta </th>
+			<td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.thetaPuts}} </td>
+		</ng-container>
+
+		<ng-container matColumnDef="bidPuts">
+			<th mat-header-cell *matHeaderCellDef> Bid </th>
+			<td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.bidPuts}} </td>
+		</ng-container>
+
+		<ng-container matColumnDef="askPuts">
+			<th mat-header-cell *matHeaderCellDef> Ask </th>
+			<td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.askPuts}} </td>
+		</ng-container>
+
+		<ng-container matColumnDef="volumePuts">
+			<th mat-header-cell *matHeaderCellDef> Volume </th>
+			<td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)"> {{element.volumePuts}}
+			</td>
+		</ng-container>
+
+		<ng-container matColumnDef="openInterestPuts">
+			<th mat-header-cell *matHeaderCellDef> Open Interest </th>
+			<td mat-cell *matCellDef="let element" (dblclick)="findOptionById(element)">
+				{{element.openInterestPuts}}
+			</td>
+		</ng-container>
+
+
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+	</table>
 </div>
