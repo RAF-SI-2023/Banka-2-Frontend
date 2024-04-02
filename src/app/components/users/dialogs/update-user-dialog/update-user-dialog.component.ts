@@ -10,11 +10,11 @@ import { throwError } from 'rxjs';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
-	selector: 'app-update-dialog',
-	templateUrl: './update-dialog.component.html',
-	styleUrls: ['./update-dialog.component.css'],
+	selector: 'app-update-user-dialog',
+	templateUrl: './update-user-dialog.component.html',
+	styleUrls: ['./update-user-dialog.component.css'],
 })
-export class UpdateDialogComponent {
+export class UpdateUserDialogComponent {
 	newSelectedRow = { ...this.data.selectedRow };
 
 	constructor(

@@ -35,6 +35,7 @@ export class ForeignFormComponent {
 			this.bankService.postCreateForeignAccount(account).subscribe(
 				response => {
 					console.log(response);
+					this.foreignBankAccountForm.reset();
 				},
 				error => {
 					console.log(error);

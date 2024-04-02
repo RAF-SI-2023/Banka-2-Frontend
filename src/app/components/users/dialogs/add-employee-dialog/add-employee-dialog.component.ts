@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { IamService } from 'src/app/services/iam.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { IamService } from 'src/app/services/iam.service';
 import { EmployeeDto } from 'src/app/dtos/employee-dto';
 
 @Component({
-	selector: 'app-add-dialog',
-	templateUrl: './add-dialog.component.html',
-	styleUrls: ['./add-dialog.component.css'],
+	selector: 'app-add-employee-dialog',
+	templateUrl: './add-employee-dialog.component.html',
+	styleUrls: ['./add-employee-dialog.component.css'],
 })
-export class AddDialogComponent {
+export class AddEmployeeDialogComponent {
 	email: string = '';
 	name: string = '';
 	surname: string = '';

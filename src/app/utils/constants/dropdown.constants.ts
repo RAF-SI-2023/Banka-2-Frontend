@@ -25,6 +25,7 @@ export const DropdownOptions = {
 	accountType: [
 		{ label: 'Dinarski', value: 'DINARSKI' },
 		{ label: 'Devizni', value: 'DEVIZNI' },
+		{ label: 'Poslovni', value: 'POSLOVNI'},
 	],
 	bankProfileType: [
 		{ label: 'Fizičko lice', value: 'PRIVATE' },

@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>
+	Informacije
+</h2>
+<mat-dialog-content class="mat-typography size">
+	<div *ngIf="!isLoading" class="full-width-grid">
+		<div class="info-row">
+			<span class="label">Ime Firme:</span>
+			<span>{{ this.newSelectedRow.companyName }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Broj faksa:</span>
+			<span>{{ this.newSelectedRow.faxNumber }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Broj telefona:</span>
+			<span>{{ this.newSelectedRow.phoneNumber }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">PIB:</span>
+			<span>{{ this.newSelectedRow.pib }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Broj registra:</span>
+			<span>{{ this.newSelectedRow.registryNumber }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Identifikacioni broj:</span>
+			<span>{{ this.newSelectedRow.identificationNumber }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Kod delatnosti:</span>
+			<span>{{ this.newSelectedRow.activityCode }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Adresa:</span>
+			<span>{{ this.newSelectedRow.address }}</span>
+		</div>
+	</div>
+
+	<div *ngIf="isLoading" class="spinner-container">
+		<mat-progress-spinner diameter="50" mode="indeterminate"></mat-progress-spinner>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-raised-button mat-dialog-close color="warn">
+		Zatvori
+	</button>
+</mat-dialog-actions>

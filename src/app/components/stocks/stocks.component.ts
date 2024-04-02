@@ -8,6 +8,10 @@ import { StockService } from 'src/app/services/stock.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { UserDto } from '../../dtos/user-dto';
+import { UserInfoDialogComponent } from '../users/dialogs/user-info-dialog/user-info-dialog.component';
+import { StockInfoDialogComponent } from './dialogs/stock-info-dialog/stock-info-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
 	selector: 'stocks',
@@ -38,6 +42,7 @@ export class StocksComponent implements AfterViewInit {
 		private http: HttpClient,
 		private authService: AuthService,
 		private stockService: StockService,
+		public dialog: MatDialog,
 	) {
 		this.dataSource = new MatTableDataSource();
 		this.fetchAllData();
@@ -60,6 +65,14 @@ export class StocksComponent implements AfterViewInit {
 	selectRow(row: StockDto): void {
 		if (this.selectedRow?.symbol != row.symbol) {
 			this.selectedRow = row;
+		}
+	}
+
+	viewStock(row: StockDto): void {
+		if (this.selectedRow != null) {
+			const dialogRef = this.dialog.open(StockInfoDialogComponent, {
+				data: { selectedRow: row },
+			});
 		}
 	}
 

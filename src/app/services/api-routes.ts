@@ -39,5 +39,30 @@ export const ApiRoutes = {
 		findById: '/forex/id/',
 		findByBaseCurrency: '/forex/base-currency',
 		findByQuoteCurrency: '/forex/quote-currency'
-	}
+	},
+	companies: {
+		updateCompany: '/companies/update',
+		createCompany: '/companies/create',
+		findByPib: '/companies/pib',
+		findByIdentificationNumber: '/companies/identificationNumber',
+		findById: '/companies/id',
+		findAll: '/companies/all',
+		deleteByIdentificationNumber: 'companies/delete/identificationNumber',
+		deleteById: '/companies/delete/id'
+	},
+	exchange: {
+		findAll: '/exchange/all',
+		findById: '/exchange/id',
+		findBySymbol: '/exchange/stockSymbol',
+		findByMICode: '/exchange/miCode',
+	},
+	currency: {
+		findAll: '/currency/all',
+		findById: '/currency/id',
+		findByCode: '/currency/code',
+		findInflationByCurrencyId: '/currency/inflation/currency-id',
+
+		// TODO: zavisi od beka kako odluci da realizuje ovo
+		findInflationByCurrencyIdAndYear: '/currency/inflation/currency-id/year',
+	},
 };

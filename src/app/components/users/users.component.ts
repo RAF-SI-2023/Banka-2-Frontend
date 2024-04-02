@@ -10,9 +10,11 @@ import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { IamService } from 'src/app/services/iam.service';
 import { MatDialog } from '@angular/material/dialog';
-import { UpdateDialogComponent } from './dialogs/update-dialog/update-dialog.component';
-import { AddDialogComponent } from './dialogs/add-dialog/add-dialog.component';
+import { UpdateUserDialogComponent } from './dialogs/update-user-dialog/update-user-dialog.component';
+import { AddEmployeeDialogComponent } from './dialogs/add-employee-dialog/add-employee-dialog.component';
 import { EmployeeDto } from 'src/app/dtos/employee-dto';
+import { AddAgentDialogComponent } from './dialogs/add-agent-dialog/add-agent-dialog.component';
+import { UserInfoDialogComponent } from "./dialogs/user-info-dialog/user-info-dialog.component";
 
 @Component({
 	selector: 'app-users',
@@ -155,7 +157,7 @@ export class UsersComponent implements AfterViewInit {
 	}
 
 	addUser(): void {
-		const dialogRef = this.dialog.open(AddDialogComponent);
+		const dialogRef = this.dialog.open(AddEmployeeDialogComponent);
 
 		dialogRef.afterClosed().subscribe(result => {
 			console.log(`Dialog result: ${result}`);
@@ -166,7 +168,7 @@ export class UsersComponent implements AfterViewInit {
 
 	updateUser(): void {
 		if (this.selectedRow != null) {
-			const dialogRef = this.dialog.open(UpdateDialogComponent, {
+			const dialogRef = this.dialog.open(UpdateUserDialogComponent, {
 				data: { selectedRow: this.selectedRow },
 			});
 
@@ -174,6 +176,14 @@ export class UsersComponent implements AfterViewInit {
 				console.log(`Dialog result: ${result}`);
 				this.selectedRow = null;
 				this.fetchAllData();
+			});
+		}
+	}
+
+	viewUser(row: UserDto): void {
+		if (this.selectedRow != null) {
+			const dialogRef = this.dialog.open(UserInfoDialogComponent, {
+				data: { selectedRow: row },
 			});
 		}
 	}
@@ -193,5 +203,14 @@ export class UsersComponent implements AfterViewInit {
 					this.fetchAllData();
 				});
 		}
+	}
+	openAddAgentDialog(): void {
+		const dialogRef = this.dialog.open(AddAgentDialogComponent, {
+			width: '400px'
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+			console.log('Dialog closed', result);
+		});
 	}
 }

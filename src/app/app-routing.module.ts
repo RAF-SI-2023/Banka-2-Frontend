@@ -16,6 +16,7 @@ import { StocksComponent } from './components/stocks/stocks.component';
 import { CurrencyExchangeComponent } from './components/currency-exchange/currency-exchange.component';
 import { OptionsComponent } from './components/options/options.component';
 import { ForexComponent } from './components/forex/forex.component';
+import { CompaniesComponent } from './components/companies/companies.component';
 
 const routes: Routes = [
 	{
@@ -54,6 +55,11 @@ const routes: Routes = [
 		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
 	},
 	{
+		component: CompaniesComponent,
+		path: 'companies',
+		canActivate: [authGuard],
+	},
+	{
 		component: StocksComponent,
 		path: 'stocks',
 		canActivate: [authGuard],
@@ -61,6 +67,7 @@ const routes: Routes = [
 	{
 		component: CurrencyExchangeComponent,
 		path: 'currency-exchange',
+		canActivate: [authGuard],
 	},
 	{
 		component: ForexComponent,
@@ -70,6 +77,7 @@ const routes: Routes = [
 	{
 		component: OptionsComponent,
 		path: 'options',
+		canActivate: [authGuard],
 	},
 ];
 

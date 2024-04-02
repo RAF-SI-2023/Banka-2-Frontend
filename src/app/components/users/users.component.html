@@ -32,6 +32,8 @@
 					[disabled]="!selectedRow || updateUserDisabled()">
 					Izbriši korisnika
 				</button>
+				<button mat-raised-button color="primary" (click)="openAddAgentDialog()">Dodaj Agenta</button>
+
 			</div>
 		</mat-card-header>
 
@@ -116,7 +118,8 @@
 						</ng-container>
 
 						<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-						<tr mat-row (click)="selectRow(row)" [class.row-selected]="this.selectedRow?.id === row.id"
+						<tr mat-row (click)="selectRow(row)" (dblclick)="viewUser(row)"
+							[class.row-selected]="this.selectedRow?.id === row.id"
 							*matRowDef="let row; columns: displayedColumns">
 						</tr>
 

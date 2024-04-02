@@ -1,0 +1,46 @@
+.table {
+	display: flex;
+	justify-content: center;
+}
+
+.mat-table {
+	width: 40%;
+}
+
+.strike {
+	background-color: #ffe082;
+}
+
+.container {
+	display: flex;
+	margin-top: 20px;
+}
+
+.leftDiv {
+	float: left;
+	margin-bottom: 30px;
+}
+
+.rightDiv {
+	margin-bottom: 30px;
+	margin-left: 50px;
+}
+
+.headers {
+	display: flex;
+	justify-content: space-between;
+}
+
+.header {
+	flex: 1;
+	display: flex;
+}
+
+.callsH {
+	margin-left: 40%;
+}
+
+.putsH {
+	margin-left: 40%;
+	color: white;
+}

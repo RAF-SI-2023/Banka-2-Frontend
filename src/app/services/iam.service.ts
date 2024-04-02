@@ -8,6 +8,8 @@ import { CorporateClientDto } from '../dtos/corporate-client-dto';
 import { PrivateClientRequestDto } from '../dtos/private-client-request.dto';
 import { CorporateClientRequestDto } from '../dtos/corporate-client-request-dto';
 import { EmployeeDto } from '../dtos/employee-dto';
+import { AgentDto } from '../dtos/agent-dto';
+import { CompanyDto } from '../dtos/company-dto';
 import { AuthCredentialsDto } from '../dtos/auth-credentials-dto';
 import { PasswordChangeTokenDto } from '../dtos/password-change-token-dto';
 
@@ -15,7 +17,7 @@ import { PasswordChangeTokenDto } from '../dtos/password-change-token-dto';
 	providedIn: 'root',
 })
 export class IamService {
-	constructor(private httpClient: HttpClient) {}
+	constructor(private httpClient: HttpClient) { }
 
 	// UserController
 	/// GET
@@ -69,6 +71,14 @@ export class IamService {
 		);
 	}
 
+	postCreateAgent(agentDto: AgentDto) {
+		return this.httpClient.post<AgentDto>(
+			`${environment.iamServiceApiUrl}${ApiRoutes.users.createAgent}`,
+			agentDto
+		);
+
+	}
+
 	/// PUT
 	putUpdateEmployee(user: UserDto) {
 		return this.httpClient.put<UserDto[]>(
@@ -87,7 +97,7 @@ export class IamService {
 	putUpdateCorporateClient(user: UserDto) {
 		return this.httpClient.put<UserDto[]>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.users.updateCorporateClient,
+			ApiRoutes.users.updateCorporateClient,
 			user,
 		);
 	}
@@ -95,8 +105,8 @@ export class IamService {
 	putActivateEmployee(id: number) {
 		return this.httpClient.put<UserDto[]>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.users.activateEmployee +
-				`/${id}`,
+			ApiRoutes.users.activateEmployee +
+			`/${id}`,
 			{},
 		);
 	}
@@ -104,8 +114,8 @@ export class IamService {
 	putDeactivateEmployee(id: number) {
 		return this.httpClient.put<UserDto[]>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.users.deactivateEmployee +
-				`/${id}`,
+			ApiRoutes.users.deactivateEmployee +
+			`/${id}`,
 			{},
 		);
 	}
@@ -114,6 +124,62 @@ export class IamService {
 	delete(email: string) {
 		return this.httpClient.delete<UserDto[]>(
 			environment.iamServiceApiUrl + ApiRoutes.users.delete + `/${email}`,
+		);
+	}
+
+  // CompanyController
+	/// GET
+	getFindAllCompanies() {
+		return this.httpClient.get<CompanyDto[]>(
+			environment.iamServiceApiUrl + ApiRoutes.companies.findAll,
+		);
+	}
+	
+	getFindCompanyById(id:number) {
+		return this.httpClient.get<CompanyDto>(
+			environment.iamServiceApiUrl + ApiRoutes.companies.findById+ '/' + id,
+		);
+	}
+
+	getFindCompanyByIdentificationNumber() {
+		return this.httpClient.get<CompanyDto>(
+			environment.iamServiceApiUrl + ApiRoutes.companies.findByIdentificationNumber,
+		);
+	}
+
+	getFindCompanyByPib() {
+		return this.httpClient.get<CompanyDto>(
+			environment.iamServiceApiUrl + ApiRoutes.companies.findByPib,
+		);
+	}
+
+	///POST
+	postCreateCompany(company: CompanyDto) {
+		return this.httpClient.post<CompanyDto>(
+			environment.iamServiceApiUrl + ApiRoutes.companies.createCompany,
+			company,
+		);
+	}
+  
+	///PUT
+	putUpdateCompany(company: CompanyDto) {
+		return this.httpClient.put<CompanyDto>(
+			environment.iamServiceApiUrl +
+				ApiRoutes.companies.updateCompany,
+				company,
+		);
+	}
+
+	///DELETE
+	deleteCompanyById(id: number) {
+		this.httpClient.delete(
+			environment.iamServiceApiUrl + ApiRoutes.companies.deleteById + `/${id}`,
+		);
+	}
+
+	deleteCompanyByIdentificationNumber(identificationNumber: any) {
+		this.httpClient.delete(
+			environment.iamServiceApiUrl + ApiRoutes.companies.deleteByIdentificationNumber + `/${identificationNumber}`,
 		);
 	}
 }
