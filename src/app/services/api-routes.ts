@@ -34,7 +34,7 @@ export const ApiRoutes = {
 		findById: '/stock/id',
 		findBySymbol: '/stock/stockSymbol',
 	},
-	companies:{
+	companies: {
 		updateCompany: '/companies/update',
 		createCompany: '/companies/create',
 		findByPib: '/companies/pib',

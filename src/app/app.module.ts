@@ -11,6 +11,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
 import { UsersComponent } from './components/users/users.component';
 import { AddDialogComponent } from './components/users/dialogs/add-dialog/add-dialog.component';
+import { AddAgentDialogComponent } from './components/users/dialogs/add-agent-dialog/add-agent-dialog.component';
 import { UpdateDialogComponent } from './components/users/dialogs/update-dialog/update-dialog.component';
 import { CreateBankAccountComponent } from './components/create-bank-account/create-bank-account.component';
 import { NavigationMenuComponent } from './components/navigation-menu/navigation-menu.component';
@@ -20,6 +21,11 @@ import { StocksComponent } from './components/stocks/stocks.component';
 import { CurrencyExchangeComponent } from './components/currency-exchange/currency-exchange.component';
 import { ForexComponent } from './components/forex/forex.component';
 import { OptionsComponent } from './components/options/options.component';
+import { InfoDialogComponent } from './components/users/dialogs/info-dialog/info-dialog.component';
+import { StockInfoDialogComponent } from './components/stocks/dialogs/stock-info-dialog/stock-info-dialog.component';
+import { CompaniesComponent } from './components/companies/companies.component';
+import { SingleCompanyDialogComponent } from './components/companies/dialogs/single-company-dialog/single-company-dialog.component';
+import { CompanyFormComponent } from './components/create-bank-account/company-form/company-form.component';
 /// DIRECTIVES/PIPES
 import { PhoneNumberValidatorDirective } from './directives/phone-number-validator.directive';
 import { NoPasteDirective } from './directives/no-paste.directive';
@@ -53,16 +59,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 // PROVIDERS
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
-import { InfoDialogComponent } from './components/users/dialogs/info-dialog/info-dialog.component';
-import { StockInfoDialogComponent } from './components/stocks/dialogs/stock-info-dialog/stock-info-dialog.component';
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import { CompaniesComponent } from './components/companies/companies.component';
-import { SingleCompanyDialogComponent } from './components/companies/dialogs/single-company-dialog/single-company-dialog.component';
-import { CompanyFormComponent } from './components/create-bank-account/company-form/company-form.component';
 
 @NgModule({
 	declarations: [
@@ -137,4 +138,4 @@ import { CompanyFormComponent } from './components/create-bank-account/company-f
 	],
 	bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
