@@ -13,11 +13,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { UpdateDialogComponent } from './dialogs/update-dialog/update-dialog.component';
 import { AddDialogComponent } from './dialogs/add-dialog/add-dialog.component';
 import { EmployeeDto } from 'src/app/dtos/employee-dto';
-<<<<<<< HEAD
+import { InfoDialogComponent } from "./dialogs/info-dialog/info-dialog.component";
 import { AddAgentDialogComponent } from './dialogs/add-agent-dialog/add-agent-dialog.component';
-=======
-import {InfoDialogComponent} from "./dialogs/info-dialog/info-dialog.component";
->>>>>>> 7757377e71547c4d8eb573e2c8cc2939344e413e
 
 @Component({
 	selector: 'app-users',
@@ -216,5 +213,4 @@ export class UsersComponent implements AfterViewInit {
 			console.log('Dialog closed', result);
 		});
 	}
-
 }

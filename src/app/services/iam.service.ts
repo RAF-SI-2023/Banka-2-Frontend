@@ -8,10 +8,10 @@ import { CorporateClientDto } from '../dtos/corporate-client-dto';
 import { PrivateClientRequestDto } from '../dtos/private-client-request.dto';
 import { CorporateClientRequestDto } from '../dtos/corporate-client-request-dto';
 import { EmployeeDto } from '../dtos/employee-dto';
-import { AuthCredentialsDto } from '../dtos/auth-credentials-dto';
-import { PasswordChangeTokenDto } from '../dtos/password-change-token-dto';
 import { AgentDto } from '../dtos/agent-dto';
 import { CompanyDto } from '../dtos/company-dto';
+import { AuthCredentialsDto } from '../dtos/auth-credentials-dto';
+import { PasswordChangeTokenDto } from '../dtos/password-change-token-dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -127,21 +127,17 @@ export class IamService {
 		);
 	}
 
-	///////////////////
-	//COMPANY CONTROLER
-	///////////////////
-
-
+  // CompanyController
 	/// GET
 	getFindAllCompanies() {
 		return this.httpClient.get<CompanyDto[]>(
 			environment.iamServiceApiUrl + ApiRoutes.companies.findAll,
 		);
 	}
-
-	getFindCompanyById(id: number) {
+	
+	getFindCompanyById(id:number) {
 		return this.httpClient.get<CompanyDto>(
-			environment.iamServiceApiUrl + ApiRoutes.companies.findById + '/' + id,
+			environment.iamServiceApiUrl + ApiRoutes.companies.findById+ '/' + id,
 		);
 	}
 
@@ -164,12 +160,13 @@ export class IamService {
 			company,
 		);
 	}
+  
 	///PUT
 	putUpdateCompany(company: CompanyDto) {
 		return this.httpClient.put<CompanyDto>(
 			environment.iamServiceApiUrl +
-			ApiRoutes.companies.updateCompany,
-			company,
+				ApiRoutes.companies.updateCompany,
+				company,
 		);
 	}
 
