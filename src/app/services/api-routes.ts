@@ -34,6 +34,12 @@ export const ApiRoutes = {
 		findById: '/stock/id',
 		findBySymbol: '/stock/stockSymbol',
 	},
+	forex: {
+		findAll: '/forex/all',
+		findById: '/forex/id/',
+		findByBaseCurrency: '/forex/base-currency',
+		findByQuoteCurrency: '/forex/quote-currency'
+	},
 	companies: {
 		updateCompany: '/companies/update',
 		createCompany: '/companies/create',
