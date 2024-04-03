@@ -5,8 +5,9 @@
 	<div *ngIf="!isLoading" class="full-width">
 		<div class="info-row">
 			<span class="label">Datum rođenja:</span>
-			<span>{{ this.newSelectedRow.dateOfBirth }}</span>
+			<span>{{ newSelectedRow.dateOfBirth !== '-' ? (newSelectedRow.dateOfBirth | date: 'dd/MM/yyyy') : "-" }}</span>
 		</div>
+
 		<div class="info-row">
 			<span class="label">Broj telefona:</span>
 			<span>{{ this.newSelectedRow.phone }}</span>

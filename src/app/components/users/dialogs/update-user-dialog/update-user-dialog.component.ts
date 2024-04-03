@@ -37,9 +37,11 @@ export class UpdateUserDialogComponent {
 
 	updateUser(): void {
 		if (this.newSelectedRow != null) {
-			this.newSelectedRow.dateOfBirth = Number(
-				this.newSelectedRow.dateOfBirth.toString(),
-			);
+			if(this.newSelectedRow.dateOfBirth != null) {
+				this.newSelectedRow.dateOfBirth = Number(
+					this.newSelectedRow.dateOfBirth.toString(),
+				);
+			}
 			if (this.checkDto() == 'PRIVATE') {
 				this.iamService
 					.putUpdatePrivateClient(this.newSelectedRow)
