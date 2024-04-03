@@ -26,6 +26,8 @@ import { UserInfoDialogComponent } from './components/users/dialogs/user-info-di
 import { StockInfoDialogComponent } from './components/stocks/dialogs/stock-info-dialog/stock-info-dialog.component';
 import { CompaniesComponent } from './components/companies/companies.component';
 import { CompanyInfoDialogComponent } from './components/companies/dialogs/company-info-dialog/company-info-dialog.component';
+import { CurrencyInfoDialogComponent } from './components/currency-exchange/dialogs/currency-info-dialog/currency-info-dialog.component';
+import { ExchangeInfoDialogComponent } from './components/currency-exchange/dialogs/exchange-info-dialog/exchange-info-dialog.component';
 /// DIRECTIVES/PIPES
 import { PhoneNumberValidatorDirective } from './directives/phone-number-validator.directive';
 import { NoPasteDirective } from './directives/no-paste.directive';
@@ -60,10 +62,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { HighchartsChartModule } from 'highcharts-angular';
 // PROVIDERS
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
+
 
 @NgModule({
 	declarations: [
@@ -96,6 +99,8 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 		StockInfoDialogComponent,
 		CompaniesComponent,
 		CompanyInfoDialogComponent,
+	  	CurrencyInfoDialogComponent,
+  		ExchangeInfoDialogComponent,
 	],
 	imports: [
 		HttpClientModule,
@@ -126,6 +131,7 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 		MatNativeDateModule,
 		MatListModule,
 		MatProgressSpinnerModule,
+		HighchartsChartModule
 	],
 	providers: [
 		{

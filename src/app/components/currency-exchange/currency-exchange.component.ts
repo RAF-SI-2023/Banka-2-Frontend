@@ -10,6 +10,9 @@ import { CurrencyDto } from '../../dtos/currency-dto';
 import { CurrencyService } from '../../services/currency.service';
 import { ExchangeService } from '../../services/exchange.service';
 import { ExchangeDto } from '../../dtos/exchange-dto';
+import { CurrencyInfoDialogComponent } from './dialogs/currency-info-dialog/currency-info-dialog.component';
+import { ExchangeInfoDialogComponent } from './dialogs/exchange-info-dialog/exchange-info-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
 	selector: 'currency-exchange',
@@ -52,6 +55,7 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 		private authService: AuthService,
 		private currencyService: CurrencyService,
 		private exchangeService: ExchangeService,
+		public dialog: MatDialog,
 	) {
 		this.currencyDataSource = new MatTableDataSource();
 		this.exchangeDataSource = new MatTableDataSource();
@@ -67,7 +71,7 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 		if (this.exchangeSort) this.exchangeDataSource.sort = this.exchangeSort;
 	}
 
-	applyFilter(event: Event) {
+	applyFilterForCurrency(event: Event) {
 		const filterValue = (event.target as HTMLInputElement).value;
 		this.currencyDataSource.filter = filterValue.trim().toLowerCase();
 
@@ -75,13 +79,24 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 			this.currencyDataSource.paginator.firstPage();
 		}
 	}
+	applyFilterForExchange(event: Event) {
+		const filterValue = (event.target as HTMLInputElement).value;
+		this.exchangeDataSource.filter = filterValue.trim().toLowerCase();
 
-	selectRow(row: CurrencyDto): void {
-		if (this.currencySelectedRow?.currencyCode != row.currencyCode) {
+		if (this.exchangeDataSource.paginator) {
+			this.exchangeDataSource.paginator.firstPage();
+		}
+	}
+	selectCurrencyRow(row: CurrencyDto): void {
+		if (this.currencySelectedRow?.currencySymbol != row.currencySymbol) {
 			this.currencySelectedRow = row;
 		}
 	}
-
+	selectExchangeRow(row: ExchangeDto): void {
+		if (this.exchangeSelectedRow?.exchangeMICode != row.exchangeMICode) {
+			this.exchangeSelectedRow = row;
+		}
+	}
 	fetchAllData(): void {
 		this.currencyService
 			.getFindAll()
@@ -111,4 +126,20 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 			)
 			.subscribe();
 	}
+
+	viewCurrency(row: CurrencyDto): void {
+		if (this.currencySelectedRow != null) {
+			const dialogRef = this.dialog.open(CurrencyInfoDialogComponent, {
+				data: { selectedRow: row },
+			});
+		}
+	}
+	viewExchange(row: ExchangeDto): void {
+		if (this.exchangeSelectedRow != null) {
+			const dialogRef = this.dialog.open(ExchangeInfoDialogComponent, {
+				data: { selectedRow: row },
+			});
+		}
+	}
+	
 }

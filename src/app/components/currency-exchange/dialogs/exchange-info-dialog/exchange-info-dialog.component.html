@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>
+	Informacije
+</h2>
+<mat-dialog-content class="mat-typography size">
+	<div *ngIf="!isLoading" class="full-width-grid">
+		<div class="info-row">
+			<span class="label">Naziv: </span>
+			<span>{{ this.newSelectedRow.exchangeName }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Akronim: </span>
+			<span>{{ this.newSelectedRow.exchangeAcronym }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">MIC kod: </span>
+			<span>{{ this.newSelectedRow.exchangeMICode }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Politički entitet: </span>
+			<span>{{ this.newSelectedRow.polity }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Valuta: </span>
+			<span>{{ this.newSelectedRow.currency }}</span>
+		</div>
+        <div class="info-row">
+			<span class="label">Vremenska zona: </span>
+			<span>{{ this.newSelectedRow.timeZone }}</span>
+		</div>
+
+	</div>
+
+	<div *ngIf="isLoading" class="spinner-container">
+		<mat-progress-spinner diameter="50" mode="indeterminate"></mat-progress-spinner>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-raised-button mat-dialog-close color="warn">
+		Zatvori
+	</button>
+</mat-dialog-actions>
