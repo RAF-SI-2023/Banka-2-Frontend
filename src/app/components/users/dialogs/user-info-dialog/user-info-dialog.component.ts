@@ -4,11 +4,12 @@ import {IamService} from "../../../../services/iam.service";
 import {isPrivateClientDto} from "../../../../dtos/private-client-dto";
 import {isCorporateClientDto} from "../../../../dtos/corporate-client-dto";
 import {isEmployeeDto} from "../../../../dtos/employee-dto";
+import {DatePipe, formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-user-info-dialog',
   templateUrl: './user-info-dialog.component.html',
-  styleUrls: ['./user-info-dialog.component.css']
+  styleUrls: ['./user-info-dialog.component.css'],
 })
 export class UserInfoDialogComponent {
 	newSelectedRow = { ...this.data.selectedRow };
@@ -51,4 +52,7 @@ export class UserInfoDialogComponent {
 	}
 
 	protected readonly isPrivateClientDto = isPrivateClientDto;
+	protected readonly Date = Date;
+	protected readonly DatePipe = DatePipe;
+	protected readonly formatDate = formatDate;
 }
