@@ -80,7 +80,26 @@
 <!--		Konvertuj-->
 <!--	</button>-->
 <!--</div>-->
-
+<mat-card-header>
+	<div class="form-container">
+	  <div class="form">
+		<mat-form-field class="full-width">
+		  <mat-label>
+			Pretraži levo
+		  </mat-label>
+		  <input #inputLeft (keyup)="applyFilterForCurrency($event)" matInput />
+		</mat-form-field>
+	  </div>
+	  <div class="form">
+		<mat-form-field class="full-width">
+		  <mat-label>
+			Pretraži desno
+		  </mat-label>
+		  <input #inputRight (keyup)="applyFilterForExchange($event)" matInput />
+		</mat-form-field>
+	  </div>
+	</div>
+  </mat-card-header>
 <div class="tableContainer">
 	<div class="table">
 		<table mat-table [dataSource]="currencyDataSource" class="tableData mat-elevation-z8">
@@ -123,9 +142,11 @@
 					{{ element.currencyPolity }}
 				</td>
 			</ng-container>
-
-			<tr mat-header-row *matHeaderRowDef="currencyDisplayedColumns"></tr>
-			<tr mat-row *matRowDef="let row; columns: currencyDisplayedColumns;"></tr>
+			
+			<tr *matHeaderRowDef="currencyDisplayedColumns" mat-header-row></tr>
+				<tr mat-row (click)="selectCurrencyRow(row)" (dblclick)="viewCurrency(row)"
+				[class.row-selected]="this.currencySelectedRow?.currencyCode === row.currencyCode"
+				*matRowDef="let row; columns: currencyDisplayedColumns"></tr>
 
 		</table>
 		<div class="paginatorContainer">
@@ -196,9 +217,11 @@
 					{{ 'UTC ' + (element.timeZone > 0 ? '+ ' + element.timeZone  : '- ' + element.timeZone*(-1) ) }}
 				</td>
 			</ng-container>
-
-			<tr mat-header-row *matHeaderRowDef="exchangeDisplayedColumns"></tr>
-			<tr mat-row *matRowDef="let row; columns: exchangeDisplayedColumns;"></tr>
+			
+			<tr *matHeaderRowDef="exchangeDisplayedColumns" mat-header-row></tr>
+			<tr mat-row (click)="selectExchangeRow(row)" (dblclick)="viewExchange(row)"
+			[class.row-selected]="this.exchangeSelectedRow?.exchangeMICode === row.exchangeMICode"
+			*matRowDef="let row; columns: exchangeDisplayedColumns"></tr>
 
 		</table>
 		<div class="paginatorContainer">

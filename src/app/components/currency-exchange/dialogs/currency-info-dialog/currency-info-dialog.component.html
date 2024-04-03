@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>
+	Informacije
+</h2>
+<mat-dialog-content class="mat-typography size">
+	<div *ngIf="!isLoading" class="full-width-grid">
+		<div class="info-row">
+		  <span class="label">Naziv: </span>
+		  <span>{{ newSelectedRow.currencyName }}</span>
+		</div>
+		<div class="info-row">
+		  <span class="label">Šifra: </span>
+		  <span>{{ newSelectedRow.currencyCode }}</span>
+		</div>
+		<div class="info-row">
+		  <span class="label">Simbol: </span>
+		  <span>{{ newSelectedRow.currencySymbol }}</span>
+		</div>
+		<div class="info-row">
+		  <span class="label">Politički entitet: </span>
+		  <span>{{ newSelectedRow.currencyPolity }}</span>
+		</div>
+	  </div>
+	  <div class="inflation-grid">
+		<div class="info-row" *ngFor="let inflation of newSelectedRow.inflationList; let i = index">
+		  <span class="label">Year: </span>
+		  <span>{{ inflation.year }}</span>
+		  <span class="label">Inflation Rate: </span>
+		  <span>{{ inflation.inflationRate }}</span>
+		</div>
+	  </div>
+	<div *ngIf="isLoading" class="spinner-container">
+		<mat-progress-spinner diameter="50" mode="indeterminate"></mat-progress-spinner>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-raised-button mat-dialog-close color="warn">
+		Zatvori
+	</button>
+</mat-dialog-actions>

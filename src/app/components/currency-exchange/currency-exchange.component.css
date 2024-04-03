@@ -1,3 +1,23 @@
+
+.form-container {
+	display: flex;
+	width: 100%;
+  }
+  
+  .form {
+	flex: 1;
+	gap: 32px;
+
+	margin-right: 10px;
+  }
+  
+  .full-width {
+	width: 100%; /* Ensure the search fields stretch to full width */
+  }
+  .form:first-child {
+	margin-right: 32px; /* Add a gap of 32px between the search fields */
+  }
+  
 .example-form {
 	min-width: 150px;
 	margin-left: 95px;
