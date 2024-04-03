@@ -4,6 +4,9 @@ import { IamService } from '../../services/iam.service';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { AuthCredentialsDto } from 'src/app/dtos/auth-credentials-dto';
+import {FormBuilder, Validators} from "@angular/forms";
+import {emailValidator, passwordValidator} from "../../utils/validators";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
 	selector: 'app-password-change',
@@ -12,16 +15,27 @@ import { AuthCredentialsDto } from 'src/app/dtos/auth-credentials-dto';
 })
 export class PasswordChangeComponent {
 	passwordChange: AuthCredentialsDto = { email: '', password: '' };
-	newPassword: string = '';
-	confirmPassword: string = '';
+
+	changePasswordForm = this.fb.group({
+		newPassword: ['', [Validators.required, passwordValidator()]],
+		confirmPassword: ['', [Validators.required, passwordValidator()]],
+	});
 
 	constructor(
 		private iamService: IamService,
+		private fb: FormBuilder,
+		private matSnackBar: MatSnackBar,
 		public dialogRef: MatDialogRef<PasswordChangeComponent>,
 	) {}
 
-	submit(): void {
-		if (this.newPassword !== this.confirmPassword) {
+	onSubmit(): void {
+		//check if new password and confirm password are the same
+		if (this.changePasswordForm.value.newPassword !== this.changePasswordForm.value.confirmPassword) {
+			this.matSnackBar.open('Lozinke se ne poklapaju!', 'Close', {
+				duration: 5000,
+				horizontalPosition: 'center',
+				verticalPosition: 'top',
+			});
 			return;
 		}
 
@@ -32,29 +46,27 @@ export class PasswordChangeComponent {
 
 		this.passwordChange = {
 			email: email,
-			password: this.newPassword,
+			password: this.changePasswordForm.value.newPassword!,
 		};
 
 		this.iamService
 			.postPasswordChange(this.passwordChange)
-			.pipe(
-				catchError(error => {
-					console.error('Error loading data.', error);
-					return throwError(() => error);
-				}),
-			)
-			.subscribe(() => {
-				(result: any) => {
-					console.log(result);
-				};
-			});
-	}
-
-	formValid(): boolean {
-		return (
-			this.newPassword !== '' &&
-			this.confirmPassword !== '' &&
-			this.newPassword === this.confirmPassword
-		);
+			.subscribe(
+				() => {
+					this.matSnackBar.open('Lozinka uspešno promenjena!', 'Close', {
+						duration: 5000,
+						horizontalPosition: 'center',
+						verticalPosition: 'top',
+					});
+					this.dialogRef.close();
+				},
+				error => {
+					this.matSnackBar.open('Greška prilikom promene lozinke!', 'Close', {
+						duration: 5000,
+						horizontalPosition: 'center',
+						verticalPosition: 'top',
+					});
+				},
+			);
 	}
 }
