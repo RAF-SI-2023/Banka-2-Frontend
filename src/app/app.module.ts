@@ -62,7 +62,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { HighchartsChartModule } from 'highcharts-angular';
 // PROVIDERS
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
@@ -131,6 +131,7 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 		MatNativeDateModule,
 		MatListModule,
 		MatProgressSpinnerModule,
+		HighchartsChartModule
 	],
 	providers: [
 		{

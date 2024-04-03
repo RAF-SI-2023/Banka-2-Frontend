@@ -20,13 +20,19 @@
 		  <span>{{ newSelectedRow.currencyPolity }}</span>
 		</div>
 	  </div>
-	  <div class="inflation-grid">
+	  <!-- <div class="inflation-grid">
 		<div class="info-row" *ngFor="let inflation of newSelectedRow.inflationList; let i = index">
 		  <span class="label">Year: </span>
 		  <span>{{ inflation.year }}</span>
 		  <span class="label">Inflation Rate: </span>
 		  <span>{{ inflation.inflationRate }}</span>
 		</div>
+	  </div> -->
+	  <div style="height: 400px; width: 100%;">
+		<highcharts-chart *ngIf="chartLoading"
+		  [Highcharts]="Highcharts"
+		  [options]="chartOptions"
+		></highcharts-chart>
 	  </div>
 	<div *ngIf="isLoading" class="spinner-container">
 		<mat-progress-spinner diameter="50" mode="indeterminate"></mat-progress-spinner>
