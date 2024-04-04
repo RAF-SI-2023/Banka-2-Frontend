@@ -8,8 +8,6 @@ import { StockService } from 'src/app/services/stock.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { UserDto } from '../../dtos/user-dto';
-import { UserInfoDialogComponent } from '../users/dialogs/user-info-dialog/user-info-dialog.component';
 import { StockInfoDialogComponent } from './dialogs/stock-info-dialog/stock-info-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 

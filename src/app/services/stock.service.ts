@@ -4,6 +4,7 @@ import { ApiRoutes } from './api-routes';
 import { HttpClient } from '@angular/common/http';
 import { StockDto } from '../dtos/stock-dto';
 import { ForexDto } from '../dtos/forex-dto';
+import { OptionsDto } from '../dtos/Options-dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -68,6 +69,14 @@ export class StockService {
 				ApiRoutes.forex.findByQuoteCurrency +
 				'/' +
 				quoteCurrency,
+		);
+	}
+
+	// OptionsController
+	///GET
+	getFindAllOptionsByStockListing(stockListing: string){
+		return this.httpClient.get<OptionsDto[]>(
+			environment.stockServiceApiUrl + ApiRoutes.options.findAllOptionsByStockListing + '/' + stockListing,
 		);
 	}
 }

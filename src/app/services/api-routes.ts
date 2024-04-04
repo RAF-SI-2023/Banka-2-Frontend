@@ -34,6 +34,9 @@ export const ApiRoutes = {
 		findById: '/stock/id',
 		findBySymbol: '/stock/stockSymbol',
 	},
+	options:{
+		findAllOptionsByStockListing: '/options/stock-listing'
+	},
 	forex: {
 		findAll: '/forex/all',
 		findById: '/forex/id/',
