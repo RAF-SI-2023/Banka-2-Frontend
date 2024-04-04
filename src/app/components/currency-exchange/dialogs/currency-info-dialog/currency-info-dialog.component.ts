@@ -39,9 +39,9 @@ export class CurrencyInfoDialogComponent {
       this.fetchData();
     }
     fetchData() {
-      console.log(this.data.selectedRow.currencyName);
+      console.log(this.data.selectedRow.currencyCode);
       this.currencyService
-        .getFindByCurrencyCode(this.data.selectedRow.currencyName)
+        .getFindByCurrencyCode(this.data.selectedRow.currencyCode)
         .subscribe(response => {
           console.log(response);
           this.data.selectedRow = response;

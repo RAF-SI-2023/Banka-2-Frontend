@@ -76,7 +76,7 @@ const routes: Routes = [
 	},
 	{
 		component: OptionsComponent,
-		path: 'options',
+		path: 'options/:stockListing',
 		canActivate: [authGuard],
 	},
 ];
