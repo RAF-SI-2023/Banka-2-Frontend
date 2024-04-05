@@ -4,135 +4,253 @@
 			<div class="form">
 				<div>
 					<mat-form-field>
-						<mat-label>
-							Pretraži
-						</mat-label>
-						<input #input (keyup)="applyFilter($event)" matInput />
+						<mat-label> Pretraži </mat-label>
+						<input
+							#input
+							(keyup)="applyFilter($event)"
+							matInput
+						/>
 					</mat-form-field>
 				</div>
 
-				<button mat-raised-button class="buttons" color="accent"
-					[disabled]="!selectedRow || selectedRowRole() != 'EMPLOYEE' || this.activeUser?.role != 'ADMIN'"
-					(click)="selectedRowActive() ? deactivateEmployee() : activateEmployee()">
+				<button
+					mat-raised-button
+					class="buttons"
+					color="accent"
+					[disabled]="
+						!selectedRow ||
+						selectedRowRole() != 'EMPLOYEE' ||
+						this.activeUser?.role != 'ADMIN'
+					"
+					(click)="
+						selectedRowActive()
+							? deactivateEmployee()
+							: activateEmployee()
+					"
+				>
 					{{
-					selectedRowActive()
-					? "Deaktiviraj zaposlenog"
-					: "Aktiviraj zaposlenog"
+						selectedRowActive()
+							? 'Deaktiviraj zaposlenog'
+							: 'Aktiviraj zaposlenog'
 					}}
 				</button>
-				<button mat-raised-button class="buttons" color="accent" [disabled]="this.activeUser?.role != 'ADMIN'"
-					(click)="addUser()">
+				<button
+					mat-raised-button
+					class="buttons"
+					color="accent"
+					[disabled]="this.activeUser?.role != 'ADMIN'"
+					(click)="addUser()"
+				>
 					Dodaj zaposlenog
 				</button>
-				<button mat-raised-button class="buttons" color="accent" (click)="updateUser()"
-					[disabled]="!selectedRow || updateUserDisabled()">
+				<button
+					mat-raised-button
+					class="buttons"
+					color="accent"
+					(click)="updateUser()"
+					[disabled]="!selectedRow || updateUserDisabled()"
+				>
 					Izmeni korisnika
 				</button>
-				<button mat-raised-button class="buttons" color="warn" (click)="deleteUser()"
-					[disabled]="!selectedRow || updateUserDisabled()">
+				<button
+					mat-raised-button
+					class="buttons"
+					color="warn"
+					(click)="deleteUser()"
+					[disabled]="!selectedRow || updateUserDisabled()"
+				>
 					Izbriši korisnika
 				</button>
-				<button mat-raised-button color="primary" (click)="openAddAgentDialog()">Dodaj Agenta</button>
-
+				<button
+					mat-raised-button
+					color="primary"
+					(click)="openAddAgentDialog()"
+				>
+					Dodaj Agenta
+				</button>
 			</div>
 		</mat-card-header>
 
 		<mat-card-content>
 			<div class="tableContainer">
-				<div class="mat-elevation-z8" style="box-shadow: none">
-					<table mat-table [dataSource]="dataSource" matSort>
+				<div
+					class="mat-elevation-z8"
+					style="box-shadow: none"
+				>
+					<table
+						mat-table
+						[dataSource]="dataSource"
+						matSort
+					>
 						<ng-container matColumnDef="id">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								ID
 							</th>
-							<td *matCellDef="let row" mat-cell>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
 								{{ row.id }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="email">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Email
 							</th>
-							<td *matCellDef="let row" mat-cell>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
 								{{ row.email }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="username">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Korisničko ime
 							</th>
-							<td *matCellDef="let row" mat-cell>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
 								{{ row.username }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="dateOfBirth">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Datum rođenja
 							</th>
-							<td *matCellDef="let row" mat-cell>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
 								{{
-								row.dateOfBirth
-								? (row.dateOfBirth | epochToDate | date : "dd.MM.yyyy")
-								: ""
+									row.dateOfBirth
+										? (row.dateOfBirth
+											| epochToDate
+											| date: 'dd.MM.yyyy')
+										: ''
 								}}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="phone">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Broj telefona
 							</th>
-							<td *matCellDef="let row" mat-cell>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
 								{{ row.phone }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="address">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Adresa
 							</th>
-							<td *matCellDef="let row" mat-cell>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
 								{{ row.address }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="role">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Uloga
 							</th>
-							<td *matCellDef="let row" mat-cell>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
 								{{ row.role }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="active">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Aktivan?
 							</th>
-							<td *matCellDef="let row" mat-cell>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
 								{{ row.active }}
 							</td>
 						</ng-container>
 
-						<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-						<tr mat-row (click)="selectRow(row)" (dblclick)="viewUser(row)"
-							[class.row-selected]="this.selectedRow?.id === row.id"
-							*matRowDef="let row; columns: displayedColumns">
-						</tr>
+						<tr
+							*matHeaderRowDef="displayedColumns"
+							mat-header-row
+						></tr>
+						<tr
+							mat-row
+							(click)="selectRow(row)"
+							(dblclick)="viewUser(row)"
+							[class.row-selected]="
+								this.selectedRow?.id === row.id
+							"
+							*matRowDef="let row; columns: displayedColumns"
+						></tr>
 
-						<tr *matNoDataRow class="mat-row">
-							<td class="mat-cell" colspan="4">
-								Nije pronađen podatak za unetu vrednost: "{{ input.value }}"
+						<tr
+							*matNoDataRow
+							class="mat-row"
+						>
+							<td
+								class="mat-cell"
+								colspan="4"
+							>
+								Nije pronađen podatak za unetu vrednost: "{{
+									input.value
+								}}"
 							</td>
 						</tr>
 					</table>
 				</div>
 			</div>
 			<div id="paginatorContainer">
-				<mat-paginator [hidePageSize]="true" [pageSize]="10"></mat-paginator>
+				<mat-paginator
+					[hidePageSize]="true"
+					[pageSize]="10"
+				></mat-paginator>
 			</div>
 		</mat-card-content>
 	</mat-card>

@@ -181,9 +181,15 @@ export class UsersComponent implements AfterViewInit {
 	}
 
 	viewUser(row: UserDto): void {
-		if (this.selectedRow != null) {
+
+		if (this.selectedRow != null && this.activeUser != null) {
 			const dialogRef = this.dialog.open(UserInfoDialogComponent, {
-				data: { selectedRow: row },
+				data: {
+					selectedRow: row,
+					activeUser: this.activeUser
+				},
+
+
 			});
 		}
 	}

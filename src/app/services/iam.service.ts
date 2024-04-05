@@ -33,6 +33,20 @@ export class IamService {
 		>(environment.iamServiceApiUrl + ApiRoutes.users.findById + '/' + id);
 	}
 
+	resetAgentsLeftLimit(id: number) {
+		return this.httpClient.patch<void>(
+			environment.iamServiceApiUrl + ApiRoutes.users.resetAgentsLeftLimit + '/' + id,
+			{},
+			{ responseType: 'json' }
+		);
+	}
+
+	getAgentsLeftLimit(id: number) {
+		return this.httpClient.get<number>(
+			environment.iamServiceApiUrl + ApiRoutes.users.getAgentsLeftLimit + '/' + id,
+		);
+	}
+
 	/// POST
 	postPasswordActivation(email: string, password: string) {
 		return this.httpClient.post<boolean>(
@@ -127,17 +141,17 @@ export class IamService {
 		);
 	}
 
-  // CompanyController
+	// CompanyController
 	/// GET
 	getFindAllCompanies() {
 		return this.httpClient.get<CompanyDto[]>(
 			environment.iamServiceApiUrl + ApiRoutes.companies.findAll,
 		);
 	}
-	
-	getFindCompanyById(id:number) {
+
+	getFindCompanyById(id: number) {
 		return this.httpClient.get<CompanyDto>(
-			environment.iamServiceApiUrl + ApiRoutes.companies.findById+ '/' + id,
+			environment.iamServiceApiUrl + ApiRoutes.companies.findById + '/' + id,
 		);
 	}
 
@@ -160,13 +174,13 @@ export class IamService {
 			company,
 		);
 	}
-  
+
 	///PUT
 	putUpdateCompany(company: CompanyDto) {
 		return this.httpClient.put<CompanyDto>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.companies.updateCompany,
-				company,
+			ApiRoutes.companies.updateCompany,
+			company,
 		);
 	}
 
