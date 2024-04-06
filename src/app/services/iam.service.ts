@@ -36,7 +36,6 @@ export class IamService {
 	resetAgentsLeftLimit(id: number) {
 		return this.httpClient.patch<void>(
 			environment.iamServiceApiUrl + ApiRoutes.users.resetAgentsLeftLimit + '/' + id,
-			{},
 			{ responseType: 'json' }
 		);
 	}
