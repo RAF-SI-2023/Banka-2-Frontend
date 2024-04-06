@@ -91,7 +91,7 @@
 	</button>
 
 	<div
-		*ngIf="agentLimit !== null"
+		*ngIf="agentLimit !== null && data.selectedRow.role === 'AGENT'"
 		class="info-row"
 	>
 		<span class="label">Limit:</span>

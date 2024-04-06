@@ -33,6 +33,10 @@ export class UserInfoDialogComponent {
 			this.checkDto();
 			this.prepareValues();
 			this.isLoading = false;
+
+			if (this.data.selectedRow.role === 'AGENT') {
+				this.getAgentLimit();
+			}
 		});
 	}
 
