@@ -52,7 +52,7 @@ export class UserInfoDialogComponent {
 
 
 	canResetLimit(): boolean {
-		return ['ADMIN', 'SUPERVISOR'].includes(this.newSelectedRow.role);
+		return ['AGENT'].includes(this.newSelectedRow.role) && ['ADMIN', 'SUPERVISOR'].includes(this.activeUser.role);
 	}
 
 
