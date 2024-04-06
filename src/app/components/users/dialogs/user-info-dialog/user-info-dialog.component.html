@@ -60,6 +60,14 @@
 			<span class="label">Odeljenje:</span>
 			<span>{{ this.newSelectedRow.department }}</span>
 		</div>
+
+		<div
+			*ngIf="canResetAndGetLimit()"
+			class="info-row"
+		>
+			<span class="label">Limit:</span>
+			<span>{{ agentLimit }}</span>
+		</div>
 	</div>
 
 	<div
@@ -82,19 +90,11 @@
 	</button>
 
 	<button
-		*ngIf="canResetLimit()"
+		*ngIf="canResetAndGetLimit()"
 		mat-raised-button
 		color="primary"
 		(click)="resetLimit()"
 	>
 		Resetuj limit
 	</button>
-
-	<div
-		*ngIf="agentLimit !== null && data.selectedRow.role === 'AGENT'"
-		class="info-row"
-	>
-		<span class="label">Limit:</span>
-		<span>{{ agentLimit }}</span>
-	</div>
 </mat-dialog-actions>
