@@ -9,6 +9,10 @@
 	gap: 2rem;
 }
 
+mat-card-header{
+	display: block;
+}
+
 .tableContainer {
 	display: grid;
 	height: 100%;

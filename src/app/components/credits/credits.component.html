@@ -9,7 +9,7 @@
 					<div class="mat-elevation-z8" style="box-shadow: none">
 						<table class="unselectable" mat-table [dataSource]="accountNumberDataSource" matSort>
 							<ng-container matColumnDef="accountType">
-								<th *matHeaderCellDef mat-header-cell [hidden]="true" mat-sort-header>
+								<th *matHeaderCellDef mat-header-cell  mat-sort-header>
 									Tip
 								</th>
 								<td *matCellDef="let row" mat-cell>
@@ -18,8 +18,8 @@
 							</ng-container>
 
 							<ng-container matColumnDef="accountNumber">
-								<th *matHeaderCellDef mat-header-cell [hidden]="true" mat-sort-header>
-									Broj
+								<th *matHeaderCellDef mat-header-cell mat-sort-header>
+									Broj računa
 								</th>
 								<td *matCellDef="let row" mat-cell>
 									{{ row.accountNumber }}
@@ -27,8 +27,8 @@
 							</ng-container>
 
 							<ng-container matColumnDef="availableBalance">
-								<th *matHeaderCellDef mat-header-cell [hidden]="true" mat-sort-header>
-									Iznos
+								<th *matHeaderCellDef mat-header-cell mat-sort-header>
+									Dostupno stanje
 								</th>
 								<td *matCellDef="let row" mat-cell>
 									{{ row.availableBalance }} {{row.currencyCode}}
@@ -56,10 +56,11 @@
 
 		<mat-card>
 			<mat-card-header>
+				<h2>Krediti</h2>
 				<div class="form">
 					<mat-form-field>
 						<mat-label>
-							Pretraži kredite
+							Pretraži
 						</mat-label>
 						<input #input (keyup)="applyFilter($event)" matInput />
 					</mat-form-field>
