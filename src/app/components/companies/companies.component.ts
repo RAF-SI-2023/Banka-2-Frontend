@@ -118,7 +118,23 @@ export class CompaniesComponent implements AfterViewInit {
 		}
 	}
 	deleteCompany(): void{
-  
+		if (this.selectedRow != null) {
+			this.iamService
+				.deleteCompanyByIdentificationNumber(this.selectedRow.identificationNumber)
+				.pipe(
+					catchError(error => {
+						console.error('Error loading data.', error);
+						return throwError(() => error);
+					}),
+				)
+				.subscribe(() => {
+					this.selectedRow = null;
+					setTimeout(() => {
+						this.fetchAllData();
+					}, 1000);
+				});
+		}
+	}
 	}
 
 }
