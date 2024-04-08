@@ -120,7 +120,7 @@ export class CompaniesComponent implements AfterViewInit {
 	deleteCompany(): void{
 		if (this.selectedRow != null) {
 			this.iamService
-				.deleteCompanyByIdentificationNumber(this.selectedRow.identificationNumber)
+				.deleteCompanyById(this.selectedRow.id)
 				.pipe(
 					catchError(error => {
 						console.error('Error loading data.', error);
@@ -135,6 +135,6 @@ export class CompaniesComponent implements AfterViewInit {
 				});
 		}
 	}
-	}
+	
 
 }

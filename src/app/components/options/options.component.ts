@@ -16,7 +16,8 @@ import { ActivatedRoute } from '@angular/router'; // Import ActivatedRoute
 	styleUrls: ['./options.component.css'],
 })
 export class OptionsComponent implements AfterViewInit, OnInit {
-	displayedColumns: string[] = [
+	dataSource=new MatTableDataSource<OptionsDto>();
+	displayedColumnsCall: string[] = [
 		'stockListing',
 		'optionType',
 		'strikePrice',
@@ -24,11 +25,31 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 		'openInterest',
 		'settlementDate',
 	];
-	dataSource = new MatTableDataSource<OptionsDto>();
-	selectedRow: OptionsDto | null = null;
+	dataSourceCall=new MatTableDataSource<OptionsDto>();
+	selectedRowCall: OptionsDto | null = null;
 
-	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
-	@ViewChild(MatSort) sort: MatSort | undefined;
+	displayedColumnsPut: string[] = [
+		'stockListing',
+		'optionType',
+		'strikePrice',
+		'impliedVolatility',
+		'openInterest',
+		'settlementDate',
+	];
+	dataSourcePut=new MatTableDataSource<OptionsDto>();
+	selectedRowPut: OptionsDto | null = null;
+
+	
+	@ViewChild('CallMatPaginator') paginatorCall: 
+	| MatPaginator 
+	| undefined;
+	@ViewChild('CallMatSort') sortCall: MatSort | undefined;
+
+	@ViewChild('PutMatPaginator') paginatorPut: 
+	| MatPaginator 
+	| undefined;
+	@ViewChild('PutMatSort') sortPut:  MatSort | undefined;
+
 
 	constructor(
 		private stockService: StockService,
@@ -36,6 +57,9 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 		private route: ActivatedRoute, // Inject ActivatedRoute
 	) {
 		this.dataSource = new MatTableDataSource();
+		this.dataSourceCall = new MatTableDataSource();
+		this.dataSourcePut = new MatTableDataSource();
+
 	}
 
 	ngOnInit() {
@@ -48,26 +72,54 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 	}
 
 	ngAfterViewInit() {
-		if (this.paginator) this.dataSource.paginator = this.paginator;
-		if (this.sort) this.dataSource.sort = this.sort;
+		if (this.paginatorCall)
+			this.dataSourceCall.paginator = this.paginatorCall;
+		if (this.sortCall) this.dataSourceCall.sort = this.sortCall;
+		
+		if (this.paginatorPut)
+			this.dataSourcePut.paginator = this.paginatorPut;
+		if (this.sortPut) this.dataSourcePut.sort = this.sortPut;
 	}
 
-	applyFilter(event: Event) {
+	applyFilterCall(event: Event) {
 		const filterValue = (event.target as HTMLInputElement).value;
-		this.dataSource.filter = filterValue.trim().toLowerCase();
+		this.dataSourceCall.filter = filterValue.trim().toLowerCase();
 
-		if (this.dataSource.paginator) {
-			this.dataSource.paginator.firstPage();
+		if (this.dataSourceCall.paginator) {
+			this.dataSourceCall.paginator.firstPage();
+		}
+	}
+	applyFilterPut(event: Event) {
+		const filterValue = (event.target as HTMLInputElement).value;
+		this.dataSourcePut.filter = filterValue.trim().toLowerCase();
+
+		if (this.dataSourcePut.paginator) {
+			this.dataSourcePut.paginator.firstPage();
+		}
+	}
+	selectCallRow(row: OptionsDto): void {
+		if (this.selectedRowCall?.stockListing != row.stockListing) {
+			this.selectedRowCall = row;
 		}
 	}
 
+	selectPutRow(row: OptionsDto): void {
+		if (this.selectedRowPut?.stockListing != row.stockListing) {
+			this.selectedRowPut = row;
+		}
+	}
 	fetchAllData(stockListing: any): void {
 		this.stockService
 			.getFindAllOptionsByStockListing(stockListing)
 			.pipe(
 				map(dataSource => {
-					console.log(dataSource);
+					//console.log(dataSource);
 					this.dataSource.data = dataSource;
+					this.dataSourceCall.data = dataSource.filter(item => item.optionType === 'CALL');
+         			this.dataSourcePut.data = dataSource.filter(item => item.optionType === 'PUT');
+					//console.log(this.dataSourceCall);
+					//console.log(this.dataSourcePut);
+
 					return dataSource;
 				}),
 				catchError(error => {
@@ -76,5 +128,10 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 				}),
 			)
 			.subscribe();
+	}
+	
+
+	viewOptions(row:OptionsDto){
+
 	}
 }
