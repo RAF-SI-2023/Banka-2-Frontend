@@ -2,6 +2,13 @@
 	place-items: center;
 }
 
+.tables {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	gap: 2rem;
+}
+
 .tableContainer {
 	display: grid;
 	height: 100%;
@@ -44,7 +51,7 @@ table {
 	background-color: transparent;
 }
 
-#paginatorContainer {
+.paginatorContainer {
 	display: block;
 	flex-direction: column;
 	align-self: end;

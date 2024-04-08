@@ -19,6 +19,7 @@ import { ForexComponent } from './components/forex/forex.component';
 import { CompaniesComponent } from './components/companies/companies.component';
 import { AgentsComponent } from './components/agents/agents.component';
 import {CreditsComponent} from "./components/credits/credits.component";
+import {CreateCreditRequestComponent} from "./components/create-credit-request/create-credit-request.component";
 
 const routes: Routes = [
 	{
@@ -90,7 +91,12 @@ const routes: Routes = [
 		component: CreditsComponent,
 		path: 'credits',
 		canActivate: [authGuard],
-	}
+	},
+	{
+		component: CreateCreditRequestComponent,
+		path: 'credits/create-credit-request',
+		canActivate: [authGuard],
+	},
 ];
 
 @NgModule({

@@ -35,4 +35,10 @@ export const DropdownOptions = {
 		{ label: 'Muški', value: 'MALE' },
 		{ label: 'Ženski', value: 'FEMALE' },
 	],
+	creditType: [
+		{ label: 'Gotovinski', value: 'GOTOVINSKI' },
+		{ label: 'Stambeni', value: 'STAMBENI' },
+		{ label: 'Auto', value: 'AUTO' },
+		{ label: 'Refinansirajuci', value: 'REFINANSIRAJUCI' },
+	]
 };

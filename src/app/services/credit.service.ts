@@ -14,15 +14,15 @@ export class CreditService {
 
 	// StockController
 	/// GET
-	getFindAll() {
+	getFindAll(accountNumber: string) {
 		return this.httpClient.get<CreditDto[]>(
-			environment.stockServiceApiUrl + ApiRoutes.credits.findAll,
+			environment.bankServiceApiUrl + ApiRoutes.credits.findAll + '/' + accountNumber,
 		);
 	}
 
 		getFindByCreditNumber(creditNumber: number) {
 		return this.httpClient.get<CreditDto>(
-			environment.stockServiceApiUrl +
+			environment.bankServiceApiUrl +
 				ApiRoutes.credits.findByCreditNumber +
 				'/' +
 				creditNumber,

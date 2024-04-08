@@ -68,6 +68,10 @@ export class AuthService {
 		);
 	}
 
+	getUserEmail() {
+		return localStorage.getItem('email');
+	}
+
 	getToken() {
 		return localStorage.getItem('token');
 	}

@@ -70,6 +70,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
 import { CreditsComponent } from './components/credits/credits.component';
 import { CreditInfoDialogComponent } from './components/credits/dialogs/credit-info-dialog/credit-info-dialog.component';
+import { CreateCreditRequestComponent } from './components/create-credit-request/create-credit-request.component';
+import { TranslatePipe } from './pipes/translate.pipe';
 
 @NgModule({
 	declarations: [
@@ -107,6 +109,8 @@ import { CreditInfoDialogComponent } from './components/credits/dialogs/credit-i
 		AgentsComponent,
   CreditsComponent,
   CreditInfoDialogComponent,
+  CreateCreditRequestComponent,
+  TranslatePipe,
 	],
 	imports: [
 		HttpClientModule,

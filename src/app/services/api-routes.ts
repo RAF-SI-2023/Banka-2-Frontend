@@ -30,6 +30,7 @@ export const ApiRoutes = {
 		createDomesticAccount: '/accounts/create-account/domestic',
 		createForeignAccount: '/accounts/create-account/foreign',
 		createBusinessAccount: '/accounts/create-account/business',
+		findByEmail: '/accounts/find-by-email',
 	},
 	stocks: {
 		findAll: '/stock/all',
