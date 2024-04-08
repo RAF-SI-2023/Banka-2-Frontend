@@ -65,6 +65,7 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 		if (this.currencyPaginator)
 			this.currencyDataSource.paginator = this.currencyPaginator;
 		if (this.currencySort) this.currencyDataSource.sort = this.currencySort;
+		
 		if (this.exchangePaginator)
 			this.exchangeDataSource.paginator = this.exchangePaginator;
 		if (this.exchangeSort) this.exchangeDataSource.sort = this.exchangeSort;
