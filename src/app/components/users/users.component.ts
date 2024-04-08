@@ -14,7 +14,7 @@ import { UpdateUserDialogComponent } from './dialogs/update-user-dialog/update-u
 import { AddEmployeeDialogComponent } from './dialogs/add-employee-dialog/add-employee-dialog.component';
 import { EmployeeDto } from 'src/app/dtos/employee-dto';
 import { AddAgentDialogComponent } from './dialogs/add-agent-dialog/add-agent-dialog.component';
-import { UserInfoDialogComponent } from "./dialogs/user-info-dialog/user-info-dialog.component";
+import { UserInfoDialogComponent } from './dialogs/user-info-dialog/user-info-dialog.component';
 
 @Component({
 	selector: 'app-users',
@@ -25,7 +25,6 @@ export class UsersComponent implements AfterViewInit {
 	displayedColumns: string[] = [
 		'id',
 		'email',
-		'username',
 		'dateOfBirth',
 		'phone',
 		'address',
@@ -133,8 +132,8 @@ export class UsersComponent implements AfterViewInit {
 					}),
 				)
 				.subscribe(() => {
-					this.fetchAllData();
 					this.selectedRow = null;
+					this.fetchAllData();
 				});
 		}
 	}
@@ -150,19 +149,33 @@ export class UsersComponent implements AfterViewInit {
 					}),
 				)
 				.subscribe(() => {
-					this.fetchAllData();
 					this.selectedRow = null;
+					this.fetchAllData();
 				});
 		}
 	}
 
-	addUser(): void {
+	addEmployee(): void {
 		const dialogRef = this.dialog.open(AddEmployeeDialogComponent);
 
 		dialogRef.afterClosed().subscribe(result => {
 			console.log(`Dialog result: ${result}`);
 			this.selectedRow = null;
-			this.fetchAllData();
+			setTimeout(() => {
+				this.fetchAllData();
+			}, 1000);
+		});
+	}
+
+	addAgent(): void {
+		const dialogRef = this.dialog.open(AddAgentDialogComponent);
+
+		dialogRef.afterClosed().subscribe(result => {
+			console.log(`Dialog result: ${result}`);
+			this.selectedRow = null;
+			setTimeout(() => {
+				this.fetchAllData();
+			}, 1000);
 		});
 	}
 
@@ -175,7 +188,9 @@ export class UsersComponent implements AfterViewInit {
 			dialogRef.afterClosed().subscribe(result => {
 				console.log(`Dialog result: ${result}`);
 				this.selectedRow = null;
-				this.fetchAllData();
+				setTimeout(() => {
+					this.fetchAllData();
+				}, 1000);
 			});
 		}
 	}
@@ -200,17 +215,10 @@ export class UsersComponent implements AfterViewInit {
 				)
 				.subscribe(() => {
 					this.selectedRow = null;
-					this.fetchAllData();
+					setTimeout(() => {
+						this.fetchAllData();
+					}, 1000);
 				});
 		}
-	}
-	openAddAgentDialog(): void {
-		const dialogRef = this.dialog.open(AddAgentDialogComponent, {
-			width: '400px'
-		});
-
-		dialogRef.afterClosed().subscribe(result => {
-			console.log('Dialog closed', result);
-		});
 	}
 }

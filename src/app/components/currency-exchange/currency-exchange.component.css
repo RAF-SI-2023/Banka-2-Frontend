@@ -1,52 +1,42 @@
+.container {
+	place-items: center;
+}
 
 .form-container {
 	display: flex;
 	width: 100%;
-  }
-  
-  .form {
+}
+
+.form {
 	flex: 1;
 	gap: 32px;
-
 	margin-right: 10px;
-  }
-  
-  .full-width {
+}
+
+.full-width {
 	width: 100%; /* Ensure the search fields stretch to full width */
-  }
-  .form:first-child {
+}
+
+.form:first-child {
 	margin-right: 32px; /* Add a gap of 32px between the search fields */
-  }
-  
+}
+
 .example-form {
 	min-width: 150px;
 	margin-left: 95px;
 }
 
-.container {
-	display: flex;
-	justify-content: center;
-}
-
 .currency {
 	margin-right: 20px;
-	margin-top: 20px;
 	font-size: 18px;
 }
 
 .table {
 	width: 50%;
 	margin: 0 auto;
-	margin-top: 70px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	min-height: 800px;
-
-}
-
-.tableData {
-	flex-grow: 1;
 }
 
 .convertButton {
@@ -66,4 +56,27 @@
 	display: flex;
 	gap: 32px;
 	margin-bottom: 32px;
+}
+
+.mat-header-cell {
+	text-align: center;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+	border-bottom: 1px solid transparent;
+	border-top: 1px solid transparent;
+	cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+	background-color: #f5f5f5;
+}
+
+.row-selected .mat-mdc-cell {
+	border-color: currentColor;
+	background-color: transparent;
+}
+
+.unselectable {
+	user-select: none;
 }

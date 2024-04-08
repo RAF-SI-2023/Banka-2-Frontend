@@ -23,8 +23,7 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 	currencyDisplayedColumns: string[] = [
 		'currencyName',
 		'currencyCode',
-		'currencySymbol',
-		'currencyPolity',
+		'currencySymbol', // Ovo je u stvari politicki entitet
 	];
 	currencyDataSource = new MatTableDataSource<CurrencyDto>();
 	currencySelectedRow: CurrencyDto | null = null;
@@ -79,6 +78,7 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 			this.currencyDataSource.paginator.firstPage();
 		}
 	}
+
 	applyFilterForExchange(event: Event) {
 		const filterValue = (event.target as HTMLInputElement).value;
 		this.exchangeDataSource.filter = filterValue.trim().toLowerCase();
@@ -87,16 +87,19 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 			this.exchangeDataSource.paginator.firstPage();
 		}
 	}
+
 	selectCurrencyRow(row: CurrencyDto): void {
 		if (this.currencySelectedRow?.currencySymbol != row.currencySymbol) {
 			this.currencySelectedRow = row;
 		}
 	}
+
 	selectExchangeRow(row: ExchangeDto): void {
 		if (this.exchangeSelectedRow?.exchangeMICode != row.exchangeMICode) {
 			this.exchangeSelectedRow = row;
 		}
 	}
+
 	fetchAllData(): void {
 		this.currencyService
 			.getFindAll()
@@ -141,5 +144,4 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 			});
 		}
 	}
-	
 }

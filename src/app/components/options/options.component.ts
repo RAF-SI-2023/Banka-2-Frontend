@@ -27,37 +27,25 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 	dataSource = new MatTableDataSource<OptionsDto>();
 	selectedRow: OptionsDto | null = null;
 
-	
 	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 	@ViewChild(MatSort) sort: MatSort | undefined;
-	
+
 	constructor(
 		private stockService: StockService,
 		public dialog: MatDialog,
-        private route: ActivatedRoute // Inject ActivatedRoute
-
+		private route: ActivatedRoute, // Inject ActivatedRoute
 	) {
 		this.dataSource = new MatTableDataSource();
-
-	}
-    ngOnInit() {
-        this.route.params.subscribe(params => {
-            const stockListing = params['stockListing'];
-            if (stockListing) {
-                this.fetchAllData(stockListing); // Fetch data based on stockListing parameter
-            }
-        });
-    }
-	findOptionById(rowData: any) {
-		console.log('Double clicked row data:', rowData);
 	}
 
-	Filterchange(data: Event) {
-		const value = (data.target as HTMLInputElement).value;
-		this.dataSource.filter = value;
+	ngOnInit() {
+		this.route.params.subscribe(params => {
+			const stockListing = params['stockListing'];
+			if (stockListing) {
+				this.fetchAllData(stockListing); // Fetch data based on stockListing parameter
+			}
+		});
 	}
-
-	
 
 	ngAfterViewInit() {
 		if (this.paginator) this.dataSource.paginator = this.paginator;
@@ -73,18 +61,6 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 		}
 	}
 
-	selectRow(row: OptionsDto): void {
-		if (this.selectedRow?.stockListing != row.stockListing) {
-			this.selectedRow = row;
-		}
-	}
-	viewOptions(row: OptionsDto): void {
-		// if (this.selectedRow != null) {
-		// 	const dialogRef = this.dialog.open(OptionsInfoDialogComponent, {
-		// 		data: { selectedRow: row },
-		// 	});
-		// }
-	}
 	fetchAllData(stockListing: any): void {
 		this.stockService
 			.getFindAllOptionsByStockListing(stockListing)

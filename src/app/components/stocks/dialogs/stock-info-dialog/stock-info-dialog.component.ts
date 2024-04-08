@@ -17,7 +17,7 @@ export class StockInfoDialogComponent {
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		private stockService: StockService,
-		private router: Router
+		private router: Router,
 	) {
 		this.fetchData();
 	}
@@ -31,6 +31,7 @@ export class StockInfoDialogComponent {
 				this.isLoading = false;
 			});
 	}
+
 	prepareValues() {
 		// replace null or empty values with a placeholder
 		for (const key in this.data.selectedRow) {
@@ -43,22 +44,23 @@ export class StockInfoDialogComponent {
 		}
 		this.newSelectedRow = { ...this.data.selectedRow };
 	}
-	viewOptionsPage() {
-		const stockListing=this.newSelectedRow.symbol;
 
-		this.stockService.getFindAllOptionsByStockListing(stockListing).subscribe(
-            Response => {
-                this.router.navigate(['/options', stockListing]);
-            },
-            (error: HttpErrorResponse) => {
-                if (error.status === 404) {
-                    console.error('StockListing not found:', error);
-                } else {
-                    console.error('Error fetching data:', error);
-                }
-            }
-        );
-		// console.log(stockListing);
-		// this.router.navigate(['/options', stockListing]);
-	  }
+	viewOptionsPage() {
+		const stockListing = this.newSelectedRow.symbol;
+
+		this.stockService
+			.getFindAllOptionsByStockListing(stockListing)
+			.subscribe(
+				Response => {
+					this.router.navigate(['/options', stockListing]);
+				},
+				(error: HttpErrorResponse) => {
+					if (error.status === 404) {
+						console.error('StockListing not found:', error);
+					} else {
+						console.error('Error fetching data:', error);
+					}
+				},
+			);
+	}
 }

@@ -4,7 +4,7 @@
 			<div class="form">
 				<mat-form-field>
 					<mat-label>
-						Pretraži
+						Pretraži akcije
 					</mat-label>
 					<input #input (keyup)="applyFilter($event)" matInput />
 				</mat-form-field>
@@ -14,10 +14,10 @@
 		<mat-card-content>
 			<div class="tableContainer">
 				<div class="mat-elevation-z8" style="box-shadow: none">
-					<table mat-table [dataSource]="dataSource" matSort>
+					<table class="unselectable" mat-table [dataSource]="dataSource" matSort>
 						<ng-container matColumnDef="symbol">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Symbol
+								Simbol
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.symbol }}
@@ -26,7 +26,7 @@
 
 						<ng-container matColumnDef="description">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Description
+								Opis
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.description }}
@@ -35,29 +35,29 @@
 
 						<ng-container matColumnDef="exchange">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Exchange
+								Berza
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.exchange }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="lastRefresh">
+						<!-- <ng-container matColumnDef="lastRefresh">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Last Refresh
+								Poslednje ažuriranje
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{
 								row.lastRefresh
 								? (row.lastRefresh | epochToDate | date : "dd.MM.yyyy")
-								: ""
+								: "-"
 								}}
 							</td>
-						</ng-container>
+						</ng-container> -->
 
 						<ng-container matColumnDef="price">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Price
+								Cena
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.price }}
@@ -66,7 +66,7 @@
 
 						<ng-container matColumnDef="high">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								High
+								Najniža prodavna cena
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.high }}
@@ -75,7 +75,7 @@
 
 						<ng-container matColumnDef="low">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Low
+								Najviša kupovna cena
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.low }}
@@ -84,25 +84,25 @@
 
 						<ng-container matColumnDef="change">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Change
+								Dnevna razlika u cenama
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.change }}
+								{{ row.change ? row.change : "-" }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="volume">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Volume
+								Broj dnevno razmenjenih hartija
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.volume }}
+								{{ row.volume ? row.volume : "-" }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="shares">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Shares
+								Broj emitovanih akcija
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.shares }}
@@ -111,7 +111,7 @@
 
 						<ng-container matColumnDef="yield">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Yield
+								Godišnji prinos od dividendi
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.yield }}

@@ -45,7 +45,7 @@ export class AddAgentDialogComponent {
 			id: 0,
 			email: this.email,
 			dateOfBirth: this.dateOfBirth,
-			username: this.username,
+			username: this.email,
 			phone: this.phone,
 			address: this.address,
 			role: 'AGENT',

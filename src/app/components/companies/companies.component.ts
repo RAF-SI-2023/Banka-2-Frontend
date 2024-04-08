@@ -72,7 +72,7 @@ export class CompaniesComponent implements AfterViewInit {
 			});
 		}
 	}
-	
+
 	fetchAllData(): void {
 		this.iamService
 			.getFindAllCompanies()

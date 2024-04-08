@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { IamService } from '../../services/iam.service';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 import { AuthCredentialsDto } from 'src/app/dtos/auth-credentials-dto';
-import {FormBuilder, Validators} from "@angular/forms";
-import {emailValidator, passwordValidator} from "../../utils/validators";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { FormBuilder, Validators } from '@angular/forms';
+import { passwordValidator } from '../../utils/validators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'app-password-change',
@@ -30,7 +28,10 @@ export class PasswordChangeComponent {
 
 	onSubmit(): void {
 		//check if new password and confirm password are the same
-		if (this.changePasswordForm.value.newPassword !== this.changePasswordForm.value.confirmPassword) {
+		if (
+			this.changePasswordForm.value.newPassword !==
+			this.changePasswordForm.value.confirmPassword
+		) {
 			this.matSnackBar.open('Lozinke se ne poklapaju!', 'Close', {
 				duration: 5000,
 				horizontalPosition: 'center',
@@ -49,24 +50,26 @@ export class PasswordChangeComponent {
 			password: this.changePasswordForm.value.newPassword!,
 		};
 
-		this.iamService
-			.postPasswordChange(this.passwordChange)
-			.subscribe(
-				() => {
-					this.matSnackBar.open('Lozinka uspešno promenjena!', 'Close', {
+		this.iamService.postPasswordChange(this.passwordChange).subscribe(
+			() => {
+				this.matSnackBar.open('Lozinka uspešno promenjena!', 'Close', {
+					duration: 5000,
+					horizontalPosition: 'center',
+					verticalPosition: 'top',
+				});
+				this.dialogRef.close();
+			},
+			error => {
+				this.matSnackBar.open(
+					'Greška prilikom promene lozinke!',
+					'Close',
+					{
 						duration: 5000,
 						horizontalPosition: 'center',
 						verticalPosition: 'top',
-					});
-					this.dialogRef.close();
-				},
-				error => {
-					this.matSnackBar.open('Greška prilikom promene lozinke!', 'Close', {
-						duration: 5000,
-						horizontalPosition: 'center',
-						verticalPosition: 'top',
-					});
-				},
-			);
+					},
+				);
+			},
+		);
 	}
 }

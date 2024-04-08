@@ -3,7 +3,6 @@
 }
 
 .tableContainer {
-	margin-top: 2%;
 	display: grid;
 	height: 100%;
 	width: 100%;
@@ -50,4 +49,8 @@ table {
 	flex-direction: column;
 	align-self: end;
 	width: 100%;
+}
+
+.unselectable {
+	user-select: none;
 }

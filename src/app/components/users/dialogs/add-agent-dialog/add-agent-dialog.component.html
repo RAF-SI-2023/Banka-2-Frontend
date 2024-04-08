@@ -3,7 +3,7 @@
 </h2>
 <mat-dialog-content class="mat-typography size">
 	<form>
-		<form>
+		<div>
 			<mat-form-field class="full-width">
 				<mat-label>
 					Email
@@ -12,31 +12,6 @@
 				<mat-error *ngIf="emailInput.errors && emailInput.touched">
 					Unesite validnu email adresu.
 				</mat-error>
-			</mat-form-field>
-
-			<mat-form-field class="full-width">
-				<mat-label>Username</mat-label>
-				<input matInput [(ngModel)]="username" name="username" required>
-			</mat-form-field>
-
-			<mat-form-field class="full-width">
-				<mat-label>Broj telefona</mat-label>
-				<input matInput [(ngModel)]="phone" name="phone" required>
-			</mat-form-field>
-
-			<mat-form-field class="full-width">
-				<mat-label>Adresa</mat-label>
-				<input matInput [(ngModel)]="address" name="address">
-			</mat-form-field>
-
-			<mat-form-field class="full-width">
-				<mat-label>Limit</mat-label>
-				<input matInput [(ngModel)]="limit" name="limit" type="number">
-			</mat-form-field>
-
-			<mat-form-field class="full-width">
-				<mat-label>Ostatak limita</mat-label>
-				<input matInput [(ngModel)]="leftOfLimit" name="leftOfLimit" type="number">
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
@@ -49,22 +24,50 @@
 				<mat-datepicker #picker></mat-datepicker>
 			</mat-form-field>
 
-			<div>
-				<label>Dozvole:</label>
-				<div *ngFor="let permission of availablePermissions">
-					<mat-checkbox [(ngModel)]="permissions" [value]="permission" name="permissions">
-						{{ permission }}
-					</mat-checkbox>
-				</div>
+			<mat-form-field class="full-width">
+				<mat-label>
+					Broj telefona
+				</mat-label>
+				<input matInput [(ngModel)]="this.phone" name="phone" appPhoneNumberValidator #phoneInput="ngModel">
+				<mat-error *ngIf="phoneInput.errors && phoneInput.touched">
+					Unesite validan broj telefona.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>
+					Adresa
+				</mat-label>
+				<input matInput [(ngModel)]="address" name="address">
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>
+					Limit
+				</mat-label>
+				<input matInput [(ngModel)]="limit" name="limit" type="number">
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>
+					Ostatak limita
+				</mat-label>
+				<input matInput [(ngModel)]="leftOfLimit" name="leftOfLimit" type="number">
+			</mat-form-field>
+
+			<div *ngFor="let permission of availablePermissions">
+				<mat-checkbox class="full-width" [(ngModel)]="permissions" [value]="permission" name="permissions">
+					{{ permission }}
+				</mat-checkbox>
 			</div>
-		</form>
+		</div>
 	</form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
+	<button mat-raised-button [mat-dialog-close]="true" color="accent" cdkFocusInitial (click)="addAgent()">
+		Dodaj
+	</button>
 	<button mat-raised-button mat-dialog-close color="warn">
 		Zatvori
-	</button>
-	<button mat-raised-button color="accent" cdkFocusInitial (click)="addAgent()">
-		Dodaj
 	</button>
 </mat-dialog-actions>

@@ -9,7 +9,8 @@ export class EpochToDatePipe implements PipeTransform {
 			return null; // Return null if the epoch value is falsy
 		}
 
-		const date = new Date(parseInt(epoch));
+		const epochMilliseconds = parseFloat(epoch) * 1000;
+		const date = new Date(epochMilliseconds);
 		return isNaN(date.getTime()) ? null : date;
 	}
 }

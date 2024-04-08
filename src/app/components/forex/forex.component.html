@@ -4,7 +4,7 @@
 			<div class="form">
 				<mat-form-field>
 					<mat-label>
-						Pretraži
+						Pretraži tržište stranih valuta
 					</mat-label>
 					<input #input (keyup)="applyFilter($event)" matInput />
 				</mat-form-field>
@@ -17,7 +17,7 @@
 					<table mat-table [dataSource]="dataSource" matSort>
 						<ng-container matColumnDef="symbol">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Symbol
+								Simbol
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.symbol }}
@@ -26,7 +26,7 @@
 
 						<ng-container matColumnDef="description">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Description
+								Opis
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.description }}
@@ -35,7 +35,7 @@
 
 						<ng-container matColumnDef="exchange">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Exchange
+								Berza
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.exchange }}
@@ -57,7 +57,7 @@
 
 						<ng-container matColumnDef="price">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Price
+								Cena
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.price }}
@@ -66,55 +66,55 @@
 
 						<ng-container matColumnDef="high">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								High
+								Najniža prodavna cena
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.high }}
+								{{ row.high ? row.high : "-" }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="low">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Low
+								Najviša kupovna cena
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.low }}
+								{{ row.low ? row.low : "-" }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="change">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Change
+								Dnevna razlika u cenama
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.change }}
+								{{ row.change ? row.change : "-" }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="volume">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Volume
+								Broj dnevno razmenjenih hartija
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.volume }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="quoteCurrency">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Quote Currency
-							</th>
-							<td *matCellDef="let row" mat-cell>
-								{{ row.quoteCurrency }}
+								{{ row.volume ? row.volume : "-" }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="baseCurrency">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								baseCurrency
+								Bazna valuta
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.baseCurrency }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="quoteCurrency">
+							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+								Kvotna valuta
+							</th>
+							<td *matCellDef="let row" mat-cell>
+								{{ row.quoteCurrency }}
 							</td>
 						</ng-container>
 

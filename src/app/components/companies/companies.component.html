@@ -5,7 +5,7 @@
 				<div>
 					<mat-form-field>
 						<mat-label>
-							Pretraži
+							Pretraži kompanije
 						</mat-label>
 						<input #input (keyup)="applyFilter($event)" matInput />
 					</mat-form-field>
@@ -16,8 +16,7 @@
 		<mat-card-content>
 			<div class="tableContainer">
 				<div class="mat-elevation-z8" style="box-shadow: none">
-					<table mat-table [dataSource]="dataSource" matSort>
-
+					<table class="unselectable" mat-table [dataSource]="dataSource" matSort>
 						<ng-container matColumnDef="id">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
 								ID

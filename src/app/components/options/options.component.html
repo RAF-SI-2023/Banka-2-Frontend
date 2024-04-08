@@ -4,7 +4,7 @@
 			<div class="form">
 				<mat-form-field>
 					<mat-label>
-						Pretraži
+						Pretraži opcije
 					</mat-label>
 					<input #input (keyup)="applyFilter($event)" matInput />
 				</mat-form-field>
@@ -15,50 +15,49 @@
 			<div class="tableContainer">
 				<div class="mat-elevation-z8" style="box-shadow: none">
 					<table mat-table [dataSource]="dataSource" matSort>
-						
 						<ng-container matColumnDef="stockListing">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								stockListing
+								Listing
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.stockListing }}
 							</td>
 						</ng-container>
 
-						
+
 						<ng-container matColumnDef="optionType">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								optionType
+								Tip opcije
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.optionType }}
 							</td>
 						</ng-container>
 
-						
+
 						<ng-container matColumnDef="strikePrice">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								strikePrice
+								Izvršna cena
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.strikePrice }}
 							</td>
 						</ng-container>
 
-						
+
 						<ng-container matColumnDef="impliedVolatility">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								impliedVolatility
+								Nestabilnost cene
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.impliedVolatility }}
 							</td>
 						</ng-container>
 
-						
+
 						<ng-container matColumnDef="openInterest">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								openInterest
+								Broj otvorenih opcija
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.openInterest }}
@@ -67,17 +66,19 @@
 
 						<ng-container matColumnDef="settlementDate">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								settlementDate
+								Datum isticanja opcije
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.settlementDate }}
+								{{
+								row.settlementDate
+								? (row.settlementDate | epochToDate | date : "dd/MM/yyyy")
+								: "-"
+								}}
 							</td>
 						</ng-container>
 
-
 						<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-						<tr mat-row (click)="selectRow(row)" (dblclick)="viewOptions(row)"
-							[class.row-selected]="this.selectedRow?.stockListing === row.stockListing"
+						<tr mat-row [class.row-selected]="this.selectedRow?.stockListing === row.stockListing"
 							*matRowDef="let row; columns: displayedColumns"></tr>
 
 						<tr *matNoDataRow class="mat-row">

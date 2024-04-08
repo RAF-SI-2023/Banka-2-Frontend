@@ -4,10 +4,18 @@
 <mat-dialog-content class="mat-typography size">
 	<div *ngIf="!isLoading" class="full-width">
 		<div class="info-row">
-			<span class="label">Datum rođenja:</span>
-			<span>{{ newSelectedRow.dateOfBirth !== '-' ? (newSelectedRow.dateOfBirth | date: 'dd/MM/yyyy') : "-" }}</span>
+			<span class="label">ID:</span>
+			<span>{{ this.newSelectedRow.id }}</span>
 		</div>
-
+		<div class="info-row">
+			<span class="label">Email:</span>
+			<span>{{ this.newSelectedRow.email }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Datum rođenja:</span>
+			<span>{{ newSelectedRow.dateOfBirth !== '-' ? (newSelectedRow.dateOfBirth | date: 'dd/MM/yyyy') : "-"
+				}}</span>
+		</div>
 		<div class="info-row">
 			<span class="label">Broj telefona:</span>
 			<span>{{ this.newSelectedRow.phone }}</span>
@@ -16,7 +24,8 @@
 			<span class="label">Adresa:</span>
 			<span>{{ this.newSelectedRow.address }}</span>
 		</div>
-		<div *ngIf="checkDto() === 'PRIVATE' || checkDto() === 'CORPORATE' || checkDto() === 'EMPLOYEE'" class="info-row">
+		<div *ngIf="checkDto() === 'PRIVATE' || checkDto() === 'CORPORATE' || checkDto() === 'EMPLOYEE'"
+			class="info-row">
 			<span class="label">Ime:</span>
 			<span>{{ this.newSelectedRow.name }}</span>
 		</div>

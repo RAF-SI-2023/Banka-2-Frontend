@@ -13,7 +13,7 @@ export class AddEmployeeDialogComponent {
 	name: string = '';
 	surname: string = '';
 	gender: string = '';
-	dateOfBirth: number = 0;
+	dateOfBirth: any = 0;
 
 	phone: string = '';
 	address: string = '';
@@ -32,12 +32,6 @@ export class AddEmployeeDialogComponent {
 
 	constructor(private iamService: IamService) {}
 
-	onDateChange(event: MatDatepickerInputEvent<Date>) {
-		this.dateOfBirth = Number(
-			event.value ? event.value.getTime().toString() : '',
-		);
-	}
-
 	updatePermissions(event: any, permission: string) {
 		if (event.checked) {
 			this.permissions.push(permission);
@@ -46,7 +40,12 @@ export class AddEmployeeDialogComponent {
 		}
 	}
 
-	addUser() {
+	addEmployee() {
+		// Convert dateOfBirth to epoch
+		this.dateOfBirth = this.dateOfBirth
+			? new Date(this.dateOfBirth).getTime().toString()
+			: null;
+
 		const employeeDto: EmployeeDto = {
 			id: 0,
 			dateOfBirth: Number(this.dateOfBirth.toString()),

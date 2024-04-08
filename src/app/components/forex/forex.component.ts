@@ -10,11 +10,10 @@ import { AuthService } from 'src/app/services/auth.service';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-
 @Component({
-  selector: 'app-forex',
-  templateUrl: './forex.component.html',
-  styleUrls: ['./forex.component.css']
+	selector: 'app-forex',
+	templateUrl: './forex.component.html',
+	styleUrls: ['./forex.component.css'],
 })
 export class ForexComponent implements AfterViewInit {
 	displayedColumns: string[] = [

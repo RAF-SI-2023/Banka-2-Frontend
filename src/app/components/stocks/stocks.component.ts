@@ -21,7 +21,7 @@ export class StocksComponent implements AfterViewInit {
 		'symbol',
 		'description',
 		'exchange',
-		'lastRefresh',
+		// 'lastRefresh',
 		'price',
 		'high',
 		'low',

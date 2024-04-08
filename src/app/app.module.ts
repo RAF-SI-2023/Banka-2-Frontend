@@ -63,10 +63,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HighchartsChartModule } from 'highcharts-angular';
+
 // PROVIDERS
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
-
 
 @NgModule({
 	declarations: [
@@ -99,8 +99,8 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 		StockInfoDialogComponent,
 		CompaniesComponent,
 		CompanyInfoDialogComponent,
-	  	CurrencyInfoDialogComponent,
-  		ExchangeInfoDialogComponent,
+		CurrencyInfoDialogComponent,
+		ExchangeInfoDialogComponent,
 	],
 	imports: [
 		HttpClientModule,
@@ -131,7 +131,7 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 		MatNativeDateModule,
 		MatListModule,
 		MatProgressSpinnerModule,
-		HighchartsChartModule
+		HighchartsChartModule,
 	],
 	providers: [
 		{

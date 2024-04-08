@@ -7,7 +7,7 @@ import { isEmployeeDto } from 'src/app/dtos/employee-dto';
 import { IamService } from 'src/app/services/iam.service';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker'; // Import MatDatepickerInputEvent
 
 @Component({
 	selector: 'app-update-user-dialog',
@@ -37,11 +37,11 @@ export class UpdateUserDialogComponent {
 
 	updateUser(): void {
 		if (this.newSelectedRow != null) {
-			if(this.newSelectedRow.dateOfBirth != null) {
-				this.newSelectedRow.dateOfBirth = Number(
-					this.newSelectedRow.dateOfBirth.toString(),
-				);
-			}
+			// Convert dateOfBirth to epoch
+			this.newSelectedRow.dateOfBirth = this.newSelectedRow.dateOfBirth
+				? new Date(this.newSelectedRow.dateOfBirth).getTime().toString()
+				: null;
+
 			if (this.checkDto() == 'PRIVATE') {
 				this.iamService
 					.putUpdatePrivateClient(this.newSelectedRow)
@@ -74,11 +74,5 @@ export class UpdateUserDialogComponent {
 					.subscribe(() => {});
 			}
 		}
-	}
-
-	onDateChange(event: MatDatepickerInputEvent<Date>) {
-		this.newSelectedRow.dateOfBirth = event.value
-			? event.value.getTime().toString()
-			: '';
 	}
 }

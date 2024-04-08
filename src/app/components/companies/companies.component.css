@@ -51,3 +51,7 @@ table {
 	align-self: end;
 	width: 100%;
 }
+
+.unselectable {
+	user-select: none;
+}

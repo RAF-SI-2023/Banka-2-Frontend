@@ -5,7 +5,7 @@
 				<div>
 					<mat-form-field>
 						<mat-label>
-							Pretraži
+							Pretraži korisnike
 						</mat-label>
 						<input #input (keyup)="applyFilter($event)" matInput />
 					</mat-form-field>
@@ -21,9 +21,10 @@
 					}}
 				</button>
 				<button mat-raised-button class="buttons" color="accent" [disabled]="this.activeUser?.role != 'ADMIN'"
-					(click)="addUser()">
+					(click)="addEmployee()">
 					Dodaj zaposlenog
 				</button>
+				<button mat-raised-button class="buttons" color="accent" (click)="addAgent()">Dodaj agenta</button>
 				<button mat-raised-button class="buttons" color="accent" (click)="updateUser()"
 					[disabled]="!selectedRow || updateUserDisabled()">
 					Izmeni korisnika
@@ -32,15 +33,12 @@
 					[disabled]="!selectedRow || updateUserDisabled()">
 					Izbriši korisnika
 				</button>
-				<button mat-raised-button color="primary" (click)="openAddAgentDialog()">Dodaj Agenta</button>
-
 			</div>
 		</mat-card-header>
-
 		<mat-card-content>
 			<div class="tableContainer">
 				<div class="mat-elevation-z8" style="box-shadow: none">
-					<table mat-table [dataSource]="dataSource" matSort>
+					<table class="unselectable" mat-table [dataSource]="dataSource" matSort>
 						<ng-container matColumnDef="id">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
 								ID
@@ -59,25 +57,12 @@
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="username">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Korisničko ime
-							</th>
-							<td *matCellDef="let row" mat-cell>
-								{{ row.username }}
-							</td>
-						</ng-container>
-
 						<ng-container matColumnDef="dateOfBirth">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
 								Datum rođenja
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{
-								row.dateOfBirth
-								? (row.dateOfBirth | epochToDate | date : "dd.MM.yyyy")
-								: ""
-								}}
+								{{ row.dateOfBirth !== '-' ? (row.dateOfBirth | date: 'dd/MM/yyyy') : "-" }}
 							</td>
 						</ng-container>
 
@@ -86,7 +71,7 @@
 								Broj telefona
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.phone }}
+								{{ row.phone ? row.phone : "-" }}
 							</td>
 						</ng-container>
 
@@ -95,7 +80,7 @@
 								Adresa
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.address }}
+								{{ row.address ? row.address : "-" }}
 							</td>
 						</ng-container>
 
@@ -113,7 +98,7 @@
 								Aktivan?
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.active }}
+								{{ row.active ? "✔️" : "❌" }}
 							</td>
 						</ng-container>
 
