@@ -16,15 +16,18 @@ export class CurrencyInfoDialogComponent {
 	chartLoading = false;
 	Highcharts: typeof Highcharts = Highcharts;
 	chartOptions: Highcharts.Options = {
+		chart: {
+			height: 400,
+		},
 		title: {
-			text: 'Inflation Rate',
+			text: 'Stopa inflacije po godinama',
 		},
 		xAxis: {
 			categories: ['2002', '2003', '2004'],
 		},
 		yAxis: {
 			title: {
-				text: 'Inflation Rate (%)',
+				text: 'Stopa inflacije (%)',
 			},
 		},
 		series: [],
@@ -77,7 +80,7 @@ export class CurrencyInfoDialogComponent {
 		this.chartOptions.xAxis = { categories: categories }; // Optional chaining used here
 		console.log(this.chartOptions);
 		this.chartOptions.series = [
-			{ type: 'line', name: 'Inflation Rate', data: data },
+			{ type: 'line', name: 'Stopa inflacije', data: data },
 		]; // Optional chaining used here
 		this.chartLoading = true;
 	}
