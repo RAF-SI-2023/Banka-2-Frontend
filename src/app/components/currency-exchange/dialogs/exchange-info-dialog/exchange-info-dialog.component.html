@@ -12,7 +12,7 @@
 			<span>{{ this.newSelectedRow.exchangeAcronym }}</span>
 		</div>
 		<div class="info-row">
-			<span class="label">MIC kod: </span>
+			<span class="label">MIC: </span>
 			<span>{{ this.newSelectedRow.exchangeMICode }}</span>
 		</div>
 		<div class="info-row">
@@ -25,7 +25,8 @@
 		</div>
 		<div class="info-row">
 			<span class="label">Vremenska zona: </span>
-			<span>{{ this.newSelectedRow.timeZone }}</span>
+			<span>{{ 'UTC ' + (newSelectedRow.timeZone > 0 ? '+' + newSelectedRow.timeZone : '-' +
+				newSelectedRow.timeZone*(-1) ) }}</span>
 		</div>
 
 	</div>

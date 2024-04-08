@@ -185,15 +185,13 @@ export class IamService {
 
 	/// DELETE
 	deleteCompanyById(id: number) {
-		this.httpClient.delete(
-			environment.iamServiceApiUrl +
-				ApiRoutes.companies.deleteById +
-				`/${id}`,
+		return this.httpClient.delete<CompanyDto[]>(
+			environment.iamServiceApiUrl + ApiRoutes.companies.deleteById + '/'+ id,
 		);
 	}
 
 	deleteCompanyByIdentificationNumber(identificationNumber: any) {
-		this.httpClient.delete(
+		return this.httpClient.delete<CompanyDto[]>(
 			environment.iamServiceApiUrl +
 				ApiRoutes.companies.deleteByIdentificationNumber +
 				`/${identificationNumber}`,
