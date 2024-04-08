@@ -28,6 +28,7 @@ import { CompaniesComponent } from './components/companies/companies.component';
 import { CompanyInfoDialogComponent } from './components/companies/dialogs/company-info-dialog/company-info-dialog.component';
 import { CurrencyInfoDialogComponent } from './components/currency-exchange/dialogs/currency-info-dialog/currency-info-dialog.component';
 import { ExchangeInfoDialogComponent } from './components/currency-exchange/dialogs/exchange-info-dialog/exchange-info-dialog.component';
+import { AgentsComponent } from './components/agents/agents.component';
 /// DIRECTIVES/PIPES
 import { PhoneNumberValidatorDirective } from './directives/phone-number-validator.directive';
 import { NoPasteDirective } from './directives/no-paste.directive';
@@ -101,6 +102,7 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 		CompanyInfoDialogComponent,
 		CurrencyInfoDialogComponent,
 		ExchangeInfoDialogComponent,
+		AgentsComponent,
 	],
 	imports: [
 		HttpClientModule,

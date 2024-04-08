@@ -32,23 +32,23 @@
 					</tr> -->
 					<tr>
 						<td><b>Email:</b></td>
-						<td>{{ user?.email }}</td>
+						<td>{{ user?.email ? user?.email : "-" }}</td>
 					</tr>
 					<tr>
 						<td><b>Telefon:</b></td>
-						<td>{{ user?.phone }}</td>
+						<td>{{ user?.phone ? user?.phone : "-" }}</td>
 					</tr>
 					<tr>
 						<td><b>Adresa:</b></td>
-						<td>{{ user?.address }}</td>
+						<td>{{ user?.address ? user?.address : "-" }}</td>
 					</tr>
 					<tr>
 						<td><b>Datum rođenja:</b></td>
-						<td>{{ user?.dateOfBirth }}</td>
+						<td>{{ user?.dateOfBirth ? user?.dateOfBirth : "-" }}</td>
 					</tr>
 					<tr>
 						<td><b>Uloga:</b></td>
-						<td>{{ user?.role }}</td>
+						<td>{{ user?.role ? user?.role : "-" }}</td>
 					</tr>
 					<tr>
 						<td><b>Dozvole:</b></td>
@@ -59,45 +59,45 @@
 					<!--   PRIVATE START     -->
 					<tr *ngIf="privateClient">
 						<td><b>Ime:</b></td>
-						<td>{{ privateClient.name }}</td>
+						<td>{{ privateClient.name ? privateClient.name : "-" }}</td>
 					</tr>
 					<tr *ngIf="privateClient">
 						<td><b>Prezime:</b></td>
-						<td>{{ privateClient.surname }}</td>
+						<td>{{ privateClient.surname ? privateClient.surname : "-" }}</td>
 					</tr>
 					<tr *ngIf="privateClient">
 						<td><b>Pol:</b></td>
-						<td>{{ privateClient.gender }}</td>
+						<td>{{ privateClient.gender ? privateClient.gender : "-" }}</td>
 					</tr>
 					<tr *ngIf="privateClient">
 						<td><b>Primarni broj računa:</b></td>
-						<td>{{ privateClient.primaryAccountNumber }}</td>
+						<td>{{ privateClient.primaryAccountNumber ? privateClient.primaryAccountNumber : "-" }}</td>
 					</tr>
 					<!--   PRIVATE END     -->
 
 					<!--   CORPORATE START     -->
 					<tr *ngIf="corporateClient">
 						<td><b>Naziv kompanije:</b></td>
-						<td>{{ corporateClient.name }}</td>
+						<td>{{ corporateClient.name ? corporateClient.name : "-" }}</td>
 					</tr>
 					<tr *ngIf="corporateClient">
 						<td><b>Primarni broj računa:</b></td>
-						<td>{{ corporateClient.primaryAccountNumber }}</td>
+						<td>{{ corporateClient.primaryAccountNumber ? corporateClient.primaryAccountNumber : "-" }}</td>
 					</tr>
 					<!--   CORPORATE END     -->
 
 					<!--   EMPLOYEE START     -->
 					<tr *ngIf="employee">
 						<td><b>Pol:</b></td>
-						<td>{{ employee.gender }}</td>
+						<td>{{ employee.gender ? employee.gender : "-" }}</td>
 					</tr>
 					<tr *ngIf="employee">
 						<td><b>Pozicija:</b></td>
-						<td>{{ employee.position }}</td>
+						<td>{{ employee.position ? employee.position : "-" }}</td>
 					</tr>
 					<tr *ngIf="employee">
 						<td><b>Odeljenje:</b></td>
-						<td>{{ employee.department }}</td>
+						<td>{{ employee.department ? employee.department : "-" }}</td>
 					</tr>
 					<tr *ngIf="employee">
 						<td><b>Aktivan:</b></td>

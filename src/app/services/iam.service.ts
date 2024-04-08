@@ -17,7 +17,7 @@ import { PasswordChangeTokenDto } from '../dtos/password-change-token-dto';
 	providedIn: 'root',
 })
 export class IamService {
-	constructor(private httpClient: HttpClient) { }
+	constructor(private httpClient: HttpClient) {}
 
 	// UserController
 	/// GET
@@ -31,6 +31,17 @@ export class IamService {
 		return this.httpClient.get<
 			UserDto | PrivateClientDto | CorporateClientDto
 		>(environment.iamServiceApiUrl + ApiRoutes.users.findById + '/' + id);
+	}
+
+	/// PATCH
+	patchResetAgentsLeftLimit(id: number) {
+		return this.httpClient.patch<null>(
+			environment.iamServiceApiUrl +
+				ApiRoutes.users.resetAgentsLeftLimit +
+				'/' +
+				id,
+			{},
+		);
 	}
 
 	/// POST
@@ -74,9 +85,8 @@ export class IamService {
 	postCreateAgent(agentDto: AgentDto) {
 		return this.httpClient.post<AgentDto>(
 			`${environment.iamServiceApiUrl}${ApiRoutes.users.createAgent}`,
-			agentDto
+			agentDto,
 		);
-
 	}
 
 	/// PUT
@@ -97,7 +107,7 @@ export class IamService {
 	putUpdateCorporateClient(user: UserDto) {
 		return this.httpClient.put<UserDto[]>(
 			environment.iamServiceApiUrl +
-			ApiRoutes.users.updateCorporateClient,
+				ApiRoutes.users.updateCorporateClient,
 			user,
 		);
 	}
@@ -105,8 +115,8 @@ export class IamService {
 	putActivateEmployee(id: number) {
 		return this.httpClient.put<UserDto[]>(
 			environment.iamServiceApiUrl +
-			ApiRoutes.users.activateEmployee +
-			`/${id}`,
+				ApiRoutes.users.activateEmployee +
+				`/${id}`,
 			{},
 		);
 	}
@@ -114,8 +124,8 @@ export class IamService {
 	putDeactivateEmployee(id: number) {
 		return this.httpClient.put<UserDto[]>(
 			environment.iamServiceApiUrl +
-			ApiRoutes.users.deactivateEmployee +
-			`/${id}`,
+				ApiRoutes.users.deactivateEmployee +
+				`/${id}`,
 			{},
 		);
 	}
@@ -127,23 +137,27 @@ export class IamService {
 		);
 	}
 
-  // CompanyController
+	// CompanyController
 	/// GET
 	getFindAllCompanies() {
 		return this.httpClient.get<CompanyDto[]>(
 			environment.iamServiceApiUrl + ApiRoutes.companies.findAll,
 		);
 	}
-	
-	getFindCompanyById(id:number) {
+
+	getFindCompanyById(id: number) {
 		return this.httpClient.get<CompanyDto>(
-			environment.iamServiceApiUrl + ApiRoutes.companies.findById+ '/' + id,
+			environment.iamServiceApiUrl +
+				ApiRoutes.companies.findById +
+				'/' +
+				id,
 		);
 	}
 
 	getFindCompanyByIdentificationNumber() {
 		return this.httpClient.get<CompanyDto>(
-			environment.iamServiceApiUrl + ApiRoutes.companies.findByIdentificationNumber,
+			environment.iamServiceApiUrl +
+				ApiRoutes.companies.findByIdentificationNumber,
 		);
 	}
 
@@ -153,33 +167,36 @@ export class IamService {
 		);
 	}
 
-	///POST
+	/// POST
 	postCreateCompany(company: CompanyDto) {
 		return this.httpClient.post<CompanyDto>(
 			environment.iamServiceApiUrl + ApiRoutes.companies.createCompany,
 			company,
 		);
 	}
-  
-	///PUT
+
+	/// PUT
 	putUpdateCompany(company: CompanyDto) {
 		return this.httpClient.put<CompanyDto>(
-			environment.iamServiceApiUrl +
-				ApiRoutes.companies.updateCompany,
-				company,
+			environment.iamServiceApiUrl + ApiRoutes.companies.updateCompany,
+			company,
 		);
 	}
 
-	///DELETE
+	/// DELETE
 	deleteCompanyById(id: number) {
 		this.httpClient.delete(
-			environment.iamServiceApiUrl + ApiRoutes.companies.deleteById + `/${id}`,
+			environment.iamServiceApiUrl +
+				ApiRoutes.companies.deleteById +
+				`/${id}`,
 		);
 	}
 
 	deleteCompanyByIdentificationNumber(identificationNumber: any) {
 		this.httpClient.delete(
-			environment.iamServiceApiUrl + ApiRoutes.companies.deleteByIdentificationNumber + `/${identificationNumber}`,
+			environment.iamServiceApiUrl +
+				ApiRoutes.companies.deleteByIdentificationNumber +
+				`/${identificationNumber}`,
 		);
 	}
 }

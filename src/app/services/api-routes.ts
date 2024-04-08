@@ -20,6 +20,8 @@ export const ApiRoutes = {
 		activateEmployee: '/users/employee-activate',
 		deactivateEmployee: '/users/employee-deactivate',
 		delete: '/users/delete',
+		getAgentsLeftLimit: '/agent-limit',
+		resetAgentsLeftLimit: '/agent-limit/reset',
 	},
 	accounts: {
 		associateProfileInitialization:
@@ -34,14 +36,14 @@ export const ApiRoutes = {
 		findById: '/stock/id',
 		findBySymbol: '/stock/stockSymbol',
 	},
-	options:{
-		findAllOptionsByStockListing: '/options/stock-listing'
+	options: {
+		findAllOptionsByStockListing: '/options/stock-listing',
 	},
 	forex: {
 		findAll: '/forex/all',
 		findById: '/forex/id/',
 		findByBaseCurrency: '/forex/base-currency',
-		findByQuoteCurrency: '/forex/quote-currency'
+		findByQuoteCurrency: '/forex/quote-currency',
 	},
 	companies: {
 		updateCompany: '/companies/update',
@@ -51,7 +53,7 @@ export const ApiRoutes = {
 		findById: '/companies/id',
 		findAll: '/companies/all',
 		deleteByIdentificationNumber: 'companies/delete/identificationNumber',
-		deleteById: '/companies/delete/id'
+		deleteById: '/companies/delete/id',
 	},
 	exchange: {
 		findAll: '/exchange/all',
@@ -66,6 +68,7 @@ export const ApiRoutes = {
 		findInflationByCurrencyId: '/currency/inflation/currency-id',
 
 		// TODO: zavisi od beka kako odluci da realizuje ovo
-		findInflationByCurrencyIdAndYear: '/currency/inflation/currency-id/year',
+		findInflationByCurrencyIdAndYear:
+			'/currency/inflation/currency-id/year',
 	},
 };

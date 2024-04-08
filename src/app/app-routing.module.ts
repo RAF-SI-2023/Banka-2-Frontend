@@ -17,6 +17,7 @@ import { CurrencyExchangeComponent } from './components/currency-exchange/curren
 import { OptionsComponent } from './components/options/options.component';
 import { ForexComponent } from './components/forex/forex.component';
 import { CompaniesComponent } from './components/companies/companies.component';
+import { AgentsComponent } from './components/agents/agents.component';
 
 const routes: Routes = [
 	{
@@ -77,6 +78,11 @@ const routes: Routes = [
 	{
 		component: OptionsComponent,
 		path: 'options/:stockListing',
+		canActivate: [authGuard],
+	},
+	{
+		component: AgentsComponent,
+		path: 'agents',
 		canActivate: [authGuard],
 	},
 ];

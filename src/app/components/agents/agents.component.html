@@ -5,33 +5,15 @@
 				<div>
 					<mat-form-field>
 						<mat-label>
-							Pretraži korisnike
+							Pretraži agente
 						</mat-label>
 						<input #input (keyup)="applyFilter($event)" matInput />
 					</mat-form-field>
 				</div>
 
-				<button mat-raised-button class="buttons" color="accent"
-					[disabled]="!selectedRow || selectedRowRole() != 'EMPLOYEE' || this.activeUser?.role != 'ADMIN'"
-					(click)="selectedRowActive() ? deactivateEmployee() : activateEmployee()">
-					{{
-					selectedRowActive()
-					? "Deaktiviraj zaposlenog"
-					: "Aktiviraj zaposlenog"
-					}}
-				</button>
-				<button mat-raised-button class="buttons" color="accent" [disabled]="this.activeUser?.role != 'ADMIN'"
-					(click)="addEmployee()">
-					Dodaj zaposlenog
-				</button>
-				<button mat-raised-button class="buttons" color="accent" (click)="addAgent()">Dodaj agenta</button>
-				<button mat-raised-button class="buttons" color="accent" (click)="updateUser()"
-					[disabled]="!selectedRow || updateUserDisabled()">
-					Izmeni korisnika
-				</button>
-				<button mat-raised-button class="buttons" color="warn" (click)="deleteUser()"
-					[disabled]="!selectedRow || updateUserDisabled()">
-					Izbriši korisnika
+				<button mat-raised-button class="buttons" color="accent" (click)="resetLeftOfLimit()"
+					[disabled]="!selectedRow || resetLeftOfLimitDisabled()">
+					Resetuj iskorišćen limit
 				</button>
 			</div>
 		</mat-card-header>
@@ -44,7 +26,7 @@
 								ID
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.id }}
+								{{ row.id ? row.id : "-" }}
 							</td>
 						</ng-container>
 
@@ -53,7 +35,7 @@
 								Email
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.email }}
+								{{ row.email ? row.email : "-" }}
 							</td>
 						</ng-container>
 
@@ -89,16 +71,25 @@
 								Uloga
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.role }}
+								{{ row.role ? row.role : "-" }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="active">
+						<ng-container matColumnDef="limit">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Aktivan?
+								Limit
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.active ? "✔️" : "❌" }}
+								{{ row.limit ? row.limit : "-" }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="leftOfLimit">
+							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+								Iskorišćen limit
+							</th>
+							<td *matCellDef="let row" mat-cell>
+								{{ row.leftOfLimit ? row.leftOfLimit : "-" }}
 							</td>
 						</ng-container>
 

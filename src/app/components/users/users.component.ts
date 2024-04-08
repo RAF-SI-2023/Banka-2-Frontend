@@ -121,6 +121,14 @@ export class UsersComponent implements AfterViewInit {
 			.subscribe();
 	}
 
+	viewUser(row: UserDto): void {
+		if (this.selectedRow != null) {
+			const dialogRef = this.dialog.open(UserInfoDialogComponent, {
+				data: { selectedRow: row },
+			});
+		}
+	}
+
 	activateEmployee(): void {
 		if (this.selectedRow != null && this.selectedRow.role == 'EMPLOYEE') {
 			this.iamService
@@ -191,14 +199,6 @@ export class UsersComponent implements AfterViewInit {
 				setTimeout(() => {
 					this.fetchAllData();
 				}, 1000);
-			});
-		}
-	}
-
-	viewUser(row: UserDto): void {
-		if (this.selectedRow != null) {
-			const dialogRef = this.dialog.open(UserInfoDialogComponent, {
-				data: { selectedRow: row },
 			});
 		}
 	}

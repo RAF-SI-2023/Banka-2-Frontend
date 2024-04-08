@@ -47,11 +47,7 @@
 								Last Refresh
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{
-								row.lastRefresh
-								? (row.lastRefresh | epochToDate | date : "dd.MM.yyyy")
-								: ""
-								}}
+								{{ row.lastRefresh ? (row.lastRefresh | date: 'dd/MM/yyyy') : "-" }}
 							</td>
 						</ng-container>
 

@@ -19,10 +19,19 @@
 	<mat-menu #menu="matMenu">
 		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/companies">
 			<mat-icon>
-				corporate_fare
+				business
 			</mat-icon>
 			<span>
 				Kompanije
+			</span>
+		</button>
+		<mat-divider></mat-divider>
+		<button *ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR])" mat-menu-item routerLink="/agents">
+			<mat-icon>
+				real_estate_agent
+			</mat-icon>
+			<span>
+				Agenti
 			</span>
 		</button>
 		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/users">
@@ -33,6 +42,7 @@
 				Korisnici
 			</span>
 		</button>
+		<mat-divider></mat-divider>
 		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/create-bank-account">
 			<mat-icon>
 				account_balance_wallet

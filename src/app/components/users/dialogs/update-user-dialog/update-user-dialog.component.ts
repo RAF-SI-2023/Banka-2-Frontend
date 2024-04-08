@@ -7,7 +7,6 @@ import { isEmployeeDto } from 'src/app/dtos/employee-dto';
 import { IamService } from 'src/app/services/iam.service';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker'; // Import MatDatepickerInputEvent
 
 @Component({
 	selector: 'app-update-user-dialog',
