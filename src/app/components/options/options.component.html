@@ -104,7 +104,7 @@
 				<div class="form">
 					<mat-form-field class="full-width">
 						<mat-label>
-							Pretraži call
+							Pretraži CALL opcije
 						</mat-label>
 						<input #inputLeft (keyup)="applyFilterCall($event)" matInput />
 					</mat-form-field>
@@ -112,7 +112,7 @@
 				<div class="form">
 					<mat-form-field class="full-width">
 						<mat-label>
-							Pretraži put
+							Pretraži PUT opcije
 						</mat-label>
 						<input #inputRight (keyup)="applyFilterPut($event)" matInput />
 					</mat-form-field>
@@ -124,10 +124,10 @@
 			<div class="tableContainer">
 				<div class="table">
 					<table class="tableData unselectable" mat-table [dataSource]="dataSourceCall">
-					
+
 						<ng-container matColumnDef="stockListing">
 							<th mat-header-cell *matHeaderCellDef>
-								stockListing
+								Listing
 							</th>
 							<td mat-cell *matCellDef="let element">
 								{{ element.stockListing }}
@@ -136,16 +136,16 @@
 
 						<ng-container matColumnDef="optionType">
 							<th mat-header-cell *matHeaderCellDef>
-								optionType
+								Tip opcije
 							</th>
 							<td mat-cell *matCellDef="let element">
 								{{ element.optionType }}
 							</td>
 						</ng-container>
-			
+
 						<ng-container matColumnDef="strikePrice">
 							<th mat-header-cell *matHeaderCellDef>
-								strikePrice
+								Izvršna cena
 							</th>
 							<td mat-cell *matCellDef="let element">
 								{{ element.strikePrice }}
@@ -154,7 +154,7 @@
 
 						<ng-container matColumnDef="impliedVolatility">
 							<th mat-header-cell *matHeaderCellDef>
-								impliedVolatility
+								Nestabilnost cene
 							</th>
 							<td mat-cell *matCellDef="let element">
 								{{ element.impliedVolatility }}
@@ -163,7 +163,7 @@
 
 						<ng-container matColumnDef="openInterest">
 							<th mat-header-cell *matHeaderCellDef>
-								openInterest
+								Broj otvorenih opcija
 							</th>
 							<td mat-cell *matCellDef="let element">
 								{{ element.openInterest }}
@@ -172,7 +172,7 @@
 
 						<ng-container matColumnDef="settlementDate">
 							<th mat-header-cell *matHeaderCellDef>
-								settlementDate
+								Datum isticanja opcije
 							</th>
 							<td *matCellDef="let element" mat-cell>
 								{{
@@ -197,10 +197,10 @@
 
 				<div class="table">
 					<table class="tableData unselectable" mat-table [dataSource]="dataSourcePut">
-						
+
 						<ng-container matColumnDef="stockListing">
 							<th mat-header-cell *matHeaderCellDef>
-								stockListing
+								Listing
 							</th>
 							<td mat-cell *matCellDef="let element">
 								{{ element.stockListing }}
@@ -209,16 +209,16 @@
 
 						<ng-container matColumnDef="optionType">
 							<th mat-header-cell *matHeaderCellDef>
-								optionType
+								Tip opcije
 							</th>
 							<td mat-cell *matCellDef="let element">
 								{{ element.optionType }}
 							</td>
 						</ng-container>
-			
+
 						<ng-container matColumnDef="strikePrice">
 							<th mat-header-cell *matHeaderCellDef>
-								strikePrice
+								Izvršna cena
 							</th>
 							<td mat-cell *matCellDef="let element">
 								{{ element.strikePrice }}
@@ -227,7 +227,7 @@
 
 						<ng-container matColumnDef="impliedVolatility">
 							<th mat-header-cell *matHeaderCellDef>
-								impliedVolatility
+								Nestabilnost cene
 							</th>
 							<td mat-cell *matCellDef="let element">
 								{{ element.impliedVolatility }}
@@ -236,7 +236,7 @@
 
 						<ng-container matColumnDef="openInterest">
 							<th mat-header-cell *matHeaderCellDef>
-								openInterest
+								Broj otvorenih opcija
 							</th>
 							<td mat-cell *matCellDef="let element">
 								{{ element.openInterest }}
@@ -245,7 +245,7 @@
 
 						<ng-container matColumnDef="settlementDate">
 							<th mat-header-cell *matHeaderCellDef>
-								settlementDate
+								Datum isticanja opcije
 							</th>
 							<td *matCellDef="let element" mat-cell>
 								{{
