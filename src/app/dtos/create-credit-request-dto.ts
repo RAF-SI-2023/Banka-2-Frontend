@@ -1,13 +1,13 @@
-interface CreateCreditRequestDto{
+export interface CreateCreditRequestDto{
 	creditType: string;
 	creditAmount: number;
 	creditPurpose: string;
 	monthlySalary: number;
 	permanentEmployment: boolean;
-	employmentPeriod: number;
-	maturity: string;
+	employmentPeriod: string;
+	// maturity: string;
 	currency: string;
-	phoneNumber: string;
+	mobileNumber: string;
 	accountNumber: string;
 	branch: string;
 	note: string;

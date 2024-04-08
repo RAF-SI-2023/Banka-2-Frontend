@@ -15,6 +15,17 @@ export const DropdownOptions = {
 		{ label: 'JPY', value: 'JPY' },
 		{ label: 'CNY', value: 'CNY' },
 	],
+	currencyCodes: [
+		{ label: 'RSD', value: 'RSD' },
+		{ label: 'USD', value: 'USD' },
+		{ label: 'EUR', value: 'EUR' },
+		{ label: 'GBP', value: 'GBP' },
+		{ label: 'CHF', value: 'CHF' },
+		{ label: 'CAD', value: 'CAD' },
+		{ label: 'AUD', value: 'AUD' },
+		{ label: 'JPY', value: 'JPY' },
+		{ label: 'CNY', value: 'CNY' },
+	],
 	// Dropdown options for account type
 	currencyAccountType: [
 		{ label: 'Personal', value: 'PERSONAL' },

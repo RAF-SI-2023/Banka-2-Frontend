@@ -75,7 +75,7 @@ export const ApiRoutes = {
 	credits:{
 		findAll: '/credit/all/account-number',
 		findByCreditNumber: '/credit/credit-number',
-		findByCreditName: '/credit/credit-requests/create',
+		createCreditRequest: '/credit/credit-requests/create',
 		findAllCreditRequests: '/credit/credit-requests/all',
 		approveAndCreate: '/credit/credit-requests/approve-and-create',
 		denyCreditRequest: '/credit/credit-requests/deny',
