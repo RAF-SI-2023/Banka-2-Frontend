@@ -11,6 +11,8 @@ import { IamService } from 'src/app/services/iam.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CompanyDto } from 'src/app/dtos/company-dto';
 import { CompanyInfoDialogComponent } from './dialogs/company-info-dialog/company-info-dialog.component';
+import { UpdateCompanyDialogComponent } from './dialogs/update-company-dialog/update-company-dialog.component';
+import { AddCompanyDialogComponent } from './dialogs/add-company-dialog/add-company-dialog.component';
 
 @Component({
 	selector: 'app-companies',
@@ -89,4 +91,34 @@ export class CompaniesComponent implements AfterViewInit {
 			)
 			.subscribe();
 	}
+	addCompany(): void{
+		const dialogRef = this.dialog.open(AddCompanyDialogComponent);
+
+		dialogRef.afterClosed().subscribe(result => {
+			console.log(`Dialog result: ${result}`);
+			this.selectedRow = null;
+			setTimeout(() => {
+				this.fetchAllData();
+			}, 1000);
+		});
+	}
+	updateCompany(): void{
+		if (this.selectedRow != null) {
+			const dialogRef = this.dialog.open(UpdateCompanyDialogComponent, {
+				data: { selectedRow: this.selectedRow },
+			});
+
+			dialogRef.afterClosed().subscribe(result => {
+				console.log(`Dialog result: ${result}`);
+				this.selectedRow = null;
+				setTimeout(() => {
+					this.fetchAllData();
+				}, 1000);
+			});
+		}
+	}
+	deleteCompany(): void{
+  
+	}
+
 }
