@@ -15,6 +15,17 @@ export const DropdownOptions = {
 		{ label: 'JPY', value: 'JPY' },
 		{ label: 'CNY', value: 'CNY' },
 	],
+	currencyCodes: [
+		{ label: 'RSD', value: 'RSD' },
+		{ label: 'USD', value: 'USD' },
+		{ label: 'EUR', value: 'EUR' },
+		{ label: 'GBP', value: 'GBP' },
+		{ label: 'CHF', value: 'CHF' },
+		{ label: 'CAD', value: 'CAD' },
+		{ label: 'AUD', value: 'AUD' },
+		{ label: 'JPY', value: 'JPY' },
+		{ label: 'CNY', value: 'CNY' },
+	],
 	// Dropdown options for account type
 	currencyAccountType: [
 		{ label: 'Personal', value: 'PERSONAL' },
@@ -35,4 +46,10 @@ export const DropdownOptions = {
 		{ label: 'Muški', value: 'MALE' },
 		{ label: 'Ženski', value: 'FEMALE' },
 	],
+	creditType: [
+		{ label: 'Gotovinski', value: 'GOTOVINSKI' },
+		{ label: 'Stambeni', value: 'STAMBENI' },
+		{ label: 'Auto', value: 'AUTO' },
+		{ label: 'Refinansirajuci', value: 'REFINANSIRAJUCI' },
+	]
 };

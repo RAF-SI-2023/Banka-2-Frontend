@@ -30,6 +30,7 @@ export const ApiRoutes = {
 		createDomesticAccount: '/accounts/create-account/domestic',
 		createForeignAccount: '/accounts/create-account/foreign',
 		createBusinessAccount: '/accounts/create-account/business',
+		findByEmail: '/accounts/find-by-email',
 	},
 	stocks: {
 		findAll: '/stock/all',
@@ -70,5 +71,13 @@ export const ApiRoutes = {
 		// TODO: zavisi od beka kako odluci da realizuje ovo
 		findInflationByCurrencyIdAndYear:
 			'/currency/inflation/currency-id/year',
+	},
+	credits:{
+		findAll: '/credit/all/account-number',
+		findByCreditNumber: '/credit/credit-number',
+		createCreditRequest: '/credit/credit-requests/create',
+		findAllCreditRequests: '/credit/credit-requests/all',
+		approveAndCreate: '/credit/credit-requests/approve-and-create',
+		denyCreditRequest: '/credit/credit-requests/deny',
 	},
 };

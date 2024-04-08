@@ -1,0 +1,48 @@
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: calc(100vh - 128px);
+}
+
+mat-card {}
+
+mat-card-content {
+	display: flex;
+	flex-direction: column;
+	width: 97%;
+}
+
+.form-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 2rem;
+}
+
+.form-inputs {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.form-inputs-row {
+	display: flex;
+	justify-content: space-around;
+}
+
+.form-inputs-amount {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 0.5rem;
+}
+
+.tab-content {
+	overflow: hidden;
+	height: fit-content;
+}
+
+.buttons {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}

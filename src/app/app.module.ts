@@ -29,12 +29,18 @@ import { CompanyInfoDialogComponent } from './components/companies/dialogs/compa
 import { CurrencyInfoDialogComponent } from './components/currency-exchange/dialogs/currency-info-dialog/currency-info-dialog.component';
 import { ExchangeInfoDialogComponent } from './components/currency-exchange/dialogs/exchange-info-dialog/exchange-info-dialog.component';
 import { AgentsComponent } from './components/agents/agents.component';
+import { CreditsComponent } from './components/credits/credits.component';
+import { CreditInfoDialogComponent } from './components/credits/dialogs/credit-info-dialog/credit-info-dialog.component';
+import { CreateCreditRequestComponent } from './components/create-credit-request/create-credit-request.component';
+import { UpdateCompanyDialogComponent } from './components/companies/dialogs/update-company-dialog/update-company-dialog.component';
+import { AddCompanyDialogComponent } from './components/companies/dialogs/add-company-dialog/add-company-dialog.component';
 /// DIRECTIVES/PIPES
 import { PhoneNumberValidatorDirective } from './directives/phone-number-validator.directive';
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
 import { EpochToDatePipe } from './pipes/epoch-to-date.pipe';
 import { EmailValidatorDirective } from './directives/email-validator.directive';
+import { TranslatePipe } from './pipes/translate.pipe';
 
 // IMPORTS
 import { BrowserModule } from '@angular/platform-browser';
@@ -68,8 +74,6 @@ import { HighchartsChartModule } from 'highcharts-angular';
 // PROVIDERS
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
-import { UpdateCompanyDialogComponent } from './components/companies/dialogs/update-company-dialog/update-company-dialog.component';
-import { AddCompanyDialogComponent } from './components/companies/dialogs/add-company-dialog/add-company-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -105,8 +109,12 @@ import { AddCompanyDialogComponent } from './components/companies/dialogs/add-co
 		CurrencyInfoDialogComponent,
 		ExchangeInfoDialogComponent,
 		AgentsComponent,
-  UpdateCompanyDialogComponent,
-  AddCompanyDialogComponent,
+    CreditsComponent,
+    CreditInfoDialogComponent,
+    CreateCreditRequestComponent,
+    TranslatePipe,
+    UpdateCompanyDialogComponent,
+    AddCompanyDialogComponent,
 	],
 	imports: [
 		HttpClientModule,
