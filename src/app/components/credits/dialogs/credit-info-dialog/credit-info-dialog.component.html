@@ -1,0 +1,67 @@
+<h2 mat-dialog-title>
+	Informacije
+</h2>
+<mat-dialog-content class="mat-typography size">
+	<div *ngIf="!isLoading" class="full-width-grid">
+		<div class="info-row">
+			<span class="label">Naziv:</span>
+			<span>{{ this.newSelectedRow.creditName }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Broj:</span>
+			<span>{{ this.newSelectedRow.creditNumber }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Iznos:</span>
+			<span>{{ this.newSelectedRow.creditAmount }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Period plaćanja:</span>
+			<span>{{ this.newSelectedRow.paymentPeriodMonths }} meseci</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Nominalna kamatna stopa:</span>
+			<span>{{ this.newSelectedRow.nominalInterestRate }}%</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Efektivna kamatna stopa:</span>
+			<span>{{ this.newSelectedRow.effectiveInterestRate }}%</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Datum kreiranja:</span>
+			<span>{{ this.newSelectedRow.creditCreationDate }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Datum isteka:</span>
+			<span>{{ this.newSelectedRow.creditExpirationDate }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Iznos rate:</span>
+			<span>{{ this.newSelectedRow.installmentAmount }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Datum sledeće rate:</span>
+			<span>{{ this.newSelectedRow.nextInstallmentDate }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Preostali iznos:</span>
+			<span>{{ this.newSelectedRow.remainingAmount }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Valuta:</span>
+			<span>{{ this.newSelectedRow.currencyCode }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Broj računa:</span>
+			<span>{{ this.newSelectedRow.accountNumber }}</span>
+		</div>
+	</div>
+	<div *ngIf="isLoading" class="spinner-container">
+		<mat-progress-spinner diameter="50" mode="indeterminate"></mat-progress-spinner>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-raised-button mat-dialog-close color="warn">
+		Zatvori
+	</button>
+</mat-dialog-actions>

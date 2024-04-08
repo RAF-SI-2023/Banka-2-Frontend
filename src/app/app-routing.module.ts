@@ -18,6 +18,7 @@ import { OptionsComponent } from './components/options/options.component';
 import { ForexComponent } from './components/forex/forex.component';
 import { CompaniesComponent } from './components/companies/companies.component';
 import { AgentsComponent } from './components/agents/agents.component';
+import {CreditsComponent} from "./components/credits/credits.component";
 
 const routes: Routes = [
 	{
@@ -85,6 +86,11 @@ const routes: Routes = [
 		path: 'agents',
 		canActivate: [authGuard],
 	},
+	{
+		component: CreditsComponent,
+		path: 'credits',
+		canActivate: [authGuard],
+	}
 ];
 
 @NgModule({
