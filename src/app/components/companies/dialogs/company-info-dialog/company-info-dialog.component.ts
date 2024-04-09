@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
 import { CompanyDto } from 'src/app/dtos/company-dto';
-import { IamService } from 'src/app/services/iam.service';
+import { CompanyService } from 'src/app/services/iam-service/company.service';
 
 @Component({
 	selector: 'app-company-info-dialog',
@@ -15,12 +15,12 @@ export class CompanyInfoDialogComponent {
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
-		private iamServic: IamService,
+		private companyService: CompanyService,
 	) {
 		this.fetchData();
 	}
 	fetchData() {
-		this.iamServic
+		this.companyService
 			.getFindCompanyById(this.data.selectedRow.id)
 			.subscribe(response => {
 				this.data.selectedRow = response;

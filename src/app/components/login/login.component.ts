@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { emailValidator } from '../../utils/validators/email.validator';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/iam-service/auth.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 

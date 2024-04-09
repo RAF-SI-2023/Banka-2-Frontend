@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { phoneNumberValidator } from '../../utils/validators';
 import { DropdownOptions } from '../../utils/constants';
-import { BankService } from '../../services/bank.service';
-import { CreditService } from '../../services/credit.service';
+import { AccountService } from '../../services/bank-service/account.service';
+import { CreditService } from '../../services/bank-service/credit.service';
 import { CreditRequestDto } from '../../dtos/credit-request-dto';
 import { AccountDto } from '../../dtos/account-dto';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/iam-service/auth.service';
 import { bankAccountNumberNoSymbolsValidator } from '../../utils/validators/bank-account-number-no-symbols.validator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -48,7 +48,7 @@ export class CreateCreditRequestComponent {
 		private fb: FormBuilder,
 		private creditService: CreditService,
 		private authService: AuthService,
-		private bankService: BankService,
+		private bankService: AccountService,
 		private matSnackBar: MatSnackBar,
 	) {
 		this.fetchAccountNumbers();

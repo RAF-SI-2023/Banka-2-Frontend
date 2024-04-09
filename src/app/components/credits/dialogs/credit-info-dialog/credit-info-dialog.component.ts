@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CreditDto } from '../../../../dtos/credit-dto';
-import { CreditService } from '../../../../services/credit.service';
+import { CreditService } from '../../../../services/bank-service/credit.service';
 
 @Component({
 	selector: 'app-credit-info-dialog',

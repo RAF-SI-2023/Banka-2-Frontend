@@ -1,15 +1,15 @@
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { LoginResponseDto } from '../dtos/login-response-dto';
-import { AuthCredentialsDto } from '../dtos/auth-credentials-dto';
+import { LoginResponseDto } from '../../dtos/login-response-dto';
+import { AuthCredentialsDto } from '../../dtos/auth-credentials-dto';
 import { Router } from '@angular/router';
-import { ApiRoutes } from './api-routes';
-import { PermissionDto } from '../dtos/permissions-dto';
-import { RolesDto } from '../dtos/roles-dto';
+import { ApiRoutes } from '../api-routes';
+import { PermissionDto } from '../../dtos/permissions-dto';
+import { RolesDto } from '../../dtos/roles-dto';
 import { Subject, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
-import { DecodedTokenDto } from '../dtos/decoded-token-dto';
+import { DecodedTokenDto } from '../../dtos/decoded-token-dto';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({

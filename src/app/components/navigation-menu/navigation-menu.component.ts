@@ -5,7 +5,7 @@ import {
 	OnDestroy,
 	OnInit,
 } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/iam-service/auth.service';
 import { Role } from '../../dtos/decoded-token-dto';
 import { Subscription } from 'rxjs';
 

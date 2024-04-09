@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isPrivateClientDto } from 'src/app/dtos/private-client-dto';
 import { isCorporateClientDto } from 'src/app/dtos/corporate-client-dto';
 import { isEmployeeDto } from 'src/app/dtos/employee-dto';
-import { IamService } from 'src/app/services/iam.service';
+import { UserService } from 'src/app/services/iam-service/user.service';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
@@ -18,7 +18,7 @@ export class UpdateUserDialogComponent {
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
-		private iamService: IamService,
+		private userService: UserService,
 	) {
 		this.checkDto();
 	}
@@ -42,7 +42,7 @@ export class UpdateUserDialogComponent {
 				: null;
 
 			if (this.checkDto() == 'PRIVATE') {
-				this.iamService
+				this.userService
 					.putUpdatePrivateClient(this.newSelectedRow)
 					.pipe(
 						catchError(error => {
@@ -52,7 +52,7 @@ export class UpdateUserDialogComponent {
 					)
 					.subscribe(() => {});
 			} else if (this.checkDto() == 'CORPORATE') {
-				this.iamService
+				this.userService
 					.putUpdateCorporateClient(this.newSelectedRow)
 					.pipe(
 						catchError(error => {
@@ -62,7 +62,7 @@ export class UpdateUserDialogComponent {
 					)
 					.subscribe(() => {});
 			} else if (this.checkDto() == 'EMPLOYEE') {
-				this.iamService
+				this.userService
 					.putUpdateEmployee(this.newSelectedRow)
 					.pipe(
 						catchError(error => {
@@ -71,6 +71,8 @@ export class UpdateUserDialogComponent {
 						}),
 					)
 					.subscribe(() => {});
+			} else {
+				alert('Ovaj tip korisnika ne može da se menja.');
 			}
 		}
 	}

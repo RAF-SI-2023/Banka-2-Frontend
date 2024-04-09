@@ -5,7 +5,7 @@ import {
 	bankAccountNumberValidator,
 	emailValidator,
 } from '../../../utils/validators';
-import { BankService } from '../../../services/bank.service';
+import { AccountService } from '../../../services/bank-service/account.service';
 import { DomesticAccountDto } from '../../../dtos/domestic-account-dto';
 
 @Component({
@@ -16,7 +16,7 @@ import { DomesticAccountDto } from '../../../dtos/domestic-account-dto';
 export class DomesticFormComponent {
 	@Input() currencyOptions!: DropdownOption[];
 	@Input() domesticCurrencyAccountTypeOptions!: DropdownOption[];
-	bankService = inject(BankService);
+	bankService = inject(AccountService);
 
 	domesticBankAccountForm = this.fb.group({
 		accountNumber: [

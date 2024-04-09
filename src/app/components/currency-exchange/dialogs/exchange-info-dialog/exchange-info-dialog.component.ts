@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
 import { ExchangeDto } from 'src/app/dtos/exchange-dto';
-import { ExchangeService } from 'src/app/services/exchange.service';
+import { ExchangeService } from 'src/app/services/stock-service/exchange.service';
 
 @Component({
 	selector: 'app-exchange-info-dialog',

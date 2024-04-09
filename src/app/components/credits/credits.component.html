@@ -9,7 +9,7 @@
 					<div class="mat-elevation-z8" style="box-shadow: none">
 						<table class="unselectable" mat-table [dataSource]="accountNumberDataSource" matSort>
 							<ng-container matColumnDef="accountType">
-								<th *matHeaderCellDef mat-header-cell  mat-sort-header>
+								<th *matHeaderCellDef mat-header-cell mat-sort-header>
 									Tip
 								</th>
 								<td *matCellDef="let row" mat-cell>
@@ -64,7 +64,8 @@
 						</mat-label>
 						<input #input (keyup)="applyFilter($event)" matInput />
 					</mat-form-field>
-					<button mat-raised-button class="buttons" color="accent" (click)="redirectToCreateRequest()">Kreiraj zahtev</button>
+					<button mat-raised-button class="buttons" color="accent" (click)="redirectToCreateRequest()">Kreiraj
+						zahtev</button>
 				</div>
 
 			</mat-card-header>
@@ -96,6 +97,15 @@
 								</th>
 								<td *matCellDef="let row" mat-cell>
 									{{ row.creditAmount }}
+								</td>
+							</ng-container>
+
+							<ng-container matColumnDef="currencyCode">
+								<th *matHeaderCellDef mat-header-cell mat-sort-header>
+									Valuta
+								</th>
+								<td *matCellDef="let row" mat-cell>
+									{{ row.currencyCode }}
 								</td>
 							</ng-container>
 

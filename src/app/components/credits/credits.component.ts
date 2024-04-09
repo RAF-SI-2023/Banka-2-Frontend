@@ -4,13 +4,13 @@ import { CreditDto } from '../../dtos/credit-dto';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
-import { CreditService } from '../../services/credit.service';
+import { CreditService } from '../../services/bank-service/credit.service';
 import { CreditInfoDialogComponent } from './dialogs/credit-info-dialog/credit-info-dialog.component';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { BankService } from '../../services/bank.service';
-import { AuthService } from '../../services/auth.service';
+import { AccountService } from '../../services/bank-service/account.service';
+import { AuthService } from '../../services/iam-service/auth.service';
 import { AccountDto } from '../../dtos/account-dto';
 
 @Component({
@@ -19,14 +19,19 @@ import { AccountDto } from '../../dtos/account-dto';
 	styleUrls: ['./credits.component.css'],
 })
 export class CreditsComponent implements AfterViewInit {
-	displayedColumns: string[] = ['creditName', 'creditNumber', 'creditAmount'];
 	displayedAccountColumns: string[] = [
 		'accountType',
 		'accountNumber',
 		'availableBalance',
 	];
-	dataSource = new MatTableDataSource<CreditDto>();
+	displayedColumns: string[] = [
+		'creditName',
+		'creditNumber',
+		'creditAmount',
+		'currencyCode',
+	];
 	accountNumberDataSource = new MatTableDataSource<AccountDto>();
+	dataSource = new MatTableDataSource<CreditDto>();
 	selectedAccount: AccountDto | null = null;
 	selectedCredit: CreditDto | null = null;
 
@@ -39,7 +44,7 @@ export class CreditsComponent implements AfterViewInit {
 		private creditService: CreditService,
 		public dialog: MatDialog,
 		private router: Router,
-		private bankService: BankService,
+		private bankService: AccountService,
 		private authService: AuthService,
 	) {
 		this.dataSource = new MatTableDataSource();

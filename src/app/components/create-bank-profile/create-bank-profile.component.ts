@@ -6,8 +6,8 @@ import {
 	phoneNumberValidator,
 } from '../../utils/validators';
 import { emailValidator } from '../../utils/validators/email.validator';
-import { IamService } from 'src/app/services/iam.service';
-import { BankService } from '../../services/bank.service';
+import { UserService } from 'src/app/services/iam-service/user.service';
+import { AccountService } from '../../services/bank-service/account.service';
 import { DropdownOption, DropdownOptions } from '../../utils/constants';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -19,8 +19,8 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 	styleUrls: ['./create-bank-profile.component.css'],
 })
 export class CreateBankProfileComponent implements OnInit {
-	iamService = inject(IamService);
-	bankService = inject(BankService);
+	userService = inject(UserService);
+	bankService = inject(AccountService);
 	router = inject(Router);
 	snackbar = inject(MatSnackBar);
 	currentStep = 1;
@@ -168,7 +168,7 @@ export class CreateBankProfileComponent implements OnInit {
 
 	createBankProfile() {
 		if (this.selectedBankProfileType === 'PRIVATE') {
-			this.iamService
+			this.userService
 				.postCreatePrivateClient({
 					phone: this.phone,
 					email: this.email,
@@ -194,7 +194,7 @@ export class CreateBankProfileComponent implements OnInit {
 					},
 				);
 		} else if (this.selectedBankProfileType === 'CORPORATE') {
-			this.iamService
+			this.userService
 				.postCreateCorporateClient({
 					phone: this.phone,
 					email: this.email,
@@ -239,7 +239,7 @@ export class CreateBankProfileComponent implements OnInit {
 	}
 
 	activatePassword() {
-		this.iamService
+		this.userService
 			.postPasswordActivation(this.email, this.password)
 			.subscribe(
 				response => {

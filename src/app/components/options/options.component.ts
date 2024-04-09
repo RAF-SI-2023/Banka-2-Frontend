@@ -7,7 +7,8 @@ import { OptionsDto } from 'src/app/dtos/options-dto';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { StockService } from 'src/app/services/stock.service';
+import { StockService } from 'src/app/services/stock-service/stock.service';
+import { OptionService } from 'src/app/services/stock-service/option.service';
 import { ActivatedRoute } from '@angular/router'; // Import ActivatedRoute
 
 @Component({
@@ -47,6 +48,7 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 
 	constructor(
 		private stockService: StockService,
+		private optionService: OptionService,
 		public dialog: MatDialog,
 		private route: ActivatedRoute, // Inject ActivatedRoute
 	) {
@@ -101,7 +103,7 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 		}
 	}
 	fetchAllData(stockListing: any): void {
-		this.stockService
+		this.optionService
 			.getFindAllOptionsByStockListing(stockListing)
 			.pipe(
 				map(dataSource => {

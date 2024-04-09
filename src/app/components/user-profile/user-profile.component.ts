@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IamService } from '../../services/iam.service';
+import { UserService } from '../../services/iam-service/user.service';
 import { UserDto } from '../../dtos/user-dto';
 import {
 	isPrivateClientDto,
@@ -16,11 +16,11 @@ import { EmployeeDto } from '../../dtos/employee-dto';
 import { AccountDto } from 'src/app/dtos/account-dto';
 import { CreditDto } from 'src/app/dtos/credit-dto';
 import { MatTableDataSource } from '@angular/material/table';
-import { CreditService } from 'src/app/services/credit.service';
+import { CreditService } from 'src/app/services/bank-service/credit.service';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { AuthService } from 'src/app/services/auth.service';
-import { BankService } from 'src/app/services/bank.service';
+import { AuthService } from 'src/app/services/iam-service/auth.service';
+import { AccountService } from 'src/app/services/bank-service/account.service';
 
 @Component({
 	selector: 'app-user-profile',
@@ -45,10 +45,10 @@ export class UserProfileComponent {
 	accountNumberDataSource = new MatTableDataSource<AccountDto>();
 
 	constructor(
-		private iamService: IamService,
+		private iamService: UserService,
 		public dialog: MatDialog,
 		private creditService: CreditService,
-		private bankService: BankService,
+		private accountService: AccountService,
 		private authService: AuthService,
 	) {
 		this.dataSource = new MatTableDataSource();
@@ -101,28 +101,11 @@ export class UserProfileComponent {
 		}
 	}
 
-	fetchAllData(): void {
-		if (!this.selectedAccount) return;
-
-		this.creditService
-			.getFindAll(this.selectedAccount.accountNumber.replaceAll('-', ''))
-			.pipe(
-				map(dataSource => {
-					this.dataSource.data = dataSource;
-					return dataSource;
-				}),
-				catchError(error => {
-					return throwError(() => error);
-				}),
-			)
-			.subscribe();
-	}
-
 	fetchAccounts(): void {
 		const emailLocal = this.authService.getUserEmail();
 		if (!emailLocal) return;
 
-		this.bankService
+		this.accountService
 			.getFindByEmail(emailLocal)
 			.pipe(
 				map(dataSource => {
@@ -140,7 +123,6 @@ export class UserProfileComponent {
 	selectAccountRow(row: AccountDto): void {
 		if (this.selectedAccount?.accountNumber != row.accountNumber) {
 			this.selectedAccount = row;
-			this.fetchAllData();
 		}
 	}
 

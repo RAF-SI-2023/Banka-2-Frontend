@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment.development';
-import { ApiRoutes } from './api-routes';
+import { environment } from '../../../environments/environment.development';
+import { ApiRoutes } from '../api-routes';
 import { HttpClient } from '@angular/common/http';
-import { ExchangeDto } from '../dtos/exchange-dto';
+import { ExchangeDto } from '../../dtos/exchange-dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -10,7 +10,6 @@ import { ExchangeDto } from '../dtos/exchange-dto';
 export class ExchangeService {
 	constructor(private httpClient: HttpClient) {}
 
-	// StockController
 	/// GET
 	getFindAll() {
 		return this.httpClient.get<ExchangeDto[]>(

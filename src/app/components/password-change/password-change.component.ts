@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { IamService } from '../../services/iam.service';
+import { UserService } from '../../services/iam-service/user.service';
 import { AuthCredentialsDto } from 'src/app/dtos/auth-credentials-dto';
 import { FormBuilder, Validators } from '@angular/forms';
 import { passwordValidator } from '../../utils/validators';
@@ -20,7 +20,7 @@ export class PasswordChangeComponent {
 	});
 
 	constructor(
-		private iamService: IamService,
+		private iamService: UserService,
 		private fb: FormBuilder,
 		private matSnackBar: MatSnackBar,
 		public dialogRef: MatDialogRef<PasswordChangeComponent>,

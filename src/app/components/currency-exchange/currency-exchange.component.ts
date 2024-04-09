@@ -3,12 +3,12 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/iam-service/auth.service';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { CurrencyDto } from '../../dtos/currency-dto';
-import { CurrencyService } from '../../services/currency.service';
-import { ExchangeService } from '../../services/exchange.service';
+import { CurrencyService } from '../../services/stock-service/currency.service';
+import { ExchangeService } from '../../services/stock-service/exchange.service';
 import { ExchangeDto } from '../../dtos/exchange-dto';
 import { CurrencyInfoDialogComponent } from './dialogs/currency-info-dialog/currency-info-dialog.component';
 import { ExchangeInfoDialogComponent } from './dialogs/exchange-info-dialog/exchange-info-dialog.component';
@@ -65,7 +65,7 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 		if (this.currencyPaginator)
 			this.currencyDataSource.paginator = this.currencyPaginator;
 		if (this.currencySort) this.currencyDataSource.sort = this.currencySort;
-		
+
 		if (this.exchangePaginator)
 			this.exchangeDataSource.paginator = this.exchangePaginator;
 		if (this.exchangeSort) this.exchangeDataSource.sort = this.exchangeSort;

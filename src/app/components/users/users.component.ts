@@ -4,11 +4,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { validateHorizontalPosition } from '@angular/cdk/overlay';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/iam-service/auth.service';
 import { UserDto } from 'src/app/dtos/user-dto';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { IamService } from 'src/app/services/iam.service';
+import { UserService } from 'src/app/services/iam-service/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateUserDialogComponent } from './dialogs/update-user-dialog/update-user-dialog.component';
 import { AddEmployeeDialogComponent } from './dialogs/add-employee-dialog/add-employee-dialog.component';
@@ -42,7 +42,7 @@ export class UsersComponent implements AfterViewInit {
 	constructor(
 		private http: HttpClient,
 		private authService: AuthService,
-		private iamService: IamService,
+		private userService: UserService,
 		public dialog: MatDialog,
 	) {
 		this.dataSource = new MatTableDataSource();
@@ -90,7 +90,7 @@ export class UsersComponent implements AfterViewInit {
 	}
 
 	fetchAllData(): void {
-		this.iamService
+		this.userService
 			.getFindAll()
 			.pipe(
 				map(dataSource => {
@@ -106,7 +106,7 @@ export class UsersComponent implements AfterViewInit {
 	}
 
 	fetchActiveUserData(): void {
-		this.iamService
+		this.userService
 			.getFindById(Number(localStorage.getItem('id')))
 			.pipe(
 				map(data => {
@@ -131,7 +131,7 @@ export class UsersComponent implements AfterViewInit {
 
 	activateEmployee(): void {
 		if (this.selectedRow != null && this.selectedRow.role == 'EMPLOYEE') {
-			this.iamService
+			this.userService
 				.putActivateEmployee(this.selectedRow.id)
 				.pipe(
 					catchError(error => {
@@ -148,7 +148,7 @@ export class UsersComponent implements AfterViewInit {
 
 	deactivateEmployee(): void {
 		if (this.selectedRow != null && this.selectedRow.role == 'EMPLOYEE') {
-			this.iamService
+			this.userService
 				.putDeactivateEmployee(this.selectedRow.id)
 				.pipe(
 					catchError(error => {
@@ -205,7 +205,7 @@ export class UsersComponent implements AfterViewInit {
 
 	deleteUser(): void {
 		if (this.selectedRow != null) {
-			this.iamService
+			this.userService
 				.delete(this.selectedRow.email)
 				.pipe(
 					catchError(error => {

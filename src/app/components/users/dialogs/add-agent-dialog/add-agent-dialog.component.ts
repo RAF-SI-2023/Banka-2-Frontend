@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { IamService } from 'src/app/services/iam.service';
+import { UserService } from 'src/app/services/iam-service/user.service';
 import { AgentDto } from 'src/app/dtos/agent-dto';
 
 @Component({
@@ -29,7 +29,7 @@ export class AddAgentDialogComponent {
 
 	constructor(
 		private fb: FormBuilder,
-		private iamService: IamService,
+		private userService: UserService,
 	) {}
 
 	updatePermissions(event: any, permission: string) {
@@ -55,7 +55,7 @@ export class AddAgentDialogComponent {
 		};
 
 		console.log(agentDto);
-		this.iamService.postCreateAgent(agentDto).subscribe({
+		this.userService.postCreateAgent(agentDto).subscribe({
 			next: response => console.log('Agent dodat', response),
 			error: error => console.error('Greška pri dodavanju agenta', error),
 		});

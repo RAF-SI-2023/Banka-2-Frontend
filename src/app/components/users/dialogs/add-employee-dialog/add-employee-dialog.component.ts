@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IamService } from 'src/app/services/iam.service';
+import { UserService } from 'src/app/services/iam-service/user.service';
 import { EmployeeDto } from 'src/app/dtos/employee-dto';
 
 @Component({
@@ -29,7 +29,7 @@ export class AddEmployeeDialogComponent {
 	];
 	permissions: string[] = [];
 
-	constructor(private iamService: IamService) {}
+	constructor(private userService: UserService) {}
 
 	updatePermissions(event: any, permission: string) {
 		if (event.checked) {
@@ -62,7 +62,7 @@ export class AddEmployeeDialogComponent {
 			active: this.active,
 		};
 
-		this.iamService.postCreateEmployee(employeeDto).subscribe({
+		this.userService.postCreateEmployee(employeeDto).subscribe({
 			next: response => {
 				console.log(response);
 			},

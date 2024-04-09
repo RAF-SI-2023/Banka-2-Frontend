@@ -5,7 +5,7 @@ import {
 	bankAccountNumberValidator,
 	emailValidator,
 } from '../../../utils/validators';
-import { BankService } from '../../../services/bank.service';
+import { AccountService } from '../../../services/bank-service/account.service';
 import { ForeignAccountDto } from '../../../dtos/foreign-account-dto';
 
 @Component({
@@ -15,7 +15,7 @@ import { ForeignAccountDto } from '../../../dtos/foreign-account-dto';
 })
 export class ForeignFormComponent {
 	@Input() currencyOptions!: DropdownOption[];
-	bankService = inject(BankService);
+	bankService = inject(AccountService);
 	foreignBankAccountForm = this.fb.group({
 		accountNumber: [
 			'',

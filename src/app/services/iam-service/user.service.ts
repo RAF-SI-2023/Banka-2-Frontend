@@ -1,26 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
-import { ApiRoutes } from './api-routes';
-import { UserDto } from '../dtos/user-dto';
-import { PrivateClientDto } from '../dtos/private-client-dto';
-import { CorporateClientDto } from '../dtos/corporate-client-dto';
-import { PrivateClientRequestDto } from '../dtos/private-client-request.dto';
-import { CorporateClientRequestDto } from '../dtos/corporate-client-request-dto';
-import { EmployeeDto } from '../dtos/employee-dto';
-import { AgentDto } from '../dtos/agent-dto';
-import { CompanyDto } from '../dtos/company-dto';
-import { AuthCredentialsDto } from '../dtos/auth-credentials-dto';
-import { PasswordChangeTokenDto } from '../dtos/password-change-token-dto';
+import { ApiRoutes } from '../api-routes';
+import { UserDto } from '../../dtos/user-dto';
+import { PrivateClientDto } from '../../dtos/private-client-dto';
+import { CorporateClientDto } from '../../dtos/corporate-client-dto';
+import { PrivateClientRequestDto } from '../../dtos/private-client-request.dto';
+import { CorporateClientRequestDto } from '../../dtos/corporate-client-request-dto';
+import { EmployeeDto } from '../../dtos/employee-dto';
+import { AgentDto } from '../../dtos/agent-dto';
+import { AuthCredentialsDto } from '../../dtos/auth-credentials-dto';
+import { PasswordChangeTokenDto } from '../../dtos/password-change-token-dto';
 
 @Injectable({
 	providedIn: 'root',
 })
-export class IamService {
+export class UserService {
 	constructor(private httpClient: HttpClient) {}
 
-	// UserController
-	/// GET
+	// GET
 	getFindAll() {
 		return this.httpClient.get<UserDto[]>(
 			environment.iamServiceApiUrl + ApiRoutes.users.findAll,
@@ -33,7 +31,7 @@ export class IamService {
 		>(environment.iamServiceApiUrl + ApiRoutes.users.findById + '/' + id);
 	}
 
-	/// PATCH
+	// PATCH
 	patchResetAgentsLeftLimit(id: number) {
 		return this.httpClient.patch<null>(
 			environment.iamServiceApiUrl +
@@ -44,7 +42,7 @@ export class IamService {
 		);
 	}
 
-	/// POST
+	// POST
 	postPasswordActivation(email: string, password: string) {
 		return this.httpClient.post<boolean>(
 			`${environment.iamServiceApiUrl}${ApiRoutes.users.passwordActivation}/${email}`,
@@ -89,7 +87,7 @@ export class IamService {
 		);
 	}
 
-	/// PUT
+	// PUT
 	putUpdateEmployee(user: UserDto) {
 		return this.httpClient.put<UserDto[]>(
 			environment.iamServiceApiUrl + ApiRoutes.users.updateEmployee,
@@ -134,67 +132,6 @@ export class IamService {
 	delete(email: string) {
 		return this.httpClient.delete<UserDto[]>(
 			environment.iamServiceApiUrl + ApiRoutes.users.delete + `/${email}`,
-		);
-	}
-
-	// CompanyController
-	/// GET
-	getFindAllCompanies() {
-		return this.httpClient.get<CompanyDto[]>(
-			environment.iamServiceApiUrl + ApiRoutes.companies.findAll,
-		);
-	}
-
-	getFindCompanyById(id: number) {
-		return this.httpClient.get<CompanyDto>(
-			environment.iamServiceApiUrl +
-				ApiRoutes.companies.findById +
-				'/' +
-				id,
-		);
-	}
-
-	getFindCompanyByIdentificationNumber() {
-		return this.httpClient.get<CompanyDto>(
-			environment.iamServiceApiUrl +
-				ApiRoutes.companies.findByIdentificationNumber,
-		);
-	}
-
-	getFindCompanyByPib() {
-		return this.httpClient.get<CompanyDto>(
-			environment.iamServiceApiUrl + ApiRoutes.companies.findByPib,
-		);
-	}
-
-	/// POST
-	postCreateCompany(company: CompanyDto) {
-		return this.httpClient.post<CompanyDto>(
-			environment.iamServiceApiUrl + ApiRoutes.companies.createCompany,
-			company,
-		);
-	}
-
-	/// PUT
-	putUpdateCompany(company: CompanyDto) {
-		return this.httpClient.put<CompanyDto>(
-			environment.iamServiceApiUrl + ApiRoutes.companies.updateCompany,
-			company,
-		);
-	}
-
-	/// DELETE
-	deleteCompanyById(id: number) {
-		return this.httpClient.delete<CompanyDto[]>(
-			environment.iamServiceApiUrl + ApiRoutes.companies.deleteById + '/'+ id,
-		);
-	}
-
-	deleteCompanyByIdentificationNumber(identificationNumber: any) {
-		return this.httpClient.delete<CompanyDto[]>(
-			environment.iamServiceApiUrl +
-				ApiRoutes.companies.deleteByIdentificationNumber +
-				`/${identificationNumber}`,
 		);
 	}
 }

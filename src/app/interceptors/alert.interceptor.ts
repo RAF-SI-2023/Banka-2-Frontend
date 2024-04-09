@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/iam-service/auth.service';
 
 @Injectable()
 export class AlertInterceptor implements HttpInterceptor {

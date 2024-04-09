@@ -4,11 +4,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { validateHorizontalPosition } from '@angular/cdk/overlay';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/iam-service/auth.service';
 import { UserDto } from 'src/app/dtos/user-dto';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { IamService } from 'src/app/services/iam.service';
+import { UserService } from 'src/app/services/iam-service/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeDto } from 'src/app/dtos/employee-dto';
 
@@ -39,7 +39,7 @@ export class AgentsComponent implements AfterViewInit {
 	constructor(
 		private http: HttpClient,
 		private authService: AuthService,
-		private iamService: IamService,
+		private userService: UserService,
 		public dialog: MatDialog,
 	) {
 		this.dataSource = new MatTableDataSource();
@@ -71,7 +71,7 @@ export class AgentsComponent implements AfterViewInit {
 	}
 
 	fetchAllData(): void {
-		this.iamService
+		this.userService
 			.getFindAll()
 			.pipe(
 				map(dataSource => {
@@ -106,7 +106,7 @@ export class AgentsComponent implements AfterViewInit {
 
 	resetLeftOfLimit(): void {
 		if (this.selectedRow != null && this.selectedRow.role == 'AGENT') {
-			this.iamService
+			this.userService
 				.patchResetAgentsLeftLimit(this.selectedRow.id)
 				.pipe(
 					catchError(error => {

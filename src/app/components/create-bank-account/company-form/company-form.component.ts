@@ -5,7 +5,7 @@ import {
 	bankAccountNumberValidator,
 	emailValidator,
 } from '../../../utils/validators';
-import { BankService } from '../../../services/bank.service';
+import { AccountService } from '../../../services/bank-service/account.service';
 import { CompanyAccountDto } from 'src/app/dtos/company-account-dto';
 @Component({
 	selector: 'app-company-form',
@@ -14,7 +14,7 @@ import { CompanyAccountDto } from 'src/app/dtos/company-account-dto';
 })
 export class CompanyFormComponent {
 	@Input() currencyOptions!: DropdownOption[];
-	bankService = inject(BankService);
+	bankService = inject(AccountService);
 
 	companyBankAccountForm = this.fb.group({
 		accountNumber: [

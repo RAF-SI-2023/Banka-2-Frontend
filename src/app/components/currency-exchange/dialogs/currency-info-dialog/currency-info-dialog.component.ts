@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
 import { CurrencyDto } from 'src/app/dtos/currency-dto';
-import { CurrencyService } from 'src/app/services/currency.service';
+import { CurrencyService } from 'src/app/services/stock-service/currency.service';
 import * as Highcharts from 'highcharts';
 
 @Component({

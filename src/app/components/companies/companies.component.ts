@@ -4,15 +4,15 @@ import { MatTableDataSource } from '@angular/material/table';
 import { validateHorizontalPosition } from '@angular/cdk/overlay';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/iam-service/auth.service';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { IamService } from 'src/app/services/iam.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CompanyDto } from 'src/app/dtos/company-dto';
 import { CompanyInfoDialogComponent } from './dialogs/company-info-dialog/company-info-dialog.component';
 import { UpdateCompanyDialogComponent } from './dialogs/update-company-dialog/update-company-dialog.component';
 import { AddCompanyDialogComponent } from './dialogs/add-company-dialog/add-company-dialog.component';
+import { CompanyService } from 'src/app/services/iam-service/company.service';
 
 @Component({
 	selector: 'app-companies',
@@ -40,7 +40,7 @@ export class CompaniesComponent implements AfterViewInit {
 	constructor(
 		private http: HttpClient,
 		private authService: AuthService,
-		private iamService: IamService,
+		private companyService: CompanyService,
 		public dialog: MatDialog,
 	) {
 		this.dataSource = new MatTableDataSource();
@@ -76,7 +76,7 @@ export class CompaniesComponent implements AfterViewInit {
 	}
 
 	fetchAllData(): void {
-		this.iamService
+		this.companyService
 			.getFindAllCompanies()
 			.pipe(
 				map(dataSource => {
@@ -91,7 +91,8 @@ export class CompaniesComponent implements AfterViewInit {
 			)
 			.subscribe();
 	}
-	addCompany(): void{
+
+	addCompany(): void {
 		const dialogRef = this.dialog.open(AddCompanyDialogComponent);
 
 		dialogRef.afterClosed().subscribe(result => {
@@ -102,7 +103,8 @@ export class CompaniesComponent implements AfterViewInit {
 			}, 1000);
 		});
 	}
-	updateCompany(): void{
+
+	updateCompany(): void {
 		if (this.selectedRow != null) {
 			const dialogRef = this.dialog.open(UpdateCompanyDialogComponent, {
 				data: { selectedRow: this.selectedRow },
@@ -117,9 +119,10 @@ export class CompaniesComponent implements AfterViewInit {
 			});
 		}
 	}
-	deleteCompany(): void{
+
+	deleteCompany(): void {
 		if (this.selectedRow != null) {
-			this.iamService
+			this.companyService
 				.deleteCompanyById(this.selectedRow.id)
 				.pipe(
 					catchError(error => {
@@ -135,6 +138,4 @@ export class CompaniesComponent implements AfterViewInit {
 				});
 		}
 	}
-	
-
 }
