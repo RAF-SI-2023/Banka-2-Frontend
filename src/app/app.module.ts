@@ -77,6 +77,8 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 import { CreditRequestsComponent } from './components/credit-requests/credit-requests.component';
 import { CreditReqInfoDialogComponent } from './components/credit-requests/credit-req-info-dialog/credit-req-info-dialog.component';
 import { ForexInfoDialogComponent } from './components/forex/forex-info-dialog/forex-info-dialog.component';
+import { StockFilterComponent } from './components/stocks/dialogs/stock-filter/stock-filter.component';
+import {MatSliderModule} from "@angular/material/slider";
 
 @NgModule({
 	declarations: [
@@ -121,6 +123,7 @@ import { ForexInfoDialogComponent } from './components/forex/forex-info-dialog/f
     CreditRequestsComponent,
     CreditReqInfoDialogComponent,
     ForexInfoDialogComponent,
+    StockFilterComponent,
 	],
 	imports: [
 		HttpClientModule,
@@ -152,6 +155,7 @@ import { ForexInfoDialogComponent } from './components/forex/forex-info-dialog/f
 		MatListModule,
 		MatProgressSpinnerModule,
 		HighchartsChartModule,
+		MatSliderModule,
 	],
 	providers: [
 		{
