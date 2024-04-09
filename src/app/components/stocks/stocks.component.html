@@ -7,6 +7,14 @@
 						Pretraži akcije
 					</mat-label>
 					<input #input (keyup)="applyFilter($event)" matInput />
+<!--					open filter dialog label button-->
+					<button mat-icon-button matSuffix (click)="openFilterDialog()">
+						<mat-icon>filter_list</mat-icon>
+					</button>
+<!--					reset filters button-->
+					<button mat-icon-button matSuffix (click)="resetFilters()">
+						<mat-icon>clear</mat-icon>
+					</button>
 				</mat-form-field>
 			</div>
 		</mat-card-header>
