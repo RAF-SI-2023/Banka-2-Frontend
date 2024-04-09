@@ -74,6 +74,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
 // PROVIDERS
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
+import { CreditRequestsComponent } from './components/credit-requests/credit-requests.component';
+import { CreditReqInfoDialogComponent } from './components/credit-requests/credit-req-info-dialog/credit-req-info-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -115,6 +117,8 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
     TranslatePipe,
     UpdateCompanyDialogComponent,
     AddCompanyDialogComponent,
+    CreditRequestsComponent,
+    CreditReqInfoDialogComponent,
 	],
 	imports: [
 		HttpClientModule,

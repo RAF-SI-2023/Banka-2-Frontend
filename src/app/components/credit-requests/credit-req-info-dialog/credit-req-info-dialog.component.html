@@ -1,0 +1,90 @@
+<h2 mat-dialog-title>
+	Informacije
+</h2>
+<mat-dialog-content class="mat-typography size">
+	<div *ngIf="!isLoading" class="full-width-grid">
+		<div class="info-row">
+			<span class="label">ID:</span>
+			<span>{{ this.newSelectedRow.id ? this.newSelectedRow.id : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Broj računa:</span>
+			<span>{{ this.newSelectedRow.accountNumber ? this.newSelectedRow.accountNumber : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Broj telefona:</span>
+			<span>{{ this.newSelectedRow.mobileNumber ? this.newSelectedRow.mobileNumber : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Tip kredita:</span>
+			<span>{{ this.newSelectedRow.creditType ? this.newSelectedRow.creditType : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Iznos:</span>
+			<span>{{ this.newSelectedRow.creditAmount ? this.newSelectedRow.creditAmount : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Valuta:</span>
+			<span>{{ this.newSelectedRow.currency ? this.newSelectedRow.currency : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Svrha kredita:</span>
+			<span>{{ this.newSelectedRow.creditPurpose ? this.newSelectedRow.creditPurpose : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Period otplate (meseci):</span>
+			<span>{{ this.newSelectedRow.paymentPeriodMonths ? this.newSelectedRow.paymentPeriodMonths : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Mesečna primanja:</span>
+			<span>{{ this.newSelectedRow.monthlySalary ? this.newSelectedRow.monthlySalary : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Stalno zaposlenje:</span>
+			<span>{{ this.newSelectedRow.permanentEmployment ? '✔️' : '❌' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Period zaposlenja (meseci):</span>
+			<span>{{ this.newSelectedRow.employmentPeriod ? this.newSelectedRow.employmentPeriod : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Nivo obrazovanja:</span>
+			<span>{{ this.newSelectedRow.educationLevel ? this.newSelectedRow.educationLevel : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Bračni status:</span>
+			<span>{{ this.newSelectedRow.maritalStatus ? this.newSelectedRow.maritalStatus : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Stanovanje:</span>
+			<span>{{ this.newSelectedRow.housingStatus ? this.newSelectedRow.housingStatus : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Posedovanje automobila:</span>
+			<span>{{ this.newSelectedRow.ownCar ? '✔️' : '❌' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Branša:</span>
+			<span>{{ this.newSelectedRow.branch ? this.newSelectedRow.branch : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Napomena:</span>
+			<span>{{ this.newSelectedRow.note ? this.newSelectedRow.note : '-' }}</span>
+		</div>
+	</div>
+
+	<div *ngIf="isLoading" class="spinner-container">
+		<mat-progress-spinner diameter="50" mode="indeterminate"></mat-progress-spinner>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-raised-button mat-dialog-close color="accent" cdkFocusInitial (click)="approveCreditReq()">
+		Odobri
+	</button>
+	<button mat-raised-button mat-dialog-close color="accent" (click)="denyCreditReq()">
+		Odbij
+	</button>
+	<button mat-raised-button mat-dialog-close color="warn">
+		Zatvori
+	</button>
+</mat-dialog-actions>

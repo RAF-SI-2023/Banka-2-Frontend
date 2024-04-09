@@ -6,7 +6,7 @@
 			</mat-card-title>
 		</mat-card-header>
 		<form [formGroup]="creditRequestForm" (ngSubmit)="onSubmit()">
-			<mat-card-content >
+			<mat-card-content>
 				<div class="form-grid">
 					<div class="form-inputs">
 						<mat-form-field>
@@ -42,7 +42,8 @@
 								<mat-label>
 									Iznos
 								</mat-label>
-								<input matInput formControlName="creditAmount" type="number" step="100" placeholder="Unesite iznos">
+								<input matInput formControlName="creditAmount" type="number" step="100"
+									placeholder="Unesite iznos">
 								<mat-error *ngIf="creditRequestForm.get('creditAmount')?.hasError('required')">
 									Iznos je obavezan.
 								</mat-error>
@@ -66,7 +67,8 @@
 							<mat-label>
 								Broj mobilnog telefona
 							</mat-label>
-							<input matInput placeholder="Unesite broj telefona" formControlName="mobileNumber" required />
+							<input matInput placeholder="Unesite broj telefona" formControlName="mobileNumber"
+								required />
 							<mat-error
 								*ngIf="creditRequestForm.controls.mobileNumber.invalid && !creditRequestForm.get('mobileNumber')?.hasError('invalidPhoneNumber')">
 								Broj telefona je obavezan.
@@ -80,7 +82,8 @@
 							<mat-label>
 								Period otplate (meseci)
 							</mat-label>
-							<input matInput type="number" formControlName="paymentPeriodMonths" placeholder="Unesite period otplate">
+							<input matInput type="number" formControlName="paymentPeriodMonths"
+								placeholder="Unesite period otplate">
 							<mat-error *ngIf="creditRequestForm.get('paymentPeriodMonths')?.hasError('required')">
 								Period otplate je obavezan.
 							</mat-error>
@@ -90,7 +93,8 @@
 							<mat-label>
 								Svrha kredita
 							</mat-label>
-							<textarea matInput formControlName="creditPurpose" placeholder="Unesite svrhu kredita"></textarea>
+							<textarea matInput formControlName="creditPurpose"
+								placeholder="Unesite svrhu kredita"></textarea>
 							<mat-error *ngIf="creditRequestForm.get('creditPurpose')?.hasError('required')">
 								Svrha kredita je obavezna.
 							</mat-error>
@@ -101,26 +105,27 @@
 							<mat-label>
 								Mesečna zarada
 							</mat-label>
-							<input matInput type="number" formControlName="monthlySalary" placeholder="Unesite mesečnu zaradu">
+							<input matInput type="number" formControlName="monthlySalary"
+								placeholder="Unesite mesečna primanja">
 							<mat-error *ngIf="creditRequestForm.get('monthlySalary')?.hasError('required')">
-								Mesečna zarada je obavezna.
+								Mesečna primanja su obavezna.
 							</mat-error>
 						</mat-form-field>
-		<!--				education level normal input-->
+						<!--				education level normal input-->
 						<mat-form-field>
 							<mat-label>
 								Nivo obrazovanja
 							</mat-label>
 							<input matInput formControlName="educationLevel" placeholder="Unesite nivo obrazovanja">
 						</mat-form-field>
-		<!--				marital status normal input-->
+						<!--				marital status normal input-->
 						<mat-form-field>
 							<mat-label>
 								Bračni status
 							</mat-label>
 							<input matInput formControlName="maritalStatus" placeholder="Unesite bračni status">
 						</mat-form-field>
-		<!--	housing status normal input-->
+						<!--	housing status normal input-->
 						<mat-form-field>
 							<mat-label>
 								Stanovanje
@@ -141,7 +146,7 @@
 							</mat-checkbox>
 							<!--				own car boolean checkbox-->
 							<mat-checkbox formControlName="ownCar" class="checkbox">
-								Imate auto
+								Imate automobil
 							</mat-checkbox>
 						</div>
 					</div>

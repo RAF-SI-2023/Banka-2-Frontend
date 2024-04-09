@@ -1,4 +1,4 @@
-export interface AccountDto{
+export interface AccountDto {
 	id: number;
 	accountNumber: string;
 	email: string;

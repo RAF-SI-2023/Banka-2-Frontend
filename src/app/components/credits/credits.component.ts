@@ -1,29 +1,25 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {MatTableDataSource} from "@angular/material/table";
-import {CreditDto} from "../../dtos/credit-dto";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
-import {MatDialog} from "@angular/material/dialog";
-import {CreditService} from "../../services/credit.service";
-import {CreditInfoDialogComponent} from "./dialogs/credit-info-dialog/credit-info-dialog.component";
-import {catchError, map} from "rxjs/operators";
-import {throwError} from "rxjs";
-import {Router} from "@angular/router";
-import {BankService} from "../../services/bank.service";
-import {AuthService} from "../../services/auth.service";
-import {AccountDto} from "../../dtos/account-dto";
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { CreditDto } from '../../dtos/credit-dto';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { CreditService } from '../../services/credit.service';
+import { CreditInfoDialogComponent } from './dialogs/credit-info-dialog/credit-info-dialog.component';
+import { catchError, map } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { BankService } from '../../services/bank.service';
+import { AuthService } from '../../services/auth.service';
+import { AccountDto } from '../../dtos/account-dto';
 
 @Component({
-  selector: 'app-credits',
-  templateUrl: './credits.component.html',
-  styleUrls: ['./credits.component.css']
+	selector: 'app-credits',
+	templateUrl: './credits.component.html',
+	styleUrls: ['./credits.component.css'],
 })
-export class CreditsComponent implements AfterViewInit{
-	displayedColumns: string[] = [
-		'creditName',
-		'creditNumber',
-		'creditAmount'
-	];
+export class CreditsComponent implements AfterViewInit {
+	displayedColumns: string[] = ['creditName', 'creditNumber', 'creditAmount'];
 	displayedAccountColumns: string[] = [
 		'accountType',
 		'accountNumber',
@@ -54,8 +50,11 @@ export class CreditsComponent implements AfterViewInit{
 	ngAfterViewInit() {
 		if (this.paginator) this.dataSource.paginator = this.paginator;
 		if (this.sort) this.dataSource.sort = this.sort;
-		if (this.accountNumberPaginator) this.accountNumberDataSource.paginator = this.accountNumberPaginator;
-		if (this.accountNumberSort) this.accountNumberDataSource.sort = this.accountNumberSort;
+		if (this.accountNumberPaginator)
+			this.accountNumberDataSource.paginator =
+				this.accountNumberPaginator;
+		if (this.accountNumberSort)
+			this.accountNumberDataSource.sort = this.accountNumberSort;
 	}
 
 	applyFilter(event: Event) {
@@ -84,7 +83,7 @@ export class CreditsComponent implements AfterViewInit{
 		}
 	}
 
-	viewCredit(row: CreditDto){
+	viewCredit(row: CreditDto) {
 		if (this.selectedCredit != null) {
 			const dialogRef = this.dialog.open(CreditInfoDialogComponent, {
 				data: { selectedRow: row },
@@ -111,17 +110,20 @@ export class CreditsComponent implements AfterViewInit{
 
 	fetchAccounts(): void {
 		const emailLocal = this.authService.getUserEmail();
-		if(!emailLocal) return;
+		if (!emailLocal) return;
 
-		this.bankService.getFindByEmail(emailLocal).pipe(
-			map(dataSource => {
-				this.accountNumberDataSource.data = dataSource;
-				this.selectAccountRow(dataSource[0]);
-				return dataSource;
-			}),
-			catchError(error => {
-				return throwError(() => error);
-			}),
-		).subscribe();
+		this.bankService
+			.getFindByEmail(emailLocal)
+			.pipe(
+				map(dataSource => {
+					this.accountNumberDataSource.data = dataSource;
+					this.selectAccountRow(dataSource[0]);
+					return dataSource;
+				}),
+				catchError(error => {
+					return throwError(() => error);
+				}),
+			)
+			.subscribe();
 	}
 }

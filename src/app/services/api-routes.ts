@@ -72,11 +72,12 @@ export const ApiRoutes = {
 		findInflationByCurrencyIdAndYear:
 			'/currency/inflation/currency-id/year',
 	},
-	credits:{
+	credits: {
 		findAll: '/credit/all/account-number',
 		findByCreditNumber: '/credit/credit-number',
 		createCreditRequest: '/credit/credit-requests/create',
 		findAllCreditRequests: '/credit/credit-requests/all',
+		getCreditRequestById: '/credit/credit-requests/id',
 		approveAndCreate: '/credit/credit-requests/approve-and-create',
 		denyCreditRequest: '/credit/credit-requests/deny',
 	},

@@ -26,10 +26,6 @@
 			<table>
 				<tbody>
 					<!--   USER START     -->
-					<!-- <tr>
-						<td><b>Username:</b></td>
-						<td>{{ user?.username }}</td>
-					</tr> -->
 					<tr>
 						<td><b>Email:</b></td>
 						<td>{{ user?.email ? user?.email : "-" }}</td>
@@ -105,7 +101,52 @@
 					</tr>
 					<!--   EMPLOYEE END     -->
 				</tbody>
+
+				<tr>
+					<td><b>Računi:</b></td>
+				</tr>
 			</table>
+
+			<div class="tableContainer">
+				<div class="mat-elevation-z8" style="box-shadow: none">
+					<table class="unselectable" mat-table [dataSource]="accountNumberDataSource" matSort>
+						<ng-container matColumnDef="accountType">
+							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+								Tip
+							</th>
+							<td *matCellDef="let row" mat-cell>
+								{{ row.accountType | translate }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="accountNumber">
+							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+								Broj računa
+							</th>
+							<td *matCellDef="let row" mat-cell>
+								{{ row.accountNumber }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="availableBalance">
+							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+								Dostupno stanje
+							</th>
+							<td *matCellDef="let row" mat-cell>
+								{{ row.availableBalance }} {{row.currencyCode}}
+							</td>
+						</ng-container>
+
+						<tr *matHeaderRowDef="displayedAccountColumns" mat-header-row></tr>
+						<tr mat-row (click)="selectAccountRow(row)"
+							[class.row-selected]="this.selectedAccount?.accountNumber === row.accountNumber"
+							*matRowDef="let row; columns: displayedAccountColumns"></tr>
+					</table>
+				</div>
+			</div>
+			<div class="paginatorContainer">
+				<mat-paginator [hidePageSize]="true" [pageSize]="3"></mat-paginator>
+			</div>
 
 			<button mat-raised-button id="change-password-btn" (click)="openPasswordChangeDialog()">
 				Promeni lozinku

@@ -1,4 +1,5 @@
-export interface CreateCreditRequestDto{
+export interface CreateCreditRequestDto {
+	id: number;
 	creditType: string;
 	creditAmount: number;
 	creditPurpose: string;
@@ -17,4 +18,3 @@ export interface CreateCreditRequestDto{
 	ownCar: boolean;
 	paymentPeriodMonths: number;
 }
-

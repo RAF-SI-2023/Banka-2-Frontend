@@ -37,6 +37,7 @@ export class StockService {
 				symbol,
 		);
 	}
+
 	// ForexController
 	/// GET
 	getFindAllForex() {
@@ -74,9 +75,12 @@ export class StockService {
 
 	// OptionsController
 	///GET
-	getFindAllOptionsByStockListing(stockListing: string){
+	getFindAllOptionsByStockListing(stockListing: string) {
 		return this.httpClient.get<OptionsDto[]>(
-			environment.stockServiceApiUrl + ApiRoutes.options.findAllOptionsByStockListing + '/' + stockListing,
+			environment.stockServiceApiUrl +
+				ApiRoutes.options.findAllOptionsByStockListing +
+				'/' +
+				stockListing,
 		);
 	}
 }
