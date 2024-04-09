@@ -11,6 +11,7 @@ import {catchError, map} from "rxjs/operators";
 import {throwError} from "rxjs";
 import {AuthService} from "../../services/auth.service";
 import {bankAccountNumberNoSymbolsValidator} from "../../utils/validators/bank-account-number-no-symbols.validator";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-create-credit-request',
@@ -45,6 +46,7 @@ export class CreateCreditRequestComponent {
 				private creditService: CreditService,
 				private authService: AuthService,
 				private bankService: BankService,
+				private matSnackBar: MatSnackBar
 	) {
 		this.fetchAccountNumbers();
 	}
@@ -61,10 +63,10 @@ export class CreateCreditRequestComponent {
 			console.log(request);
 			this.creditService.postCreateCreditRequest(request).subscribe(
 				() => {
-					alert('Credit request created successfully');
+					this.matSnackBar.open('Credit request created successfully', 'Close');
 				},
 				() => {
-					alert('Error creating credit request');
+					this.matSnackBar.open('Failed to create credit request', 'Close');
 				}
 			);
 		}
