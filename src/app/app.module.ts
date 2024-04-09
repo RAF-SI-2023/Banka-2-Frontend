@@ -77,6 +77,10 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 import { CreditRequestsComponent } from './components/credit-requests/credit-requests.component';
 import { CreditReqInfoDialogComponent } from './components/credit-requests/credit-req-info-dialog/credit-req-info-dialog.component';
 import { ForexInfoDialogComponent } from './components/forex/forex-info-dialog/forex-info-dialog.component';
+import { TransactionsComponent } from './components/transactions/transactions/transactions.component';
+import { ExternalFormComponent } from './components/transactions/external-form/external-form.component';
+import { InternalFormComponent } from './components/transactions/internal-form/internal-form.component';
+import { AccountNumberFormatPipe } from './pipes/account-number-format.pipe';
 
 @NgModule({
 	declarations: [
@@ -121,6 +125,10 @@ import { ForexInfoDialogComponent } from './components/forex/forex-info-dialog/f
     CreditRequestsComponent,
     CreditReqInfoDialogComponent,
     ForexInfoDialogComponent,
+    TransactionsComponent,
+    ExternalFormComponent,
+    InternalFormComponent,
+    AccountNumberFormatPipe,
 	],
 	imports: [
 		HttpClientModule,
