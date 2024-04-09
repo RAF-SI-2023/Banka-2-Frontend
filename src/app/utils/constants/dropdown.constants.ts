@@ -51,5 +51,10 @@ export const DropdownOptions = {
 		{ label: 'Stambeni', value: 'STAMBENI' },
 		{ label: 'Auto', value: 'AUTO' },
 		{ label: 'Refinansirajuci', value: 'REFINANSIRAJUCI' },
-	]
+	],
+		// Dropdown options for transactions
+		transactionType: [
+			{ label: 'Interni', value: 'INTERNI' },
+			{ label: 'Externi', value: 'EXTERNI' },
+		],
 };

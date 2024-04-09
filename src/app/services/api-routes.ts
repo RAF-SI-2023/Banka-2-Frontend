@@ -96,4 +96,11 @@ export const ApiRoutes = {
 	options: {
 		findAllOptionsByStockListing: '/options/stock-listing',
 	},
+	/// Transactions
+	transferTransaction:{
+		findById:'/transaction/funds-transfer',
+		createInternalTransaction:'/transaction/internal',
+		createExternalTransaction:'/transaction/external',
+		patchVerifyTransaction:'/transaction/verify',
+	},
 };

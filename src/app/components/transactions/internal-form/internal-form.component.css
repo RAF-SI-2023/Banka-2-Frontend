@@ -1,0 +1,24 @@
+.form-inputs {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.buttons {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+p {
+	font-size: 16px;
+	letter-spacing: 0.03125em;
+	color: #868686;
+	padding:16px;
+	padding-left:3%;
+	border:1px solid#F5F5F5;
+	border-radius: 3px;
+	background-color: #F5F5F5;
+	margin-bottom: 20px;
+}
