@@ -3,7 +3,7 @@ import { AfterViewInit } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { OptionsDto } from 'src/app/dtos/Options-dto';
+import { OptionsDto } from 'src/app/dtos/options-dto';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,7 +16,7 @@ import { ActivatedRoute } from '@angular/router'; // Import ActivatedRoute
 	styleUrls: ['./options.component.css'],
 })
 export class OptionsComponent implements AfterViewInit, OnInit {
-	dataSource=new MatTableDataSource<OptionsDto>();
+	dataSource = new MatTableDataSource<OptionsDto>();
 	displayedColumnsCall: string[] = [
 		'stockListing',
 		'optionType',
@@ -25,7 +25,7 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 		'openInterest',
 		'settlementDate',
 	];
-	dataSourceCall=new MatTableDataSource<OptionsDto>();
+	dataSourceCall = new MatTableDataSource<OptionsDto>();
 	selectedRowCall: OptionsDto | null = null;
 
 	displayedColumnsPut: string[] = [
@@ -36,20 +36,14 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 		'openInterest',
 		'settlementDate',
 	];
-	dataSourcePut=new MatTableDataSource<OptionsDto>();
+	dataSourcePut = new MatTableDataSource<OptionsDto>();
 	selectedRowPut: OptionsDto | null = null;
 
-	
-	@ViewChild('CallMatPaginator') paginatorCall: 
-	| MatPaginator 
-	| undefined;
+	@ViewChild('CallMatPaginator') paginatorCall: MatPaginator | undefined;
 	@ViewChild('CallMatSort') sortCall: MatSort | undefined;
 
-	@ViewChild('PutMatPaginator') paginatorPut: 
-	| MatPaginator 
-	| undefined;
-	@ViewChild('PutMatSort') sortPut:  MatSort | undefined;
-
+	@ViewChild('PutMatPaginator') paginatorPut: MatPaginator | undefined;
+	@ViewChild('PutMatSort') sortPut: MatSort | undefined;
 
 	constructor(
 		private stockService: StockService,
@@ -59,7 +53,6 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 		this.dataSource = new MatTableDataSource();
 		this.dataSourceCall = new MatTableDataSource();
 		this.dataSourcePut = new MatTableDataSource();
-
 	}
 
 	ngOnInit() {
@@ -75,9 +68,8 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 		if (this.paginatorCall)
 			this.dataSourceCall.paginator = this.paginatorCall;
 		if (this.sortCall) this.dataSourceCall.sort = this.sortCall;
-		
-		if (this.paginatorPut)
-			this.dataSourcePut.paginator = this.paginatorPut;
+
+		if (this.paginatorPut) this.dataSourcePut.paginator = this.paginatorPut;
 		if (this.sortPut) this.dataSourcePut.sort = this.sortPut;
 	}
 
@@ -115,8 +107,12 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 				map(dataSource => {
 					//console.log(dataSource);
 					this.dataSource.data = dataSource;
-					this.dataSourceCall.data = dataSource.filter(item => item.optionType === 'CALL');
-         			this.dataSourcePut.data = dataSource.filter(item => item.optionType === 'PUT');
+					this.dataSourceCall.data = dataSource.filter(
+						item => item.optionType === 'CALL',
+					);
+					this.dataSourcePut.data = dataSource.filter(
+						item => item.optionType === 'PUT',
+					);
 					//console.log(this.dataSourceCall);
 					//console.log(this.dataSourcePut);
 
@@ -129,9 +125,6 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 			)
 			.subscribe();
 	}
-	
 
-	viewOptions(row:OptionsDto){
-
-	}
+	viewOptions(row: OptionsDto) {}
 }

@@ -29,11 +29,23 @@
 		</div>
 		<div class="info-row">
 			<span class="label">Datum kreiranja:</span>
-			<span>{{ this.newSelectedRow.creditCreationDate }}</span>
+			<span>
+				{{
+				this.newSelectedRow.creditCreationDate
+				? (this.newSelectedRow.creditCreationDate.toString() | epochToDate | date: 'dd/MM/yyyy')
+				: '-'
+				}}
+			</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Datum isteka:</span>
-			<span>{{ this.newSelectedRow.creditExpirationDate }}</span>
+			<span>
+				{{
+				this.newSelectedRow.creditExpirationDate
+				? (this.newSelectedRow.creditExpirationDate.toString() | epochToDate | date: 'dd/MM/yyyy')
+				: '-'
+				}}
+			</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Iznos rate:</span>
@@ -41,7 +53,13 @@
 		</div>
 		<div class="info-row">
 			<span class="label">Datum sledeće rate:</span>
-			<span>{{ this.newSelectedRow.nextInstallmentDate }}</span>
+			<span>
+				{{
+				this.newSelectedRow.nextInstallmentDate
+				? (this.newSelectedRow.nextInstallmentDate.toString() | epochToDate | date: 'dd/MM/yyyy')
+				: '-'
+				}}
+			</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Preostali iznos:</span>

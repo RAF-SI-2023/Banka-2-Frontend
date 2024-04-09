@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { StockDto } from '../dtos/stock-dto';
 import { environment } from '../../environments/environment.development';
 import { ApiRoutes } from './api-routes';
 import { CreditDto } from '../dtos/credit-dto';
-import { CreateCreditRequestDto } from '../dtos/create-credit-request-dto';
+import { CreditRequestDto } from '../dtos/credit-request-dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -32,10 +31,10 @@ export class CreditService {
 		);
 	}
 
-	getFindAllCreditRequests() {
-		return this.httpClient.get<CreateCreditRequestDto[]>(
+	getAllPendingCreditRequests() {
+		return this.httpClient.get<CreditRequestDto[]>(
 			environment.bankServiceApiUrl +
-				ApiRoutes.credits.findAllCreditRequests,
+				ApiRoutes.credits.getAllPendingCreditRequests,
 		);
 	}
 
@@ -49,8 +48,8 @@ export class CreditService {
 	}
 
 	/// POST
-	postCreateCreditRequest(createCreditRequestDto: CreateCreditRequestDto) {
-		return this.httpClient.post<CreateCreditRequestDto>(
+	postCreateCreditRequest(createCreditRequestDto: CreditRequestDto) {
+		return this.httpClient.post<CreditRequestDto>(
 			environment.bankServiceApiUrl +
 				ApiRoutes.credits.createCreditRequest,
 			createCreditRequestDto,

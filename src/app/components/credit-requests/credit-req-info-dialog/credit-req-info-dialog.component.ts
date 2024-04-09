@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CreateCreditRequestDto } from 'src/app/dtos/create-credit-request-dto';
+import { CreditRequestDto } from 'src/app/dtos/credit-request-dto';
 import { CreditService } from 'src/app/services/credit.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 	styleUrls: ['./credit-req-info-dialog.component.css'],
 })
 export class CreditReqInfoDialogComponent {
-	newSelectedRow: CreateCreditRequestDto = { ...this.data.selectedRow };
+	newSelectedRow: CreditRequestDto = { ...this.data.selectedRow };
 	isLoading = true;
 
 	constructor(

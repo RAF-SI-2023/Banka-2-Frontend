@@ -14,7 +14,16 @@
 		<mat-card-content>
 			<div class="tableContainer">
 				<div class="mat-elevation-z8" style="box-shadow: none">
-					<table mat-table [dataSource]="dataSource" matSort>
+					<table class="unselectable" mat-table [dataSource]="dataSource" matSort>
+						<ng-container matColumnDef="id">
+							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+								ID
+							</th>
+							<td *matCellDef="let row" mat-cell>
+								{{ row.id }}
+							</td>
+						</ng-container>
+
 						<ng-container matColumnDef="symbol">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
 								Simbol
@@ -44,7 +53,7 @@
 
 						<ng-container matColumnDef="lastRefresh">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Last Refresh
+								Poslednje ažuriranje
 							</th>
 							<td *matCellDef="let row" mat-cell>
 								{{ row.lastRefresh ? (row.lastRefresh | date: 'dd/MM/yyyy') : "-" }}
@@ -101,7 +110,7 @@
 								Bazna valuta
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.baseCurrency }}
+								{{ row.baseCurrency ? row.baseCurrency : "-" }}
 							</td>
 						</ng-container>
 
@@ -110,12 +119,12 @@
 								Kvotna valuta
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.quoteCurrency }}
+								{{ row.quoteCurrency ? row.quoteCurrency : "-" }}
 							</td>
 						</ng-container>
 
 						<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-						<tr mat-row (click)="selectRow(row)"
+						<tr mat-row (click)="selectRow(row)" (dblclick)="viewForex(row)"
 							[class.row-selected]="this.selectedRow?.symbol === row.symbol"
 							*matRowDef="let row; columns: displayedColumns"></tr>
 

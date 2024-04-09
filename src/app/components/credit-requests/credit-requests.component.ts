@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateCreditRequestDto } from 'src/app/dtos/create-credit-request-dto';
+import { CreditRequestDto } from 'src/app/dtos/credit-request-dto';
 import { CreditReqInfoDialogComponent } from './credit-req-info-dialog/credit-req-info-dialog.component';
 
 @Component({
@@ -26,8 +26,8 @@ export class CreditRequestsComponent implements AfterViewInit {
 		'currency',
 		'creditPurpose',
 	];
-	dataSource = new MatTableDataSource<CreateCreditRequestDto>();
-	selectedRow: CreateCreditRequestDto | null = null;
+	dataSource = new MatTableDataSource<CreditRequestDto>();
+	selectedRow: CreditRequestDto | null = null;
 
 	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 	@ViewChild(MatSort) sort: MatSort | undefined;
@@ -56,23 +56,31 @@ export class CreditRequestsComponent implements AfterViewInit {
 		}
 	}
 
-	selectRow(row: CreateCreditRequestDto): void {
+	selectRow(row: CreditRequestDto): void {
 		if (this.selectedRow?.id != row.id) {
 			this.selectedRow = row;
 		}
 	}
 
-	viewCreditRequest(row: CreateCreditRequestDto): void {
+	viewCreditRequest(row: CreditRequestDto): void {
 		if (this.selectedRow != null) {
 			const dialogRef = this.dialog.open(CreditReqInfoDialogComponent, {
 				data: { selectedRow: row },
+			});
+
+			dialogRef.afterClosed().subscribe(result => {
+				console.log(`Dialog result: ${result}`);
+				this.selectedRow = null;
+				setTimeout(() => {
+					this.fetchAllData();
+				}, 1000);
 			});
 		}
 	}
 
 	fetchAllData(): void {
 		this.creditService
-			.getFindAllCreditRequests()
+			.getAllPendingCreditRequests()
 			.pipe(
 				map(dataSource => {
 					this.dataSource.data = dataSource;

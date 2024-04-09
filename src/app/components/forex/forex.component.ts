@@ -9,6 +9,8 @@ import { StockService } from 'src/app/services/stock.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { ForexInfoDialogComponent } from './forex-info-dialog/forex-info-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
 	selector: 'app-forex',
@@ -39,6 +41,7 @@ export class ForexComponent implements AfterViewInit {
 		private http: HttpClient,
 		private authService: AuthService,
 		private stockService: StockService,
+		public dialog: MatDialog,
 	) {
 		this.dataSource = new MatTableDataSource();
 		this.fetchAllData();
@@ -78,5 +81,13 @@ export class ForexComponent implements AfterViewInit {
 				}),
 			)
 			.subscribe();
+	}
+
+	viewForex(row: ForexDto): void {
+		if (this.selectedRow != null) {
+			const dialogRef = this.dialog.open(ForexInfoDialogComponent, {
+				data: { selectedRow: row },
+			});
+		}
 	}
 }

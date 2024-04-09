@@ -1,27 +1,27 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CreditDto } from '../../../../dtos/credit-dto';
-import { CreditService } from '../../../../services/credit.service';
+import { ForexDto } from 'src/app/dtos/forex-dto';
+import { StockService } from 'src/app/services/stock.service';
 
 @Component({
-	selector: 'app-credit-info-dialog',
-	templateUrl: './credit-info-dialog.component.html',
-	styleUrls: ['./credit-info-dialog.component.css'],
+	selector: 'app-forex-info-dialog',
+	templateUrl: './forex-info-dialog.component.html',
+	styleUrls: ['./forex-info-dialog.component.css'],
 })
-export class CreditInfoDialogComponent {
-	newSelectedRow: CreditDto = { ...this.data.selectedRow };
+export class ForexInfoDialogComponent {
+	newSelectedRow: ForexDto = { ...this.data.selectedRow };
 	isLoading = true;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
-		private creditService: CreditService,
+		private stockService: StockService,
 	) {
 		this.fetchData();
 	}
 
 	fetchData() {
-		this.creditService
-			.getFindByCreditNumber(this.data.selectedRow.creditNumber)
+		this.stockService
+			.getFindByIdForex(this.data.selectedRow.id)
 			.subscribe(response => {
 				this.data.selectedRow = response;
 				this.prepareValues();

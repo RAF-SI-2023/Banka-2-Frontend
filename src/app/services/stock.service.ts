@@ -4,7 +4,7 @@ import { ApiRoutes } from './api-routes';
 import { HttpClient } from '@angular/common/http';
 import { StockDto } from '../dtos/stock-dto';
 import { ForexDto } from '../dtos/forex-dto';
-import { OptionsDto } from '../dtos/Options-dto';
+import { OptionsDto } from '../dtos/options-dto';
 
 @Injectable({
 	providedIn: 'root',

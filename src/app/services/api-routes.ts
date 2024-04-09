@@ -42,7 +42,7 @@ export const ApiRoutes = {
 	},
 	forex: {
 		findAll: '/forex/all',
-		findById: '/forex/id/',
+		findById: '/forex/id',
 		findByBaseCurrency: '/forex/base-currency',
 		findByQuoteCurrency: '/forex/quote-currency',
 	},
@@ -67,7 +67,6 @@ export const ApiRoutes = {
 		findById: '/currency/id',
 		findByCode: '/currency/code',
 		findInflationByCurrencyId: '/currency/inflation/currency-id',
-
 		// TODO: zavisi od beka kako odluci da realizuje ovo
 		findInflationByCurrencyIdAndYear:
 			'/currency/inflation/currency-id/year',
@@ -76,7 +75,7 @@ export const ApiRoutes = {
 		findAll: '/credit/all/account-number',
 		findByCreditNumber: '/credit/credit-number',
 		createCreditRequest: '/credit/credit-requests/create',
-		findAllCreditRequests: '/credit/credit-requests/all',
+		getAllPendingCreditRequests: '/credit/credit-requests/all-pending',
 		getCreditRequestById: '/credit/credit-requests/id',
 		approveAndCreate: '/credit/credit-requests/approve-and-create',
 		denyCreditRequest: '/credit/credit-requests/deny',
