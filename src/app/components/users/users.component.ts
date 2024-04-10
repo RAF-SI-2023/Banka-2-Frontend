@@ -62,6 +62,14 @@ export class UsersComponent implements AfterViewInit {
 		if (this.dataSource.paginator) {
 			this.dataSource.paginator.firstPage();
 		}
+
+		//pri filtriranju deslektuje korisnika i ako nadje samo 1 slektuje ga
+		const filteredData = this.dataSource.filteredData;
+		if (filteredData.length === 1) {
+			this.selectedRow = filteredData[0]; 
+		} else {
+			this.selectedRow = null; 
+		}
 	}
 
 	selectRow(row: UserDto): void {
@@ -73,7 +81,9 @@ export class UsersComponent implements AfterViewInit {
 	selectedRowRole(): string {
 		return this.selectedRow?.role ?? '';
 	}
-
+	clearSelection(){
+		this.selectedRow=null;
+	}
 	selectedRowActive(): boolean {
 		return (this.selectedRow as EmployeeDto)?.active ?? false;
 	}

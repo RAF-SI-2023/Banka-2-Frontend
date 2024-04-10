@@ -11,15 +11,15 @@
 					</mat-form-field>
 				</div>
 
-				<button mat-raised-button class="buttons" color="accent" (click)="addCompany()">
+				<button mat-raised-button class="buttons" color="accent"  (click)="addCompany()" >
 					Dodaj kompaniju
-				</button>
+				</button >
 
-				<button mat-raised-button class="buttons" color="accent" (click)="updateCompany()">
+				<button mat-raised-button class="buttons" color="accent"  [disabled]="!selectedRow" (click)="updateCompany()">
 					Izmeni kompanije
 				</button>
 
-				<button mat-raised-button class="buttons" color="warn" (click)="deleteCompany()">
+				<button mat-raised-button class="buttons" color="warn" [disabled]="!selectedRow" (click)="deleteCompany()">
 					Izbriši kompanije
 				</button>
 			</div>
