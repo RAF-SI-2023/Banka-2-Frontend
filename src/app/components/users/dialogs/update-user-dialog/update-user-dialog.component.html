@@ -82,11 +82,11 @@
 		</div>
 	</form>
 </mat-dialog-content>
-<button mat-raised-button mat-dialog-close color="accent" cdkFocusInitial (click)="updateUser()"
-	[disabled]="phoneInput.errors && phoneInput.touched">
-	Izmeni
-</button>
 <mat-dialog-actions align="end">
+	<button mat-raised-button mat-dialog-close color="accent" cdkFocusInitial (click)="updateUser()"
+		[disabled]="phoneInput.errors && phoneInput.touched">
+		Izmeni
+	</button>
 	<button mat-raised-button mat-dialog-close color="warn">
 		Zatvori
 	</button>

@@ -2,29 +2,44 @@
 	<a mat-button routerLink="/home" class="icon">
 		<img ngSrc="../../../assets/logo/bank-2-logo.svg" alt="Icon" height="40" width="40" />
 	</a>
-	<a mat-button routerLink="/currency-exchange">
-		Valute i berze
-	</a>
-	<a mat-button routerLink="/stocks">
-		Akcije
-	</a>
-	<a mat-button routerLink="/forex">
-		Forex
+
+	<a mat-button routerLink="/transactions">
+		Transakcije
 	</a>
 	<a mat-button routerLink="/credits">
 		Krediti
 	</a>
-	<a mat-button routerLink="/credit-requests">
-		Zahtevi za kredit
-	</a>
-	<a mat-button routerLink="/transactions">
-		Transakcije
-	</a>
+	<button *ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])" mat-button
+		[matMenuTriggerFor]="securityMenu">Hartije od vrednosti</button>
+	<mat-menu #securityMenu="matMenu">
+		<button mat-menu-item routerLink="/currency-exchange">
+			<mat-icon>
+				currency_exchange
+			</mat-icon>
+			<span>
+				Valute i berze
+			</span>
+		</button>
+		<button mat-menu-item routerLink="/stocks">
+			<mat-icon>
+				request_quote
+			</mat-icon>
+			<span>
+				Akcije
+			</span>
+		</button>
+		<button mat-menu-item routerLink="/forex">
+			<mat-icon>
+				toll
+			</mat-icon>
+			<span>
+				Forex
+			</span>
+		</button>
+	</mat-menu>
 	<div class="padding"></div>
-	<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Options">
-		<mat-icon>more_vert</mat-icon>
-	</button>
-	<mat-menu #menu="matMenu">
+	<button mat-button [matMenuTriggerFor]="adminMenu">Admin Panel</button>
+	<mat-menu #adminMenu="matMenu">
 		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/companies">
 			<mat-icon>
 				business
@@ -36,7 +51,7 @@
 		<mat-divider></mat-divider>
 		<button *ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR])" mat-menu-item routerLink="/agents">
 			<mat-icon>
-				real_estate_agent
+				badge
 			</mat-icon>
 			<span>
 				Agenti
@@ -50,14 +65,6 @@
 				Korisnici
 			</span>
 		</button>
-		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/cards">
-			<mat-icon>
-				credit_card
-			</mat-icon>
-			<span>
-				Podešavanje kartica
-			</span>
-		</button>
 		<mat-divider></mat-divider>
 		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/create-bank-account">
 			<mat-icon>
@@ -67,7 +74,27 @@
 				Napravi bankovni račun
 			</span>
 		</button>
-		<mat-divider></mat-divider>
+		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/cards">
+			<mat-icon>
+				credit_card
+			</mat-icon>
+			<span>
+				Podešavanje kartica
+			</span>
+		</button>
+		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/credit-requests">
+			<mat-icon>
+				real_estate_agent
+			</mat-icon>
+			<span>
+				Zahtevi za kredite
+			</span>
+		</button>
+	</mat-menu>
+	<button mat-icon-button [matMenuTriggerFor]="optionsMenu" aria-label="Options">
+		<mat-icon>more_vert</mat-icon>
+	</button>
+	<mat-menu #optionsMenu="matMenu">
 		<button mat-menu-item routerLink="/user-profile">
 			<mat-icon>
 				person
