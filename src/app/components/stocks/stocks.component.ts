@@ -10,6 +10,7 @@ import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { StockInfoDialogComponent } from './dialogs/stock-info-dialog/stock-info-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import {StockFilterComponent} from "./dialogs/stock-filter/stock-filter.component";
 
 @Component({
 	selector: 'stocks',
@@ -72,6 +73,30 @@ export class StocksComponent implements AfterViewInit {
 				data: { selectedRow: row },
 			});
 		}
+	}
+
+	openFilterDialog(): void {
+		const dialogRef = this.dialog.open(StockFilterComponent, {
+		});
+		dialogRef.afterClosed().subscribe(result => {
+			const priceRangeStart = result.priceRangeStart;
+			const priceRangeEnd = result.priceRangeEnd;
+			const maintenanceMarginStart = result.maintenanceMarginStart;
+			const maintenanceMarginEnd = result.maintenanceMarginEnd;
+			if(priceRangeStart && priceRangeEnd) {
+				this.dataSource.data = this.dataSource.data.filter(stock => stock.price >= priceRangeStart && stock.price <= priceRangeEnd);
+			}
+			if(maintenanceMarginStart && maintenanceMarginEnd) {
+				this.dataSource.data = this.dataSource.data.filter(stock => stock.maintenanceMargin >= maintenanceMarginStart && stock.maintenanceMargin <= maintenanceMarginEnd);
+			}
+			if(priceRangeStart && priceRangeEnd && maintenanceMarginStart && maintenanceMarginEnd) {
+				this.dataSource.data = this.dataSource.data.filter(stock => stock.price >= priceRangeStart && stock.price <= priceRangeEnd && stock.maintenanceMargin >= maintenanceMarginStart && stock.maintenanceMargin <= maintenanceMarginEnd);
+			}
+		});
+	}
+
+	resetFilters(): void {
+		this.fetchAllData();
 	}
 
 	fetchAllData(): void {

@@ -22,6 +22,7 @@ import { CreditsComponent } from './components/credits/credits.component';
 import { CreateCreditRequestComponent } from './components/create-credit-request/create-credit-request.component';
 import { CreditRequestsComponent } from './components/credit-requests/credit-requests.component';
 import { CardsComponent } from './components/cards/cards.component';
+import { TransactionsComponent } from './components/transactions/transactions/transactions.component';
 
 const routes: Routes = [
 	{
@@ -107,6 +108,11 @@ const routes: Routes = [
 	{
 		component: CardsComponent,
 		path: 'cards',
+		canActivate: [authGuard],
+	},
+	{
+		component: TransactionsComponent,
+		path: 'transactions',
 		canActivate: [authGuard],
 	},
 ];

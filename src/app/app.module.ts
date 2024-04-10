@@ -38,6 +38,14 @@ import { CreditRequestsComponent } from './components/credit-requests/credit-req
 import { CreditReqInfoDialogComponent } from './components/credit-requests/credit-req-info-dialog/credit-req-info-dialog.component';
 import { ForexInfoDialogComponent } from './components/forex/forex-info-dialog/forex-info-dialog.component';
 import { CardsInfoDialogComponent } from './components/user-profile/cards-info-dialog/cards-info-dialog.component';
+import { TransactionsComponent } from './components/transactions/transactions/transactions.component';
+import { ExternalFormComponent } from './components/transactions/external-form/external-form.component';
+import { InternalFormComponent } from './components/transactions/internal-form/internal-form.component';
+import { StockFilterComponent } from './components/stocks/dialogs/stock-filter/stock-filter.component';
+import { CardsComponent } from './components/cards/cards.component';
+import { CreationFormComponent } from './components/cards/creation-form/creation-form.component';
+import { ChangeStatusFormComponent } from './components/cards/change-status-form/change-status-form.component';
+import { ChangeLimitFormComponent } from './components/cards/change-limit-form/change-limit-form.component';
 /// DIRECTIVES/PIPES
 import { PhoneNumberValidatorDirective } from './directives/phone-number-validator.directive';
 import { NoPasteDirective } from './directives/no-paste.directive';
@@ -45,6 +53,7 @@ import { BankAccountMaskDirective } from './directives/bank-account-mask.directi
 import { EpochToDatePipe } from './pipes/epoch-to-date.pipe';
 import { EmailValidatorDirective } from './directives/email-validator.directive';
 import { TranslatePipe } from './pipes/translate.pipe';
+import { AccountNumberFormatPipe } from './pipes/account-number-format.pipe';
 
 // IMPORTS
 import { BrowserModule } from '@angular/platform-browser';
@@ -74,14 +83,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { MatSliderModule } from '@angular/material/slider';
 
 // PROVIDERS
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
-import { CardsComponent } from './components/cards/cards.component';
-import { CreationFormComponent } from './components/cards/creation-form/creation-form.component';
-import { ChangeStatusFormComponent } from './components/cards/change-status-form/change-status-form.component';
-import { ChangeLimitFormComponent } from './components/cards/change-limit-form/change-limit-form.component';
 
 @NgModule({
 	declarations: [
@@ -126,11 +132,15 @@ import { ChangeLimitFormComponent } from './components/cards/change-limit-form/c
 		CreditRequestsComponent,
 		CreditReqInfoDialogComponent,
 		ForexInfoDialogComponent,
-		CardsInfoDialogComponent,
-  CardsComponent,
-  CreationFormComponent,
-  ChangeStatusFormComponent,
-  ChangeLimitFormComponent,
+		TransactionsComponent,
+		ExternalFormComponent,
+		InternalFormComponent,
+		AccountNumberFormatPipe,
+		StockFilterComponent,
+		CardsComponent,
+		CreationFormComponent,
+		ChangeStatusFormComponent,
+		ChangeLimitFormComponent,
 	],
 	imports: [
 		HttpClientModule,
@@ -162,6 +172,7 @@ import { ChangeLimitFormComponent } from './components/cards/change-limit-form/c
 		MatListModule,
 		MatProgressSpinnerModule,
 		HighchartsChartModule,
+		MatSliderModule,
 	],
 	providers: [
 		{

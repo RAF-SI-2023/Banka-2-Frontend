@@ -52,6 +52,10 @@ export const DropdownOptions = {
 		{ label: 'Auto', value: 'AUTO' },
 		{ label: 'Refinansirajuci', value: 'REFINANSIRAJUCI' },
 	],
+	transactionType: [
+		{ label: 'Interni', value: 'INTERNI' },
+		{ label: 'Externi', value: 'EXTERNI' },
+	],
 	cardSettingsType: [
 		{ label: 'Pravljenje', value: 'PRAVLJENJE' },
 		{ label: 'Promena statusa', value: 'PROMENA STATUSA' },
