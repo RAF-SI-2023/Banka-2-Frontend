@@ -1,0 +1,19 @@
+<section class="container">
+	<form class="form-inputs" [formGroup]="changeStatusForm" (ngSubmit)="onSubmit()">
+		<mat-form-field>
+			<mat-label>
+				Broj kartice
+			</mat-label>
+			<input matInput placeholder="Unesite broj kartice" formControlName="identificationCardNumber" required>
+			<mat-error *ngIf="changeStatusForm.get('identificationCardNumber')?.hasError('required')">
+				Broj kartice je obavezan.
+			</mat-error>
+		</mat-form-field>
+
+		<div class="buttons">
+			<button mat-raised-button color="accent" type="submit">
+				Promeni
+			</button>
+		</div>
+	</form>
+</section>

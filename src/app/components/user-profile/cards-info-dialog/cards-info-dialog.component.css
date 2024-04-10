@@ -1,0 +1,39 @@
+.full-width-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	width: 100%;
+}
+
+.size {
+	width: 60rem;
+}
+
+.buttons {
+	margin-right: 1%;
+}
+
+.form {
+	width: 100%;
+}
+
+.info-row {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 8px;
+}
+
+.label {
+	font-weight: bold;
+	margin-right: 8px;
+}
+
+.spinner-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.unselectable {
+	user-select: none;
+}

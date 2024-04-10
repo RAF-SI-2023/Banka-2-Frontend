@@ -1,0 +1,57 @@
+<section class="container">
+	<form class="form-inputs" [formGroup]="createCardForm" (ngSubmit)="onSubmit()">
+		<mat-form-field>
+			<mat-label>
+				Tip kartice
+			</mat-label>
+			<mat-select placeholder="Izaberite tip kartice" formControlName="cardType">
+				<mat-option *ngFor="let option of cardTypeOptions" [value]="option.value">
+					{{ option.label }}
+				</mat-option>
+			</mat-select>
+			<mat-error *ngIf="createCardForm.get('currencyCode')?.hasError('required')">
+				Tip kartice je obavezan.
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>
+				Ime kartice
+			</mat-label>
+			<input matInput placeholder="Unesite ime kartice" formControlName="nameOfCard" required>
+			<mat-error *ngIf="createCardForm.get('nameOfCard')?.hasError('required')">
+				Ime kartice je obavezno.
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>
+				Broj računa
+			</mat-label>
+			<input matInput placeholder="Unesite broj računa" formControlName="accountNumber" appBankAccountMask
+				required>
+			<mat-error *ngIf="createCardForm.get('accountNumber')?.hasError('required')">
+				Broj računa je obavezan.
+			</mat-error>
+			<mat-error *ngIf="createCardForm.get('accountNumber')?.hasError('invalidBankAccountNumber')">
+				Pogrešan format računa.
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>
+				Limit
+			</mat-label>
+			<input matInput placeholder="Unesite limit na kartici" formControlName="limitCard" required>
+			<mat-error *ngIf="createCardForm.get('limitCard')?.hasError('required')">
+				Limit je obavezan.
+			</mat-error>
+		</mat-form-field>
+
+		<div class="buttons">
+			<button mat-raised-button color="accent" type="submit">
+				Napravi
+			</button>
+		</div>
+	</form>
+</section>

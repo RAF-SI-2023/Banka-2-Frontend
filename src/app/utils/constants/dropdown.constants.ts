@@ -36,7 +36,7 @@ export const DropdownOptions = {
 	accountType: [
 		{ label: 'Dinarski', value: 'DINARSKI' },
 		{ label: 'Devizni', value: 'DEVIZNI' },
-		{ label: 'Poslovni', value: 'POSLOVNI'},
+		{ label: 'Poslovni', value: 'POSLOVNI' },
 	],
 	bankProfileType: [
 		{ label: 'Fizičko lice', value: 'PRIVATE' },
@@ -51,5 +51,14 @@ export const DropdownOptions = {
 		{ label: 'Stambeni', value: 'STAMBENI' },
 		{ label: 'Auto', value: 'AUTO' },
 		{ label: 'Refinansirajuci', value: 'REFINANSIRAJUCI' },
-	]
+	],
+	cardSettingsType: [
+		{ label: 'Pravljenje', value: 'PRAVLJENJE' },
+		{ label: 'Promena statusa', value: 'PROMENA STATUSA' },
+		{ label: 'Promena limita', value: 'PROMENA LIMITA' },
+	],
+	cardTypeOptions: [
+		{ label: 'Debitna', value: 'CREDIT' },
+		{ label: 'Kreditna', value: 'DEBIT' },
+	],
 };

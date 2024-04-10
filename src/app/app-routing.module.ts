@@ -21,6 +21,7 @@ import { AgentsComponent } from './components/agents/agents.component';
 import { CreditsComponent } from './components/credits/credits.component';
 import { CreateCreditRequestComponent } from './components/create-credit-request/create-credit-request.component';
 import { CreditRequestsComponent } from './components/credit-requests/credit-requests.component';
+import { CardsComponent } from './components/cards/cards.component';
 
 const routes: Routes = [
 	{
@@ -101,6 +102,11 @@ const routes: Routes = [
 	{
 		component: CreditRequestsComponent,
 		path: 'credit-requests',
+		canActivate: [authGuard],
+	},
+	{
+		component: CardsComponent,
+		path: 'cards',
 		canActivate: [authGuard],
 	},
 ];

@@ -1,0 +1,33 @@
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: calc(100vh - 128px);
+}
+
+mat-card {
+	width: 30rem;
+}
+
+mat-card-content {
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+}
+
+.form-inputs {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.tab-content {
+	overflow: hidden;
+	height: fit-content;
+}
+
+.buttons {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}

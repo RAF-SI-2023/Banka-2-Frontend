@@ -58,6 +58,14 @@ export const ApiRoutes = {
 		approveAndCreate: '/credit/credit-requests/approve-and-create',
 		denyCreditRequest: '/credit/credit-requests/deny',
 	},
+	/// CardController
+	cards: {
+		getCardsByIdentificationCardNumber: '/cards/id',
+		getCardsByAccountNumber: '/cards/account-number',
+		createCard: '/cards/create-card',
+		changeCardStatus: '/cards/change-status',
+		changeCardLimit: '/cards/change-card-limit',
+	},
 	// STOCK-SERVICE
 	/// CurrencyController
 	currency: {

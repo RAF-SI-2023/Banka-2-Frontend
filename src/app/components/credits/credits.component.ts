@@ -122,7 +122,6 @@ export class CreditsComponent implements AfterViewInit {
 			.pipe(
 				map(dataSource => {
 					this.accountNumberDataSource.data = dataSource;
-					this.selectAccountRow(dataSource[0]);
 					return dataSource;
 				}),
 				catchError(error => {

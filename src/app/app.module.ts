@@ -34,6 +34,10 @@ import { CreditInfoDialogComponent } from './components/credits/dialogs/credit-i
 import { CreateCreditRequestComponent } from './components/create-credit-request/create-credit-request.component';
 import { UpdateCompanyDialogComponent } from './components/companies/dialogs/update-company-dialog/update-company-dialog.component';
 import { AddCompanyDialogComponent } from './components/companies/dialogs/add-company-dialog/add-company-dialog.component';
+import { CreditRequestsComponent } from './components/credit-requests/credit-requests.component';
+import { CreditReqInfoDialogComponent } from './components/credit-requests/credit-req-info-dialog/credit-req-info-dialog.component';
+import { ForexInfoDialogComponent } from './components/forex/forex-info-dialog/forex-info-dialog.component';
+import { CardsInfoDialogComponent } from './components/user-profile/cards-info-dialog/cards-info-dialog.component';
 /// DIRECTIVES/PIPES
 import { PhoneNumberValidatorDirective } from './directives/phone-number-validator.directive';
 import { NoPasteDirective } from './directives/no-paste.directive';
@@ -74,9 +78,10 @@ import { HighchartsChartModule } from 'highcharts-angular';
 // PROVIDERS
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
-import { CreditRequestsComponent } from './components/credit-requests/credit-requests.component';
-import { CreditReqInfoDialogComponent } from './components/credit-requests/credit-req-info-dialog/credit-req-info-dialog.component';
-import { ForexInfoDialogComponent } from './components/forex/forex-info-dialog/forex-info-dialog.component';
+import { CardsComponent } from './components/cards/cards.component';
+import { CreationFormComponent } from './components/cards/creation-form/creation-form.component';
+import { ChangeStatusFormComponent } from './components/cards/change-status-form/change-status-form.component';
+import { ChangeLimitFormComponent } from './components/cards/change-limit-form/change-limit-form.component';
 
 @NgModule({
 	declarations: [
@@ -112,15 +117,20 @@ import { ForexInfoDialogComponent } from './components/forex/forex-info-dialog/f
 		CurrencyInfoDialogComponent,
 		ExchangeInfoDialogComponent,
 		AgentsComponent,
-    CreditsComponent,
-    CreditInfoDialogComponent,
-    CreateCreditRequestComponent,
-    TranslatePipe,
-    UpdateCompanyDialogComponent,
-    AddCompanyDialogComponent,
-    CreditRequestsComponent,
-    CreditReqInfoDialogComponent,
-    ForexInfoDialogComponent,
+		CreditsComponent,
+		CreditInfoDialogComponent,
+		CreateCreditRequestComponent,
+		TranslatePipe,
+		UpdateCompanyDialogComponent,
+		AddCompanyDialogComponent,
+		CreditRequestsComponent,
+		CreditReqInfoDialogComponent,
+		ForexInfoDialogComponent,
+		CardsInfoDialogComponent,
+  CardsComponent,
+  CreationFormComponent,
+  ChangeStatusFormComponent,
+  ChangeLimitFormComponent,
 	],
 	imports: [
 		HttpClientModule,

@@ -13,15 +13,14 @@ import { AccountDto } from '../../dtos/account-dto';
 export class AccountService {
 	constructor(private httpClient: HttpClient) {}
 
-	// AccountController
-	/// GET
+	// GET
 	getFindByEmail(email: string) {
 		return this.httpClient.get<AccountDto[]>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.findAccountsByEmail}/${email}`,
 		);
 	}
 
-	/// POST
+	// POST
 	postAssociateProfileInitialization(accountNumber: string) {
 		return this.httpClient.post<boolean>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.associateProfileInitialization}`,

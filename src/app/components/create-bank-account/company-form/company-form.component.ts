@@ -7,6 +7,7 @@ import {
 } from '../../../utils/validators';
 import { AccountService } from '../../../services/bank-service/account.service';
 import { CompanyAccountDto } from 'src/app/dtos/company-account-dto';
+
 @Component({
 	selector: 'app-company-form',
 	templateUrl: './company-form.component.html',

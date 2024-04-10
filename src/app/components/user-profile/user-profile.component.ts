@@ -21,6 +21,7 @@ import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { AuthService } from 'src/app/services/iam-service/auth.service';
 import { AccountService } from 'src/app/services/bank-service/account.service';
+import { CardsInfoDialogComponent } from './cards-info-dialog/cards-info-dialog.component';
 
 @Component({
 	selector: 'app-user-profile',
@@ -28,6 +29,7 @@ import { AccountService } from 'src/app/services/bank-service/account.service';
 	styleUrls: ['./user-profile.component.css'],
 })
 export class UserProfileComponent {
+	protected readonly Role = Role;
 	displayedAccountColumns: string[] = [
 		'accountType',
 		'accountNumber',
@@ -110,7 +112,6 @@ export class UserProfileComponent {
 			.pipe(
 				map(dataSource => {
 					this.accountNumberDataSource.data = dataSource;
-					this.selectAccountRow(dataSource[0]);
 					return dataSource;
 				}),
 				catchError(error => {
@@ -143,5 +144,11 @@ export class UserProfileComponent {
 		});
 	}
 
-	protected readonly Role = Role;
+	viewCards(row: AccountDto) {
+		if (this.selectedAccount != null) {
+			const dialogRef = this.dialog.open(CardsInfoDialogComponent, {
+				data: { selectedAccount: row },
+			});
+		}
+	}
 }

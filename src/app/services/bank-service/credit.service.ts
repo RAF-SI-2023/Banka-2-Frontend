@@ -48,11 +48,11 @@ export class CreditService {
 	}
 
 	/// POST
-	postCreateCreditRequest(createCreditRequestDto: CreditRequestDto) {
+	postCreateCreditRequest(creditRequestDto: CreditRequestDto) {
 		return this.httpClient.post<CreditRequestDto>(
 			environment.bankServiceApiUrl +
 				ApiRoutes.credits.createCreditRequest,
-			createCreditRequestDto,
+			creditRequestDto,
 		);
 	}
 

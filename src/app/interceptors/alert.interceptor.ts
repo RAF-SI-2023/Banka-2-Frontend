@@ -5,8 +5,10 @@ import {
 	HttpHandler,
 	HttpInterceptor,
 	HttpRequest,
+	HttpResponse,
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
+import { tap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../services/iam-service/auth.service';
 
@@ -38,6 +40,16 @@ export class AlertInterceptor implements HttpInterceptor {
 		}
 
 		return next.handle(request).pipe(
+			tap((event: HttpEvent<any>) => {
+				if (event instanceof HttpResponse && request.method !== 'GET') {
+					this.snackBar.open('Zahtev je uspešan!', 'Zatvori', {
+						duration: 4000,
+						verticalPosition: 'top',
+						horizontalPosition: 'right',
+						panelClass: ['app-notification-success'],
+					});
+				}
+			}),
 			catchError((error: HttpErrorResponse) => {
 				let errorMessage = 'Desila se nepoznata greška!';
 
@@ -69,12 +81,11 @@ export class AlertInterceptor implements HttpInterceptor {
 							break;
 					}
 				}
-
 				this.snackBar.open(errorMessage, 'Zatvori', {
 					duration: 4000,
 					verticalPosition: 'top',
 					horizontalPosition: 'right',
-					panelClass: ['error-snackbar'],
+					panelClass: ['app-notification-error'],
 				});
 
 				throw error;
