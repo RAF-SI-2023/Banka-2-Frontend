@@ -89,6 +89,7 @@ export class ForexComponent implements AfterViewInit {
 		if (this.selectedRow != null) {
 			const dialogRef = this.dialog.open(ForexInfoDialogComponent, {
 				data: { selectedRow: row },
+				autoFocus: false,
 			});
 		}
 	}

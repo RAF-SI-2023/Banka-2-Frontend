@@ -1,30 +1,29 @@
 <section class="container">
 	<form class="form-inputs" [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
-
 		<mat-form-field>
 			<mat-label>
-                Račun 
-            </mat-label>
-            <mat-select formControlName="senderAccountNumber" placeholder="Izaberite račun" >
-			  <mat-option *ngFor="let option of accountOptionsSender" [value]="option.accountNumber" >
-				{{ option.accountNumber | accountNumberFormat }}
-			  </mat-option>
+				Broj računa
+			</mat-label>
+			<mat-select formControlName="senderAccountNumber" placeholder="Izaberite račun">
+				<mat-option *ngFor="let option of accountOptionsSender" [value]="option.accountNumber">
+					{{ option.accountNumber | accountNumberFormat }}
+				</mat-option>
 			</mat-select>
 			<mat-error *ngIf="transactionForm.get('senderAccountNumber')?.hasError('required')">
 				Broj računa je obavezan.
 			</mat-error>
-        </mat-form-field>
+		</mat-form-field>
 
-       
-		<p *ngIf = " accountBalance > -1" >
+
+		<p *ngIf=" accountBalance > -1">
 			{{accountBalance}}
 		</p>
-		<p *ngIf = " accountBalance == -1" >
-			Balance vaseg racuna
+		<p *ngIf=" accountBalance == -1">
+			Stanje vašeg racuna
 		</p>
-	
-		  
-        <mat-form-field>
+
+
+		<mat-form-field>
 			<mat-label>
 				Računa primaoca
 			</mat-label>
@@ -38,7 +37,7 @@
 			</mat-error>
 		</mat-form-field>
 
-        
+
 		<!-- <mat-form-field>
 			<mat-label>
                 Račun primaoca
@@ -55,11 +54,11 @@
 
 		<mat-form-field>
 			<mat-label>Količina</mat-label>
-			<input matInput placeholder="Unesite količinu" formControlName="amount" type="text" >
+			<input matInput placeholder="Unesite količinu" formControlName="amount" type="text">
 			<mat-error *ngIf="transactionForm.get('amount')?.hasError('required')">
-			  Količina je obavezna
+				Količina je obavezna.
 			</mat-error>
-		  </mat-form-field>
+		</mat-form-field>
 
 
 		<div class="buttons">

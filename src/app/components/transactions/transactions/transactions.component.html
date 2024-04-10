@@ -2,7 +2,7 @@
 	<mat-card>
 		<mat-card-header>
 			<mat-card-title>
-				Napravi bankovni račun
+				Transakcije
 			</mat-card-title>
 		</mat-card-header>
 		<mat-card-content>
@@ -10,13 +10,10 @@
 				<mat-tab-group>
 					<mat-tab *ngFor="let option of transactionsTypeOptions" [label]="option.label">
 						<div class="tab-content">
-							<app-internal-form *ngIf="option.value === 'INTERNI'"
-							>
-                            </app-internal-form>
-							<app-external-form *ngIf="option.value === 'EXTERNI'"
-							>
-                            </app-external-form>
-					
+							<app-internal-form *ngIf="option.value === 'INTERNE'">
+							</app-internal-form>
+							<app-external-form *ngIf="option.value === 'EKSTERNE'">
+							</app-external-form>
 						</div>
 					</mat-tab>
 				</mat-tab-group>

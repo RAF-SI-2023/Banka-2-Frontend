@@ -29,7 +29,7 @@ export class CardsInfoDialogComponent {
 		'status',
 	];
 	dataSource = new MatTableDataSource<CardDto>();
-	newSelectedRow: AccountDto = { ...this.data.selectedRow };
+	newSelectedRow: AccountDto = { ...this.data.selectedAccount };
 	cardRow: CardDto | null = null;
 	isLoading = true;
 

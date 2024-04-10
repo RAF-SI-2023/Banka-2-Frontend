@@ -135,6 +135,7 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 		if (this.currencySelectedRow != null) {
 			const dialogRef = this.dialog.open(CurrencyInfoDialogComponent, {
 				data: { selectedRow: row },
+				autoFocus: false,
 			});
 		}
 	}
@@ -142,6 +143,7 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 		if (this.exchangeSelectedRow != null) {
 			const dialogRef = this.dialog.open(ExchangeInfoDialogComponent, {
 				data: { selectedRow: row },
+				autoFocus: false,
 			});
 		}
 	}

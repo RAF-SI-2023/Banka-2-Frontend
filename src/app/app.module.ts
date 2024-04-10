@@ -141,6 +141,7 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 		CreationFormComponent,
 		ChangeStatusFormComponent,
 		ChangeLimitFormComponent,
+		CardsInfoDialogComponent,
 	],
 	imports: [
 		HttpClientModule,

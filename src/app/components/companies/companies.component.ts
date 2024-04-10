@@ -71,6 +71,7 @@ export class CompaniesComponent implements AfterViewInit {
 		if (this.selectedRow != null) {
 			const dialogRef = this.dialog.open(CompanyInfoDialogComponent, {
 				data: { selectedRow: row },
+				autoFocus: false,
 			});
 		}
 	}
@@ -93,7 +94,9 @@ export class CompaniesComponent implements AfterViewInit {
 	}
 
 	addCompany(): void {
-		const dialogRef = this.dialog.open(AddCompanyDialogComponent);
+		const dialogRef = this.dialog.open(AddCompanyDialogComponent, {
+			autoFocus: false,
+		});
 
 		dialogRef.afterClosed().subscribe(result => {
 			console.log(`Dialog result: ${result}`);
@@ -108,6 +111,7 @@ export class CompaniesComponent implements AfterViewInit {
 		if (this.selectedRow != null) {
 			const dialogRef = this.dialog.open(UpdateCompanyDialogComponent, {
 				data: { selectedRow: this.selectedRow },
+				autoFocus: false,
 			});
 
 			dialogRef.afterClosed().subscribe(result => {

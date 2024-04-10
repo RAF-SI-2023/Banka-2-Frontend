@@ -23,7 +23,7 @@
 	--mdc-snackbar-action-text-color: #ffffff;
 
 	&.app-notification-error {
-		--mdc-snackbar-container-color: #b30000;
+		--mdc-snackbar-container-color: #960000;
 	}
 
 	&.app-notification-success {

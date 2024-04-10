@@ -18,7 +18,7 @@
 		Zahtevi za kredit
 	</a>
 	<a mat-button routerLink="/transactions">
-		Tranzakcije
+		Transakcije
 	</a>
 	<div class="padding"></div>
 	<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Options">
@@ -48,6 +48,14 @@
 			</mat-icon>
 			<span>
 				Korisnici
+			</span>
+		</button>
+		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/cards">
+			<mat-icon>
+				credit_card
+			</mat-icon>
+			<span>
+				Podešavanje kartica
 			</span>
 		</button>
 		<mat-divider></mat-divider>

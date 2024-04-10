@@ -66,6 +66,7 @@ export class CreditRequestsComponent implements AfterViewInit {
 		if (this.selectedRow != null) {
 			const dialogRef = this.dialog.open(CreditReqInfoDialogComponent, {
 				data: { selectedRow: row },
+				autoFocus: false,
 			});
 
 			dialogRef.afterClosed().subscribe(result => {

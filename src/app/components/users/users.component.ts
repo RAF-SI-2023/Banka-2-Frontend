@@ -125,6 +125,7 @@ export class UsersComponent implements AfterViewInit {
 		if (this.selectedRow != null) {
 			const dialogRef = this.dialog.open(UserInfoDialogComponent, {
 				data: { selectedRow: row },
+				autoFocus: false,
 			});
 		}
 	}
@@ -164,7 +165,9 @@ export class UsersComponent implements AfterViewInit {
 	}
 
 	addEmployee(): void {
-		const dialogRef = this.dialog.open(AddEmployeeDialogComponent);
+		const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
+			autoFocus: false,
+		});
 
 		dialogRef.afterClosed().subscribe(result => {
 			console.log(`Dialog result: ${result}`);
@@ -176,7 +179,9 @@ export class UsersComponent implements AfterViewInit {
 	}
 
 	addAgent(): void {
-		const dialogRef = this.dialog.open(AddAgentDialogComponent);
+		const dialogRef = this.dialog.open(AddAgentDialogComponent, {
+			autoFocus: false,
+		});
 
 		dialogRef.afterClosed().subscribe(result => {
 			console.log(`Dialog result: ${result}`);
@@ -191,6 +196,7 @@ export class UsersComponent implements AfterViewInit {
 		if (this.selectedRow != null) {
 			const dialogRef = this.dialog.open(UpdateUserDialogComponent, {
 				data: { selectedRow: this.selectedRow },
+				autoFocus: false,
 			});
 
 			dialogRef.afterClosed().subscribe(result => {

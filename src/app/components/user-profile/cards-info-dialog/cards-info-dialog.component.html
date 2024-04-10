@@ -81,7 +81,7 @@
 						Status
 					</th>
 					<td *matCellDef="let row" mat-cell>
-						{{ row.status }}
+						{{ row.status ? '✔️' : '❌' }}
 					</td>
 				</ng-container>
 

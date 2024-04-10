@@ -137,7 +137,9 @@ export class UserProfileComponent {
 	}
 
 	openPasswordChangeDialog(): void {
-		const dialogRef = this.dialog.open(PasswordChangeComponent, {});
+		const dialogRef = this.dialog.open(PasswordChangeComponent, {
+			autoFocus: false,
+		});
 
 		dialogRef.afterClosed().subscribe(result => {
 			console.log('The dialog was closed');
@@ -145,9 +147,12 @@ export class UserProfileComponent {
 	}
 
 	viewCards(row: AccountDto) {
+		console.log(this.selectedAccount);
 		if (this.selectedAccount != null) {
+			console.log(this.selectedAccount);
 			const dialogRef = this.dialog.open(CardsInfoDialogComponent, {
 				data: { selectedAccount: row },
+				autoFocus: false,
 			});
 		}
 	}

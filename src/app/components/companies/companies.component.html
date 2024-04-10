@@ -5,22 +5,22 @@
 				<div>
 					<mat-form-field>
 						<mat-label>
-							Pretraži firme
+							Pretraži kompanije
 						</mat-label>
 						<input #input (keyup)="applyFilter($event)" matInput />
 					</mat-form-field>
 				</div>
 
 				<button mat-raised-button class="buttons" color="accent" (click)="addCompany()">
-					Dodaj firmu
+					Dodaj kompaniju
 				</button>
-				
+
 				<button mat-raised-button class="buttons" color="accent" (click)="updateCompany()">
-					Izmeni firmu
+					Izmeni kompanije
 				</button>
-				
+
 				<button mat-raised-button class="buttons" color="warn" (click)="deleteCompany()">
-					Izbriši firmu
+					Izbriši kompanije
 				</button>
 			</div>
 		</mat-card-header>
@@ -28,7 +28,7 @@
 			<div class="tableContainer">
 				<div class="mat-elevation-z8" style="box-shadow: none">
 					<table class="unselectable" mat-table [dataSource]="dataSource" matSort>
-						
+
 						<ng-container matColumnDef="id">
 							<th *matHeaderCellDef mat-header-cell mat-sort-header>
 								ID
@@ -110,7 +110,7 @@
 							</td>
 						</ng-container>
 
-							<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+						<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
 						<tr mat-row (click)="selectRow(row)" (dblclick)="viewCompany(row)"
 							[class.row-selected]="this.selectedRow?.id === row.id"
 							*matRowDef="let row; columns: displayedColumns"></tr>

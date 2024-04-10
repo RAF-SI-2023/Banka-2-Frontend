@@ -53,8 +53,8 @@ export const DropdownOptions = {
 		{ label: 'Refinansirajuci', value: 'REFINANSIRAJUCI' },
 	],
 	transactionType: [
-		{ label: 'Interni', value: 'INTERNI' },
-		{ label: 'Externi', value: 'EXTERNI' },
+		{ label: 'Interne', value: 'INTERNE' },
+		{ label: 'Eksterne', value: 'EKSTERNE' },
 	],
 	cardSettingsType: [
 		{ label: 'Pravljenje', value: 'PRAVLJENJE' },
