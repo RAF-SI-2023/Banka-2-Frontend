@@ -39,8 +39,7 @@ export class TransactionService {
 	//PATCH
 	patchTransactionVerify(transactionId:number,verificationToken:string){
 		return this.httpClient.patch(
-			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.patchVerifyTransaction}/${transactionId}`,
-			verificationToken
+			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.patchVerifyTransaction}/${transactionId}?verificationToken=${verificationToken}`,null
 		);
 	}
 }

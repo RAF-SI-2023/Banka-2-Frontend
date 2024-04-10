@@ -88,6 +88,7 @@ import { MatSliderModule } from '@angular/material/slider';
 // PROVIDERS
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
+import { ConfirmDialogComponent } from './components/transactions/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -142,6 +143,7 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 		ChangeStatusFormComponent,
 		ChangeLimitFormComponent,
 		CardsInfoDialogComponent,
+  ConfirmDialogComponent,
 	],
 	imports: [
 		HttpClientModule,
