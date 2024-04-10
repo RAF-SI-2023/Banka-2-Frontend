@@ -29,7 +29,7 @@
 					[disabled]="!selectedRow || updateUserDisabled()">
 					Izmeni korisnika
 				</button>
-				<button mat-raised-button class="buttons" color="warn" (click)="deleteUser()"
+				<button data-test="delete-button" mat-raised-button class="buttons" color="warn" (click)="deleteUser()"
 					[disabled]="!selectedRow || updateUserDisabled()">
 					Izbriši korisnika
 				</button>
