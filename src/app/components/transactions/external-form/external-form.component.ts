@@ -3,9 +3,13 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { AccountDto } from 'src/app/dtos/account-dto';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { SimpleTransactionDto } from 'src/app/dtos/simple-transaction-dto';
 import { AccountService } from 'src/app/services/bank-service/account.service';
 import { TransactionService } from 'src/app/services/bank-service/transaction.service';
+import { bankAccountNumberValidator } from 'src/app/utils/validators';
+import { ExternalTransactionRequestDto } from 'src/app/dtos/external-transaction-request-dto';
+import { MatDialog } from '@angular/material/dialog';
+import { ExternalTransactionResponseDto } from 'src/app/dtos/external-transaction-response-dto';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
 	selector: 'app-external-form',
@@ -24,16 +28,22 @@ export class ExternalFormComponent {
 		senderAccountNumber: ['', [Validators.required]],
 		receiverAccountNumber: [
 			'',
-			[Validators.required /* bankAccountNumberValidator() */],
+			[Validators.required, bankAccountNumberValidator()],
 		],
 		amount: ['', [Validators.required]],
+		transactionPurpose: ['', [Validators.required]],
+		referenceNumber: ['', [Validators.required]],
+		transactionCode: ['', [Validators.required]],
 	});
 	authService: any;
 
 	accountOptionsSender: AccountDto[] = [];
 	accountOptionsReciver: AccountDto[] = [];
 
-	constructor(private fb: FormBuilder) {}
+	constructor(
+		private fb: FormBuilder,
+		public dialog: MatDialog,
+	) {}
 
 	ngOnInit(): void {
 		this.getAccounts();
@@ -68,7 +78,7 @@ export class ExternalFormComponent {
 	onSubmit() {
 		if (this.transactionForm.valid) {
 			const transaction = this.transactionForm
-				.value! as unknown as SimpleTransactionDto;
+				.value! as unknown as ExternalTransactionRequestDto;
 			transaction.receiverAccountNumber =
 				transaction.receiverAccountNumber.replaceAll('-', '');
 
@@ -80,7 +90,8 @@ export class ExternalFormComponent {
 					response => {
 						if (response.status == 'PENDING') {
 							// this.accountBalance=this.accountBalance-response.amount;
-							console.log(response);
+							this.openConfermDialog(response);
+							// console.log(response);
 						} else {
 							console.log(response);
 						}
@@ -105,24 +116,20 @@ export class ExternalFormComponent {
 				console.log(this.accountBalance);
 			});
 	}
+	openConfermDialog(response: ExternalTransactionResponseDto) {
+		const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+			autoFocus: false,
+			data: { response },
+		});
 
-	// fetchAccounts(): void {
-	// 	const emailLocal = localStorage.getItem("email");
-	// 	if(!emailLocal) return;
-
-	// 	this.accountService.getFindByEmail(emailLocal).pipe(
-	// 		map(Response => {
-	// 			this.accountOptionsSender = Response;
-	// 			this.accountOptionsReciver = Response;
-
-	// 			return Response;
-	// 		}),
-	// 		catchError(error => {
-	// 			return throwError(() => error);
-	// 		}),
-	// 	).subscribe();
-	// }
-
+		// dialogRef.afterClosed().subscribe(result => {
+		// 	console.log(`Dialog result: ${result}`);
+		// 	this.selectedRow = null;
+		// 	setTimeout(() => {
+		// 		this.fetchAllData();
+		// 	}, 1000);
+		// });
+	}
 	selectAccountRow(arg0: any) {
 		throw new Error('Method not implemented.');
 	}
