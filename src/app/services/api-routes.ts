@@ -99,7 +99,8 @@ export const ApiRoutes = {
 	},
 	/// FuturesContractController
 	futures: {
-		findAllFutures: '/futures',
+		findAll: '/futures',
+		findById: '/futures',
 	},
 	/// StockController
 	stocks: {

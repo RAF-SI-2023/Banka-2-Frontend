@@ -13,7 +13,16 @@ export class FuturesContractService {
 	/// GET
 	getFindAllFutures() {
 		return this.httpClient.get<FuturesContractDto[]>(
-			environment.stockServiceApiUrl + ApiRoutes.futures.findAllFutures,
+			environment.stockServiceApiUrl + ApiRoutes.futures.findAll,
+		);
+	}
+
+	getFindByIdFutures(id: number) {
+		return this.httpClient.get<FuturesContractDto>(
+			environment.stockServiceApiUrl +
+				ApiRoutes.futures.findById +
+				'/' +
+				id,
 		);
 	}
 }
