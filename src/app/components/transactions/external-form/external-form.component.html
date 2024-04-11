@@ -2,7 +2,7 @@
 	<form class="form-inputs" [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
 		<mat-form-field>
 			<mat-label>
-				Broj računa
+				Broj računa uplatioca
 			</mat-label>
 			<mat-select formControlName="senderAccountNumber" placeholder="Izaberite račun">
 				<mat-option *ngFor="let option of accountOptionsSender" [value]="option.accountNumber">
@@ -10,25 +10,25 @@
 				</mat-option>
 			</mat-select>
 			<mat-error *ngIf="transactionForm.get('senderAccountNumber')?.hasError('required')">
-				Broj računa je obavezan.
+				Broj računa uplatioca je obavezan.
 			</mat-error>
 		</mat-form-field>
 
-		<p *ngIf=" accountBalance > -1">
-			{{accountBalance}}
+		<p *ngIf=" availableBalance > -1">
+			Stanje vašeg računa: {{availableBalance}} {{currencyCode}}
 		</p>
-		<p *ngIf=" accountBalance == -1">
-			Stanje vašeg računa
+		<p *ngIf=" availableBalance == -1">
+			Stanje vašeg računa: -
 		</p>
 
 		<mat-form-field>
 			<mat-label>
-				Računa primaoca
+				Broj računa primaoca
 			</mat-label>
 			<input matInput placeholder="Unesite broj računa" formControlName="receiverAccountNumber" appBankAccountMask
 				required>
 			<mat-error *ngIf="transactionForm.get('receiverAccountNumber')?.hasError('required')">
-				Broj računa je obavezan.
+				Broj računa primaoca je obavezan.
 			</mat-error>
 			<mat-error *ngIf="transactionForm.get('receiverAccountNumber')?.hasError('invalidBankAccountNumber')">
 				Pogrešan format računa.
@@ -59,26 +59,26 @@
 
 
 		<mat-form-field>
-			<mat-label>Svrha placanja</mat-label>
-			<input matInput placeholder="Unesite svrhu placanja" formControlName="transactionPurpose" type="text">
+			<mat-label>Svrha plaćanja</mat-label>
+			<input matInput placeholder="Unesite svrhu plaćanja" formControlName="transactionPurpose" type="text">
 			<mat-error *ngIf="transactionForm.get('transactionPurpose')?.hasError('required')">
-				Svrha placanja je obavezna.
+				Svrha plaćanja je obavezna.
 			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field>
-			<mat-label>referenceNumber</mat-label>
-			<input matInput placeholder="referenceNumber" formControlName="referenceNumber" type="text">
+			<mat-label>Poziv na broj</mat-label>
+			<input matInput placeholder="Unesite poziv na broj" formControlName="referenceNumber" type="text">
 			<mat-error *ngIf="transactionForm.get('referenceNumber')?.hasError('required')">
-				Količina je obavezna.
+				Poziv na broj je obavezna.
 			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field>
-			<mat-label>transactionCode</mat-label>
-			<input matInput placeholder="transactionCode" formControlName="transactionCode" type="text">
+			<mat-label>Šifra plaćanja</mat-label>
+			<input matInput placeholder="Unesite šifru plaćanja" formControlName="transactionCode" type="text">
 			<mat-error *ngIf="transactionForm.get('transactionCode')?.hasError('required')">
-				Količina je obavezna.
+				Šifra plaćanja je obavezna.
 			</mat-error>
 		</mat-form-field>
 

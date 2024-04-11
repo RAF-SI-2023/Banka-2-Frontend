@@ -20,7 +20,8 @@ export class InternalFormComponent implements OnInit {
 
 	bankAccounts: any;
 
-	accountBalance: number = -1;
+	availableBalance: number = -1;
+	currencyCode: string = '';
 
 	transactionForm = this.fb.group({
 		senderAccountNumber: ['', [Validators.required]],
@@ -81,8 +82,8 @@ export class InternalFormComponent implements OnInit {
 				.subscribe(
 					response => {
 						if (response.status == 'CONFIRMED') {
-							this.accountBalance =
-								this.accountBalance - response.amount;
+							this.availableBalance =
+								this.availableBalance - response.amount;
 						} else {
 							console.log(response);
 						}
@@ -101,10 +102,14 @@ export class InternalFormComponent implements OnInit {
 		this.accountService
 			.getFindByEmail(emailLocal)
 			.subscribe((Response: any[]) => {
-				this.accountBalance = Response.filter(
+				this.availableBalance = Response.filter(
 					data => data.accountNumber == accountNumber,
 				)[0].availableBalance;
-				console.log(this.accountBalance);
+				console.log(this.availableBalance);
+				this.currencyCode = Response.filter(
+					data => data.accountNumber == accountNumber,
+				)[0].currencyCode;
+				console.log(this.availableBalance);
 			});
 	}
 

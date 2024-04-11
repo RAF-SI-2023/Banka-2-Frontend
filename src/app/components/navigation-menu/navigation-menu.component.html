@@ -12,11 +12,19 @@
 	<a mat-button routerLink="/credits">
 		Krediti
 	</a>
-	<a mat-button *ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])" routerLink="/currency-exchange">
-		Valute i berze
-	</a>
 	<button *ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])" mat-button
-		[matMenuTriggerFor]="securityMenu">Hartije od vrednosti</button>
+		[matMenuTriggerFor]="stockExchangeMenu">Berza</button>
+	<mat-menu #stockExchangeMenu="matMenu">
+		<button mat-menu-item routerLink="/currency-exchange">
+			<mat-icon>
+				currency_exchange
+			</mat-icon>
+			<span>
+				Valute i berze
+			</span>
+		</button>
+		<button mat-menu-item [matMenuTriggerFor]="securityMenu">Hartije od vrednosti</button>
+	</mat-menu>
 	<mat-menu #securityMenu="matMenu">
 		<button mat-menu-item routerLink="/stocks">
 			<mat-icon>
@@ -34,7 +42,7 @@
 				Forex
 			</span>
 		</button>
-		<button mat-menu-item routerLink="/future-contracts">
+		<button mat-menu-item routerLink="/futures-contracts">
 			<mat-icon>
 				pending_actions
 			</mat-icon>

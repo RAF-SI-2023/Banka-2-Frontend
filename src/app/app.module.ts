@@ -47,7 +47,7 @@ import { CreationFormComponent } from './components/cards/creation-form/creation
 import { ChangeStatusFormComponent } from './components/cards/change-status-form/change-status-form.component';
 import { ChangeLimitFormComponent } from './components/cards/change-limit-form/change-limit-form.component';
 import { BankExchangeComponent } from './components/bank-exchange/bank-exchange.component';
-import { FutureContractsComponent } from './components/future-contracts/future-contracts.component';
+import { FuturesContractsComponent } from './components/futures-contracts/futures-contracts.component';
 /// DIRECTIVES/PIPES
 import { PhoneNumberValidatorDirective } from './directives/phone-number-validator.directive';
 import { NoPasteDirective } from './directives/no-paste.directive';
@@ -147,7 +147,7 @@ import { ConfirmDialogComponent } from './components/transactions/confirm-dialog
 		CardsInfoDialogComponent,
 		ConfirmDialogComponent,
 		BankExchangeComponent,
-		FutureContractsComponent,
+		FuturesContractsComponent,
 	],
 	imports: [
 		HttpClientModule,

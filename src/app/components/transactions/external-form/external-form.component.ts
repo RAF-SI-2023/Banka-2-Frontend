@@ -22,7 +22,8 @@ export class ExternalFormComponent {
 
 	bankAccounts: any;
 
-	accountBalance: number = -1;
+	availableBalance: number = -1;
+	currencyCode: string = '';
 
 	transactionForm = this.fb.group({
 		senderAccountNumber: ['', [Validators.required]],
@@ -90,7 +91,7 @@ export class ExternalFormComponent {
 					response => {
 						if (response.status == 'PENDING') {
 							// this.accountBalance=this.accountBalance-response.amount;
-							this.openConfermDialog(response);
+							this.openConfirmDialog(response);
 							// console.log(response);
 						} else {
 							console.log(response);
@@ -110,13 +111,17 @@ export class ExternalFormComponent {
 		this.accountService
 			.getFindByEmail(emailLocal)
 			.subscribe((Response: any[]) => {
-				this.accountBalance = Response.filter(
+				this.availableBalance = Response.filter(
 					data => data.accountNumber == accountNumber,
 				)[0].availableBalance;
-				console.log(this.accountBalance);
+				this.currencyCode = Response.filter(
+					data => data.accountNumber == accountNumber,
+				)[0].currencyCode;
+				console.log(this.availableBalance);
 			});
 	}
-	openConfermDialog(response: ExternalTransactionResponseDto) {
+
+	openConfirmDialog(response: ExternalTransactionResponseDto) {
 		const dialogRef = this.dialog.open(ConfirmDialogComponent, {
 			autoFocus: false,
 			data: { response },

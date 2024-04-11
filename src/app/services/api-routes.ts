@@ -66,6 +66,13 @@ export const ApiRoutes = {
 		changeCardStatus: '/cards/change-status',
 		changeCardLimit: '/cards/change-card-limit',
 	},
+	// Transactions
+	transferTransaction: {
+		findById: '/transaction/funds-transfer',
+		createInternalTransaction: '/transaction/internal',
+		createExternalTransaction: '/transaction/external',
+		patchVerifyTransaction: '/transaction/verify',
+	},
 	// STOCK-SERVICE
 	/// CurrencyController
 	currency: {
@@ -103,12 +110,5 @@ export const ApiRoutes = {
 	/// OptionController
 	options: {
 		findAllOptionsByStockListing: '/options/stock-listing',
-	},
-	/// Transactions
-	transferTransaction:{
-		findById:'/transaction/funds-transfer',
-		createInternalTransaction:'/transaction/internal',
-		createExternalTransaction:'/transaction/external',
-		patchVerifyTransaction:'/transaction/verify',
 	},
 };

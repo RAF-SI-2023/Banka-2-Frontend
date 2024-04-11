@@ -2,7 +2,7 @@
 	<form class="form-inputs" [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
 		<mat-form-field>
 			<mat-label>
-				Broj računa
+				Broj računa uplatioca
 			</mat-label>
 			<mat-select formControlName="senderAccountNumber" placeholder="Izaberite račun">
 				<mat-option *ngFor="let option of accountOptionsSender" [value]="option.accountNumber">
@@ -10,15 +10,15 @@
 				</mat-option>
 			</mat-select>
 			<mat-error *ngIf="transactionForm.get('senderAccountNumber')?.hasError('required')">
-				Broj računa je obavezan.
+				Broj računa uplatioca je obavezan.
 			</mat-error>
 		</mat-form-field>
 
-		<p *ngIf=" accountBalance > -1">
-			{{accountBalance}}
+		<p *ngIf=" availableBalance > -1">
+			Stanje vašeg računa: {{availableBalance}} {{currencyCode}}
 		</p>
-		<p *ngIf=" accountBalance == -1">
-			Stanje vašeg racuna
+		<p *ngIf=" availableBalance == -1">
+			Stanje vašeg računa: -
 		</p>
 
 		<!--
