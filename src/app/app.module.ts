@@ -41,6 +41,7 @@ import { CardsInfoDialogComponent } from './components/user-profile/cards-info-d
 import { TransactionsComponent } from './components/transactions/transactions/transactions.component';
 import { ExternalFormComponent } from './components/transactions/external-form/external-form.component';
 import { InternalFormComponent } from './components/transactions/internal-form/internal-form.component';
+import { ConfirmDialogComponent } from './components/transactions/confirm-dialog/confirm-dialog.component';
 import { StockFilterComponent } from './components/stocks/dialogs/stock-filter/stock-filter.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { CreationFormComponent } from './components/cards/creation-form/creation-form.component';
@@ -90,7 +91,6 @@ import { MatSliderModule } from '@angular/material/slider';
 // PROVIDERS
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
-import { ConfirmDialogComponent } from './components/transactions/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -135,19 +135,19 @@ import { ConfirmDialogComponent } from './components/transactions/confirm-dialog
 		CreditRequestsComponent,
 		CreditReqInfoDialogComponent,
 		ForexInfoDialogComponent,
+		FuturesContractsComponent,
 		TransactionsComponent,
 		ExternalFormComponent,
 		InternalFormComponent,
+		ConfirmDialogComponent,
 		AccountNumberFormatPipe,
 		StockFilterComponent,
 		CardsComponent,
+		CardsInfoDialogComponent,
 		CreationFormComponent,
 		ChangeStatusFormComponent,
 		ChangeLimitFormComponent,
-		CardsInfoDialogComponent,
-		ConfirmDialogComponent,
 		BankExchangeComponent,
-		FuturesContractsComponent,
 	],
 	imports: [
 		HttpClientModule,
