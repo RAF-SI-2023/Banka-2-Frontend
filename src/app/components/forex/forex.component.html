@@ -56,7 +56,11 @@
 								Poslednje ažuriranje
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.lastRefresh ? (row.lastRefresh | date: 'dd/MM/yyyy') : "-" }}
+								{{
+								row.lastRefresh
+								? (row.lastRefresh | epochToDate | date : "dd.MM.yyyy.")
+								: "-"
+								}}
 							</td>
 						</ng-container>
 
@@ -125,7 +129,7 @@
 
 						<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
 						<tr mat-row (click)="selectRow(row)" (dblclick)="viewForex(row)"
-							[class.row-selected]="this.selectedRow?.symbol === row.symbol"
+							[class.row-selected]="selectedRow?.symbol === row.symbol"
 							*matRowDef="let row; columns: displayedColumns"></tr>
 
 						<tr *matNoDataRow class="mat-row">

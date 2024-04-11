@@ -39,7 +39,7 @@
 					<td *matCellDef="let row" mat-cell>
 						{{
 						row.creationDate
-						? (row.creationDate | epochToDate | date : "dd.MM.yyyy")
+						? (row.creationDate | epochToDate | date : "dd.MM.yyyy.")
 						: "-"
 						}}
 					</td>
@@ -52,7 +52,7 @@
 					<td *matCellDef="let row" mat-cell>
 						{{
 						row.expirationDate
-						? (row.expirationDate | epochToDate | date : "dd.MM.yyyy")
+						? (row.expirationDate | epochToDate | date : "dd.MM.yyyy.")
 						: "-"
 						}}
 					</td>
@@ -87,7 +87,7 @@
 
 				<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
 				<tr mat-row (click)="selectRow(row)"
-					[class.row-selected]="this.cardRow?.identificationCardNumber === row.identificationCardNumber"
+					[class.row-selected]="cardRow?.identificationCardNumber === row.identificationCardNumber"
 					*matRowDef="let row; columns: displayedColumns"></tr>
 			</table>
 		</div>

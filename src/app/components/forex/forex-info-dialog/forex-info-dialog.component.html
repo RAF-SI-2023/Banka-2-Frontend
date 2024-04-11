@@ -17,7 +17,11 @@
 		</div>
 		<div class="info-row">
 			<span class="label">Poslednje ažuriranje:</span>
-			{{ newSelectedRow.lastRefresh ? (newSelectedRow.lastRefresh | date: 'dd/MM/yyyy') : "-" }}
+			{{
+			newSelectedRow.lastRefresh
+			? (newSelectedRow.lastRefresh | epochToDate | date : "dd.MM.yyyy.")
+			: "-"
+			}}
 		</div>
 		<div class="info-row">
 			<span class="label">Cena:</span>

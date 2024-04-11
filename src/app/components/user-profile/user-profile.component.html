@@ -139,7 +139,7 @@
 
 						<tr *matHeaderRowDef="displayedAccountColumns" mat-header-row></tr>
 						<tr mat-row (click)="selectAccountRow(row)" (dblclick)="viewCards(row)"
-							[class.row-selected]="this.selectedAccount?.accountNumber === row.accountNumber"
+							[class.row-selected]="selectedAccount?.accountNumber === row.accountNumber"
 							*matRowDef="let row; columns: displayedAccountColumns"></tr>
 					</table>
 				</div>

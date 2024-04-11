@@ -20,7 +20,7 @@
 				<mat-label>
 					Broj telefona
 				</mat-label>
-				<input matInput [(ngModel)]="this.phoneNumber" name="phoneNumber" appPhoneNumberValidator
+				<input matInput [(ngModel)]="phoneNumber" name="phoneNumber" appPhoneNumberValidator
 					#phoneInput="ngModel">
 				<mat-error *ngIf="phoneInput.errors && phoneInput.touched">
 					Unesite validan broj telefona.

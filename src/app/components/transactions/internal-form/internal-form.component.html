@@ -1,6 +1,5 @@
 <section class="container">
 	<form class="form-inputs" [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
-
 		<mat-form-field>
 			<mat-label>
 				Broj računa
@@ -15,15 +14,14 @@
 			</mat-error>
 		</mat-form-field>
 
-
 		<p *ngIf=" accountBalance > -1">
 			{{accountBalance}}
 		</p>
 		<p *ngIf=" accountBalance == -1">
 			Stanje vašeg racuna
 		</p>
-		<!-- 	
-		  
+
+		<!--
         <mat-form-field>
 			<mat-label>
 				Broj računa primaoca
@@ -36,8 +34,8 @@
 			<mat-error *ngIf="transactionForm.get('receiverAccountNumber')?.hasError('invalidBankAccountNumber')">
 				Pogrešan format računa.
 			</mat-error>
-		</mat-form-field> -->
-
+		</mat-form-field>
+		-->
 
 		<mat-form-field>
 			<mat-label>
@@ -60,7 +58,6 @@
 				Količina je obavezna.
 			</mat-error>
 		</mat-form-field>
-
 
 		<div class="buttons">
 			<button mat-raised-button color="accent" type="submit">

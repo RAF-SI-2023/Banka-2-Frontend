@@ -78,7 +78,7 @@
 						</ng-container>
 
 						<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-						<tr mat-row [class.row-selected]="this.selectedRow?.stockListing === row.stockListing"
+						<tr mat-row [class.row-selected]="selectedRow?.stockListing === row.stockListing"
 							*matRowDef="let row; columns: displayedColumns"></tr>
 
 						<tr *matNoDataRow class="mat-row">
@@ -177,7 +177,7 @@
 							<td *matCellDef="let element" mat-cell>
 								{{
 								element.settlementDate
-								? (element.settlementDate | epochToDate | date : "dd/MM/yyyy")
+								? (element.settlementDate | epochToDate | date : "dd.MM.yyyy.")
 								: "-"
 								}}
 							</td>
@@ -186,7 +186,7 @@
 
 						<tr *matHeaderRowDef="displayedColumnsCall" mat-header-row></tr>
 						<tr mat-row (click)="selectCallRow(row)" (dblclick)="viewOptions(row)"
-							[class.row-selected]="this.selectedRowCall?.stockListing === row.stockListing"
+							[class.row-selected]="selectedRowCall?.stockListing === row.stockListing"
 							*matRowDef="let row; columns: displayedColumnsCall"></tr>
 
 					</table>
@@ -250,7 +250,7 @@
 							<td *matCellDef="let element" mat-cell>
 								{{
 								element.settlementDate
-								? (element.settlementDate | epochToDate | date : "dd/MM/yyyy")
+								? (element.settlementDate | epochToDate | date : "dd.MM.yyyy.")
 								: "-"
 								}}
 							</td>
@@ -258,7 +258,7 @@
 
 						<tr *matHeaderRowDef="displayedColumnsPut" mat-header-row></tr>
 						<tr mat-row (click)="selectPutRow(row)" (dblclick)="viewOptions(row)"
-							[class.row-selected]="this.selectedRowPut?.stockListing === row.stockListing"
+							[class.row-selected]="selectedRowPut?.stockListing === row.stockListing"
 							*matRowDef="let row; columns: displayedColumnsPut"></tr>
 					</table>
 					<div class="paginatorContainer">

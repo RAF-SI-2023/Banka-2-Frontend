@@ -3,23 +3,21 @@
 		<img ngSrc="../../../assets/logo/bank-2-logo.svg" alt="Icon" height="40" width="40" />
 	</a>
 
+	<a mat-button routerLink="/bank-exchange">
+		Menjačnica
+	</a>
 	<a mat-button routerLink="/transactions">
 		Transakcije
 	</a>
 	<a mat-button routerLink="/credits">
 		Krediti
 	</a>
+	<a mat-button *ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])" routerLink="/currency-exchange">
+		Valute i berze
+	</a>
 	<button *ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])" mat-button
 		[matMenuTriggerFor]="securityMenu">Hartije od vrednosti</button>
 	<mat-menu #securityMenu="matMenu">
-		<button mat-menu-item routerLink="/currency-exchange">
-			<mat-icon>
-				currency_exchange
-			</mat-icon>
-			<span>
-				Valute i berze
-			</span>
-		</button>
 		<button mat-menu-item routerLink="/stocks">
 			<mat-icon>
 				request_quote
@@ -34,6 +32,14 @@
 			</mat-icon>
 			<span>
 				Forex
+			</span>
+		</button>
+		<button mat-menu-item routerLink="/future-contracts">
+			<mat-icon>
+				pending_actions
+			</mat-icon>
+			<span>
+				Terminski ugovori
 			</span>
 		</button>
 	</mat-menu>

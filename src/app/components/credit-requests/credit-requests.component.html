@@ -80,7 +80,7 @@
 
 						<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
 						<tr mat-row (click)="selectRow(row)" (dblclick)="viewCreditRequest(row)"
-							[class.row-selected]="this.selectedRow?.id === row.id"
+							[class.row-selected]="selectedRow?.id === row.id"
 							*matRowDef="let row; columns: displayedColumns"></tr>
 
 						<tr *matNoDataRow class="mat-row">

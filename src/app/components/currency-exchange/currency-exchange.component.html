@@ -25,7 +25,7 @@
 			<div class="tableContainer">
 				<div class="table">
 					<table class="tableData unselectable" mat-table [dataSource]="currencyDataSource">
-						
+
 						<ng-container matColumnDef="currencyName">
 							<th mat-header-cell *matHeaderCellDef>
 								Naziv
@@ -55,7 +55,7 @@
 
 						<tr *matHeaderRowDef="currencyDisplayedColumns" mat-header-row></tr>
 						<tr mat-row (click)="selectCurrencyRow(row)" (dblclick)="viewCurrency(row)"
-							[class.row-selected]="this.currencySelectedRow?.currencyCode === row.currencyCode"
+							[class.row-selected]="currencySelectedRow?.currencyCode === row.currencyCode"
 							*matRowDef="let row; columns: currencyDisplayedColumns"></tr>
 
 					</table>
@@ -124,7 +124,7 @@
 
 						<tr *matHeaderRowDef="exchangeDisplayedColumns" mat-header-row></tr>
 						<tr mat-row (click)="selectExchangeRow(row)" (dblclick)="viewExchange(row)"
-							[class.row-selected]="this.exchangeSelectedRow?.exchangeMICode === row.exchangeMICode"
+							[class.row-selected]="exchangeSelectedRow?.exchangeMICode === row.exchangeMICode"
 							*matRowDef="let row; columns: exchangeDisplayedColumns"></tr>
 					</table>
 					<div class="paginatorContainer">

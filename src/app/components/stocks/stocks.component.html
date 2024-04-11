@@ -7,11 +7,11 @@
 						Pretraži akcije
 					</mat-label>
 					<input #input (keyup)="applyFilter($event)" matInput />
-<!--					open filter dialog label button-->
+					<!--					open filter dialog label button-->
 					<button mat-icon-button matSuffix (click)="openFilterDialog()">
 						<mat-icon>filter_list</mat-icon>
 					</button>
-<!--					reset filters button-->
+					<!--					reset filters button-->
 					<button mat-icon-button matSuffix (click)="resetFilters()">
 						<mat-icon>clear</mat-icon>
 					</button>
@@ -113,7 +113,7 @@
 								Broj emitovanih akcija
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.shares }}
+								{{ row.shares ? row.shares : "-" }}
 							</td>
 						</ng-container>
 
@@ -128,7 +128,7 @@
 
 						<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
 						<tr mat-row (click)="selectRow(row)" (dblclick)="viewStock(row)"
-							[class.row-selected]="this.selectedRow?.symbol === row.symbol"
+							[class.row-selected]="selectedRow?.symbol === row.symbol"
 							*matRowDef="let row; columns: displayedColumns"></tr>
 
 						<tr *matNoDataRow class="mat-row">

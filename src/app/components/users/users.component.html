@@ -12,7 +12,7 @@
 				</div>
 
 				<button mat-raised-button class="buttons" color="accent"
-					[disabled]="!selectedRow || selectedRowRole() != 'EMPLOYEE' || this.activeUser?.role != 'ADMIN'"
+					[disabled]="!selectedRow || selectedRowRole() != 'EMPLOYEE' || activeUser?.role != 'ADMIN'"
 					(click)="selectedRowActive() ? deactivateEmployee() : activateEmployee()">
 					{{
 					selectedRowActive()
@@ -20,7 +20,7 @@
 					: "Aktiviraj zaposlenog"
 					}}
 				</button>
-				<button mat-raised-button class="buttons" color="accent" [disabled]="this.activeUser?.role != 'ADMIN'"
+				<button mat-raised-button class="buttons" color="accent" [disabled]="activeUser?.role != 'ADMIN'"
 					(click)="addEmployee()">
 					Dodaj zaposlenog
 				</button>
@@ -62,7 +62,11 @@
 								Datum rođenja
 							</th>
 							<td *matCellDef="let row" mat-cell>
-								{{ row.dateOfBirth ? (row.dateOfBirth | date: 'dd/MM/yyyy') : "-" }}
+								{{
+								row.dateOfBirth
+								? (row.dateOfBirth | epochToDate | date : "dd.MM.yyyy.")
+								: "-"
+								}}
 							</td>
 						</ng-container>
 
@@ -104,7 +108,7 @@
 
 						<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
 						<tr mat-row (click)="selectRow(row)" (dblclick)="viewUser(row)"
-							[class.row-selected]="this.selectedRow?.id === row.id"
+							[class.row-selected]="selectedRow?.id === row.id"
 							*matRowDef="let row; columns: displayedColumns">
 						</tr>
 

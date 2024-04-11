@@ -8,8 +8,8 @@
 				<mat-label>
 					Datum rođenja
 				</mat-label>
-				<input matInput [(ngModel)]="this.newSelectedRow.dateOfBirth" [matDatepicker]="picker"
-					name="dateOfBirth" placeholder="Izaberi datum">
+				<input matInput [(ngModel)]="newSelectedRow.dateOfBirth" [matDatepicker]="picker" name="dateOfBirth"
+					placeholder="Izaberi datum">
 				<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 				<mat-datepicker #picker></mat-datepicker>
 			</mat-form-field>
@@ -18,7 +18,7 @@
 				<mat-label>
 					Broj telefona
 				</mat-label>
-				<input matInput [(ngModel)]="this.newSelectedRow.phone" name="phone" appPhoneNumberValidator
+				<input matInput [(ngModel)]="newSelectedRow.phone" name="phone" appPhoneNumberValidator
 					#phoneInput="ngModel">
 				<mat-error *ngIf="phoneInput.errors && phoneInput.touched">
 					Unesite validan broj telefona.
@@ -29,7 +29,7 @@
 				<mat-label>
 					Adresa
 				</mat-label>
-				<input matInput [(ngModel)]="this.newSelectedRow.address" name="address">
+				<input matInput [(ngModel)]="newSelectedRow.address" name="address">
 			</mat-form-field>
 		</div>
 
@@ -38,7 +38,7 @@
 				<mat-label>
 					Ime
 				</mat-label>
-				<input matInput [(ngModel)]="this.newSelectedRow.name" name="name">
+				<input matInput [(ngModel)]="newSelectedRow.name" name="name">
 			</mat-form-field>
 		</div>
 
@@ -47,14 +47,14 @@
 				<mat-label>
 					Prezime
 				</mat-label>
-				<input matInput [(ngModel)]="this.newSelectedRow.surname" name="surname">
+				<input matInput [(ngModel)]="newSelectedRow.surname" name="surname">
 			</mat-form-field>
 
-			<mat-form-field class="full-width" *ngIf="this.newSelectedRow instanceof PrivateClientDto">
+			<mat-form-field class="full-width" *ngIf="newSelectedRow instanceof PrivateClientDto">
 				<mat-label>
 					Pol
 				</mat-label>
-				<mat-select [(ngModel)]="this.newSelectedRow.gender" name="gender">
+				<mat-select [(ngModel)]="newSelectedRow.gender" name="gender">
 					<mat-option value="M">
 						Muški
 					</mat-option>
@@ -70,14 +70,14 @@
 				<mat-label>
 					Pozicija
 				</mat-label>
-				<input matInput [(ngModel)]="this.newSelectedRow.position" name="position">
+				<input matInput [(ngModel)]="newSelectedRow.position" name="position">
 			</mat-form-field>
 
-			<mat-form-field class="full-width" *ngIf="this.newSelectedRow instanceof PrivateClientDto">
+			<mat-form-field class="full-width" *ngIf="newSelectedRow instanceof PrivateClientDto">
 				<mat-label>
 					Odeljenje
 				</mat-label>
-				<input matInput [(ngModel)]="this.newSelectedRow.department" name="department">
+				<input matInput [(ngModel)]="newSelectedRow.department" name="department">
 			</mat-form-field>
 		</div>
 	</form>

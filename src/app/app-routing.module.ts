@@ -23,6 +23,8 @@ import { CreateCreditRequestComponent } from './components/create-credit-request
 import { CreditRequestsComponent } from './components/credit-requests/credit-requests.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { TransactionsComponent } from './components/transactions/transactions/transactions.component';
+import { BankExchangeComponent } from './components/bank-exchange/bank-exchange.component';
+import { FutureContractsComponent } from './components/future-contracts/future-contracts.component';
 
 const routes: Routes = [
 	{
@@ -66,13 +68,18 @@ const routes: Routes = [
 		canActivate: [authGuard],
 	},
 	{
+		component: CurrencyExchangeComponent,
+		path: 'currency-exchange',
+		canActivate: [authGuard],
+	},
+	{
 		component: StocksComponent,
 		path: 'stocks',
 		canActivate: [authGuard],
 	},
 	{
-		component: CurrencyExchangeComponent,
-		path: 'currency-exchange',
+		component: OptionsComponent,
+		path: 'options/:stockListing',
 		canActivate: [authGuard],
 	},
 	{
@@ -81,8 +88,8 @@ const routes: Routes = [
 		canActivate: [authGuard],
 	},
 	{
-		component: OptionsComponent,
-		path: 'options/:stockListing',
+		component: FutureContractsComponent,
+		path: 'future-contracts',
 		canActivate: [authGuard],
 	},
 	{
@@ -113,6 +120,11 @@ const routes: Routes = [
 	{
 		component: TransactionsComponent,
 		path: 'transactions',
+		canActivate: [authGuard],
+	},
+	{
+		component: BankExchangeComponent,
+		path: 'bank-exchange',
 		canActivate: [authGuard],
 	},
 ];

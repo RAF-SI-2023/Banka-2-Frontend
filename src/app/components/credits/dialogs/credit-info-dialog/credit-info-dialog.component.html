@@ -5,39 +5,39 @@
 	<div *ngIf="!isLoading" class="full-width-grid">
 		<div class="info-row">
 			<span class="label">Naziv:</span>
-			<span>{{ this.newSelectedRow.creditName }}</span>
+			<span>{{ newSelectedRow.creditName }}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Broj:</span>
-			<span>{{ this.newSelectedRow.creditNumber }}</span>
+			<span>{{ newSelectedRow.creditNumber }}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Iznos:</span>
-			<span>{{ this.newSelectedRow.creditAmount }}</span>
+			<span>{{ newSelectedRow.creditAmount }}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Valuta:</span>
-			<span>{{ this.newSelectedRow.currencyCode }}</span>
+			<span>{{ newSelectedRow.currencyCode }}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Period plaćanja:</span>
-			<span>{{ this.newSelectedRow.paymentPeriodMonths }} meseci</span>
+			<span>{{ newSelectedRow.paymentPeriodMonths }} meseci</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Nominalna kamatna stopa:</span>
-			<span>{{ this.newSelectedRow.nominalInterestRate }}%</span>
+			<span>{{ newSelectedRow.nominalInterestRate }}%</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Efektivna kamatna stopa:</span>
-			<span>{{ this.newSelectedRow.effectiveInterestRate }}%</span>
+			<span>{{ newSelectedRow.effectiveInterestRate }}%</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Datum kreiranja:</span>
 			<span>
 				{{
-				this.newSelectedRow.creditCreationDate
-				? (this.newSelectedRow.creditCreationDate.toString() | epochToDate | date: 'dd/MM/yyyy')
-				: '-'
+				newSelectedRow.creditCreationDate
+				? (newSelectedRow.creditCreationDate | epochToDate | date : "dd.MM.yyyy.")
+				: "-"
 				}}
 			</span>
 		</div>
@@ -45,33 +45,33 @@
 			<span class="label">Datum isteka:</span>
 			<span>
 				{{
-				this.newSelectedRow.creditExpirationDate
-				? (this.newSelectedRow.creditExpirationDate.toString() | epochToDate | date: 'dd/MM/yyyy')
-				: '-'
+				newSelectedRow.creditExpirationDate
+				? (newSelectedRow.creditExpirationDate | epochToDate | date : "dd.MM.yyyy.")
+				: "-"
 				}}
 			</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Iznos rate:</span>
-			<span>{{ this.newSelectedRow.installmentAmount }}</span>
+			<span>{{ newSelectedRow.installmentAmount }}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Datum sledeće rate:</span>
 			<span>
 				{{
-				this.newSelectedRow.nextInstallmentDate
-				? (this.newSelectedRow.nextInstallmentDate.toString() | epochToDate | date: 'dd/MM/yyyy')
-				: '-'
+				newSelectedRow.nextInstallmentDate
+				? (newSelectedRow.nextInstallmentDate | epochToDate | date : "dd.MM.yyyy.")
+				: "-"
 				}}
 			</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Preostali iznos:</span>
-			<span>{{ this.newSelectedRow.remainingAmount }}</span>
+			<span>{{ newSelectedRow.remainingAmount }}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Broj računa:</span>
-			<span>{{ this.newSelectedRow.accountNumber }}</span>
+			<span>{{ newSelectedRow.accountNumber }}</span>
 		</div>
 	</div>
 	<div *ngIf="isLoading" class="spinner-container">
