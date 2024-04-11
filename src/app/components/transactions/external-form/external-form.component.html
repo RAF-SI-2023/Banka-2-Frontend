@@ -61,6 +61,30 @@
 		</mat-form-field>
 
 
+		<mat-form-field>
+			<mat-label>Svrha placanja</mat-label>
+			<input matInput placeholder="Unesite svrhu placanja" formControlName="transactionPurpose" type="text">
+			<mat-error *ngIf="transactionForm.get('transactionPurpose')?.hasError('required')">
+				Svrha placanja je obavezna.
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>referenceNumber</mat-label>
+			<input matInput placeholder="referenceNumber" formControlName="referenceNumber" type="text">
+			<mat-error *ngIf="transactionForm.get('referenceNumber')?.hasError('required')">
+				Količina je obavezna.
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>transactionCode</mat-label>
+			<input matInput placeholder="transactionCode" formControlName="transactionCode" type="text">
+			<mat-error *ngIf="transactionForm.get('transactionCode')?.hasError('required')">
+				Količina je obavezna.
+			</mat-error>
+		</mat-form-field>
+
 		<div class="buttons">
 			<button mat-raised-button color="accent" type="submit">
 				Napravi
