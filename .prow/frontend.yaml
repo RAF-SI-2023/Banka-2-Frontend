@@ -1,0 +1,30 @@
+presubmits:
+    - name: pull-banka-2-frontend-test
+      always_run: true
+      decorate: true
+      spec:
+          containers:
+              - image: harbor.k8s.elab.rs/base-images/base:java-21-node-18-docker
+                command:
+                    - /bin/bash
+                    - -c
+                    - |
+                        set -euo pipefail
+
+                        npm ci
+                        npm run cy:verify
+                        npm run cy:info
+
+                        npm run start&
+
+                        set +e
+                        npm run e2e
+
+                        cp -r ./cypress/videos /logs/artifacts
+                        cp -r ./cypress/screenshots /logs/artifacts
+
+                        echo "${GCSWEB_URL}/prow-logs/pr-logs/pull/${REPO_OWNER}_${REPO_NAME}/${PULL_NUMBER}/${JOB_NAME}/${BUILD_NUMBER}/artifacts/videos" > /logs/artifacts/videos.link.txt
+                        echo "${GCSWEB_URL}/prow-logs/pr-logs/pull/${REPO_OWNER}_${REPO_NAME}/${PULL_NUMBER}/${JOB_NAME}/${BUILD_NUMBER}/artifacts/screenshots" > /logs/artifacts/screenshots.link.txt
+                securityContext:
+                    privileged: true
+                imagePullPolicy: Always
