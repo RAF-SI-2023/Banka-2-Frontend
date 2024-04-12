@@ -84,7 +84,7 @@ export class BankExchangeComponent implements AfterViewInit {
 		}
 	}
 
-	getAccounts() {
+		getAccounts() {
 		const emailLocal = localStorage.getItem('email');
 		if (!emailLocal) return;
 
