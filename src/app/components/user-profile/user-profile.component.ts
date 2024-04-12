@@ -33,7 +33,7 @@ export class UserProfileComponent {
 	displayedAccountColumns: string[] = [
 		'accountType',
 		'accountNumber',
-		'availableBalance',
+		'accountBalance',
 	];
 	user: UserDto | null = null; // USER, for now, represents ADMIN
 	employee: EmployeeDto | null = null;

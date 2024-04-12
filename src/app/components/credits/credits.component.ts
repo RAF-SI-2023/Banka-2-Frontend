@@ -22,7 +22,7 @@ export class CreditsComponent implements AfterViewInit {
 	displayedAccountColumns: string[] = [
 		'accountType',
 		'accountNumber',
-		'availableBalance',
+		'accountBalance',
 	];
 	displayedColumns: string[] = [
 		'creditName',

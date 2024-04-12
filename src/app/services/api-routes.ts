@@ -9,7 +9,7 @@ export const ApiRoutes = {
 	/// UserController
 	users: {
 		findAll: '/users/all',
-		findById: '/users/id',
+		findById: '/users',
 		findByEmail: '/users/email',
 		passwordActivation: '/users/public/password-activation',
 		passwordChange: '/users/password-change',
@@ -72,6 +72,10 @@ export const ApiRoutes = {
 		createInternalTransaction: '/transaction/internal',
 		createExternalTransaction: '/transaction/external',
 		patchVerifyTransaction: '/transaction/verify',
+	},
+	bankExchange: {
+		getAllExchangeRates: '/currency-exchange/exchange-rate/from',
+		postExchangeCurrency: '/currency-exchange/exchange-currency',
 	},
 	// STOCK-SERVICE
 	/// CurrencyController

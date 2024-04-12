@@ -13,7 +13,6 @@ export const DropdownOptions = {
 		{ label: 'CAD', value: 'CAD' },
 		{ label: 'AUD', value: 'AUD' },
 		{ label: 'JPY', value: 'JPY' },
-		{ label: 'CNY', value: 'CNY' },
 	],
 	currencyCodes: [
 		{ label: 'RSD', value: 'RSD' },
@@ -24,7 +23,6 @@ export const DropdownOptions = {
 		{ label: 'CAD', value: 'CAD' },
 		{ label: 'AUD', value: 'AUD' },
 		{ label: 'JPY', value: 'JPY' },
-		{ label: 'CNY', value: 'CNY' },
 	],
 	// Dropdown options for account type
 	currencyAccountType: [
