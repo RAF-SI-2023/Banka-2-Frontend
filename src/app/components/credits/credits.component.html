@@ -26,19 +26,21 @@
 								</td>
 							</ng-container>
 
-							<ng-container matColumnDef="accountBalance">
-								<th mat-header-cell *matHeaderCellDef>Dostupno stanje</th>
-								<td mat-cell *matCellDef="let row">
-									<!-- Display availableBalance if accountType is DOMESTIC -->
-									<ng-container *ngIf="row.accountType === 'DOMESTIC_CURRENCY_ACCOUNT'">
-										{{ row.availableBalance }} {{ row.currencyCode }}
-									</ng-container>
-									<!-- Display foreignCurrencyHolderDto if accountType is FOREIGN -->
-									<ng-container *ngIf="row.accountType === 'FOREIGN_CURRENCY_ACCOUNT'">
-										<ng-container *ngFor="let currency of row.foreignCurrencyHolderDto">
-											<div>{{ currency.availableBalance }} {{ currency.currencyCode }}</div>
-										</ng-container>
-									</ng-container>
+							<ng-container matColumnDef="availableBalance">
+								<th *matHeaderCellDef mat-header-cell mat-sort-header>
+									Dostupno stanje
+								</th>
+								<td *matCellDef="let row" mat-cell>
+									{{ row.availableBalance }}
+								</td>
+							</ng-container>
+
+							<ng-container matColumnDef="currencyCode">
+								<th *matHeaderCellDef mat-header-cell mat-sort-header>
+									Valuta
+								</th>
+								<td *matCellDef="let row" mat-cell>
+									{{ row.currencyCode }}
 								</td>
 							</ng-container>
 

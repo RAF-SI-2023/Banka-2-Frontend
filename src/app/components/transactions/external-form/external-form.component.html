@@ -14,6 +14,15 @@
 			</mat-error>
 		</mat-form-field>
 
+		<div class="unselectable">
+			<p *ngIf=" availableBalance > -1">
+				Stanje vašeg računa: {{ availableBalance }} {{ currencyCode }}
+			</p>
+			<p *ngIf=" availableBalance == -1">
+				Stanje vašeg računa: -
+			</p>
+		</div>
+
 		<mat-form-field>
 			<mat-label>
 				Broj računa primaoca

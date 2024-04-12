@@ -25,7 +25,8 @@ export class BankExchangeComponent implements AfterViewInit {
 	displayedAccountColumns: string[] = [
 		'accountType',
 		'accountNumber',
-		'accountBalance',
+		'availableBalance',
+		'currencyCode',
 	];
 	accountNumberDataSource = new MatTableDataSource<AccountDto>();
 
@@ -47,9 +48,7 @@ export class BankExchangeComponent implements AfterViewInit {
 
 	exchangeForm = this.fb.group({
 		fromAccount: ['', [Validators.required]],
-		fromCurrency: ['', [Validators.required]],
 		toAccount: ['', [Validators.required]],
-		toCurrency: ['', [Validators.required]],
 		amount: ['', [Validators.required, Validators.min(0)]],
 	});
 	accountOptionsSender: AccountDto[] = [];

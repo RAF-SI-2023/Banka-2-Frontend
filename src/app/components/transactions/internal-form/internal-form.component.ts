@@ -84,6 +84,8 @@ export class InternalFormComponent implements OnInit {
 						if (response.status == 'CONFIRMED') {
 							this.availableBalance =
 								this.availableBalance - response.amount;
+							this.transactionForm.reset();
+							this.availableBalance = -1;
 						} else {
 							console.log(response);
 						}

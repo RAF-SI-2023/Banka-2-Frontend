@@ -127,13 +127,11 @@ export class ExternalFormComponent {
 			data: { response },
 		});
 
-		// dialogRef.afterClosed().subscribe(result => {
-		// 	console.log(`Dialog result: ${result}`);
-		// 	this.selectedRow = null;
-		// 	setTimeout(() => {
-		// 		this.fetchAllData();
-		// 	}, 1000);
-		// });
+		dialogRef.afterClosed().subscribe(result => {
+			console.log(`Dialog result: ${result}`);
+			this.transactionForm.reset();
+			this.availableBalance = -1;
+		});
 	}
 	selectAccountRow(arg0: any) {
 		throw new Error('Method not implemented.');

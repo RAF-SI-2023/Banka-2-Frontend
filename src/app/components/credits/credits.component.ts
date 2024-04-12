@@ -22,7 +22,8 @@ export class CreditsComponent implements AfterViewInit {
 	displayedAccountColumns: string[] = [
 		'accountType',
 		'accountNumber',
-		'accountBalance',
+		'availableBalance',
+		'currencyCode',
 	];
 	displayedColumns: string[] = [
 		'creditName',

@@ -11,6 +11,7 @@
 	flex-direction: column;
 	width: 100%;
 }
+
 p {
 	font-size: 16px;
 	letter-spacing: 0.03125em;
@@ -21,4 +22,8 @@ p {
 	border-radius: 3px;
 	background-color: #f5f5f5;
 	margin-bottom: 20px;
+}
+
+.unselectable {
+	user-select: none;
 }
