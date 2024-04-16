@@ -1,19 +1,26 @@
 <section class="container">
 	<mat-card>
 		<mat-card-header>
-			<mat-card-title>
-				Podešavanje kartica
-			</mat-card-title>
+			<mat-card-title>Podešavanje kartica</mat-card-title>
 		</mat-card-header>
 		<mat-card-content>
 			<div class="form-inputs">
 				<mat-tab-group>
-					<mat-tab *ngFor="let option of cardOptions" [label]="option.label">
+					<mat-tab
+						*ngFor="let option of cardOptions"
+						[label]="option.label"
+					>
 						<div class="tab-content">
-							<app-creation-form *ngIf="option.value === 'PRAVLJENJE'"
-								[cardTypeOptions]="cardTypeOptions"></app-creation-form>
-							<app-change-status-form *ngIf="option.value === 'PROMENA STATUSA'"></app-change-status-form>
-							<app-change-limit-form *ngIf="option.value === 'PROMENA LIMITA'"></app-change-limit-form>
+							<app-creation-form
+								*ngIf="option.value === 'PRAVLJENJE'"
+								[cardTypeOptions]="cardTypeOptions"
+							></app-creation-form>
+							<app-change-status-form
+								*ngIf="option.value === 'PROMENA STATUSA'"
+							></app-change-status-form>
+							<app-change-limit-form
+								*ngIf="option.value === 'PROMENA LIMITA'"
+							></app-change-limit-form>
 						</div>
 					</mat-tab>
 				</mat-tab-group>

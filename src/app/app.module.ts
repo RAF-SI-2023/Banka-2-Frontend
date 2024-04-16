@@ -41,7 +41,7 @@ import { CardsInfoDialogComponent } from './components/user-profile/cards-info-d
 import { TransactionsComponent } from './components/transactions/transactions/transactions.component';
 import { ExternalFormComponent } from './components/transactions/external-form/external-form.component';
 import { InternalFormComponent } from './components/transactions/internal-form/internal-form.component';
-import { ConfirmDialogComponent } from './components/transactions/confirm-dialog/confirm-dialog.component';
+import { VerifyTransactionDialogComponent } from './components/transactions/verify-transaction-dialog/verify-transaction-dialog.component';
 import { StockFilterComponent } from './components/stocks/dialogs/stock-filter/stock-filter.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { CreationFormComponent } from './components/cards/creation-form/creation-form.component';
@@ -140,7 +140,7 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 		TransactionsComponent,
 		ExternalFormComponent,
 		InternalFormComponent,
-		ConfirmDialogComponent,
+		VerifyTransactionDialogComponent,
 		AccountNumberFormatPipe,
 		StockFilterComponent,
 		CardsComponent,

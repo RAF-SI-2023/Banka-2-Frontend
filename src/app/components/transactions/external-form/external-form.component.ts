@@ -9,7 +9,7 @@ import { bankAccountNumberValidator } from 'src/app/utils/validators';
 import { ExternalTransactionRequestDto } from 'src/app/dtos/external-transaction-request-dto';
 import { MatDialog } from '@angular/material/dialog';
 import { ExternalTransactionResponseDto } from 'src/app/dtos/external-transaction-response-dto';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { VerifyTransactionDialogComponent } from '../verify-transaction-dialog/verify-transaction-dialog.component';
 
 @Component({
 	selector: 'app-external-form',
@@ -122,7 +122,7 @@ export class ExternalFormComponent {
 	}
 
 	openConfirmDialog(response: ExternalTransactionResponseDto) {
-		const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+		const dialogRef = this.dialog.open(VerifyTransactionDialogComponent, {
 			autoFocus: false,
 			data: { response },
 		});

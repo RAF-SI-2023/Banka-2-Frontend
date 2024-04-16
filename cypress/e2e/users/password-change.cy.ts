@@ -21,7 +21,9 @@ describe('Change Password Dialog', () => {
 		cy.get('input[formControlName="newPassword"]').type('Newpassword123!');
 
 		// Enter confirm password
-		cy.get('input[formControlName="confirmPassword"]').type('Newpassword1234!');
+		cy.get('input[formControlName="confirmPassword"]').type(
+			'Newpassword1234!',
+		);
 
 		// Submit the form by clicking the "Promeni" button
 		cy.get('[data-test="change-button"]').click();
@@ -38,7 +40,9 @@ describe('Change Password Dialog', () => {
 		cy.get('input[formControlName="newPassword"]').type('Newpassword123!');
 
 		// Enter confirm password
-		cy.get('input[formControlName="confirmPassword"]').type('Newpassword123!');
+		cy.get('input[formControlName="confirmPassword"]').type(
+			'Newpassword123!',
+		);
 
 		// Submit the form by clicking the "Promeni" button
 		cy.get('[data-test="change-button"]').click();

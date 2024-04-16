@@ -1,76 +1,149 @@
 <section class="container">
-	<form class="form-inputs" [formGroup]="companyBankAccountForm" (ngSubmit)="onSubmit()">
+	<form
+		class="form-inputs"
+		[formGroup]="companyBankAccountForm"
+		(ngSubmit)="onSubmit()"
+	>
 		<mat-form-field>
-			<mat-label>
-				Broj računa
-			</mat-label>
-			<input matInput placeholder="Unesite broj računa" formControlName="accountNumber" appBankAccountMask
-				required>
-			<mat-error *ngIf="companyBankAccountForm.get('accountNumber')?.hasError('required')">
+			<mat-label>Broj računa</mat-label>
+			<input
+				matInput
+				placeholder="Unesite broj računa"
+				formControlName="accountNumber"
+				appBankAccountMask
+				required
+			/>
+			<mat-error
+				*ngIf="
+					companyBankAccountForm
+						.get('accountNumber')
+						?.hasError('required')
+				"
+			>
 				Broj računa je obavezan.
 			</mat-error>
-			<mat-error *ngIf="companyBankAccountForm.get('accountNumber')?.hasError('invalidBankAccountNumber')">
+			<mat-error
+				*ngIf="
+					companyBankAccountForm
+						.get('accountNumber')
+						?.hasError('invalidBankAccountNumber')
+				"
+			>
 				Pogrešan format računa.
 			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field>
-			<mat-label>
-				Email
-			</mat-label>
-			<input matInput type="email" placeholder="Unesite email adresu" formControlName="email" required>
-			<mat-error *ngIf="companyBankAccountForm.get('email')?.hasError('required')">
+			<mat-label>Email</mat-label>
+			<input
+				matInput
+				type="email"
+				placeholder="Unesite email adresu"
+				formControlName="email"
+				required
+			/>
+			<mat-error
+				*ngIf="
+					companyBankAccountForm.get('email')?.hasError('required')
+				"
+			>
 				Email je obavezan.
 			</mat-error>
-			<mat-error *ngIf="companyBankAccountForm.get('email')?.hasError('invalidEmail')">
+			<mat-error
+				*ngIf="
+					companyBankAccountForm
+						.get('email')
+						?.hasError('invalidEmail')
+				"
+			>
 				Pogrešan format email-a.
 			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field>
-			<mat-label>
-				Matični broj
-			</mat-label>
-			<input matInput placeholder="Unesite identifikacioni broj" formControlName="identificationNumber" required>
-			<mat-error *ngIf="companyBankAccountForm.get('email')?.hasError('required')">
+			<mat-label>Matični broj</mat-label>
+			<input
+				matInput
+				placeholder="Unesite identifikacioni broj"
+				formControlName="identificationNumber"
+				required
+			/>
+			<mat-error
+				*ngIf="
+					companyBankAccountForm.get('email')?.hasError('required')
+				"
+			>
 				Matični broj je obavezan.
 			</mat-error>
-			<mat-error *ngIf="companyBankAccountForm.get('email')?.hasError('invalidEmail')">
+			<mat-error
+				*ngIf="
+					companyBankAccountForm
+						.get('email')
+						?.hasError('invalidEmail')
+				"
+			>
 				Pogrešan format matičnog broj-a.
 				<!-- TODO: Staviti validaciju za matični broj ovde -->
 			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field>
-			<mat-label>
-				PIB
-			</mat-label>
-			<input matInput placeholder="Unesite PIB" formControlName="PIB" required>
-			<mat-error *ngIf="companyBankAccountForm.get('email')?.hasError('required')">
+			<mat-label>PIB</mat-label>
+			<input
+				matInput
+				placeholder="Unesite PIB"
+				formControlName="PIB"
+				required
+			/>
+			<mat-error
+				*ngIf="
+					companyBankAccountForm.get('email')?.hasError('required')
+				"
+			>
 				PIB je obavezan.
 			</mat-error>
-			<mat-error *ngIf="companyBankAccountForm.get('email')?.hasError('invalidEmail')">
+			<mat-error
+				*ngIf="
+					companyBankAccountForm
+						.get('email')
+						?.hasError('invalidEmail')
+				"
+			>
 				Pogrešan format PIB-a.
 				<!-- TODO: Staviti validaciju za PIB ovde -->
 			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field>
-			<mat-label>
-				Valuta
-			</mat-label>
-			<mat-select formControlName="currencyCode" placeholder="Izaberite valutu">
-				<mat-option *ngFor="let option of currencyOptions" [value]="option.value">
+			<mat-label>Valuta</mat-label>
+			<mat-select
+				formControlName="currencyCode"
+				placeholder="Izaberite valutu"
+			>
+				<mat-option
+					*ngFor="let option of currencyOptions"
+					[value]="option.value"
+				>
 					{{ option.label }}
 				</mat-option>
 			</mat-select>
-			<mat-error *ngIf="companyBankAccountForm.get('currencyCode')?.hasError('required')">
+			<mat-error
+				*ngIf="
+					companyBankAccountForm
+						.get('currencyCode')
+						?.hasError('required')
+				"
+			>
 				Valuta je obavezna.
 			</mat-error>
 		</mat-form-field>
 
 		<div class="buttons">
-			<button mat-raised-button color="accent" type="submit">
+			<button
+				mat-raised-button
+				color="accent"
+				type="submit"
+			>
 				Napravi
 			</button>
 		</div>

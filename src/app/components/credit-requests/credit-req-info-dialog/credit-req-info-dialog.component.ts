@@ -3,7 +3,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CreditRequestDto } from 'src/app/dtos/credit-request-dto';
 import { CreditService } from 'src/app/services/bank-service/credit.service';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
 	selector: 'app-credit-req-info-dialog',
@@ -17,7 +16,6 @@ export class CreditReqInfoDialogComponent {
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		private creditService: CreditService,
-		private router: Router,
 	) {
 		this.fetchData();
 	}

@@ -32,7 +32,11 @@ describe('Adding Employee Dialog', () => {
 		cy.get('input[name="email"]').type('test@example.com');
 		cy.get('input[name="name"]').type('John');
 		cy.get('input[name="surname"]').type('Doe');
-		cy.get('mat-select[name="gender"]').click().get('mat-option').contains('Muški').click();
+		cy.get('mat-select[name="gender"]')
+			.click()
+			.get('mat-option')
+			.contains('Muški')
+			.click();
 		cy.get('input[name="dateOfBirth"]').type('1990-01-01');
 		cy.get('input[name="phone"]').type('1234567890');
 		cy.get('input[name="address"]').type('123 Test St');

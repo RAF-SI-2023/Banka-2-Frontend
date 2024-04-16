@@ -1,63 +1,86 @@
-<h2 mat-dialog-title>
-	Dodaj kompaniju
-</h2>
+<h2 mat-dialog-title>Dodaj kompaniju</h2>
 <mat-dialog-content class="mat-typography size">
 	<form>
 		<div>
 			<mat-form-field class="full-width">
-				<mat-label>
-					Ime kompanije
-				</mat-label>
-				<input matInput [(ngModel)]="companyName" name="companyName" />
+				<mat-label>Ime kompanije</mat-label>
+				<input
+					matInput
+					[(ngModel)]="companyName"
+					name="companyName"
+				/>
 			</mat-form-field>
 			<mat-form-field class="full-width">
-				<mat-label>
-					Broj faksa
-				</mat-label>
-				<input matInput [(ngModel)]="faxNumber" name="faxNumber" />
+				<mat-label>Broj faksa</mat-label>
+				<input
+					matInput
+					[(ngModel)]="faxNumber"
+					name="faxNumber"
+				/>
 			</mat-form-field>
 			<mat-form-field class="full-width">
-				<mat-label>
-					Broj telefona
-				</mat-label>
-				<input matInput [(ngModel)]="phoneNumber" name="phoneNumber" appPhoneNumberValidator
-					#phoneInput="ngModel">
+				<mat-label>Broj telefona</mat-label>
+				<input
+					matInput
+					[(ngModel)]="phoneNumber"
+					name="phoneNumber"
+					appPhoneNumberValidator
+					#phoneInput="ngModel"
+				/>
 				<mat-error *ngIf="phoneInput.errors && phoneInput.touched">
 					Unesite validan broj telefona.
 				</mat-error>
 			</mat-form-field>
 			<mat-form-field class="full-width">
-				<mat-label>
-					PIB
-				</mat-label>
-				<input matInput [(ngModel)]="pib" name="pib" />
+				<mat-label> PIB </mat-label>
+				<input
+					matInput
+					[(ngModel)]="pib"
+					name="pib"
+				/>
 			</mat-form-field>
 			<mat-form-field class="full-width">
-				<mat-label>
-					Registarski broj
-				</mat-label>
-				<input matInput [(ngModel)]="registryNumber" name="registryNumber" />
+				<mat-label>Registarski broj</mat-label>
+				<input
+					matInput
+					[(ngModel)]="registryNumber"
+					name="registryNumber"
+				/>
 			</mat-form-field>
 			<mat-form-field class="full-width">
-				<mat-label>
-					Sifra delatnosti
-				</mat-label>
-				<input matInput [(ngModel)]="activityCode" name="activityCode" />
+				<mat-label>Šifra delatnosti</mat-label>
+				<input
+					matInput
+					[(ngModel)]="activityCode"
+					name="activityCode"
+				/>
 			</mat-form-field>
 			<mat-form-field class="full-width">
-				<mat-label>
-					Adresa
-				</mat-label>
-				<input matInput [(ngModel)]="address" name="address" />
+				<mat-label>Adresa</mat-label>
+				<input
+					matInput
+					[(ngModel)]="address"
+					name="address"
+				/>
 			</mat-form-field>
 		</div>
 	</form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-	<button mat-raised-button [mat-dialog-close]="true" color="accent" cdkFocusInitial (click)="addCompany()">
+	<button
+		mat-raised-button
+		[mat-dialog-close]="true"
+		color="accent"
+		cdkFocusInitial
+		(click)="addCompany()"
+	>
 		Dodaj
 	</button>
-	<button mat-raised-button mat-dialog-close color="warn">
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
 		Zatvori
 	</button>
 </mat-dialog-actions>

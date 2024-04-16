@@ -1,10 +1,8 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 import { validateHorizontalPosition } from '@angular/cdk/overlay';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { AuthService } from 'src/app/services/iam-service/auth.service';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
@@ -38,8 +36,6 @@ export class CompaniesComponent implements AfterViewInit {
 	protected readonly validateHorizontalPosition = validateHorizontalPosition;
 
 	constructor(
-		private http: HttpClient,
-		private authService: AuthService,
 		private companyService: CompanyService,
 		public dialog: MatDialog,
 	) {
@@ -59,13 +55,13 @@ export class CompaniesComponent implements AfterViewInit {
 		if (this.dataSource.paginator) {
 			this.dataSource.paginator.firstPage();
 		}
-		
+
 		//pri filtriranju deslektuje korisnika i ako nadje samo 1 slektuje ga
 		const filteredData = this.dataSource.filteredData;
 		if (filteredData.length === 1) {
-			this.selectedRow = filteredData[0]; 
+			this.selectedRow = filteredData[0];
 		} else {
-			this.selectedRow = null; 
+			this.selectedRow = null;
 		}
 	}
 
@@ -74,9 +70,11 @@ export class CompaniesComponent implements AfterViewInit {
 			this.selectedRow = row;
 		}
 	}
-	clearSelection(){
+
+	clearSelection() {
 		this.selectedRow = null;
 	}
+
 	viewCompany(row: CompanyDto): void {
 		if (this.selectedRow != null) {
 			const dialogRef = this.dialog.open(CompanyInfoDialogComponent, {

@@ -1,129 +1,171 @@
-<mat-toolbar class="navbar mat-elevation-z2" color="primary">
-	<a mat-button routerLink="/home" class="icon">
-		<img ngSrc="../../../assets/logo/bank-2-logo.svg" alt="Icon" height="40" width="40" />
+<mat-toolbar
+	class="navbar mat-elevation-z2"
+	color="primary"
+>
+	<a
+		mat-button
+		routerLink="/home"
+		class="icon"
+	>
+		<img
+			ngSrc="../../../assets/logo/bank-2-logo.svg"
+			alt="Icon"
+			height="40"
+			width="40"
+		/>
 	</a>
-
-	<a mat-button routerLink="/bank-exchange">
+	<!-- TODO: ngIf PROVERA DA LI POSTOJI RAČUN -->
+	<a
+		mat-button
+		routerLink="/bank-exchange"
+	>
 		Menjačnica
 	</a>
-	<a mat-button routerLink="/transactions">
+	<!-- TODO: ngIf PROVERA DA LI POSTOJI RAČUN -->
+	<a
+		mat-button
+		routerLink="/transactions"
+	>
 		Transakcije
 	</a>
-	<a mat-button routerLink="/credits">
+	<!-- TODO: ngIf PROVERA DA LI POSTOJI RAČUN -->
+	<a
+		mat-button
+		routerLink="/credits"
+	>
 		Krediti
 	</a>
-	<button *ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])" mat-button
-		[matMenuTriggerFor]="stockExchangeMenu">Berza</button>
+	<button
+		*ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])"
+		mat-button
+		[matMenuTriggerFor]="stockExchangeMenu"
+	>
+		Berza
+	</button>
 	<mat-menu #stockExchangeMenu="matMenu">
-		<button mat-menu-item routerLink="/currency-exchange">
-			<mat-icon>
-				currency_exchange
-			</mat-icon>
-			<span>
-				Valute i berze
-			</span>
+		<button
+			*ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])"
+			mat-menu-item
+			routerLink="/currency-exchange"
+		>
+			<mat-icon> currency_exchange </mat-icon>
+			<span> Valute i berze </span>
 		</button>
-		<button mat-menu-item [matMenuTriggerFor]="securityMenu">Hartije od vrednosti</button>
+		<button
+			*ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])"
+			mat-menu-item
+			[matMenuTriggerFor]="securityMenu"
+		>
+			Hartije od vrednosti
+		</button>
 	</mat-menu>
 	<mat-menu #securityMenu="matMenu">
-		<button mat-menu-item routerLink="/stocks">
-			<mat-icon>
-				request_quote
-			</mat-icon>
-			<span>
-				Akcije
-			</span>
+		<button
+			*ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])"
+			mat-menu-item
+			routerLink="/stocks"
+		>
+			<mat-icon> request_quote </mat-icon>
+			<span> Akcije </span>
 		</button>
-		<button mat-menu-item routerLink="/forex">
-			<mat-icon>
-				toll
-			</mat-icon>
-			<span>
-				Forex
-			</span>
+		<button
+			*ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])"
+			mat-menu-item
+			routerLink="/forex"
+		>
+			<mat-icon> toll </mat-icon>
+			<span> Forex </span>
 		</button>
-		<button mat-menu-item routerLink="/futures-contracts">
-			<mat-icon>
-				pending_actions
-			</mat-icon>
-			<span>
-				Terminski ugovori
-			</span>
+		<button
+			*ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])"
+			mat-menu-item
+			routerLink="/futures-contracts"
+		>
+			<mat-icon> pending_actions </mat-icon>
+			<span> Terminski ugovori </span>
 		</button>
 	</mat-menu>
 	<div class="padding"></div>
-	<button mat-button [matMenuTriggerFor]="adminMenu">Admin Panel</button>
+	<button
+		*ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR])"
+		mat-button
+		[matMenuTriggerFor]="adminMenu"
+	>
+		Admin Panel
+	</button>
 	<mat-menu #adminMenu="matMenu">
-		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/companies">
-			<mat-icon>
-				business
-			</mat-icon>
-			<span>
-				Kompanije
-			</span>
+		<button
+			*ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])"
+			mat-menu-item
+			routerLink="/companies"
+		>
+			<mat-icon> business </mat-icon>
+			<span> Kompanije </span>
 		</button>
 		<mat-divider></mat-divider>
-		<button *ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR])" mat-menu-item routerLink="/agents">
-			<mat-icon>
-				badge
-			</mat-icon>
-			<span>
-				Agenti
-			</span>
+		<button
+			*ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR])"
+			mat-menu-item
+			routerLink="/agents"
+		>
+			<mat-icon> badge </mat-icon>
+			<span> Agenti </span>
 		</button>
-		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/users">
-			<mat-icon>
-				groups
-			</mat-icon>
-			<span>
-				Korisnici
-			</span>
+		<button
+			*ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])"
+			mat-menu-item
+			routerLink="/users"
+		>
+			<mat-icon> groups </mat-icon>
+			<span> Korisnici </span>
 		</button>
 		<mat-divider></mat-divider>
-		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/create-bank-account">
-			<mat-icon>
-				account_balance_wallet
-			</mat-icon>
-			<span>
-				Napravi bankovni račun
-			</span>
+		<button
+			*ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])"
+			mat-menu-item
+			routerLink="/create-bank-account"
+		>
+			<mat-icon> account_balance_wallet </mat-icon>
+			<span> Napravi bankovni račun </span>
 		</button>
-		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/cards">
-			<mat-icon>
-				credit_card
-			</mat-icon>
-			<span>
-				Podešavanje kartica
-			</span>
+		<button
+			*ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])"
+			mat-menu-item
+			routerLink="/cards"
+		>
+			<mat-icon> credit_card </mat-icon>
+			<span> Podešavanje kartica </span>
 		</button>
-		<button *ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])" mat-menu-item routerLink="/credit-requests">
-			<mat-icon>
-				real_estate_agent
-			</mat-icon>
-			<span>
-				Zahtevi za kredite
-			</span>
+		<button
+			*ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])"
+			mat-menu-item
+			routerLink="/credit-requests"
+		>
+			<mat-icon> real_estate_agent </mat-icon>
+			<span> Zahtevi za kredite </span>
 		</button>
 	</mat-menu>
-	<button mat-icon-button [matMenuTriggerFor]="optionsMenu" aria-label="Options">
+	<button
+		mat-icon-button
+		[matMenuTriggerFor]="optionsMenu"
+		aria-label="Options"
+	>
 		<mat-icon>more_vert</mat-icon>
 	</button>
 	<mat-menu #optionsMenu="matMenu">
-		<button mat-menu-item routerLink="/user-profile">
-			<mat-icon>
-				person
-			</mat-icon>
-			<span>
-				Korisnički profil
-			</span>
+		<button
+			mat-menu-item
+			routerLink="/user-profile"
+		>
+			<mat-icon> person </mat-icon>
+			<span> Korisnički profil </span>
 		</button>
-		<button mat-menu-item (click)="logout()">
-			<mat-icon>
-				logout
-			</mat-icon>
-			<span>
-				Izloguj se
-			</span>
+		<button
+			mat-menu-item
+			(click)="logout()"
+		>
+			<mat-icon> logout </mat-icon>
+			<span> Izloguj se </span>
 		</button>
 	</mat-menu>
 </mat-toolbar>

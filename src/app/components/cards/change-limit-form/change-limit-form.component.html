@@ -1,27 +1,49 @@
 <section class="container">
-	<form class="form-inputs" [formGroup]="changeLimitForm" (ngSubmit)="onSubmit()">
+	<form
+		class="form-inputs"
+		[formGroup]="changeLimitForm"
+		(ngSubmit)="onSubmit()"
+	>
 		<mat-form-field>
-			<mat-label>
-				Broj kartice
-			</mat-label>
-			<input matInput placeholder="Unesite broj kartice" formControlName="identificationCardNumber" required>
-			<mat-error *ngIf="changeLimitForm.get('identificationCardNumber')?.hasError('required')">
+			<mat-label>Broj kartice</mat-label>
+			<input
+				matInput
+				placeholder="Unesite broj kartice"
+				formControlName="identificationCardNumber"
+				required
+			/>
+			<mat-error
+				*ngIf="
+					changeLimitForm
+						.get('identificationCardNumber')
+						?.hasError('required')
+				"
+			>
 				Broj kartice je obavezan.
 			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field>
-			<mat-label>
-				Limit
-			</mat-label>
-			<input matInput placeholder="Unesite limit na kartici" formControlName="limitCard" required>
-			<mat-error *ngIf="changeLimitForm.get('limitCard')?.hasError('required')">
+			<mat-label>Limit</mat-label>
+			<input
+				matInput
+				placeholder="Unesite limit na kartici"
+				formControlName="limitCard"
+				required
+			/>
+			<mat-error
+				*ngIf="changeLimitForm.get('limitCard')?.hasError('required')"
+			>
 				Limit je obavezan.
 			</mat-error>
 		</mat-form-field>
 
 		<div class="buttons">
-			<button mat-raised-button color="accent" type="submit">
+			<button
+				mat-raised-button
+				color="accent"
+				type="submit"
+			>
 				Promeni
 			</button>
 		</div>
