@@ -24,7 +24,7 @@ export class CompanyFormComponent {
 		],
 		email: ['', [Validators.required, emailValidator()]],
 		currencyCode: ['', [Validators.required]],
-		PIB: ['', [Validators.required]],
+		pib: ['', [Validators.required]],
 		identificationNumber: ['', [Validators.required]],
 	});
 
