@@ -10,7 +10,6 @@ import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { AuthService } from '../../services/iam-service/auth.service';
 import { bankAccountNumberNoSymbolsValidator } from '../../utils/validators/bank-account-number-no-symbols.validator';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'app-create-credit-request',
@@ -29,8 +28,7 @@ export class CreateCreditRequestComponent {
 		],
 		creditType: ['', [Validators.required]],
 		creditAmount: [0, [Validators.required]],
-		currency: ['', [Validators.required]],
-		mobileNumber: ['', [Validators.required, phoneNumberValidator()]],
+		mobileNumber: ['', [phoneNumberValidator()]],
 		paymentPeriodMonths: [0, [Validators.required]],
 		creditPurpose: [''],
 		monthlySalary: [0],
@@ -49,7 +47,6 @@ export class CreateCreditRequestComponent {
 		private creditService: CreditService,
 		private authService: AuthService,
 		private bankService: AccountService,
-		private matSnackBar: MatSnackBar,
 	) {
 		this.fetchAccountNumbers();
 	}

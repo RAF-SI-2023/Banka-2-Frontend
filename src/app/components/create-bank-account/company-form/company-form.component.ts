@@ -6,7 +6,7 @@ import {
 	emailValidator,
 } from '../../../utils/validators';
 import { AccountService } from '../../../services/bank-service/account.service';
-import { CompanyAccountDto } from 'src/app/dtos/company-account-dto';
+import { BusinessAccountDto } from 'src/app/dtos/business-account-dto';
 
 @Component({
 	selector: 'app-company-form',
@@ -33,7 +33,7 @@ export class CompanyFormComponent {
 	onSubmit() {
 		if (this.companyBankAccountForm.valid) {
 			const account = this.companyBankAccountForm
-				.value as CompanyAccountDto;
+				.value as BusinessAccountDto;
 			account.accountNumber = account.accountNumber.replaceAll('-', '');
 			console.log(account);
 			this.bankService.postCreateCompanyAccount(account).subscribe(

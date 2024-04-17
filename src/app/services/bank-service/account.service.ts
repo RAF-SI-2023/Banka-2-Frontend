@@ -4,7 +4,7 @@ import { ApiRoutes } from '../api-routes';
 import { HttpClient } from '@angular/common/http';
 import { DomesticAccountDto } from '../../dtos/domestic-account-dto';
 import { ForeignAccountDto } from '../../dtos/foreign-account-dto';
-import { CompanyAccountDto } from '../../dtos/company-account-dto';
+import { BusinessAccountDto } from '../../dtos/business-account-dto';
 import { AccountDto } from '../../dtos/account-dto';
 
 @Injectable({
@@ -51,7 +51,7 @@ export class AccountService {
 		);
 	}
 
-	postCreateCompanyAccount(account: CompanyAccountDto) {
+	postCreateCompanyAccount(account: BusinessAccountDto) {
 		return this.httpClient.post<boolean>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.createBusinessAccount}`,
 			account,

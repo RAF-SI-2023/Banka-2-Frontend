@@ -22,7 +22,7 @@ export class ForeignFormComponent {
 			[Validators.required, bankAccountNumberValidator()],
 		],
 		email: ['', [Validators.required, emailValidator()]],
-		defaultCurrencyCode: ['', [Validators.required]],
+		currencyCode: ['', [Validators.required]],
 	});
 
 	constructor(private fb: FormBuilder) {}
