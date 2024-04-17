@@ -1,8 +1,9 @@
-<h2 mat-dialog-title>
-	Informacije
-</h2>
+<h2 mat-dialog-title>Informacije</h2>
 <mat-dialog-content class="mat-typography size">
-	<div *ngIf="!isLoading" class="full-width-grid">
+	<div
+		*ngIf="!isLoading"
+		class="full-width-grid"
+	>
 		<div class="info-row">
 			<span class="label">Naziv: </span>
 			<span>{{ newSelectedRow.currencyName }}</span>
@@ -28,15 +29,29 @@
 		  <span>{{ inflation.inflationRate }}</span>
 		</div>
 	  </div> -->
-	<div style="height: 400px; width: 100%;">
-		<highcharts-chart *ngIf="chartLoading" [Highcharts]="Highcharts" [options]="chartOptions"></highcharts-chart>
+	<div style="height: 400px; width: 100%">
+		<highcharts-chart
+			*ngIf="chartLoading"
+			[Highcharts]="Highcharts"
+			[options]="chartOptions"
+		></highcharts-chart>
 	</div>
-	<div *ngIf="isLoading" class="spinner-container">
-		<mat-progress-spinner diameter="50" mode="indeterminate"></mat-progress-spinner>
+	<div
+		*ngIf="isLoading"
+		class="spinner-container"
+	>
+		<mat-progress-spinner
+			diameter="50"
+			mode="indeterminate"
+		></mat-progress-spinner>
 	</div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-	<button mat-raised-button mat-dialog-close color="warn">
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
 		Zatvori
 	</button>
 </mat-dialog-actions>

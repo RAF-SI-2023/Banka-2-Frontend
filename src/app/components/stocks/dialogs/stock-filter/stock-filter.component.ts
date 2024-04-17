@@ -1,13 +1,12 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-stock-filter',
-  templateUrl: './stock-filter.component.html',
-  styleUrls: ['./stock-filter.component.css']
+	selector: 'app-stock-filter',
+	templateUrl: './stock-filter.component.html',
+	styleUrls: ['./stock-filter.component.css'],
 })
 export class StockFilterComponent {
-
 	// Price range variables
 	priceRangeStart: number | null = 20;
 	priceRangeEnd: number | null = 80;
@@ -25,9 +24,8 @@ export class StockFilterComponent {
 
 	constructor(
 		public dialogRef: MatDialogRef<StockFilterComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: any
-	) {
-	}
+		@Inject(MAT_DIALOG_DATA) public data: any,
+	) {}
 
 	applyFilters() {
 		// Pass price range filter values back to parent component
@@ -35,7 +33,7 @@ export class StockFilterComponent {
 			priceRangeStart: this.priceRangeStart,
 			priceRangeEnd: this.priceRangeEnd,
 			maintenanceMarginStart: this.maintenanceMarginStart,
-			maintenanceMarginEnd: this.maintenanceMarginEnd
+			maintenanceMarginEnd: this.maintenanceMarginEnd,
 		});
 	}
 }

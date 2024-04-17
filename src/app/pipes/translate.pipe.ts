@@ -9,7 +9,7 @@ interface Translations {
 	name: 'translate',
 })
 export class TranslatePipe implements PipeTransform {
-	transform(value: string, ...args: unknown[]): string {
+	transform(value: string): string {
 		const translations: Translations = translateConstants;
 		// Check if the value exists in the translation constant
 		if (translations[value]) {

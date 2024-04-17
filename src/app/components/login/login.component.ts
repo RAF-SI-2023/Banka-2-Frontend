@@ -29,12 +29,12 @@ export class LoginComponent {
 
 	onSubmit() {
 		if (this.loginForm.valid) {
-			this.authService
-				.login({
-					email: this.loginForm.value.email!,
-					password: this.loginForm.value.password!,
-				})
-				.subscribe(
+			const email = this.loginForm.value.email;
+			const password = this.loginForm.value.password;
+
+			if (email && password) {
+				// Check if email and password are not null or undefined
+				this.authService.login({ email, password }).subscribe(
 					() => {
 						window.location.href = '/home';
 						// this.router.navigate(['/home']);
@@ -43,6 +43,10 @@ export class LoginComponent {
 						this.serverResponseError = 'Pogrešan email ili lozinka';
 					},
 				);
+			} else {
+				// Handle case where email or password is null or undefined
+				// You might want to log an error, show a message, or handle it differently based on your requirements
+			}
 		} else {
 			this.loginForm.markAllAsTouched();
 		}

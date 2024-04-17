@@ -45,31 +45,21 @@ export class PasswordChangeComponent {
 			email = '';
 		}
 
-		this.passwordChange = {
-			email: email,
-			password: this.changePasswordForm.value.newPassword!,
-		};
+		if (
+			this.passwordChange &&
+			email &&
+			this.changePasswordForm.value.newPassword
+		) {
+			this.passwordChange = {
+				email: email,
+				password: this.changePasswordForm.value.newPassword,
+			};
+		}
 
-		this.iamService.postPasswordChange(this.passwordChange).subscribe(
-			() => {
-				this.matSnackBar.open('Lozinka uspešno promenjena!', 'Close', {
-					duration: 5000,
-					horizontalPosition: 'center',
-					verticalPosition: 'top',
-				});
+		this.iamService
+			.postPasswordChange(this.passwordChange)
+			.subscribe(() => {
 				this.dialogRef.close();
-			},
-			error => {
-				this.matSnackBar.open(
-					'Greška prilikom promene lozinke!',
-					'Close',
-					{
-						duration: 5000,
-						horizontalPosition: 'center',
-						verticalPosition: 'top',
-					},
-				);
-			},
-		);
+			});
 	}
 }

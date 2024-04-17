@@ -2,7 +2,6 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CreditRequestDto } from 'src/app/dtos/credit-request-dto';
 import { CreditService } from 'src/app/services/bank-service/credit.service';
-import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-credit-req-info-dialog',

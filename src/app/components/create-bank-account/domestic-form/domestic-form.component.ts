@@ -31,9 +31,12 @@ export class DomesticFormComponent {
 	constructor(private fb: FormBuilder) {}
 
 	onSubmit() {
-		if (this.domesticBankAccountForm.valid) {
-			let account = this.domesticBankAccountForm
-				.value! as DomesticAccountDto;
+		if (
+			this.domesticBankAccountForm.valid &&
+			this.domesticBankAccountForm
+		) {
+			const account = this.domesticBankAccountForm
+				.value as DomesticAccountDto;
 			account.accountNumber = account.accountNumber.replaceAll('-', '');
 			console.log(account);
 			this.bankService.postCreateDomesticAccount(account).subscribe(

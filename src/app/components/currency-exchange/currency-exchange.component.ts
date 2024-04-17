@@ -133,7 +133,7 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 
 	viewCurrency(row: CurrencyDto): void {
 		if (this.currencySelectedRow != null) {
-			const dialogRef = this.dialog.open(CurrencyInfoDialogComponent, {
+			this.dialog.open(CurrencyInfoDialogComponent, {
 				data: { selectedRow: row },
 				autoFocus: false,
 			});
@@ -141,7 +141,7 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 	}
 	viewExchange(row: ExchangeDto): void {
 		if (this.exchangeSelectedRow != null) {
-			const dialogRef = this.dialog.open(ExchangeInfoDialogComponent, {
+			this.dialog.open(ExchangeInfoDialogComponent, {
 				data: { selectedRow: row },
 				autoFocus: false,
 			});

@@ -55,30 +55,17 @@ export class CreateCreditRequestComponent {
 	}
 
 	onSubmit() {
-		if (this.creditRequestForm.valid) {
+		if (this.creditRequestForm.valid && this.creditRequestForm) {
 			if (this.creditRequestForm.value.creditPurpose === '') {
 				this.creditRequestForm.value.creditPurpose =
 					this.creditRequestForm.value.creditType;
 			}
 
-			let request = this.creditRequestForm
-				.value! as unknown as CreditRequestDto;
+			const request = this.creditRequestForm
+				.value as unknown as CreditRequestDto;
 			request.accountNumber = request.accountNumber.replaceAll('-', '');
 			console.log(request);
-			this.creditService.postCreateCreditRequest(request).subscribe(
-				() => {
-					this.matSnackBar.open(
-						'Credit request created successfully',
-						'Close',
-					);
-				},
-				() => {
-					this.matSnackBar.open(
-						'Failed to create credit request',
-						'Close',
-					);
-				},
-			);
+			this.creditService.postCreateCreditRequest(request).subscribe();
 		}
 	}
 

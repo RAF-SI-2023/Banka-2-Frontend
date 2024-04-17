@@ -19,8 +19,8 @@ export class ChangeLimitFormComponent {
 	constructor(private fb: FormBuilder) {}
 
 	onSubmit() {
-		if (this.changeLimitForm.valid) {
-			let card = this.changeLimitForm.value! as CardDto;
+		if (this.changeLimitForm.valid && this.changeLimitForm) {
+			const card = this.changeLimitForm.value as CardDto;
 			console.log(card);
 			this.cardService.putChangeCardLimit(card).subscribe(
 				response => {

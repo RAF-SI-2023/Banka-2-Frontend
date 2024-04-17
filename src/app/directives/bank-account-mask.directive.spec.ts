@@ -1,4 +1,4 @@
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BankAccountMaskDirective } from './bank-account-mask.directive';
 import { Component, DebugElement } from '@angular/core';
@@ -12,7 +12,6 @@ import { Component, DebugElement } from '@angular/core';
 class TestComponent {}
 
 describe('BankAccountMaskDirective', () => {
-	let component: TestComponent;
 	let fixture: ComponentFixture<TestComponent>;
 	let inputEl: DebugElement;
 
@@ -24,7 +23,6 @@ describe('BankAccountMaskDirective', () => {
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(TestComponent);
-		component = fixture.componentInstance;
 		inputEl = fixture.debugElement.query(By.css('input'));
 		fixture.detectChanges();
 	});

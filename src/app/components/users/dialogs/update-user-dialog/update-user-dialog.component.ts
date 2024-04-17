@@ -50,7 +50,7 @@ export class UpdateUserDialogComponent {
 							return throwError(() => error);
 						}),
 					)
-					.subscribe(() => {});
+					.subscribe(() => undefined);
 			} else if (this.checkDto() == 'CORPORATE') {
 				this.userService
 					.putUpdateCorporateClient(this.newSelectedRow)
@@ -60,7 +60,7 @@ export class UpdateUserDialogComponent {
 							return throwError(() => error);
 						}),
 					)
-					.subscribe(() => {});
+					.subscribe(() => undefined);
 			} else if (this.checkDto() == 'EMPLOYEE') {
 				this.userService
 					.putUpdateEmployee(this.newSelectedRow)
@@ -70,7 +70,7 @@ export class UpdateUserDialogComponent {
 							return throwError(() => error);
 						}),
 					)
-					.subscribe(() => {});
+					.subscribe(() => undefined);
 			} else {
 				alert('Ovaj tip korisnika ne može da se menja.');
 			}

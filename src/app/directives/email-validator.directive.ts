@@ -1,10 +1,10 @@
 import { Directive } from '@angular/core';
 import { emailValidator } from '../utils/validators';
 import {
-	NG_VALIDATORS,
-	Validator,
 	AbstractControl,
+	NG_VALIDATORS,
 	ValidationErrors,
+	Validator,
 } from '@angular/forms';
 
 @Directive({

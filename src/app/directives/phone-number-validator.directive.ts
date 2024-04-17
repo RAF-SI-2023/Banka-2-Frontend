@@ -1,9 +1,9 @@
 import { Directive } from '@angular/core';
 import {
-	NG_VALIDATORS,
-	Validator,
 	AbstractControl,
+	NG_VALIDATORS,
 	ValidationErrors,
+	Validator,
 } from '@angular/forms';
 import { phoneNumberValidator } from '../utils/validators/phone-number.validator';
 

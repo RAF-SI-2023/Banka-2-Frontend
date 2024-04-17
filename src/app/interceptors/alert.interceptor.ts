@@ -17,8 +17,6 @@ export class AlertInterceptor implements HttpInterceptor {
 	private authService = inject(AuthService);
 	private snackBar = inject(MatSnackBar);
 
-	constructor() {}
-
 	intercept(
 		request: HttpRequest<unknown>,
 		next: HttpHandler,

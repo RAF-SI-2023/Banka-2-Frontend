@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CompanyDto } from 'src/app/dtos/company-dto';
-import { environment } from 'src/environments/environment.development';
+import { environment } from '../../../environments/environment.development';
 import { ApiRoutes } from '../api-routes';
+import { CompanyDto } from 'src/app/dtos/company-dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -65,7 +65,7 @@ export class CompanyService {
 		);
 	}
 
-	deleteCompanyByIdentificationNumber(identificationNumber: any) {
+	deleteCompanyByIdentificationNumber(identificationNumber: number) {
 		return this.httpClient.delete<CompanyDto[]>(
 			environment.iamServiceApiUrl +
 				ApiRoutes.companies.deleteByIdentificationNumber +

@@ -177,7 +177,7 @@
 						<tr
 							mat-row
 							(click)="selectRow(row)"
-							(dblclick)="viewUser(row)"
+							(dblclick)="viewAgent(row)"
 							[class.row-selected]="selectedRow?.id === row.id"
 							*matRowDef="let row; columns: displayedColumns"
 						></tr>

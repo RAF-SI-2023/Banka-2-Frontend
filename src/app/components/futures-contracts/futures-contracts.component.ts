@@ -79,13 +79,10 @@ export class FuturesContractsComponent implements AfterViewInit {
 
 	viewFuturesContract(row: FuturesContractDto): void {
 		if (this.selectedRow != null) {
-			const dialogRef = this.dialog.open(
-				FuturesContractInfoDialogComponent,
-				{
-					data: { selectedRow: row },
-					autoFocus: false,
-				},
-			);
+			this.dialog.open(FuturesContractInfoDialogComponent, {
+				data: { selectedRow: row },
+				autoFocus: false,
+			});
 		}
 	}
 }

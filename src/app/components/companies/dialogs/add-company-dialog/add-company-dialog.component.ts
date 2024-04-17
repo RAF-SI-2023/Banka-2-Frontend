@@ -8,14 +8,14 @@ import { CompanyService } from 'src/app/services/iam-service/company.service';
 	styleUrls: ['./add-company-dialog.component.css'],
 })
 export class AddCompanyDialogComponent {
-	companyName: string = '';
-	faxNumber: string = '';
-	phoneNumber: string = '';
-	pib: number = 0;
-	registryNumber: number = 0;
-	identificationNumber: number = 0;
-	activityCode: number = 0;
-	address: string = '';
+	companyName = '';
+	faxNumber = '';
+	phoneNumber = '';
+	pib = 0;
+	registryNumber = 0;
+	identificationNumber = 0;
+	activityCode = 0;
+	address = '';
 
 	constructor(private companyService: CompanyService) {}
 

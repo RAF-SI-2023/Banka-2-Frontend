@@ -18,8 +18,8 @@ export class ChangeStatusFormComponent {
 	constructor(private fb: FormBuilder) {}
 
 	onSubmit() {
-		if (this.changeStatusForm.valid) {
-			let card = this.changeStatusForm.value! as CardDto;
+		if (this.changeStatusForm.valid && this.changeStatusForm) {
+			const card = this.changeStatusForm.value as CardDto;
 			console.log(card);
 			this.cardService
 				.putChangeCardStatus(card.identificationCardNumber)

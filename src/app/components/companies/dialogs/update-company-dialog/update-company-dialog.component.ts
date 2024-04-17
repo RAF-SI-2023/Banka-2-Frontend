@@ -1,9 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { catchError, throwError } from 'rxjs';
-import { isCorporateClientDto } from 'src/app/dtos/corporate-client-dto';
-import { isEmployeeDto } from 'src/app/dtos/employee-dto';
-import { isPrivateClientDto } from 'src/app/dtos/private-client-dto';
 import { CompanyService } from 'src/app/services/iam-service/company.service';
 
 @Component({
@@ -34,7 +31,7 @@ export class UpdateCompanyDialogComponent {
 						return throwError(() => error);
 					}),
 				)
-				.subscribe(() => {});
+				.subscribe();
 		}
 	}
 }

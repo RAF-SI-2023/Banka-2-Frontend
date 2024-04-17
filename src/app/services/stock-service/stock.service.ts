@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { ApiRoutes } from '../api-routes';
-import { HttpClient } from '@angular/common/http';
 import { StockDto } from '../../dtos/stock-dto';
-import { OptionsDto } from '../../dtos/options-dto';
 
 @Injectable({
 	providedIn: 'root',

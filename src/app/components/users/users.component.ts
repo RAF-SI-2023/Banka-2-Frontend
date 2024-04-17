@@ -133,7 +133,7 @@ export class UsersComponent implements AfterViewInit {
 
 	viewUser(row: UserDto): void {
 		if (this.selectedRow != null) {
-			const dialogRef = this.dialog.open(UserInfoDialogComponent, {
+			this.dialog.open(UserInfoDialogComponent, {
 				data: { selectedRow: row },
 				autoFocus: false,
 			});

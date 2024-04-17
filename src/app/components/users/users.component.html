@@ -19,8 +19,8 @@
 					color="accent"
 					[disabled]="
 						!selectedRow ||
-						selectedRowRole() != 'EMPLOYEE' ||
-						activeUser?.role != 'ADMIN'
+						selectedRowRole() !== 'EMPLOYEE' ||
+						activeUser?.role !== 'ADMIN'
 					"
 					(click)="
 						selectedRowActive()
@@ -38,7 +38,7 @@
 					mat-raised-button
 					class="buttons"
 					color="accent"
-					[disabled]="activeUser?.role != 'ADMIN'"
+					[disabled]="activeUser?.role !== 'ADMIN'"
 					(click)="addEmployee()"
 				>
 					Dodaj zaposlenog

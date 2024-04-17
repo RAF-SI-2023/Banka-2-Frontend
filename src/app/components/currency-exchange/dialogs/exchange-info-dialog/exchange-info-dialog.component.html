@@ -1,8 +1,9 @@
-<h2 mat-dialog-title>
-	Informacije
-</h2>
+<h2 mat-dialog-title>Informacije</h2>
 <mat-dialog-content class="mat-typography size">
-	<div *ngIf="!isLoading" class="full-width-grid">
+	<div
+		*ngIf="!isLoading"
+		class="full-width-grid"
+	>
 		<div class="info-row">
 			<span class="label">Naziv: </span>
 			<span>{{ newSelectedRow.exchangeName }}</span>
@@ -25,18 +26,31 @@
 		</div>
 		<div class="info-row">
 			<span class="label">Vremenska zona: </span>
-			<span>{{ 'UTC ' + (newSelectedRow.timeZone > 0 ? '+' + newSelectedRow.timeZone : '-' +
-				newSelectedRow.timeZone*(-1) ) }}</span>
+			<span>{{
+				'UTC ' +
+					(newSelectedRow.timeZone > 0
+						? '+' + newSelectedRow.timeZone
+						: '-' + newSelectedRow.timeZone * -1)
+			}}</span>
 		</div>
-
 	</div>
 
-	<div *ngIf="isLoading" class="spinner-container">
-		<mat-progress-spinner diameter="50" mode="indeterminate"></mat-progress-spinner>
+	<div
+		*ngIf="isLoading"
+		class="spinner-container"
+	>
+		<mat-progress-spinner
+			diameter="50"
+			mode="indeterminate"
+		></mat-progress-spinner>
 	</div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-	<button mat-raised-button mat-dialog-close color="warn">
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
 		Zatvori
 	</button>
 </mat-dialog-actions>

@@ -12,7 +12,7 @@ export function passwordValidator(): ValidatorFn {
 		const hasLowerCase = /[a-z]+/.test(value);
 		const hasNumeric = /[0-9]+/.test(value);
 		const hasSpecialCharacters =
-			/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(value);
+			/[!@#$%^&*()_+\-=[]{};':"\\|,.<>\/?]+/.test(value);
 		const passwordValid =
 			hasUpperCase && hasLowerCase && hasNumeric && hasSpecialCharacters;
 

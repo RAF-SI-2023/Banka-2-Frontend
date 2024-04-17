@@ -8,7 +8,7 @@ import { TransactionService } from 'src/app/services/bank-service/transaction.se
 	styleUrls: ['./verify-transaction-dialog.component.css'],
 })
 export class VerifyTransactionDialogComponent {
-	id: number = 0;
+	id = 0;
 	activationCode: any = null;
 	@Input() response: any = null;
 

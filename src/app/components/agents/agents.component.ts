@@ -10,7 +10,6 @@ import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { UserService } from 'src/app/services/iam-service/user.service';
 import { MatDialog } from '@angular/material/dialog';
-import { EmployeeDto } from 'src/app/dtos/employee-dto';
 
 @Component({
 	selector: 'app-agents',
@@ -96,7 +95,7 @@ export class AgentsComponent implements AfterViewInit {
 		return false;
 	}
 
-	viewUser(row: UserDto): void {
+	viewAgent(row: UserDto): void {
 		// if (this.selectedRow != null) {
 		// 	const dialogRef = this.dialog.open(AgentInfoDialogComponent, {
 		// 		data: { selectedRow: row },

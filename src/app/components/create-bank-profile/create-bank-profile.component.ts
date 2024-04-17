@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
 	bankAccountNumberValidator,
 	passwordValidator,
@@ -26,43 +26,49 @@ export class CreateBankProfileComponent implements OnInit {
 	currentStep = 1;
 
 	// Step 1
-	primaryAccountNumber: string = '';
+	primaryAccountNumber = '';
 	//error message
-	accountNumberError: string = '';
+	accountNumberError = '';
 
 	// Step 2
-	phone: string = '';
-	email: string = '';
-	dateOfBirth: string = '';
-	address: string = '';
-	name: string = '';
-	surname: string = '';
-	gender: string = '';
+	phone = '';
+	email = '';
+	dateOfBirth = '';
+	address = '';
+	name = '';
+	surname = '';
+	gender = '';
 	bankProfileType: DropdownOption[] = DropdownOptions.bankProfileType;
-	selectedBankProfileType: string = '';
+	selectedBankProfileType = '';
 	genderOptions: DropdownOption[] = DropdownOptions.gender;
-	selectedGender: string = '';
+	selectedGender = '';
 	// error message
-	basicInfoError: string = '';
+	basicInfoError = '';
 
 	// Step 3
-	activationCode: string = '';
+	activationCode = '';
 	// error message
-	activationCodeError: string = '';
+	activationCodeError = '';
 
 	// Step 4
-	password: string = '';
-	passwordRepeat: string = '';
+	password = '';
+	passwordRepeat = '';
 	// error message
-	passwordError: string = '';
+	passwordError = '';
 
 	ngOnInit() {
 		// Subscribe to changes of the selectedBankProfileType form control
-		this.contactInfoForm
-			.get('selectedBankProfileType')
-			?.valueChanges.subscribe(value => {
-				this.selectedBankProfileType = value!;
+		const selectedBankProfileTypeControl = this.contactInfoForm.get(
+			'selectedBankProfileType',
+		);
+
+		if (selectedBankProfileTypeControl) {
+			selectedBankProfileTypeControl.valueChanges.subscribe(value => {
+				if (value) {
+					this.selectedBankProfileType = value;
+				}
 			});
+		}
 	}
 
 	basicInfoForm = new FormGroup({
@@ -118,7 +124,7 @@ export class CreateBankProfileComponent implements OnInit {
 		} else if (this.currentStep === 2 && this.contactInfoForm.valid) {
 			this.phone = this.contactInfoForm.controls.phone.value as string;
 			this.email = this.contactInfoForm.controls.email.value as string;
-			this.dateOfBirth = this.dateOfBirth;
+			this.dateOfBirth = this.dateOfBirth as string;
 			this.address = this.contactInfoForm.controls.address
 				.value as string;
 			this.name = this.contactInfoForm.controls.name.value as string;

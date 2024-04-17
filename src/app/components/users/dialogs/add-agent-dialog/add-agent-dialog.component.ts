@@ -9,15 +9,15 @@ import { AgentDto } from 'src/app/dtos/agent-dto';
 	styleUrls: ['./add-agent-dialog.component.css'],
 })
 export class AddAgentDialogComponent {
-	email: string = '';
-	dateOfBirth: number = 0;
-	username: string = '';
-	phone: string = '';
-	address: string = '';
-	role: string = '';
+	email = '';
+	dateOfBirth = 0;
+	username = '';
+	phone = '';
+	address = '';
+	role = '';
 
-	limit: number = 0;
-	leftOfLimit: number = 0;
+	limit = 0;
+	leftOfLimit = 0;
 
 	availablePermissions: string[] = [
 		'PERMISSION_1',

@@ -9,6 +9,7 @@ import {
 	CorporateClientDto,
 	isCorporateClientDto,
 } from '../../dtos/corporate-client-dto';
+import { OnInit } from '@angular/core';
 import { PasswordChangeComponent } from '../password-change/password-change.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Role } from '../../dtos/decoded-token-dto';
@@ -28,7 +29,7 @@ import { CardsInfoDialogComponent } from './cards-info-dialog/cards-info-dialog.
 	templateUrl: './user-profile.component.html',
 	styleUrls: ['./user-profile.component.css'],
 })
-export class UserProfileComponent {
+export class UserProfileComponent implements OnInit {
 	protected readonly Role = Role;
 	displayedAccountColumns: string[] = [
 		'accountType',
@@ -40,9 +41,9 @@ export class UserProfileComponent {
 	employee: EmployeeDto | null = null;
 	privateClient: PrivateClientDto | null = null;
 	corporateClient: CorporateClientDto | null = null;
-	isPrivateClient: boolean = false;
-	isCorporateClient: boolean = false;
-	isEmployee: boolean = false;
+	isPrivateClient = false;
+	isCorporateClient = false;
+	isEmployee = false;
 	selectedAccount: AccountDto | null = null;
 	dataSource = new MatTableDataSource<CreditDto>();
 	accountNumberDataSource = new MatTableDataSource<AccountDto>();
@@ -142,7 +143,7 @@ export class UserProfileComponent {
 			autoFocus: false,
 		});
 
-		dialogRef.afterClosed().subscribe(result => {
+		dialogRef.afterClosed().subscribe(() => {
 			console.log('The dialog was closed');
 		});
 	}
@@ -151,7 +152,7 @@ export class UserProfileComponent {
 		console.log(this.selectedAccount);
 		if (this.selectedAccount != null) {
 			console.log(this.selectedAccount);
-			const dialogRef = this.dialog.open(CardsInfoDialogComponent, {
+			this.dialog.open(CardsInfoDialogComponent, {
 				data: { selectedAccount: row },
 				autoFocus: false,
 			});

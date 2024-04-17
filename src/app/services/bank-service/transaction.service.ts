@@ -8,38 +8,39 @@ import { InternalTransactionResponseDto } from 'src/app/dtos/internal-transactio
 import { ExternalTransactionResponseDto } from 'src/app/dtos/external-transaction-response-dto';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class TransactionService {
-  constructor(private httpClient: HttpClient) {}
-	
-  ////////////////////////////////
+	constructor(private httpClient: HttpClient) {}
+
+	////////////////////////////////
 	//TransferTransactionController
 	///////////////////////////////
-	
+
 	//GET
-	getAllTransactionsById(userId:number){
+	getAllTransactionsById(userId: number) {
 		return this.httpClient.get<TransactionDto[]>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.findById}/${userId}`,
 		);
 	}
 	//POST
-	postTransactionExternal(transaction:SimpleTransactionDto){
+	postTransactionExternal(transaction: SimpleTransactionDto) {
 		return this.httpClient.post<ExternalTransactionResponseDto>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.createExternalTransaction}`,
 			transaction,
 		);
 	}
-	postTransactionInternal(transaction:SimpleTransactionDto){
+	postTransactionInternal(transaction: SimpleTransactionDto) {
 		return this.httpClient.post<InternalTransactionResponseDto>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.createInternalTransaction}`,
 			transaction,
 		);
 	}
 	//PATCH
-	patchTransactionVerify(transactionId:number,verificationToken:string){
+	patchTransactionVerify(transactionId: number, verificationToken: string) {
 		return this.httpClient.patch(
-			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.patchVerifyTransaction}/${transactionId}?verificationToken=${verificationToken}`,null
+			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.patchVerifyTransaction}/${transactionId}?verificationToken=${verificationToken}`,
+			null,
 		);
 	}
 }

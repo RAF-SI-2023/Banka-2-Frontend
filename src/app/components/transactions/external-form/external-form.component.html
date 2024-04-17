@@ -32,7 +32,7 @@
 			<p *ngIf="availableBalance > -1">
 				Stanje vašeg računa: {{ availableBalance }} {{ currencyCode }}
 			</p>
-			<p *ngIf="availableBalance == -1">Stanje vašeg računa: -</p>
+			<p *ngIf="availableBalance === -1">Stanje vašeg računa: -</p>
 		</div>
 
 		<mat-form-field>

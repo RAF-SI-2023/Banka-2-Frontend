@@ -91,7 +91,7 @@ export class CreditsComponent implements AfterViewInit {
 
 	viewCredit(row: CreditDto) {
 		if (this.selectedCredit != null) {
-			const dialogRef = this.dialog.open(CreditInfoDialogComponent, {
+			this.dialog.open(CreditInfoDialogComponent, {
 				data: { selectedRow: row },
 				autoFocus: false,
 			});

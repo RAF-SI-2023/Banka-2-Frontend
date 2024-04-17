@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AccountDto } from 'src/app/dtos/account-dto';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -16,14 +16,14 @@ import { VerifyTransactionDialogComponent } from '../verify-transaction-dialog/v
 	templateUrl: './external-form.component.html',
 	styleUrls: ['./external-form.component.css'],
 })
-export class ExternalFormComponent {
+export class ExternalFormComponent implements OnInit {
 	accountService = inject(AccountService);
 	transactionService = inject(TransactionService);
 
 	bankAccounts: any;
 
-	availableBalance: number = -1;
-	currencyCode: string = '';
+	availableBalance = -1;
+	currencyCode = '';
 
 	transactionForm = this.fb.group({
 		senderAccountNumber: ['', [Validators.required]],
@@ -77,30 +77,29 @@ export class ExternalFormComponent {
 	}
 
 	onSubmit() {
-		if (this.transactionForm.valid) {
+		if (this.transactionForm.valid && this.transactionForm) {
 			const transaction = this.transactionForm
-				.value! as unknown as ExternalTransactionRequestDto;
-			transaction.receiverAccountNumber =
-				transaction.receiverAccountNumber.replaceAll('-', '');
-
-			// console.log(transaction);
-
-			this.transactionService
-				.postTransactionExternal(transaction)
-				.subscribe(
-					response => {
-						if (response.status == 'PENDING') {
-							// this.accountBalance=this.accountBalance-response.amount;
-							this.openConfirmDialog(response);
-							// console.log(response);
-						} else {
-							console.log(response);
-						}
-					},
-					error => {
-						console.log(error);
-					},
-				);
+				.value as unknown as ExternalTransactionRequestDto;
+			if (transaction.receiverAccountNumber) {
+				transaction.receiverAccountNumber =
+					transaction.receiverAccountNumber.replaceAll('-', '');
+				this.transactionService
+					.postTransactionExternal(transaction)
+					.subscribe(
+						response => {
+							if (response.status == 'PENDING') {
+								// this.accountBalance=this.accountBalance-response.amount;
+								this.openConfirmDialog(response);
+								// console.log(response);
+							} else {
+								console.log(response);
+							}
+						},
+						error => {
+							console.log(error);
+						},
+					);
+			}
 		}
 	}
 
@@ -132,8 +131,5 @@ export class ExternalFormComponent {
 			this.transactionForm.reset();
 			this.availableBalance = -1;
 		});
-	}
-	selectAccountRow(arg0: any) {
-		throw new Error('Method not implemented.');
 	}
 }

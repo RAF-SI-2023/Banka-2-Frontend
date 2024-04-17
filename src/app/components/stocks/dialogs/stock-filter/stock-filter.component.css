@@ -1,19 +1,19 @@
-mat-dialog-content{
-	display:flex;
+mat-dialog-content {
+	display: flex;
 	min-height: 5rem;
 	width: 40rem;
 	/*justify-content: center;*/
 	align-items: center;
 }
 
-.inputs{
+.inputs {
 	display: flex;
 	justify-content: space-around;
 	width: 100%;
 	margin: 2rem auto;
 }
 
-.single-input{
+.single-input {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
@@ -21,6 +21,6 @@ mat-dialog-content{
 	align-items: start;
 }
 
-mat-slider{
+mat-slider {
 	width: 100%;
 }

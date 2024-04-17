@@ -3,16 +3,26 @@
 		<mat-card-header>
 			<div class="form">
 				<mat-form-field>
-					<mat-label>
-						Pretraži akcije
-					</mat-label>
-					<input #input (keyup)="applyFilter($event)" matInput />
+					<mat-label> Pretraži akcije </mat-label>
+					<input
+						#input
+						(keyup)="applyFilter($event)"
+						matInput
+					/>
 					<!--					open filter dialog label button-->
-					<button mat-icon-button matSuffix (click)="openFilterDialog()">
+					<button
+						mat-icon-button
+						matSuffix
+						(click)="openFilterDialog()"
+					>
 						<mat-icon>filter_list</mat-icon>
 					</button>
 					<!--					reset filters button-->
-					<button mat-icon-button matSuffix (click)="resetFilters()">
+					<button
+						mat-icon-button
+						matSuffix
+						(click)="resetFilters()"
+					>
 						<mat-icon>clear</mat-icon>
 					</button>
 				</mat-form-field>
@@ -21,31 +31,60 @@
 
 		<mat-card-content>
 			<div class="tableContainer">
-				<div class="mat-elevation-z8" style="box-shadow: none">
-					<table class="unselectable" mat-table [dataSource]="dataSource" matSort>
+				<div
+					class="mat-elevation-z8"
+					style="box-shadow: none"
+				>
+					<table
+						class="unselectable"
+						mat-table
+						[dataSource]="dataSource"
+						matSort
+					>
 						<ng-container matColumnDef="symbol">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Simbol
 							</th>
-							<td *matCellDef="let row" mat-cell>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
 								{{ row.symbol }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="description">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Opis
 							</th>
-							<td *matCellDef="let row" mat-cell>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
 								{{ row.description }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="exchange">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Berza
 							</th>
-							<td *matCellDef="let row" mat-cell>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
 								{{ row.exchange }}
 							</td>
 						</ng-container>
@@ -64,83 +103,152 @@
 						</ng-container> -->
 
 						<ng-container matColumnDef="price">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Cena
 							</th>
-							<td *matCellDef="let row" mat-cell>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
 								{{ row.price }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="high">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Najniža prodavna cena
 							</th>
-							<td *matCellDef="let row" mat-cell>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
 								{{ row.high }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="low">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Najviša kupovna cena
 							</th>
-							<td *matCellDef="let row" mat-cell>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
 								{{ row.low }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="change">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Dnevna razlika u cenama
 							</th>
-							<td *matCellDef="let row" mat-cell>
-								{{ row.change ? row.change : "-" }}
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.change ? row.change : '-' }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="volume">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Broj dnevno razmenjenih hartija
 							</th>
-							<td *matCellDef="let row" mat-cell>
-								{{ row.volume ? row.volume : "-" }}
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.volume ? row.volume : '-' }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="shares">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Broj emitovanih akcija
 							</th>
-							<td *matCellDef="let row" mat-cell>
-								{{ row.shares ? row.shares : "-" }}
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.shares ? row.shares : '-' }}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="yield">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
 								Godišnji prinos od dividendi
 							</th>
-							<td *matCellDef="let row" mat-cell>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
 								{{ row.yield }}
 							</td>
 						</ng-container>
 
-						<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-						<tr mat-row (click)="selectRow(row)" (dblclick)="viewStock(row)"
-							[class.row-selected]="selectedRow?.symbol === row.symbol"
-							*matRowDef="let row; columns: displayedColumns"></tr>
+						<tr
+							*matHeaderRowDef="displayedColumns"
+							mat-header-row
+						></tr>
+						<tr
+							mat-row
+							(click)="selectRow(row)"
+							(dblclick)="viewStock(row)"
+							[class.row-selected]="
+								selectedRow?.symbol === row.symbol
+							"
+							*matRowDef="let row; columns: displayedColumns"
+						></tr>
 
-						<tr *matNoDataRow class="mat-row">
-							<td class="mat-cell" colspan="4">
-								Nije pronađen podatak za unetu vrednost: "{{ input.value }}"
+						<tr
+							*matNoDataRow
+							class="mat-row"
+						>
+							<td
+								class="mat-cell"
+								colspan="4"
+							>
+								Nije pronađen podatak za unetu vrednost: "{{
+									input.value
+								}}"
 							</td>
 						</tr>
 					</table>
 				</div>
 			</div>
 			<div id="paginatorContainer">
-				<mat-paginator [hidePageSize]="true" [pageSize]="10"></mat-paginator>
+				<mat-paginator
+					[hidePageSize]="true"
+					[pageSize]="10"
+				></mat-paginator>
 			</div>
 		</mat-card-content>
 	</mat-card>

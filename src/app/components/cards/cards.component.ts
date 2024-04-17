@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DropdownOptions, DropdownOption } from '../../utils/constants';
+import { DropdownOption, DropdownOptions } from '../../utils/constants';
 
 @Component({
 	selector: 'app-cards',

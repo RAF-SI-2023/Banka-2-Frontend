@@ -69,7 +69,7 @@ export class StocksComponent implements AfterViewInit {
 
 	viewStock(row: StockDto): void {
 		if (this.selectedRow != null) {
-			const dialogRef = this.dialog.open(StockInfoDialogComponent, {
+			this.dialog.open(StockInfoDialogComponent, {
 				data: { selectedRow: row },
 				autoFocus: false,
 			});

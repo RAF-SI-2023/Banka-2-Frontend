@@ -24,8 +24,6 @@ export class AuthService {
 
 	public loginStatus: Subject<boolean> = new Subject<boolean>();
 
-	constructor() {}
-
 	login(credentials: AuthCredentialsDto) {
 		return this.http
 			.post<LoginResponseDto>(

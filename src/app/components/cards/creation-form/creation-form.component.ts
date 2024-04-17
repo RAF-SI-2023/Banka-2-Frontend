@@ -27,19 +27,21 @@ export class CreationFormComponent {
 	constructor(private fb: FormBuilder) {}
 
 	onSubmit() {
-		if (this.createCardForm.valid) {
-			let card = this.createCardForm.value! as CardDto;
-			card.accountNumber = card.accountNumber.replaceAll('-', '');
-			console.log(card);
-			this.cardService.postCreateCard(card).subscribe(
-				response => {
-					console.log(response);
-					this.createCardForm.reset();
-				},
-				error => {
-					console.log(error);
-				},
-			);
+		if (this.createCardForm.valid && this.createCardForm) {
+			const card = this.createCardForm.value as CardDto;
+			if (card.accountNumber) {
+				card.accountNumber = card.accountNumber.replaceAll('-', '');
+				console.log(card);
+				this.cardService.postCreateCard(card).subscribe(
+					response => {
+						console.log(response);
+						this.createCardForm.reset();
+					},
+					error => {
+						console.log(error);
+					},
+				);
+			}
 		}
 	}
 }

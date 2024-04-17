@@ -1,7 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AccountDto } from 'src/app/dtos/account-dto';
-import { InternalTransactionResponseDto } from 'src/app/dtos/internal-transaction-response-dto';
 
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -20,8 +19,8 @@ export class InternalFormComponent implements OnInit {
 
 	bankAccounts: any;
 
-	availableBalance: number = -1;
-	currencyCode: string = '';
+	availableBalance = -1;
+	currencyCode = '';
 
 	transactionForm = this.fb.group({
 		senderAccountNumber: ['', [Validators.required]],
@@ -69,31 +68,31 @@ export class InternalFormComponent implements OnInit {
 	}
 
 	onSubmit() {
-		if (this.transactionForm.valid) {
-			const currentEpochTimeMs = Date.now();
-
+		if (this.transactionForm.valid && this.transactionForm) {
 			const transaction = this.transactionForm
-				.value! as unknown as SimpleTransactionDto;
-			transaction.receiverAccountNumber =
-				transaction.receiverAccountNumber.replaceAll('-', '');
-			console.log(transaction);
-			this.transactionService
-				.postTransactionInternal(transaction)
-				.subscribe(
-					response => {
-						if (response.status == 'CONFIRMED') {
-							this.availableBalance =
-								this.availableBalance - response.amount;
-							this.transactionForm.reset();
-							this.availableBalance = -1;
-						} else {
-							console.log(response);
-						}
-					},
-					error => {
-						console.log(error);
-					},
-				);
+				.value as unknown as SimpleTransactionDto;
+			if (transaction.receiverAccountNumber) {
+				transaction.receiverAccountNumber =
+					transaction.receiverAccountNumber.replaceAll('-', '');
+				console.log(transaction);
+				this.transactionService
+					.postTransactionInternal(transaction)
+					.subscribe(
+						response => {
+							if (response.status == 'CONFIRMED') {
+								this.availableBalance =
+									this.availableBalance - response.amount;
+								this.transactionForm.reset();
+								this.availableBalance = -1;
+							} else {
+								console.log(response);
+							}
+						},
+						error => {
+							console.log(error);
+						},
+					);
+			}
 		}
 	}
 
@@ -113,26 +112,5 @@ export class InternalFormComponent implements OnInit {
 				)[0].currencyCode;
 				console.log(this.availableBalance);
 			});
-	}
-
-	// fetchAccounts(): void {
-	// 	const emailLocal = localStorage.getItem("email");
-	// 	if(!emailLocal) return;
-
-	// 	this.accountService.getFindByEmail(emailLocal).pipe(
-	// 		map(Response => {
-	// 			this.accountOptionsSender = Response;
-	// 			this.accountOptionsReciver = Response;
-
-	// 			return Response;
-	// 		}),
-	// 		catchError(error => {
-	// 			return throwError(() => error);
-	// 		}),
-	// 	).subscribe();
-	// }
-
-	selectAccountRow(arg0: any) {
-		throw new Error('Method not implemented.');
 	}
 }

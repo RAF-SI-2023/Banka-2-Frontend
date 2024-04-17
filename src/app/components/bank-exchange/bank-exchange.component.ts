@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, inject, ViewChild } from '@angular/core';
 import { DropdownOption, DropdownOptions } from 'src/app/utils/constants';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
@@ -41,7 +41,7 @@ export class BankExchangeComponent implements AfterViewInit {
 	];
 	dataSource = new MatTableDataSource<ExchangeRatesDto>();
 	selectedRow: ExchangeRatesDto | null = null;
-	fromCurrency: string = 'RSD';
+	fromCurrency = 'RSD';
 
 	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 	@ViewChild(MatSort) sort: MatSort | undefined;

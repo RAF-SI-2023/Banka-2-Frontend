@@ -77,7 +77,7 @@ export class CompaniesComponent implements AfterViewInit {
 
 	viewCompany(row: CompanyDto): void {
 		if (this.selectedRow != null) {
-			const dialogRef = this.dialog.open(CompanyInfoDialogComponent, {
+			this.dialog.open(CompanyInfoDialogComponent, {
 				data: { selectedRow: row },
 				autoFocus: false,
 			});

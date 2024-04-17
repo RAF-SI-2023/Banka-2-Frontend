@@ -8,18 +8,18 @@ import { EmployeeDto } from 'src/app/dtos/employee-dto';
 	styleUrls: ['./add-employee-dialog.component.css'],
 })
 export class AddEmployeeDialogComponent {
-	email: string = '';
-	name: string = '';
-	surname: string = '';
-	gender: string = '';
-	dateOfBirth: any = 0;
+	email = '';
+	name = '';
+	surname = '';
+	gender = '';
+	dateOfBirth: any;
 
-	phone: string = '';
-	address: string = '';
+	phone = '';
+	address = '';
 
-	position: string = '';
-	department: string = '';
-	active: boolean = true;
+	position = '';
+	department = '';
+	active = true;
 
 	availablePermissions: string[] = [
 		'PERMISSION_1',
