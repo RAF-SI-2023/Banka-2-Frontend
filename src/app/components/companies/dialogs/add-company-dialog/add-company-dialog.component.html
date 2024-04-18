@@ -1,12 +1,13 @@
 <h2 mat-dialog-title>Dodaj kompaniju</h2>
 <mat-dialog-content class="mat-typography size">
-	<form>
+	<form [formGroup]="createCompanyForm"
+		  (ngSubmit)="addCompany()">
 		<div>
 			<mat-form-field class="full-width">
 				<mat-label>Ime kompanije</mat-label>
 				<input
 					matInput
-					[(ngModel)]="companyName"
+					formControlName="companyName"
 					name="companyName"
 				/>
 			</mat-form-field>
@@ -14,7 +15,7 @@
 				<mat-label>Broj faksa</mat-label>
 				<input
 					matInput
-					[(ngModel)]="faxNumber"
+					formControlName="faxNumber"
 					name="faxNumber"
 				/>
 			</mat-form-field>
@@ -22,12 +23,26 @@
 				<mat-label>Broj telefona</mat-label>
 				<input
 					matInput
-					[(ngModel)]="phoneNumber"
+					formControlName="phoneNumber"
 					name="phoneNumber"
-					appPhoneNumberValidator
-					#phoneInput="ngModel"
 				/>
-				<mat-error *ngIf="phoneInput.errors && phoneInput.touched">
+				<mat-error
+					*ngIf="
+								createCompanyForm.controls.phoneNumber.invalid &&
+								!createCompanyForm
+									.get('phoneNumber')
+									?.hasError('invalidPhoneNumber')
+							"
+				>
+					Broj telefona je obavezan.
+				</mat-error>
+				<mat-error
+					*ngIf="
+								createCompanyForm
+									.get('phoneNumber')
+									?.hasError('invalidPhoneNumber')
+							"
+				>
 					Unesite validan broj telefona.
 				</mat-error>
 			</mat-form-field>
@@ -35,7 +50,7 @@
 				<mat-label>PIB</mat-label>
 				<input
 					matInput
-					[(ngModel)]="pib"
+					formControlName="pib"
 					name="pib"
 				/>
 			</mat-form-field>
@@ -43,7 +58,7 @@
 				<mat-label>Registarski broj</mat-label>
 				<input
 					matInput
-					[(ngModel)]="registryNumber"
+					formControlName="registryNumber"
 					name="registryNumber"
 				/>
 			</mat-form-field>
@@ -51,7 +66,7 @@
 				<mat-label>Šifra delatnosti</mat-label>
 				<input
 					matInput
-					[(ngModel)]="activityCode"
+					formControlName="activityCode"
 					name="activityCode"
 				/>
 			</mat-form-field>
@@ -59,7 +74,7 @@
 				<mat-label>Adresa</mat-label>
 				<input
 					matInput
-					[(ngModel)]="address"
+					formControlName="address"
 					name="address"
 				/>
 			</mat-form-field>
@@ -72,6 +87,7 @@
 		[mat-dialog-close]="true"
 		color="accent"
 		cdkFocusInitial
+		[disabled]="createCompanyForm.invalid"
 		(click)="addCompany()"
 	>
 		Dodaj
