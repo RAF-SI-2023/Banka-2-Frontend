@@ -47,14 +47,14 @@
 					name="phone"
 				/>
 				<mat-error
-					*ngIf="
-								createAgentForm.controls.phone.invalid &&
-								!createAgentForm
-									.get('phone')
-									?.hasError('invalidPhone')
-							"
+					*ngIf="createAgentForm.get('phone')?.hasError('required')"
 				>
 					Broj telefona je obavezan.
+				</mat-error>
+				<mat-error
+					*ngIf="createAgentForm.get('phone')?.hasError('invalidPhoneNumber')"
+				>
+					Unesite validan broj telefona.
 				</mat-error>
 			</mat-form-field>
 
