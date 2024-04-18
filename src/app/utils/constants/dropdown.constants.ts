@@ -55,7 +55,7 @@ export const DropdownOptions = {
 		{ label: 'Eksterne', value: 'EKSTERNE' },
 	],
 	cardSettingsType: [
-		{ label: 'Pravljenje', value: 'PRAVLJENJE' },
+		{ label: 'Izrada nove kartice', value: 'IZRADA NOVE KARTICE' },
 		{ label: 'Promena statusa', value: 'PROMENA STATUSA' },
 		{ label: 'Promena limita', value: 'PROMENA LIMITA' },
 	],

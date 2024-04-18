@@ -5,7 +5,7 @@
 		(ngSubmit)="onSubmit()"
 	>
 		<mat-form-field>
-			<mat-label> Broj računa za uplatu </mat-label>
+			<mat-label>Broj računa za uplatu</mat-label>
 			<mat-select
 				formControlName="senderAccountNumber"
 				placeholder="Izaberite račun"
@@ -29,20 +29,24 @@
 		</mat-form-field>
 
 		<div class="unselectable">
-			<p *ngIf="availableBalance > -1">
-				Stanje vašeg računa: {{ availableBalance }} {{ currencyCode }}
+			<p *ngIf="availableBalanceFromAcc > -1">
+				Stanje vašeg računa za uplatu:
+				{{ availableBalanceFromAcc }}
+				{{ currencyCodeFromAcc }}
 			</p>
-			<p *ngIf="availableBalance === -1">Stanje vašeg računa: -</p>
+			<p *ngIf="availableBalanceFromAcc === -1">
+				Stanje vašeg računa za uplatu: -
+			</p>
 		</div>
 
 		<mat-form-field>
-			<mat-label> Broj računa za prijem </mat-label>
+			<mat-label>Broj računa za prijem</mat-label>
 			<mat-select
 				formControlName="receiverAccountNumber"
 				placeholder="Izaberite račun"
 			>
 				<mat-option
-					*ngFor="let option of accountOptionsReciver"
+					*ngFor="let option of accountOptionsReciever"
 					[value]="option.accountNumber"
 				>
 					{{ option.accountNumber | accountNumberFormat }}
@@ -59,6 +63,17 @@
 			</mat-error>
 		</mat-form-field>
 
+		<div class="unselectable">
+			<p *ngIf="availableBalanceToAcc > -1">
+				Stanje vašeg računa za prijem:
+				{{ availableBalanceToAcc }}
+				{{ currencyCodeToAcc }}
+			</p>
+			<p *ngIf="availableBalanceToAcc === -1">
+				Stanje vašeg računa za prijem: -
+			</p>
+		</div>
+
 		<mat-form-field>
 			<mat-label>Količina</mat-label>
 			<input
@@ -71,6 +86,13 @@
 				*ngIf="transactionForm.get('amount')?.hasError('required')"
 			>
 				Količina je obavezna.
+			</mat-error>
+			<mat-error
+				*ngIf="
+					transactionForm.get('amount')?.hasError('containsNonDigits')
+				"
+			>
+				Pogrešan format za količinu novca.
 			</mat-error>
 		</mat-form-field>
 

@@ -4,7 +4,8 @@ import { StockDto } from '../../../../dtos/stock-dto';
 import { StockService } from '../../../../services/stock-service/stock.service';
 import { OptionService } from 'src/app/services/stock-service/option.service';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-stock-info-dialog',
@@ -52,17 +53,18 @@ export class StockInfoDialogComponent {
 
 		this.optionService
 			.getFindAllOptionsByStockListing(stockListing)
-			.subscribe(
-				Response => {
-					this.router.navigate(['/options', stockListing]);
-				},
-				(error: HttpErrorResponse) => {
+			.pipe(
+				catchError((error: any) => {
 					if (error.status === 404) {
 						console.error('StockListing not found:', error);
 					} else {
 						console.error('Error fetching data:', error);
 					}
-				},
-			);
+					return throwError(() => error);
+				}),
+			)
+			.subscribe(() => {
+				this.router.navigate(['/options', stockListing]);
+			});
 	}
 }

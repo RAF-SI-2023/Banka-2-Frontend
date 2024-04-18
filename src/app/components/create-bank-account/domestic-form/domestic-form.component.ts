@@ -39,15 +39,12 @@ export class DomesticFormComponent {
 				.value as DomesticAccountDto;
 			account.accountNumber = account.accountNumber.replaceAll('-', '');
 			console.log(account);
-			this.bankService.postCreateDomesticAccount(account).subscribe(
-				response => {
+			this.bankService
+				.postCreateDomesticAccount(account)
+				.subscribe(response => {
 					console.log(response);
 					this.domesticBankAccountForm.reset();
-				},
-				error => {
-					console.log(error);
-				},
-			);
+				});
 		}
 	}
 }

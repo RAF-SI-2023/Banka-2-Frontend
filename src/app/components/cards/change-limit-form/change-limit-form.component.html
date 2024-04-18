@@ -21,6 +21,15 @@
 			>
 				Broj kartice je obavezan.
 			</mat-error>
+			<mat-error
+				*ngIf="
+					changeLimitForm
+						.get('identificationCardNumber')
+						?.hasError('invalidCardNumber')
+				"
+			>
+				Pogrešan format kartice.
+			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field>
@@ -35,6 +44,15 @@
 				*ngIf="changeLimitForm.get('limitCard')?.hasError('required')"
 			>
 				Limit je obavezan.
+			</mat-error>
+			<mat-error
+				*ngIf="
+					changeLimitForm
+						.get('limitCard')
+						?.hasError('containsNonDigits')
+				"
+			>
+				Pogrešan format za limit.
 			</mat-error>
 		</mat-form-field>
 

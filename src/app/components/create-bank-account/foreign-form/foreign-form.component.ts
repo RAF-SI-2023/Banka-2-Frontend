@@ -32,15 +32,12 @@ export class ForeignFormComponent {
 			const account = this.foreignBankAccountForm
 				.value as ForeignAccountDto;
 			account.accountNumber = account.accountNumber.replaceAll('-', '');
-			this.bankService.postCreateForeignAccount(account).subscribe(
-				response => {
+			this.bankService
+				.postCreateForeignAccount(account)
+				.subscribe(response => {
 					console.log(response);
 					this.foreignBankAccountForm.reset();
-				},
-				error => {
-					console.log(error);
-				},
-			);
+				});
 		}
 	}
 }

@@ -1,113 +1,3 @@
-<div>
-	<mat-card class="accounts-mat-card">
-		<mat-card-content>
-			<div class="tableContainer">
-				<div
-					class="mat-elevation-z8"
-					style="box-shadow: none"
-				>
-					<table
-						class="unselectable"
-						mat-table
-						[dataSource]="accountNumberDataSource"
-						matSort
-					>
-						<ng-container matColumnDef="accountType">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Tip
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.accountType | translate }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="accountNumber">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Broj računa
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.accountNumber }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="availableBalance">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Dostupno stanje
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.availableBalance }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="currencyCode">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Valuta
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.currencyCode }}
-							</td>
-						</ng-container>
-
-						<tr
-							*matHeaderRowDef="displayedAccountColumns"
-							mat-header-row
-						></tr>
-						<tr
-							mat-row
-							*matRowDef="
-								let row;
-								columns: displayedAccountColumns
-							"
-						></tr>
-
-						<tr
-							*matNoDataRow
-							class="mat-row"
-						>
-							<td
-								class="mat-cell"
-								colspan="4"
-							>
-								Nije pronađen podatak za unetu vrednost: "{{
-									input.value
-								}}"
-							</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</mat-card-content>
-	</mat-card>
-</div>
-
 <div class="container">
 	<section class="container-left">
 		<mat-card class="exchange-mat-card">
@@ -118,7 +8,7 @@
 					(ngSubmit)="sendExchangeRequest()"
 				>
 					<mat-form-field>
-						<mat-label> Broj računa za uplatu </mat-label>
+						<mat-label>Broj računa za uplatu</mat-label>
 						<mat-select
 							formControlName="fromAccount"
 							placeholder="Izaberite račun"
@@ -141,8 +31,19 @@
 						</mat-error>
 					</mat-form-field>
 
+					<div class="unselectable">
+						<p *ngIf="availableBalanceFromAcc > -1">
+							Stanje vašeg računa za uplatu:
+							{{ availableBalanceFromAcc }}
+							{{ currencyCodeFromAcc }}
+						</p>
+						<p *ngIf="availableBalanceFromAcc === -1">
+							Stanje vašeg računa za uplatu: -
+						</p>
+					</div>
+
 					<mat-form-field>
-						<mat-label> Broj računa za prijem </mat-label>
+						<mat-label>Broj računa za prijem</mat-label>
 						<mat-select
 							formControlName="toAccount"
 							placeholder="Izaberite račun"
@@ -165,6 +66,17 @@
 						</mat-error>
 					</mat-form-field>
 
+					<div class="unselectable">
+						<p *ngIf="availableBalanceToAcc > -1">
+							Stanje vašeg računa za prijem:
+							{{ availableBalanceToAcc }}
+							{{ currencyCodeToAcc }}
+						</p>
+						<p *ngIf="availableBalanceToAcc === -1">
+							Stanje vašeg računa za prijem: -
+						</p>
+					</div>
+
 					<mat-form-field>
 						<mat-label>Količina</mat-label>
 						<input
@@ -179,6 +91,15 @@
 							"
 						>
 							Količina je obavezna.
+						</mat-error>
+						<mat-error
+							*ngIf="
+								exchangeForm
+									.get('amount')
+									?.hasError('containsNonDigits')
+							"
+						>
+							Pogrešan format za količinu novca.
 						</mat-error>
 					</mat-form-field>
 
@@ -202,7 +123,7 @@
 			<mat-card-header>
 				<div class="form header">
 					<mat-form-field>
-						<mat-label> Pretraži kursnu listu </mat-label>
+						<mat-label>Pretraži kursnu listu</mat-label>
 						<input
 							#input
 							(keyup)="applyFilter($event)"

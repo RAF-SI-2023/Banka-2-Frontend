@@ -79,6 +79,15 @@
 			>
 				Limit je obavezan.
 			</mat-error>
+			<mat-error
+				*ngIf="
+					createCardForm
+						.get('limitCard')
+						?.hasError('containsNonDigits')
+				"
+			>
+				Pogrešan format za limit.
+			</mat-error>
 		</mat-form-field>
 
 		<div class="buttons">

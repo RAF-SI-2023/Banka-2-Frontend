@@ -10,6 +10,7 @@ import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { AuthService } from '../../services/iam-service/auth.service';
 import { bankAccountNumberNoSymbolsValidator } from '../../utils/validators/bank-account-number-no-symbols.validator';
+import { digitValidator } from 'src/app/utils/validators/digit.validator';
 
 @Component({
 	selector: 'app-create-credit-request',
@@ -17,9 +18,10 @@ import { bankAccountNumberNoSymbolsValidator } from '../../utils/validators/bank
 	styleUrls: ['./create-credit-request.component.css'],
 })
 export class CreateCreditRequestComponent {
-	currencyOptions = DropdownOptions.currencyCodes;
 	accountNumberOptions: AccountDto[] = [];
 	creditTypeOptions = DropdownOptions.creditType;
+
+	currencyCode = '';
 
 	creditRequestForm = this.fb.group({
 		accountNumber: [
@@ -27,11 +29,11 @@ export class CreateCreditRequestComponent {
 			[Validators.required, bankAccountNumberNoSymbolsValidator()],
 		],
 		creditType: ['', [Validators.required]],
-		creditAmount: [0, [Validators.required]],
+		creditAmount: [null, [Validators.required, digitValidator()]],
 		mobileNumber: ['', [phoneNumberValidator()]],
-		paymentPeriodMonths: [0, [Validators.required]],
+		paymentPeriodMonths: [null, [Validators.required, digitValidator()]],
 		creditPurpose: [''],
-		monthlySalary: [0],
+		monthlySalary: [null, [digitValidator()]],
 		permanentEmployment: [false],
 		employmentPeriod: [''],
 		branch: [''],
@@ -49,6 +51,7 @@ export class CreateCreditRequestComponent {
 		private bankService: AccountService,
 	) {
 		this.fetchAccountNumbers();
+		this.subscribeToAccountNumberChanges();
 	}
 
 	onSubmit() {
@@ -78,13 +81,30 @@ export class CreateCreditRequestComponent {
 					// Set value of account number to the first account number
 					this.creditRequestForm.patchValue({
 						accountNumber:
-							this.accountNumberOptions[0].accountNumber,
+							this.accountNumberOptions[0]?.accountNumber || '',
 					});
+					this.currencyCode =
+						this.accountNumberOptions[0]?.currencyCode || '';
 				}),
 				catchError(error => {
 					return throwError(() => error);
 				}),
 			)
 			.subscribe();
+	}
+
+	private subscribeToAccountNumberChanges() {
+		const accountNumberControl =
+			this.creditRequestForm.get('accountNumber');
+		if (accountNumberControl) {
+			accountNumberControl.valueChanges.subscribe(accountNumber => {
+				if (accountNumber != null) {
+					const selectedAccount = this.accountNumberOptions.find(
+						acc => acc.accountNumber === accountNumber,
+					);
+					this.currencyCode = selectedAccount?.currencyCode ?? '';
+				}
+			});
+		}
 	}
 }

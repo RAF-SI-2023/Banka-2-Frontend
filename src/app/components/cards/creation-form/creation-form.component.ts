@@ -1,9 +1,12 @@
 import { Component, inject, Input } from '@angular/core';
+import { catchError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { DropdownOption } from '../../../utils/constants';
 import { FormBuilder, Validators } from '@angular/forms';
 import { bankAccountNumberValidator } from '../../../utils/validators';
 import { CardDto } from 'src/app/dtos/card-dto';
 import { CardService } from 'src/app/services/bank-service/card.service';
+import { digitValidator } from 'src/app/utils/validators/digit.validator';
 
 @Component({
 	selector: 'app-creation-form',
@@ -21,26 +24,29 @@ export class CreationFormComponent {
 			'',
 			[Validators.required, bankAccountNumberValidator()],
 		],
-		limitCard: [0, [Validators.required]],
+		limitCard: [null, [Validators.required, digitValidator()]],
 	});
 
 	constructor(private fb: FormBuilder) {}
 
 	onSubmit() {
 		if (this.createCardForm.valid && this.createCardForm) {
-			const card = this.createCardForm.value as CardDto;
+			const card = this.createCardForm.value as unknown as CardDto;
 			if (card.accountNumber) {
 				card.accountNumber = card.accountNumber.replaceAll('-', '');
 				console.log(card);
-				this.cardService.postCreateCard(card).subscribe(
-					response => {
+				this.cardService
+					.postCreateCard(card)
+					.pipe(
+						catchError(error => {
+							console.log(error);
+							return throwError(() => error);
+						}),
+					)
+					.subscribe(response => {
 						console.log(response);
 						this.createCardForm.reset();
-					},
-					error => {
-						console.log(error);
-					},
-				);
+					});
 			}
 		}
 	}

@@ -21,6 +21,15 @@
 			>
 				Broj kartice je obavezan.
 			</mat-error>
+			<mat-error
+				*ngIf="
+					changeStatusForm
+						.get('identificationCardNumber')
+						?.hasError('invalidCardNumber')
+				"
+			>
+				Pogrešan format kartice.
+			</mat-error>
 		</mat-form-field>
 
 		<div class="buttons">

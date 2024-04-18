@@ -108,92 +108,9 @@
 			<div class="paginatorContainer">
 				<mat-paginator
 					[hidePageSize]="true"
-					[pageSize]="3"
+					[pageSize]="10"
 				></mat-paginator>
 			</div>
-		</mat-card-content>
-	</mat-card>
-
-	<mat-card class="exchange-mat-card">
-		<mat-card-content>
-			<h2 mat-dialog-title>Menjačnica</h2>
-			<form
-				[formGroup]="exchangeForm"
-				class="form-fields"
-				(ngSubmit)="sendExchangeRequest()"
-			>
-				<mat-form-field>
-					<mat-label> Broj računa za uplatu </mat-label>
-					<mat-select
-						formControlName="fromAccount"
-						placeholder="Izaberite račun"
-					>
-						<mat-option
-							*ngFor="let option of accountOptionsSender"
-							[value]="option.accountNumber"
-						>
-							{{ option.accountNumber | accountNumberFormat }}
-						</mat-option>
-					</mat-select>
-					<mat-error
-						*ngIf="
-							exchangeForm
-								.get('fromAccount')
-								?.hasError('required')
-						"
-					>
-						Broj računa za uplatu je obavezan.
-					</mat-error>
-				</mat-form-field>
-
-				<mat-form-field>
-					<mat-label> Broj računa za prijem </mat-label>
-					<mat-select
-						formControlName="toAccount"
-						placeholder="Izaberite račun"
-					>
-						<mat-option
-							*ngFor="let option of accountOptionsSender"
-							[value]="option.accountNumber"
-						>
-							{{ option.accountNumber | accountNumberFormat }}
-						</mat-option>
-					</mat-select>
-					<mat-error
-						*ngIf="
-							exchangeForm.get('toAccount')?.hasError('required')
-						"
-					>
-						Broj računa za prijem je obavezan.
-					</mat-error>
-				</mat-form-field>
-
-				<mat-form-field>
-					<mat-label>Količina</mat-label>
-					<input
-						matInput
-						placeholder="Unesite količinu"
-						formControlName="amount"
-						type="text"
-					/>
-					<mat-error
-						*ngIf="exchangeForm.get('amount')?.hasError('required')"
-					>
-						Količina je obavezna.
-					</mat-error>
-				</mat-form-field>
-
-				<div class="buttons">
-					<button
-						mat-raised-button
-						style="width: 100%"
-						color="accent"
-						type="submit"
-					>
-						Pošalji
-					</button>
-				</div>
-			</form>
 		</mat-card-content>
 	</mat-card>
 </section>

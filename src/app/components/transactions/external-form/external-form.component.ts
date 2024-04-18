@@ -10,6 +10,7 @@ import { ExternalTransactionRequestDto } from 'src/app/dtos/external-transaction
 import { MatDialog } from '@angular/material/dialog';
 import { ExternalTransactionResponseDto } from 'src/app/dtos/external-transaction-response-dto';
 import { VerifyTransactionDialogComponent } from '../verify-transaction-dialog/verify-transaction-dialog.component';
+import { digitValidator } from 'src/app/utils/validators/digit.validator';
 
 @Component({
 	selector: 'app-external-form',
@@ -31,10 +32,10 @@ export class ExternalFormComponent implements OnInit {
 			'',
 			[Validators.required, bankAccountNumberValidator()],
 		],
-		amount: ['', [Validators.required]],
+		amount: [null, [Validators.required, digitValidator()]],
 		transactionPurpose: ['', [Validators.required]],
-		referenceNumber: ['', [Validators.required]],
-		transactionCode: ['', [Validators.required]],
+		referenceNumber: ['', [Validators.required, digitValidator()]],
+		transactionCode: ['', [Validators.required, digitValidator()]],
 	});
 	authService: any;
 
@@ -85,20 +86,15 @@ export class ExternalFormComponent implements OnInit {
 					transaction.receiverAccountNumber.replaceAll('-', '');
 				this.transactionService
 					.postTransactionExternal(transaction)
-					.subscribe(
-						response => {
-							if (response.status == 'PENDING') {
-								// this.accountBalance=this.accountBalance-response.amount;
-								this.openConfirmDialog(response);
-								// console.log(response);
-							} else {
-								console.log(response);
-							}
-						},
-						error => {
-							console.log(error);
-						},
-					);
+					.subscribe(response => {
+						if (response.status == 'PENDING') {
+							// this.accountBalance=this.accountBalance-response.amount;
+							this.openConfirmDialog(response);
+							// console.log(response);
+						} else {
+							console.log(response);
+						}
+					});
 			}
 		}
 	}

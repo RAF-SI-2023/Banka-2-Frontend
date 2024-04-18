@@ -3,7 +3,7 @@
 	<form>
 		<div>
 			<mat-form-field class="full-width">
-				<mat-label> Datum rođenja </mat-label>
+				<mat-label>Datum rođenja</mat-label>
 				<input
 					matInput
 					[(ngModel)]="newSelectedRow.dateOfBirth"
@@ -19,7 +19,7 @@
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
-				<mat-label> Broj telefona </mat-label>
+				<mat-label>Broj telefona</mat-label>
 				<input
 					matInput
 					[(ngModel)]="newSelectedRow.phone"
@@ -33,7 +33,7 @@
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
-				<mat-label> Adresa </mat-label>
+				<mat-label>Adresa</mat-label>
 				<input
 					matInput
 					[(ngModel)]="newSelectedRow.address"
@@ -50,7 +50,7 @@
 			"
 		>
 			<mat-form-field class="full-width">
-				<mat-label> Ime </mat-label>
+				<mat-label>Ime</mat-label>
 				<input
 					matInput
 					[(ngModel)]="newSelectedRow.name"
@@ -61,7 +61,7 @@
 
 		<div *ngIf="checkDto() === 'PRIVATE' || checkDto() === 'EMPLOYEE'">
 			<mat-form-field class="full-width">
-				<mat-label> Prezime </mat-label>
+				<mat-label>Prezime</mat-label>
 				<input
 					matInput
 					[(ngModel)]="newSelectedRow.surname"
@@ -73,7 +73,7 @@
 				class="full-width"
 				*ngIf="newSelectedRow; instanceof: PrivateClientDto"
 			>
-				<mat-label> Pol </mat-label>
+				<mat-label>Pol</mat-label>
 				<mat-select
 					[(ngModel)]="newSelectedRow.gender"
 					name="gender"
@@ -86,7 +86,7 @@
 
 		<div *ngIf="checkDto() === 'EMPLOYEE'">
 			<mat-form-field class="full-width">
-				<mat-label> Pozicija </mat-label>
+				<mat-label>Pozicija</mat-label>
 				<input
 					matInput
 					[(ngModel)]="newSelectedRow.position"
@@ -98,7 +98,7 @@
 				class="full-width"
 				*ngIf="newSelectedRow; instanceof: PrivateClientDto"
 			>
-				<mat-label> Odeljenje </mat-label>
+				<mat-label>Odeljenje</mat-label>
 				<input
 					matInput
 					[(ngModel)]="newSelectedRow.department"

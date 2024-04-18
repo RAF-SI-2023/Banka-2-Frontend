@@ -12,6 +12,8 @@ import { DropdownOption, DropdownOptions } from '../../utils/constants';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { catchError } from 'rxjs';
+import { Observer } from 'rxjs';
 
 @Component({
 	selector: 'app-create-bank-profile',
@@ -160,16 +162,25 @@ export class CreateBankProfileComponent implements OnInit {
 			.postAssociateProfileInitialization(
 				this.primaryAccountNumber.replaceAll('-', ''),
 			)
-			.subscribe(
-				response => {
-					this.currentStep++;
-				},
-				error => {
+			.pipe(
+				catchError(error => {
+					// Handle errors here
 					// this.accountNumberError = error.message ? error.message : 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
 					this.accountNumberError =
 						'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+					throw error; // Re-throw the error to propagate it further
+				}),
+			)
+			.subscribe({
+				next: () => {
+					// Handle successful response
+					this.currentStep++;
 				},
-			);
+				error: error => {
+					// Handle errors from catchError
+					console.error('An error occurred:', error);
+				},
+			});
 	}
 
 	createBankProfile() {

@@ -64,13 +64,15 @@
 			<mat-label>Matični broj</mat-label>
 			<input
 				matInput
-				placeholder="Unesite identifikacioni broj"
+				placeholder="Unesite matični broj"
 				formControlName="identificationNumber"
 				required
 			/>
 			<mat-error
 				*ngIf="
-					companyBankAccountForm.get('email')?.hasError('required')
+					companyBankAccountForm
+						.get('identificationNumber')
+						?.hasError('required')
 				"
 			>
 				Matični broj je obavezan.
@@ -78,12 +80,11 @@
 			<mat-error
 				*ngIf="
 					companyBankAccountForm
-						.get('email')
-						?.hasError('invalidEmail')
+						.get('identificationNumber')
+						?.hasError('containsNonDigits')
 				"
 			>
-				Pogrešan format matičnog broj-a.
-				<!-- TODO: Staviti validaciju za matični broj ovde -->
+				Pogrešan format matičnog broja.
 			</mat-error>
 		</mat-form-field>
 
@@ -96,21 +97,18 @@
 				required
 			/>
 			<mat-error
-				*ngIf="
-					companyBankAccountForm.get('email')?.hasError('required')
-				"
+				*ngIf="companyBankAccountForm.get('pib')?.hasError('required')"
 			>
 				PIB je obavezan.
 			</mat-error>
 			<mat-error
 				*ngIf="
 					companyBankAccountForm
-						.get('email')
-						?.hasError('invalidEmail')
+						.get('pib')
+						?.hasError('containsNonDigits')
 				"
 			>
 				Pogrešan format PIB-a.
-				<!-- TODO: Staviti validaciju za PIB ovde -->
 			</mat-error>
 		</mat-form-field>
 

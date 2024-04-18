@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
 	HttpErrorResponse,
 	HttpEvent,
@@ -8,14 +8,16 @@ import {
 	HttpResponse,
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { tap } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../services/iam-service/auth.service';
 
 @Injectable()
 export class AlertInterceptor implements HttpInterceptor {
-	private authService = inject(AuthService);
-	private snackBar = inject(MatSnackBar);
+	constructor(
+		private authService: AuthService,
+		private snackBar: MatSnackBar,
+	) {}
 
 	intercept(
 		request: HttpRequest<unknown>,
@@ -50,6 +52,7 @@ export class AlertInterceptor implements HttpInterceptor {
 			}),
 			catchError((error: HttpErrorResponse) => {
 				let errorMessage = 'Desila se nepoznata greška!';
+				let additionalMessage = '';
 
 				if (error.error instanceof ErrorEvent) {
 					// Client-side errors
@@ -60,13 +63,14 @@ export class AlertInterceptor implements HttpInterceptor {
 						case 0:
 							errorMessage = 'Zahtev nije uspeo!';
 							break;
+						case 400:
+							errorMessage = 'Loš zahtev!';
+							break;
 						case 401:
 							errorMessage = 'Neautorizovan pristup!';
-							// can possibly redirect to login page
 							break;
 						case 403:
 							errorMessage = 'Zabranjen pristup!';
-							// can possibly redirect to forbidden page
 							break;
 						case 404:
 							errorMessage = 'Stranica nije pronađena!';
@@ -78,7 +82,20 @@ export class AlertInterceptor implements HttpInterceptor {
 							errorMessage = `${error.message}`;
 							break;
 					}
+
+					// Check if backend returned additional message
+					if (error.error && typeof error.error === 'string') {
+						additionalMessage = `${error.error}.`;
+					} else if (error.error && typeof error.error === 'object') {
+						additionalMessage = error.error.message || '';
+					}
 				}
+
+				// Concatenate main error message and additional message with new line
+				errorMessage += additionalMessage
+					? `\n${additionalMessage}`
+					: '';
+
 				this.snackBar.open(errorMessage, 'Zatvori', {
 					duration: 4000,
 					verticalPosition: 'top',

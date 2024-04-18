@@ -58,70 +58,41 @@
 							</mat-error>
 						</mat-form-field>
 
-						<div class="form-inputs-amount">
-							<mat-form-field>
-								<mat-label>Iznos</mat-label>
-								<input
-									matInput
-									formControlName="creditAmount"
-									type="number"
-									step="100"
-									placeholder="Unesite iznos"
-								/>
-								<mat-error
-									*ngIf="
-										creditRequestForm
-											.get('creditAmount')
-											?.hasError('required')
-									"
-								>
-									Iznos je obavezan.
-								</mat-error>
-							</mat-form-field>
-							<mat-form-field>
-								<mat-label>Valuta</mat-label>
-								<mat-select
-									formControlName="currency"
-									placeholder="Izaberite valutu"
-								>
-									<mat-option
-										*ngFor="let option of currencyOptions"
-										[value]="option.value"
-									>
-										{{ option.label }}
-									</mat-option>
-								</mat-select>
-								<mat-error
-									*ngIf="
-										creditRequestForm
-											.get('currencyCode')
-											?.hasError('required')
-									"
-								>
-									Valuta je obavezna.
-								</mat-error>
-							</mat-form-field>
-						</div>
+						<mat-form-field>
+							<mat-label>Iznos ({{ currencyCode }})</mat-label>
+							<input
+								matInput
+								formControlName="creditAmount"
+								step="100"
+								placeholder="Unesite iznos"
+							/>
+							<mat-error
+								*ngIf="
+									creditRequestForm
+										.get('creditAmount')
+										?.hasError('required')
+								"
+							>
+								Iznos je obavezan.
+							</mat-error>
+							<mat-error
+								*ngIf="
+									creditRequestForm
+										.get('creditAmount')
+										?.hasError('containsNonDigits')
+								"
+							>
+								Pogrešan format iznosa novca.
+							</mat-error>
+						</mat-form-field>
 
 						<mat-form-field>
-							<mat-label> Broj mobilnog telefona </mat-label>
+							<mat-label>Broj mobilnog telefona</mat-label>
 							<input
 								matInput
 								placeholder="Unesite broj telefona"
 								formControlName="mobileNumber"
-								required
 							/>
-							<mat-error
-								*ngIf="
-									creditRequestForm.controls.mobileNumber
-										.invalid &&
-									!creditRequestForm
-										.get('mobileNumber')
-										?.hasError('invalidPhoneNumber')
-								"
-							>
-								Broj telefona je obavezan.
-							</mat-error>
 							<mat-error
 								*ngIf="
 									creditRequestForm
@@ -137,7 +108,6 @@
 							<mat-label>Period otplate (meseci)</mat-label>
 							<input
 								matInput
-								type="number"
 								formControlName="paymentPeriodMonths"
 								placeholder="Unesite period otplate"
 							/>
@@ -149,6 +119,15 @@
 								"
 							>
 								Period otplate je obavezan.
+							</mat-error>
+							<mat-error
+								*ngIf="
+									creditRequestForm
+										.get('paymentPeriodMonths')
+										?.hasError('containsNonDigits')
+								"
+							>
+								Pogrešan format perioda otplate.
 							</mat-error>
 						</mat-form-field>
 
@@ -172,10 +151,9 @@
 					</div>
 					<div class="form-inputs">
 						<mat-form-field>
-							<mat-label>Mesečna zarada</mat-label>
+							<mat-label>Mesečna primanja</mat-label>
 							<input
 								matInput
-								type="number"
 								formControlName="monthlySalary"
 								placeholder="Unesite mesečna primanja"
 							/>
@@ -183,10 +161,10 @@
 								*ngIf="
 									creditRequestForm
 										.get('monthlySalary')
-										?.hasError('required')
+										?.hasError('containsNonDigits')
 								"
 							>
-								Mesečna primanja su obavezna.
+								Pogrešan format mesečnih primanja.
 							</mat-error>
 						</mat-form-field>
 						<!--				education level normal input-->
@@ -226,7 +204,7 @@
 							></textarea>
 						</mat-form-field>
 						<div class="form-inputs-row">
-							<!--				Permanenet Employment boolean checkbox-->
+							<!--				Permanent Employment boolean checkbox-->
 							<mat-checkbox
 								formControlName="permanentEmployment"
 								class="checkbox"

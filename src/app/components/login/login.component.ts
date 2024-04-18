@@ -34,18 +34,15 @@ export class LoginComponent {
 
 			if (email && password) {
 				// Check if email and password are not null or undefined
-				this.authService.login({ email, password }).subscribe(
-					() => {
+				this.authService.login({ email, password }).subscribe({
+					next: () => {
 						window.location.href = '/home';
 						// this.router.navigate(['/home']);
 					},
-					error => {
+					error: () => {
 						this.serverResponseError = 'Pogrešan email ili lozinka';
 					},
-				);
-			} else {
-				// Handle case where email or password is null or undefined
-				// You might want to log an error, show a message, or handle it differently based on your requirements
+				});
 			}
 		} else {
 			this.loginForm.markAllAsTouched();

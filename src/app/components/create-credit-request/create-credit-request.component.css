@@ -20,18 +20,12 @@ mat-card-content {
 .form-inputs {
 	display: flex;
 	flex-direction: column;
-	width: 100%;
+	width: 30vw;
 }
 
 .form-inputs-row {
 	display: flex;
 	justify-content: space-around;
-}
-
-.form-inputs-amount {
-	display: grid;
-	grid-template-columns: 2fr 1fr;
-	gap: 0.5rem;
 }
 
 .tab-content {

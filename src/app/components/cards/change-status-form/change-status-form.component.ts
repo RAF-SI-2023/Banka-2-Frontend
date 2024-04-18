@@ -1,7 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { CardDto } from 'src/app/dtos/card-dto';
 import { CardService } from 'src/app/services/bank-service/card.service';
+import { cardNumberValidator } from 'src/app/utils/validators/card-number.validator';
 
 @Component({
 	selector: 'app-change-status-form',
@@ -9,29 +12,34 @@ import { CardService } from 'src/app/services/bank-service/card.service';
 	styleUrls: ['./change-status-form.component.css'],
 })
 export class ChangeStatusFormComponent {
-	cardService = inject(CardService);
+	constructor(
+		private fb: FormBuilder,
+		private cardService: CardService,
+	) {}
 
 	changeStatusForm = this.fb.group({
-		identificationCardNumber: [0, [Validators.required]],
+		identificationCardNumber: [
+			null,
+			[Validators.required, cardNumberValidator()],
+		],
 	});
-
-	constructor(private fb: FormBuilder) {}
 
 	onSubmit() {
 		if (this.changeStatusForm.valid && this.changeStatusForm) {
-			const card = this.changeStatusForm.value as CardDto;
+			const card = this.changeStatusForm.value as unknown as CardDto;
 			console.log(card);
 			this.cardService
 				.putChangeCardStatus(card.identificationCardNumber)
-				.subscribe(
-					response => {
-						console.log(response);
-						this.changeStatusForm.reset();
-					},
-					error => {
+				.pipe(
+					catchError(error => {
 						console.log(error);
-					},
-				);
+						return throwError(() => error);
+					}),
+				)
+				.subscribe(response => {
+					console.log(response);
+					this.changeStatusForm.reset();
+				});
 		}
 	}
 }

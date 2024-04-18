@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { digitValidator } from 'src/app/utils/validators/digit.validator';
 import { DropdownOption, DropdownOptions } from 'src/app/utils/constants';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
@@ -18,17 +19,14 @@ import { MatDialog } from '@angular/material/dialog';
 	templateUrl: './bank-exchange.component.html',
 	styleUrls: ['./bank-exchange.component.css'],
 })
-export class BankExchangeComponent implements AfterViewInit {
+export class BankExchangeComponent implements OnInit {
 	accountService = inject(AccountService);
 	bankExchangeService = inject(BankExchangeService);
 
-	displayedAccountColumns: string[] = [
-		'accountType',
-		'accountNumber',
-		'availableBalance',
-		'currencyCode',
-	];
-	accountNumberDataSource = new MatTableDataSource<AccountDto>();
+	availableBalanceFromAcc = -1;
+	currencyCodeFromAcc = '';
+	availableBalanceToAcc = -1;
+	currencyCodeToAcc = '';
 
 	currencyOptions: DropdownOption[] = DropdownOptions.currencyCodes;
 	displayedColumns: string[] = [
@@ -49,7 +47,10 @@ export class BankExchangeComponent implements AfterViewInit {
 	exchangeForm = this.fb.group({
 		fromAccount: ['', [Validators.required]],
 		toAccount: ['', [Validators.required]],
-		amount: ['', [Validators.required, Validators.min(0)]],
+		amount: [
+			'',
+			[Validators.required, Validators.min(0), digitValidator()],
+		],
 	});
 	accountOptionsSender: AccountDto[] = [];
 	accountOptionsReciever: AccountDto[] = [];
@@ -59,14 +60,7 @@ export class BankExchangeComponent implements AfterViewInit {
 		public dialog: MatDialog,
 	) {
 		this.dataSource = new MatTableDataSource();
-		this.accountNumberDataSource = new MatTableDataSource();
-		this.getAccounts();
 		this.fetchAllData();
-	}
-
-	ngAfterViewInit() {
-		if (this.paginator) this.dataSource.paginator = this.paginator;
-		if (this.sort) this.dataSource.sort = this.sort;
 	}
 
 	applyFilter(event: Event) {
@@ -84,6 +78,21 @@ export class BankExchangeComponent implements AfterViewInit {
 		}
 	}
 
+	ngOnInit(): void {
+		this.getAccounts();
+		this.exchangeForm
+			.get('fromAccount')
+			?.valueChanges.subscribe(Response => {
+				this.getAccountBalance(Response, true); // Pass true for FromAcc
+			});
+		this.exchangeForm.get('toAccount')?.valueChanges.subscribe(Response => {
+			this.getAccountBalance(Response, false); // Pass false for ToAcc
+		});
+
+		if (this.paginator) this.dataSource.paginator = this.paginator;
+		if (this.sort) this.dataSource.sort = this.sort;
+	}
+
 	getAccounts() {
 		const emailLocal = localStorage.getItem('email');
 		if (!emailLocal) return;
@@ -94,11 +103,6 @@ export class BankExchangeComponent implements AfterViewInit {
 				map(Response => {
 					this.accountOptionsSender = Response;
 					this.accountOptionsReciever = Response;
-					this.accountNumberDataSource.data = Response;
-					console.log(
-						'accNumberDataSource',
-						this.accountNumberDataSource.data,
-					);
 
 					console.log(this.accountOptionsSender);
 					return Response;
@@ -108,6 +112,28 @@ export class BankExchangeComponent implements AfterViewInit {
 				}),
 			)
 			.subscribe();
+	}
+
+	getAccountBalance(accountNumber: any, isFromAccount: boolean): void {
+		const emailLocal = localStorage.getItem('email');
+		if (!emailLocal) return;
+
+		this.accountService
+			.getFindByEmail(emailLocal)
+			.subscribe((Response: any[]) => {
+				const account = Response.find(
+					data => data.accountNumber == accountNumber,
+				);
+				if (!account) return; // Account not found
+
+				if (isFromAccount) {
+					this.availableBalanceFromAcc = account.availableBalance;
+					this.currencyCodeFromAcc = account.currencyCode;
+				} else {
+					this.availableBalanceToAcc = account.availableBalance;
+					this.currencyCodeToAcc = account.currencyCode;
+				}
+			});
 	}
 
 	fetchAllData(): void {
@@ -137,8 +163,9 @@ export class BankExchangeComponent implements AfterViewInit {
 					map(response => {
 						console.log(response);
 						this.exchangeForm.reset();
-						this.exchangeForm.markAsPristine();
 						this.getAccounts();
+						this.availableBalanceFromAcc = -1;
+						this.availableBalanceToAcc = -1;
 					}),
 					catchError(error => {
 						console.error('Error loading data.', error);

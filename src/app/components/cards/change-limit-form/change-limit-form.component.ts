@@ -1,7 +1,11 @@
 import { Component, inject } from '@angular/core';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CardDto } from 'src/app/dtos/card-dto';
 import { CardService } from 'src/app/services/bank-service/card.service';
+import { cardNumberValidator } from 'src/app/utils/validators/card-number.validator';
+import { digitValidator } from 'src/app/utils/validators/digit.validator';
 
 @Component({
 	selector: 'app-change-limit-form',
@@ -12,25 +16,31 @@ export class ChangeLimitFormComponent {
 	cardService = inject(CardService);
 
 	changeLimitForm = this.fb.group({
-		identificationCardNumber: [0, [Validators.required]],
-		limitCard: [0, [Validators.required]],
+		identificationCardNumber: [
+			null,
+			[Validators.required, cardNumberValidator()],
+		],
+		limitCard: [null, [Validators.required, digitValidator()]],
 	});
 
 	constructor(private fb: FormBuilder) {}
 
 	onSubmit() {
 		if (this.changeLimitForm.valid && this.changeLimitForm) {
-			const card = this.changeLimitForm.value as CardDto;
+			const card = this.changeLimitForm.value as unknown as CardDto;
 			console.log(card);
-			this.cardService.putChangeCardLimit(card).subscribe(
-				response => {
+			this.cardService
+				.putChangeCardLimit(card)
+				.pipe(
+					catchError(error => {
+						console.log(error);
+						return throwError(() => error);
+					}),
+				)
+				.subscribe(response => {
 					console.log(response);
 					this.changeLimitForm.reset();
-				},
-				error => {
-					console.log(error);
-				},
-			);
+				});
 		}
 	}
 }
