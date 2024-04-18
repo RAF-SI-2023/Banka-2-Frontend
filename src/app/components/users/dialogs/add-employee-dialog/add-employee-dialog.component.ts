@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { UserService } from 'src/app/services/iam-service/user.service';
 import { EmployeeDto } from 'src/app/dtos/employee-dto';
+import {FormBuilder, Validators} from "@angular/forms";
+import {emailValidator, phoneNumberValidator} from "../../../../utils/validators";
 
 @Component({
 	selector: 'app-add-employee-dialog',
@@ -8,18 +10,6 @@ import { EmployeeDto } from 'src/app/dtos/employee-dto';
 	styleUrls: ['./add-employee-dialog.component.css'],
 })
 export class AddEmployeeDialogComponent {
-	email = '';
-	name = '';
-	surname = '';
-	gender = '';
-	dateOfBirth: any;
-
-	phone = '';
-	address = '';
-
-	position = '';
-	department = '';
-	active = true;
 
 	availablePermissions: string[] = [
 		'PERMISSION_1',
@@ -29,7 +19,22 @@ export class AddEmployeeDialogComponent {
 	];
 	permissions: string[] = [];
 
-	constructor(private userService: UserService) {}
+	createEmployeeForm = this.fb.group({
+		email: ['', [Validators.required, emailValidator()]],
+		name: ['', [Validators.required]],
+		surname: ['', [Validators.required]],
+		gender: ['', [Validators.required]],
+		dateOfBirth: ['', [Validators.required]],
+		phone: ['', [Validators.required, phoneNumberValidator()]],
+		address: ['', [Validators.required]],
+		position: ['', [Validators.required]],
+		department: ['', [Validators.required]],
+		active: [true, [Validators.required]],
+		permissions: [[]],
+	});
+
+	constructor(private userService: UserService,
+				private fb: FormBuilder) {}
 
 	updatePermissions(event: any, permission: string) {
 		if (event.checked) {
@@ -40,27 +45,20 @@ export class AddEmployeeDialogComponent {
 	}
 
 	addEmployee() {
+		if(this.createEmployeeForm.invalid) {
+			return;
+		}
 		// Convert dateOfBirth to epoch
-		this.dateOfBirth = this.dateOfBirth
-			? new Date(this.dateOfBirth).getTime().toString()
-			: null;
+		const dateOfBirthValue = this.createEmployeeForm.get('dateOfBirth')!.value;
+		const dateOfBirthEpoch = new Date(dateOfBirthValue!).getTime();
+		const selectedPermissions = this.createEmployeeForm.get('permissions')!.value;
 
-		const employeeDto: EmployeeDto = {
-			id: 0,
-			dateOfBirth: Number(this.dateOfBirth.toString()),
-			email: this.email,
-			username: this.email,
-			phone: this.phone,
-			address: this.address,
-			role: 'EMPLOYEE',
-			permissions: this.permissions,
-			name: this.name,
-			surname: this.surname,
-			gender: this.gender,
-			position: this.position,
-			department: this.department,
-			active: this.active,
-		};
+		this.createEmployeeForm.patchValue({
+			dateOfBirth: dateOfBirthEpoch.toString(),
+			permissions: selectedPermissions,
+		});
+
+		const employeeDto = this.createEmployeeForm.value as unknown as EmployeeDto;
 
 		this.userService.postCreateEmployee(employeeDto).subscribe({
 			next: response => {

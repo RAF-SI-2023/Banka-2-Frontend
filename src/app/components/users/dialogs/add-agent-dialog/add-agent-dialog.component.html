@@ -1,19 +1,25 @@
 <h2 mat-dialog-title>Dodaj agenta</h2>
 <mat-dialog-content class="mat-typography size">
-	<form>
+	<form [formGroup]="createAgentForm"
+		  (ngSubmit)="addAgent()">
 		<div>
 			<mat-form-field class="full-width">
 				<mat-label>Email</mat-label>
 				<input
 					matInput
-					[(ngModel)]="email"
+					formControlName="email"
 					type="email"
 					name="email"
-					appEmailValidator
-					#emailInput="ngModel"
 				/>
-				<mat-error *ngIf="emailInput.errors && emailInput.touched">
-					Unesite validnu email adresu.
+				<mat-error
+					*ngIf="createAgentForm.get('email')?.hasError('required')"
+				>
+					Email je obavezan.
+				</mat-error>
+				<mat-error
+					*ngIf="createAgentForm.get('email')?.hasError('invalidEmail')"
+				>
+					Pogrešan format email-a.
 				</mat-error>
 			</mat-form-field>
 
@@ -21,7 +27,7 @@
 				<mat-label>Datum rođenja</mat-label>
 				<input
 					matInput
-					[(ngModel)]="dateOfBirth"
+					formControlName="dateOfBirth"
 					[matDatepicker]="picker"
 					name="dateOfBirth"
 					placeholder="Izaberi datum"
@@ -37,12 +43,17 @@
 				<mat-label>Broj telefona</mat-label>
 				<input
 					matInput
-					[(ngModel)]="phone"
+					formControlName="phone"
 					name="phone"
-					appPhoneNumberValidator
-					#phoneInput="ngModel"
 				/>
-				<mat-error *ngIf="phoneInput.errors && phoneInput.touched">
+				<mat-error
+					*ngIf="createAgentForm.get('phone')?.hasError('required')"
+				>
+					Broj telefona je obavezan.
+				</mat-error>
+				<mat-error
+					*ngIf="createAgentForm.get('phone')?.hasError('invalidPhoneNumber')"
+				>
 					Unesite validan broj telefona.
 				</mat-error>
 			</mat-form-field>
@@ -51,7 +62,7 @@
 				<mat-label>Adresa</mat-label>
 				<input
 					matInput
-					[(ngModel)]="address"
+					formControlName="address"
 					name="address"
 				/>
 			</mat-form-field>
@@ -60,7 +71,7 @@
 				<mat-label>Limit</mat-label>
 				<input
 					matInput
-					[(ngModel)]="limit"
+					formControlName="limit"
 					name="limit"
 					type="number"
 				/>
@@ -70,22 +81,20 @@
 				<mat-label>Ostatak limita</mat-label>
 				<input
 					matInput
-					[(ngModel)]="leftOfLimit"
+					formControlName="leftOfLimit"
 					name="leftOfLimit"
 					type="number"
 				/>
 			</mat-form-field>
 
-			<div *ngFor="let permission of availablePermissions">
-				<mat-checkbox
-					class="full-width"
-					[(ngModel)]="permissions"
-					[value]="permission"
-					name="permissions"
-				>
-					{{ permission }}
-				</mat-checkbox>
-			</div>
+			<mat-form-field class="full-width">
+				<mat-label>Dozvole</mat-label>
+				<mat-select formControlName="permissions" multiple='true'>
+					<mat-option *ngFor="let permission of availablePermissions" [value]="permission">
+						{{ permission }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
 		</div>
 	</form>
 </mat-dialog-content>

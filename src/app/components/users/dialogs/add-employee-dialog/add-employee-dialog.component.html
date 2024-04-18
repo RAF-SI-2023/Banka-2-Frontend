@@ -1,19 +1,25 @@
 <h2 mat-dialog-title>Dodaj zaposlenog</h2>
 <mat-dialog-content class="mat-typography size">
-	<form>
+	<form [formGroup]="createEmployeeForm"
+		  (ngSubmit)="addEmployee()">
 		<div>
 			<mat-form-field class="full-width">
 				<mat-label>Email</mat-label>
 				<input
 					matInput
-					[(ngModel)]="email"
+					formControlName="email"
 					type="email"
 					name="email"
-					appEmailValidator
-					#emailInput="ngModel"
 				/>
-				<mat-error *ngIf="emailInput.errors && emailInput.touched">
-					Unesite validnu email adresu.
+				<mat-error
+					*ngIf="createEmployeeForm.get('email')?.hasError('required')"
+				>
+					Email je obavezan.
+				</mat-error>
+				<mat-error
+					*ngIf="createEmployeeForm.get('email')?.hasError('invalidEmail')"
+				>
+					Pogrešan format email-a.
 				</mat-error>
 			</mat-form-field>
 
@@ -21,7 +27,7 @@
 				<mat-label>Ime</mat-label>
 				<input
 					matInput
-					[(ngModel)]="name"
+					formControlName="name"
 					name="name"
 				/>
 			</mat-form-field>
@@ -30,7 +36,7 @@
 				<mat-label>Prezime</mat-label>
 				<input
 					matInput
-					[(ngModel)]="surname"
+					formControlName="surname"
 					name="surname"
 				/>
 			</mat-form-field>
@@ -38,7 +44,7 @@
 			<mat-form-field class="full-width">
 				<mat-label>Pol</mat-label>
 				<mat-select
-					[(ngModel)]="gender"
+					formControlName="gender"
 					name="gender"
 				>
 					<mat-option value="M">Muški</mat-option>
@@ -50,7 +56,7 @@
 				<mat-label>Datum rođenja</mat-label>
 				<input
 					matInput
-					[(ngModel)]="dateOfBirth"
+					formControlName="dateOfBirth"
 					[matDatepicker]="picker"
 					name="dateOfBirth"
 					placeholder="Izaberi datum"
@@ -66,12 +72,17 @@
 				<mat-label>Broj telefona</mat-label>
 				<input
 					matInput
-					[(ngModel)]="phone"
+					formControlName="phone"
 					name="phone"
-					appPhoneNumberValidator
-					#phoneInput="ngModel"
 				/>
-				<mat-error *ngIf="phoneInput.errors && phoneInput.touched">
+				<mat-error
+					*ngIf="createEmployeeForm.get('phone')?.hasError('required')"
+				>
+					Broj telefona je obavezan.
+				</mat-error>
+				<mat-error
+					*ngIf="createEmployeeForm.get('phone')?.hasError('invalidPhoneNumber')"
+				>
 					Unesite validan broj telefona.
 				</mat-error>
 			</mat-form-field>
@@ -80,7 +91,7 @@
 				<mat-label>Adresa</mat-label>
 				<input
 					matInput
-					[(ngModel)]="address"
+					formControlName="address"
 					name="address"
 				/>
 			</mat-form-field>
@@ -89,7 +100,7 @@
 				<mat-label>Pozicija</mat-label>
 				<input
 					matInput
-					[(ngModel)]="position"
+					formControlName="position"
 					name="position"
 				/>
 			</mat-form-field>
@@ -98,28 +109,27 @@
 				<mat-label>Odeljenje</mat-label>
 				<input
 					matInput
-					[(ngModel)]="department"
+					formControlName="department"
 					name="department"
 				/>
 			</mat-form-field>
 
+			<mat-form-field class="full-width">
+				<mat-label>Dozvole</mat-label>
+				<mat-select formControlName="permissions" multiple='true'>
+					<mat-option *ngFor="let permission of availablePermissions" [value]="permission">
+						{{ permission }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+
 			<mat-checkbox
 				class="full-width"
-				[(ngModel)]="active"
+				formControlName="active"
 				name="active"
 			>
 				Aktivan
 			</mat-checkbox>
-
-			<div *ngFor="let permission of availablePermissions">
-				<mat-checkbox
-					class="full-width"
-					[checked]="permissions.includes(permission)"
-					(change)="updatePermissions($event, permission)"
-				>
-					{{ permission }}
-				</mat-checkbox>
-			</div>
 		</div>
 	</form>
 </mat-dialog-content>

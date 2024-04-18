@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CompanyDto } from 'src/app/dtos/company-dto';
 import { CompanyService } from 'src/app/services/iam-service/company.service';
+import {FormBuilder, Validators} from "@angular/forms";
+import {phoneNumberValidator} from "../../../../utils/validators";
 
 @Component({
 	selector: 'app-add-company-dialog',
@@ -8,29 +10,26 @@ import { CompanyService } from 'src/app/services/iam-service/company.service';
 	styleUrls: ['./add-company-dialog.component.css'],
 })
 export class AddCompanyDialogComponent {
-	companyName = '';
-	faxNumber = '';
-	phoneNumber = '';
-	pib = 0;
-	registryNumber = 0;
-	identificationNumber = 0;
-	activityCode = 0;
-	address = '';
 
-	constructor(private companyService: CompanyService) {}
+	createCompanyForm = this.fb.group({
+		companyName: ['', [Validators.required]],
+		faxNumber: ['', [Validators.required]],
+		phoneNumber: ['', [Validators.required, phoneNumberValidator()]],
+		pib: [0, [Validators.required]],
+		registryNumber: [0, [Validators.required]],
+		identificationNumber: [0, Validators.required],
+		activityCode: [0, [Validators.required]],
+		address: ['', [Validators.required]],
+	});
+
+	constructor(private companyService: CompanyService, private fb: FormBuilder) {}
 
 	addCompany() {
-		const companyDto: CompanyDto = {
-			id: 0,
-			companyName: this.companyName,
-			faxNumber: this.faxNumber,
-			phoneNumber: this.phoneNumber,
-			pib: this.pib,
-			registryNumber: this.registryNumber,
-			identificationNumber: this.identificationNumber,
-			activityCode: this.activityCode,
-			address: this.address,
-		};
+		if (this.createCompanyForm.invalid) {
+			return;
+		}
+
+		const companyDto = this.createCompanyForm.value as CompanyDto;
 
 		this.companyService.postCreateCompany(companyDto).subscribe({
 			next: response => {
