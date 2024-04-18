@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import { UserService } from 'src/app/services/iam-service/user.service';
 import { AgentDto } from 'src/app/dtos/agent-dto';
+import {emailValidator, phoneNumberValidator} from "../../../../utils/validators";
 
 @Component({
 	selector: 'app-add-agent-dialog',
@@ -27,6 +28,16 @@ export class AddAgentDialogComponent {
 	];
 	permissions: string[] = [];
 
+	createAgentForm = this.fb.group({
+		email: ['', [Validators.required, emailValidator()]],
+		dateOfBirth: ['', [Validators.required]],
+		phone: ['', [Validators.required, phoneNumberValidator()]],
+		address: ['', [Validators.required]],
+		limit: [0, [Validators.required]],
+		leftOfLimit: [0, [Validators.required]],
+		permissions: [[]], // Add permissions field to form
+	});
+
 	constructor(
 		private fb: FormBuilder,
 		private userService: UserService,
@@ -41,18 +52,20 @@ export class AddAgentDialogComponent {
 	}
 
 	addAgent() {
-		const agentDto: AgentDto = {
-			id: 0,
-			email: this.email,
-			dateOfBirth: this.dateOfBirth,
-			username: this.email,
-			phone: this.phone,
-			address: this.address,
-			role: 'AGENT',
-			permissions: this.permissions,
-			limit: this.limit,
-			leftOfLimit: this.leftOfLimit,
-		};
+		if(this.createAgentForm.invalid) {
+			return;
+		}
+
+		const dateOfBirthValue = this.createAgentForm.get('dateOfBirth')!.value;
+		const dateOfBirthEpoch = new Date(dateOfBirthValue!).getTime();
+		const selectedPermissions = this.createAgentForm.get('permissions')!.value;
+
+		this.createAgentForm.patchValue({
+			dateOfBirth: dateOfBirthEpoch.toString(),
+			permissions: selectedPermissions,
+		});
+
+		const agentDto = this.createAgentForm.value as unknown as AgentDto;
 
 		console.log(agentDto);
 		this.userService.postCreateAgent(agentDto).subscribe({
