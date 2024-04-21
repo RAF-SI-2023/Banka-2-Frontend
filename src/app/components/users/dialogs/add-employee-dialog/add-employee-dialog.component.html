@@ -1,7 +1,9 @@
 <h2 mat-dialog-title>Dodaj zaposlenog</h2>
 <mat-dialog-content class="mat-typography size">
-	<form [formGroup]="createEmployeeForm"
-		  (ngSubmit)="addEmployee()">
+	<form
+		[formGroup]="createEmployeeForm"
+		(ngSubmit)="addEmployee()"
+	>
 		<div>
 			<mat-form-field class="full-width">
 				<mat-label>Email</mat-label>
@@ -12,12 +14,18 @@
 					name="email"
 				/>
 				<mat-error
-					*ngIf="createEmployeeForm.get('email')?.hasError('required')"
+					*ngIf="
+						createEmployeeForm.get('email')?.hasError('required')
+					"
 				>
 					Email je obavezan.
 				</mat-error>
 				<mat-error
-					*ngIf="createEmployeeForm.get('email')?.hasError('invalidEmail')"
+					*ngIf="
+						createEmployeeForm
+							.get('email')
+							?.hasError('invalidEmail')
+					"
 				>
 					Pogrešan format email-a.
 				</mat-error>
@@ -76,12 +84,18 @@
 					name="phone"
 				/>
 				<mat-error
-					*ngIf="createEmployeeForm.get('phone')?.hasError('required')"
+					*ngIf="
+						createEmployeeForm.get('phone')?.hasError('required')
+					"
 				>
 					Broj telefona je obavezan.
 				</mat-error>
 				<mat-error
-					*ngIf="createEmployeeForm.get('phone')?.hasError('invalidPhoneNumber')"
+					*ngIf="
+						createEmployeeForm
+							.get('phone')
+							?.hasError('invalidPhoneNumber')
+					"
 				>
 					Unesite validan broj telefona.
 				</mat-error>
@@ -116,8 +130,14 @@
 
 			<mat-form-field class="full-width">
 				<mat-label>Dozvole</mat-label>
-				<mat-select formControlName="permissions" multiple='true'>
-					<mat-option *ngFor="let permission of availablePermissions" [value]="permission">
+				<mat-select
+					formControlName="permissions"
+					multiple="true"
+				>
+					<mat-option
+						*ngFor="let permission of availablePermissions"
+						[value]="permission"
+					>
 						{{ permission }}
 					</mat-option>
 				</mat-select>

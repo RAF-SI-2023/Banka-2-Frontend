@@ -15,9 +15,9 @@ import { Subscription } from 'rxjs';
 	styleUrls: ['./navigation-menu.component.css'],
 })
 export class NavigationMenuComponent implements OnInit, OnDestroy {
+	authService = inject(AuthService);
 	private loginSubscription: Subscription | undefined;
 	private changeDetector = inject(ChangeDetectorRef);
-	authService = inject(AuthService);
 	role: Role | null = null;
 
 	logout() {

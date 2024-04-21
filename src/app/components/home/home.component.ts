@@ -1,18 +1,23 @@
-import { AfterViewInit, Component, inject, ViewChild } from '@angular/core';
+import {
+	AfterViewInit,
+	Component,
+	inject,
+	ViewChild,
+	ChangeDetectorRef,
+} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { AccountDto } from '../../dtos/account-dto';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { CreditService } from '../../services/bank-service/credit.service';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { AccountService } from '../../services/bank-service/account.service';
-import { AuthService } from '../../services/iam-service/auth.service';
 import { catchError, map } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, Subscription } from 'rxjs';
 import { ExchangeRequestDto } from '../../dtos/exchange-request-dto';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BankExchangeService } from '../../services/bank-service/bank-exchange.service';
+import { Role } from 'src/app/dtos/decoded-token-dto';
+import { AuthService } from 'src/app/services/iam-service/auth.service';
 
 @Component({
 	selector: 'app-home',
@@ -20,8 +25,14 @@ import { BankExchangeService } from '../../services/bank-service/bank-exchange.s
 	styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements AfterViewInit {
+	authService = inject(AuthService);
 	accountService = inject(AccountService);
 	bankExchangeService = inject(BankExchangeService);
+
+	private loginSubscription: Subscription | undefined;
+	private changeDetector = inject(ChangeDetectorRef);
+	role: Role | null = null;
+	activeEmail: string | null = null;
 
 	displayedAccountColumns: string[] = [
 		'accountType',
@@ -43,14 +54,17 @@ export class HomeComponent implements AfterViewInit {
 	@ViewChild(MatSort) accountNumberSort: MatSort | undefined;
 
 	constructor(
-		private creditService: CreditService,
 		public dialog: MatDialog,
-		private router: Router,
-		private bankService: AccountService,
-		private authService: AuthService,
 		private fb: FormBuilder,
 	) {
 		this.accountNumberDataSource = new MatTableDataSource();
+		this.role = this.authService.getRoleFromToken();
+
+		// Subscribe to role updates
+		this.loginSubscription = this.authService.loginStatus.subscribe(() => {
+			this.role = this.authService.getRoleFromToken();
+			this.changeDetector.detectChanges();
+		});
 		this.getAccounts();
 	}
 
@@ -63,8 +77,22 @@ export class HomeComponent implements AfterViewInit {
 	}
 
 	getAccounts() {
-		const emailLocal = localStorage.getItem('email');
+		let emailLocal;
+		if (
+			this.checkTokenRole([
+				Role.ADMIN,
+				Role.EMPLOYEE,
+				Role.SUPERVISOR,
+				Role.AGENT,
+			])
+		) {
+			console.log('kurac');
+			emailLocal = 'bankAccount@bank.rs';
+		} else {
+			emailLocal = localStorage.getItem('email');
+		}
 		if (!emailLocal) return;
+		this.activeEmail = localStorage.getItem('email');
 
 		this.accountService
 			.getFindByEmail(emailLocal)
@@ -79,6 +107,7 @@ export class HomeComponent implements AfterViewInit {
 					);
 
 					console.log(this.accountOptionsSender);
+
 					return Response;
 				}),
 				catchError(error => {
@@ -109,4 +138,12 @@ export class HomeComponent implements AfterViewInit {
 				.subscribe();
 		}
 	}
+
+	checkTokenRole(roleArray: string[]) {
+		console.log(this.role);
+		if (!this.role) return false;
+		return roleArray.includes(this.role);
+	}
+
+	protected readonly Role = Role;
 }

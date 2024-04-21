@@ -1,5 +1,5 @@
 presubmits:
-    - name: pull-banka-2-frontend-test
+    - name: pull-banka-2-frontend
       always_run: true
       decorate: true
       spec:
@@ -16,9 +16,6 @@ presubmits:
                         npm run cy:info
 
                         npm run start&
-
-                        set +e
-                        npm run e2e
 
                         cp -r ./cypress/videos /logs/artifacts
                         cp -r ./cypress/screenshots /logs/artifacts

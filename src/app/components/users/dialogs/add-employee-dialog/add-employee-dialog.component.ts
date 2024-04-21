@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { UserService } from 'src/app/services/iam-service/user.service';
 import { EmployeeDto } from 'src/app/dtos/employee-dto';
-import {FormBuilder, Validators} from "@angular/forms";
-import {emailValidator, phoneNumberValidator} from "../../../../utils/validators";
+import { FormBuilder, Validators } from '@angular/forms';
+import {
+	emailValidator,
+	phoneNumberValidator,
+} from '../../../../utils/validators';
 
 @Component({
 	selector: 'app-add-employee-dialog',
@@ -10,7 +13,6 @@ import {emailValidator, phoneNumberValidator} from "../../../../utils/validators
 	styleUrls: ['./add-employee-dialog.component.css'],
 })
 export class AddEmployeeDialogComponent {
-
 	availablePermissions: string[] = [
 		'PERMISSION_1',
 		'PERMISSION_2',
@@ -33,8 +35,10 @@ export class AddEmployeeDialogComponent {
 		permissions: [[]],
 	});
 
-	constructor(private userService: UserService,
-				private fb: FormBuilder) {}
+	constructor(
+		private userService: UserService,
+		private fb: FormBuilder,
+	) {}
 
 	updatePermissions(event: any, permission: string) {
 		if (event.checked) {
@@ -45,28 +49,38 @@ export class AddEmployeeDialogComponent {
 	}
 
 	addEmployee() {
-		if(this.createEmployeeForm.invalid) {
-			return;
+		if (this.createEmployeeForm.valid) {
+			const dateOfBirthControl =
+				this.createEmployeeForm.get('dateOfBirth');
+			const permissionsControl =
+				this.createEmployeeForm.get('permissions');
+
+			if (dateOfBirthControl && permissionsControl) {
+				const dateOfBirthValue = dateOfBirthControl.value;
+				const dateOfBirthEpoch = dateOfBirthValue
+					? new Date(dateOfBirthValue).getTime()
+					: 0;
+				const selectedPermissions = permissionsControl.value;
+
+				this.createEmployeeForm.patchValue({
+					dateOfBirth: dateOfBirthEpoch.toString(),
+					permissions: selectedPermissions,
+				});
+
+				const employeeDto = this.createEmployeeForm
+					.value as unknown as EmployeeDto;
+
+				this.userService.postCreateEmployee(employeeDto).subscribe({
+					next: response => {
+						console.log(response);
+					},
+					error: error => {
+						console.error(error);
+					},
+				});
+			} else {
+				console.error('Form controls are null.');
+			}
 		}
-		// Convert dateOfBirth to epoch
-		const dateOfBirthValue = this.createEmployeeForm.get('dateOfBirth')!.value;
-		const dateOfBirthEpoch = new Date(dateOfBirthValue!).getTime();
-		const selectedPermissions = this.createEmployeeForm.get('permissions')!.value;
-
-		this.createEmployeeForm.patchValue({
-			dateOfBirth: dateOfBirthEpoch.toString(),
-			permissions: selectedPermissions,
-		});
-
-		const employeeDto = this.createEmployeeForm.value as unknown as EmployeeDto;
-
-		this.userService.postCreateEmployee(employeeDto).subscribe({
-			next: response => {
-				console.log(response);
-			},
-			error: error => {
-				console.error(error);
-			},
-		});
 	}
 }

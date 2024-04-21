@@ -1,7 +1,25 @@
 <section class="container">
 	<mat-card>
 		<mat-card-header>
-			<h2>Pregled računa</h2>
+			<h2>Dobrodošli, {{ activeEmail }}!</h2>
+		</mat-card-header>
+	</mat-card>
+
+	<mat-card>
+		<mat-card-header>
+			<h2>Pregled računa (</h2>
+			<h2
+				*ngIf="
+					checkTokenRole([
+						Role.ADMIN,
+						Role.EMPLOYEE,
+						Role.SUPERVISOR,
+						Role.AGENT
+					])
+				"
+			>
+				banke)
+			</h2>
 		</mat-card-header>
 		<mat-card-content>
 			<div class="tableContainer">

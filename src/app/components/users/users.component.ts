@@ -179,8 +179,7 @@ export class UsersComponent implements AfterViewInit {
 			autoFocus: false,
 		});
 
-		dialogRef.afterClosed().subscribe(result => {
-			console.log(`Dialog result: ${result}`);
+		dialogRef.afterClosed().subscribe(() => {
 			this.selectedRow = null;
 			setTimeout(() => {
 				this.fetchAllData();
@@ -193,8 +192,7 @@ export class UsersComponent implements AfterViewInit {
 			autoFocus: false,
 		});
 
-		dialogRef.afterClosed().subscribe(result => {
-			console.log(`Dialog result: ${result}`);
+		dialogRef.afterClosed().subscribe(() => {
 			this.selectedRow = null;
 			setTimeout(() => {
 				this.fetchAllData();
@@ -209,8 +207,7 @@ export class UsersComponent implements AfterViewInit {
 				autoFocus: false,
 			});
 
-			dialogRef.afterClosed().subscribe(result => {
-				console.log(`Dialog result: ${result}`);
+			dialogRef.afterClosed().subscribe(() => {
 				this.selectedRow = null;
 				setTimeout(() => {
 					this.fetchAllData();

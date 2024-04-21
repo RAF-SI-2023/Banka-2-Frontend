@@ -7,9 +7,8 @@ import { OptionsDto } from 'src/app/dtos/options-dto';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { StockService } from 'src/app/services/stock-service/stock.service';
 import { OptionService } from 'src/app/services/stock-service/option.service';
-import { ActivatedRoute } from '@angular/router'; // Import ActivatedRoute
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-options',
@@ -47,7 +46,6 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 	@ViewChild('PutMatSort') sortPut: MatSort | undefined;
 
 	constructor(
-		private stockService: StockService,
 		private optionService: OptionService,
 		public dialog: MatDialog,
 		private route: ActivatedRoute, // Inject ActivatedRoute
@@ -128,5 +126,11 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 			.subscribe();
 	}
 
-	viewOptions(row: OptionsDto) {}
+	viewOptions(row: OptionsDto) {
+		// if (this.selectedRow != null) {
+		// 	const dialogRef = this.dialog.open(AgentInfoDialogComponent, {
+		// 		data: { selectedRow: row },
+		// 	});
+		// }
+	}
 }

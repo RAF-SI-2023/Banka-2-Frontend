@@ -6,19 +6,15 @@
 }
 
 .container-left {
-	place-items: center;
+	display: grid;
+	align-items: center;
 	width: 39%;
 	height: 100%;
 }
 
 .container-right {
-	place-items: center;
 	width: 60%;
 	height: 100%;
-}
-
-h2 {
-	margin-left: 0.5%;
 }
 
 .accounts-mat-card {
@@ -30,7 +26,11 @@ h2 {
 	height: 40rem;
 }
 
-.header {
+mat-card-title {
+	margin-bottom: 1rem;
+}
+
+.header-margin {
 	margin-right: 2%;
 }
 

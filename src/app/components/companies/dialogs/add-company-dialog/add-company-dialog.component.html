@@ -1,7 +1,9 @@
 <h2 mat-dialog-title>Dodaj kompaniju</h2>
 <mat-dialog-content class="mat-typography size">
-	<form [formGroup]="createCompanyForm"
-		  (ngSubmit)="addCompany()">
+	<form
+		[formGroup]="createCompanyForm"
+		(ngSubmit)="addCompany()"
+	>
 		<div>
 			<mat-form-field class="full-width">
 				<mat-label>Ime kompanije</mat-label>
@@ -28,20 +30,20 @@
 				/>
 				<mat-error
 					*ngIf="
-								createCompanyForm.controls.phoneNumber.invalid &&
-								!createCompanyForm
-									.get('phoneNumber')
-									?.hasError('invalidPhoneNumber')
-							"
+						createCompanyForm.controls.phoneNumber.invalid &&
+						!createCompanyForm
+							.get('phoneNumber')
+							?.hasError('invalidPhoneNumber')
+					"
 				>
 					Broj telefona je obavezan.
 				</mat-error>
 				<mat-error
 					*ngIf="
-								createCompanyForm
-									.get('phoneNumber')
-									?.hasError('invalidPhoneNumber')
-							"
+						createCompanyForm
+							.get('phoneNumber')
+							?.hasError('invalidPhoneNumber')
+					"
 				>
 					Unesite validan broj telefona.
 				</mat-error>

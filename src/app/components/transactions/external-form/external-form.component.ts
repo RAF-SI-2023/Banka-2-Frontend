@@ -122,8 +122,7 @@ export class ExternalFormComponent implements OnInit {
 			data: { response },
 		});
 
-		dialogRef.afterClosed().subscribe(result => {
-			console.log(`Dialog result: ${result}`);
+		dialogRef.afterClosed().subscribe(() => {
 			this.transactionForm.reset();
 			this.availableBalance = -1;
 		});

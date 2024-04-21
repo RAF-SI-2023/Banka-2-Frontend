@@ -1,7 +1,9 @@
 <h2 mat-dialog-title>Dodaj agenta</h2>
 <mat-dialog-content class="mat-typography size">
-	<form [formGroup]="createAgentForm"
-		  (ngSubmit)="addAgent()">
+	<form
+		[formGroup]="createAgentForm"
+		(ngSubmit)="addAgent()"
+	>
 		<div>
 			<mat-form-field class="full-width">
 				<mat-label>Email</mat-label>
@@ -17,7 +19,9 @@
 					Email je obavezan.
 				</mat-error>
 				<mat-error
-					*ngIf="createAgentForm.get('email')?.hasError('invalidEmail')"
+					*ngIf="
+						createAgentForm.get('email')?.hasError('invalidEmail')
+					"
 				>
 					Pogrešan format email-a.
 				</mat-error>
@@ -52,7 +56,11 @@
 					Broj telefona je obavezan.
 				</mat-error>
 				<mat-error
-					*ngIf="createAgentForm.get('phone')?.hasError('invalidPhoneNumber')"
+					*ngIf="
+						createAgentForm
+							.get('phone')
+							?.hasError('invalidPhoneNumber')
+					"
 				>
 					Unesite validan broj telefona.
 				</mat-error>
@@ -89,8 +97,14 @@
 
 			<mat-form-field class="full-width">
 				<mat-label>Dozvole</mat-label>
-				<mat-select formControlName="permissions" multiple='true'>
-					<mat-option *ngFor="let permission of availablePermissions" [value]="permission">
+				<mat-select
+					formControlName="permissions"
+					multiple="true"
+				>
+					<mat-option
+						*ngFor="let permission of availablePermissions"
+						[value]="permission"
+					>
 						{{ permission }}
 					</mat-option>
 				</mat-select>

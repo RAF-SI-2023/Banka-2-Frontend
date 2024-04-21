@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { catchError } from 'rxjs';
-import { Observer } from 'rxjs';
 
 @Component({
 	selector: 'app-create-bank-profile',
@@ -164,21 +163,20 @@ export class CreateBankProfileComponent implements OnInit {
 			)
 			.pipe(
 				catchError(error => {
-					// Handle errors here
-					// this.accountNumberError = error.message ? error.message : 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
 					this.accountNumberError =
 						'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
-					throw error; // Re-throw the error to propagate it further
+					throw error;
 				}),
 			)
 			.subscribe({
 				next: () => {
-					// Handle successful response
 					this.currentStep++;
 				},
 				error: error => {
-					// Handle errors from catchError
-					console.error('An error occurred:', error);
+					console.error(
+						'Error during profile initialization [bankAccountNumberSubmit]:',
+						error,
+					);
 				},
 			});
 	}
@@ -200,16 +198,26 @@ export class CreateBankProfileComponent implements OnInit {
 					gender: this.selectedGender,
 					username: this.email,
 				})
-				.subscribe(
-					response => {
+				.pipe(
+					catchError(error => {
+						this.accountNumberError =
+							'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+						throw error;
+					}),
+				)
+				.subscribe({
+					next: () => {
 						this.currentStep++;
 					},
-					error => {
-						// this.basicInfoError = error.message ? error.message : 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+					error: error => {
 						this.basicInfoError =
 							'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+						console.error(
+							'Error during profile initialization [createBankProfile/PRIVATE]:',
+							error,
+						);
 					},
-				);
+				});
 		} else if (this.selectedBankProfileType === 'CORPORATE') {
 			this.userService
 				.postCreateCorporateClient({
@@ -224,16 +232,26 @@ export class CreateBankProfileComponent implements OnInit {
 					),
 					username: this.email,
 				})
-				.subscribe(
-					response => {
+				.pipe(
+					catchError(error => {
+						this.accountNumberError =
+							'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+						throw error;
+					}),
+				)
+				.subscribe({
+					next: () => {
 						this.currentStep++;
 					},
-					error => {
-						// this.basicInfoError = error.message ? error.message : 'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+					error: error => {
 						this.basicInfoError =
 							'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+						console.error(
+							'Error during profile initialization [createBankProfile/CORPORATE]:',
+							error,
+						);
 					},
-				);
+				});
 		}
 	}
 
@@ -243,32 +261,39 @@ export class CreateBankProfileComponent implements OnInit {
 				this.activationCode,
 				this.primaryAccountNumber.replaceAll('-', ''),
 			)
-			.subscribe(
-				response => {
+			.subscribe({
+				next: () => {
 					this.currentStep++;
 				},
-				error => {
-					// this.activationCodeError = error.message ? error.message : 'Greška prilikom slanja aktivacionog koda. Pokušajte ponovo.';
-					this.activationCodeError =
-						'Greška prilikom slanja aktivacionog koda. Pokušajte ponovo.';
+				error: error => {
+					this.basicInfoError =
+						'Greška prilikom inicijalizacije profila. Pokušajte ponovo.';
+					console.error(
+						'Error during profile initialization [sendActivationCode]:',
+						error,
+					);
 				},
-			);
+			});
 	}
 
 	activatePassword() {
 		this.userService
 			.postPasswordActivation(this.email, this.password)
-			.subscribe(
-				response => {
+			.subscribe({
+				next: () => {
 					// this.router.navigate(['/login']);
 					this.creationSuccess();
 				},
-				error => {
+				error: error => {
 					this.passwordError = error.message
 						? error.message
 						: 'Greška prilikom aktivacije lozinke. Pokušajte ponovo.';
+					console.error(
+						'Error during profile initialization [activatePassword]:',
+						error,
+					);
 				},
-			);
+			});
 	}
 
 	creationSuccess() {
@@ -286,13 +311,13 @@ export class CreateBankProfileComponent implements OnInit {
 
 	onDateChange(event: MatDatepickerInputEvent<Date>) {
 		this.dateOfBirth = event.value ? event.value.getTime().toString() : '';
-		console.log('Date of birth:', this.dateOfBirth);
+		console.log('Datum rodjenja:', this.dateOfBirth);
 	}
 
 	logFormData(event: Event) {
 		event.preventDefault();
 
-		console.log('Korisnički račun:', this.basicInfoForm.value);
+		console.log('Korisnicki racun:', this.basicInfoForm.value);
 		console.log('Osnovni podaci:', this.contactInfoForm.value);
 		console.log('Aktivacioni kod:', this.activationCodeForm.value);
 

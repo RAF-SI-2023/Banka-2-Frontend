@@ -8,17 +8,25 @@
 mat-card {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 	gap: 1rem;
 	width: 100%;
-	max-width: 700px;
+	max-width: 30vw;
+	max-height: 35vw;
+}
+
+mat-card-header {
+	margin-bottom: 1rem;
 }
 
 mat-card-content {
 	display: flex;
 	flex-direction: column;
 	width: 90%;
+}
+
+b {
+	font-weight: 500;
 }
 
 .home-link {
@@ -75,7 +83,8 @@ mat-checkbox {
 }
 
 #change-password-btn {
-	margin-top: 2rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
 
 .mat-header-cell {

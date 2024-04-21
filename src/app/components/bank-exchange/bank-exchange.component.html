@@ -1,8 +1,10 @@
 <div class="container">
 	<section class="container-left">
 		<mat-card class="exchange-mat-card">
+			<mat-card-header>
+				<mat-card-title>Menjačnica</mat-card-title>
+			</mat-card-header>
 			<mat-card-content>
-				<h2 mat-dialog-title>Menjačnica</h2>
 				<form
 					[formGroup]="exchangeForm"
 					(ngSubmit)="sendExchangeRequest()"
@@ -121,7 +123,7 @@
 	<section class="container-right">
 		<mat-card class="exchange-mat-card">
 			<mat-card-header>
-				<div class="form header">
+				<div class="form header-margin">
 					<mat-form-field>
 						<mat-label>Pretraži kursnu listu</mat-label>
 						<input

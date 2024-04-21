@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/iam-service/user.service';
 import { AgentDto } from 'src/app/dtos/agent-dto';
-import {emailValidator, phoneNumberValidator} from "../../../../utils/validators";
+import {
+	emailValidator,
+	phoneNumberValidator,
+} from '../../../../utils/validators';
 
 @Component({
 	selector: 'app-add-agent-dialog',
@@ -10,16 +13,6 @@ import {emailValidator, phoneNumberValidator} from "../../../../utils/validators
 	styleUrls: ['./add-agent-dialog.component.css'],
 })
 export class AddAgentDialogComponent {
-	email = '';
-	dateOfBirth = 0;
-	username = '';
-	phone = '';
-	address = '';
-	role = '';
-
-	limit = 0;
-	leftOfLimit = 0;
-
 	availablePermissions: string[] = [
 		'PERMISSION_1',
 		'PERMISSION_2',
@@ -33,8 +26,8 @@ export class AddAgentDialogComponent {
 		dateOfBirth: ['', [Validators.required]],
 		phone: ['', [Validators.required, phoneNumberValidator()]],
 		address: ['', [Validators.required]],
-		limit: [0, [Validators.required]],
-		leftOfLimit: [0, [Validators.required]],
+		limit: [null, [Validators.required]],
+		leftOfLimit: [null, [Validators.required]],
 		permissions: [[]], // Add permissions field to form
 	});
 
@@ -52,25 +45,34 @@ export class AddAgentDialogComponent {
 	}
 
 	addAgent() {
-		if(this.createAgentForm.invalid) {
-			return;
+		if (this.createAgentForm.valid) {
+			const dateOfBirthControl = this.createAgentForm.get('dateOfBirth');
+			const permissionsControl = this.createAgentForm.get('permissions');
+
+			if (dateOfBirthControl && permissionsControl) {
+				const dateOfBirthValue = dateOfBirthControl.value;
+				const dateOfBirthEpoch = dateOfBirthValue
+					? new Date(dateOfBirthValue).getTime()
+					: 0;
+				const selectedPermissions = permissionsControl.value;
+
+				this.createAgentForm.patchValue({
+					dateOfBirth: dateOfBirthEpoch.toString(),
+					permissions: selectedPermissions,
+				});
+
+				const agentDto = this.createAgentForm
+					.value as unknown as AgentDto;
+
+				console.log(agentDto);
+				this.userService.postCreateAgent(agentDto).subscribe({
+					next: response => console.log('Agent dodat', response),
+					error: error =>
+						console.error('Greška pri dodavanju agenta', error),
+				});
+			} else {
+				console.error('Form controls are null.');
+			}
 		}
-
-		const dateOfBirthValue = this.createAgentForm.get('dateOfBirth')!.value;
-		const dateOfBirthEpoch = new Date(dateOfBirthValue!).getTime();
-		const selectedPermissions = this.createAgentForm.get('permissions')!.value;
-
-		this.createAgentForm.patchValue({
-			dateOfBirth: dateOfBirthEpoch.toString(),
-			permissions: selectedPermissions,
-		});
-
-		const agentDto = this.createAgentForm.value as unknown as AgentDto;
-
-		console.log(agentDto);
-		this.userService.postCreateAgent(agentDto).subscribe({
-			next: response => console.log('Agent dodat', response),
-			error: error => console.error('Greška pri dodavanju agenta', error),
-		});
 	}
 }
