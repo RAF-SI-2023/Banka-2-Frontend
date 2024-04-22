@@ -1,18 +1,14 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UserService } from '../../../../services/iam-service/user.service';
-import { isPrivateClientDto } from '../../../../dtos/private-client-dto';
-import { isCorporateClientDto } from '../../../../dtos/corporate-client-dto';
-import { isEmployeeDto } from '../../../../dtos/employee-dto';
-import { isAgentDto } from 'src/app/dtos/agent-dto';
+import { UserService } from 'src/app/services/iam-service/user.service';
 import { DatePipe, formatDate } from '@angular/common';
 
 @Component({
-	selector: 'app-user-info-dialog',
-	templateUrl: './user-info-dialog.component.html',
-	styleUrls: ['./user-info-dialog.component.css'],
+	selector: 'app-agent-info-dialog',
+	templateUrl: './agent-info-dialog.component.html',
+	styleUrls: ['./agent-info-dialog.component.css'],
 })
-export class UserInfoDialogComponent {
+export class AgentInfoDialogComponent {
 	newSelectedRow = { ...this.data.selectedRow };
 	isLoading = true;
 	constructor(
@@ -27,7 +23,6 @@ export class UserInfoDialogComponent {
 			.getFindById(this.data.selectedRow.id)
 			.subscribe(response => {
 				this.data.selectedRow = response;
-				this.checkDto();
 				this.prepareValues();
 				this.isLoading = false;
 			});
@@ -46,20 +41,6 @@ export class UserInfoDialogComponent {
 		this.newSelectedRow = { ...this.data.selectedRow };
 	}
 
-	checkDto(): string {
-		if (isPrivateClientDto(this.data.selectedRow)) {
-			return 'PRIVATE';
-		} else if (isCorporateClientDto(this.data.selectedRow)) {
-			return 'CORPORATE';
-		} else if (isEmployeeDto(this.data.selectedRow)) {
-			return 'EMPLOYEE';
-		} else if (isAgentDto(this.data.selectedRow)) {
-			return 'AGENT';
-		}
-		return 'NONE';
-	}
-
-	protected readonly isPrivateClientDto = isPrivateClientDto;
 	protected readonly Date = Date;
 	protected readonly DatePipe = DatePipe;
 	protected readonly formatDate = formatDate;

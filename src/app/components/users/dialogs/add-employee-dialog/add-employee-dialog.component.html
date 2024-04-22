@@ -9,6 +9,7 @@
 				<mat-label>Email</mat-label>
 				<input
 					matInput
+					placeholder="Unesite email adresu"
 					formControlName="email"
 					type="email"
 					name="email"
@@ -35,51 +36,83 @@
 				<mat-label>Ime</mat-label>
 				<input
 					matInput
+					placeholder="Unesite ime"
 					formControlName="name"
 					name="name"
 				/>
+				<mat-error
+					*ngIf="createEmployeeForm.get('name')?.hasError('required')"
+				>
+					Ime je obavezno.
+				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
 				<mat-label>Prezime</mat-label>
 				<input
 					matInput
+					placeholder="Unesite prezime"
 					formControlName="surname"
 					name="surname"
 				/>
+				<mat-error
+					*ngIf="
+						createEmployeeForm.get('surname')?.hasError('required')
+					"
+				>
+					Prezime je obavezno.
+				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
 				<mat-label>Pol</mat-label>
 				<mat-select
+					placeholder="Izaberite pol"
 					formControlName="gender"
 					name="gender"
 				>
 					<mat-option value="M">Muški</mat-option>
 					<mat-option value="Ž">Ženski</mat-option>
 				</mat-select>
+				<mat-error
+					*ngIf="
+						createEmployeeForm.get('gender')?.hasError('required')
+					"
+				>
+					Pol je obavezan.
+				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
 				<mat-label>Datum rođenja</mat-label>
 				<input
 					matInput
+					placeholder="Izaberite datum rođenja"
 					formControlName="dateOfBirth"
 					[matDatepicker]="picker"
 					name="dateOfBirth"
-					placeholder="Izaberi datum"
 				/>
 				<mat-datepicker-toggle
 					matSuffix
 					[for]="picker"
 				></mat-datepicker-toggle>
 				<mat-datepicker #picker></mat-datepicker>
+				<mat-error
+					*ngIf="
+						createEmployeeForm
+							.get('dateOfBirth')
+							?.hasError('required')
+					"
+				>
+					Datum rođenja je obavezan.
+				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
 				<mat-label>Broj telefona</mat-label>
 				<input
 					matInput
+					placeholder="Unesite broj telefona"
 					formControlName="phone"
 					name="phone"
 				/>
@@ -105,27 +138,53 @@
 				<mat-label>Adresa</mat-label>
 				<input
 					matInput
+					placeholder="Unesite adresu"
 					formControlName="address"
 					name="address"
 				/>
+				<mat-error
+					*ngIf="
+						createEmployeeForm.get('address')?.hasError('required')
+					"
+				>
+					Adresa je obavezna.
+				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
 				<mat-label>Pozicija</mat-label>
 				<input
 					matInput
+					placeholder="Unesite poziciju na kojoj zaposleni radi"
 					formControlName="position"
 					name="position"
 				/>
+				<mat-error
+					*ngIf="
+						createEmployeeForm.get('position')?.hasError('required')
+					"
+				>
+					Pozicija je obavezna.
+				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
 				<mat-label>Odeljenje</mat-label>
 				<input
 					matInput
+					placeholder="Unesite odeljenje u kome se zaposleni vodi"
 					formControlName="department"
 					name="department"
 				/>
+				<mat-error
+					*ngIf="
+						createEmployeeForm
+							.get('department')
+							?.hasError('required')
+					"
+				>
+					Odeljenje je obavezno.
+				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
@@ -161,6 +220,7 @@
 		color="accent"
 		cdkFocusInitial
 		(click)="addEmployee()"
+		[disabled]="!createEmployeeForm.valid"
 	>
 		Dodaj
 	</button>

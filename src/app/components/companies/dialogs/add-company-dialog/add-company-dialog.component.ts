@@ -3,6 +3,7 @@ import { CompanyDto } from 'src/app/dtos/company-dto';
 import { CompanyService } from 'src/app/services/iam-service/company.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { phoneNumberValidator } from '../../../../utils/validators';
+import { digitValidator } from 'src/app/utils/validators/digit.validator';
 
 @Component({
 	selector: 'app-add-company-dialog',
@@ -12,12 +13,12 @@ import { phoneNumberValidator } from '../../../../utils/validators';
 export class AddCompanyDialogComponent {
 	createCompanyForm = this.fb.group({
 		companyName: ['', [Validators.required]],
-		faxNumber: ['', [Validators.required]],
+		faxNumber: ['', [Validators.required, digitValidator()]],
 		phoneNumber: ['', [Validators.required, phoneNumberValidator()]],
-		pib: [null, [Validators.required]],
-		registryNumber: [null, [Validators.required]],
-		identificationNumber: [null, Validators.required],
-		activityCode: [null, [Validators.required]],
+		pib: [null, [Validators.required, digitValidator()]],
+		registryNumber: [null, [Validators.required, digitValidator()]],
+		identificationNumber: [null, [Validators.required, digitValidator()]],
+		activityCode: [null, [Validators.required, digitValidator()]],
 		address: ['', [Validators.required]],
 	});
 

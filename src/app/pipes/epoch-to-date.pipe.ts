@@ -11,30 +11,42 @@ export class EpochToDatePipe implements PipeTransform {
 
 		let milliseconds: number;
 
-		console.log(epoch);
-		switch (true) {
-			case epoch < 10000000000: // Epoch in seconds
-				console.log('epochToDate (s): ', epoch);
-				milliseconds = epoch * 1000;
-				console.log('epochToDate (s-ms): ', milliseconds);
-				break;
-			case epoch < 10000000000000: // Epoch in milliseconds
-				console.log('epochToDate (ms): ', epoch);
-				milliseconds = epoch;
-				console.log('epochToDate (ms-ms): ', milliseconds);
-				break;
-			case epoch < 10000000000000000: // Epoch in microseconds
-				console.log('epochToDate (us) ', epoch);
-				milliseconds = Math.floor(epoch / 1000);
-				console.log('epochToDate (us-ms): ', milliseconds);
-				break;
-			case epoch < 10000000000000000000: // Epoch in nanoseconds
-				console.log('epochToDate (ns): ', epoch);
-				milliseconds = Math.floor(epoch / 1000000);
-				console.log('epochToDate (ns-ms): ', milliseconds);
-				break;
-			default:
-				throw new Error('Invalid epoch format');
+		if (epoch >= 0) {
+			// Handle positive epoch values
+			switch (true) {
+				case epoch < 10000000000: // Epoch in seconds
+					milliseconds = epoch * 1000;
+					break;
+				case epoch < 10000000000000: // Epoch in milliseconds
+					milliseconds = epoch;
+					break;
+				case epoch < 10000000000000000: // Epoch in microseconds
+					milliseconds = Math.floor(epoch / 1000);
+					break;
+				case epoch < 10000000000000000000: // Epoch in nanoseconds
+					milliseconds = Math.floor(epoch / 1000000);
+					break;
+				default:
+					throw new Error('Invalid epoch format');
+			}
+		} else {
+			// Handle negative epoch values
+			switch (true) {
+				case epoch > -10000000000: // Epoch in seconds
+					milliseconds = epoch * 1000;
+					break;
+				case epoch > -10000000000000: // Epoch in milliseconds
+					milliseconds = epoch;
+					break;
+				case epoch > -10000000000000000: // Epoch in microseconds
+					milliseconds = Math.ceil(epoch / 1000);
+					break;
+				case epoch > -10000000000000000000: // Epoch in nanoseconds
+					milliseconds = Math.ceil(epoch / 1000000);
+					break;
+				default:
+					throw new Error('Invalid epoch format');
+			}
 		}
 
 		return new Date(milliseconds);

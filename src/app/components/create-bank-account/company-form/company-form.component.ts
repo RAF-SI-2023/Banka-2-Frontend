@@ -41,6 +41,7 @@ export class CompanyFormComponent {
 				.postCreateCompanyAccount(account)
 				.subscribe(response => {
 					console.log(response);
+					this.companyBankAccountForm.reset();
 				});
 		}
 	}

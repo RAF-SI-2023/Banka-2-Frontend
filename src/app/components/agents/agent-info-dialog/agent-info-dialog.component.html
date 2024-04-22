@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Informacije o korisniku</h2>
+<h2 mat-dialog-title>Informacije o agentu</h2>
 <mat-dialog-content class="mat-typography size">
 	<div
 		*ngIf="!isLoading"
@@ -34,68 +34,13 @@
 				newSelectedRow.address ? newSelectedRow.address : '-'
 			}}</span>
 		</div>
-
-		<div
-			*ngIf="
-				checkDto() === 'PRIVATE' ||
-				checkDto() === 'CORPORATE' ||
-				checkDto() === 'EMPLOYEE'
-			"
-			class="info-row"
-		>
-			<span class="label">Ime:</span>
-			<span>{{ newSelectedRow.name ? newSelectedRow.name : '-' }}</span>
-		</div>
-		<div
-			*ngIf="checkDto() === 'PRIVATE' || checkDto() === 'EMPLOYEE'"
-			class="info-row"
-		>
-			<span class="label">Prezime:</span>
-			<span>{{
-				newSelectedRow.surname ? newSelectedRow.surname : '-'
-			}}</span>
-		</div>
-		<div
-			*ngIf="checkDto() === 'PRIVATE' || checkDto() === 'EMPLOYEE'"
-			class="info-row"
-		>
-			<span class="label">Pol:</span>
-			<span>{{
-				newSelectedRow.gender ? newSelectedRow.gender : '-'
-			}}</span>
-		</div>
-		<div
-			*ngIf="checkDto() === 'EMPLOYEE'"
-			class="info-row"
-		>
-			<span class="label">Pozicija:</span>
-			<span>{{
-				newSelectedRow.position ? newSelectedRow.position : '-'
-			}}</span>
-		</div>
-		<div
-			*ngIf="checkDto() === 'EMPLOYEE'"
-			class="info-row"
-		>
-			<span class="label">Odeljenje:</span>
-			<span>{{
-				newSelectedRow.department ? newSelectedRow.department : '-'
-			}}</span>
-		</div>
-
-		<div
-			*ngIf="checkDto() === 'AGENT'"
-			class="info-row"
-		>
+		<div class="info-row">
 			<span class="label">Limit:</span>
 			<span>{{
 				newSelectedRow.userLimit ? newSelectedRow.userLimit : '-'
 			}}</span>
 		</div>
-		<div
-			*ngIf="checkDto() === 'AGENT'"
-			class="info-row"
-		>
+		<div class="info-row">
 			<span class="label">Iskorišćeni limit:</span>
 			<span>{{
 				newSelectedRow.leftOfLimit ? newSelectedRow.leftOfLimit : '-'

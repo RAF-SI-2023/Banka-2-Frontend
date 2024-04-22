@@ -65,7 +65,11 @@ export class CreateCreditRequestComponent {
 				.value as unknown as CreditRequestDto;
 			request.accountNumber = request.accountNumber.replaceAll('-', '');
 			console.log(request);
-			this.creditService.postCreateCreditRequest(request).subscribe();
+			this.creditService
+				.postCreateCreditRequest(request)
+				.subscribe(() => {
+					this.creditRequestForm.reset();
+				});
 		}
 	}
 

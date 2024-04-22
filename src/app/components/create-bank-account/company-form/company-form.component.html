@@ -84,7 +84,7 @@
 						?.hasError('containsNonDigits')
 				"
 			>
-				Pogrešan format matičnog broja.
+				Pogrešan format matičnog broja - podržane su samo cifre.
 			</mat-error>
 		</mat-form-field>
 
@@ -108,7 +108,7 @@
 						?.hasError('containsNonDigits')
 				"
 			>
-				Pogrešan format PIB-a.
+				Pogrešan format PIB-a - podržane su samo cifre.
 			</mat-error>
 		</mat-form-field>
 
@@ -141,6 +141,7 @@
 				mat-raised-button
 				color="accent"
 				type="submit"
+				[disabled]="!companyBankAccountForm.valid"
 			>
 				Napravi
 			</button>

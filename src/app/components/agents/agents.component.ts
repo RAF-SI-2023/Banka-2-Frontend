@@ -10,6 +10,7 @@ import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { UserService } from 'src/app/services/iam-service/user.service';
 import { MatDialog } from '@angular/material/dialog';
+import { AgentInfoDialogComponent } from './agent-info-dialog/agent-info-dialog.component';
 
 @Component({
 	selector: 'app-agents',
@@ -24,7 +25,7 @@ export class AgentsComponent implements AfterViewInit {
 		'phone',
 		'address',
 		'role',
-		'limit',
+		'userLimit',
 		'leftOfLimit',
 	];
 	dataSource: MatTableDataSource<UserDto>;
@@ -96,11 +97,11 @@ export class AgentsComponent implements AfterViewInit {
 	}
 
 	viewAgent(row: UserDto): void {
-		// if (this.selectedRow != null) {
-		// 	const dialogRef = this.dialog.open(AgentInfoDialogComponent, {
-		// 		data: { selectedRow: row },
-		// 	});
-		// }
+		if (this.selectedRow != null) {
+			this.dialog.open(AgentInfoDialogComponent, {
+				data: { selectedRow: row },
+			});
+		}
 	}
 
 	resetLeftOfLimit(): void {

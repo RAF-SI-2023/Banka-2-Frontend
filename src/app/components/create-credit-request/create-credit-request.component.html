@@ -64,7 +64,7 @@
 								matInput
 								formControlName="creditAmount"
 								step="100"
-								placeholder="Unesite iznos"
+								placeholder="Unesite iznos novca"
 							/>
 							<mat-error
 								*ngIf="
@@ -82,7 +82,8 @@
 										?.hasError('containsNonDigits')
 								"
 							>
-								Pogrešan format iznosa novca.
+								Pogrešan format iznosa novca - podržane su samo
+								cifre.
 							</mat-error>
 						</mat-form-field>
 
@@ -127,7 +128,8 @@
 										?.hasError('containsNonDigits')
 								"
 							>
-								Pogrešan format perioda otplate.
+								Pogrešan format perioda otplate - podržane su
+								samo cifre.
 							</mat-error>
 						</mat-form-field>
 
@@ -164,7 +166,8 @@
 										?.hasError('containsNonDigits')
 								"
 							>
-								Pogrešan format mesečnih primanja.
+								Pogrešan format mesečnih primanja - podržane su
+								samo cifre.
 							</mat-error>
 						</mat-form-field>
 						<!--				education level normal input-->
@@ -228,6 +231,7 @@
 						mat-raised-button
 						color="accent"
 						type="submit"
+						[disabled]="!creditRequestForm.valid"
 					>
 						Napravi
 					</button>

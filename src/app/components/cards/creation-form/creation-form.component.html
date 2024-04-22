@@ -86,7 +86,7 @@
 						?.hasError('containsNonDigits')
 				"
 			>
-				Pogrešan format za limit.
+				Pogrešan format za limit - podržane su samo cifre.
 			</mat-error>
 		</mat-form-field>
 
@@ -95,6 +95,7 @@
 				mat-raised-button
 				color="accent"
 				type="submit"
+				[disabled]="!createCardForm.valid"
 			>
 				Napravi
 			</button>

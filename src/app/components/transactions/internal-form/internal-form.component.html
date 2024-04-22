@@ -75,24 +75,24 @@
 		</div>
 
 		<mat-form-field>
-			<mat-label>Količina</mat-label>
+			<mat-label>Iznos</mat-label>
 			<input
 				matInput
-				placeholder="Unesite količinu"
+				placeholder="Unesite iznos novca"
 				formControlName="amount"
 				type="text"
 			/>
 			<mat-error
 				*ngIf="transactionForm.get('amount')?.hasError('required')"
 			>
-				Količina je obavezna.
+				Iznos je obavezan.
 			</mat-error>
 			<mat-error
 				*ngIf="
 					transactionForm.get('amount')?.hasError('containsNonDigits')
 				"
 			>
-				Pogrešan format za količinu novca.
+				Pogrešan format za iznos novca - podržane su samo cifre.
 			</mat-error>
 		</mat-form-field>
 
@@ -101,6 +101,7 @@
 				mat-raised-button
 				color="accent"
 				type="submit"
+				[disabled]="!transactionForm.valid"
 			>
 				Pošalji
 			</button>

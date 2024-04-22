@@ -92,6 +92,7 @@ import { MatSliderModule } from '@angular/material/slider';
 // PROVIDERS
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
+import { AgentInfoDialogComponent } from './components/agents/agent-info-dialog/agent-info-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -150,6 +151,7 @@ import { AlertInterceptor } from './interceptors/alert.interceptor';
 		ChangeLimitFormComponent,
 		BankExchangeComponent,
 		FuturesContractInfoDialogComponent,
+  AgentInfoDialogComponent,
 	],
 	imports: [
 		HttpClientModule,

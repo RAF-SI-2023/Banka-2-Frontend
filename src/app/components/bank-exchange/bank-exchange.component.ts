@@ -88,7 +88,9 @@ export class BankExchangeComponent implements OnInit {
 		this.exchangeForm.get('toAccount')?.valueChanges.subscribe(Response => {
 			this.getAccountBalance(Response, false); // Pass false for ToAcc
 		});
+	}
 
+	ngAfterViewInit() {
 		if (this.paginator) this.dataSource.paginator = this.paginator;
 		if (this.sort) this.dataSource.sort = this.sort;
 	}

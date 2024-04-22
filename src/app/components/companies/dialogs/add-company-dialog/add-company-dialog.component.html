@@ -9,9 +9,20 @@
 				<mat-label>Ime kompanije</mat-label>
 				<input
 					matInput
+					placeholder="Unesite ime kompanije"
 					formControlName="companyName"
 					name="companyName"
+					required
 				/>
+				<mat-error
+					*ngIf="
+						createCompanyForm
+							.get('companyName')
+							?.hasError('required')
+					"
+				>
+					Ime kompanije je obavezno.
+				</mat-error>
 			</mat-form-field>
 			<mat-form-field class="full-width">
 				<mat-label>Broj faksa</mat-label>
@@ -19,14 +30,33 @@
 					matInput
 					formControlName="faxNumber"
 					name="faxNumber"
+					required
 				/>
+				<mat-error
+					*ngIf="
+						createCompanyForm.get('faxNumber')?.hasError('required')
+					"
+				>
+					Broj faksa je obavezan.
+				</mat-error>
+				<mat-error
+					*ngIf="
+						createCompanyForm
+							.get('faxNumber')
+							?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format za broj faksa - podržane su samo cifre.
+				</mat-error>
 			</mat-form-field>
 			<mat-form-field class="full-width">
 				<mat-label>Broj telefona</mat-label>
 				<input
 					matInput
+					placeholder="Unesite broj telefona"
 					formControlName="phoneNumber"
 					name="phoneNumber"
+					required
 				/>
 				<mat-error
 					*ngIf="
@@ -52,33 +82,128 @@
 				<mat-label>PIB</mat-label>
 				<input
 					matInput
+					placeholder="Unesite PIB"
 					formControlName="pib"
 					name="pib"
+					required
 				/>
+				<mat-error
+					*ngIf="createCompanyForm.get('pib')?.hasError('required')"
+				>
+					PIB je obavezan.
+				</mat-error>
+				<mat-error
+					*ngIf="
+						createCompanyForm
+							.get('pib')
+							?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format za PIB - podržane su samo cifre.
+				</mat-error>
 			</mat-form-field>
 			<mat-form-field class="full-width">
 				<mat-label>Registarski broj</mat-label>
 				<input
 					matInput
+					placeholder="Unesite registarski broj"
 					formControlName="registryNumber"
 					name="registryNumber"
+					required
 				/>
+				<mat-error
+					*ngIf="
+						createCompanyForm
+							.get('registryNumber')
+							?.hasError('required')
+					"
+				>
+					Registarski broj je obavezan.
+				</mat-error>
+				<mat-error
+					*ngIf="
+						createCompanyForm
+							.get('registryNumber')
+							?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format za registarski broj - podržane su samo
+					cifre.
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="full-width">
+				<mat-label>Matični broj</mat-label>
+				<input
+					matInput
+					placeholder="Unesite matični broj"
+					formControlName="identificationNumber"
+					name="identificationNumber"
+					required
+				/>
+				<mat-error
+					*ngIf="
+						createCompanyForm
+							.get('identificationNumber')
+							?.hasError('required')
+					"
+				>
+					Matični broj je obavezan.
+				</mat-error>
+				<mat-error
+					*ngIf="
+						createCompanyForm
+							.get('identificationNumber')
+							?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format za matični broj - podržane su samo cifre.
+				</mat-error>
 			</mat-form-field>
 			<mat-form-field class="full-width">
 				<mat-label>Šifra delatnosti</mat-label>
 				<input
 					matInput
+					placeholder="Unesite šifru delatnosti"
 					formControlName="activityCode"
 					name="activityCode"
+					required
 				/>
+				<mat-error
+					*ngIf="
+						createCompanyForm
+							.get('activityCode')
+							?.hasError('required')
+					"
+				>
+					Šifra delatnosti je obavezna.
+				</mat-error>
+				<mat-error
+					*ngIf="
+						createCompanyForm
+							.get('activityCode')
+							?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format za šifru delatnosti - podržane su samo
+					cifre.
+				</mat-error>
 			</mat-form-field>
 			<mat-form-field class="full-width">
 				<mat-label>Adresa</mat-label>
 				<input
 					matInput
+					placeholder="Unesite adresu"
 					formControlName="address"
 					name="address"
+					required
 				/>
+				<mat-error
+					*ngIf="
+						createCompanyForm.get('address')?.hasError('required')
+					"
+				>
+					Adresa je obavezna.
+				</mat-error>
 			</mat-form-field>
 		</div>
 	</form>
@@ -89,8 +214,8 @@
 		[mat-dialog-close]="true"
 		color="accent"
 		cdkFocusInitial
-		[disabled]="createCompanyForm.invalid"
 		(click)="addCompany()"
+		[disabled]="!createCompanyForm.valid"
 	>
 		Dodaj
 	</button>

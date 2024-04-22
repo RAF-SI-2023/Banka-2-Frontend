@@ -6,6 +6,7 @@ import {
 	emailValidator,
 	phoneNumberValidator,
 } from '../../../../utils/validators';
+import { digitValidator } from 'src/app/utils/validators/digit.validator';
 
 @Component({
 	selector: 'app-add-agent-dialog',
@@ -26,8 +27,8 @@ export class AddAgentDialogComponent {
 		dateOfBirth: ['', [Validators.required]],
 		phone: ['', [Validators.required, phoneNumberValidator()]],
 		address: ['', [Validators.required]],
-		limit: [null, [Validators.required]],
-		leftOfLimit: [null, [Validators.required]],
+		limit: [null, [Validators.required, digitValidator()]],
+		leftOfLimit: [null, [Validators.required, digitValidator()]],
 		permissions: [[]], // Add permissions field to form
 	});
 
@@ -66,9 +67,8 @@ export class AddAgentDialogComponent {
 
 				console.log(agentDto);
 				this.userService.postCreateAgent(agentDto).subscribe({
-					next: response => console.log('Agent dodat', response),
-					error: error =>
-						console.error('Greška pri dodavanju agenta', error),
+					next: response => console.log(response),
+					error: error => console.error(error),
 				});
 			} else {
 				console.error('Form controls are null.');
