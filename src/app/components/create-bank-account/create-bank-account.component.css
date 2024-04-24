@@ -36,6 +36,11 @@ mat-card-content {
 	overflow-y: auto;
 }
 
+.parent-card{
+	max-height: 500px;
+	height: 100%;
+}
+
 
 .buttons {
 	display: flex;

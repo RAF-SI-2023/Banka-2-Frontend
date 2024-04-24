@@ -123,12 +123,12 @@
 					<!--   EMPLOYEE END     -->
 				</tbody>
 
-				<tr>
+				<tr *ngIf="user?.role === Role.ADMIN || user?.role === Role.USER">
 					<td><b>Računi:</b></td>
 				</tr>
 			</table>
 
-			<div class="tableContainer">
+			<div *ngIf="user?.role === Role.ADMIN || user?.role === Role.USER" class="tableContainer">
 				<div
 					class="mat-elevation-z8"
 					style="box-shadow: none"
