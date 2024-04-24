@@ -29,8 +29,9 @@ mat-card-content {
 }
 
 .tab-content {
-	overflow: hidden;
-	height: fit-content;
+}
+.card-container{
+	overflow-y: auto;
 }
 
 .buttons {
