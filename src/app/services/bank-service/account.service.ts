@@ -6,6 +6,7 @@ import { DomesticAccountDto } from '../../dtos/domestic-account-dto';
 import { ForeignAccountDto } from '../../dtos/foreign-account-dto';
 import { BusinessAccountDto } from '../../dtos/business-account-dto';
 import { AccountDto } from '../../dtos/account-dto';
+import {map} from "rxjs/operators";
 
 @Injectable({
 	providedIn: 'root',
@@ -18,6 +19,16 @@ export class AccountService {
 		return this.httpClient.get<AccountDto[]>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.findAccountsByEmail}/${email}`,
 		);
+	}
+
+	hasAccounts() {
+		//get all accounts by email
+		const email = localStorage.getItem('email');
+		const accounts = this.getFindByEmail(email!).pipe(
+			//check if there are any accounts
+			map((accounts) => accounts.length > 0),
+		)
+		return accounts;
 	}
 
 	// POST

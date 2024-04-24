@@ -25,6 +25,7 @@ import { CardsComponent } from './components/cards/cards.component';
 import { TransactionsComponent } from './components/transactions/transactions/transactions.component';
 import { BankExchangeComponent } from './components/bank-exchange/bank-exchange.component';
 import { FuturesContractsComponent } from './components/futures-contracts/futures-contracts.component';
+import {accountGuard} from "./guards/account.guard";
 
 const routes: Routes = [
 	{
@@ -105,7 +106,7 @@ const routes: Routes = [
 	{
 		component: CreateCreditRequestComponent,
 		path: 'credits/create-credit-request',
-		canActivate: [authGuard],
+		canActivate: [authGuard, accountGuard]
 	},
 	{
 		component: CreditRequestsComponent,
@@ -120,12 +121,12 @@ const routes: Routes = [
 	{
 		component: TransactionsComponent,
 		path: 'transactions',
-		canActivate: [authGuard],
+		canActivate: [authGuard, accountGuard],
 	},
 	{
 		component: BankExchangeComponent,
 		path: 'bank-exchange',
-		canActivate: [authGuard],
+		canActivate: [authGuard, accountGuard],
 	},
 ];
 

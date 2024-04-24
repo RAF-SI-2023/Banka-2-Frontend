@@ -16,6 +16,7 @@
 	</a>
 	<!-- TODO: ngIf PROVERA DA LI POSTOJI RAČUN -->
 	<a
+		*ngIf="hasAccounts"
 		mat-button
 		routerLink="/bank-exchange"
 	>
@@ -23,6 +24,7 @@
 	</a>
 	<!-- TODO: ngIf PROVERA DA LI POSTOJI RAČUN -->
 	<a
+		*ngIf="hasAccounts"
 		mat-button
 		routerLink="/transactions"
 	>
@@ -30,6 +32,7 @@
 	</a>
 	<!-- TODO: ngIf PROVERA DA LI POSTOJI RAČUN -->
 	<a
+		*ngIf="hasAccounts"
 		mat-button
 		routerLink="/credits"
 	>
