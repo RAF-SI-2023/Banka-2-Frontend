@@ -7,6 +7,8 @@
 		"build": "ng build",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
+		"cy:verify": "cypress verify",
+		"cy:info": "cypress info",
 		"lint": "ng lint",
 		"lint:fix": "ng lint --fix",
 		"prettier": "npx prettier --write ."

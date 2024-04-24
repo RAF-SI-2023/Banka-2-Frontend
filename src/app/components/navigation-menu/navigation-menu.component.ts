@@ -7,10 +7,10 @@ import {
 } from '@angular/core';
 import { AuthService } from '../../services/iam-service/auth.service';
 import { Role } from '../../dtos/decoded-token-dto';
-import {Subscription, throwError} from 'rxjs';
-import {catchError, map} from "rxjs/operators";
-import {AccountService} from "../../services/bank-service/account.service";
-import {AccountDto} from "../../dtos/account-dto";
+import { Subscription, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { AccountService } from '../../services/bank-service/account.service';
+import { AccountDto } from '../../dtos/account-dto';
 
 @Component({
 	selector: 'app-navigation-menu',
@@ -20,7 +20,7 @@ import {AccountDto} from "../../dtos/account-dto";
 export class NavigationMenuComponent implements OnInit, OnDestroy {
 	authService = inject(AuthService);
 	bankService = inject(AccountService);
-	private accounts: AccountDto[] = []
+	private accounts: AccountDto[] = [];
 	protected hasAccounts = false;
 	private loginSubscription: Subscription | undefined;
 	private changeDetector = inject(ChangeDetectorRef);

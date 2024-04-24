@@ -4,14 +4,14 @@ import { CanActivateFn } from '@angular/router';
 import { accountGuard } from './account.guard';
 
 describe('accountGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => accountGuard(...guardParameters));
+	const executeGuard: CanActivateFn = (...guardParameters) =>
+		TestBed.runInInjectionContext(() => accountGuard(...guardParameters));
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-  });
+	beforeEach(() => {
+		TestBed.configureTestingModule({});
+	});
 
-  it('should be created', () => {
-    expect(executeGuard).toBeTruthy();
-  });
+	it('should be created', () => {
+		expect(executeGuard).toBeTruthy();
+	});
 });
