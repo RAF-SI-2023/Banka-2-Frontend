@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { UserService } from '../../services/iam-service/user.service';
+import { UserService } from 'src/app/services/iam-service/user.service';
 import { AuthCredentialsDto } from 'src/app/dtos/auth-credentials-dto';
 import { FormBuilder, Validators } from '@angular/forms';
-import { passwordValidator } from '../../utils/validators';
+import { passwordValidator } from 'src/app/utils/validators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-	selector: 'app-password-change',
-	templateUrl: './password-change.component.html',
-	styleUrls: ['./password-change.component.css'],
+	selector: 'app-password-change-dialog',
+	templateUrl: './password-change-dialog.component.html',
+	styleUrls: ['./password-change-dialog.component.css'],
 })
-export class PasswordChangeComponent {
+export class PasswordChangeDialogComponent {
 	passwordChange: AuthCredentialsDto = { email: '', password: '' };
 
 	changePasswordForm = this.fb.group({
@@ -20,10 +20,10 @@ export class PasswordChangeComponent {
 	});
 
 	constructor(
-		private iamService: UserService,
+		private userService: UserService,
 		private fb: FormBuilder,
 		private matSnackBar: MatSnackBar,
-		public dialogRef: MatDialogRef<PasswordChangeComponent>,
+		public dialogRef: MatDialogRef<PasswordChangeDialogComponent>,
 	) {}
 
 	onSubmit(): void {
@@ -56,7 +56,7 @@ export class PasswordChangeComponent {
 			};
 		}
 
-		this.iamService
+		this.userService
 			.postPasswordChange(this.passwordChange)
 			.subscribe(() => {
 				this.dialogRef.close();

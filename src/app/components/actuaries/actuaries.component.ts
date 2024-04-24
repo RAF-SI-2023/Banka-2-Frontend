@@ -10,14 +10,15 @@ import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { UserService } from 'src/app/services/iam-service/user.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AgentInfoDialogComponent } from './agent-info-dialog/agent-info-dialog.component';
+import { ActuaryInfoDialogComponent } from './actuary-info-dialog/actuary-info-dialog.component';
+import { AddAgentDialogComponent } from './add-agent-dialog/add-agent-dialog.component';
 
 @Component({
-	selector: 'app-agents',
-	templateUrl: './agents.component.html',
-	styleUrls: ['./agents.component.css'],
+	selector: 'app-actuaries',
+	templateUrl: './actuaries.component.html',
+	styleUrls: ['./actuaries.component.css'],
 })
-export class AgentsComponent implements AfterViewInit {
+export class ActuariesComponent implements AfterViewInit {
 	displayedColumns: string[] = [
 		'id',
 		'email',
@@ -76,7 +77,8 @@ export class AgentsComponent implements AfterViewInit {
 			.pipe(
 				map(dataSource => {
 					const agents = dataSource.filter(
-						user => user.role === 'AGENT',
+						user =>
+							user.role === 'AGENT' || user.role === 'SUPERVISOR',
 					);
 					this.dataSource.data = agents;
 					return agents;
@@ -98,10 +100,23 @@ export class AgentsComponent implements AfterViewInit {
 
 	viewAgent(row: UserDto): void {
 		if (this.selectedRow != null) {
-			this.dialog.open(AgentInfoDialogComponent, {
+			this.dialog.open(ActuaryInfoDialogComponent, {
 				data: { selectedRow: row },
 			});
 		}
+	}
+
+	addAgent() {
+		const dialogRef = this.dialog.open(AddAgentDialogComponent, {
+			autoFocus: false,
+		});
+
+		dialogRef.afterClosed().subscribe(() => {
+			this.selectedRow = null;
+			setTimeout(() => {
+				this.fetchAllData();
+			}, 1000);
+		});
 	}
 
 	resetLeftOfLimit(): void {

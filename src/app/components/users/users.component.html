@@ -47,14 +47,6 @@
 					mat-raised-button
 					class="buttons"
 					color="accent"
-					(click)="addAgent()"
-				>
-					Dodaj agenta
-				</button>
-				<button
-					mat-raised-button
-					class="buttons"
-					color="accent"
 					(click)="updateUser()"
 					[disabled]="!selectedRow || updateUserDisabled()"
 				>
@@ -66,7 +58,7 @@
 					class="buttons"
 					color="warn"
 					(click)="deleteUser()"
-					[disabled]="!selectedRow || updateUserDisabled()"
+					[disabled]="!selectedRow || deleteUserDisabled()"
 				>
 					Izbriši korisnika
 				</button>

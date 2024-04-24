@@ -6,7 +6,7 @@ export interface ExternalTransactionResponseDto {
 	referenceNumber: string;
 	transactionCode: string;
 	amount: number;
-	createdAt: number; //date time
+	createdAt: number; // DateTime
 	status: 'PENDING' | 'CONFIRMED' | 'DECLINED';
 
 	// private String id;

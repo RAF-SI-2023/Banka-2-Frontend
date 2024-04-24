@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddAgentDialogComponent } from './add-agent-dialog.component';
+import { AddAgentDialogComponent } from '../../agents/add-agent-dialog/add-agent-dialog.component';
 
 describe('AddAgentDialogComponent', () => {
 	let component: AddAgentDialogComponent;

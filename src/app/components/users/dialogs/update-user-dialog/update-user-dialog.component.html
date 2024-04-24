@@ -1,15 +1,19 @@
 <h2 mat-dialog-title>Izmeni korisnika</h2>
 <mat-dialog-content class="mat-typography size">
-	<form>
+	<form
+		[formGroup]="updateUserForm"
+		(ngSubmit)="updateUser()"
+	>
 		<div>
 			<mat-form-field class="full-width">
 				<mat-label>Datum rođenja</mat-label>
 				<input
 					matInput
-					[(ngModel)]="newSelectedRow.dateOfBirth"
-					[matDatepicker]="picker"
+					placeholder="Izaberite datum rođenja"
+					formControlName="dateOfBirth"
 					name="dateOfBirth"
-					placeholder="Izaberi datum"
+					[matDatepicker]="picker"
+					readonly
 				/>
 				<mat-datepicker-toggle
 					matSuffix
@@ -22,12 +26,17 @@
 				<mat-label>Broj telefona</mat-label>
 				<input
 					matInput
-					[(ngModel)]="newSelectedRow.phone"
+					placeholder="Unesite broj telefona"
+					formControlName="phone"
 					name="phone"
-					appPhoneNumberValidator
-					#phoneInput="ngModel"
 				/>
-				<mat-error *ngIf="phoneInput.errors && phoneInput.touched">
+				<mat-error
+					*ngIf="
+						updateUserForm
+							.get('phone')
+							?.hasError('invalidPhoneNumber')
+					"
+				>
 					Unesite validan broj telefona.
 				</mat-error>
 			</mat-form-field>
@@ -36,7 +45,8 @@
 				<mat-label>Adresa</mat-label>
 				<input
 					matInput
-					[(ngModel)]="newSelectedRow.address"
+					placeholder="Unesite adresu"
+					formControlName="address"
 					name="address"
 				/>
 			</mat-form-field>
@@ -53,7 +63,8 @@
 				<mat-label>Ime</mat-label>
 				<input
 					matInput
-					[(ngModel)]="newSelectedRow.name"
+					placeholder="Unesite ime"
+					formControlName="name"
 					name="name"
 				/>
 			</mat-form-field>
@@ -64,22 +75,24 @@
 				<mat-label>Prezime</mat-label>
 				<input
 					matInput
-					[(ngModel)]="newSelectedRow.surname"
+					placeholder="Unesite prezime"
+					formControlName="surname"
 					name="surname"
 				/>
 			</mat-form-field>
 
 			<mat-form-field
 				class="full-width"
-				*ngIf="newSelectedRow; instanceof: PrivateClientDto"
+				*ngIf="row; instanceof: PrivateClientDto"
 			>
 				<mat-label>Pol</mat-label>
 				<mat-select
-					[(ngModel)]="newSelectedRow.gender"
+					placeholder="Izaberite pol"
+					formControlName="gender"
 					name="gender"
 				>
-					<mat-option value="M"> Muški </mat-option>
-					<mat-option value="Ž"> Ženski </mat-option>
+					<mat-option value="M">Muški</mat-option>
+					<mat-option value="Ž">Ženski</mat-option>
 				</mat-select>
 			</mat-form-field>
 		</div>
@@ -89,19 +102,18 @@
 				<mat-label>Pozicija</mat-label>
 				<input
 					matInput
-					[(ngModel)]="newSelectedRow.position"
+					placeholder="Unesite poziciju na kojoj zaposleni radi"
+					formControlName="position"
 					name="position"
 				/>
 			</mat-form-field>
 
-			<mat-form-field
-				class="full-width"
-				*ngIf="newSelectedRow; instanceof: PrivateClientDto"
-			>
+			<mat-form-field class="full-width">
 				<mat-label>Odeljenje</mat-label>
 				<input
 					matInput
-					[(ngModel)]="newSelectedRow.department"
+					placeholder="Unesite odeljenje u kome se zaposleni vodi"
+					formControlName="department"
 					name="department"
 				/>
 			</mat-form-field>
@@ -115,7 +127,7 @@
 		color="accent"
 		cdkFocusInitial
 		(click)="updateUser()"
-		[disabled]="phoneInput.errors && phoneInput.touched"
+		[disabled]="!updateUserForm.valid"
 	>
 		Izmeni
 	</button>

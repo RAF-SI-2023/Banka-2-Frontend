@@ -33,57 +33,6 @@
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
-				<mat-label>Ime</mat-label>
-				<input
-					matInput
-					placeholder="Unesite ime"
-					formControlName="name"
-					name="name"
-				/>
-				<mat-error
-					*ngIf="createEmployeeForm.get('name')?.hasError('required')"
-				>
-					Ime je obavezno.
-				</mat-error>
-			</mat-form-field>
-
-			<mat-form-field class="full-width">
-				<mat-label>Prezime</mat-label>
-				<input
-					matInput
-					placeholder="Unesite prezime"
-					formControlName="surname"
-					name="surname"
-				/>
-				<mat-error
-					*ngIf="
-						createEmployeeForm.get('surname')?.hasError('required')
-					"
-				>
-					Prezime je obavezno.
-				</mat-error>
-			</mat-form-field>
-
-			<mat-form-field class="full-width">
-				<mat-label>Pol</mat-label>
-				<mat-select
-					placeholder="Izaberite pol"
-					formControlName="gender"
-					name="gender"
-				>
-					<mat-option value="M">Muški</mat-option>
-					<mat-option value="Ž">Ženski</mat-option>
-				</mat-select>
-				<mat-error
-					*ngIf="
-						createEmployeeForm.get('gender')?.hasError('required')
-					"
-				>
-					Pol je obavezan.
-				</mat-error>
-			</mat-form-field>
-
-			<mat-form-field class="full-width">
 				<mat-label>Datum rođenja</mat-label>
 				<input
 					matInput
@@ -91,6 +40,7 @@
 					formControlName="dateOfBirth"
 					[matDatepicker]="picker"
 					name="dateOfBirth"
+					readonly
 				/>
 				<mat-datepicker-toggle
 					matSuffix
@@ -148,6 +98,57 @@
 					"
 				>
 					Adresa je obavezna.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>Ime</mat-label>
+				<input
+					matInput
+					placeholder="Unesite ime"
+					formControlName="name"
+					name="name"
+				/>
+				<mat-error
+					*ngIf="createEmployeeForm.get('name')?.hasError('required')"
+				>
+					Ime je obavezno.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>Prezime</mat-label>
+				<input
+					matInput
+					placeholder="Unesite prezime"
+					formControlName="surname"
+					name="surname"
+				/>
+				<mat-error
+					*ngIf="
+						createEmployeeForm.get('surname')?.hasError('required')
+					"
+				>
+					Prezime je obavezno.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>Pol</mat-label>
+				<mat-select
+					placeholder="Izaberite pol"
+					formControlName="gender"
+					name="gender"
+				>
+					<mat-option value="M">Muški</mat-option>
+					<mat-option value="Ž">Ženski</mat-option>
+				</mat-select>
+				<mat-error
+					*ngIf="
+						createEmployeeForm.get('gender')?.hasError('required')
+					"
+				>
+					Pol je obavezan.
 				</mat-error>
 			</mat-form-field>
 

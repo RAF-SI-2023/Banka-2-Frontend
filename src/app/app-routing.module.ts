@@ -17,7 +17,7 @@ import { CurrencyExchangeComponent } from './components/currency-exchange/curren
 import { OptionsComponent } from './components/options/options.component';
 import { ForexComponent } from './components/forex/forex.component';
 import { CompaniesComponent } from './components/companies/companies.component';
-import { AgentsComponent } from './components/agents/agents.component';
+import { ActuariesComponent } from './components/actuaries/actuaries.component';
 import { CreditsComponent } from './components/credits/credits.component';
 import { CreateCreditRequestComponent } from './components/create-credit-request/create-credit-request.component';
 import { CreditRequestsComponent } from './components/credit-requests/credit-requests.component';
@@ -93,8 +93,8 @@ const routes: Routes = [
 		canActivate: [authGuard],
 	},
 	{
-		component: AgentsComponent,
-		path: 'agents',
+		component: ActuariesComponent,
+		path: 'actuaries',
 		canActivate: [authGuard],
 	},
 	{

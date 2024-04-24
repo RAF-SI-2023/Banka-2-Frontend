@@ -90,7 +90,7 @@ export class BankExchangeComponent implements OnInit {
 		});
 	}
 
-	ngAfterViewInit() {
+	initTableElements() {
 		if (this.paginator) this.dataSource.paginator = this.paginator;
 		if (this.sort) this.dataSource.sort = this.sort;
 	}
@@ -145,6 +145,7 @@ export class BankExchangeComponent implements OnInit {
 			.pipe(
 				map(dataSource => {
 					this.dataSource.data = dataSource;
+					this.initTableElements();
 					return dataSource;
 				}),
 				catchError(error => {

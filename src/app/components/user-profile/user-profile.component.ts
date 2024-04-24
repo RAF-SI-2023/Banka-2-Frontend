@@ -10,7 +10,7 @@ import {
 	isCorporateClientDto,
 } from '../../dtos/corporate-client-dto';
 import { OnInit } from '@angular/core';
-import { PasswordChangeComponent } from '../password-change/password-change.component';
+import { PasswordChangeDialogComponent } from './password-change-dialog/password-change-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Role } from '../../dtos/decoded-token-dto';
 import { EmployeeDto } from '../../dtos/employee-dto';
@@ -139,7 +139,7 @@ export class UserProfileComponent implements OnInit {
 	}
 
 	openPasswordChangeDialog(): void {
-		const dialogRef = this.dialog.open(PasswordChangeComponent, {
+		const dialogRef = this.dialog.open(PasswordChangeDialogComponent, {
 			autoFocus: false,
 		});
 

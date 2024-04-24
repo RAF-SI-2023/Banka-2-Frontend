@@ -36,6 +36,7 @@
 					formControlName="dateOfBirth"
 					[matDatepicker]="picker"
 					name="dateOfBirth"
+					readonly
 				/>
 				<mat-datepicker-toggle
 					matSuffix
@@ -116,10 +117,10 @@
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
-				<mat-label>Iskorišćeni limit</mat-label>
+				<mat-label>Neiskorišćeni limit</mat-label>
 				<input
 					matInput
-					placeholder="Unesite iskorišćeni limit agenta"
+					placeholder="Unesite neiskorišćeni limit agenta"
 					formControlName="leftOfLimit"
 					name="leftOfLimit"
 					required
@@ -129,7 +130,7 @@
 						createAgentForm.get('leftOfLimit')?.hasError('required')
 					"
 				>
-					Iskorišćeni limit je obavezan.
+					Neiskorišćeni limit je obavezan.
 				</mat-error>
 				<mat-error
 					*ngIf="
@@ -138,7 +139,7 @@
 							?.hasError('containsNonDigits')
 					"
 				>
-					Pogrešan format iskorišćenog limita - podržane su samo
+					Pogrešan format neiskorišćenog limita - podržane su samo
 					cifre.
 				</mat-error>
 			</mat-form-field>

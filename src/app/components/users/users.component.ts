@@ -1,10 +1,8 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 import { validateHorizontalPosition } from '@angular/cdk/overlay';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { AuthService } from 'src/app/services/iam-service/auth.service';
 import { UserDto } from 'src/app/dtos/user-dto';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -13,7 +11,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { UpdateUserDialogComponent } from './dialogs/update-user-dialog/update-user-dialog.component';
 import { AddEmployeeDialogComponent } from './dialogs/add-employee-dialog/add-employee-dialog.component';
 import { EmployeeDto } from 'src/app/dtos/employee-dto';
-import { AddAgentDialogComponent } from './dialogs/add-agent-dialog/add-agent-dialog.component';
 import { UserInfoDialogComponent } from './dialogs/user-info-dialog/user-info-dialog.component';
 
 @Component({
@@ -40,8 +37,6 @@ export class UsersComponent implements AfterViewInit {
 	activeUser: UserDto | null = null;
 
 	constructor(
-		private http: HttpClient,
-		private authService: AuthService,
 		private userService: UserService,
 		public dialog: MatDialog,
 	) {
@@ -72,7 +67,7 @@ export class UsersComponent implements AfterViewInit {
 		}
 	}
 
-	selectRow(row: UserDto): void {
+	selectRow(row: UserDto) {
 		if (this.selectedRow?.id != row.id) {
 			this.selectedRow = row;
 		}
@@ -81,14 +76,29 @@ export class UsersComponent implements AfterViewInit {
 	selectedRowRole(): string {
 		return this.selectedRow?.role ?? '';
 	}
-	clearSelection() {
-		this.selectedRow = null;
-	}
+
 	selectedRowActive(): boolean {
 		return (this.selectedRow as EmployeeDto)?.active ?? false;
 	}
 
+	clearSelection() {
+		this.selectedRow = null;
+	}
+
 	updateUserDisabled(): boolean {
+		if (
+			this.selectedRow?.role == 'ADMIN' ||
+			this.selectedRow?.role == 'SUPERVISOR' ||
+			this.selectedRow?.role == 'AGENT' ||
+			(this.activeUser?.role == 'EMPLOYEE' &&
+				this.selectedRow?.role == 'EMPLOYEE')
+		) {
+			return true;
+		}
+		return false;
+	}
+
+	deleteUserDisabled(): boolean {
 		if (
 			this.selectedRow?.role == 'ADMIN' ||
 			(this.activeUser?.role == 'EMPLOYEE' &&
@@ -99,7 +109,7 @@ export class UsersComponent implements AfterViewInit {
 		return false;
 	}
 
-	fetchAllData(): void {
+	fetchAllData() {
 		this.userService
 			.getFindAll()
 			.pipe(
@@ -115,7 +125,7 @@ export class UsersComponent implements AfterViewInit {
 			.subscribe();
 	}
 
-	fetchActiveUserData(): void {
+	fetchActiveUserData() {
 		this.userService
 			.getFindById(Number(localStorage.getItem('id')))
 			.pipe(
@@ -131,7 +141,7 @@ export class UsersComponent implements AfterViewInit {
 			.subscribe();
 	}
 
-	viewUser(row: UserDto): void {
+	viewUser(row: UserDto) {
 		if (this.selectedRow != null) {
 			this.dialog.open(UserInfoDialogComponent, {
 				data: { selectedRow: row },
@@ -140,7 +150,7 @@ export class UsersComponent implements AfterViewInit {
 		}
 	}
 
-	activateEmployee(): void {
+	activateEmployee() {
 		if (this.selectedRow != null && this.selectedRow.role == 'EMPLOYEE') {
 			this.userService
 				.putActivateEmployee(this.selectedRow.id)
@@ -157,7 +167,7 @@ export class UsersComponent implements AfterViewInit {
 		}
 	}
 
-	deactivateEmployee(): void {
+	deactivateEmployee() {
 		if (this.selectedRow != null && this.selectedRow.role == 'EMPLOYEE') {
 			this.userService
 				.putDeactivateEmployee(this.selectedRow.id)
@@ -174,7 +184,7 @@ export class UsersComponent implements AfterViewInit {
 		}
 	}
 
-	addEmployee(): void {
+	addEmployee() {
 		const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
 			autoFocus: false,
 		});
@@ -187,20 +197,7 @@ export class UsersComponent implements AfterViewInit {
 		});
 	}
 
-	addAgent(): void {
-		const dialogRef = this.dialog.open(AddAgentDialogComponent, {
-			autoFocus: false,
-		});
-
-		dialogRef.afterClosed().subscribe(() => {
-			this.selectedRow = null;
-			setTimeout(() => {
-				this.fetchAllData();
-			}, 1000);
-		});
-	}
-
-	updateUser(): void {
+	updateUser() {
 		if (this.selectedRow != null) {
 			const dialogRef = this.dialog.open(UpdateUserDialogComponent, {
 				data: { selectedRow: this.selectedRow },
@@ -216,7 +213,7 @@ export class UsersComponent implements AfterViewInit {
 		}
 	}
 
-	deleteUser(): void {
+	deleteUser() {
 		if (this.selectedRow != null) {
 			this.userService
 				.delete(this.selectedRow.email)

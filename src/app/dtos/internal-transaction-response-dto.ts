@@ -3,7 +3,7 @@ export interface InternalTransactionResponseDto {
 	senderAccountNumber: string;
 	receiverAccountNumber: string;
 	amount: number;
-	createdAt: number; //date time
+	createdAt: number; // DateTime
 	status: 'PENDING' | 'CONFIRMED' | 'DECLINED';
 
 	// private String id;

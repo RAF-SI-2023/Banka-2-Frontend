@@ -8,16 +8,15 @@ import { LoginComponent } from './components/login/login.component';
 import { CreateBankProfileComponent } from './components/create-bank-profile/create-bank-profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { PasswordChangeComponent } from './components/password-change/password-change.component';
 import { UsersComponent } from './components/users/users.component';
 import { AddEmployeeDialogComponent } from './components/users/dialogs/add-employee-dialog/add-employee-dialog.component';
-import { AddAgentDialogComponent } from './components/users/dialogs/add-agent-dialog/add-agent-dialog.component';
+import { AddAgentDialogComponent } from './components/actuaries/add-agent-dialog/add-agent-dialog.component';
 import { UpdateUserDialogComponent } from './components/users/dialogs/update-user-dialog/update-user-dialog.component';
 import { CreateBankAccountComponent } from './components/create-bank-account/create-bank-account.component';
 import { NavigationMenuComponent } from './components/navigation-menu/navigation-menu.component';
 import { DomesticFormComponent } from './components/create-bank-account/domestic-form/domestic-form.component';
 import { ForeignFormComponent } from './components/create-bank-account/foreign-form/foreign-form.component';
-import { CompanyFormComponent } from './components/create-bank-account/company-form/company-form.component';
+import { BusinessFormComponent } from './components/create-bank-account/business-form/business-form.component';
 import { StocksComponent } from './components/stocks/stocks.component';
 import { CurrencyExchangeComponent } from './components/currency-exchange/currency-exchange.component';
 import { ForexComponent } from './components/forex/forex.component';
@@ -28,7 +27,7 @@ import { CompaniesComponent } from './components/companies/companies.component';
 import { CompanyInfoDialogComponent } from './components/companies/dialogs/company-info-dialog/company-info-dialog.component';
 import { CurrencyInfoDialogComponent } from './components/currency-exchange/dialogs/currency-info-dialog/currency-info-dialog.component';
 import { ExchangeInfoDialogComponent } from './components/currency-exchange/dialogs/exchange-info-dialog/exchange-info-dialog.component';
-import { AgentsComponent } from './components/agents/agents.component';
+import { ActuariesComponent } from './components/actuaries/actuaries.component';
 import { CreditsComponent } from './components/credits/credits.component';
 import { CreditInfoDialogComponent } from './components/credits/dialogs/credit-info-dialog/credit-info-dialog.component';
 import { CreateCreditRequestComponent } from './components/create-credit-request/create-credit-request.component';
@@ -50,12 +49,12 @@ import { ChangeLimitFormComponent } from './components/cards/change-limit-form/c
 import { BankExchangeComponent } from './components/bank-exchange/bank-exchange.component';
 import { FuturesContractsComponent } from './components/futures-contracts/futures-contracts.component';
 import { FuturesContractInfoDialogComponent } from './components/futures-contracts/futures-contract-info-dialog/futures-contract-info-dialog.component';
+import { ActuaryInfoDialogComponent } from './components/actuaries/actuary-info-dialog/actuary-info-dialog.component';
+import { PasswordChangeDialogComponent } from './components/user-profile/password-change-dialog/password-change-dialog.component';
 /// DIRECTIVES/PIPES
-import { PhoneNumberValidatorDirective } from './directives/phone-number-validator.directive';
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
 import { EpochToDatePipe } from './pipes/epoch-to-date.pipe';
-import { EmailValidatorDirective } from './directives/email-validator.directive';
 import { TranslatePipe } from './pipes/translate.pipe';
 import { AccountNumberFormatPipe } from './pipes/account-number-format.pipe';
 
@@ -92,7 +91,14 @@ import { MatSliderModule } from '@angular/material/slider';
 // PROVIDERS
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
-import { AgentInfoDialogComponent } from './components/agents/agent-info-dialog/agent-info-dialog.component';
+
+import {
+	DateAdapter,
+	MAT_DATE_FORMATS,
+	MAT_DATE_LOCALE,
+} from '@angular/material/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DATE_FORMAT } from './utils/constants';
 
 @NgModule({
 	declarations: [
@@ -102,7 +108,7 @@ import { AgentInfoDialogComponent } from './components/agents/agent-info-dialog/
 		CreateBankProfileComponent,
 		HomeComponent,
 		UserProfileComponent,
-		PasswordChangeComponent,
+		PasswordChangeDialogComponent,
 		UsersComponent,
 		AddEmployeeDialogComponent,
 		AddAgentDialogComponent,
@@ -111,14 +117,12 @@ import { AgentInfoDialogComponent } from './components/agents/agent-info-dialog/
 		NavigationMenuComponent,
 		DomesticFormComponent,
 		ForeignFormComponent,
-		CompanyFormComponent,
+		BusinessFormComponent,
 		StocksComponent,
 		CurrencyExchangeComponent,
-		PhoneNumberValidatorDirective,
 		NoPasteDirective,
 		BankAccountMaskDirective,
 		EpochToDatePipe,
-		EmailValidatorDirective,
 		ForexComponent,
 		OptionsComponent,
 		UserInfoDialogComponent,
@@ -127,7 +131,7 @@ import { AgentInfoDialogComponent } from './components/agents/agent-info-dialog/
 		CompanyInfoDialogComponent,
 		CurrencyInfoDialogComponent,
 		ExchangeInfoDialogComponent,
-		AgentsComponent,
+		ActuariesComponent,
 		CreditsComponent,
 		CreditInfoDialogComponent,
 		CreateCreditRequestComponent,
@@ -151,7 +155,7 @@ import { AgentInfoDialogComponent } from './components/agents/agent-info-dialog/
 		ChangeLimitFormComponent,
 		BankExchangeComponent,
 		FuturesContractInfoDialogComponent,
-  AgentInfoDialogComponent,
+		ActuaryInfoDialogComponent,
 	],
 	imports: [
 		HttpClientModule,
@@ -191,6 +195,12 @@ import { AgentInfoDialogComponent } from './components/agents/agent-info-dialog/
 			useClass: AlertInterceptor,
 			multi: true,
 		},
+		{
+			provide: DateAdapter,
+			useClass: MomentDateAdapter,
+			deps: [MAT_DATE_LOCALE],
+		},
+		{ provide: MAT_DATE_FORMATS, useValue: DATE_FORMAT },
 	],
 	bootstrap: [AppComponent],
 })

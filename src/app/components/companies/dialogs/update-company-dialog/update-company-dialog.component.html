@@ -1,12 +1,16 @@
 <h2 mat-dialog-title>Izmeni kompaniju</h2>
 <mat-dialog-content class="mat-typography size">
-	<form>
+	<form
+		[formGroup]="updateCompanyForm"
+		(ngSubmit)="updateCompany()"
+	>
 		<div>
 			<mat-form-field class="full-width">
-				<mat-label>Ime kompaniju</mat-label>
+				<mat-label>Ime kompanije</mat-label>
 				<input
 					matInput
-					[(ngModel)]="newSelectedRow.companyName"
+					placeholder="Unesite ime kompanije"
+					formControlName="companyName"
 					name="companyName"
 				/>
 			</mat-form-field>
@@ -15,21 +19,36 @@
 				<mat-label>Broj faksa</mat-label>
 				<input
 					matInput
-					[(ngModel)]="newSelectedRow.faxNumber"
+					placeholder="Unesite broj faksa"
+					formControlName="faxNumber"
 					name="faxNumber"
 				/>
+				<mat-error
+					*ngIf="
+						updateCompanyForm
+							.get('faxNumber')
+							?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format broja faksa - podržane su samo cifre.
+				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
 				<mat-label>Broj telefona</mat-label>
 				<input
 					matInput
-					[(ngModel)]="newSelectedRow.phoneNumber"
+					placeholder="Unesite broj telefona"
+					formControlName="phoneNumber"
 					name="phoneNumber"
-					appPhoneNumberValidator
-					#phoneInput="ngModel"
 				/>
-				<mat-error *ngIf="phoneInput.errors && phoneInput.touched">
+				<mat-error
+					*ngIf="
+						updateCompanyForm
+							.get('phoneNumber')
+							?.hasError('invalidPhoneNumber')
+					"
+				>
 					Unesite validan broj telefona.
 				</mat-error>
 			</mat-form-field>
@@ -38,43 +57,84 @@
 				<mat-label>PIB</mat-label>
 				<input
 					matInput
-					[(ngModel)]="newSelectedRow.pib"
+					placeholder="Unesite PIB"
+					formControlName="pib"
 					name="pib"
 				/>
+				<mat-error
+					*ngIf="
+						updateCompanyForm
+							.get('pib')
+							?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format PIB-a - podržane su samo cifre.
+				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
 				<mat-label>Registarski broj</mat-label>
 				<input
 					matInput
-					[(ngModel)]="newSelectedRow.registryNumber"
+					placeholder="Unesite registarski broj"
+					formControlName="registryNumber"
 					name="registryNumber"
 				/>
+				<mat-error
+					*ngIf="
+						updateCompanyForm
+							.get('registryNumber')
+							?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format registarskog broja - podržane su samo cifre.
+				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
 				<mat-label>Matični broj</mat-label>
 				<input
 					matInput
-					[(ngModel)]="newSelectedRow.identificationNumber"
+					placeholder="Unesite matični broj"
+					formControlName="identificationNumber"
 					name="identificationNumber"
 				/>
+				<mat-error
+					*ngIf="
+						updateCompanyForm
+							.get('identificationNumber')
+							?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format matičnog broja - podržane su samo cifre.
+				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
 				<mat-label>Šifra delatnosti</mat-label>
 				<input
 					matInput
-					[(ngModel)]="newSelectedRow.activityCode"
+					placeholder="Unesite šifru delatnosti"
+					formControlName="activityCode"
 					name="activityCode"
 				/>
+				<mat-error
+					*ngIf="
+						updateCompanyForm
+							.get('activityCode')
+							?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format šifre delatnosti - podržane su samo cifre.
+				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
 				<mat-label>Adresa</mat-label>
 				<input
 					matInput
-					[(ngModel)]="newSelectedRow.address"
+					placeholder="Unesite ime kompanije"
+					formControlName="address"
 					name="address"
 				/>
 			</mat-form-field>
@@ -88,7 +148,7 @@
 		color="accent"
 		cdkFocusInitial
 		(click)="updateCompany()"
-		[disabled]="phoneInput.errors && phoneInput.touched"
+		[disabled]="!updateCompanyForm.valid"
 	>
 		Izmeni
 	</button>

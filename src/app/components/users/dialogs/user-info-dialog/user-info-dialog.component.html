@@ -82,6 +82,14 @@
 				newSelectedRow.department ? newSelectedRow.department : '-'
 			}}</span>
 		</div>
+		<div
+			*ngIf="checkDto() === 'EMPLOYEE'"
+			class="info-row"
+		>
+			<span class="label">{{
+				newSelectedRow.active ? 'Aktivan' : 'Neaktivan'
+			}}</span>
+		</div>
 
 		<div
 			*ngIf="checkDto() === 'AGENT'"
@@ -96,7 +104,7 @@
 			*ngIf="checkDto() === 'AGENT'"
 			class="info-row"
 		>
-			<span class="label">Iskorišćeni limit:</span>
+			<span class="label">Neiskorišćeni limit:</span>
 			<span>{{
 				newSelectedRow.leftOfLimit ? newSelectedRow.leftOfLimit : '-'
 			}}</span>

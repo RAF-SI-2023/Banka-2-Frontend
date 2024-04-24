@@ -28,7 +28,6 @@ export class UserInfoDialogComponent {
 			.subscribe(response => {
 				this.data.selectedRow = response;
 				this.checkDto();
-				this.prepareValues();
 				this.isLoading = false;
 			});
 	}

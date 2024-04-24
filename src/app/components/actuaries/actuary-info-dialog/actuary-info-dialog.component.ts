@@ -4,11 +4,11 @@ import { UserService } from 'src/app/services/iam-service/user.service';
 import { DatePipe, formatDate } from '@angular/common';
 
 @Component({
-	selector: 'app-agent-info-dialog',
-	templateUrl: './agent-info-dialog.component.html',
-	styleUrls: ['./agent-info-dialog.component.css'],
+	selector: 'app-actuary-info-dialog',
+	templateUrl: './actuary-info-dialog.component.html',
+	styleUrls: ['./actuary-info-dialog.component.css'],
 })
-export class AgentInfoDialogComponent {
+export class ActuaryInfoDialogComponent {
 	newSelectedRow = { ...this.data.selectedRow };
 	isLoading = true;
 	constructor(

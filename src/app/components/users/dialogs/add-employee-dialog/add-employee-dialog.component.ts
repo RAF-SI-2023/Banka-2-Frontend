@@ -23,12 +23,12 @@ export class AddEmployeeDialogComponent {
 
 	createEmployeeForm = this.fb.group({
 		email: ['', [Validators.required, emailValidator()]],
-		name: ['', [Validators.required]],
-		surname: ['', [Validators.required]],
-		gender: ['', [Validators.required]],
 		dateOfBirth: ['', [Validators.required]],
 		phone: ['', [Validators.required, phoneNumberValidator()]],
 		address: ['', [Validators.required]],
+		name: ['', [Validators.required]],
+		surname: ['', [Validators.required]],
+		gender: ['', [Validators.required]],
 		position: ['', [Validators.required]],
 		department: ['', [Validators.required]],
 		active: [true, [Validators.required]],

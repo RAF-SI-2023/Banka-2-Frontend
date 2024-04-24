@@ -5,7 +5,7 @@ import { AgentDto } from 'src/app/dtos/agent-dto';
 import {
 	emailValidator,
 	phoneNumberValidator,
-} from '../../../../utils/validators';
+} from '../../../utils/validators';
 import { digitValidator } from 'src/app/utils/validators/digit.validator';
 
 @Component({

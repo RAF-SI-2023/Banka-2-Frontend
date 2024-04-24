@@ -1,9 +1,9 @@
 import {
 	AfterViewInit,
+	ChangeDetectorRef,
 	Component,
 	inject,
 	ViewChild,
-	ChangeDetectorRef,
 } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { AccountDto } from '../../dtos/account-dto';
@@ -12,7 +12,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { AccountService } from '../../services/bank-service/account.service';
 import { catchError, map } from 'rxjs/operators';
-import { throwError, Subscription } from 'rxjs';
+import { Subscription, throwError } from 'rxjs';
 import { ExchangeRequestDto } from '../../dtos/exchange-request-dto';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BankExchangeService } from '../../services/bank-service/bank-exchange.service';

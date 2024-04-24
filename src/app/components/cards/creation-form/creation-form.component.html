@@ -9,6 +9,7 @@
 			<mat-select
 				placeholder="Izaberite tip kartice"
 				formControlName="cardType"
+				required
 			>
 				<mat-option
 					*ngFor="let option of cardTypeOptions"
@@ -18,7 +19,7 @@
 				</mat-option>
 			</mat-select>
 			<mat-error
-				*ngIf="createCardForm.get('currencyCode')?.hasError('required')"
+				*ngIf="createCardForm.get('cardType')?.hasError('required')"
 			>
 				Tip kartice je obavezan.
 			</mat-error>

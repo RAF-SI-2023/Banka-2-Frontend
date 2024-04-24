@@ -10,11 +10,11 @@ import { BusinessAccountDto } from 'src/app/dtos/business-account-dto';
 import { digitValidator } from 'src/app/utils/validators/digit.validator';
 
 @Component({
-	selector: 'app-company-form',
-	templateUrl: './company-form.component.html',
-	styleUrls: ['./company-form.component.css'],
+	selector: 'app-business-form',
+	templateUrl: './business-form.component.html',
+	styleUrls: ['./business-form.component.css'],
 })
-export class CompanyFormComponent {
+export class BusinessFormComponent {
 	@Input() currencyOptions!: DropdownOption[];
 	bankService = inject(AccountService);
 

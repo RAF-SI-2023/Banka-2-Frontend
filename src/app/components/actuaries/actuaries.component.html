@@ -4,7 +4,7 @@
 			<div class="form">
 				<div>
 					<mat-form-field>
-						<mat-label>Pretraži agente</mat-label>
+						<mat-label>Pretraži aktuare</mat-label>
 						<input
 							#input
 							(keyup)="applyFilter($event)"
@@ -12,7 +12,14 @@
 						/>
 					</mat-form-field>
 				</div>
-
+				<button
+					mat-raised-button
+					class="buttons"
+					color="accent"
+					(click)="addAgent()"
+				>
+					Dodaj agenta
+				</button>
 				<button
 					mat-raised-button
 					class="buttons"
@@ -20,7 +27,7 @@
 					(click)="resetLeftOfLimit()"
 					[disabled]="!selectedRow || resetLeftOfLimitDisabled()"
 				>
-					Resetuj iskorišćeni limit
+					Resetuj neiskorišćeni limit
 				</button>
 			</div>
 		</mat-card-header>
@@ -160,7 +167,7 @@
 								mat-header-cell
 								mat-sort-header
 							>
-								Iskorišćeni limit
+								Neiskorišćeni limit
 							</th>
 							<td
 								*matCellDef="let row"
