@@ -52,9 +52,59 @@ const routes: Routes = [
 		canActivate: [authGuard],
 	},
 	{
+		component: TransactionsComponent,
+		path: 'transactions',
+		canActivate: [authGuard, accountGuard],
+	},
+	{
+		component: BankExchangeComponent,
+		path: 'bank-exchange',
+		canActivate: [authGuard, accountGuard],
+	},
+	{
+		component: CreditsComponent,
+		path: 'credits',
+		canActivate: [authGuard, accountGuard],
+	},
+	{
+		component: CreateCreditRequestComponent,
+		path: 'credits/create-credit-request',
+		canActivate: [authGuard, accountGuard],
+	},
+	{
+		component: CurrencyExchangeComponent,
+		path: 'currency-exchange',
+		canActivate: [authGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
+	},
+	{
+		component: StocksComponent,
+		path: 'stocks',
+		canActivate: [authGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
+	},
+	{
+		component: OptionsComponent,
+		path: 'options/:stockListing',
+		canActivate: [authGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
+	},
+	{
+		component: ForexComponent,
+		path: 'forex',
+		canActivate: [authGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
+	},
+	{
+		component: FuturesContractsComponent,
+		path: 'futures-contracts',
+		canActivate: [authGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
+	},
+	{
 		component: UsersComponent,
 		path: 'users',
-		canActivate: [roleGuard],
+		canActivate: [authGuard, roleGuard],
 		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
 	},
 	{
@@ -66,68 +116,26 @@ const routes: Routes = [
 	{
 		component: CompaniesComponent,
 		path: 'companies',
-		canActivate: [authGuard],
-	},
-	{
-		component: CurrencyExchangeComponent,
-		path: 'currency-exchange',
-		canActivate: [authGuard],
-	},
-	{
-		component: StocksComponent,
-		path: 'stocks',
-		canActivate: [authGuard],
-	},
-	{
-		component: OptionsComponent,
-		path: 'options/:stockListing',
-		canActivate: [authGuard],
-	},
-	{
-		component: ForexComponent,
-		path: 'forex',
-		canActivate: [authGuard],
-	},
-	{
-		component: FuturesContractsComponent,
-		path: 'futures-contracts',
-		canActivate: [authGuard],
+		canActivate: [authGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
 	},
 	{
 		component: ActuariesComponent,
 		path: 'actuaries',
-		canActivate: [authGuard],
-	},
-	{
-		component: CreditsComponent,
-		path: 'credits',
-		canActivate: [authGuard],
-	},
-	{
-		component: CreateCreditRequestComponent,
-		path: 'credits/create-credit-request',
-		canActivate: [authGuard, accountGuard],
+		canActivate: [authGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR] },
 	},
 	{
 		component: CreditRequestsComponent,
 		path: 'credit-requests',
-		canActivate: [authGuard],
+		canActivate: [authGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
 	},
 	{
 		component: CardsComponent,
 		path: 'cards',
-		canActivate: [authGuard],
-		data: { roles: [Role.ADMIN, Role.EMPLOYEE] }
-	},
-	{
-		component: TransactionsComponent,
-		path: 'transactions',
-		canActivate: [authGuard, accountGuard],
-	},
-	{
-		component: BankExchangeComponent,
-		path: 'bank-exchange',
-		canActivate: [authGuard, accountGuard],
+		canActivate: [authGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
 	},
 ];
 

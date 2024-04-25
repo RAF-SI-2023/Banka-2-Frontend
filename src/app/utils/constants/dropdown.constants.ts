@@ -41,8 +41,8 @@ export const DropdownOptions = {
 		{ label: 'Pravno lice', value: 'CORPORATE' },
 	],
 	gender: [
-		{ label: 'Muški', value: 'MALE' },
-		{ label: 'Ženski', value: 'FEMALE' },
+		{ label: 'Muški', value: 'M' },
+		{ label: 'Ženski', value: 'F' },
 	],
 	creditType: [
 		{ label: 'Gotovinski', value: 'GOTOVINSKI' },

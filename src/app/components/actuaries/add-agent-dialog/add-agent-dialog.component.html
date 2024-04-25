@@ -101,7 +101,9 @@
 					required
 				/>
 				<mat-error
-					*ngIf="createAgentForm.get('userLimit')?.hasError('required')"
+					*ngIf="
+						createAgentForm.get('userLimit')?.hasError('required')
+					"
 				>
 					Limit je obavezan.
 				</mat-error>
@@ -144,7 +146,7 @@
 				</mat-error>
 			</mat-form-field>
 
-			<mat-form-field class="full-width">
+			<!-- <mat-form-field class="full-width">
 				<mat-label>Dozvole</mat-label>
 				<mat-select
 					formControlName="permissions"
@@ -157,7 +159,7 @@
 						{{ permission }}
 					</mat-option>
 				</mat-select>
-			</mat-form-field>
+			</mat-form-field> -->
 		</div>
 	</form>
 </mat-dialog-content>

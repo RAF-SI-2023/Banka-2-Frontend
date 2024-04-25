@@ -22,21 +22,23 @@
 					<tr>
 						<td><b>Datum rođenja:</b></td>
 						<td>
-							{{user?.dateOfBirth
-							? (user!.dateOfBirth
-							| epochToDate
-							| date: 'dd.MM.yyyy.')
-							: '-'}}
+							{{
+								user?.dateOfBirth
+									? (user!.dateOfBirth
+										| epochToDate
+										| date: 'dd.MM.yyyy.')
+									: '-'
+							}}
 						</td>
 					</tr>
 					<tr>
 						<td><b>Uloga:</b></td>
 						<td>{{ user?.role ? user?.role : '-' }}</td>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td><b>Dozvole:</b></td>
 						<td>{{ user?.permissions?.join(', ') }}</td>
-					</tr>
+					</tr> -->
 					<!--   USER END     -->
 
 					<!--   PRIVATE START     -->
@@ -66,16 +68,16 @@
 							}}
 						</td>
 					</tr>
-<!--					<tr *ngIf="privateClient">-->
-<!--						<td><b>Primarni broj računa:</b></td>-->
-<!--						<td>-->
-<!--							{{-->
-<!--								privateClient.primaryAccountNumber-->
-<!--									? privateClient.primaryAccountNumber-->
-<!--									: '-'-->
-<!--							}}-->
-<!--						</td>-->
-<!--					</tr>-->
+					<!--					<tr *ngIf="privateClient">-->
+					<!--						<td><b>Primarni broj računa:</b></td>-->
+					<!--						<td>-->
+					<!--							{{-->
+					<!--								privateClient.primaryAccountNumber-->
+					<!--									? privateClient.primaryAccountNumber-->
+					<!--									: '-'-->
+					<!--							}}-->
+					<!--						</td>-->
+					<!--					</tr>-->
 					<!--   PRIVATE END     -->
 
 					<!--   CORPORATE START     -->
@@ -89,16 +91,16 @@
 							}}
 						</td>
 					</tr>
-<!--					<tr *ngIf="corporateClient">-->
-<!--						<td><b>Primarni broj računa:</b></td>-->
-<!--						<td>-->
-<!--							{{-->
-<!--								corporateClient.primaryAccountNumber-->
-<!--									? corporateClient.primaryAccountNumber-->
-<!--									: '-'-->
-<!--							}}-->
-<!--						</td>-->
-<!--					</tr>-->
+					<!--					<tr *ngIf="corporateClient">-->
+					<!--						<td><b>Primarni broj računa:</b></td>-->
+					<!--						<td>-->
+					<!--							{{-->
+					<!--								corporateClient.primaryAccountNumber-->
+					<!--									? corporateClient.primaryAccountNumber-->
+					<!--									: '-'-->
+					<!--							}}-->
+					<!--						</td>-->
+					<!--					</tr>-->
 					<!--   CORPORATE END     -->
 
 					<!--   EMPLOYEE START     -->
@@ -127,12 +129,19 @@
 					<!--   EMPLOYEE END     -->
 				</tbody>
 
-				<tr *ngIf="user?.role === Role.ADMIN || user?.role === Role.USER">
+				<tr
+					*ngIf="
+						user?.role === Role.ADMIN || user?.role === Role.USER
+					"
+				>
 					<td><b>Računi:</b></td>
 				</tr>
 			</table>
 
-			<div *ngIf="user?.role === Role.ADMIN || user?.role === Role.USER" class="tableContainer">
+			<div
+				*ngIf="user?.role === Role.ADMIN || user?.role === Role.USER"
+				class="tableContainer"
+			>
 				<div
 					class="mat-elevation-z8"
 					style="box-shadow: none"
@@ -227,7 +236,10 @@
 					</table>
 				</div>
 			</div>
-			<div *ngIf="user?.role === Role.ADMIN || user?.role === Role.USER" class="paginatorContainer">
+			<div
+				*ngIf="user?.role === Role.ADMIN || user?.role === Role.USER"
+				class="paginatorContainer"
+			>
 				<mat-paginator
 					[hidePageSize]="true"
 					[pageSize]="3"

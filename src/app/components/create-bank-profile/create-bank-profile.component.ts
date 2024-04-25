@@ -101,12 +101,8 @@ export class CreateBankProfileComponent implements OnInit {
 	});
 
 	passwordForm = new FormGroup({
-		password: new FormControl('', [
-			Validators.required,
-		]),
-		passwordRepeat: new FormControl('', [
-			Validators.required,
-		]),
+		password: new FormControl('', [Validators.required]),
+		passwordRepeat: new FormControl('', [Validators.required]),
 	});
 
 	goToNextStep() {
@@ -180,6 +176,12 @@ export class CreateBankProfileComponent implements OnInit {
 	}
 
 	createBankProfile() {
+		const dateOfBirthValue = this.contactInfoForm.value.dateOfBirth;
+		const dateOfBirthEpoch = dateOfBirthValue
+			? new Date(dateOfBirthValue).getTime()
+			: 0;
+		this.dateOfBirth = dateOfBirthEpoch.toString();
+
 		if (this.selectedBankProfileType === 'PRIVATE') {
 			this.userService
 				.postCreatePrivateClient({
