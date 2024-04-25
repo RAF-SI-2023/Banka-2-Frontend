@@ -22,7 +22,11 @@
 					<tr>
 						<td><b>Datum rođenja:</b></td>
 						<td>
-							{{ user?.dateOfBirth ? user?.dateOfBirth : '-' }}
+							{{user?.dateOfBirth
+							? (user!.dateOfBirth
+							| epochToDate
+							| date: 'dd.MM.yyyy.')
+							: '-'}}
 						</td>
 					</tr>
 					<tr>
@@ -62,16 +66,16 @@
 							}}
 						</td>
 					</tr>
-					<tr *ngIf="privateClient">
-						<td><b>Primarni broj računa:</b></td>
-						<td>
-							{{
-								privateClient.primaryAccountNumber
-									? privateClient.primaryAccountNumber
-									: '-'
-							}}
-						</td>
-					</tr>
+<!--					<tr *ngIf="privateClient">-->
+<!--						<td><b>Primarni broj računa:</b></td>-->
+<!--						<td>-->
+<!--							{{-->
+<!--								privateClient.primaryAccountNumber-->
+<!--									? privateClient.primaryAccountNumber-->
+<!--									: '-'-->
+<!--							}}-->
+<!--						</td>-->
+<!--					</tr>-->
 					<!--   PRIVATE END     -->
 
 					<!--   CORPORATE START     -->
@@ -85,16 +89,16 @@
 							}}
 						</td>
 					</tr>
-					<tr *ngIf="corporateClient">
-						<td><b>Primarni broj računa:</b></td>
-						<td>
-							{{
-								corporateClient.primaryAccountNumber
-									? corporateClient.primaryAccountNumber
-									: '-'
-							}}
-						</td>
-					</tr>
+<!--					<tr *ngIf="corporateClient">-->
+<!--						<td><b>Primarni broj računa:</b></td>-->
+<!--						<td>-->
+<!--							{{-->
+<!--								corporateClient.primaryAccountNumber-->
+<!--									? corporateClient.primaryAccountNumber-->
+<!--									: '-'-->
+<!--							}}-->
+<!--						</td>-->
+<!--					</tr>-->
 					<!--   CORPORATE END     -->
 
 					<!--   EMPLOYEE START     -->
@@ -223,7 +227,7 @@
 					</table>
 				</div>
 			</div>
-			<div class="paginatorContainer">
+			<div *ngIf="user?.role === Role.ADMIN || user?.role === Role.USER" class="paginatorContainer">
 				<mat-paginator
 					[hidePageSize]="true"
 					[pageSize]="3"

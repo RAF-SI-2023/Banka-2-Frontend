@@ -103,11 +103,9 @@ export class CreateBankProfileComponent implements OnInit {
 	passwordForm = new FormGroup({
 		password: new FormControl('', [
 			Validators.required,
-			passwordValidator(),
 		]),
 		passwordRepeat: new FormControl('', [
 			Validators.required,
-			passwordValidator(),
 		]),
 	});
 

@@ -16,6 +16,7 @@
 					mat-raised-button
 					class="buttons"
 					color="accent"
+					[disabled]="activeUser?.role === 'EMPLOYEE'"
 					(click)="addAgent()"
 				>
 					Dodaj agenta

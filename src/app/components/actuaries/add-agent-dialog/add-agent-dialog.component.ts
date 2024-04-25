@@ -27,7 +27,7 @@ export class AddAgentDialogComponent {
 		dateOfBirth: ['', [Validators.required]],
 		phone: ['', [Validators.required, phoneNumberValidator()]],
 		address: ['', [Validators.required]],
-		limit: [null, [Validators.required, digitValidator()]],
+		userLimit: [null, [Validators.required, digitValidator()]],
 		leftOfLimit: [null, [Validators.required, digitValidator()]],
 		permissions: [[]], // Add permissions field to form
 	});

@@ -96,12 +96,12 @@
 				<input
 					matInput
 					placeholder="Unesite limit agenta"
-					formControlName="limit"
-					name="limit"
+					formControlName="userLimit"
+					name="userLimit"
 					required
 				/>
 				<mat-error
-					*ngIf="createAgentForm.get('limit')?.hasError('required')"
+					*ngIf="createAgentForm.get('userLimit')?.hasError('required')"
 				>
 					Limit je obavezan.
 				</mat-error>

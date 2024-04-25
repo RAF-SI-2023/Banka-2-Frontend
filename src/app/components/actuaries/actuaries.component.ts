@@ -45,6 +45,7 @@ export class ActuariesComponent implements AfterViewInit {
 	) {
 		this.dataSource = new MatTableDataSource();
 		this.fetchAllData();
+		this.fetchActiveUserData();
 	}
 
 	ngAfterViewInit() {
@@ -92,7 +93,7 @@ export class ActuariesComponent implements AfterViewInit {
 	}
 
 	resetLeftOfLimitDisabled(): boolean {
-		if (this.selectedRow?.role != 'AGENT') {
+		if (this.selectedRow?.role != 'AGENT' || this.activeUser?.role === 'EMPLOYEE') {
 			return true;
 		}
 		return false;
@@ -134,5 +135,21 @@ export class ActuariesComponent implements AfterViewInit {
 					this.fetchAllData();
 				});
 		}
+	}
+
+	fetchActiveUserData() {
+		this.userService
+			.getFindById(Number(localStorage.getItem('id')))
+			.pipe(
+				map(data => {
+					this.activeUser = data;
+					return this.activeUser;
+				}),
+				catchError(error => {
+					console.error('Error loading data.', error);
+					return throwError(() => error);
+				}),
+			)
+			.subscribe();
 	}
 }
