@@ -15,8 +15,8 @@ export class PasswordChangeDialogComponent {
 	passwordChange: AuthCredentialsDto = { email: '', password: '' };
 
 	changePasswordForm = this.fb.group({
-		newPassword: ['', [Validators.required, passwordValidator()]],
-		confirmPassword: ['', [Validators.required, passwordValidator()]],
+		newPassword: ['', [Validators.required]],
+		confirmPassword: ['', [Validators.required]],
 	});
 
 	constructor(

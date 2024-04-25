@@ -60,7 +60,7 @@ const routes: Routes = [
 	{
 		component: CreateBankAccountComponent,
 		path: 'create-bank-account',
-		canActivate: [authGuard],
+		canActivate: [authGuard, roleGuard],
 		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
 	},
 	{
@@ -117,6 +117,7 @@ const routes: Routes = [
 		component: CardsComponent,
 		path: 'cards',
 		canActivate: [authGuard],
+		data: { roles: [Role.ADMIN, Role.EMPLOYEE] }
 	},
 	{
 		component: TransactionsComponent,

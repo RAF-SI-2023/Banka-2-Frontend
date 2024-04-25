@@ -102,7 +102,9 @@ export class UsersComponent implements AfterViewInit {
 		if (
 			this.selectedRow?.role == 'ADMIN' ||
 			(this.activeUser?.role == 'EMPLOYEE' &&
-				this.selectedRow?.role == 'EMPLOYEE')
+				(this.selectedRow?.role == 'EMPLOYEE'
+					|| this.selectedRow?.role == 'SUPERVISOR'
+					|| this.selectedRow?.role == 'AGENT'))
 		) {
 			return true;
 		}

@@ -14,25 +14,22 @@
 			width="40"
 		/>
 	</a>
-	<!-- TODO: ngIf PROVERA DA LI POSTOJI RAČUN -->
 	<a
-		*ngIf="hasAccounts"
+		*ngIf="hasAccounts && !checkTokenRole([Role.SUPERVISOR, Role.AGENT])"
 		mat-button
 		routerLink="/bank-exchange"
 	>
 		Menjačnica
 	</a>
-	<!-- TODO: ngIf PROVERA DA LI POSTOJI RAČUN -->
 	<a
-		*ngIf="hasAccounts"
+		*ngIf="hasAccounts && !checkTokenRole([Role.SUPERVISOR, Role.AGENT])"
 		mat-button
 		routerLink="/transactions"
 	>
 		Transakcije
 	</a>
-	<!-- TODO: ngIf PROVERA DA LI POSTOJI RAČUN -->
 	<a
-		*ngIf="hasAccounts"
+		*ngIf="hasAccounts && !checkTokenRole([Role.SUPERVISOR, Role.AGENT])"
 		mat-button
 		routerLink="/credits"
 	>
@@ -107,7 +104,7 @@
 		</button>
 		<mat-divider></mat-divider>
 		<button
-			*ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR])"
+			*ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR])"
 			mat-menu-item
 			routerLink="/actuaries"
 		>
