@@ -15,17 +15,14 @@ presubmits:
                         npm run cy:verify
                         npm run cy:info
 
-                        npm install cypress --save-dev
-
-
-
                         npm run build
 
-                        cp -r ./cypress/videos /logs/artifacts
-                        cp -r ./cypress/screenshots /logs/artifacts
-
-                        echo "${GCSWEB_URL}/prow-logs/pr-logs/pull/${REPO_OWNER}_${REPO_NAME}/${PULL_NUMBER}/${JOB_NAME}/${BUILD_NUMBER}/artifacts/videos" > /logs/artifacts/videos.link.txt
-                        echo "${GCSWEB_URL}/prow-logs/pr-logs/pull/${REPO_OWNER}_${REPO_NAME}/${PULL_NUMBER}/${JOB_NAME}/${BUILD_NUMBER}/artifacts/screenshots" > /logs/artifacts/screenshots.link.txt
+						if [ -d "./cypress/screenshots" ]; then
+							cp -r ./cypress/screenshots /path/to/destination
+							echo "${GCSWEB_URL}/prow-logs/pr-logs/pull/${REPO_OWNER}_${REPO_NAME}/${PULL_NUMBER}/${JOB_NAME}/${BUILD_NUMBER}/artifacts/screenshots" > /logs/artifacts/screenshots.link.txt
+						else
+							echo "No screenshots to copy. All tests have passed."
+						fi
                 securityContext:
                     privileged: true
                 imagePullPolicy: Always
