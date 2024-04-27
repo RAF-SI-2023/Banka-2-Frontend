@@ -15,17 +15,7 @@ presubmits:
                         npm run cy:verify
                         npm run cy:info
 
-                        npm run start
-
-                        ng_serve_pid=$(ps aux | grep '[n]g serve' | awk '{print $2}')
-
-                        kill "$ng_serve_pid"
-
-                        cp -r ./cypress/videos /logs/artifacts
-                        cp -r ./cypress/screenshots /logs/artifacts
-
-                        echo "${GCSWEB_URL}/prow-logs/pr-logs/pull/${REPO_OWNER}_${REPO_NAME}/${PULL_NUMBER}/${JOB_NAME}/${BUILD_NUMBER}/artifacts/videos" > /logs/artifacts/videos.link.txt
-                        echo "${GCSWEB_URL}/prow-logs/pr-logs/pull/${REPO_OWNER}_${REPO_NAME}/${PULL_NUMBER}/${JOB_NAME}/${BUILD_NUMBER}/artifacts/screenshots" > /logs/artifacts/screenshots.link.txt
+                        npm run build
                 securityContext:
                     privileged: true
                 imagePullPolicy: Always
