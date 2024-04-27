@@ -15,11 +15,11 @@ presubmits:
                         npm run cy:verify
                         npm run cy:info
 
-                        npm run build
-
                         npm install cypress --save-dev
 
                         npx cypress run
+
+                        npm run build
 
 						if [ -d "./cypress/screenshots" ]; then
 							cp -r ./cypress/screenshots /path/to/destination
