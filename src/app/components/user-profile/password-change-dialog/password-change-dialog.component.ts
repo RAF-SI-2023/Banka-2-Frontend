@@ -3,7 +3,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/iam-service/user.service';
 import { AuthCredentialsDto } from 'src/app/dtos/auth-credentials-dto';
 import { FormBuilder, Validators } from '@angular/forms';
-import { passwordValidator } from 'src/app/utils/validators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -32,8 +31,8 @@ export class PasswordChangeDialogComponent {
 			this.changePasswordForm.value.newPassword !==
 			this.changePasswordForm.value.confirmPassword
 		) {
-			this.matSnackBar.open('Lozinke se ne poklapaju!', 'Close', {
-				duration: 5000,
+			this.matSnackBar.open('Lozinke se ne poklapaju!', 'Zatvori', {
+				duration: 4000,
 				horizontalPosition: 'center',
 				verticalPosition: 'top',
 			});

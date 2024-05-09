@@ -7,6 +7,7 @@ import {
 } from '../../../utils/validators';
 import { AccountService } from '../../../services/bank-service/account.service';
 import { DomesticAccountDto } from '../../../dtos/domestic-account-dto';
+import { FormGroupDirective } from '@angular/forms';
 
 @Component({
 	selector: 'app-domestic-form',
@@ -30,7 +31,7 @@ export class DomesticFormComponent {
 
 	constructor(private fb: FormBuilder) {}
 
-	onSubmit() {
+	onSubmit(formDirective: FormGroupDirective) {
 		if (
 			this.domesticBankAccountForm.valid &&
 			this.domesticBankAccountForm
@@ -43,6 +44,7 @@ export class DomesticFormComponent {
 				.postCreateDomesticAccount(account)
 				.subscribe(response => {
 					console.log(response);
+					formDirective.resetForm();
 					this.domesticBankAccountForm.reset();
 				});
 		}

@@ -13,6 +13,7 @@ import { BankExchangeService } from 'src/app/services/bank-service/bank-exchange
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
+import { FormGroupDirective } from '@angular/forms';
 
 @Component({
 	selector: 'app-bank-exchange',
@@ -156,7 +157,7 @@ export class BankExchangeComponent implements OnInit {
 			.subscribe();
 	}
 
-	sendExchangeRequest(): void {
+	sendExchangeRequest(formDirective: FormGroupDirective): void {
 		if (this.exchangeForm.valid) {
 			const exchangeRequestDto = this.exchangeForm
 				.value as unknown as ExchangeRequestDto;
@@ -165,6 +166,7 @@ export class BankExchangeComponent implements OnInit {
 				.pipe(
 					map(response => {
 						console.log(response);
+						formDirective.resetForm();
 						this.exchangeForm.reset();
 						this.getAccounts();
 						this.availableBalanceFromAcc = -1;

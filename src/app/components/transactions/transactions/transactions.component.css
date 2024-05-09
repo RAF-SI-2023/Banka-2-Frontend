@@ -28,14 +28,12 @@ mat-card-content {
 	user-select: none;
 }
 
-.tab-content {
-}
-.card-container{
+.card-container {
 	overflow-y: auto;
 }
 
-.parent-card{
-	max-height: 500px;
+.parent-card {
+	max-height: 30vw;
 	height: 100%;
 }
 

@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { CardDto } from 'src/app/dtos/card-dto';
 import { CardService } from 'src/app/services/bank-service/card.service';
 import { cardNumberValidator } from 'src/app/utils/validators/card-number.validator';
+import { FormGroupDirective } from '@angular/forms';
 
 @Component({
 	selector: 'app-change-status-form',
@@ -24,7 +25,7 @@ export class ChangeStatusFormComponent {
 		],
 	});
 
-	onSubmit() {
+	onSubmit(formDirective: FormGroupDirective) {
 		if (this.changeStatusForm.valid && this.changeStatusForm) {
 			const card = this.changeStatusForm.value as unknown as CardDto;
 			console.log(card);
@@ -38,6 +39,7 @@ export class ChangeStatusFormComponent {
 				)
 				.subscribe(response => {
 					console.log(response);
+					formDirective.resetForm();
 					this.changeStatusForm.reset();
 				});
 		}

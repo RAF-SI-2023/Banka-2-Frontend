@@ -31,11 +31,11 @@ mat-card-content {
 .tab-content {
 }
 
-.card-container{
+.card-container {
 	overflow-y: auto;
 }
 
-.parent-card{
+.parent-card {
 	max-height: 500px;
 	height: 100%;
 }

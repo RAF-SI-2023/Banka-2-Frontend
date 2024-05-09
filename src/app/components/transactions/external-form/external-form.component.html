@@ -2,7 +2,8 @@
 	<form
 		class="form-inputs"
 		[formGroup]="transactionForm"
-		(ngSubmit)="onSubmit()"
+		#formDirective="ngForm"
+		(ngSubmit)="onSubmit(formDirective)"
 	>
 		<mat-form-field>
 			<mat-label>Broj računa uplatioca</mat-label>

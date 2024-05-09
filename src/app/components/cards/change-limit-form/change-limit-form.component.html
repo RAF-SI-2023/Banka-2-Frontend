@@ -2,7 +2,8 @@
 	<form
 		class="form-inputs"
 		[formGroup]="changeLimitForm"
-		(ngSubmit)="onSubmit()"
+		#formDirective="ngForm"
+		(ngSubmit)="onSubmit(formDirective)"
 	>
 		<mat-form-field>
 			<mat-label>Broj kartice</mat-label>

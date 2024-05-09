@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
 	bankAccountNumberValidator,
-	passwordValidator,
 	phoneNumberValidator,
 } from '../../utils/validators';
 import { emailValidator } from '../../utils/validators/email.validator';

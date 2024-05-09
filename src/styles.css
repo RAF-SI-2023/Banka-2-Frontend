@@ -18,9 +18,9 @@
 }
 
 .mat-mdc-snack-bar-container {
-	--mat-mdc-snack-bar-button-color: #ffffff;
 	--mdc-snackbar-supporting-text-color: #ffffff;
 	--mdc-snackbar-action-text-color: #ffffff;
+	--mat-snack-bar-button-color: #ffffff;
 
 	&.app-notification-error {
 		--mdc-snackbar-container-color: #960000;

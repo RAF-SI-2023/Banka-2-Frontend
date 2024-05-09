@@ -9,10 +9,10 @@ export const accountGuard: CanActivateFn = () => {
 	if (!accountService.hasAccounts()) {
 		toast.open(
 			'Morate da imate bar jedan račun da bi ste pristupili ovoj stranici!',
-			'Close',
+			'Zatvori',
 			{
-				duration: 3000,
-				horizontalPosition: 'right',
+				duration: 4000,
+				horizontalPosition: 'center',
 				verticalPosition: 'top',
 			},
 		);
