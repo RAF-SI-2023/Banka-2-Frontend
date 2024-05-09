@@ -93,7 +93,10 @@ export class ActuariesComponent implements AfterViewInit {
 	}
 
 	resetLeftOfLimitDisabled(): boolean {
-		if (this.selectedRow?.role != 'AGENT' || this.activeUser?.role === 'EMPLOYEE') {
+		if (
+			this.selectedRow?.role != 'AGENT' ||
+			this.activeUser?.role === 'EMPLOYEE'
+		) {
 			return true;
 		}
 		return false;

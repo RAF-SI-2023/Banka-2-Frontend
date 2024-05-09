@@ -6,6 +6,7 @@ import { CardDto } from 'src/app/dtos/card-dto';
 import { CardService } from 'src/app/services/bank-service/card.service';
 import { cardNumberValidator } from 'src/app/utils/validators/card-number.validator';
 import { digitValidator } from 'src/app/utils/validators/digit.validator';
+import { FormGroupDirective } from '@angular/forms';
 
 @Component({
 	selector: 'app-change-limit-form',
@@ -25,7 +26,7 @@ export class ChangeLimitFormComponent {
 
 	constructor(private fb: FormBuilder) {}
 
-	onSubmit() {
+	onSubmit(formDirective: FormGroupDirective) {
 		if (this.changeLimitForm.valid && this.changeLimitForm) {
 			const card = this.changeLimitForm.value as unknown as CardDto;
 			console.log(card);
@@ -39,6 +40,7 @@ export class ChangeLimitFormComponent {
 				)
 				.subscribe(response => {
 					console.log(response);
+					formDirective.resetForm();
 					this.changeLimitForm.reset();
 				});
 		}

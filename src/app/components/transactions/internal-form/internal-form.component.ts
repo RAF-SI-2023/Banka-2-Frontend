@@ -7,6 +7,7 @@ import { SimpleTransactionDto } from 'src/app/dtos/simple-transaction-dto';
 import { AccountService } from 'src/app/services/bank-service/account.service';
 import { TransactionService } from 'src/app/services/bank-service/transaction.service';
 import { digitValidator } from 'src/app/utils/validators/digit.validator';
+import { FormGroupDirective } from '@angular/forms';
 
 @Component({
 	selector: 'app-internal-form',
@@ -71,7 +72,7 @@ export class InternalFormComponent implements OnInit {
 			.subscribe();
 	}
 
-	onSubmit() {
+	onSubmit(formDirective: FormGroupDirective) {
 		if (this.transactionForm.valid && this.transactionForm) {
 			const transaction = this.transactionForm
 				.value as unknown as SimpleTransactionDto;
@@ -99,6 +100,7 @@ export class InternalFormComponent implements OnInit {
 								this.availableBalanceToAcc -= response.amount;
 							}
 
+							formDirective.resetForm();
 							this.transactionForm.reset();
 							this.availableBalanceFromAcc = -1;
 							this.availableBalanceToAcc = -1;
