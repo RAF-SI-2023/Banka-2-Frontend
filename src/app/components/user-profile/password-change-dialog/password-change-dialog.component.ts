@@ -35,6 +35,7 @@ export class PasswordChangeDialogComponent {
 				duration: 4000,
 				horizontalPosition: 'center',
 				verticalPosition: 'top',
+				panelClass: ['app-notification-error'],
 			});
 			return;
 		}

@@ -8,12 +8,13 @@ export const accountGuard: CanActivateFn = () => {
 	const toast = inject(MatSnackBar);
 	if (!accountService.hasAccounts()) {
 		toast.open(
-			'Morate da imate bar jedan račun da bi ste pristupili ovoj stranici!',
+			'Morate da imate bar jedan bankovni račun da bi ste pristupili ovoj stranici!',
 			'Zatvori',
 			{
 				duration: 4000,
 				horizontalPosition: 'center',
 				verticalPosition: 'top',
+				panelClass: ['app-notification-error'],
 			},
 		);
 		return false;
