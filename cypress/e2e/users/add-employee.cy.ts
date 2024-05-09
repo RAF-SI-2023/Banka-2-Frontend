@@ -37,7 +37,8 @@ describe('Adding Employee Dialog', () => {
 			.get('mat-option')
 			.contains('Muški')
 			.click();
-		cy.get('input[name="dateOfBirth"]').type('1990-01-01');
+		const dateOfBirth = '1990-01-01';
+		cy.get('input[name="dateOfBirth"]').invoke('val', dateOfBirth).trigger('input');
 		cy.get('input[name="phone"]').type('1234567890');
 		cy.get('input[name="address"]').type('123 Test St');
 		cy.get('input[name="position"]').type('Developer');
@@ -45,7 +46,7 @@ describe('Adding Employee Dialog', () => {
 
 		cy.get('[data-test="dodaj-button"]').click(); // Replace 'data-testid' and 'dodaj-button' with the actual data attribute and value
 
-		cy.contains('Zahtev je uspešan!').should('exist');
+		cy.get('.app-notification-success').should('be.visible');
 		// Add assertions to verify that employee is successfully added, e.g., check if the new employee appears in the users table
 	});
 
