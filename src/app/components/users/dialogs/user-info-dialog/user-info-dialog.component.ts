@@ -12,15 +12,9 @@ import { DatePipe, formatDate } from '@angular/common';
 	templateUrl: './user-info-dialog.component.html',
 	styleUrls: ['./user-info-dialog.component.css'],
 })
-
-
 export class UserInfoDialogComponent {
 	newSelectedRow = { ...this.data.selectedRow };
-	activeUser = { ...this.data.activeUser };
-
 	isLoading = true;
-	agentLimit: number | null = null;
-
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		private userService: UserService,
@@ -51,12 +45,6 @@ export class UserInfoDialogComponent {
 		this.newSelectedRow = { ...this.data.selectedRow };
 	}
 
-
-	canResetAndGetLimit(): boolean {
-		return ['AGENT'].includes(this.newSelectedRow.role) && ['ADMIN', 'SUPERVISOR'].includes(this.activeUser.role);
-	}
-
-
 	checkDto(): string {
 		if (isPrivateClientDto(this.data.selectedRow)) {
 			return 'PRIVATE';
@@ -68,26 +56,6 @@ export class UserInfoDialogComponent {
 			return 'AGENT';
 		}
 		return 'NONE';
-	}
-
-	getAgentLimit() {
-		this.iamService.getAgentsLeftLimit(this.data.selectedRow.id).subscribe(limit => {
-			this.agentLimit = limit;
-		});
-	}
-
-	resetLimit() {
-		this.isLoading = true;
-		this.iamService.resetAgentsLeftLimit(this.newSelectedRow.id).subscribe({
-			next: () => {
-				console.log('Limit reset successful');
-				this.isLoading = false;
-			},
-			error: (error) => {
-				console.error('Error resetting limit', error);
-				this.isLoading = false;
-			}
-		});
 	}
 
 	protected readonly isPrivateClientDto = isPrivateClientDto;

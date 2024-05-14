@@ -15,8 +15,6 @@ export const ApiRoutes = {
 		passwordChange: '/users/password-change',
 		createEmployee: '/users/create/employee',
 		createAgent: '/users/create/agent',
-		resetAgentsLeftLimit: '/users/agent-limit/reset',
-		getAgentsLeftLimit: '/users/agent-limit',
 		createPrivateClient: '/users/public/create/private-client',
 		createCorporateClient: '/users/public/create/corporate-client',
 		updateEmployee: '/users/update/employee',
