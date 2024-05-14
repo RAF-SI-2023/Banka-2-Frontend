@@ -1,0 +1,90 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
+}
+
+.container-left {
+	display: grid;
+	align-items: center;
+	width: 39%;
+	height: 100%;
+}
+
+.container-right {
+	width: 60%;
+	height: 100%;
+}
+
+.accounts-mat-card {
+	height: 100%;
+	margin-bottom: 1%;
+}
+
+.exchange-mat-card {
+	height: 40rem;
+}
+
+mat-card-title {
+	margin-bottom: 1rem;
+}
+
+.header-margin {
+	margin-right: 2%;
+}
+
+.tableContainer {
+	display: grid;
+	height: 100%;
+	width: 100%;
+	background: #fff;
+}
+
+.form {
+	width: 100%;
+}
+
+table {
+	width: 100%;
+}
+
+.buttons {
+	display: flex;
+	justify-content: center;
+}
+
+.mat-mdc-form-field {
+	width: 100%;
+}
+
+.mat-header-cell {
+	text-align: center;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+	background-color: #f5f5f5;
+}
+
+#paginatorContainer {
+	display: block;
+	flex-direction: column;
+	align-self: end;
+	width: 100%;
+}
+
+.unselectable {
+	user-select: none;
+}
+
+p {
+	font-size: 16px;
+	letter-spacing: 0.03125em;
+	color: #868686;
+	padding: 16px;
+	padding-left: 3%;
+	border: 1px solid#F5F5F5;
+	border-radius: 3px;
+	background-color: #f5f5f5;
+	margin-bottom: 20px;
+}

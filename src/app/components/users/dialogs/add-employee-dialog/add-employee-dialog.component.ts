@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { IamService } from 'src/app/services/iam.service';
+import { UserService } from 'src/app/services/iam-service/user.service';
 import { EmployeeDto } from 'src/app/dtos/employee-dto';
+import { FormBuilder, Validators } from '@angular/forms';
+import {
+	emailValidator,
+	phoneNumberValidator,
+} from '../../../../utils/validators';
 
 @Component({
 	selector: 'app-add-employee-dialog',
@@ -9,19 +13,6 @@ import { EmployeeDto } from 'src/app/dtos/employee-dto';
 	styleUrls: ['./add-employee-dialog.component.css'],
 })
 export class AddEmployeeDialogComponent {
-	email: string = '';
-	name: string = '';
-	surname: string = '';
-	gender: string = '';
-	dateOfBirth: number = 0;
-
-	phone: string = '';
-	address: string = '';
-
-	position: string = '';
-	department: string = '';
-	active: boolean = true;
-
 	availablePermissions: string[] = [
 		'PERMISSION_1',
 		'PERMISSION_2',
@@ -30,13 +21,24 @@ export class AddEmployeeDialogComponent {
 	];
 	permissions: string[] = [];
 
-	constructor(private iamService: IamService) {}
+	createEmployeeForm = this.fb.group({
+		email: ['', [Validators.required, emailValidator()]],
+		dateOfBirth: ['', [Validators.required]],
+		phone: ['', [Validators.required, phoneNumberValidator()]],
+		address: ['', [Validators.required]],
+		name: ['', [Validators.required]],
+		surname: ['', [Validators.required]],
+		gender: ['', [Validators.required]],
+		position: ['', [Validators.required]],
+		department: ['', [Validators.required]],
+		active: [true, [Validators.required]],
+		permissions: [[]],
+	});
 
-	onDateChange(event: MatDatepickerInputEvent<Date>) {
-		this.dateOfBirth = Number(
-			event.value ? event.value.getTime().toString() : '',
-		);
-	}
+	constructor(
+		private userService: UserService,
+		private fb: FormBuilder,
+	) {}
 
 	updatePermissions(event: any, permission: string) {
 		if (event.checked) {
@@ -46,31 +48,39 @@ export class AddEmployeeDialogComponent {
 		}
 	}
 
-	addUser() {
-		const employeeDto: EmployeeDto = {
-			id: 0,
-			dateOfBirth: Number(this.dateOfBirth.toString()),
-			email: this.email,
-			username: this.email,
-			phone: this.phone,
-			address: this.address,
-			role: 'EMPLOYEE',
-			permissions: this.permissions,
-			name: this.name,
-			surname: this.surname,
-			gender: this.gender,
-			position: this.position,
-			department: this.department,
-			active: this.active,
-		};
+	addEmployee() {
+		if (this.createEmployeeForm.valid) {
+			const dateOfBirthControl =
+				this.createEmployeeForm.get('dateOfBirth');
+			const permissionsControl =
+				this.createEmployeeForm.get('permissions');
 
-		this.iamService.postCreateEmployee(employeeDto).subscribe({
-			next: response => {
-				console.log(response);
-			},
-			error: error => {
-				console.error(error);
-			},
-		});
+			if (dateOfBirthControl && permissionsControl) {
+				const dateOfBirthValue = dateOfBirthControl.value;
+				const dateOfBirthEpoch = dateOfBirthValue
+					? new Date(dateOfBirthValue).getTime()
+					: 0;
+				const selectedPermissions = permissionsControl.value;
+
+				this.createEmployeeForm.patchValue({
+					dateOfBirth: dateOfBirthEpoch.toString(),
+					permissions: selectedPermissions,
+				});
+
+				const employeeDto = this.createEmployeeForm
+					.value as unknown as EmployeeDto;
+
+				this.userService.postCreateEmployee(employeeDto).subscribe({
+					next: response => {
+						console.log(response);
+					},
+					error: error => {
+						console.error(error);
+					},
+				});
+			} else {
+				console.error('Form controls are null.');
+			}
+		}
 	}
 }

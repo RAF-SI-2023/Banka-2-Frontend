@@ -1,0 +1,69 @@
+<h2 mat-dialog-title>Informacije o aktuaru</h2>
+<mat-dialog-content class="mat-typography size">
+	<div
+		*ngIf="!isLoading"
+		class="full-width"
+	>
+		<div class="info-row">
+			<span class="label">ID:</span>
+			<span>{{ newSelectedRow.id ? newSelectedRow.id : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Email:</span>
+			<span>{{ newSelectedRow.email ? newSelectedRow.email : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Datum rođenja:</span>
+			<span>
+				{{
+					newSelectedRow.dateOfBirth
+						? (newSelectedRow.dateOfBirth
+							| epochToDate
+							| date: 'dd.MM.yyyy.')
+						: '-'
+				}}
+			</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Broj telefona:</span>
+			<span>{{ newSelectedRow.phone ? newSelectedRow.phone : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Adresa:</span>
+			<span>{{
+				newSelectedRow.address ? newSelectedRow.address : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Limit:</span>
+			<span>{{
+				newSelectedRow.userLimit ? newSelectedRow.userLimit : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Neiskorišćeni limit:</span>
+			<span>{{
+				newSelectedRow.leftOfLimit ? newSelectedRow.leftOfLimit : '-'
+			}}</span>
+		</div>
+	</div>
+
+	<div
+		*ngIf="isLoading"
+		class="spinner-container"
+	>
+		<mat-progress-spinner
+			diameter="50"
+			mode="indeterminate"
+		></mat-progress-spinner>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
+		Zatvori
+	</button>
+</mat-dialog-actions>

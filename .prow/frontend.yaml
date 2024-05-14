@@ -1,0 +1,21 @@
+presubmits:
+    - name: pull-banka-2-frontend
+      always_run: true
+      decorate: true
+      spec:
+          containers:
+              - image: harbor.k8s.elab.rs/base-images/base:java-21-node-18-docker
+                command:
+                    - /bin/bash
+                    - -c
+                    - |
+                        set -euo pipefail
+
+                        npm ci
+                        npm run cy:verify
+                        npm run cy:info
+
+                        npm run build
+                securityContext:
+                    privileged: true
+                imagePullPolicy: Always

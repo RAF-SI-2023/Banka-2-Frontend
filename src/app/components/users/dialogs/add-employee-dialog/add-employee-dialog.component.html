@@ -1,106 +1,235 @@
-<h2 mat-dialog-title>
-	Dodaj zaposlenog
-</h2>
+<h2 mat-dialog-title>Dodaj zaposlenog</h2>
 <mat-dialog-content class="mat-typography size">
-	<form>
+	<form
+		[formGroup]="createEmployeeForm"
+		(ngSubmit)="addEmployee()"
+	>
 		<div>
 			<mat-form-field class="full-width">
-				<mat-label>
-					Email
-				</mat-label>
-				<input matInput [(ngModel)]="email" type="email" name="email" appEmailValidator #emailInput="ngModel" />
-				<mat-error *ngIf="emailInput.errors && emailInput.touched">
-					Unesite validnu email adresu.
+				<mat-label>Email</mat-label>
+				<input
+					matInput
+					placeholder="Unesite email adresu"
+					formControlName="email"
+					type="email"
+					name="email"
+				/>
+				<mat-error
+					*ngIf="
+						createEmployeeForm.get('email')?.hasError('required')
+					"
+				>
+					Email je obavezan.
+				</mat-error>
+				<mat-error
+					*ngIf="
+						createEmployeeForm
+							.get('email')
+							?.hasError('invalidEmail')
+					"
+				>
+					Pogrešan format email-a.
 				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
-				<mat-label>
-					Ime
-				</mat-label>
-				<input matInput [(ngModel)]="name" name="name" />
-			</mat-form-field>
-
-			<mat-form-field class="full-width">
-				<mat-label>
-					Prezime
-				</mat-label>
-				<input matInput [(ngModel)]="surname" name="surname" />
-			</mat-form-field>
-
-			<mat-form-field class="full-width">
-				<mat-label>
-					Pol
-				</mat-label>
-				<mat-select [(ngModel)]="gender" name="gender">
-					<mat-option value="M">
-						Muški
-					</mat-option>
-					<mat-option value="Ž">
-						Ženski
-					</mat-option>
-				</mat-select>
-			</mat-form-field>
-
-			<mat-form-field class="full-width">
-				<mat-label>
-					Datum rođenja
-				</mat-label>
-				<input matInput [(ngModel)]="this.dateOfBirth" [matDatepicker]="picker" name="dateOfBirth"
-					placeholder="Izaberi datum">
-				<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+				<mat-label>Datum rođenja</mat-label>
+				<input
+					matInput
+					placeholder="Izaberite datum rođenja"
+					formControlName="dateOfBirth"
+					[matDatepicker]="picker"
+					name="dateOfBirth"
+					readonly
+				/>
+				<mat-datepicker-toggle
+					matSuffix
+					[for]="picker"
+				></mat-datepicker-toggle>
 				<mat-datepicker #picker></mat-datepicker>
+				<mat-error
+					*ngIf="
+						createEmployeeForm
+							.get('dateOfBirth')
+							?.hasError('required')
+					"
+				>
+					Datum rođenja je obavezan.
+				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
-				<mat-label>
-					Broj telefona
-				</mat-label>
-				<input matInput [(ngModel)]="this.phone" name="phone" appPhoneNumberValidator #phoneInput="ngModel">
-				<mat-error *ngIf="phoneInput.errors && phoneInput.touched">
+				<mat-label>Broj telefona</mat-label>
+				<input
+					matInput
+					placeholder="Unesite broj telefona"
+					formControlName="phone"
+					name="phone"
+				/>
+				<mat-error
+					*ngIf="
+						createEmployeeForm.get('phone')?.hasError('required')
+					"
+				>
+					Broj telefona je obavezan.
+				</mat-error>
+				<mat-error
+					*ngIf="
+						createEmployeeForm
+							.get('phone')
+							?.hasError('invalidPhoneNumber')
+					"
+				>
 					Unesite validan broj telefona.
 				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
-				<mat-label>
-					Adresa
-				</mat-label>
-				<input matInput [(ngModel)]="address" name="address" />
+				<mat-label>Adresa</mat-label>
+				<input
+					matInput
+					placeholder="Unesite adresu"
+					formControlName="address"
+					name="address"
+				/>
+				<mat-error
+					*ngIf="
+						createEmployeeForm.get('address')?.hasError('required')
+					"
+				>
+					Adresa je obavezna.
+				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
-				<mat-label>
-					Pozicija
-				</mat-label>
-				<input matInput [(ngModel)]="position" name="position" />
+				<mat-label>Ime</mat-label>
+				<input
+					matInput
+					placeholder="Unesite ime"
+					formControlName="name"
+					name="name"
+				/>
+				<mat-error
+					*ngIf="createEmployeeForm.get('name')?.hasError('required')"
+				>
+					Ime je obavezno.
+				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
-				<mat-label>
-					Odeljenje
-				</mat-label>
-				<input matInput [(ngModel)]="department" name="department" />
+				<mat-label>Prezime</mat-label>
+				<input
+					matInput
+					placeholder="Unesite prezime"
+					formControlName="surname"
+					name="surname"
+				/>
+				<mat-error
+					*ngIf="
+						createEmployeeForm.get('surname')?.hasError('required')
+					"
+				>
+					Prezime je obavezno.
+				</mat-error>
 			</mat-form-field>
 
-			<mat-checkbox class="full-width" [(ngModel)]="active" name="active">
+			<mat-form-field class="full-width">
+				<mat-label>Pol</mat-label>
+				<mat-select
+					placeholder="Izaberite pol"
+					formControlName="gender"
+					name="gender"
+				>
+					<mat-option value="M">Muški</mat-option>
+					<mat-option value="Ž">Ženski</mat-option>
+				</mat-select>
+				<mat-error
+					*ngIf="
+						createEmployeeForm.get('gender')?.hasError('required')
+					"
+				>
+					Pol je obavezan.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>Pozicija</mat-label>
+				<input
+					matInput
+					placeholder="Unesite poziciju na kojoj zaposleni radi"
+					formControlName="position"
+					name="position"
+				/>
+				<mat-error
+					*ngIf="
+						createEmployeeForm.get('position')?.hasError('required')
+					"
+				>
+					Pozicija je obavezna.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>Odeljenje</mat-label>
+				<input
+					matInput
+					placeholder="Unesite odeljenje u kome se zaposleni vodi"
+					formControlName="department"
+					name="department"
+				/>
+				<mat-error
+					*ngIf="
+						createEmployeeForm
+							.get('department')
+							?.hasError('required')
+					"
+				>
+					Odeljenje je obavezno.
+				</mat-error>
+			</mat-form-field>
+
+			<!-- <mat-form-field class="full-width">
+				<mat-label>Dozvole</mat-label>
+				<mat-select
+					formControlName="permissions"
+					multiple="true"
+				>
+					<mat-option
+						*ngFor="let permission of availablePermissions"
+						[value]="permission"
+					>
+						{{ permission }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field> -->
+
+			<mat-checkbox
+				class="full-width"
+				formControlName="active"
+				name="active"
+			>
 				Aktivan
 			</mat-checkbox>
-
-			<div *ngFor="let permission of availablePermissions">
-				<mat-checkbox class="full-width" [checked]="permissions.includes(permission)"
-					(change)="updatePermissions($event, permission)">
-					{{ permission }}
-				</mat-checkbox>
-			</div>
 		</div>
 	</form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-	<button mat-raised-button mat-dialog-close color="warn">
-		Zatvori
-	</button>
-	<button mat-raised-button [mat-dialog-close]="true" color="accent" cdkFocusInitial (click)="addUser()">
+	<button
+		data-test="dodaj-button"
+		mat-raised-button
+		mat-dialog-close
+		color="accent"
+		cdkFocusInitial
+		(click)="addEmployee()"
+		[disabled]="!createEmployeeForm.valid"
+	>
 		Dodaj
+	</button>
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
+		Zatvori
 	</button>
 </mat-dialog-actions>

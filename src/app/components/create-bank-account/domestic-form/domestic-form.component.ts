@@ -5,8 +5,9 @@ import {
 	bankAccountNumberValidator,
 	emailValidator,
 } from '../../../utils/validators';
-import { BankService } from '../../../services/bank.service';
+import { AccountService } from '../../../services/bank-service/account.service';
 import { DomesticAccountDto } from '../../../dtos/domestic-account-dto';
+import { FormGroupDirective } from '@angular/forms';
 
 @Component({
 	selector: 'app-domestic-form',
@@ -16,7 +17,7 @@ import { DomesticAccountDto } from '../../../dtos/domestic-account-dto';
 export class DomesticFormComponent {
 	@Input() currencyOptions!: DropdownOption[];
 	@Input() domesticCurrencyAccountTypeOptions!: DropdownOption[];
-	bankService = inject(BankService);
+	bankService = inject(AccountService);
 
 	domesticBankAccountForm = this.fb.group({
 		accountNumber: [
@@ -30,21 +31,22 @@ export class DomesticFormComponent {
 
 	constructor(private fb: FormBuilder) {}
 
-	onSubmit() {
-		if (this.domesticBankAccountForm.valid) {
-			let account = this.domesticBankAccountForm
-				.value! as DomesticAccountDto;
+	onSubmit(formDirective: FormGroupDirective) {
+		if (
+			this.domesticBankAccountForm.valid &&
+			this.domesticBankAccountForm
+		) {
+			const account = this.domesticBankAccountForm
+				.value as DomesticAccountDto;
 			account.accountNumber = account.accountNumber.replaceAll('-', '');
 			console.log(account);
-			this.bankService.postCreateDomesticAccount(account).subscribe(
-				response => {
+			this.bankService
+				.postCreateDomesticAccount(account)
+				.subscribe(response => {
 					console.log(response);
+					formDirective.resetForm();
 					this.domesticBankAccountForm.reset();
-				},
-				error => {
-					console.log(error);
-				},
-			);
+				});
 		}
 	}
 }

@@ -15,7 +15,7 @@ mat-card {
 	align-items: center;
 	gap: 1rem;
 	width: 100%;
-	max-width: 500px;
+	max-width: 30vw;
 }
 
 mat-card-content {

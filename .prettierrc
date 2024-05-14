@@ -17,5 +17,6 @@
 	"bracketSameLine": false,
 	"singleAttributePerLine": true,
 	"vueIndentScriptAndStyle": true,
-	"withNodeModules": false
+	"withNodeModules": false,
+	"endOfLine": "auto"
 }

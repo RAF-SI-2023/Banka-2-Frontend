@@ -1,4 +1,4 @@
-import {CurrencyInflationDto} from "./currency-inflation-dto";
+import { CurrencyInflationDto } from './currency-inflation-dto';
 
 export interface CurrencyDto {
 	currencyName: string;

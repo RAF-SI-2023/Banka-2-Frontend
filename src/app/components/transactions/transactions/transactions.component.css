@@ -1,0 +1,44 @@
+.container {
+	display: grid;
+	place-items: center;
+	height: calc(100vh - 128px);
+	padding: 0 2rem;
+}
+
+mat-card {
+	width: 100%;
+	height: 38.5vw;
+	max-width: 30vw;
+}
+
+mat-card-header {
+	margin-bottom: 1rem;
+}
+
+mat-card-content {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.form-inputs {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	user-select: none;
+}
+
+.card-container {
+	overflow-y: auto;
+}
+
+.parent-card {
+	max-height: 30vw;
+	height: 100%;
+}
+
+.buttons {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}

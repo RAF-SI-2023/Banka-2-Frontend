@@ -1,9 +1,9 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/iam-service/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-export const loginGuard: CanActivateFn = (route, state) => {
+export const loginGuard: CanActivateFn = () => {
 	const router = inject(Router);
 	const authService = inject(AuthService);
 	const snackBar = inject(MatSnackBar);
@@ -13,9 +13,9 @@ export const loginGuard: CanActivateFn = (route, state) => {
 	if (token && !authService.isTokenExpired()) {
 		router.navigate(['/home']);
 		snackBar.open('Već ste ulogovani!', 'Zatvori', {
-			verticalPosition: 'top',
+			duration: 4000,
 			horizontalPosition: 'center',
-			duration: 3000,
+			verticalPosition: 'top',
 		});
 		return false;
 	}

@@ -1,113 +1,257 @@
 <section class="container">
 	<mat-card class="card mat-elevation-z8">
 		<mat-card-header>
-			<mat-card-title>
-				<div class="title">
-					<img src="../../../assets/logo/bank-2-logo.svg" alt="Icon" height="64" width="64"
-						style="border-radius: 50%" />
-					<h2>
-						{{
-						user?.role === Role.ADMIN
-						? "Admin"
-						: employee
-						? employee.name
-						: privateClient
-						? privateClient.name
-						: corporateClient
-						? corporateClient.name
-						: "Nepoznati korisnik"
-						}}
-					</h2>
-				</div>
-			</mat-card-title>
+			<mat-card-title>Korisnički profil</mat-card-title>
 		</mat-card-header>
-
 		<mat-card-content class="card-content">
 			<table>
 				<tbody>
 					<!--   USER START     -->
-					<!-- <tr>
-						<td><b>Username:</b></td>
-						<td>{{ user?.username }}</td>
-					</tr> -->
 					<tr>
 						<td><b>Email:</b></td>
-						<td>{{ user?.email }}</td>
+						<td>{{ user?.email ? user?.email : '-' }}</td>
 					</tr>
 					<tr>
 						<td><b>Telefon:</b></td>
-						<td>{{ user?.phone }}</td>
+						<td>{{ user?.phone ? user?.phone : '-' }}</td>
 					</tr>
 					<tr>
 						<td><b>Adresa:</b></td>
-						<td>{{ user?.address }}</td>
+						<td>{{ user?.address ? user?.address : '-' }}</td>
 					</tr>
 					<tr>
 						<td><b>Datum rođenja:</b></td>
-						<td>{{ user?.dateOfBirth }}</td>
+						<td>
+							{{
+								user?.dateOfBirth
+									? (user!.dateOfBirth
+										| epochToDate
+										| date: 'dd.MM.yyyy.')
+									: '-'
+							}}
+						</td>
 					</tr>
 					<tr>
 						<td><b>Uloga:</b></td>
-						<td>{{ user?.role }}</td>
+						<td>{{ user?.role ? user?.role : '-' }}</td>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td><b>Dozvole:</b></td>
-						<td>{{ user?.permissions?.join(", ") }}</td>
-					</tr>
+						<td>{{ user?.permissions?.join(', ') }}</td>
+					</tr> -->
 					<!--   USER END     -->
 
 					<!--   PRIVATE START     -->
 					<tr *ngIf="privateClient">
 						<td><b>Ime:</b></td>
-						<td>{{ privateClient.name }}</td>
+						<td>
+							{{ privateClient.name ? privateClient.name : '-' }}
+						</td>
 					</tr>
 					<tr *ngIf="privateClient">
 						<td><b>Prezime:</b></td>
-						<td>{{ privateClient.surname }}</td>
+						<td>
+							{{
+								privateClient.surname
+									? privateClient.surname
+									: '-'
+							}}
+						</td>
 					</tr>
 					<tr *ngIf="privateClient">
 						<td><b>Pol:</b></td>
-						<td>{{ privateClient.gender }}</td>
+						<td>
+							{{
+								privateClient.gender
+									? privateClient.gender
+									: '-'
+							}}
+						</td>
 					</tr>
-					<tr *ngIf="privateClient">
-						<td><b>Primarni broj računa:</b></td>
-						<td>{{ privateClient.primaryAccountNumber }}</td>
-					</tr>
+					<!--					<tr *ngIf="privateClient">-->
+					<!--						<td><b>Primarni broj računa:</b></td>-->
+					<!--						<td>-->
+					<!--							{{-->
+					<!--								privateClient.primaryAccountNumber-->
+					<!--									? privateClient.primaryAccountNumber-->
+					<!--									: '-'-->
+					<!--							}}-->
+					<!--						</td>-->
+					<!--					</tr>-->
 					<!--   PRIVATE END     -->
 
 					<!--   CORPORATE START     -->
 					<tr *ngIf="corporateClient">
 						<td><b>Naziv kompanije:</b></td>
-						<td>{{ corporateClient.name }}</td>
+						<td>
+							{{
+								corporateClient.name
+									? corporateClient.name
+									: '-'
+							}}
+						</td>
 					</tr>
-					<tr *ngIf="corporateClient">
-						<td><b>Primarni broj računa:</b></td>
-						<td>{{ corporateClient.primaryAccountNumber }}</td>
-					</tr>
+					<!--					<tr *ngIf="corporateClient">-->
+					<!--						<td><b>Primarni broj računa:</b></td>-->
+					<!--						<td>-->
+					<!--							{{-->
+					<!--								corporateClient.primaryAccountNumber-->
+					<!--									? corporateClient.primaryAccountNumber-->
+					<!--									: '-'-->
+					<!--							}}-->
+					<!--						</td>-->
+					<!--					</tr>-->
 					<!--   CORPORATE END     -->
 
 					<!--   EMPLOYEE START     -->
 					<tr *ngIf="employee">
 						<td><b>Pol:</b></td>
-						<td>{{ employee.gender }}</td>
+						<td>{{ employee.gender ? employee.gender : '-' }}</td>
 					</tr>
 					<tr *ngIf="employee">
 						<td><b>Pozicija:</b></td>
-						<td>{{ employee.position }}</td>
+						<td>
+							{{ employee.position ? employee.position : '-' }}
+						</td>
 					</tr>
 					<tr *ngIf="employee">
 						<td><b>Odeljenje:</b></td>
-						<td>{{ employee.department }}</td>
+						<td>
+							{{
+								employee.department ? employee.department : '-'
+							}}
+						</td>
 					</tr>
 					<tr *ngIf="employee">
 						<td><b>Aktivan:</b></td>
-						<td>{{ employee.active ? "Da" : "Ne" }}</td>
+						<td>{{ employee.active ? 'Da' : 'Ne' }}</td>
 					</tr>
 					<!--   EMPLOYEE END     -->
 				</tbody>
+
+				<tr
+					*ngIf="
+						user?.role === Role.ADMIN || user?.role === Role.USER
+					"
+				>
+					<td><b>Računi:</b></td>
+				</tr>
 			</table>
 
-			<button mat-raised-button id="change-password-btn" (click)="openPasswordChangeDialog()">
+			<div
+				*ngIf="user?.role === Role.ADMIN || user?.role === Role.USER"
+				class="tableContainer"
+			>
+				<div
+					class="mat-elevation-z8"
+					style="box-shadow: none"
+				>
+					<table
+						class="unselectable"
+						mat-table
+						[dataSource]="accountNumberDataSource"
+						matSort
+					>
+						<ng-container matColumnDef="accountType">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Tip
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.accountType | translate }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="accountNumber">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Broj računa
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.accountNumber }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="availableBalance">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Dostupno stanje
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.availableBalance }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="currencyCode">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Valuta
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.currencyCode }}
+							</td>
+						</ng-container>
+
+						<tr
+							*matHeaderRowDef="displayedAccountColumns"
+							mat-header-row
+						></tr>
+						<tr
+							mat-row
+							(click)="selectAccountRow(row)"
+							(dblclick)="viewCards(row)"
+							[class.row-selected]="
+								selectedAccount?.accountNumber ===
+								row.accountNumber
+							"
+							*matRowDef="
+								let row;
+								columns: displayedAccountColumns
+							"
+						></tr>
+					</table>
+				</div>
+			</div>
+			<div
+				*ngIf="user?.role === Role.ADMIN || user?.role === Role.USER"
+				class="paginatorContainer"
+			>
+				<mat-paginator
+					[hidePageSize]="true"
+					[pageSize]="3"
+				></mat-paginator>
+			</div>
+
+			<button
+				mat-raised-button
+				id="change-password-btn"
+				color="accent"
+				(click)="openPasswordChangeDialog()"
+			>
 				Promeni lozinku
 			</button>
 		</mat-card-content>

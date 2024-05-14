@@ -1,0 +1,314 @@
+<div class="container">
+	<section class="container-left">
+		<mat-card class="exchange-mat-card">
+			<mat-card-header>
+				<mat-card-title>Menjačnica</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<form
+					[formGroup]="exchangeForm"
+					#formDirective="ngForm"
+					(ngSubmit)="sendExchangeRequest(formDirective)"
+				>
+					<mat-form-field>
+						<mat-label>Broj računa za uplatu</mat-label>
+						<mat-select
+							formControlName="fromAccount"
+							placeholder="Izaberite račun"
+						>
+							<mat-option
+								*ngFor="let option of accountOptionsSender"
+								[value]="option.accountNumber"
+							>
+								{{ option.accountNumber | accountNumberFormat }}
+							</mat-option>
+						</mat-select>
+						<mat-error
+							*ngIf="
+								exchangeForm
+									.get('fromAccount')
+									?.hasError('required')
+							"
+						>
+							Broj računa za uplatu je obavezan.
+						</mat-error>
+					</mat-form-field>
+
+					<div class="unselectable">
+						<p *ngIf="availableBalanceFromAcc > -1">
+							Stanje vašeg računa za uplatu:
+							{{ availableBalanceFromAcc }}
+							{{ currencyCodeFromAcc }}
+						</p>
+						<p *ngIf="availableBalanceFromAcc === -1">
+							Stanje vašeg računa za uplatu: -
+						</p>
+					</div>
+
+					<mat-form-field>
+						<mat-label>Broj računa za prijem</mat-label>
+						<mat-select
+							formControlName="toAccount"
+							placeholder="Izaberite račun"
+						>
+							<mat-option
+								*ngFor="let option of accountOptionsSender"
+								[value]="option.accountNumber"
+							>
+								{{ option.accountNumber | accountNumberFormat }}
+							</mat-option>
+						</mat-select>
+						<mat-error
+							*ngIf="
+								exchangeForm
+									.get('toAccount')
+									?.hasError('required')
+							"
+						>
+							Broj računa za prijem je obavezan.
+						</mat-error>
+					</mat-form-field>
+
+					<div class="unselectable">
+						<p *ngIf="availableBalanceToAcc > -1">
+							Stanje vašeg računa za prijem:
+							{{ availableBalanceToAcc }}
+							{{ currencyCodeToAcc }}
+						</p>
+						<p *ngIf="availableBalanceToAcc === -1">
+							Stanje vašeg računa za prijem: -
+						</p>
+					</div>
+
+					<mat-form-field>
+						<mat-label>Iznos</mat-label>
+						<input
+							matInput
+							placeholder="Unesite iznos novca"
+							formControlName="amount"
+							type="text"
+						/>
+						<mat-error
+							*ngIf="
+								exchangeForm.get('amount')?.hasError('required')
+							"
+						>
+							Iznos je obavezan.
+						</mat-error>
+						<mat-error
+							*ngIf="
+								exchangeForm
+									.get('amount')
+									?.hasError('containsNonDigits')
+							"
+						>
+							Pogrešan format za iznos novca - podržane su samo
+							cifre.
+						</mat-error>
+					</mat-form-field>
+
+					<div class="buttons">
+						<button
+							mat-raised-button
+							style="width: 100%"
+							color="accent"
+							type="submit"
+							[disabled]="!exchangeForm.valid"
+						>
+							Pošalji
+						</button>
+					</div>
+				</form>
+			</mat-card-content>
+		</mat-card>
+	</section>
+
+	<section class="container-right">
+		<mat-card class="exchange-mat-card">
+			<mat-card-header>
+				<div class="form header-margin">
+					<mat-form-field>
+						<mat-label>Pretraži kursnu listu</mat-label>
+						<input
+							#input
+							(keyup)="applyFilter($event)"
+							matInput
+						/>
+					</mat-form-field>
+				</div>
+
+				<mat-form-field class="full-width">
+					<mat-label>Valuta</mat-label>
+					<mat-select
+						[(ngModel)]="fromCurrency"
+						name="fromCurrency"
+						(selectionChange)="fetchAllData()"
+					>
+						<mat-option
+							*ngFor="let option of currencyOptions"
+							[value]="option.value"
+						>
+							{{ option.label }}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</mat-card-header>
+
+			<mat-card-content>
+				<div class="tableContainer">
+					<div
+						class="mat-elevation-z8"
+						style="box-shadow: none"
+					>
+						<table
+							class="unselectable"
+							mat-table
+							[dataSource]="dataSource"
+							matSort
+						>
+							<ng-container matColumnDef="id">
+								<th
+									*matHeaderCellDef
+									mat-header-cell
+									mat-sort-header
+								>
+									ID
+								</th>
+								<td
+									*matCellDef="let row"
+									mat-cell
+								>
+									{{ row.id }}
+								</td>
+							</ng-container>
+
+							<ng-container matColumnDef="timeLastUpdated">
+								<th
+									*matHeaderCellDef
+									mat-header-cell
+									mat-sort-header
+								>
+									Poslednje ažuriranje
+								</th>
+								<td
+									*matCellDef="let row"
+									mat-cell
+								>
+									{{
+										row.timeLastUpdated
+											? (row.timeLastUpdated
+												| epochToDate
+												| date: 'dd.MM.yyyy.')
+											: '-'
+									}}
+								</td>
+							</ng-container>
+
+							<ng-container matColumnDef="timeNextUpdate">
+								<th
+									*matHeaderCellDef
+									mat-header-cell
+									mat-sort-header
+								>
+									Sledeće ažuriranje
+								</th>
+								<td
+									*matCellDef="let row"
+									mat-cell
+								>
+									{{
+										row.timeNextUpdate
+											? (row.timeNextUpdate
+												| epochToDate
+												| date: 'dd.MM.yyyy.')
+											: '-'
+									}}
+								</td>
+							</ng-container>
+
+							<ng-container matColumnDef="fromCurrency">
+								<th
+									*matHeaderCellDef
+									mat-header-cell
+									mat-sort-header
+								>
+									Iz valute
+								</th>
+								<td
+									*matCellDef="let row"
+									mat-cell
+								>
+									{{ row.fromCurrency }}
+								</td>
+							</ng-container>
+
+							<ng-container matColumnDef="toCurrency">
+								<th
+									*matHeaderCellDef
+									mat-header-cell
+									mat-sort-header
+								>
+									U valutu
+								</th>
+								<td
+									*matCellDef="let row"
+									mat-cell
+								>
+									{{ row.toCurrency }}
+								</td>
+							</ng-container>
+
+							<ng-container matColumnDef="exchangeRate">
+								<th
+									*matHeaderCellDef
+									mat-header-cell
+									mat-sort-header
+								>
+									Kurs
+								</th>
+								<td
+									*matCellDef="let row"
+									mat-cell
+								>
+									{{ row.exchangeRate }}
+								</td>
+							</ng-container>
+							<tr
+								*matHeaderRowDef="displayedColumns"
+								mat-header-row
+							></tr>
+							<tr
+								mat-row
+								(click)="selectRow(row)"
+								[class.row-selected]="
+									selectedRow?.id === row.id
+								"
+								*matRowDef="let row; columns: displayedColumns"
+							></tr>
+
+							<tr
+								*matNoDataRow
+								class="mat-row"
+							>
+								<td
+									class="mat-cell"
+									colspan="4"
+								>
+									Nije pronađen podatak za unetu vrednost: "{{
+										input.value
+									}}"
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div id="paginatorContainer">
+					<mat-paginator
+						[hidePageSize]="true"
+						[pageSize]="7"
+					></mat-paginator>
+				</div>
+			</mat-card-content>
+		</mat-card>
+	</section>
+</div>

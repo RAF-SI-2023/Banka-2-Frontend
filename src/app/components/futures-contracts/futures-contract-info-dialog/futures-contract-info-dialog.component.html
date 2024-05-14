@@ -1,0 +1,78 @@
+<h2 mat-dialog-title>Informacije</h2>
+<mat-dialog-content class="mat-typography size">
+	<div
+		*ngIf="!isLoading"
+		class="full-width-grid"
+	>
+		<div class="info-row">
+			<span class="label">ID:</span>
+			<span>{{ newSelectedRow.id ? newSelectedRow.id : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Ime:</span>
+			<span>{{ newSelectedRow.name ? newSelectedRow.name : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Kod:</span>
+			<span>{{ newSelectedRow.code ? newSelectedRow.code : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Količina po ugovoru:</span>
+			<span>{{
+				newSelectedRow.contractSize ? newSelectedRow.contractSize : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Jedinica mere proizvoda:</span>
+			<span>{{
+				newSelectedRow.contractUnit ? newSelectedRow.contractUnit : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Broj otvorenih opcija:</span>
+			<span>{{
+				newSelectedRow.openInterest ? newSelectedRow.openInterest : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Datum isticanja ugovora:</span>
+			{{
+				newSelectedRow.settlementDate
+					? (newSelectedRow.settlementDate
+						| epochToDate
+						| date: 'dd.MM.yyyy.')
+					: '-'
+			}}
+		</div>
+		<div class="info-row">
+			<span class="label">Marža za održavanje:</span>
+			<span>{{
+				newSelectedRow.maintenanceMargin
+					? newSelectedRow.maintenanceMargin
+					: '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Tip ugovora:</span>
+			<span>{{ newSelectedRow.type ? newSelectedRow.type : '-' }}</span>
+		</div>
+		<div
+			*ngIf="isLoading"
+			class="spinner-container"
+		>
+			<mat-progress-spinner
+				diameter="50"
+				mode="indeterminate"
+			></mat-progress-spinner>
+		</div>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
+		Zatvori
+	</button>
+</mat-dialog-actions>

@@ -8,7 +8,7 @@ export class BankAccountMaskDirective {
 
 	@HostListener('input', ['$event']) onInput(event: any) {
 		const input = event.target;
-		let value = input.value.replace(/\D/g, ''); // Remove non-digit characters
+		const value = input.value.replace(/\D/g, ''); // Remove non-digit characters
 		let maskedValue = '';
 
 		// Apply mask (###-####-#########)

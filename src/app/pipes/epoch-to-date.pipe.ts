@@ -4,12 +4,51 @@ import { Pipe, PipeTransform } from '@angular/core';
 	name: 'epochToDate',
 })
 export class EpochToDatePipe implements PipeTransform {
-	transform(epoch: string): Date | null {
-		if (!epoch) {
-			return null; // Return null if the epoch value is falsy
+	transform(epoch: number): Date | null {
+		if (!epoch && epoch !== 0) {
+			return null; // Return null if the epoch value is false
 		}
 
-		const date = new Date(parseInt(epoch));
-		return isNaN(date.getTime()) ? null : date;
+		let milliseconds: number;
+
+		if (epoch >= 0) {
+			// Handle positive epoch values
+			switch (true) {
+				case epoch < 10000000000: // Epoch in seconds
+					milliseconds = epoch * 1000;
+					break;
+				case epoch < 10000000000000: // Epoch in milliseconds
+					milliseconds = epoch;
+					break;
+				case epoch < 10000000000000000: // Epoch in microseconds
+					milliseconds = Math.floor(epoch / 1000);
+					break;
+				case epoch < 10000000000000000000: // Epoch in nanoseconds
+					milliseconds = Math.floor(epoch / 1000000);
+					break;
+				default:
+					throw new Error('Invalid epoch format');
+			}
+		} else {
+			// Handle negative epoch values
+			switch (true) {
+				case epoch > -10000000000: // Epoch in seconds
+					milliseconds = epoch * 1000;
+					break;
+				case epoch > -10000000000000: // Epoch in milliseconds
+					milliseconds = epoch;
+					break;
+				case epoch > -10000000000000000: // Epoch in microseconds
+					milliseconds = Math.ceil(epoch / 1000);
+					break;
+				case epoch > -10000000000000000000: // Epoch in nanoseconds
+					milliseconds = Math.ceil(epoch / 1000000);
+					break;
+				default:
+					throw new Error('Invalid epoch format');
+			}
+		}
+
+		return new Date(milliseconds);
 	}
 }

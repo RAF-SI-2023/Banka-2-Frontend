@@ -13,7 +13,16 @@ export const DropdownOptions = {
 		{ label: 'CAD', value: 'CAD' },
 		{ label: 'AUD', value: 'AUD' },
 		{ label: 'JPY', value: 'JPY' },
-		{ label: 'CNY', value: 'CNY' },
+	],
+	currencyCodes: [
+		{ label: 'RSD', value: 'RSD' },
+		{ label: 'USD', value: 'USD' },
+		{ label: 'EUR', value: 'EUR' },
+		{ label: 'GBP', value: 'GBP' },
+		{ label: 'CHF', value: 'CHF' },
+		{ label: 'CAD', value: 'CAD' },
+		{ label: 'AUD', value: 'AUD' },
+		{ label: 'JPY', value: 'JPY' },
 	],
 	// Dropdown options for account type
 	currencyAccountType: [
@@ -25,14 +34,33 @@ export const DropdownOptions = {
 	accountType: [
 		{ label: 'Dinarski', value: 'DINARSKI' },
 		{ label: 'Devizni', value: 'DEVIZNI' },
-		{ label: 'Poslovni', value: 'POSLOVNI'},
+		{ label: 'Poslovni', value: 'POSLOVNI' },
 	],
 	bankProfileType: [
 		{ label: 'Fizičko lice', value: 'PRIVATE' },
 		{ label: 'Pravno lice', value: 'CORPORATE' },
 	],
 	gender: [
-		{ label: 'Muški', value: 'MALE' },
-		{ label: 'Ženski', value: 'FEMALE' },
+		{ label: 'Muški', value: 'M' },
+		{ label: 'Ženski', value: 'F' },
+	],
+	creditType: [
+		{ label: 'Gotovinski', value: 'GOTOVINSKI' },
+		{ label: 'Stambeni', value: 'STAMBENI' },
+		{ label: 'Auto', value: 'AUTO' },
+		{ label: 'Refinansirajuci', value: 'REFINANSIRAJUCI' },
+	],
+	transactionType: [
+		{ label: 'Interne', value: 'INTERNE' },
+		{ label: 'Eksterne', value: 'EKSTERNE' },
+	],
+	cardSettingsType: [
+		{ label: 'Izrada nove kartice', value: 'IZRADA NOVE KARTICE' },
+		{ label: 'Promena statusa', value: 'PROMENA STATUSA' },
+		{ label: 'Promena limita', value: 'PROMENA LIMITA' },
+	],
+	cardTypeOptions: [
+		{ label: 'Debitna', value: 'CREDIT' },
+		{ label: 'Kreditna', value: 'DEBIT' },
 	],
 };

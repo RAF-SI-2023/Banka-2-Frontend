@@ -17,6 +17,20 @@
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
 }
 
+.mat-mdc-snack-bar-container {
+	--mdc-snackbar-supporting-text-color: #ffffff;
+	--mdc-snackbar-action-text-color: #ffffff;
+	--mat-snack-bar-button-color: #ffffff;
+
+	&.app-notification-error {
+		--mdc-snackbar-container-color: #960000;
+	}
+
+	&.app-notification-success {
+		--mdc-snackbar-container-color: #006622;
+	}
+}
+
 /* Define global styles */
 html,
 body {

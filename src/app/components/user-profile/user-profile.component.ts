@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IamService } from '../../services/iam.service';
+import { UserService } from '../../services/iam-service/user.service';
 import { UserDto } from '../../dtos/user-dto';
 import {
 	isPrivateClientDto,
@@ -9,30 +9,56 @@ import {
 	CorporateClientDto,
 	isCorporateClientDto,
 } from '../../dtos/corporate-client-dto';
-import { PasswordChangeComponent } from '../password-change/password-change.component';
+import { OnInit } from '@angular/core';
+import { PasswordChangeDialogComponent } from './password-change-dialog/password-change-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Role } from '../../dtos/decoded-token-dto';
 import { EmployeeDto } from '../../dtos/employee-dto';
+import { AccountDto } from 'src/app/dtos/account-dto';
+import { CreditDto } from 'src/app/dtos/credit-dto';
+import { MatTableDataSource } from '@angular/material/table';
+import { CreditService } from 'src/app/services/bank-service/credit.service';
+import { catchError, map } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { AuthService } from 'src/app/services/iam-service/auth.service';
+import { AccountService } from 'src/app/services/bank-service/account.service';
+import { CardsInfoDialogComponent } from './cards-info-dialog/cards-info-dialog.component';
 
 @Component({
 	selector: 'app-user-profile',
 	templateUrl: './user-profile.component.html',
 	styleUrls: ['./user-profile.component.css'],
 })
-export class UserProfileComponent {
-	// user, for now, represents ADMIN
-	user: UserDto | null = null;
+export class UserProfileComponent implements OnInit {
+	protected readonly Role = Role;
+	displayedAccountColumns: string[] = [
+		'accountType',
+		'accountNumber',
+		'availableBalance',
+		'currencyCode',
+	];
+	user: UserDto | null = null; // USER, for now, represents ADMIN
 	employee: EmployeeDto | null = null;
 	privateClient: PrivateClientDto | null = null;
 	corporateClient: CorporateClientDto | null = null;
-	isPrivateClient: boolean = false;
-	isCorporateClient: boolean = false;
-	isEmployee: boolean = false;
+	isPrivateClient = false;
+	isCorporateClient = false;
+	isEmployee = false;
+	selectedAccount: AccountDto | null = null;
+	dataSource = new MatTableDataSource<CreditDto>();
+	accountNumberDataSource = new MatTableDataSource<AccountDto>();
 
 	constructor(
-		private iamService: IamService,
+		private iamService: UserService,
 		public dialog: MatDialog,
-	) {}
+		private creditService: CreditService,
+		private accountService: AccountService,
+		private authService: AuthService,
+	) {
+		this.dataSource = new MatTableDataSource();
+		this.accountNumberDataSource = new MatTableDataSource();
+		this.fetchAccounts();
+	}
 
 	ngOnInit(): void {
 		this.fetchUserData();
@@ -70,6 +96,39 @@ export class UserProfileComponent {
 		});
 	}
 
+	applyFilter(event: Event) {
+		const filterValue = (event.target as HTMLInputElement).value;
+		this.dataSource.filter = filterValue.trim().toLowerCase();
+
+		if (this.dataSource.paginator) {
+			this.dataSource.paginator.firstPage();
+		}
+	}
+
+	fetchAccounts(): void {
+		const emailLocal = this.authService.getUserEmail();
+		if (!emailLocal) return;
+
+		this.accountService
+			.getFindByEmail(emailLocal)
+			.pipe(
+				map(dataSource => {
+					this.accountNumberDataSource.data = dataSource;
+					return dataSource;
+				}),
+				catchError(error => {
+					return throwError(() => error);
+				}),
+			)
+			.subscribe();
+	}
+
+	selectAccountRow(row: AccountDto): void {
+		if (this.selectedAccount?.accountNumber != row.accountNumber) {
+			this.selectedAccount = row;
+		}
+	}
+
 	setUserDetails(
 		user: UserDto | PrivateClientDto | CorporateClientDto,
 		isPrivate: boolean,
@@ -80,12 +139,23 @@ export class UserProfileComponent {
 	}
 
 	openPasswordChangeDialog(): void {
-		const dialogRef = this.dialog.open(PasswordChangeComponent, {});
+		const dialogRef = this.dialog.open(PasswordChangeDialogComponent, {
+			autoFocus: false,
+		});
 
-		dialogRef.afterClosed().subscribe(result => {
+		dialogRef.afterClosed().subscribe(() => {
 			console.log('The dialog was closed');
 		});
 	}
 
-	protected readonly Role = Role;
+	viewCards(row: AccountDto) {
+		console.log(this.selectedAccount);
+		if (this.selectedAccount != null) {
+			console.log(this.selectedAccount);
+			this.dialog.open(CardsInfoDialogComponent, {
+				data: { selectedAccount: row },
+				autoFocus: false,
+			});
+		}
+	}
 }

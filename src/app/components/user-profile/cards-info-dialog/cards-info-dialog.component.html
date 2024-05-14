@@ -1,0 +1,185 @@
+<h2 mat-dialog-title>Kartice</h2>
+<mat-dialog-content class="mat-typography size">
+	<div class="tableContainer">
+		<div
+			class="mat-elevation-z8"
+			style="box-shadow: none"
+		>
+			<table
+				class="unselectable"
+				mat-table
+				[dataSource]="dataSource"
+				matSort
+			>
+				<ng-container matColumnDef="identificationCardNumber">
+					<th
+						*matHeaderCellDef
+						mat-header-cell
+						mat-sort-header
+					>
+						Broj kartice
+					</th>
+					<td
+						*matCellDef="let row"
+						mat-cell
+					>
+						{{ row.identificationCardNumber }}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="cardType">
+					<th
+						*matHeaderCellDef
+						mat-header-cell
+						mat-sort-header
+					>
+						Tip kartice
+					</th>
+					<td
+						*matCellDef="let row"
+						mat-cell
+					>
+						{{ row.cardType }}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="nameOfCard">
+					<th
+						*matHeaderCellDef
+						mat-header-cell
+						mat-sort-header
+					>
+						Ime kartice
+					</th>
+					<td
+						*matCellDef="let row"
+						mat-cell
+					>
+						{{ row.nameOfCard }}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="creationDate">
+					<th
+						*matHeaderCellDef
+						mat-header-cell
+						mat-sort-header
+					>
+						Datum kreiranja
+					</th>
+					<td
+						*matCellDef="let row"
+						mat-cell
+					>
+						{{
+							row.creationDate
+								? (row.creationDate
+									| epochToDate
+									| date: 'dd.MM.yyyy.')
+								: '-'
+						}}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="expirationDate">
+					<th
+						*matHeaderCellDef
+						mat-header-cell
+						mat-sort-header
+					>
+						Datum isteka
+					</th>
+					<td
+						*matCellDef="let row"
+						mat-cell
+					>
+						{{
+							row.expirationDate
+								? (row.expirationDate
+									| epochToDate
+									| date: 'dd.MM.yyyy.')
+								: '-'
+						}}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="cvvCode">
+					<th
+						*matHeaderCellDef
+						mat-header-cell
+						mat-sort-header
+					>
+						CVV kod
+					</th>
+					<td
+						*matCellDef="let row"
+						mat-cell
+					>
+						{{ row.cvvCode }}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="limitCard">
+					<th
+						*matHeaderCellDef
+						mat-header-cell
+						mat-sort-header
+					>
+						Limit kartice
+					</th>
+					<td
+						*matCellDef="let row"
+						mat-cell
+					>
+						{{ row.limitCard }}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="status">
+					<th
+						*matHeaderCellDef
+						mat-header-cell
+						mat-sort-header
+					>
+						Status
+					</th>
+					<td
+						*matCellDef="let row"
+						mat-cell
+					>
+						{{ row.status ? '✔️' : '❌' }}
+					</td>
+				</ng-container>
+
+				<tr
+					*matHeaderRowDef="displayedColumns"
+					mat-header-row
+				></tr>
+				<tr
+					mat-row
+					(click)="selectRow(row)"
+					[class.row-selected]="
+						cardRow?.identificationCardNumber ===
+						row.identificationCardNumber
+					"
+					*matRowDef="let row; columns: displayedColumns"
+				></tr>
+			</table>
+		</div>
+	</div>
+	<div class="paginatorContainer">
+		<mat-paginator
+			[hidePageSize]="true"
+			[pageSize]="3"
+		></mat-paginator>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
+		Zatvori
+	</button>
+</mat-dialog-actions>

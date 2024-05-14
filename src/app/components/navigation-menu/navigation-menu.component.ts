@@ -5,9 +5,12 @@ import {
 	OnDestroy,
 	OnInit,
 } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/iam-service/auth.service';
 import { Role } from '../../dtos/decoded-token-dto';
-import { Subscription } from 'rxjs';
+import { Subscription, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { AccountService } from '../../services/bank-service/account.service';
+import { AccountDto } from '../../dtos/account-dto';
 
 @Component({
 	selector: 'app-navigation-menu',
@@ -15,9 +18,12 @@ import { Subscription } from 'rxjs';
 	styleUrls: ['./navigation-menu.component.css'],
 })
 export class NavigationMenuComponent implements OnInit, OnDestroy {
+	authService = inject(AuthService);
+	bankService = inject(AccountService);
+	private accounts: AccountDto[] = [];
+	protected hasAccounts = false;
 	private loginSubscription: Subscription | undefined;
 	private changeDetector = inject(ChangeDetectorRef);
-	authService = inject(AuthService);
 	role: Role | null = null;
 
 	logout() {
@@ -32,6 +38,8 @@ export class NavigationMenuComponent implements OnInit, OnDestroy {
 			this.role = this.authService.getRoleFromToken();
 			this.changeDetector.detectChanges();
 		});
+
+		this.fetchAccounts();
 	}
 
 	ngOnDestroy() {
@@ -45,4 +53,23 @@ export class NavigationMenuComponent implements OnInit, OnDestroy {
 	}
 
 	protected readonly Role = Role;
+
+	fetchAccounts(): void {
+		const emailLocal = this.authService.getUserEmail();
+		if (!emailLocal) return;
+
+		this.bankService
+			.getFindByEmail(emailLocal)
+			.pipe(
+				map(dataSource => {
+					this.accounts = dataSource;
+					this.hasAccounts = this.accounts.length > 0;
+					return dataSource;
+				}),
+				catchError(error => {
+					return throwError(() => error);
+				}),
+			)
+			.subscribe();
+	}
 }

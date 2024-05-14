@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { emailValidator } from '../../utils/validators/email.validator';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/iam-service/auth.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -29,20 +29,21 @@ export class LoginComponent {
 
 	onSubmit() {
 		if (this.loginForm.valid) {
-			this.authService
-				.login({
-					email: this.loginForm.value.email!,
-					password: this.loginForm.value.password!,
-				})
-				.subscribe(
-					() => {
+			const email = this.loginForm.value.email;
+			const password = this.loginForm.value.password;
+
+			if (email && password) {
+				// Check if email and password are not null or undefined
+				this.authService.login({ email, password }).subscribe({
+					next: () => {
 						window.location.href = '/home';
 						// this.router.navigate(['/home']);
 					},
-					error => {
+					error: () => {
 						this.serverResponseError = 'Pogrešan email ili lozinka';
 					},
-				);
+				});
+			}
 		} else {
 			this.loginForm.markAllAsTouched();
 		}

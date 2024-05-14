@@ -1,21 +1,23 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
 	HttpErrorResponse,
 	HttpEvent,
 	HttpHandler,
 	HttpInterceptor,
 	HttpRequest,
+	HttpResponse,
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/iam-service/auth.service';
 
 @Injectable()
 export class AlertInterceptor implements HttpInterceptor {
-	private authService = inject(AuthService);
-	private snackBar = inject(MatSnackBar);
-
-	constructor() {}
+	constructor(
+		private authService: AuthService,
+		private snackBar: MatSnackBar,
+	) {}
 
 	intercept(
 		request: HttpRequest<unknown>,
@@ -38,8 +40,19 @@ export class AlertInterceptor implements HttpInterceptor {
 		}
 
 		return next.handle(request).pipe(
+			tap((event: HttpEvent<any>) => {
+				if (event instanceof HttpResponse && request.method !== 'GET') {
+					this.snackBar.open('Zahtev je uspešan!', 'Zatvori', {
+						duration: 4000,
+						verticalPosition: 'top',
+						horizontalPosition: 'center',
+						panelClass: ['app-notification-success'],
+					});
+				}
+			}),
 			catchError((error: HttpErrorResponse) => {
 				let errorMessage = 'Desila se nepoznata greška!';
+				let additionalMessage = '';
 
 				if (error.error instanceof ErrorEvent) {
 					// Client-side errors
@@ -50,13 +63,14 @@ export class AlertInterceptor implements HttpInterceptor {
 						case 0:
 							errorMessage = 'Zahtev nije uspeo!';
 							break;
+						case 400:
+							errorMessage = 'Loš zahtev!';
+							break;
 						case 401:
 							errorMessage = 'Neautorizovan pristup!';
-							// can possibly redirect to login page
 							break;
 						case 403:
 							errorMessage = 'Zabranjen pristup!';
-							// can possibly redirect to forbidden page
 							break;
 						case 404:
 							errorMessage = 'Stranica nije pronađena!';
@@ -68,13 +82,24 @@ export class AlertInterceptor implements HttpInterceptor {
 							errorMessage = `${error.message}`;
 							break;
 					}
+					// Check if backend returned additional message
+					if (error.error && typeof error.error === 'string') {
+						additionalMessage = `${error.error}.`;
+					} else if (error.error && typeof error.error === 'object') {
+						additionalMessage = error.error.message || '';
+					}
 				}
+
+				// Concatenate main error message and additional message with new line
+				errorMessage += additionalMessage
+					? `\n(${additionalMessage})`
+					: '';
 
 				this.snackBar.open(errorMessage, 'Zatvori', {
 					duration: 4000,
+					horizontalPosition: 'center',
 					verticalPosition: 'top',
-					horizontalPosition: 'right',
-					panelClass: ['error-snackbar'],
+					panelClass: ['app-notification-error'],
 				});
 
 				throw error;

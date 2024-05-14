@@ -1,0 +1,172 @@
+<section class="container">
+	<form
+		class="form-inputs"
+		[formGroup]="transactionForm"
+		#formDirective="ngForm"
+		(ngSubmit)="onSubmit(formDirective)"
+	>
+		<mat-form-field>
+			<mat-label>Broj računa uplatioca</mat-label>
+			<mat-select
+				formControlName="senderAccountNumber"
+				placeholder="Izaberite račun"
+			>
+				<mat-option
+					*ngFor="let option of accountOptionsSender"
+					[value]="option.accountNumber"
+				>
+					{{ option.accountNumber | accountNumberFormat }}
+				</mat-option>
+			</mat-select>
+			<mat-error
+				*ngIf="
+					transactionForm
+						.get('senderAccountNumber')
+						?.hasError('required')
+				"
+			>
+				Broj računa uplatioca je obavezan.
+			</mat-error>
+		</mat-form-field>
+
+		<div class="unselectable">
+			<p *ngIf="availableBalance > -1">
+				Stanje vašeg računa: {{ availableBalance }} {{ currencyCode }}
+			</p>
+			<p *ngIf="availableBalance === -1">Stanje vašeg računa: -</p>
+		</div>
+
+		<mat-form-field>
+			<mat-label>Broj računa primaoca</mat-label>
+			<input
+				matInput
+				placeholder="Unesite broj računa"
+				formControlName="receiverAccountNumber"
+				appBankAccountMask
+				required
+			/>
+			<mat-error
+				*ngIf="
+					transactionForm
+						.get('receiverAccountNumber')
+						?.hasError('required')
+				"
+			>
+				Broj računa primaoca je obavezan.
+			</mat-error>
+			<mat-error
+				*ngIf="
+					transactionForm
+						.get('receiverAccountNumber')
+						?.hasError('invalidBankAccountNumber')
+				"
+			>
+				Pogrešan format računa.
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Iznos</mat-label>
+			<input
+				matInput
+				placeholder="Unesite iznos novca"
+				formControlName="amount"
+				type="text"
+			/>
+			<mat-error
+				*ngIf="transactionForm.get('amount')?.hasError('required')"
+			>
+				Iznos je obavezan.
+			</mat-error>
+			<mat-error
+				*ngIf="
+					transactionForm.get('amount')?.hasError('containsNonDigits')
+				"
+			>
+				Pogrešan format za iznos novca - podržane su samo cifre.
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Svrha plaćanja</mat-label>
+			<input
+				matInput
+				placeholder="Unesite svrhu plaćanja"
+				formControlName="transactionPurpose"
+				type="text"
+			/>
+			<mat-error
+				*ngIf="
+					transactionForm
+						.get('transactionPurpose')
+						?.hasError('required')
+				"
+			>
+				Svrha plaćanja je obavezna.
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Poziv na broj</mat-label>
+			<input
+				matInput
+				placeholder="Unesite poziv na broj"
+				formControlName="referenceNumber"
+				type="text"
+			/>
+			<mat-error
+				*ngIf="
+					transactionForm.get('referenceNumber')?.hasError('required')
+				"
+			>
+				Poziv na broj je obavezan.
+			</mat-error>
+			<mat-error
+				*ngIf="
+					transactionForm
+						.get('referenceNumber')
+						?.hasError('containsNonDigits')
+				"
+			>
+				Pogrešan format poziva na broj - podržane su samo cifre.
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Šifra plaćanja</mat-label>
+			<input
+				matInput
+				placeholder="Unesite šifru plaćanja"
+				formControlName="transactionCode"
+				type="text"
+			/>
+			<mat-error
+				*ngIf="
+					transactionForm.get('transactionCode')?.hasError('required')
+				"
+			>
+				Šifra plaćanja je obavezna.
+			</mat-error>
+			<mat-error
+				*ngIf="
+					transactionForm
+						.get('transactionCode')
+						?.hasError('containsNonDigits')
+				"
+			>
+				Pogrešan format šifre plaćanja - podržane su samo cifre.
+			</mat-error>
+		</mat-form-field>
+
+		<div class="buttons">
+			<button
+				mat-raised-button
+				color="accent"
+				type="submit"
+				[disabled]="!transactionForm.valid"
+			>
+				Pošalji
+			</button>
+		</div>
+	</form>
+</section>

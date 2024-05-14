@@ -1,0 +1,162 @@
+<h2 mat-dialog-title>Izmeni kompaniju</h2>
+<mat-dialog-content class="mat-typography size">
+	<form
+		[formGroup]="updateCompanyForm"
+		(ngSubmit)="updateCompany()"
+	>
+		<div>
+			<mat-form-field class="full-width">
+				<mat-label>Ime kompanije</mat-label>
+				<input
+					matInput
+					placeholder="Unesite ime kompanije"
+					formControlName="companyName"
+					name="companyName"
+				/>
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>Broj faksa</mat-label>
+				<input
+					matInput
+					placeholder="Unesite broj faksa"
+					formControlName="faxNumber"
+					name="faxNumber"
+				/>
+				<mat-error
+					*ngIf="
+						updateCompanyForm
+							.get('faxNumber')
+							?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format broja faksa - podržane su samo cifre.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>Broj telefona</mat-label>
+				<input
+					matInput
+					placeholder="Unesite broj telefona"
+					formControlName="phoneNumber"
+					name="phoneNumber"
+				/>
+				<mat-error
+					*ngIf="
+						updateCompanyForm
+							.get('phoneNumber')
+							?.hasError('invalidPhoneNumber')
+					"
+				>
+					Unesite validan broj telefona.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>PIB</mat-label>
+				<input
+					matInput
+					placeholder="Unesite PIB"
+					formControlName="pib"
+					name="pib"
+				/>
+				<mat-error
+					*ngIf="
+						updateCompanyForm
+							.get('pib')
+							?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format PIB-a - podržane su samo cifre.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>Registarski broj</mat-label>
+				<input
+					matInput
+					placeholder="Unesite registarski broj"
+					formControlName="registryNumber"
+					name="registryNumber"
+				/>
+				<mat-error
+					*ngIf="
+						updateCompanyForm
+							.get('registryNumber')
+							?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format registarskog broja - podržane su samo cifre.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>Matični broj</mat-label>
+				<input
+					matInput
+					placeholder="Unesite matični broj"
+					formControlName="identificationNumber"
+					name="identificationNumber"
+				/>
+				<mat-error
+					*ngIf="
+						updateCompanyForm
+							.get('identificationNumber')
+							?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format matičnog broja - podržane su samo cifre.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>Šifra delatnosti</mat-label>
+				<input
+					matInput
+					placeholder="Unesite šifru delatnosti"
+					formControlName="activityCode"
+					name="activityCode"
+				/>
+				<mat-error
+					*ngIf="
+						updateCompanyForm
+							.get('activityCode')
+							?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format šifre delatnosti - podržane su samo cifre.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>Adresa</mat-label>
+				<input
+					matInput
+					placeholder="Unesite ime kompanije"
+					formControlName="address"
+					name="address"
+				/>
+			</mat-form-field>
+		</div>
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="accent"
+		cdkFocusInitial
+		(click)="updateCompany()"
+		[disabled]="!updateCompanyForm.valid"
+	>
+		Izmeni
+	</button>
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
+		Zatvori
+	</button>
+</mat-dialog-actions>

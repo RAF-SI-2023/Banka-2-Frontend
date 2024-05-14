@@ -1,0 +1,243 @@
+<section class="container">
+	<mat-card>
+		<mat-card-header>
+			<mat-card-title>Zahtev za kredit</mat-card-title>
+		</mat-card-header>
+		<form
+			[formGroup]="creditRequestForm"
+			(ngSubmit)="onSubmit()"
+		>
+			<mat-card-content>
+				<div class="form-grid">
+					<div class="form-inputs">
+						<mat-form-field>
+							<mat-label>Broj računa</mat-label>
+							<mat-select
+								formControlName="accountNumber"
+								placeholder="Izaberite račun"
+							>
+								<mat-option
+									*ngFor="let option of accountNumberOptions"
+									[value]="option.accountNumber"
+								>
+									{{ option.accountNumber }}
+								</mat-option>
+							</mat-select>
+							<mat-error
+								*ngIf="
+									creditRequestForm
+										.get('accountNumber')
+										?.hasError('required')
+								"
+							>
+								Račun je obavezan.
+							</mat-error>
+						</mat-form-field>
+
+						<mat-form-field>
+							<mat-label>Tip kredita</mat-label>
+							<mat-select
+								formControlName="creditType"
+								placeholder="Izaberite tip kredita"
+							>
+								<mat-option
+									*ngFor="let option of creditTypeOptions"
+									[value]="option.value"
+								>
+									{{ option.label }}
+								</mat-option>
+							</mat-select>
+							<mat-error
+								*ngIf="
+									creditRequestForm
+										.get('creditType')
+										?.hasError('required')
+								"
+							>
+								Tip kredita je obavezan.
+							</mat-error>
+						</mat-form-field>
+
+						<mat-form-field>
+							<mat-label>Iznos ({{ currencyCode }})</mat-label>
+							<input
+								matInput
+								formControlName="creditAmount"
+								step="100"
+								placeholder="Unesite iznos novca"
+							/>
+							<mat-error
+								*ngIf="
+									creditRequestForm
+										.get('creditAmount')
+										?.hasError('required')
+								"
+							>
+								Iznos je obavezan.
+							</mat-error>
+							<mat-error
+								*ngIf="
+									creditRequestForm
+										.get('creditAmount')
+										?.hasError('containsNonDigits')
+								"
+							>
+								Pogrešan format iznosa novca - podržane su samo
+								cifre.
+							</mat-error>
+						</mat-form-field>
+
+						<mat-form-field>
+<!--							<mat-label>Broj mobilnog telefona</mat-label>-->
+							<input
+								matInput
+								placeholder="Unesite broj telefona"
+								formControlName="mobileNumber"
+							/>
+							<mat-error
+								*ngIf="
+									creditRequestForm
+										.get('mobileNumber')
+										?.hasError('invalidPhoneNumber')
+								"
+							>
+								Unesite validan broj telefona.
+							</mat-error>
+						</mat-form-field>
+
+						<mat-form-field>
+<!--							<mat-label>Period otplate (meseci)</mat-label>-->
+							<input
+								matInput
+								formControlName="paymentPeriodMonths"
+								placeholder="Unesite period otplate"
+							/>
+							<mat-error
+								*ngIf="
+									creditRequestForm
+										.get('paymentPeriodMonths')
+										?.hasError('required')
+								"
+							>
+								Period otplate je obavezan.
+							</mat-error>
+							<mat-error
+								*ngIf="
+									creditRequestForm
+										.get('paymentPeriodMonths')
+										?.hasError('containsNonDigits')
+								"
+							>
+								Pogrešan format perioda otplate - podržane su
+								samo cifre.
+							</mat-error>
+						</mat-form-field>
+
+						<mat-form-field>
+							<mat-label>Svrha kredita</mat-label>
+							<textarea
+								matInput
+								formControlName="creditPurpose"
+								placeholder="Unesite svrhu kredita"
+							></textarea>
+							<mat-error
+								*ngIf="
+									creditRequestForm
+										.get('creditPurpose')
+										?.hasError('required')
+								"
+							>
+								Svrha kredita je obavezna.
+							</mat-error>
+						</mat-form-field>
+					</div>
+					<div class="form-inputs">
+						<mat-form-field>
+							<mat-label>Mesečna primanja</mat-label>
+							<input
+								matInput
+								formControlName="monthlySalary"
+								placeholder="Unesite mesečna primanja"
+							/>
+							<mat-error
+								*ngIf="
+									creditRequestForm
+										.get('monthlySalary')
+										?.hasError('containsNonDigits')
+								"
+							>
+								Pogrešan format mesečnih primanja - podržane su
+								samo cifre.
+							</mat-error>
+						</mat-form-field>
+						<!--				education level normal input-->
+						<mat-form-field>
+							<mat-label>Nivo obrazovanja</mat-label>
+							<input
+								matInput
+								formControlName="educationLevel"
+								placeholder="Unesite nivo obrazovanja"
+							/>
+						</mat-form-field>
+						<!--				marital status normal input-->
+						<mat-form-field>
+							<mat-label>Bračni status</mat-label>
+							<input
+								matInput
+								formControlName="maritalStatus"
+								placeholder="Unesite bračni status"
+							/>
+						</mat-form-field>
+						<!--	housing status normal input-->
+						<mat-form-field>
+							<mat-label>Stanovanje</mat-label>
+							<input
+								matInput
+								formControlName="housingStatus"
+								placeholder="Unesite stanovanje"
+							/>
+						</mat-form-field>
+						<!--				note textarea-->
+						<mat-form-field>
+							<mat-label>Napomena</mat-label>
+							<textarea
+								matInput
+								formControlName="note"
+								placeholder="Unesite napomenu"
+							></textarea>
+						</mat-form-field>
+						<div class="form-inputs-row">
+							<!--				Permanent Employment boolean checkbox-->
+							<mat-checkbox
+								formControlName="permanentEmployment"
+								class="checkbox"
+							>
+								Imate stalno zaposlenje
+							</mat-checkbox>
+							<!--				own car boolean checkbox-->
+							<mat-checkbox
+								formControlName="ownCar"
+								class="checkbox"
+							>
+								Imate automobil
+							</mat-checkbox>
+						</div>
+					</div>
+				</div>
+			</mat-card-content>
+			<mat-card-actions>
+				<div class="buttons">
+					<button
+						data-test="submit-button"
+						mat-raised-button
+						color="accent"
+						type="submit"
+						[disabled]="!creditRequestForm.valid"
+					>
+						Napravi
+					</button>
+				</div>
+			</mat-card-actions>
+		</form>
+	</mat-card>
+</section>

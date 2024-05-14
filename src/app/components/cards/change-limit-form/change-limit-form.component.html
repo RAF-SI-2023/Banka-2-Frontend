@@ -1,0 +1,71 @@
+<section class="container">
+	<form
+		class="form-inputs"
+		[formGroup]="changeLimitForm"
+		#formDirective="ngForm"
+		(ngSubmit)="onSubmit(formDirective)"
+	>
+		<mat-form-field>
+			<mat-label>Broj kartice</mat-label>
+			<input
+				matInput
+				placeholder="Unesite broj kartice"
+				formControlName="identificationCardNumber"
+				required
+			/>
+			<mat-error
+				*ngIf="
+					changeLimitForm
+						.get('identificationCardNumber')
+						?.hasError('required')
+				"
+			>
+				Broj kartice je obavezan.
+			</mat-error>
+			<mat-error
+				*ngIf="
+					changeLimitForm
+						.get('identificationCardNumber')
+						?.hasError('invalidCardNumber')
+				"
+			>
+				Pogrešan format kartice.
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Limit</mat-label>
+			<input
+				matInput
+				placeholder="Unesite limit na kartici"
+				formControlName="limitCard"
+				required
+			/>
+			<mat-error
+				*ngIf="changeLimitForm.get('limitCard')?.hasError('required')"
+			>
+				Limit je obavezan.
+			</mat-error>
+			<mat-error
+				*ngIf="
+					changeLimitForm
+						.get('limitCard')
+						?.hasError('containsNonDigits')
+				"
+			>
+				Pogrešan format za limit - podržane su samo cifre.
+			</mat-error>
+		</mat-form-field>
+
+		<div class="buttons">
+			<button
+				mat-raised-button
+				color="accent"
+				type="submit"
+				[disabled]="!changeLimitForm.valid"
+			>
+				Promeni
+			</button>
+		</div>
+	</form>
+</section>

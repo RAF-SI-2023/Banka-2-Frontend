@@ -1,10 +1,11 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { IamService } from "../../../../services/iam.service";
-import { isPrivateClientDto } from "../../../../dtos/private-client-dto";
-import { isCorporateClientDto } from "../../../../dtos/corporate-client-dto";
-import { isEmployeeDto } from "../../../../dtos/employee-dto";
-import { DatePipe, formatDate } from "@angular/common";
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UserService } from '../../../../services/iam-service/user.service';
+import { isPrivateClientDto } from '../../../../dtos/private-client-dto';
+import { isCorporateClientDto } from '../../../../dtos/corporate-client-dto';
+import { isEmployeeDto } from '../../../../dtos/employee-dto';
+import { isAgentDto } from 'src/app/dtos/agent-dto';
+import { DatePipe, formatDate } from '@angular/common';
 
 @Component({
 	selector: 'app-user-info-dialog',
@@ -22,28 +23,28 @@ export class UserInfoDialogComponent {
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
-		private iamService: IamService,
+		private userService: UserService,
 	) {
 		this.fetchData();
 	}
 
 	fetchData() {
-		this.iamService.getFindById(this.data.selectedRow.id).subscribe((response) => {
-			this.data.selectedRow = response;
-			this.checkDto();
-			this.prepareValues();
-			this.isLoading = false;
-
-			if (this.data.selectedRow.role === 'AGENT') {
-				this.getAgentLimit();
-			}
-		});
+		this.userService
+			.getFindById(this.data.selectedRow.id)
+			.subscribe(response => {
+				this.data.selectedRow = response;
+				this.checkDto();
+				this.isLoading = false;
+			});
 	}
 
 	prepareValues() {
 		// replace null or empty values with a placeholder
 		for (const key in this.data.selectedRow) {
-			if (this.data.selectedRow[key] == null || this.data.selectedRow[key] == '') {
+			if (
+				this.data.selectedRow[key] == null ||
+				this.data.selectedRow[key] == ''
+			) {
 				this.data.selectedRow[key] = '-';
 			}
 		}
@@ -63,6 +64,8 @@ export class UserInfoDialogComponent {
 			return 'CORPORATE';
 		} else if (isEmployeeDto(this.data.selectedRow)) {
 			return 'EMPLOYEE';
+		} else if (isAgentDto(this.data.selectedRow)) {
+			return 'AGENT';
 		}
 		return 'NONE';
 	}

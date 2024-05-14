@@ -5,16 +5,18 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ForexDto } from 'src/app/dtos/forex-dto';
-import { StockService } from 'src/app/services/stock.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { StockService } from 'src/app/services/stock-service/stock.service';
+import { ForexService } from 'src/app/services/stock-service/forex.service';
+import { AuthService } from 'src/app/services/iam-service/auth.service';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-
+import { ForexInfoDialogComponent } from './forex-info-dialog/forex-info-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-forex',
-  templateUrl: './forex.component.html',
-  styleUrls: ['./forex.component.css']
+	selector: 'app-forex',
+	templateUrl: './forex.component.html',
+	styleUrls: ['./forex.component.css'],
 })
 export class ForexComponent implements AfterViewInit {
 	displayedColumns: string[] = [
@@ -40,6 +42,8 @@ export class ForexComponent implements AfterViewInit {
 		private http: HttpClient,
 		private authService: AuthService,
 		private stockService: StockService,
+		private forexService: ForexService,
+		public dialog: MatDialog,
 	) {
 		this.dataSource = new MatTableDataSource();
 		this.fetchAllData();
@@ -66,7 +70,7 @@ export class ForexComponent implements AfterViewInit {
 	}
 
 	fetchAllData(): void {
-		this.stockService
+		this.forexService
 			.getFindAllForex()
 			.pipe(
 				map(dataSource => {
@@ -79,5 +83,14 @@ export class ForexComponent implements AfterViewInit {
 				}),
 			)
 			.subscribe();
+	}
+
+	viewForex(row: ForexDto): void {
+		if (this.selectedRow != null) {
+			this.dialog.open(ForexInfoDialogComponent, {
+				data: { selectedRow: row },
+				autoFocus: false,
+			});
+		}
 	}
 }

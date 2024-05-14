@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
@@ -6,12 +6,11 @@ import { NavigationEnd, Router } from '@angular/router';
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 	title = 'Banka-2-Frontend';
 	router = inject(Router);
-	showToolbar: boolean = true;
+	showToolbar = true;
 
-	constructor() {}
 	ngOnInit() {
 		this.router.events.subscribe(event => {
 			if (event instanceof NavigationEnd) {

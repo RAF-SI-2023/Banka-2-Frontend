@@ -4,7 +4,7 @@
 			<div class="form">
 				<div>
 					<mat-form-field>
-						<mat-label> Pretraži </mat-label>
+						<mat-label>Pretraži korisnike</mat-label>
 						<input
 							#input
 							(keyup)="applyFilter($event)"
@@ -19,8 +19,8 @@
 					color="accent"
 					[disabled]="
 						!selectedRow ||
-						selectedRowRole() != 'EMPLOYEE' ||
-						this.activeUser?.role != 'ADMIN'
+						selectedRowRole() !== 'EMPLOYEE' ||
+						activeUser?.role !== 'ADMIN'
 					"
 					(click)="
 						selectedRowActive()
@@ -38,8 +38,8 @@
 					mat-raised-button
 					class="buttons"
 					color="accent"
-					[disabled]="this.activeUser?.role != 'ADMIN'"
-					(click)="addUser()"
+					[disabled]="activeUser?.role !== 'ADMIN'"
+					(click)="addEmployee()"
 				>
 					Dodaj zaposlenog
 				</button>
@@ -53,24 +53,17 @@
 					Izmeni korisnika
 				</button>
 				<button
+					data-test="delete-button"
 					mat-raised-button
 					class="buttons"
 					color="warn"
 					(click)="deleteUser()"
-					[disabled]="!selectedRow || updateUserDisabled()"
+					[disabled]="!selectedRow || deleteUserDisabled()"
 				>
 					Izbriši korisnika
 				</button>
-				<button
-					mat-raised-button
-					color="primary"
-					(click)="openAddAgentDialog()"
-				>
-					Dodaj Agenta
-				</button>
 			</div>
 		</mat-card-header>
-
 		<mat-card-content>
 			<div class="tableContainer">
 				<div
@@ -78,6 +71,7 @@
 					style="box-shadow: none"
 				>
 					<table
+						class="unselectable"
 						mat-table
 						[dataSource]="dataSource"
 						matSort
@@ -114,22 +108,6 @@
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="username">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Korisničko ime
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.username }}
-							</td>
-						</ng-container>
-
 						<ng-container matColumnDef="dateOfBirth">
 							<th
 								*matHeaderCellDef
@@ -146,8 +124,8 @@
 									row.dateOfBirth
 										? (row.dateOfBirth
 											| epochToDate
-											| date: 'dd.MM.yyyy')
-										: ''
+											| date: 'dd.MM.yyyy.')
+										: '-'
 								}}
 							</td>
 						</ng-container>
@@ -164,7 +142,7 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.phone }}
+								{{ row.phone ? row.phone : '-' }}
 							</td>
 						</ng-container>
 
@@ -180,7 +158,7 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.address }}
+								{{ row.address ? row.address : '-' }}
 							</td>
 						</ng-container>
 
@@ -212,7 +190,7 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.active }}
+								{{ row.active ? '✔️' : '❌' }}
 							</td>
 						</ng-container>
 
@@ -224,9 +202,7 @@
 							mat-row
 							(click)="selectRow(row)"
 							(dblclick)="viewUser(row)"
-							[class.row-selected]="
-								this.selectedRow?.id === row.id
-							"
+							[class.row-selected]="selectedRow?.id === row.id"
 							*matRowDef="let row; columns: displayedColumns"
 						></tr>
 

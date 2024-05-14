@@ -3,12 +3,12 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/iam-service/auth.service';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { CurrencyDto } from '../../dtos/currency-dto';
-import { CurrencyService } from '../../services/currency.service';
-import { ExchangeService } from '../../services/exchange.service';
+import { CurrencyService } from '../../services/stock-service/currency.service';
+import { ExchangeService } from '../../services/stock-service/exchange.service';
 import { ExchangeDto } from '../../dtos/exchange-dto';
 import { CurrencyInfoDialogComponent } from './dialogs/currency-info-dialog/currency-info-dialog.component';
 import { ExchangeInfoDialogComponent } from './dialogs/exchange-info-dialog/exchange-info-dialog.component';
@@ -23,8 +23,7 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 	currencyDisplayedColumns: string[] = [
 		'currencyName',
 		'currencyCode',
-		'currencySymbol',
-		'currencyPolity',
+		'currencySymbol', // Ovo je u stvari politicki entitet
 	];
 	currencyDataSource = new MatTableDataSource<CurrencyDto>();
 	currencySelectedRow: CurrencyDto | null = null;
@@ -66,6 +65,7 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 		if (this.currencyPaginator)
 			this.currencyDataSource.paginator = this.currencyPaginator;
 		if (this.currencySort) this.currencyDataSource.sort = this.currencySort;
+
 		if (this.exchangePaginator)
 			this.exchangeDataSource.paginator = this.exchangePaginator;
 		if (this.exchangeSort) this.exchangeDataSource.sort = this.exchangeSort;
@@ -79,6 +79,7 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 			this.currencyDataSource.paginator.firstPage();
 		}
 	}
+
 	applyFilterForExchange(event: Event) {
 		const filterValue = (event.target as HTMLInputElement).value;
 		this.exchangeDataSource.filter = filterValue.trim().toLowerCase();
@@ -87,16 +88,19 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 			this.exchangeDataSource.paginator.firstPage();
 		}
 	}
+
 	selectCurrencyRow(row: CurrencyDto): void {
 		if (this.currencySelectedRow?.currencySymbol != row.currencySymbol) {
 			this.currencySelectedRow = row;
 		}
 	}
+
 	selectExchangeRow(row: ExchangeDto): void {
 		if (this.exchangeSelectedRow?.exchangeMICode != row.exchangeMICode) {
 			this.exchangeSelectedRow = row;
 		}
 	}
+
 	fetchAllData(): void {
 		this.currencyService
 			.getFindAll()
@@ -129,17 +133,18 @@ export class CurrencyExchangeComponent implements AfterViewInit {
 
 	viewCurrency(row: CurrencyDto): void {
 		if (this.currencySelectedRow != null) {
-			const dialogRef = this.dialog.open(CurrencyInfoDialogComponent, {
+			this.dialog.open(CurrencyInfoDialogComponent, {
 				data: { selectedRow: row },
+				autoFocus: false,
 			});
 		}
 	}
 	viewExchange(row: ExchangeDto): void {
 		if (this.exchangeSelectedRow != null) {
-			const dialogRef = this.dialog.open(ExchangeInfoDialogComponent, {
+			this.dialog.open(ExchangeInfoDialogComponent, {
 				data: { selectedRow: row },
+				autoFocus: false,
 			});
 		}
 	}
-	
 }
