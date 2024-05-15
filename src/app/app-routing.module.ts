@@ -16,6 +16,7 @@ import { StocksComponent } from './components/stocks/stocks.component';
 import { CurrencyExchangeComponent } from './components/currency-exchange/currency-exchange.component';
 import { OptionsComponent } from './components/options/options.component';
 import { ForexComponent } from './components/forex/forex.component';
+import { PubliclyTradableSecuritiesComponent } from './components/publicly-tradable-securities/publicly-tradable-securities.component';
 import { CompaniesComponent } from './components/companies/companies.component';
 import { ActuariesComponent } from './components/actuaries/actuaries.component';
 import { CreditsComponent } from './components/credits/credits.component';
@@ -92,6 +93,12 @@ const routes: Routes = [
 	{
 		component: ForexComponent,
 		path: 'forex',
+		canActivate: [authGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
+	},
+	{
+		component: PubliclyTradableSecuritiesComponent,
+		path: 'publicly-tradable-securities',
 		canActivate: [authGuard, roleGuard],
 		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
 	},
