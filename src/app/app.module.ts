@@ -51,6 +51,10 @@ import { FuturesContractsComponent } from './components/futures-contracts/future
 import { FuturesContractInfoDialogComponent } from './components/futures-contracts/futures-contract-info-dialog/futures-contract-info-dialog.component';
 import { ActuaryInfoDialogComponent } from './components/actuaries/actuary-info-dialog/actuary-info-dialog.component';
 import { PasswordChangeDialogComponent } from './components/user-profile/password-change-dialog/password-change-dialog.component';
+import { AcquiredSecuritiesComponent } from './components/acquired-securities/acquired-securities.component';
+import { AcquiredSecuritiesInfoDialogComponent } from './components/acquired-securities/acquired-securities-info-dialog/acquired-securities-info-dialog.component';
+import { AcquiredSecuritiesSellDialogComponent } from './components/acquired-securities/acquired-securities-sell-dialog/acquired-securities-sell-dialog.component';
+import { AcquiredSecuritiesPostDialogComponent } from './components/acquired-securities/acquired-securities-post-dialog/acquired-securities-post-dialog.component';
 /// DIRECTIVES/PIPES
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
@@ -99,6 +103,7 @@ import {
 } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DATE_FORMAT } from './utils/constants';
+
 
 @NgModule({
 	declarations: [
@@ -156,6 +161,10 @@ import { DATE_FORMAT } from './utils/constants';
 		BankExchangeComponent,
 		FuturesContractInfoDialogComponent,
 		ActuaryInfoDialogComponent,
+  		AcquiredSecuritiesComponent,
+  		AcquiredSecuritiesInfoDialogComponent,
+  		AcquiredSecuritiesSellDialogComponent,
+  		AcquiredSecuritiesPostDialogComponent,
 	],
 	imports: [
 		HttpClientModule,

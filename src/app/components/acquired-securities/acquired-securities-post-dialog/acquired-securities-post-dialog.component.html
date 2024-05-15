@@ -1,0 +1,49 @@
+<section class="container">
+	<form
+		class="form-inputs"
+		[formGroup]="transactionForm"
+		#formDirective="ngForm"
+		(ngSubmit)="onSubmit(formDirective)"
+	>
+
+		<mat-form-field>
+			<mat-label>Iznos</mat-label>
+			<input
+				matInput
+				placeholder="Unesite iznos"
+				formControlName="amount"
+				type="text"
+			/>
+			<mat-error
+				*ngIf="transactionForm.get('amount')?.hasError('required')"
+			>
+				Iznos je obavezan.
+			</mat-error>
+			<mat-error
+				*ngIf="
+					transactionForm.get('amount')?.hasError('containsNonDigits')
+				"
+			>
+				Pogrešan format za iznos - podržane su samo cifre.
+			</mat-error>
+		</mat-form-field>
+
+		<div class="buttons">
+			
+			<button
+				mat-raised-button
+				color="accent"
+				type="submit"
+				[disabled]="!transactionForm.valid"
+			>
+			</button>
+            <button
+            mat-raised-button
+            mat-dialog-close
+            color="warn"
+        >
+            Zatvori
+        </button>
+		</div>
+	</form>
+</section>
