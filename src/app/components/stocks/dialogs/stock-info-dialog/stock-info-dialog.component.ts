@@ -6,6 +6,8 @@ import { OptionService } from 'src/app/services/stock-service/option.service';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { StockPopupComponent } from '../stock-popup/stock-popup.component';
+import { PopupService } from '../../../../services/stock-service/popup.service';
 
 @Component({
 	selector: 'app-stock-info-dialog',
@@ -20,6 +22,7 @@ export class StockInfoDialogComponent {
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		private stockService: StockService,
 		private optionService: OptionService,
+		private popupService: PopupService,
 		private router: Router,
 	) {
 		this.fetchData();
@@ -67,4 +70,10 @@ export class StockInfoDialogComponent {
 				this.router.navigate(['/options', stockListing]);
 			});
 	}
+
+	openPopup() {
+		this.popupService.openPopup();
+	}
+
+
 }

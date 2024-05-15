@@ -99,6 +99,10 @@ import {
 } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DATE_FORMAT } from './utils/constants';
+import { StockPopupComponent } from './components/stocks/dialogs/stock-popup/stock-popup.component';
+import { PubliclyTradableSecuritiesComponent } from './components/publicly-tradable-securities/publicly-tradable-securities.component';
+import { PubliclyTradableSecuritiesInfoDialogComponent } from './components/publicly-tradable-securities/publicly-tradable-securities-info-dialog/publicly-tradable-securities-info-dialog.component';
+import { PubliclyTradableSecuritiesPopupComponent } from './components/publicly-tradable-securities/publicly-tradable-securities-popup/publicly-tradable-securities-popup.component';
 
 @NgModule({
 	declarations: [
@@ -156,6 +160,10 @@ import { DATE_FORMAT } from './utils/constants';
 		BankExchangeComponent,
 		FuturesContractInfoDialogComponent,
 		ActuaryInfoDialogComponent,
+  		StockPopupComponent,
+  		PubliclyTradableSecuritiesComponent,
+  		PubliclyTradableSecuritiesInfoDialogComponent,
+    	PubliclyTradableSecuritiesPopupComponent,
 	],
 	imports: [
 		HttpClientModule,

@@ -1,0 +1,58 @@
+<h1 mat-dialog-title>Popup</h1>
+
+<mat-form-field>
+	<mat-label>Količina</mat-label>
+	<input
+		matInput
+		placeholder="Unesite iznos količine"
+		formControlName="amount"
+		type="text"
+	/>
+	<mat-error
+		*ngIf="transactionForm.get('amount')?.hasError('required')"
+	>
+		Količina je obavezna.
+	</mat-error>
+	<mat-error
+		*ngIf="
+					transactionForm.get('amount')?.hasError('containsNonDigits')
+				"
+	>
+		Pogrešan format za iznos količine - podržane su samo cifre.
+	</mat-error>
+</mat-form-field>
+
+<mat-form-field>
+	<mat-label>Cena</mat-label>
+	<input
+		matInput
+		placeholder="Unesite iznos cene"
+		formControlName="price"
+		type="text"
+	/>
+	<mat-error
+		*ngIf="transactionForm.get('price')?.hasError('required')"
+	>
+		Cena je obavezna.
+	</mat-error>
+	<mat-error
+		*ngIf="
+					transactionForm.get('price')?.hasError('containsNonDigits')
+				"
+	>
+		Pogrešan format za iznos cene - podržane su samo cifre.
+	</mat-error>
+</mat-form-field>
+
+<div mat-dialog-actions align="end">
+	<button
+		mat-raised-button
+		color="primary"
+	>Kupi</button>
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>Zatvori</button>
+</div>
+
