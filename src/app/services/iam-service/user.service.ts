@@ -16,7 +16,7 @@ import { PasswordChangeTokenDto } from '../../dtos/password-change-token-dto';
 	providedIn: 'root',
 })
 export class UserService {
-	constructor(private httpClient: HttpClient) {}
+	constructor(private httpClient: HttpClient) { }
 
 	// GET
 	getFindAll() {
@@ -35,9 +35,9 @@ export class UserService {
 	patchResetAgentsLeftLimit(id: number) {
 		return this.httpClient.patch<null>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.users.resetAgentsLeftLimit +
-				'/' +
-				id,
+			ApiRoutes.users.resetAgentsLeftLimit +
+			'/' +
+			id,
 			{},
 		);
 	}
@@ -105,7 +105,7 @@ export class UserService {
 	putUpdateCorporateClient(user: UserDto) {
 		return this.httpClient.put<UserDto[]>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.users.updateCorporateClient,
+			ApiRoutes.users.updateCorporateClient,
 			user,
 		);
 	}
@@ -113,8 +113,8 @@ export class UserService {
 	putActivateEmployee(id: number) {
 		return this.httpClient.put<UserDto[]>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.users.activateEmployee +
-				`/${id}`,
+			ApiRoutes.users.activateEmployee +
+			`/${id}`,
 			{},
 		);
 	}
@@ -122,8 +122,8 @@ export class UserService {
 	putDeactivateEmployee(id: number) {
 		return this.httpClient.put<UserDto[]>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.users.deactivateEmployee +
-				`/${id}`,
+			ApiRoutes.users.deactivateEmployee +
+			`/${id}`,
 			{},
 		);
 	}
