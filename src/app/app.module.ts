@@ -43,7 +43,6 @@ import { ExternalFormComponent } from './components/transactions/external-form/e
 import { InternalFormComponent } from './components/transactions/internal-form/internal-form.component';
 import { VerifyTransactionDialogComponent } from './components/transactions/verify-transaction-dialog/verify-transaction-dialog.component';
 import { StockFilterComponent } from './components/stocks/dialogs/stock-filter/stock-filter.component';
-import { TransactionsAllFilterComponent } from './components/transactions-all/dialogs/transactions-all-filter/transactions-all-filter.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { CreationFormComponent } from './components/cards/creation-form/creation-form.component';
 import { ChangeStatusFormComponent } from './components/cards/change-status-form/change-status-form.component';
@@ -161,7 +160,6 @@ import { DATE_FORMAT } from './utils/constants';
 		ActuaryInfoDialogComponent,
 		TransactionsAllComponent,
 		TransactionsAllInfoDialogComponent,
-		TransactionsAllFilterComponent,
 		
 	],
 	imports: [
