@@ -48,14 +48,14 @@ export class AcquiredSecuritiesInfoDialogComponent {
 		this.newSelectedRow = { ...this.data.selectedRow };
 	}
 
-  prodajBerzi(): void {
+  sell(): void {
     this.dialog.open(AcquiredSecuritiesSellDialogComponent, {
       width: '400px',
       data: this.newSelectedRow, 
     });
   }
 
-  postaviZaJavnoTrgovanje(): void {
+  post(): void {
     this.dialog.open(AcquiredSecuritiesPostDialogComponent, {
       width: '400px',
       data: this.newSelectedRow, 
