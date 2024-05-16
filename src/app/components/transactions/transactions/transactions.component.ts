@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 export class TransactionsComponent {
 	constructor(private router: Router) {}
 	redirectToTransactionsAll() {
-	this.router.navigate(['/transactions/all']);
-}
+		this.router.navigate(['/transactions/all']);
+	}
 
 	transactionsTypeOptions: DropdownOption[] = DropdownOptions.transactionType;
 
