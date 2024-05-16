@@ -14,47 +14,46 @@
 			width="40"
 		/>
 	</a>
+	<!--  Bank Stock Toggle	-->
+	<mat-button-toggle-group name="bankStock" aria-label="Bank Stock"
+							 [value]="selectedToggle"
+							 (change)="onToggleChange($event)">
+		<mat-button-toggle value="bank" class="custom-toggle-button">
+			<mat-icon>account_balance</mat-icon> Banka
+		</mat-button-toggle>
+		<mat-button-toggle value="stock" class="custom-toggle-button">
+			<mat-icon>query_stats</mat-icon> Berza
+		</mat-button-toggle>
+	</mat-button-toggle-group>
+
 	<a
-		*ngIf="hasAccounts && !checkTokenRole([Role.SUPERVISOR, Role.AGENT])"
+		*ngIf="isBank && hasAccounts && !checkTokenRole([Role.SUPERVISOR, Role.AGENT])"
 		mat-button
 		routerLink="/bank-exchange"
 	>
 		Menjačnica
 	</a>
 	<a
-		*ngIf="hasAccounts && !checkTokenRole([Role.SUPERVISOR, Role.AGENT])"
+		*ngIf="isBank && hasAccounts && !checkTokenRole([Role.SUPERVISOR, Role.AGENT])"
 		mat-button
 		routerLink="/transactions"
 	>
 		Transakcije
 	</a>
 	<a
-		*ngIf="hasAccounts && !checkTokenRole([Role.SUPERVISOR, Role.AGENT])"
+		*ngIf="isBank && hasAccounts && !checkTokenRole([Role.SUPERVISOR, Role.AGENT])"
 		mat-button
 		routerLink="/credits"
 	>
 		Krediti
 	</a>
-	<a
-		*ngIf="hasAccounts"
-		mat-button
-		routerLink="/acquired-securities"
-	>
-		Stečene hartije od vrednosti
-	</a>
-	<a
-		*ngIf="hasAccounts"
-		mat-button
-		routerLink="/publicly-tradable-securities"
-	>
-		Javno trgovane hartije od vrednosti
-	</a>
+
 	<button
-		*ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])"
+		*ngIf="isStock && checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])"
 		mat-button
 		[matMenuTriggerFor]="stockExchangeMenu"
 	>
-		Informacije o berzi
+		Informacije
 	</button>
 	<mat-menu #stockExchangeMenu="matMenu">
 		<button
@@ -99,7 +98,24 @@
 			<span> Terminski ugovori </span>
 		</button>
 	</mat-menu>
+
+	<a
+		*ngIf="isStock && hasAccounts"
+		mat-button
+		routerLink="/acquired-securities"
+	>
+		Stečene hartije od vrednosti
+	</a>
+	<a
+		*ngIf="isStock && hasAccounts"
+		mat-button
+		routerLink="/publicly-tradable-securities"
+	>
+		Javno trgovane hartije od vrednosti
+	</a>
+
 	<div class="padding"></div>
+
 	<button
 		*ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR])"
 		mat-button

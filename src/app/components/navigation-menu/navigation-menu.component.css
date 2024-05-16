@@ -17,3 +17,28 @@
 	margin: 5px;
 	height: fit-content;
 }
+
+.mat-button-toggle-group {
+	margin-right: 10px;
+}
+.mat-button-toggle-checked {
+	background-color: #1976d2 !important; /* Primary color */
+	/*color: white !important; !* Text color *!*/
+	color: #333; /* Custom text color */
+}
+
+.custom-toggle-button {
+	background-color: #f0f0f0; /* Custom background color */
+	color: #333; /* Custom text color */
+	font-size: 14px; /* Reduce font size */
+	line-height: 1; /* Adjust line-height */
+	height: 36px;
+	display: flex;
+	align-items: center;
+}
+
+.custom-toggle-button.mat-button-toggle-checked {
+	background-color: #f5cf3d !important; /* Custom background color when checked */
+	/*color: white !important; !* Custom text color when checked *!*/
+}
+
