@@ -7,6 +7,7 @@ import { bankAccountNumberValidator } from '../../../utils/validators';
 import { CardDto } from 'src/app/dtos/card-dto';
 import { CardService } from 'src/app/services/bank-service/card.service';
 import { digitValidator } from 'src/app/utils/validators/digit.validator';
+import { FormGroupDirective } from '@angular/forms';
 
 @Component({
 	selector: 'app-creation-form',
@@ -29,7 +30,7 @@ export class CreationFormComponent {
 
 	constructor(private fb: FormBuilder) {}
 
-	onSubmit() {
+	onSubmit(formDirective: FormGroupDirective) {
 		if (this.createCardForm.valid && this.createCardForm) {
 			const card = this.createCardForm.value as unknown as CardDto;
 			if (card.accountNumber) {
@@ -45,6 +46,7 @@ export class CreationFormComponent {
 					)
 					.subscribe(response => {
 						console.log(response);
+						formDirective.resetForm();
 						this.createCardForm.reset();
 					});
 			}

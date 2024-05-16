@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ExternalTransactionResponseDto } from 'src/app/dtos/external-transaction-response-dto';
 import { VerifyTransactionDialogComponent } from '../verify-transaction-dialog/verify-transaction-dialog.component';
 import { digitValidator } from 'src/app/utils/validators/digit.validator';
+import { FormGroupDirective } from '@angular/forms';
 
 @Component({
 	selector: 'app-external-form',
@@ -77,7 +78,7 @@ export class ExternalFormComponent implements OnInit {
 			.subscribe();
 	}
 
-	onSubmit() {
+	onSubmit(formDirective: FormGroupDirective) {
 		if (this.transactionForm.valid && this.transactionForm) {
 			const transaction = this.transactionForm
 				.value as unknown as ExternalTransactionRequestDto;
@@ -88,9 +89,7 @@ export class ExternalFormComponent implements OnInit {
 					.postTransactionExternal(transaction)
 					.subscribe(response => {
 						if (response.status == 'PENDING') {
-							// this.accountBalance=this.accountBalance-response.amount;
-							this.openConfirmDialog(response);
-							// console.log(response);
+							this.openConfirmDialog(response, formDirective);
 						} else {
 							console.log(response);
 						}
@@ -116,13 +115,17 @@ export class ExternalFormComponent implements OnInit {
 			});
 	}
 
-	openConfirmDialog(response: ExternalTransactionResponseDto) {
+	openConfirmDialog(
+		response: ExternalTransactionResponseDto,
+		formDirective: FormGroupDirective,
+	) {
 		const dialogRef = this.dialog.open(VerifyTransactionDialogComponent, {
 			autoFocus: false,
 			data: { response },
 		});
 
 		dialogRef.afterClosed().subscribe(() => {
+			formDirective.resetForm();
 			this.transactionForm.reset();
 			this.availableBalance = -1;
 		});

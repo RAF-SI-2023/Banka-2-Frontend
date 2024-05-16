@@ -8,6 +8,7 @@ import {
 import { AccountService } from '../../../services/bank-service/account.service';
 import { BusinessAccountDto } from 'src/app/dtos/business-account-dto';
 import { digitValidator } from 'src/app/utils/validators/digit.validator';
+import { FormGroupDirective } from '@angular/forms';
 
 @Component({
 	selector: 'app-business-form',
@@ -31,7 +32,7 @@ export class BusinessFormComponent {
 
 	constructor(private fb: FormBuilder) {}
 
-	onSubmit() {
+	onSubmit(formDirective: FormGroupDirective) {
 		if (this.companyBankAccountForm.valid) {
 			const account = this.companyBankAccountForm
 				.value as BusinessAccountDto;
@@ -41,6 +42,7 @@ export class BusinessFormComponent {
 				.postCreateCompanyAccount(account)
 				.subscribe(response => {
 					console.log(response);
+					formDirective.resetForm();
 					this.companyBankAccountForm.reset();
 				});
 		}

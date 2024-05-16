@@ -7,7 +7,8 @@
 			<mat-card-content>
 				<form
 					[formGroup]="exchangeForm"
-					(ngSubmit)="sendExchangeRequest()"
+					#formDirective="ngForm"
+					(ngSubmit)="sendExchangeRequest(formDirective)"
 				>
 					<mat-form-field>
 						<mat-label>Broj računa za uplatu</mat-label>

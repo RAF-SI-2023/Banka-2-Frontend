@@ -7,6 +7,7 @@ import {
 } from '../../../utils/validators';
 import { AccountService } from '../../../services/bank-service/account.service';
 import { ForeignAccountDto } from '../../../dtos/foreign-account-dto';
+import { FormGroupDirective } from '@angular/forms';
 
 @Component({
 	selector: 'app-foreign-form',
@@ -27,7 +28,7 @@ export class ForeignFormComponent {
 
 	constructor(private fb: FormBuilder) {}
 
-	onSubmit() {
+	onSubmit(formDirective: FormGroupDirective) {
 		if (this.foreignBankAccountForm.valid) {
 			const account = this.foreignBankAccountForm
 				.value as ForeignAccountDto;
@@ -36,6 +37,7 @@ export class ForeignFormComponent {
 				.postCreateForeignAccount(account)
 				.subscribe(response => {
 					console.log(response);
+					formDirective.resetForm();
 					this.foreignBankAccountForm.reset();
 				});
 		}

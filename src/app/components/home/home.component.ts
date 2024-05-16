@@ -13,7 +13,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AccountService } from '../../services/bank-service/account.service';
 import { catchError, map } from 'rxjs/operators';
 import { Subscription, throwError } from 'rxjs';
-import { ExchangeRequestDto } from '../../dtos/exchange-request-dto';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BankExchangeService } from '../../services/bank-service/bank-exchange.service';
 import { Role } from 'src/app/dtos/decoded-token-dto';
@@ -115,28 +114,6 @@ export class HomeComponent implements AfterViewInit {
 				}),
 			)
 			.subscribe();
-	}
-
-	sendExchangeRequest(): void {
-		if (this.exchangeForm.valid) {
-			const exchangeRequestDto = this.exchangeForm
-				.value as unknown as ExchangeRequestDto;
-			this.bankExchangeService
-				.postExchangeCurrency(exchangeRequestDto)
-				.pipe(
-					map(response => {
-						console.log(response);
-						this.exchangeForm.reset();
-						this.exchangeForm.markAsUntouched();
-						this.getAccounts();
-					}),
-					catchError(error => {
-						console.error('Error loading data.', error);
-						return throwError(() => error);
-					}),
-				)
-				.subscribe();
-		}
 	}
 
 	checkTokenRole(roleArray: string[]) {

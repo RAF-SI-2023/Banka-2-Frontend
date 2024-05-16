@@ -18,6 +18,6 @@ describe('Deleting Employee', () => {
 
 		// After clicking the delete button, verify that the user is deleted
 		// For example, check if the user's data is no longer present in the table
-		cy.contains('Zahtev je uspešan!').should('exist');
+		cy.get('.app-notification-success').should('be.visible');
 	});
 });

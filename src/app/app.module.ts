@@ -23,6 +23,7 @@ import { ForexComponent } from './components/forex/forex.component';
 import { OptionsComponent } from './components/options/options.component';
 import { UserInfoDialogComponent } from './components/users/dialogs/user-info-dialog/user-info-dialog.component';
 import { StockInfoDialogComponent } from './components/stocks/dialogs/stock-info-dialog/stock-info-dialog.component';
+import { TransactionsAllInfoDialogComponent } from './components/transactions-all/dialogs/transactions-all-info-dialog/transaction-all-info-dialog.component';
 import { CompaniesComponent } from './components/companies/companies.component';
 import { CompanyInfoDialogComponent } from './components/companies/dialogs/company-info-dialog/company-info-dialog.component';
 import { CurrencyInfoDialogComponent } from './components/currency-exchange/dialogs/currency-info-dialog/currency-info-dialog.component';
@@ -51,6 +52,7 @@ import { FuturesContractsComponent } from './components/futures-contracts/future
 import { FuturesContractInfoDialogComponent } from './components/futures-contracts/futures-contract-info-dialog/futures-contract-info-dialog.component';
 import { ActuaryInfoDialogComponent } from './components/actuaries/actuary-info-dialog/actuary-info-dialog.component';
 import { PasswordChangeDialogComponent } from './components/user-profile/password-change-dialog/password-change-dialog.component';
+import { TransactionsAllComponent } from './components/transactions-all/transactions-all.component';
 /// DIRECTIVES/PIPES
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
@@ -98,7 +100,10 @@ import {
 	MAT_DATE_LOCALE,
 } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
+
 import { DATE_FORMAT } from './utils/constants';
+import { RequestsComponent } from './components/acquired-securities/requests/requests.component';
+import { RequestInfoDialog } from './components/acquired-securities/requests/request-info-dialog/request-info-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -135,6 +140,8 @@ import { DATE_FORMAT } from './utils/constants';
 		CreditsComponent,
 		CreditInfoDialogComponent,
 		CreateCreditRequestComponent,
+		RequestInfoDialog,
+		RequestsComponent,
 		TranslatePipe,
 		UpdateCompanyDialogComponent,
 		AddCompanyDialogComponent,
@@ -156,6 +163,10 @@ import { DATE_FORMAT } from './utils/constants';
 		BankExchangeComponent,
 		FuturesContractInfoDialogComponent,
 		ActuaryInfoDialogComponent,
+		TransactionsAllComponent,
+		TransactionsAllInfoDialogComponent,
+
+		RequestsComponent,
 	],
 	imports: [
 		HttpClientModule,
@@ -204,4 +215,4 @@ import { DATE_FORMAT } from './utils/constants';
 	],
 	bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

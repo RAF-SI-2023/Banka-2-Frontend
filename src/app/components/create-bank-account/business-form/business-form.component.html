@@ -2,7 +2,8 @@
 	<form
 		class="form-inputs"
 		[formGroup]="companyBankAccountForm"
-		(ngSubmit)="onSubmit()"
+		#formDirective="ngForm"
+		(ngSubmit)="onSubmit(formDirective)"
 	>
 		<mat-form-field>
 			<mat-label>Broj računa</mat-label>
