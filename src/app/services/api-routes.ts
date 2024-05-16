@@ -77,6 +77,15 @@ export const ApiRoutes = {
 		getAllExchangeRates: '/currency-exchange/exchange-rate/from',
 		postExchangeCurrency: '/currency-exchange/exchange-currency',
 	},
+	// Securities
+	securities:{
+		findAllPublic:'/securities-ownerships/all-available',
+		findAllByAccountNumber:'/securities-ownerships/account-number',
+		findBySecuritySymbol:'/securities-ownerships/security-name',
+		updateSecurity:'/securities-ownerships/update-publicly-available'
+
+	},
+
 	// STOCK-SERVICE
 	/// CurrencyController
 	currency: {

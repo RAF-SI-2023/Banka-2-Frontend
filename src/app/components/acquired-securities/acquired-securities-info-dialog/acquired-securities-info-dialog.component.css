@@ -1,0 +1,17 @@
+mat-form-field {
+    width: 100%;
+  }
+  
+  mat-dialog-actions {
+    justify-content: flex-end;
+  }
+  
+  .mat-form-field div {
+    margin-top: 16px;
+  }
+  
+  .mat-typography div mat-label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  

@@ -104,6 +104,10 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DATE_FORMAT } from './utils/constants';
 import { RequestsComponent } from './components/acquired-securities/requests/requests.component';
 import { RequestInfoDialog } from './components/acquired-securities/requests/request-info-dialog/request-info-dialog.component';
+import { AcquiredSecuritiesComponent } from './components/acquired-securities/acquired-securities.component';
+import { PubliclyTradableSecuritiesComponent } from './components/publicly-tradable-securities/publicly-tradable-securities.component';
+import { PublicSecurityInfoDialogComponent } from './components/publicly-tradable-securities/public-security-info-dialog/public-security-info-dialog.component';
+import { AcquiredSecuritiesInfoDialogComponent } from './components/acquired-securities/acquired-securities-info-dialog/acquired-securities-info-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -167,6 +171,10 @@ import { RequestInfoDialog } from './components/acquired-securities/requests/req
 		TransactionsAllInfoDialogComponent,
 
 		RequestsComponent,
+    AcquiredSecuritiesComponent,
+    PubliclyTradableSecuritiesComponent,
+    PublicSecurityInfoDialogComponent,
+    AcquiredSecuritiesInfoDialogComponent,
 	],
 	imports: [
 		HttpClientModule,
