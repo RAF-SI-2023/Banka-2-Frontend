@@ -171,10 +171,10 @@ import { AcquiredSecuritiesInfoDialogComponent } from './components/acquired-sec
 		TransactionsAllInfoDialogComponent,
 
 		RequestsComponent,
-    AcquiredSecuritiesComponent,
-    PubliclyTradableSecuritiesComponent,
-    PublicSecurityInfoDialogComponent,
-    AcquiredSecuritiesInfoDialogComponent,
+		AcquiredSecuritiesComponent,
+		PubliclyTradableSecuritiesComponent,
+		PublicSecurityInfoDialogComponent,
+		AcquiredSecuritiesInfoDialogComponent,
 	],
 	imports: [
 		HttpClientModule,
@@ -223,4 +223,4 @@ import { AcquiredSecuritiesInfoDialogComponent } from './components/acquired-sec
 	],
 	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

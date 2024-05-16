@@ -5,30 +5,30 @@ import { environment } from 'src/environments/environment.development';
 import { ApiRoutes } from '../api-routes';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class SecuritiesService {
+	constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  getAllSecuritiesByAccountNumber(accountNumber: string){
-    return this.httpClient.get<SecurityDto[]>(
+	getAllSecuritiesByAccountNumber(accountNumber: string) {
+		return this.httpClient.get<SecurityDto[]>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.securities.findAllByAccountNumber}/${accountNumber}`,
 		);
-  }
-  getAllPublicSecurities(){
-    return this.httpClient.get<SecurityDto[]>(
+	}
+	getAllPublicSecurities() {
+		return this.httpClient.get<SecurityDto[]>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.securities.findAllPublic}`,
 		);
-  }
-  getSecurityBySymbol(symbol: string){
-    return this.httpClient.get<SecurityDto[]>(
+	}
+	getSecurityBySymbol(symbol: string) {
+		return this.httpClient.get<SecurityDto[]>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.securities.findBySecuritySymbol}/${symbol}`,
 		);
-  }
-  putSecurity(security: SecurityDto){
-    return this.httpClient.put<SecurityDto[]>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.securities.updateSecurity}`,security
+	}
+	putSecurity(security: SecurityDto) {
+		return this.httpClient.put<SecurityDto[]>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.securities.updateSecurity}`,
+			security,
 		);
-  }
+	}
 }

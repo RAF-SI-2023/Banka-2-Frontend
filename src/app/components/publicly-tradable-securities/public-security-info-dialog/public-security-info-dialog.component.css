@@ -1,17 +1,29 @@
 mat-form-field {
-    width: 100%;
-  }
-  
-  mat-dialog-actions {
-    justify-content: flex-end;
-  }
-  
-  .mat-form-field div {
-    margin-top: 16px;
-  }
-  
-  .mat-typography div mat-label {
-    display: block;
-    margin-bottom: 8px;
-  }
-  
+	width: 100%;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.size {
+	width: 40rem;
+}
+
+.info-row {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 8px;
+}
+
+.label {
+	font-weight: bold;
+	margin-right: 8px;
+}
+
+.spinner-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}

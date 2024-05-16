@@ -38,7 +38,9 @@ describe('Adding Employee Dialog', () => {
 			.contains('Muški')
 			.click();
 		const dateOfBirth = '1990-01-01';
-		cy.get('input[name="dateOfBirth"]').invoke('val', dateOfBirth).trigger('input');
+		cy.get('input[name="dateOfBirth"]')
+			.invoke('val', dateOfBirth)
+			.trigger('input');
 		cy.get('input[name="phone"]').type('1234567890');
 		cy.get('input[name="address"]').type('123 Test St');
 		cy.get('input[name="position"]').type('Developer');
