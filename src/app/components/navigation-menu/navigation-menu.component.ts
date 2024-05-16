@@ -26,6 +26,10 @@ export class NavigationMenuComponent implements OnInit, OnDestroy {
 	private changeDetector = inject(ChangeDetectorRef);
 	role: Role | null = null;
 
+	isBank: boolean = true; // Default to 'Bank'
+	isStock: boolean = false;
+	selectedToggle: string = 'bank';
+
 	logout() {
 		this.authService.logout();
 	}
@@ -50,6 +54,13 @@ export class NavigationMenuComponent implements OnInit, OnDestroy {
 	checkTokenRole(roleArray: string[]) {
 		if (!this.role) return false;
 		return roleArray.includes(this.role);
+	}
+
+	onToggleChange(event: any): void {
+		const value = event.value;
+		this.isBank = value === 'bank';
+		this.isStock = value === 'stock';
+		this.selectedToggle = value;
 	}
 
 	protected readonly Role = Role;
