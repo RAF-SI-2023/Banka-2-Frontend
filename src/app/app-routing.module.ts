@@ -26,6 +26,7 @@ import { TransactionsComponent } from './components/transactions/transactions/tr
 import { BankExchangeComponent } from './components/bank-exchange/bank-exchange.component';
 import { FuturesContractsComponent } from './components/futures-contracts/futures-contracts.component';
 import { accountGuard } from './guards/account.guard';
+import { TransactionsAllComponent } from './components/transactions-all/transactions-all.component';
 
 const routes: Routes = [
 	{
@@ -80,6 +81,12 @@ const routes: Routes = [
 	{
 		component: StocksComponent,
 		path: 'stocks',
+		canActivate: [authGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
+	},
+	{
+		component: TransactionsAllComponent,
+		path: 'transactions/all',
 		canActivate: [authGuard, roleGuard],
 		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
 	},

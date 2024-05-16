@@ -1,0 +1,100 @@
+<h2 mat-dialog-title>Informacije</h2>
+<mat-dialog-content class="mat-typography size">
+	<div
+		*ngIf="!isLoading"
+		class="full-width-grid"
+	>
+		<div class="info-row">
+			<span class="label">Simbol:</span>
+			<span>{{ newSelectedRow.symbol }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Opis:</span>
+			<span>{{ newSelectedRow.description }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Berza:</span>
+			<span>{{ newSelectedRow.exchange }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Datum poslednjeg ažuriranja:</span>
+			<span>
+				{{
+					newSelectedRow.lastRefresh
+						? (newSelectedRow.lastRefresh
+							| epochToDate
+							| date: 'dd.MM.yyyy.')
+						: '-'
+				}}
+			</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Cena:</span>
+			<span>{{ newSelectedRow.price }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Najniža prodavna cena:</span>
+			<span>{{ newSelectedRow.high }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Najviša kupovna cena:</span>
+			<span>{{ newSelectedRow.low }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Dnevna razlika u cenama:</span>
+			<span>{{ newSelectedRow.change }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Broj dnevno razmenjenih hartija:</span>
+			<span>{{ newSelectedRow.volume }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Broj emitovanih akcija:</span>
+			<span>{{ newSelectedRow.shares }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Godišnji prinos od dividendi:</span>
+			<span>{{ newSelectedRow.yield }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Tržišna kapitalizacija:</span>
+			<span>{{ newSelectedRow.marketCap }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Količina ugovora:</span>
+			<span>{{ newSelectedRow.contractSize }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Marža za održavanje:</span>
+			<span>{{ newSelectedRow.maintenanceMargin }}</span>
+		</div>
+	</div>
+
+	<div
+		*ngIf="isLoading"
+		class="spinner-container"
+	>
+		<mat-progress-spinner
+			diameter="50"
+			mode="indeterminate"
+		></mat-progress-spinner>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="accent"
+		cdkFocusInitial
+		(click)="viewOptionsPage()"
+	>
+		Opcije
+	</button>
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
+		Zatvori
+	</button>
+</mat-dialog-actions>
