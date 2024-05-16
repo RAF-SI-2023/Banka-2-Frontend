@@ -56,6 +56,8 @@ import { AcquiredSecuritiesComponent } from './components/acquired-securities/ac
 import { AcquiredSecuritiesInfoDialogComponent } from './components/acquired-securities/acquired-securities-info-dialog/acquired-securities-info-dialog.component';
 import { AcquiredSecuritiesSellDialogComponent } from './components/acquired-securities/acquired-securities-sell-dialog/acquired-securities-sell-dialog.component';
 import { AcquiredSecuritiesPostDialogComponent } from './components/acquired-securities/acquired-securities-post-dialog/acquired-securities-post-dialog.component';
+import { RequestsComponent } from './components/acquired-securities/requests/requests.component';
+import { RequestInfoDialog } from './components/acquired-securities/requests/request-info-dialog/request-info-dialog.component';
 /// DIRECTIVES/PIPES
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
