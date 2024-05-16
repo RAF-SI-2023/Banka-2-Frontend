@@ -1,0 +1,27 @@
+<!-- src/app/components/acquired-securities-info-dialog/acquired-securities-info-dialog.component.html -->
+<h2 mat-dialog-title>Security Information</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="form">
+  <div>
+    <mat-label>ID: {{data.id}}</mat-label>
+    <mat-label>Email: {{data.email}}</mat-label>
+    <mat-label>Broj racuna: {{data.accountNumber}}</mat-label>
+    <mat-label>Simbol: {{data.securitiesSymbol}}</mat-label>
+    <mat-label>Kolicina ukupnih sigurnosti: {{data.quantity}}</mat-label>
+    <mat-label>Kolicina javno dostupnih sigurnosti: {{data.quantityOfPubliclyAvailable}}</mat-label>
+    <mat-label>Sacuvane kolicine sigurnosti: {{data.reservedQuantity}}</mat-label>
+    <mat-form-field appearance="fill">
+      <mat-label>Nova kolicina javnih sigurnosti</mat-label>
+      <input matInput placeholder="Enter amount" formControlName="amount" type="number">
+    </mat-form-field>
+  </div>
+</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button 
+    mat-raised-button 
+    color="accent"
+    (click)="updateSecurity()"
+  >Change</button>
+  <button mat-raised-button mat-dialog-close color="warn">Close</button>
+</mat-dialog-actions>

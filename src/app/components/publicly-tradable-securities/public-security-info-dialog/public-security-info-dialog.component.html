@@ -1,0 +1,16 @@
+<!-- src/app/components/public-security-info-dialog/public-security-info-dialog.component.html -->
+<h2 mat-dialog-title>Security Information</h2>
+<mat-dialog-content class="mat-typography">
+  <div>
+    <mat-label>ID: {{data.id}}</mat-label>
+    <mat-label>Email: {{data.email}}</mat-label>
+    <mat-label>Account Number: {{data.accountNumber}}</mat-label>
+    <mat-label>Securities Symbol: {{data.securitiesSymbol}}</mat-label>
+    <mat-label>Quantity: {{data.quantity}}</mat-label>
+    <mat-label>Quantity of Publicly Available: {{data.quantityOfPubliclyAvailable}}</mat-label>
+    <mat-label>Reserved Quantity: {{data.reservedQuantity}}</mat-label>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="warn" (click)="onClose()">Close</button>
+</mat-dialog-actions>

@@ -28,6 +28,8 @@ import { FuturesContractsComponent } from './components/futures-contracts/future
 import { accountGuard } from './guards/account.guard';
 import { TransactionsAllComponent } from './components/transactions-all/transactions-all.component';
 import { RequestsComponent } from './components/acquired-securities/requests/requests.component';
+import { PubliclyTradableSecuritiesComponent } from './components/publicly-tradable-securities/publicly-tradable-securities.component';
+import { AcquiredSecuritiesComponent } from './components/acquired-securities/acquired-securities.component';
 
 const routes: Routes = [
 	{
@@ -149,6 +151,18 @@ const routes: Routes = [
 		path: 'cards',
 		canActivate: [authGuard, roleGuard],
 		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
+	},
+	{
+		component: PubliclyTradableSecuritiesComponent,
+		path: 'publicly-tradable-securities',
+		canActivate: [authGuard, roleGuard],
+		// data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
+	},
+	{
+		component: AcquiredSecuritiesComponent,
+		path: 'acquired-securities',
+		canActivate: [authGuard, roleGuard],
+		// data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
 	},
 ];
 
