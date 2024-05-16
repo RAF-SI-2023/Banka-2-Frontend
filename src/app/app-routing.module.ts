@@ -27,6 +27,7 @@ import { BankExchangeComponent } from './components/bank-exchange/bank-exchange.
 import { FuturesContractsComponent } from './components/futures-contracts/futures-contracts.component';
 import { accountGuard } from './guards/account.guard';
 import { TransactionsAllComponent } from './components/transactions-all/transactions-all.component';
+import { RequestsComponent } from './components/acquired-securities/requests/requests.component';
 
 const routes: Routes = [
 	{
@@ -58,6 +59,11 @@ const routes: Routes = [
 		canActivate: [authGuard, accountGuard],
 	},
 	{
+		component: TransactionsAllComponent,
+		path: 'transactions/all',
+		canActivate: [authGuard, accountGuard],
+	},
+	{
 		component: BankExchangeComponent,
 		path: 'bank-exchange',
 		canActivate: [authGuard, accountGuard],
@@ -85,12 +91,6 @@ const routes: Routes = [
 		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
 	},
 	{
-		component: TransactionsAllComponent,
-		path: 'transactions/all',
-		canActivate: [authGuard, roleGuard],
-		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
-	},
-	{
 		component: OptionsComponent,
 		path: 'options/:stockListing',
 		canActivate: [authGuard, roleGuard],
@@ -105,6 +105,12 @@ const routes: Routes = [
 	{
 		component: FuturesContractsComponent,
 		path: 'futures-contracts',
+		canActivate: [authGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
+	},
+	{
+		component: RequestsComponent,
+		path: 'acquired-securities/requests',
 		canActivate: [authGuard, roleGuard],
 		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
 	},

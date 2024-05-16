@@ -3,20 +3,12 @@
 		<mat-card-header>
 			<div class="form">
 				<mat-form-field>
-					<mat-label>Pretraži akcije</mat-label>
+					<mat-label>Pretraži transakcije</mat-label>
 					<input
 						#input
 						(keyup)="applyFilter($event)"
 						matInput
 					/>
-					<!--					reset filters button-->
-					<button
-						mat-icon-button
-						matSuffix
-						(click)="resetFilters()"
-					>
-						<mat-icon>clear</mat-icon>
-					</button>
 				</mat-form-field>
 			</div>
 		</mat-card-header>
@@ -33,179 +25,91 @@
 						[dataSource]="dataSource"
 						matSort
 					>
-						<ng-container matColumnDef="symbol">
+						<ng-container matColumnDef="id">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Simbol
+								ID
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.symbol }}
+								{{ row.id }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="description">
+						<ng-container matColumnDef="amount">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Opis
+								Iznos
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.description }}
+								{{ row.amount }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="exchange">
+						<ng-container matColumnDef="createdAt">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Berza
+								Datum izvršenja
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.exchange }}
-							</td>
-						</ng-container>
-
-						<!-- <ng-container matColumnDef="lastRefresh">
-							<th *matHeaderCellDef mat-header-cell mat-sort-header>
-								Poslednje ažuriranje
-							</th>
-							<td *matCellDef="let row" mat-cell>
 								{{
-								row.lastRefresh
-								? (row.lastRefresh | epochToDate | date : "dd.MM.yyyy")
-								: "-"
+									row.createdAt
+										? (row.createdAt
+											| epochToDate
+											| date: 'dd.MM.yyyy')
+										: '-'
 								}}
 							</td>
-						</ng-container> -->
+						</ng-container>
 
-						<ng-container matColumnDef="price">
+						<ng-container matColumnDef="status">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Cena
+								Status
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.price }}
+								{{ row.status }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="high">
+						<ng-container matColumnDef="type">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Najniža prodavna cena
+								Vrsta
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.high }}
+								{{ row.type }}
 							</td>
 						</ng-container>
-
-						<ng-container matColumnDef="low">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Najviša kupovna cena
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.low }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="change">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Dnevna razlika u cenama
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.change ? row.change : '-' }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="volume">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Broj dnevno razmenjenih hartija
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.volume ? row.volume : '-' }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="shares">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Broj emitovanih akcija
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.shares ? row.shares : '-' }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="yield">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Godišnji prinos od dividendi
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.yield }}
-							</td>
-						</ng-container>
-
 						<tr
 							*matHeaderRowDef="displayedColumns"
 							mat-header-row
@@ -213,10 +117,7 @@
 						<tr
 							mat-row
 							(click)="selectRow(row)"
-							(dblclick)="viewStock(row)"
-							[class.row-selected]="
-								selectedRow?.symbol === row.symbol
-							"
+							[class.row-selected]="selectedRow?.id === row.id"
 							*matRowDef="let row; columns: displayedColumns"
 						></tr>
 
