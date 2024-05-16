@@ -3,7 +3,9 @@
 		<mat-card-header>
 			<div class="form">
 				<mat-form-field>
-					<mat-label>Pretraži tržište stranih valuta</mat-label>
+					<mat-label
+						>Pretraži javno trgovane hartije od vrednosti</mat-label
+					>
 					<input
 						#input
 						(keyup)="applyFilter($event)"
@@ -37,7 +39,7 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.id }}
+								{{ row.id ? row.id : '-' }}
 							</td>
 						</ng-container>
 
@@ -47,13 +49,13 @@
 								mat-header-cell
 								mat-sort-header
 							>
-                            email
+								Email
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.email }}
+								{{ row.email ? row.email : '-' }}
 							</td>
 						</ng-container>
 
@@ -63,97 +65,111 @@
 								mat-header-cell
 								mat-sort-header
 							>
-                            ownedByBank
+								U vlasništvu banke
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.ownedByBank }}
+								{{ row.ownedByBank ? 'Da' : 'Ne' }}
 							</td>
 						</ng-container>
 
-                        <ng-container matColumnDef="accountNumber">
+						<ng-container matColumnDef="accountNumber">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-                            accountNumber
+								Broj računa
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.accountNumber }}
+								{{
+									row.accountNumber ? row.accountNumber : '-'
+								}}
 							</td>
 						</ng-container>
 
-                        <ng-container matColumnDef="securitiesSymbol">
+						<ng-container matColumnDef="securitiesSymbol">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-                            securitiesSymbol
+								Simbol
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.securitiesSymbol }}
+								{{
+									row.securitiesSymbol
+										? row.securitiesSymbol
+										: '-'
+								}}
 							</td>
 						</ng-container>
 
-                        <ng-container matColumnDef="quantity">
+						<ng-container matColumnDef="quantity">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-                            quantity
+								Količina ukupnih HoV
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.quantity }}
+								{{ row.quantity ? row.quantity : '-' }}
 							</td>
 						</ng-container>
 
-                        <ng-container matColumnDef="quantityOfPubliclyAvailable">
+						<ng-container
+							matColumnDef="quantityOfPubliclyAvailable"
+						>
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-                            quantityOfPubliclyAvailable
+								Količina javno dostupnih HoV
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.quantityOfPubliclyAvailable }}
+								{{
+									row.quantityOfPubliclyAvailable
+										? row.quantityOfPubliclyAvailable
+										: '-'
+								}}
 							</td>
 						</ng-container>
 
-                        <ng-container matColumnDef="reservedQuantity">
+						<ng-container matColumnDef="reservedQuantity">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-                            reservedQuantity
+								Rezervisane količine HoV
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.reservedQuantity }}
+								{{
+									row.reservedQuantity
+										? row.reservedQuantity
+										: '-'
+								}}
 							</td>
 						</ng-container>
-
-
 
 						<tr
 							*matHeaderRowDef="displayedColumns"
@@ -164,7 +180,8 @@
 							(click)="selectRow(row)"
 							(dblclick)="viewSecurity(row)"
 							[class.row-selected]="
-								selectedRow?.securitiesSymbol === row.securitiesSymbol
+								selectedRow?.securitiesSymbol ===
+								row.securitiesSymbol
 							"
 							*matRowDef="let row; columns: displayedColumns"
 						></tr>

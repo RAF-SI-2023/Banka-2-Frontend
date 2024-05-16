@@ -27,7 +27,9 @@ describe('Adding Agent Dialog', () => {
 
 		cy.get('input[name="email"]').type('test@example.com');
 		const dateOfBirth = '1990-01-01';
-		cy.get('input[name="dateOfBirth"]').invoke('val', dateOfBirth).trigger('input');
+		cy.get('input[name="dateOfBirth"]')
+			.invoke('val', dateOfBirth)
+			.trigger('input');
 		cy.get('input[name="phone"]').type('+38162567890');
 		cy.get('input[name="address"]').type('123 Test St');
 		cy.get('input[name="userLimit"]').type('100');

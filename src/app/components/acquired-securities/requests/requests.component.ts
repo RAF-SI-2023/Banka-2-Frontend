@@ -14,85 +14,83 @@ import { ForexInfoDialogComponent } from '../../forex/forex-info-dialog/forex-in
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-requests',
-  templateUrl: './requests.component.html',
-  styleUrls: ['./requests.component.css']
+	selector: 'app-requests',
+	templateUrl: './requests.component.html',
+	styleUrls: ['./requests.component.css'],
 })
 export class RequestsComponent implements AfterViewInit {
+	displayedColumns: string[] = [
+		'symbol',
+		'description',
+		'exchange',
+		'lastRefresh',
+		'price',
+		'high',
+		'low',
+		'change',
+		'volume',
+		'baseCurrency',
+		'quoteCurrency',
+	];
+	dataSource = new MatTableDataSource<ForexDto>();
+	selectedRow: ForexDto | null = null;
 
-  displayedColumns: string[] = [
-    'symbol',
-    'description',
-    'exchange',
-    'lastRefresh',
-    'price',
-    'high',
-    'low',
-    'change',
-    'volume',
-    'baseCurrency',
-    'quoteCurrency',
-  ];
-  dataSource = new MatTableDataSource<ForexDto>();
-  selectedRow: ForexDto | null = null;
+	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+	@ViewChild(MatSort) sort: MatSort | undefined;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
-  @ViewChild(MatSort) sort: MatSort | undefined;
+	constructor(
+		private http: HttpClient,
+		private authService: AuthService,
+		private stockService: StockService,
+		private forexService: ForexService,
+		public dialog: MatDialog,
+	) {
+		this.dataSource = new MatTableDataSource();
+		this.fetchAllData();
+	}
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService,
-    private stockService: StockService,
-    private forexService: ForexService,
-    public dialog: MatDialog,
-  ) {
-    this.dataSource = new MatTableDataSource();
-    this.fetchAllData();
-  }
+	ngAfterViewInit() {
+		if (this.paginator) this.dataSource.paginator = this.paginator;
+		if (this.sort) this.dataSource.sort = this.sort;
+	}
 
-  ngAfterViewInit() {
-    if (this.paginator) this.dataSource.paginator = this.paginator;
-    if (this.sort) this.dataSource.sort = this.sort;
-  }
+	applyFilter(event: Event) {
+		const filterValue = (event.target as HTMLInputElement).value;
+		this.dataSource.filter = filterValue.trim().toLowerCase();
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+		if (this.dataSource.paginator) {
+			this.dataSource.paginator.firstPage();
+		}
+	}
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
+	selectRow(row: ForexDto): void {
+		if (this.selectedRow?.symbol != row.symbol) {
+			this.selectedRow = row;
+		}
+	}
 
-  selectRow(row: ForexDto): void {
-    if (this.selectedRow?.symbol != row.symbol) {
-      this.selectedRow = row;
-    }
-  }
+	fetchAllData(): void {
+		this.forexService
+			.getFindAllForex()
+			.pipe(
+				map(dataSource => {
+					this.dataSource.data = dataSource;
+					return dataSource;
+				}),
+				catchError(error => {
+					console.error('Error loading data.', error);
+					return throwError(() => error);
+				}),
+			)
+			.subscribe();
+	}
 
-  fetchAllData(): void {
-    this.forexService
-      .getFindAllForex()
-      .pipe(
-        map(dataSource => {
-          this.dataSource.data = dataSource;
-          return dataSource;
-        }),
-        catchError(error => {
-          console.error('Error loading data.', error);
-          return throwError(() => error);
-        }),
-      )
-      .subscribe();
-  }
-
-  viewForex(row: ForexDto): void {
-    if (this.selectedRow != null) {
-      this.dialog.open(ForexInfoDialogComponent, {
-        data: { selectedRow: row },
-        autoFocus: false,
-      });
-    }
-  }
-
+	viewForex(row: ForexDto): void {
+		if (this.selectedRow != null) {
+			this.dialog.open(ForexInfoDialogComponent, {
+				data: { selectedRow: row },
+				autoFocus: false,
+			});
+		}
+	}
 }

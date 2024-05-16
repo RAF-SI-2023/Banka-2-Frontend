@@ -4,7 +4,6 @@ describe('Create Credit Request', () => {
 		cy.visit('/credits/create-credit-request'); // Assuming your users component is accessible at /users route
 	});
 
-
 	it('should create a credit request when form is submitted with valid data', () => {
 		cy.get('mat-select[formControlName="creditType"]').click();
 		cy.get('mat-option').contains('Gotovinski').click();
