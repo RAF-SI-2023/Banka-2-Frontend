@@ -1,0 +1,76 @@
+<mat-dialog-content class="mat-typography size">
+	<div class="full-width">
+		<div class="info-row">
+			<span class="label">ID:</span>
+			<span>{{ data.id ? data.id : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Email:</span>
+			<span>{{ data.email ? data.email : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Broj računa:</span>
+			<span>{{ data.accountNumber ? data.accountNumber : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Simbol:</span>
+			<span>{{
+				data.securitiesSymbol ? data.securitiesSymbol : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Količina ukupnih HoV:</span>
+			<span>{{ data.quantity ? data.quantity : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Količina javno dostupnih HoV:</span>
+			<span>{{
+				data.quantityOfPubliclyAvailable
+					? data.quantityOfPubliclyAvailable
+					: '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Rezervisane količine HoV:</span>
+			<span>{{
+				data.reservedQuantity ? data.reservedQuantity : '-'
+			}}</span>
+		</div>
+
+		<form [formGroup]="form">
+			<mat-form-field appearance="fill">
+				<mat-label>Nova količina javno dostupnih HoV</mat-label>
+				<input
+					matInput
+					placeholder="Unesi količinu"
+					formControlName="amount"
+				/>
+				<mat-error *ngIf="form.get('amount')?.hasError('required')">
+					Količina je obavezna.</mat-error
+				>
+				<mat-error
+					*ngIf="form.get('amount')?.hasError('containsNonDigits')"
+				>
+					Pogrešan format za količinu - podržane su samo cifre.
+				</mat-error>
+			</mat-form-field>
+		</form>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button
+		mat-raised-button
+		color="accent"
+		type="submit"
+		[disabled]="!form.valid"
+	>
+		Kupi
+	</button>
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
+		Zatvori
+	</button>
+</mat-dialog-actions>

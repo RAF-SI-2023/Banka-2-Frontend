@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
 	bankAccountNumberValidator,
-	passwordValidator,
 	phoneNumberValidator,
 } from '../../utils/validators';
 import { emailValidator } from '../../utils/validators/email.validator';
@@ -298,7 +297,10 @@ export class CreateBankProfileComponent implements OnInit {
 
 	creationSuccess() {
 		this.snackbar.open('Profil uspešno kreiran', 'Zatvori', {
-			duration: 3000,
+			duration: 4000,
+			horizontalPosition: 'center',
+			verticalPosition: 'top',
+			panelClass: ['app-notification-success'],
 		});
 		this.router.navigate(['/login']);
 	}

@@ -35,6 +35,20 @@
 	>
 		Krediti
 	</a>
+	<a
+		*ngIf="hasAccounts"
+		mat-button
+		routerLink="/acquired-securities"
+	>
+		Stečene hartije od vrednosti
+	</a>
+	<a
+		*ngIf="hasAccounts"
+		mat-button
+		routerLink="/publicly-tradable-securities"
+	>
+		Javno trgovane hartije od vrednosti
+	</a>
 	<button
 		*ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])"
 		mat-button

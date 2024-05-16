@@ -68,7 +68,7 @@ export const ApiRoutes = {
 	},
 	// Transactions
 	transferTransaction: {
-		findById: '/transaction/funds-transfer',
+		getAllTransactions: '/transaction/funds-transfer',
 		createInternalTransaction: '/transaction/internal',
 		createExternalTransaction: '/transaction/external',
 		patchVerifyTransaction: '/transaction/verify',
@@ -77,6 +77,14 @@ export const ApiRoutes = {
 		getAllExchangeRates: '/currency-exchange/exchange-rate/from',
 		postExchangeCurrency: '/currency-exchange/exchange-currency',
 	},
+	// Securities
+	securities: {
+		findAllPublic: '/securities-ownerships/all-available',
+		findAllByAccountNumber: '/securities-ownerships/account-number',
+		findBySecuritySymbol: '/securities-ownerships/security-name',
+		updateSecurity: '/securities-ownerships/update-publicly-available',
+	},
+
 	// STOCK-SERVICE
 	/// CurrencyController
 	currency: {

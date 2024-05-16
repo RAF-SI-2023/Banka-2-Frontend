@@ -97,9 +97,9 @@ export class AuthService {
 			const expirationDate = new Date(decodedToken.exp * 1000);
 			if (expirationDate < new Date()) {
 				this.matSnackBar.open('Vaša sesija je istekla!', 'Zatvori', {
+					duration: 4000,
+					horizontalPosition: 'center',
 					verticalPosition: 'top',
-					horizontalPosition: 'right',
-					duration: 5000,
 				});
 				this.logout();
 				return true;

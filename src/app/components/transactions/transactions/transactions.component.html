@@ -2,6 +2,14 @@
 	<mat-card class="parent-card">
 		<mat-card-header>
 			<mat-card-title>Transakcije</mat-card-title>
+
+			<button
+				class="redirect-button"
+				mat-raised-button
+				(click)="redirectToTransactionsAll()"
+			>
+				Lista transakcija
+			</button>
 		</mat-card-header>
 		<mat-card-content class="card-container">
 			<div class="form-inputs">

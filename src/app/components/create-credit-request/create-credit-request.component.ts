@@ -11,7 +11,7 @@ import { throwError } from 'rxjs';
 import { AuthService } from '../../services/iam-service/auth.service';
 import { bankAccountNumberNoSymbolsValidator } from '../../utils/validators/bank-account-number-no-symbols.validator';
 import { digitValidator } from 'src/app/utils/validators/digit.validator';
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-create-credit-request',
@@ -70,7 +70,7 @@ export class CreateCreditRequestComponent {
 			this.creditService
 				.postCreateCreditRequest(request)
 				.subscribe(() => {
-					this.router.navigate(['/credits'])
+					this.router.navigate(['/credits']);
 					this.creditRequestForm.reset();
 				});
 		}

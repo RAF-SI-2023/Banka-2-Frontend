@@ -45,7 +45,7 @@ export class AlertInterceptor implements HttpInterceptor {
 					this.snackBar.open('Zahtev je uspešan!', 'Zatvori', {
 						duration: 4000,
 						verticalPosition: 'top',
-						horizontalPosition: 'right',
+						horizontalPosition: 'center',
 						panelClass: ['app-notification-success'],
 					});
 				}
@@ -82,7 +82,6 @@ export class AlertInterceptor implements HttpInterceptor {
 							errorMessage = `${error.message}`;
 							break;
 					}
-
 					// Check if backend returned additional message
 					if (error.error && typeof error.error === 'string') {
 						additionalMessage = `${error.error}.`;
@@ -93,13 +92,13 @@ export class AlertInterceptor implements HttpInterceptor {
 
 				// Concatenate main error message and additional message with new line
 				errorMessage += additionalMessage
-					? `\n${additionalMessage}`
+					? `\n(${additionalMessage})`
 					: '';
 
 				this.snackBar.open(errorMessage, 'Zatvori', {
 					duration: 4000,
+					horizontalPosition: 'center',
 					verticalPosition: 'top',
-					horizontalPosition: 'right',
 					panelClass: ['app-notification-error'],
 				});
 

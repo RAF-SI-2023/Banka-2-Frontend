@@ -13,9 +13,9 @@ export const loginGuard: CanActivateFn = () => {
 	if (token && !authService.isTokenExpired()) {
 		router.navigate(['/home']);
 		snackBar.open('Već ste ulogovani!', 'Zatvori', {
-			verticalPosition: 'top',
+			duration: 4000,
 			horizontalPosition: 'center',
-			duration: 3000,
+			verticalPosition: 'top',
 		});
 		return false;
 	}
