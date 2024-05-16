@@ -68,7 +68,7 @@ export const ApiRoutes = {
 	},
 	// Transactions
 	transferTransaction: {
-		findById: '/transaction/funds-transfer',
+		findAllByEmail: '/transaction/funds-transfer',
 		createInternalTransaction: '/transaction/internal',
 		createExternalTransaction: '/transaction/external',
 		patchVerifyTransaction: '/transaction/verify',

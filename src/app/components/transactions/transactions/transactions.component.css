@@ -7,11 +7,13 @@
 
 mat-card {
 	width: 100%;
-	height: 38.5vw;
 	max-width: 30vw;
+	height: 32vw;
 }
 
 mat-card-header {
+	display: flex;
+	flex-direction: column;
 	margin-bottom: 1rem;
 }
 
@@ -33,8 +35,14 @@ mat-card-content {
 }
 
 .parent-card {
-	max-height: 30vw;
+	max-height: 33vw;
 	height: 100%;
+}
+
+.redirect-button {
+	margin-top: 1rem;
+	width: 100%;
+	height: 2rem;
 }
 
 .buttons {

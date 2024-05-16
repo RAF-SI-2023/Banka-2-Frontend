@@ -1,14 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { StockDto } from 'src/app/dtos/stock-dto';
-import { StockService } from 'src/app/services/stock-service/stock.service';
-import { AuthService } from 'src/app/services/iam-service/auth.service';
+import { TransactionDto } from 'src/app/dtos/transaction-dto';
+import { TransactionService } from 'src/app/services/bank-service/transaction.service';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { TransactionsAllInfoDialogComponent } from './dialogs/transactions-all-info-dialog/transaction-all-info-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -18,28 +15,20 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class TransactionsAllComponent implements AfterViewInit {
 	displayedColumns: string[] = [
-		'symbol',
-		'description',
-		'exchange',
-		// 'lastRefresh',
-		'price',
-		'high',
-		'low',
-		'change',
-		'volume',
-		'shares',
-		'yield',
+		'id',
+		'amount',
+		'createdAt',
+		'status',
+		'type',
 	];
-	dataSource = new MatTableDataSource<StockDto>();
-	selectedRow: StockDto | null = null;
+	dataSource = new MatTableDataSource<TransactionDto>();
+	selectedRow: TransactionDto | null = null;
 
 	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 	@ViewChild(MatSort) sort: MatSort | undefined;
 
 	constructor(
-		private http: HttpClient,
-		private authService: AuthService,
-		private stockService: StockService,
+		private transactionService: TransactionService,
 		public dialog: MatDialog,
 	) {
 		this.dataSource = new MatTableDataSource();
@@ -60,29 +49,16 @@ export class TransactionsAllComponent implements AfterViewInit {
 		}
 	}
 
-	selectRow(row: StockDto): void {
-		if (this.selectedRow?.symbol != row.symbol) {
+	selectRow(row: TransactionDto): void {
+		if (this.selectedRow?.id != row.id) {
 			this.selectedRow = row;
 		}
 	}
 
-	viewStock(row: StockDto): void {
-		if (this.selectedRow != null) {
-			this.dialog.open(TransactionsAllInfoDialogComponent, {
-				data: { selectedRow: row },
-				autoFocus: false,
-			});
-		}
-	}
-
-
-	resetFilters(): void {
-		this.fetchAllData();
-	}
-
 	fetchAllData(): void {
-		this.stockService
-			.getFindAll()
+		const email = String(localStorage.getItem('email'));
+		this.transactionService
+			.getAllTransactionsByEmail(email)
 			.pipe(
 				map(dataSource => {
 					this.dataSource.data = dataSource;
