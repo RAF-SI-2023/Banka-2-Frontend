@@ -53,6 +53,14 @@ import { FuturesContractInfoDialogComponent } from './components/futures-contrac
 import { ActuaryInfoDialogComponent } from './components/actuaries/actuary-info-dialog/actuary-info-dialog.component';
 import { PasswordChangeDialogComponent } from './components/user-profile/password-change-dialog/password-change-dialog.component';
 import { TransactionsAllComponent } from './components/transactions-all/transactions-all.component';
+import { RequestsComponent } from './components/acquired-securities/requests/requests.component';
+import { RequestInfoDialogComponent } from './components/acquired-securities/requests/request-info-dialog/request-info-dialog.component';
+import { AcquiredSecuritiesComponent } from './components/acquired-securities/acquired-securities.component';
+import { PubliclyTradableSecuritiesComponent } from './components/publicly-tradable-securities/publicly-tradable-securities.component';
+import { PublicSecurityInfoDialogComponent } from './components/publicly-tradable-securities/public-security-info-dialog/public-security-info-dialog.component';
+import { AcquiredSecuritiesInfoDialogComponent } from './components/acquired-securities/acquired-securities-info-dialog/acquired-securities-info-dialog.component';
+import { AllCompanyEmployeesComponent } from './components/companies/all-company-employees/all-company-employees.component';
+import { AddCompanyEmployeeComponent } from './components/companies/all-company-employees/dialogs/add-company-employee/add-company-employee.component';
 /// DIRECTIVES/PIPES
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
@@ -93,21 +101,13 @@ import { MatSliderModule } from '@angular/material/slider';
 // PROVIDERS
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
-
 import {
 	DateAdapter,
 	MAT_DATE_FORMATS,
 	MAT_DATE_LOCALE,
 } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
-
 import { DATE_FORMAT } from './utils/constants';
-import { RequestsComponent } from './components/acquired-securities/requests/requests.component';
-import { RequestInfoDialog } from './components/acquired-securities/requests/request-info-dialog/request-info-dialog.component';
-import { AcquiredSecuritiesComponent } from './components/acquired-securities/acquired-securities.component';
-import { PubliclyTradableSecuritiesComponent } from './components/publicly-tradable-securities/publicly-tradable-securities.component';
-import { PublicSecurityInfoDialogComponent } from './components/publicly-tradable-securities/public-security-info-dialog/public-security-info-dialog.component';
-import { AcquiredSecuritiesInfoDialogComponent } from './components/acquired-securities/acquired-securities-info-dialog/acquired-securities-info-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -144,7 +144,7 @@ import { AcquiredSecuritiesInfoDialogComponent } from './components/acquired-sec
 		CreditsComponent,
 		CreditInfoDialogComponent,
 		CreateCreditRequestComponent,
-		RequestInfoDialog,
+		RequestInfoDialogComponent,
 		RequestsComponent,
 		TranslatePipe,
 		UpdateCompanyDialogComponent,
@@ -169,12 +169,13 @@ import { AcquiredSecuritiesInfoDialogComponent } from './components/acquired-sec
 		ActuaryInfoDialogComponent,
 		TransactionsAllComponent,
 		TransactionsAllInfoDialogComponent,
-
 		RequestsComponent,
 		AcquiredSecuritiesComponent,
 		PubliclyTradableSecuritiesComponent,
 		PublicSecurityInfoDialogComponent,
 		AcquiredSecuritiesInfoDialogComponent,
+		AllCompanyEmployeesComponent,
+		AddCompanyEmployeeComponent,
 	],
 	imports: [
 		HttpClientModule,

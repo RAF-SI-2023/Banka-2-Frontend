@@ -37,7 +37,7 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.id }}
+								{{ row.id ? row.id : '-' }}
 							</td>
 						</ng-container>
 
@@ -53,7 +53,7 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.amount }}
+								{{ row.amount ? row.amount : '-' }}
 							</td>
 						</ng-container>
 
@@ -91,7 +91,7 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.status }}
+								{{ row.status ? row.status : '-' }}
 							</td>
 						</ng-container>
 
@@ -107,7 +107,7 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.type }}
+								{{ row.type ? row.type : '-' }}
 							</td>
 						</ng-container>
 						<tr
@@ -120,7 +120,6 @@
 							[class.row-selected]="selectedRow?.id === row.id"
 							*matRowDef="let row; columns: displayedColumns"
 						></tr>
-
 						<tr
 							*matNoDataRow
 							class="mat-row"

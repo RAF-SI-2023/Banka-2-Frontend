@@ -13,6 +13,10 @@ import { throwError } from 'rxjs';
 import { FormBuilder } from '@angular/forms';
 import { phoneNumberValidator } from '../../../../utils/validators';
 import { EpochToDatePipe } from 'src/app/pipes/epoch-to-date.pipe';
+import {
+	CompanyEmployeeDto,
+	isCompanyEmployeeDto,
+} from 'src/app/dtos/company-employee-dto';
 
 @Component({
 	selector: 'app-update-user-dialog',
@@ -49,6 +53,8 @@ export class UpdateUserDialogComponent {
 			return 'PRIVATE';
 		} else if (isCorporateClientDto(this.row)) {
 			return 'CORPORATE';
+		} else if (isCompanyEmployeeDto(this.row)) {
+			return 'COMPANY-EMPLOYEE';
 		} else if (isEmployeeDto(this.row)) {
 			return 'EMPLOYEE';
 		}
@@ -135,6 +141,28 @@ export class UpdateUserDialogComponent {
 
 					this.userService
 						.putUpdateCorporateClient(corporateClientDto)
+						.subscribe({
+							next: response => {
+								console.log(response);
+							},
+							error: error => {
+								console.error(error);
+							},
+						});
+				} else if (this.checkDto() == 'COMPANY-EMPLOYEE') {
+					const companyEmployeeDto = this.updateUserForm
+						.value as unknown as CompanyEmployeeDto;
+
+					companyEmployeeDto.id = this.row.id;
+					companyEmployeeDto.email = this.row.email;
+					companyEmployeeDto.username = this.row.email;
+					companyEmployeeDto.dateOfBirth = dateOfBirthEpoch;
+					companyEmployeeDto.role = this.row.role;
+					companyEmployeeDto.permissions = this.row.permissions;
+					companyEmployeeDto.pib = this.row.pib;
+
+					this.userService
+						.putUpdateEmployee(companyEmployeeDto)
 						.subscribe({
 							next: response => {
 								console.log(response);

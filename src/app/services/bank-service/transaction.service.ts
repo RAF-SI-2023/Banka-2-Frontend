@@ -18,9 +18,9 @@ export class TransactionService {
 	///////////////////////////////
 
 	//GET
-	getAllTransactions(userId: number) {
+	getAllTransactionsByEmail(userEmail: string) {
 		return this.httpClient.get<TransactionDto[]>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.getAllTransactions}/${userId}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.getAllTransactions}/${userEmail}`,
 		);
 	}
 	//POST

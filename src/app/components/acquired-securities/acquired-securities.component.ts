@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -40,7 +39,6 @@ export class AcquiredSecuritiesComponent implements OnInit, AfterViewInit {
 	@ViewChild(MatSort) sort: MatSort | undefined;
 
 	constructor(
-		private http: HttpClient,
 		private accountService: AccountService,
 		private securitiesService: SecuritiesService,
 		public dialog: MatDialog,

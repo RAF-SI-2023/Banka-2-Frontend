@@ -14,14 +14,14 @@ export class BankExchangeService {
 	// GET
 	getAllExchangeRates(fromCurrency: string) {
 		return this.httpClient.get<ExchangeRatesDto[]>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.bankExchange.getAllExchangeRates}/${fromCurrency}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.bankCurrencyExchange.getAllExchangeRates}/${fromCurrency}`,
 		);
 	}
 
 	// POST
 	postExchangeCurrency(exchangeRequestDto: ExchangeRequestDto) {
 		return this.httpClient.post<boolean>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.bankExchange.postExchangeCurrency}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.bankCurrencyExchange.postExchangeCurrency}`,
 			exchangeRequestDto,
 		);
 	}
