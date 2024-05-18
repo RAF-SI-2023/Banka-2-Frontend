@@ -17,6 +17,7 @@ export const ApiRoutes = {
 		createAgent: '/users/create/agent',
 		createPrivateClient: '/users/public/create/private-client',
 		createCorporateClient: '/users/public/create/corporate-client',
+		createCompanyEmployee: '/users/public/create/company-employee',
 		updateEmployee: '/users/update/employee',
 		updatePrivateClient: '/users/update/private-client',
 		updateCorporateClient: '/users/update/corporate-client',
@@ -66,25 +67,46 @@ export const ApiRoutes = {
 		changeCardStatus: '/cards/change-status',
 		changeCardLimit: '/cards/change-card-limit',
 	},
-	// Transactions
+	// TransferTransactionController
 	transferTransaction: {
-		getAllTransactions: '/transaction/funds-transfer',
+		getAllTransactions: '/transaction/funds-transfer-by-email',
 		createInternalTransaction: '/transaction/internal',
 		createExternalTransaction: '/transaction/external',
 		patchVerifyTransaction: '/transaction/verify',
 	},
-	bankExchange: {
+	// CurrencyExchangeController
+	bankCurrencyExchange: {
 		getAllExchangeRates: '/currency-exchange/exchange-rate/from',
 		postExchangeCurrency: '/currency-exchange/exchange-currency',
 	},
-	// Securities
-	securities: {
+	// SecuritiesOwnershipsController
+	security: {
 		findAllPublic: '/securities-ownerships/all-available',
 		findAllByAccountNumber: '/securities-ownerships/account-number',
 		findBySecuritySymbol: '/securities-ownerships/security-name',
 		updateSecurity: '/securities-ownerships/update-publicly-available',
 	},
-
+	// OrderController
+	order: {
+		createOrder: '/orders',
+		getAllOrders: '/orders',
+		getNonApprovedOrders: '/orders/non-approved',
+		getApprovedOrders: '/orders/approved',
+		approveOrder: '/orders/approve',
+		rejectOrder: '/orders/reject',
+	},
+	// OTC-SERVICE
+	/// ContractController
+	contract: {
+		getAllContracts: '/contracts/all',
+		getAllWaitingContracts: '/contracts/all-waiting',
+		getContractById: '/contracts',
+		createContract: '/contracts/create',
+		sellerApproveContractById: '/contracts/approve-seller',
+		bankApproveContractById: '/contracts/approve-bank',
+		sellerDenyContractById: '/contracts/deny-seller',
+		bankDenyContractById: '/contracts/deny-bank',
+	},
 	// STOCK-SERVICE
 	/// CurrencyController
 	currency: {
@@ -118,7 +140,7 @@ export const ApiRoutes = {
 	stocks: {
 		findAll: '/stock/all',
 		findById: '/stock/id',
-		findBySymbol: '/stock/stockSymbol',
+		findBySymbol: '/stock/by-symbol',
 	},
 	/// OptionController
 	options: {

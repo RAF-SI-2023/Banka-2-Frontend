@@ -26,9 +26,9 @@ export class NavigationMenuComponent implements OnInit, OnDestroy {
 	private changeDetector = inject(ChangeDetectorRef);
 	role: Role | null = null;
 
-	isBank: boolean = true; // Default to 'Bank'
-	isStock: boolean = false;
-	selectedToggle: string = 'bank';
+	isBank = true; // Default to 'Bank'
+	isStock = false;
+	selectedToggle = 'bank';
 
 	logout() {
 		this.authService.logout();

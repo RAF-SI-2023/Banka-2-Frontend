@@ -2,24 +2,36 @@
 	<mat-card>
 		<mat-card-header>
 			<div class="form">
-				<mat-form-field>
-					<mat-label>Broj računa</mat-label>
-					<mat-select
-						[formControl]="accountNumber"
-						placeholder="Izaberite račun"
-						(selectionChange)="applyFilter($event)"
-					>
-						<mat-option
-							*ngFor="let option of accounts"
-							[value]="option.accountNumber"
-						>
-							{{ option.accountNumber | accountNumberFormat }}
-						</mat-option>
-					</mat-select>
-				</mat-form-field>
+				<div>
+					<mat-form-field>
+						<mat-label>Pretraži zaposlene</mat-label>
+						<input
+							#input
+							(keyup)="applyFilter($event)"
+							matInput
+						/>
+					</mat-form-field>
+				</div>
+				<button
+					mat-raised-button
+					class="buttons"
+					color="accent"
+					(click)="addEmployee()"
+				>
+					Dodaj zaposlenog
+				</button>
+				<button
+					data-test="delete-button"
+					mat-raised-button
+					class="buttons"
+					color="warn"
+					(click)="deleteEmployee()"
+					[disabled]="!selectedRow"
+				>
+					Izbriši zaposlenog
+				</button>
 			</div>
 		</mat-card-header>
-
 		<mat-card-content>
 			<div class="tableContainer">
 				<div
@@ -34,15 +46,15 @@
 					>
 						<ng-container matColumnDef="id">
 							<th
-								mat-header-cell
 								*matHeaderCellDef
+								mat-header-cell
 								mat-sort-header
 							>
 								ID
 							</th>
 							<td
-								mat-cell
 								*matCellDef="let row"
+								mat-cell
 							>
 								{{ row.id ? row.id : '-' }}
 							</td>
@@ -50,145 +62,114 @@
 
 						<ng-container matColumnDef="email">
 							<th
-								mat-header-cell
 								*matHeaderCellDef
+								mat-header-cell
 								mat-sort-header
 							>
 								Email
 							</th>
 							<td
-								mat-cell
 								*matCellDef="let row"
+								mat-cell
 							>
 								{{ row.email ? row.email : '-' }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="ownedByBank">
+						<ng-container matColumnDef="dateOfBirth">
 							<th
-								mat-header-cell
 								*matHeaderCellDef
+								mat-header-cell
 								mat-sort-header
 							>
-								U vlasništvu banke
+								Datum rođenja
 							</th>
 							<td
-								mat-cell
 								*matCellDef="let row"
-							>
-								{{ row.ownedByBank ? 'Da' : 'Ne' }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="accountNumber">
-							<th
-								mat-header-cell
-								*matHeaderCellDef
-								mat-sort-header
-							>
-								Broj računa
-							</th>
-							<td
 								mat-cell
-								*matCellDef="let row"
 							>
 								{{
-									row.accountNumber ? row.accountNumber : '-'
-								}}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="securitiesSymbol">
-							<th
-								mat-header-cell
-								*matHeaderCellDef
-								mat-sort-header
-							>
-								Simbol
-							</th>
-							<td
-								mat-cell
-								*matCellDef="let row"
-							>
-								{{
-									row.securitiesSymbol
-										? row.securitiesSymbol
+									row.dateOfBirth
+										? (row.dateOfBirth
+											| epochToDate
+											| date: 'dd.MM.yyyy.')
 										: '-'
 								}}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="quantity">
+						<ng-container matColumnDef="phone">
 							<th
-								mat-header-cell
 								*matHeaderCellDef
+								mat-header-cell
 								mat-sort-header
 							>
-								Količina ukupnih HOV
+								Broj telefona
 							</th>
 							<td
-								mat-cell
 								*matCellDef="let row"
+								mat-cell
 							>
-								{{ row.quantity ? row.quantity : '-' }}
+								{{ row.phone ? row.phone : '-' }}
 							</td>
 						</ng-container>
 
-						<ng-container
-							matColumnDef="quantityOfPubliclyAvailable"
-						>
+						<ng-container matColumnDef="address">
 							<th
-								mat-header-cell
 								*matHeaderCellDef
+								mat-header-cell
 								mat-sort-header
 							>
-								Količina javno dostupnih HOV
+								Adresa
 							</th>
 							<td
-								mat-cell
 								*matCellDef="let row"
+								mat-cell
 							>
-								{{
-									row.quantityOfPubliclyAvailable
-										? row.quantityOfPubliclyAvailable
-										: '-'
-								}}
+								{{ row.address ? row.address : '-' }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="reservedQuantity">
+						<ng-container matColumnDef="role">
 							<th
-								mat-header-cell
 								*matHeaderCellDef
+								mat-header-cell
 								mat-sort-header
 							>
-								Rezervisane količine HOV
+								Uloga
 							</th>
 							<td
-								mat-cell
 								*matCellDef="let row"
+								mat-cell
 							>
-								{{
-									row.reservedQuantity
-										? row.reservedQuantity
-										: '-'
-								}}
+								{{ row.role ? row.role : '-' }}
 							</td>
 						</ng-container>
 
+						<ng-container matColumnDef="pib">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								PIB
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.pib ? row.pib : '-' }}
+							</td>
+						</ng-container>
 						<tr
-							mat-header-row
 							*matHeaderRowDef="displayedColumns"
+							mat-header-row
 						></tr>
 						<tr
 							mat-row
-							*matRowDef="let row; columns: displayedColumns"
 							(click)="selectRow(row)"
-							(dblclick)="viewSecurity(row)"
-							[class.row-selected]="
-								selectedRow?.securitiesSymbol ===
-								row.securitiesSymbol
-							"
+							[class.row-selected]="selectedRow?.id === row.id"
+							*matRowDef="let row; columns: displayedColumns"
 						></tr>
 
 						<tr
@@ -199,7 +180,9 @@
 								class="mat-cell"
 								colspan="4"
 							>
-								Nije pronađen podatak za unetu vrednost.
+								Nije pronađen podatak za unetu vrednost: "{{
+									input.value
+								}}"
 							</td>
 						</tr>
 					</table>

@@ -50,7 +50,6 @@ export class StockInfoDialogComponent {
 
 	viewOptionsPage() {
 		const stockListing = this.newSelectedRow.symbol;
-
 		this.optionService
 			.getFindAllOptionsByStockListing(stockListing)
 			.pipe(

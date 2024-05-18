@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Import V
 import { SecurityDto } from 'src/app/dtos/security-dto';
 import { SecuritiesService } from 'src/app/services/bank-service/securities.service';
 import { digitValidator } from 'src/app/utils/validators/digit.validator';
+import { catchError, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
 	selector: 'app-acquired-securities-info-dialog',
@@ -47,17 +49,24 @@ export class AcquiredSecuritiesInfoDialogComponent {
 				updatedQuantity <=
 				this.data.quantity - this.data.reservedQuantity
 			) {
-				this.securitiesService.putSecurity(securityDto).subscribe(
-					response => {
-						console.log('Security updated successfully', response);
-						this.dialogRef.close(response);
-					},
-					error => {
-						console.error('Error updating security', error);
-					},
-				);
+				this.securitiesService
+					.putSecurity(securityDto)
+					.pipe(
+						tap(response => {
+							console.log(
+								'Security updated successfully',
+								response,
+							);
+							this.dialogRef.close(response);
+						}),
+						catchError(error => {
+							console.error('Error updating security', error);
+							return of(null); // Optionally handle the error, such as returning a fallback value
+						}),
+					)
+					.subscribe();
 			} else {
-				console.error('nema dovoljna kolicina');
+				console.error('Nema dovoljne količine');
 			}
 		} else {
 			console.error('Form is invalid');

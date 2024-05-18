@@ -56,9 +56,9 @@ export class TransactionsAllComponent implements AfterViewInit {
 	}
 
 	fetchAllData(): void {
-		const id = Number(localStorage.getItem('id'));
+		const email = String(localStorage.getItem('email'));
 		this.transactionService
-			.getAllTransactions(id)
+			.getAllTransactionsByEmail(email)
 			.pipe(
 				map(dataSource => {
 					this.dataSource.data = dataSource;

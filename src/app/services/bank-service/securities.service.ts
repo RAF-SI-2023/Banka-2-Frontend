@@ -12,22 +12,22 @@ export class SecuritiesService {
 
 	getAllSecuritiesByAccountNumber(accountNumber: string) {
 		return this.httpClient.get<SecurityDto[]>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.securities.findAllByAccountNumber}/${accountNumber}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.security.findAllByAccountNumber}/${accountNumber}`,
 		);
 	}
 	getAllPublicSecurities() {
 		return this.httpClient.get<SecurityDto[]>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.securities.findAllPublic}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.security.findAllPublic}`,
 		);
 	}
 	getSecurityBySymbol(symbol: string) {
 		return this.httpClient.get<SecurityDto[]>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.securities.findBySecuritySymbol}/${symbol}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.security.findBySecuritySymbol}/${symbol}`,
 		);
 	}
 	putSecurity(security: SecurityDto) {
 		return this.httpClient.put<SecurityDto[]>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.securities.updateSecurity}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.security.updateSecurity}`,
 			security,
 		);
 	}

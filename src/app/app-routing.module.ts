@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
 import { roleGuard } from './guards/role.guard';
 import { loginGuard } from './guards/login.guard';
+import { accountGuard } from './guards/account.guard';
 import { Role } from './dtos/decoded-token-dto';
 
 import { LandingComponent } from './components/landing/landing.component';
@@ -17,6 +18,7 @@ import { CurrencyExchangeComponent } from './components/currency-exchange/curren
 import { OptionsComponent } from './components/options/options.component';
 import { ForexComponent } from './components/forex/forex.component';
 import { CompaniesComponent } from './components/companies/companies.component';
+import { AllCompanyEmployeesComponent } from './components/companies/all-company-employees/all-company-employees.component';
 import { ActuariesComponent } from './components/actuaries/actuaries.component';
 import { CreditsComponent } from './components/credits/credits.component';
 import { CreateCreditRequestComponent } from './components/create-credit-request/create-credit-request.component';
@@ -25,7 +27,6 @@ import { CardsComponent } from './components/cards/cards.component';
 import { TransactionsComponent } from './components/transactions/transactions/transactions.component';
 import { BankExchangeComponent } from './components/bank-exchange/bank-exchange.component';
 import { FuturesContractsComponent } from './components/futures-contracts/futures-contracts.component';
-import { accountGuard } from './guards/account.guard';
 import { TransactionsAllComponent } from './components/transactions-all/transactions-all.component';
 import { RequestsComponent } from './components/acquired-securities/requests/requests.component';
 import { PubliclyTradableSecuritiesComponent } from './components/publicly-tradable-securities/publicly-tradable-securities.component';
@@ -131,6 +132,12 @@ const routes: Routes = [
 	{
 		component: CompaniesComponent,
 		path: 'companies',
+		canActivate: [authGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
+	},
+	{
+		component: AllCompanyEmployeesComponent,
+		path: 'companies/:pib',
 		canActivate: [authGuard, roleGuard],
 		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
 	},

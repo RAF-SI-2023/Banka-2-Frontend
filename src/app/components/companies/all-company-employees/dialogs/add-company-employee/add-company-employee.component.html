@@ -1,0 +1,125 @@
+<h2 mat-dialog-title>Dodaj zaposlenog</h2>
+<mat-dialog-content class="mat-typography size">
+	<form
+		[formGroup]="createEmployeeForm"
+		(ngSubmit)="addEmployee()"
+	>
+		<div>
+			<mat-form-field class="full-width">
+				<mat-label>Email</mat-label>
+				<input
+					matInput
+					placeholder="Unesite email adresu"
+					formControlName="email"
+					type="email"
+					name="email"
+				/>
+				<mat-error
+					*ngIf="
+						createEmployeeForm.get('email')?.hasError('required')
+					"
+				>
+					Email je obavezan.
+				</mat-error>
+				<mat-error
+					*ngIf="
+						createEmployeeForm
+							.get('email')
+							?.hasError('invalidEmail')
+					"
+				>
+					Pogrešan format email-a.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>Datum rođenja</mat-label>
+				<input
+					matInput
+					placeholder="Izaberite datum rođenja"
+					formControlName="dateOfBirth"
+					[matDatepicker]="picker"
+					name="dateOfBirth"
+					readonly
+				/>
+				<mat-datepicker-toggle
+					matSuffix
+					[for]="picker"
+				></mat-datepicker-toggle>
+				<mat-datepicker #picker></mat-datepicker>
+				<mat-error
+					*ngIf="
+						createEmployeeForm
+							.get('dateOfBirth')
+							?.hasError('required')
+					"
+				>
+					Datum rođenja je obavezan.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>Broj telefona</mat-label>
+				<input
+					matInput
+					placeholder="Unesite broj telefona"
+					formControlName="phone"
+					name="phone"
+				/>
+				<mat-error
+					*ngIf="
+						createEmployeeForm.get('phone')?.hasError('required')
+					"
+				>
+					Broj telefona je obavezan.
+				</mat-error>
+				<mat-error
+					*ngIf="
+						createEmployeeForm
+							.get('phone')
+							?.hasError('invalidPhoneNumber')
+					"
+				>
+					Unesite validan broj telefona.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="full-width">
+				<mat-label>Adresa</mat-label>
+				<input
+					matInput
+					placeholder="Unesite adresu"
+					formControlName="address"
+					name="address"
+				/>
+				<mat-error
+					*ngIf="
+						createEmployeeForm.get('address')?.hasError('required')
+					"
+				>
+					Adresa je obavezna.
+				</mat-error>
+			</mat-form-field>
+		</div>
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button
+		data-test="dodaj-button"
+		mat-raised-button
+		mat-dialog-close
+		color="accent"
+		cdkFocusInitial
+		(click)="addEmployee()"
+		[disabled]="!createEmployeeForm.valid"
+	>
+		Dodaj
+	</button>
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
+		Zatvori
+	</button>
+</mat-dialog-actions>

@@ -81,6 +81,7 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 			this.dataSourceCall.paginator.firstPage();
 		}
 	}
+
 	applyFilterPut(event: Event) {
 		const filterValue = (event.target as HTMLInputElement).value;
 		this.dataSourcePut.filter = filterValue.trim().toLowerCase();
@@ -89,6 +90,7 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 			this.dataSourcePut.paginator.firstPage();
 		}
 	}
+
 	selectCallRow(row: OptionsDto): void {
 		if (this.selectedRowCall?.stockListing != row.stockListing) {
 			this.selectedRowCall = row;
@@ -100,6 +102,7 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 			this.selectedRowPut = row;
 		}
 	}
+
 	fetchAllData(stockListing: any): void {
 		this.optionService
 			.getFindAllOptionsByStockListing(stockListing)
