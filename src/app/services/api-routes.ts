@@ -82,6 +82,8 @@ export const ApiRoutes = {
 	// SecuritiesOwnershipsController
 	security: {
 		findAllPublic: '/securities-ownerships/all-available',
+		findAllPrivate: '/securities-ownerships/all-available-private',
+		findAllCompanies: '/securities-ownerships/all-available-companies',
 		findAllByAccountNumber: '/securities-ownerships/account-number',
 		findBySecuritySymbol: '/securities-ownerships/security-name',
 		updateSecurity: '/securities-ownerships/update-publicly-available',

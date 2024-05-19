@@ -20,6 +20,16 @@ export class SecuritiesService {
 			`${environment.bankServiceApiUrl}${ApiRoutes.security.findAllPublic}`,
 		);
 	}
+	getAllPrivateSecurities() {
+		return this.httpClient.get<SecurityDto[]>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.security.findAllPrivate}`,
+		);
+	}
+	getAllCompanySecurities() {
+		return this.httpClient.get<SecurityDto[]>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.security.findAllCompanies}`,
+		);
+	}
 	getSecurityBySymbol(symbol: string) {
 		return this.httpClient.get<SecurityDto[]>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.security.findBySecuritySymbol}/${symbol}`,
