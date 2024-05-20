@@ -28,7 +28,7 @@ export class UserService {
 
 	getFindById(id: number) {
 		return this.httpClient.get<
-			UserDto | PrivateClientDto | CorporateClientDto
+			UserDto | CompanyEmployeeDto | PrivateClientDto | CorporateClientDto
 		>(environment.iamServiceApiUrl + ApiRoutes.users.findById + '/' + id);
 	}
 

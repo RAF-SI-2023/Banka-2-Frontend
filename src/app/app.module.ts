@@ -108,6 +108,7 @@ import {
 } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DATE_FORMAT } from './utils/constants';
+import { OptionInfoDialogComponent } from './components/options/option-info-dialog/option-info-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -176,6 +177,7 @@ import { DATE_FORMAT } from './utils/constants';
 		AcquiredSecuritiesInfoDialogComponent,
 		AllCompanyEmployeesComponent,
 		AddCompanyEmployeeComponent,
+  OptionInfoDialogComponent,
 	],
 	imports: [
 		HttpClientModule,

@@ -1,0 +1,66 @@
+<!-- <h1 mat-dialog-title>Option Details</h1>
+<div mat-dialog-content>
+  <p><strong>Listing:</strong> {{ data.stockListing }}</p>
+  
+  <p><strong>Option Type:</strong> {{ data.optionType }}</p>
+  <p><strong>Strike Price:</strong> {{ data.strikePrice }}</p>
+  <p><strong>Implied Volatility:</strong> {{ data.impliedVolatility }}</p>
+  <p><strong>Open Interest:</strong> {{ data.openInterest }}</p>
+  <p><strong>Settlement Date:</strong> {{ data.settlementDate | date: 'dd.MM.yyyy' }}</p>
+</div>
+<mat-dialog-actions align="end">
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
+		Zatvori
+	</button>
+</mat-dialog-actions> -->
+<h2 mat-dialog-title>Informacije o opciji</h2>
+<mat-dialog-content class="mat-typography size">
+	<div class="full-width">
+		<div class="info-row">
+			<span class="label">Listing: </span>
+			<span>{{ data.stockListing ? data.stockListing : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Tip opcije: </span>
+			<span>{{ data.optionType ? data.optionType : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Izvršna cena: </span>
+			<span>{{ data.strikePrice ? data.strikePrice : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Nestabilnost cene: </span>
+			<span>{{
+				data.impliedVolatility ? data.impliedVolatility : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Broj otvorenih opcija: </span>
+			<span>{{ data.openInterest ? data.openInterest : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Datum isticanja opcije: </span>
+			<span>{{
+				data.settlementDate | date: 'dd.MM.yyyy'
+					
+			}}</span>
+		</div>
+
+
+
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
+		Zatvori
+	</button>
+</mat-dialog-actions>
+
