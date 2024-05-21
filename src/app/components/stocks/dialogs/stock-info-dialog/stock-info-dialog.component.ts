@@ -23,14 +23,15 @@ export class StockInfoDialogComponent {
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
+		private fb: FormBuilder,
+		private router: Router,
 		private stockService: StockService,
 		private optionService: OptionService,
 		private orderService: OrderService,
-		private router: Router,
-		private fb: FormBuilder,
 	) {
 		this.form = this.fb.group({
-			amount: [null, [Validators.required, digitValidator()]],
+			quantity: [null, [Validators.required, digitValidator()]],
+			allOrNone: [false],
 		});
 		this.fetchData();
 	}
@@ -60,6 +61,13 @@ export class StockInfoDialogComponent {
 
 	createOrder() {
 		const orderDto = this.form.value as unknown as OrderDto;
+
+		orderDto.orderActionType = 'BUY';
+		orderDto.listingType = 'STOCK';
+		orderDto.securitiesSymbol = this.newSelectedRow.symbol;
+		orderDto.limitPrice = String(-1);
+		orderDto.stopPrice = String(-1);
+		orderDto.margin = false;
 
 		this.orderService.postCreateOrder(orderDto).subscribe({
 			next: response => {

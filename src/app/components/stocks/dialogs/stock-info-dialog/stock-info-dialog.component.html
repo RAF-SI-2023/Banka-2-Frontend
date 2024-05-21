@@ -97,14 +97,21 @@
 				<input
 					matInput
 					placeholder="Unesi količinu"
-					formControlName="amount"
+					formControlName="quantity"
 				/>
+				<mat-error *ngIf="form.get('quantity')?.hasError('required')">
+					Količina je obavezna.
+				</mat-error>
 				<mat-error
-					*ngIf="form.get('amount')?.hasError('containsNonDigits')"
+					*ngIf="form.get('quantity')?.hasError('containsNonDigits')"
 				>
 					Pogrešan format za količinu - podržane su samo cifre.
 				</mat-error>
 			</mat-form-field>
+
+			<mat-checkbox formControlName="allOrNone"
+				>Kupi sve odjednom</mat-checkbox
+			>
 		</form>
 	</div>
 
@@ -121,6 +128,7 @@
 <mat-dialog-actions align="end">
 	<button
 		mat-raised-button
+		mat-dialog-close
 		color="accent"
 		type="submit"
 		[disabled]="!form.valid"
