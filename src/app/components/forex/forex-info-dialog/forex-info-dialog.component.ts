@@ -1,8 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ForexDto } from 'src/app/dtos/forex-dto';
-import { StockService } from 'src/app/services/stock-service/stock.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { digitValidator } from 'src/app/utils/validators/digit.validator';
 import { ForexService } from 'src/app/services/stock-service/forex.service';
+import { ForexDto } from 'src/app/dtos/forex-dto';
+import { OrderService } from 'src/app/services/bank-service/order.service';
+import { OrderDto } from 'src/app/dtos/order-dto';
 
 @Component({
 	selector: 'app-forex-info-dialog',
@@ -10,14 +13,20 @@ import { ForexService } from 'src/app/services/stock-service/forex.service';
 	styleUrls: ['./forex-info-dialog.component.css'],
 })
 export class ForexInfoDialogComponent {
+	form: FormGroup;
 	newSelectedRow: ForexDto = { ...this.data.selectedRow };
 	isLoading = true;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
-		private stockService: StockService,
 		private forexService: ForexService,
+		private orderService: OrderService,
+		private fb: FormBuilder,
 	) {
+		this.form = this.fb.group({
+			quantity: [null, [Validators.required, digitValidator()]],
+			allOrNone: [false],
+		});
 		this.fetchData();
 	}
 
@@ -42,5 +51,25 @@ export class ForexInfoDialogComponent {
 			}
 		}
 		this.newSelectedRow = { ...this.data.selectedRow };
+	}
+
+	createOrder() {
+		const orderDto = this.form.value as unknown as OrderDto;
+
+		orderDto.orderActionType = 'BUY';
+		orderDto.listingType = 'FOREX';
+		orderDto.securitiesSymbol = this.newSelectedRow.symbol;
+		orderDto.limitPrice = String(-1);
+		orderDto.stopPrice = String(-1);
+		orderDto.margin = false;
+
+		this.orderService.postCreateOrder(orderDto).subscribe({
+			next: response => {
+				console.log(response);
+			},
+			error: error => {
+				console.error(error);
+			},
+		});
 	}
 }

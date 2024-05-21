@@ -13,6 +13,7 @@ import { ContractService } from 'src/app/services/otc-service/contract.service';
 	styleUrls: ['./public-security-info-dialog.component.css'],
 })
 export class PublicSecurityInfoDialogComponent {
+	email = localStorage.getItem('email');
 	form: FormGroup;
 
 	constructor(

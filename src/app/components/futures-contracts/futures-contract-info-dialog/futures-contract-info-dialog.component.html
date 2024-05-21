@@ -66,8 +66,45 @@
 			></mat-progress-spinner>
 		</div>
 	</div>
+
+	<div>
+		<form [formGroup]="form">
+			<mat-form-field appearance="fill">
+				<mat-label
+					>Količina za kupovinu terminskog ugovora sa berze</mat-label
+				>
+				<input
+					matInput
+					placeholder="Unesi količinu"
+					formControlName="quantity"
+				/>
+				<mat-error *ngIf="form.get('quantity')?.hasError('required')">
+					Količina je obavezna.
+				</mat-error>
+				<mat-error
+					*ngIf="form.get('quantity')?.hasError('containsNonDigits')"
+				>
+					Pogrešan format za količinu - podržane su samo cifre.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-checkbox formControlName="allOrNone"
+				>Kupi sve odjednom</mat-checkbox
+			>
+		</form>
+	</div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="accent"
+		type="submit"
+		[disabled]="!form.valid"
+		(click)="createOrder()"
+	>
+		Kupi
+	</button>
 	<button
 		mat-raised-button
 		mat-dialog-close
