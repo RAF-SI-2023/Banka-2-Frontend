@@ -14,17 +14,14 @@ postsubmits:
                     - |
                         set -euo pipefail
 
-					# Clone "Infrastructure" repo
                         cd ..
                         git clone https://github.com/RAF-SI-2023/Banka-2-Infrastructure.git ./Banka-2-Infrastructure
 
-					# Wipe .env, then write the paths of all repositories
 						cd ./Banka-2-Infrastructure
                         echo "BACKEND_ABSOLUTE_PATH=/home/prow/go/src/github.com/RAF-SI-2023/Banka-2-Backend" > .env 
                         echo "FRONTEND_ABSOLUTE_PATH=/home/prow/go/src/github.com/RAF-SI-2023/Banka-2-Frontend" >> .env
                         echo "INFRASTRUCTURE_ABSOLUTE_PATH=/home/prow/go/src/github.com/RAF-SI-2023/Banka-2-Infrastructure" >> .env
 						
-					# Run Docker
 						TEAM_NAME="banka-2"
 
                         start-docker.sh
