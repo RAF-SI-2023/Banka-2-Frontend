@@ -38,24 +38,24 @@ export class AccountService {
 		);
 	}
 
-	postCreateDomesticAccount(account: DomesticAccountDto) {
+	postCreateDomesticAccount(domesticAccountDto: DomesticAccountDto) {
 		return this.httpClient.post<boolean>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.createDomesticAccount}`,
-			account,
+			domesticAccountDto,
 		);
 	}
 
-	postCreateForeignAccount(account: ForeignAccountDto) {
+	postCreateForeignAccount(foreignAccountDto: ForeignAccountDto) {
 		return this.httpClient.post<boolean>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.createForeignAccount}`,
-			account,
+			foreignAccountDto,
 		);
 	}
 
-	postCreateCompanyAccount(account: BusinessAccountDto) {
+	postCreateCompanyAccount(businessAccountDto: BusinessAccountDto) {
 		return this.httpClient.post<boolean>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.createBusinessAccount}`,
-			account,
+			businessAccountDto,
 		);
 	}
 

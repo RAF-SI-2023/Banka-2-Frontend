@@ -81,7 +81,7 @@ export const ApiRoutes = {
 	},
 	// SecuritiesOwnershipsController
 	security: {
-		findAllPublic: '/securities-ownerships/all-available',
+		findAll: '/securities-ownerships/all-available',
 		findAllPrivate: '/securities-ownerships/all-available-private',
 		findAllCompanies: '/securities-ownerships/all-available-companies',
 		findAllByAccountNumber: '/securities-ownerships/account-number',
@@ -96,18 +96,6 @@ export const ApiRoutes = {
 		getApprovedOrders: '/orders/approved',
 		approveOrder: '/orders/approve',
 		rejectOrder: '/orders/reject',
-	},
-	// OTC-SERVICE
-	/// ContractController
-	contract: {
-		getAllContracts: '/contracts/all',
-		getAllWaitingContracts: '/contracts/all-waiting',
-		getContractById: '/contracts',
-		createContract: '/contracts/create',
-		sellerApproveContractById: '/contracts/approve-seller',
-		bankApproveContractById: '/contracts/approve-bank',
-		sellerDenyContractById: '/contracts/deny-seller',
-		bankDenyContractById: '/contracts/deny-bank',
 	},
 	// STOCK-SERVICE
 	/// CurrencyController
@@ -147,5 +135,17 @@ export const ApiRoutes = {
 	/// OptionController
 	options: {
 		findAllOptionsByStockListing: '/options/stock-listing',
+	},
+	// OTC-SERVICE
+	/// ContractController
+	contract: {
+		getAllContracts: '/contracts/all',
+		getAllWaitingContracts: '/contracts/all-waiting',
+		getContractById: '/contracts',
+		createContract: '/contracts/create',
+		sellerApproveContractById: '/contracts/approve-seller',
+		bankApproveContractById: '/contracts/approve-bank',
+		sellerDenyContractById: '/contracts/deny-seller',
+		bankDenyContractById: '/contracts/deny-bank',
 	},
 };

@@ -1,7 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { digitValidator } from 'src/app/utils/validators/digit.validator';
 import { StockDto } from '../../../../dtos/stock-dto';
 import { StockService } from '../../../../services/stock-service/stock.service';
+import { OrderDto } from 'src/app/dtos/order-dto';
+import { OrderService } from 'src/app/services/bank-service/order.service';
 import { OptionService } from 'src/app/services/stock-service/option.service';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
@@ -13,6 +17,7 @@ import { catchError } from 'rxjs/operators';
 	styleUrls: ['./stock-info-dialog.component.css'],
 })
 export class StockInfoDialogComponent {
+	form: FormGroup;
 	newSelectedRow: StockDto = { ...this.data.selectedRow };
 	isLoading = true;
 
@@ -20,8 +25,13 @@ export class StockInfoDialogComponent {
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		private stockService: StockService,
 		private optionService: OptionService,
+		private orderService: OrderService,
 		private router: Router,
+		private fb: FormBuilder,
 	) {
+		this.form = this.fb.group({
+			amount: [null, [Validators.required, digitValidator()]],
+		});
 		this.fetchData();
 	}
 
@@ -46,6 +56,19 @@ export class StockInfoDialogComponent {
 			}
 		}
 		this.newSelectedRow = { ...this.data.selectedRow };
+	}
+
+	createOrder() {
+		const orderDto = this.form.value as unknown as OrderDto;
+
+		this.orderService.postCreateOrder(orderDto).subscribe({
+			next: response => {
+				console.log(response);
+			},
+			error: error => {
+				console.error(error);
+			},
+		});
 	}
 
 	viewOptionsPage() {

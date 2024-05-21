@@ -44,7 +44,7 @@ export class AcquiredSecuritiesInfoDialogComponent {
 				quantityOfPubliclyAvailable: updatedQuantity,
 				reservedQuantity: this.data.reservedQuantity,
 			};
-			// console.log( updatedQuantity<= this.data.quantity-this.data.reservedQuantity);
+
 			if (
 				updatedQuantity <=
 				this.data.quantity - this.data.reservedQuantity

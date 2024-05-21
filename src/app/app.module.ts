@@ -177,7 +177,7 @@ import { OptionInfoDialogComponent } from './components/options/option-info-dial
 		AcquiredSecuritiesInfoDialogComponent,
 		AllCompanyEmployeesComponent,
 		AddCompanyEmployeeComponent,
-  OptionInfoDialogComponent,
+		OptionInfoDialogComponent,
 	],
 	imports: [
 		HttpClientModule,
