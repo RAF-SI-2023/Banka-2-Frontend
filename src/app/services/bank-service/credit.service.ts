@@ -15,7 +15,7 @@ export class CreditService {
 	getFindAll(accountNumber: string) {
 		return this.httpClient.get<CreditDto[]>(
 			environment.bankServiceApiUrl +
-				ApiRoutes.credits.findAll +
+				ApiRoutes.credit.findAll +
 				'/' +
 				accountNumber,
 		);
@@ -24,7 +24,7 @@ export class CreditService {
 	getFindByCreditNumber(creditNumber: number) {
 		return this.httpClient.get<CreditDto>(
 			environment.bankServiceApiUrl +
-				ApiRoutes.credits.findByCreditNumber +
+				ApiRoutes.credit.findByCreditNumber +
 				'/' +
 				creditNumber,
 		);
@@ -33,14 +33,14 @@ export class CreditService {
 	getAllPendingCreditRequests() {
 		return this.httpClient.get<CreditRequestDto[]>(
 			environment.bankServiceApiUrl +
-				ApiRoutes.credits.getAllPendingCreditRequests,
+				ApiRoutes.credit.getAllPendingCreditRequests,
 		);
 	}
 
 	getCreditRequestById(creditRequestId: number) {
 		return this.httpClient.get<CreditDto>(
 			environment.bankServiceApiUrl +
-				ApiRoutes.credits.getCreditRequestById +
+				ApiRoutes.credit.getCreditRequestById +
 				'/' +
 				creditRequestId,
 		);
@@ -50,7 +50,7 @@ export class CreditService {
 	postCreateCreditRequest(creditRequestDto: CreditRequestDto) {
 		return this.httpClient.post<CreditRequestDto>(
 			environment.bankServiceApiUrl +
-				ApiRoutes.credits.createCreditRequest,
+				ApiRoutes.credit.createCreditRequest,
 			creditRequestDto,
 		);
 	}
@@ -58,7 +58,7 @@ export class CreditService {
 	postApproveCreditRequest(creditRequestId: number) {
 		return this.httpClient.post<number>(
 			environment.bankServiceApiUrl +
-				ApiRoutes.credits.approveAndCreate +
+				ApiRoutes.credit.approveAndCreate +
 				'/' +
 				creditRequestId,
 			null,
@@ -69,7 +69,7 @@ export class CreditService {
 	putDenyCreditRequest(creditRequestId: number) {
 		return this.httpClient.put<number>(
 			environment.bankServiceApiUrl +
-				ApiRoutes.credits.denyCreditRequest +
+				ApiRoutes.credit.denyCreditRequest +
 				'/' +
 				creditRequestId,
 			null,

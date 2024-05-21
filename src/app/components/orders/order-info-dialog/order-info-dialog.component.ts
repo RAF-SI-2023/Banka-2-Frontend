@@ -16,24 +16,22 @@ export class OrderInfoDialogComponent {
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		private orderService: OrderService,
 	) {
-		// this.fetchData();
-
-		//! CHANGE
+		this.fetchData();
 		this.isLoading = false;
 	}
 
-	// fetchData() {
-	// 	this.orderService
-	// 		.getCreditRequestById(this.data.selectedRow.id)
-	// 		.subscribe(response => {
-	// 			this.data.selectedRow = response;
-	// 			this.prepareValues();
-	// 			this.isLoading = false;
-	// 		});
-	// }
+	fetchData() {
+		this.orderService
+			.getOrderById(this.data.selectedRow.id)
+			.subscribe(response => {
+				this.data.selectedRow = response;
+				this.prepareValues();
+				this.isLoading = false;
+			});
+	}
 
 	prepareValues() {
-		// replace null or empty values with a placeholder
+		// Replace null or empty values with a placeholder
 		for (const key in this.data.selectedRow) {
 			if (
 				this.data.selectedRow[key] == null ||

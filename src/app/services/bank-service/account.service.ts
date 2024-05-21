@@ -17,14 +17,14 @@ export class AccountService {
 	// GET
 	getFindByEmail(email: string) {
 		return this.httpClient.get<AccountDto[]>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.findAccountsByEmail}/${email}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.account.findAccountsByEmail}/${email}`,
 		);
 	}
 
 	// POST
 	postAssociateProfileInitialization(accountNumber: string) {
 		return this.httpClient.post<boolean>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.associateProfileInitialization}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.account.associateProfileInitialization}`,
 			{
 				accountNumber: accountNumber,
 			},
@@ -33,28 +33,28 @@ export class AccountService {
 
 	postCodeConfirmation(code: string, accountNumber: string) {
 		return this.httpClient.post<boolean>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.confirmActivationCode}/${accountNumber}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.account.confirmActivationCode}/${accountNumber}`,
 			code,
 		);
 	}
 
 	postCreateDomesticAccount(domesticAccountDto: DomesticAccountDto) {
 		return this.httpClient.post<boolean>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.createDomesticAccount}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.account.createDomesticAccount}`,
 			domesticAccountDto,
 		);
 	}
 
 	postCreateForeignAccount(foreignAccountDto: ForeignAccountDto) {
 		return this.httpClient.post<boolean>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.createForeignAccount}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.account.createForeignAccount}`,
 			foreignAccountDto,
 		);
 	}
 
 	postCreateCompanyAccount(businessAccountDto: BusinessAccountDto) {
 		return this.httpClient.post<boolean>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.accounts.createBusinessAccount}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.account.createBusinessAccount}`,
 			businessAccountDto,
 		);
 	}

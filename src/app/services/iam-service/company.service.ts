@@ -13,14 +13,14 @@ export class CompanyService {
 	// GET
 	getFindAllCompanies() {
 		return this.httpClient.get<CompanyDto[]>(
-			environment.iamServiceApiUrl + ApiRoutes.companies.findAll,
+			environment.iamServiceApiUrl + ApiRoutes.company.findAll,
 		);
 	}
 
 	getFindCompanyById(id: number) {
 		return this.httpClient.get<CompanyDto>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.companies.findById +
+				ApiRoutes.company.findById +
 				'/' +
 				id,
 		);
@@ -29,20 +29,20 @@ export class CompanyService {
 	getFindCompanyByIdentificationNumber() {
 		return this.httpClient.get<CompanyDto>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.companies.findByIdentificationNumber,
+				ApiRoutes.company.findByIdentificationNumber,
 		);
 	}
 
 	getFindCompanyByPib() {
 		return this.httpClient.get<CompanyDto>(
-			environment.iamServiceApiUrl + ApiRoutes.companies.findByPib,
+			environment.iamServiceApiUrl + ApiRoutes.company.findByPib,
 		);
 	}
 
 	// POST
 	postCreateCompany(company: CompanyDto) {
 		return this.httpClient.post<CompanyDto>(
-			environment.iamServiceApiUrl + ApiRoutes.companies.createCompany,
+			environment.iamServiceApiUrl + ApiRoutes.company.createCompany,
 			company,
 		);
 	}
@@ -50,7 +50,7 @@ export class CompanyService {
 	// PUT
 	putUpdateCompany(company: CompanyDto) {
 		return this.httpClient.put<CompanyDto>(
-			environment.iamServiceApiUrl + ApiRoutes.companies.updateCompany,
+			environment.iamServiceApiUrl + ApiRoutes.company.updateCompany,
 			company,
 		);
 	}
@@ -59,7 +59,7 @@ export class CompanyService {
 	deleteCompanyById(id: number) {
 		return this.httpClient.delete<CompanyDto[]>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.companies.deleteById +
+				ApiRoutes.company.deleteById +
 				'/' +
 				id,
 		);
@@ -68,7 +68,7 @@ export class CompanyService {
 	deleteCompanyByIdentificationNumber(identificationNumber: number) {
 		return this.httpClient.delete<CompanyDto[]>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.companies.deleteByIdentificationNumber +
+				ApiRoutes.company.deleteByIdentificationNumber +
 				`/${identificationNumber}`,
 		);
 	}

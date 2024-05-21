@@ -22,21 +22,21 @@ export class UserService {
 	// GET
 	getFindAll() {
 		return this.httpClient.get<UserDto[]>(
-			environment.iamServiceApiUrl + ApiRoutes.users.findAll,
+			environment.iamServiceApiUrl + ApiRoutes.user.findAll,
 		);
 	}
 
 	getFindById(id: number) {
 		return this.httpClient.get<
 			UserDto | CompanyEmployeeDto | PrivateClientDto | CorporateClientDto
-		>(environment.iamServiceApiUrl + ApiRoutes.users.findById + '/' + id);
+		>(environment.iamServiceApiUrl + ApiRoutes.user.findById + '/' + id);
 	}
 
 	// PATCH
 	patchResetAgentsLeftLimit(id: number) {
 		return this.httpClient.patch<null>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.users.resetAgentsLeftLimit +
+				ApiRoutes.user.resetAgentsLeftLimit +
 				'/' +
 				id,
 			{},
@@ -46,7 +46,7 @@ export class UserService {
 	// POST
 	postPasswordActivation(email: string, password: string) {
 		return this.httpClient.post<boolean>(
-			`${environment.iamServiceApiUrl}${ApiRoutes.users.passwordActivation}/${email}`,
+			`${environment.iamServiceApiUrl}${ApiRoutes.user.passwordActivation}/${email}`,
 			{
 				password: password,
 			},
@@ -55,42 +55,42 @@ export class UserService {
 
 	postPasswordChange(body: AuthCredentialsDto) {
 		return this.httpClient.post<PasswordChangeTokenDto[]>(
-			environment.iamServiceApiUrl + ApiRoutes.users.passwordChange,
+			environment.iamServiceApiUrl + ApiRoutes.user.passwordChange,
 			body,
 		);
 	}
 
 	postCreateEmployee(employee: EmployeeDto) {
 		return this.httpClient.post<EmployeeDto>(
-			environment.iamServiceApiUrl + ApiRoutes.users.createEmployee,
+			environment.iamServiceApiUrl + ApiRoutes.user.createEmployee,
 			employee,
 		);
 	}
 
 	postCreatePrivateClient(client: PrivateClientRequestDto) {
 		return this.httpClient.post<boolean>(
-			`${environment.iamServiceApiUrl}${ApiRoutes.users.createPrivateClient}`,
+			`${environment.iamServiceApiUrl}${ApiRoutes.user.createPrivateClient}`,
 			client,
 		);
 	}
 
 	postCreateCorporateClient(client: CorporateClientRequestDto) {
 		return this.httpClient.post<boolean>(
-			`${environment.iamServiceApiUrl}${ApiRoutes.users.createCorporateClient}`,
+			`${environment.iamServiceApiUrl}${ApiRoutes.user.createCorporateClient}`,
 			client,
 		);
 	}
 
 	postCreateCompanyEmployee(client: CompanyEmployeeDto) {
 		return this.httpClient.post<boolean>(
-			`${environment.iamServiceApiUrl}${ApiRoutes.users.createCompanyEmployee}`,
+			`${environment.iamServiceApiUrl}${ApiRoutes.user.createCompanyEmployee}`,
 			client,
 		);
 	}
 
 	postCreateAgent(agentDto: AgentDto) {
 		return this.httpClient.post<AgentDto>(
-			`${environment.iamServiceApiUrl}${ApiRoutes.users.createAgent}`,
+			`${environment.iamServiceApiUrl}${ApiRoutes.user.createAgent}`,
 			agentDto,
 		);
 	}
@@ -98,22 +98,21 @@ export class UserService {
 	// PUT
 	putUpdateEmployee(user: UserDto) {
 		return this.httpClient.put<UserDto[]>(
-			environment.iamServiceApiUrl + ApiRoutes.users.updateEmployee,
+			environment.iamServiceApiUrl + ApiRoutes.user.updateEmployee,
 			user,
 		);
 	}
 
 	putUpdatePrivateClient(user: UserDto) {
 		return this.httpClient.put<UserDto[]>(
-			environment.iamServiceApiUrl + ApiRoutes.users.updatePrivateClient,
+			environment.iamServiceApiUrl + ApiRoutes.user.updatePrivateClient,
 			user,
 		);
 	}
 
 	putUpdateCorporateClient(user: UserDto) {
 		return this.httpClient.put<UserDto[]>(
-			environment.iamServiceApiUrl +
-				ApiRoutes.users.updateCorporateClient,
+			environment.iamServiceApiUrl + ApiRoutes.user.updateCorporateClient,
 			user,
 		);
 	}
@@ -121,7 +120,7 @@ export class UserService {
 	putActivateEmployee(id: number) {
 		return this.httpClient.put<UserDto[]>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.users.activateEmployee +
+				ApiRoutes.user.activateEmployee +
 				`/${id}`,
 			{},
 		);
@@ -130,7 +129,7 @@ export class UserService {
 	putDeactivateEmployee(id: number) {
 		return this.httpClient.put<UserDto[]>(
 			environment.iamServiceApiUrl +
-				ApiRoutes.users.deactivateEmployee +
+				ApiRoutes.user.deactivateEmployee +
 				`/${id}`,
 			{},
 		);
@@ -139,7 +138,7 @@ export class UserService {
 	// DELETE
 	delete(email: string) {
 		return this.httpClient.delete<UserDto[]>(
-			environment.iamServiceApiUrl + ApiRoutes.users.delete + `/${email}`,
+			environment.iamServiceApiUrl + ApiRoutes.user.delete + `/${email}`,
 		);
 	}
 }
