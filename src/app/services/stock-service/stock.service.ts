@@ -10,7 +10,7 @@ import { StockDto } from '../../dtos/stock-dto';
 export class StockService {
 	constructor(private httpClient: HttpClient) {}
 
-	/// GET
+	// GET
 	getFindAll() {
 		return this.httpClient.get<StockDto[]>(
 			environment.stockServiceApiUrl + ApiRoutes.stocks.findAll,

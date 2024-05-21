@@ -10,7 +10,7 @@ import { ExchangeDto } from '../../dtos/exchange-dto';
 export class ExchangeService {
 	constructor(private httpClient: HttpClient) {}
 
-	/// GET
+	// GET
 	getFindAll() {
 		return this.httpClient.get<ExchangeDto[]>(
 			environment.stockServiceApiUrl + ApiRoutes.exchange.findAll,

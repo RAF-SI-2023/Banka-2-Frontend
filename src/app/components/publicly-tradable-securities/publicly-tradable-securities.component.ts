@@ -1,17 +1,15 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { of, throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { SecurityDto } from 'src/app/dtos/security-dto';
 import { SecuritiesService } from 'src/app/services/bank-service/securities.service';
 import { PublicSecurityInfoDialogComponent } from './public-security-info-dialog/public-security-info-dialog.component';
 import { UserService } from 'src/app/services/iam-service/user.service';
-import { UserDto } from '../../dtos/user-dto';
 
 @Component({
 	selector: 'app-publicly-tradable-securities',
@@ -36,7 +34,6 @@ export class PubliclyTradableSecuritiesComponent implements AfterViewInit {
 	@ViewChild(MatSort) sort: MatSort | undefined;
 
 	constructor(
-		private http: HttpClient,
 		private securitiesService: SecuritiesService,
 		private userService: UserService,
 
@@ -66,83 +63,88 @@ export class PubliclyTradableSecuritiesComponent implements AfterViewInit {
 		}
 	}
 
-	// fetchAllData(): void {
-	// 	const idString = localStorage.getItem('id');
-	// 		this.userService.getFindById(id)
-		
-		
-	// 		this.securitiesService
-	// 		.getAllPublicSecurities()
-	// 		.pipe(
-	// 			map(dataSource => {
-	// 				this.dataSource.data = dataSource;
-	// 				return dataSource;
-	// 			}),
-	// 			catchError(error => {
-	// 				console.error('Error loading data.', error);
-	// 				return throwError(() => error);
-	// 			}),
-	// 		)
-	// 		.subscribe();
-		
-		
-		
-		
-	// }
 	private hasPib(response: any): response is { pib: string } {
 		return (response as { pib: string }).pib !== undefined;
-	  }
+	}
+
 	fetchAllData(): void {
 		const idString: string | null = localStorage.getItem('id');
-		let id: number;
-	  
+
 		if (idString !== null) {
-		  id = Number(idString);
-		  if (!isNaN(id)) {
-			this.userService.getFindById(id).subscribe(response => {
-				if (this.hasPib(response)
-					||response.role === 'AGENT' 
-					|| response.role === 'SUPERVISOR') {
-						// console.log(response);
-					this.securitiesService
-					.getAllPrivateSecurities()
+			const id = Number(idString);
+			if (!isNaN(id)) {
+				this.userService
+					.getFindById(id)
 					.pipe(
-						map(dataSource => {
-							this.dataSource.data = dataSource;
-							return dataSource;
+						switchMap(response => {
+							if (
+								this.hasPib(response) ||
+								response.role === 'AGENT' ||
+								response.role === 'SUPERVISOR'
+							) {
+								return this.securitiesService
+									.getAllCompanyOwnedSecurities()
+									.pipe(
+										map(dataSource => {
+											this.dataSource.data = dataSource;
+											return dataSource;
+										}),
+										catchError(error => {
+											console.error(
+												'Error loading data.',
+												error,
+											);
+											return throwError(() => error);
+										}),
+									);
+							} else if (response.role === 'ADMIN') {
+								return this.securitiesService
+									.getAllOwnedSecurities()
+									.pipe(
+										map(dataSource => {
+											this.dataSource.data = dataSource;
+											return dataSource;
+										}),
+										catchError(error => {
+											console.error(
+												'Error loading data.',
+												error,
+											);
+											return throwError(() => error);
+										}),
+									);
+							} else {
+								console.log(response);
+								return this.securitiesService
+									.getAllPrivatelyOwnedSecurities()
+									.pipe(
+										map(dataSource => {
+											this.dataSource.data = dataSource;
+											return dataSource;
+										}),
+										catchError(error => {
+											console.error(
+												'Error loading data.',
+												error,
+											);
+											return throwError(() => error);
+										}),
+									);
+							}
 						}),
 						catchError(error => {
-							console.error('Error loading data.', error);
-							return throwError(() => error);
+							console.error('Error fetching user data.', error);
+							return of(null); // Handle the error and provide a fallback value if necessary
 						}),
 					)
 					.subscribe();
-			  } else {
-				console.log(response);
-				this.securitiesService
-				.getAllCompanySecurities()
-				.pipe(
-					map(dataSource => {
-						this.dataSource.data = dataSource;
-						return dataSource;
-					}),
-					catchError(error => {
-						console.error('Error loading data.', error);
-						return throwError(() => error);
-					}),
-				)
-				.subscribe();
-			  }
-			}, error => {
-			  console.error('Error fetching user data.', error);
-			});
-		  } else {
-			console.error('Invalid id in localStorage');
-		  }
+			} else {
+				console.error('Invalid id in localStorage');
+			}
 		} else {
-		  console.error('No id found in localStorage');
+			console.error('No id found in localStorage');
 		}
-	  }
+	}
 
 	viewSecurity(row: SecurityDto): void {
 		this.dialog.open(PublicSecurityInfoDialogComponent, {

@@ -44,7 +44,11 @@
 								mat-cell
 								*matCellDef="let element"
 							>
-								{{ element.stockListing }}
+								{{
+									element.stockListing
+										? element.stockListing
+										: '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -59,7 +63,11 @@
 								mat-cell
 								*matCellDef="let element"
 							>
-								{{ element.optionType }}
+								{{
+									element.optionType
+										? element.optionType
+										: '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -74,7 +82,11 @@
 								mat-cell
 								*matCellDef="let element"
 							>
-								{{ element.strikePrice }}
+								{{
+									element.strikePrice
+										? element.strikePrice
+										: '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -89,7 +101,11 @@
 								mat-cell
 								*matCellDef="let element"
 							>
-								{{ element.impliedVolatility }}
+								{{
+									element.impliedVolatility
+										? element.impliedVolatility
+										: '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -104,7 +120,11 @@
 								mat-cell
 								*matCellDef="let element"
 							>
-								{{ element.openInterest }}
+								{{
+									element.openInterest
+										? element.openInterest
+										: '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -138,8 +158,7 @@
 							(click)="selectCallRow(row)"
 							(dblclick)="viewOptionsCall(row)"
 							[class.row-selected]="
-								selectedRowCall?.stockListing ===
-								row.stockListing
+								selectedRowCall?.strikePrice === row.strikePrice
 							"
 							*matRowDef="let row; columns: displayedColumnsCall"
 						></tr>
@@ -170,7 +189,11 @@
 								mat-cell
 								*matCellDef="let element"
 							>
-								{{ element.stockListing }}
+								{{
+									element.stockListing
+										? element.stockListing
+										: '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -185,7 +208,11 @@
 								mat-cell
 								*matCellDef="let element"
 							>
-								{{ element.optionType }}
+								{{
+									element.optionType
+										? element.optionType
+										: '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -200,7 +227,11 @@
 								mat-cell
 								*matCellDef="let element"
 							>
-								{{ element.strikePrice }}
+								{{
+									element.strikePrice
+										? element.strikePrice
+										: '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -215,7 +246,11 @@
 								mat-cell
 								*matCellDef="let element"
 							>
-								{{ element.impliedVolatility }}
+								{{
+									element.impliedVolatility
+										? element.impliedVolatility
+										: '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -230,7 +265,11 @@
 								mat-cell
 								*matCellDef="let element"
 							>
-								{{ element.openInterest }}
+								{{
+									element.openInterest
+										? element.openInterest
+										: '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -262,10 +301,9 @@
 						<tr
 							mat-row
 							(click)="selectPutRow(row)"
-							(dblclick)="viewOptionsPutt(row)"
+							(dblclick)="viewOptionsPut(row)"
 							[class.row-selected]="
-								selectedRowPut?.stockListing ===
-								row.stockListing
+								selectedRowPut?.strikePrice === row.strikePrice
 							"
 							*matRowDef="let row; columns: displayedColumnsPut"
 						></tr>
