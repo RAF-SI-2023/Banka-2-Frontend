@@ -1,4 +1,5 @@
 export interface OrderDto {
+	id: number;
 	orderStatus: string;
 	orderActionType: string;
 	listingType: string;
@@ -9,4 +10,10 @@ export interface OrderDto {
 	stopPrice: string;
 	allOrNone: boolean;
 	margin: boolean;
+}
+
+export enum OrderStatus {
+	APPROVED = 'APPROVED',
+	WAITING_FOR_APPROVAL = 'WAITING_FOR_APPROVAL',
+	DENIED = 'DENIED',
 }

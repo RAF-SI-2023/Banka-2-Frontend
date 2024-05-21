@@ -109,6 +109,10 @@ import {
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DATE_FORMAT } from './utils/constants';
 import { OptionInfoDialogComponent } from './components/options/option-info-dialog/option-info-dialog.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import {MatChipsModule} from "@angular/material/chips";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { InfoDialogComponent } from './components/orders/info-dialog/info-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -178,6 +182,8 @@ import { OptionInfoDialogComponent } from './components/options/option-info-dial
 		AllCompanyEmployeesComponent,
 		AddCompanyEmployeeComponent,
 		OptionInfoDialogComponent,
+  OrdersComponent,
+  InfoDialogComponent,
 	],
 	imports: [
 		HttpClientModule,
@@ -210,6 +216,8 @@ import { OptionInfoDialogComponent } from './components/options/option-info-dial
 		MatProgressSpinnerModule,
 		HighchartsChartModule,
 		MatSliderModule,
+		MatChipsModule,
+		MatAutocompleteModule,
 	],
 	providers: [
 		{
