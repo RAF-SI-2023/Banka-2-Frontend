@@ -1,0 +1,109 @@
+<h2 mat-dialog-title>Informacije o zahtevu za kredit</h2>
+<mat-dialog-content class="mat-typography size">
+	<div
+		*ngIf="!isLoading"
+		class="full-width-grid"
+	>
+		<div class="info-row">
+			<span class="label">ID:</span>
+			<span>{{ newSelectedRow.id ? newSelectedRow.id : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Status:</span>
+			<span>{{ newSelectedRow.orderStatus === OrderStatus.APPROVED ? "Odobren" :
+				newSelectedRow.orderStatus === OrderStatus.DENIED ? "Odbijen" :
+					newSelectedRow.orderStatus === OrderStatus.WAITING_FOR_APPROVAL ? "Na čekanju" : '-'
+				}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Tip listinga:</span>
+			<span>{{
+					newSelectedRow.listingType
+						? newSelectedRow.listingType
+						: '-'
+				}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Akcija:</span>
+			<span>{{
+					newSelectedRow.orderActionType ? newSelectedRow.orderActionType : '-'
+				}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Simbol:</span>
+			<span>{{
+					newSelectedRow.securitiesSymbol ? newSelectedRow.securitiesSymbol : '-'
+				}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Količina:</span>
+			<span>{{
+					newSelectedRow.quantity ? newSelectedRow.quantity : '-'
+				}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Datum poravnanja:</span>
+			<span>{{
+					newSelectedRow.settlementDate
+						? newSelectedRow.settlementDate
+						: '-'
+				}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Limit cena:</span>
+			<span>{{
+					newSelectedRow.limitPrice
+						? newSelectedRow.limitPrice
+						: '-'
+				}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Stop cena:</span>
+			<span>{{
+					newSelectedRow.stopPrice
+						? newSelectedRow.stopPrice
+						: '-'
+				}}</span>
+		</div>
+	</div>
+
+	<div
+		*ngIf="isLoading"
+		class="spinner-container"
+	>
+		<mat-progress-spinner
+			diameter="50"
+			mode="indeterminate"
+		></mat-progress-spinner>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button
+		*ngIf="this.newSelectedRow.orderStatus === OrderStatus.WAITING_FOR_APPROVAL"
+		[disabled]="isLoading"
+		mat-raised-button
+		mat-dialog-close
+		color="accent"
+		cdkFocusInitial
+		(click)="approveOrderReq()"
+	>
+		Odobri
+	</button>
+	<button
+		*ngIf="this.newSelectedRow.orderStatus === OrderStatus.WAITING_FOR_APPROVAL"
+		[disabled]="isLoading"
+		mat-raised-button
+		mat-dialog-close
+		color="accent"
+		(click)="denyOrderReq()"
+	>
+		Odbij
+	</button>
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
+		Zatvori
+	</button>
+</mat-dialog-actions>

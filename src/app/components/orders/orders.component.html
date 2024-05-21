@@ -1,0 +1,214 @@
+<section class="container">
+	<mat-card>
+		<mat-card-header>
+			<h2>Porudžbine</h2>
+			<div class="form">
+				<form>
+					<mat-form-field class="example-chip-list">
+						<mat-label>Filtriraj po statusu</mat-label>
+						<mat-chip-grid #chipGrid aria-label="Fruit selection">
+							<mat-chip-row *ngFor="let status of statuses" (removed)="remove(status)">
+								{{status}}
+								<button matChipRemove [attr.aria-label]="'remove ' + status">
+									<mat-icon>cancel</mat-icon>
+								</button>
+							</mat-chip-row>
+						</mat-chip-grid>
+						<input placeholder="Status" #statusInput [formControl]="statusCtrl"
+							   [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+							   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+							   (matChipInputTokenEnd)="add($event)"/>
+						<mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+							<mat-option *ngFor="let status of filteredStatus | async" [value]="status">
+								{{status}}
+							</mat-option>
+						</mat-autocomplete>
+					</mat-form-field>
+				</form>
+
+			</div>
+		</mat-card-header>
+
+		<mat-card-content>
+			<div class="tableContainer">
+				<div
+					class="mat-elevation-z8"
+					style="box-shadow: none"
+				>
+					<table
+						class="unselectable"
+						mat-table
+						[dataSource]="dataSource"
+						matSort
+					>
+						<ng-container matColumnDef="orderActionType">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Akcija
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{
+									row.orderActionType ? row.orderActionType : '-'
+								}}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="listingType">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Tip Listinga
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.listingType ? row.listingType : '-' }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="securitiesSymbol">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Simbol
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.securitiesSymbol ? row.securitiesSymbol : '-' }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="quantity">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Količina
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.quantity ? row.quantity : '-' }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="settlementDate">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Datum poravnanja
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.settlementDate
+								? (row.settlementDate
+									| epochToDate
+									| date: 'dd.MM.yyyy.')
+								: '-'}}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="limitPrice">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Limit cena
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.limitPrice ? row.limitPrice : '-' }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="stopPrice">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Stop cena
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.stopPrice ? row.stopPrice : '-' }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="orderStatus">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Status
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.orderStatus === OrderStatus.APPROVED ? "Odobren" :
+								row.orderStatus === OrderStatus.DENIED ? "Odbijen" :
+								row.orderStatus === OrderStatus.WAITING_FOR_APPROVAL ? "Na čekanju" : '-'
+								}}
+							</td>
+						</ng-container>
+
+						<tr
+							*matHeaderRowDef="displayedColumns"
+							mat-header-row
+						></tr>
+						<tr
+							mat-row
+							(click)="selectRow(row)"
+							(dblclick)="viewOrder(row)"
+							*matRowDef="let row; columns: displayedColumns"
+						></tr>
+
+						<tr
+							*matNoDataRow
+							class="mat-row"
+						>
+							<td
+								class="mat-cell"
+								colspan="4"
+							>
+								Nije pronađen podatak
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div id="paginatorContainer">
+				<mat-paginator
+					[hidePageSize]="true"
+					[pageSize]="10"
+				></mat-paginator>
+			</div>
+		</mat-card-content>
+	</mat-card>
+</section>

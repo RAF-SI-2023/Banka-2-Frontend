@@ -137,6 +137,14 @@
 		Javno trgovane HOV
 	</a>
 
+	<a
+		*ngIf="isStock && checkTokenRole([Role.ADMIN, Role.SUPERVISOR])"
+		mat-button
+		routerLink="/orders"
+	>
+		Porudžbine
+	</a>
+
 	<div class="padding"></div>
 
 	<button
