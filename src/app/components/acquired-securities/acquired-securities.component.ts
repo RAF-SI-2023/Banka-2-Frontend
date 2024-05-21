@@ -110,8 +110,12 @@ export class AcquiredSecuritiesComponent implements OnInit, AfterViewInit {
 				map(response => {
 					this.accounts = response;
 					if (this.accounts.length > 0) {
-						this.accountNumber.setValue(this.accounts[0].accountNumber);
-						this.getAllSecuritiesByAccountNumber(this.accounts[0].accountNumber);
+						this.accountNumber.setValue(
+							this.accounts[0].accountNumber,
+						);
+						this.getAllSecuritiesByAccountNumber(
+							this.accounts[0].accountNumber,
+						);
 					}
 					return response;
 				}),

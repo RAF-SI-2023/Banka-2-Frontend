@@ -11,11 +11,42 @@ presubmits:
                     - |
                         set -euo pipefail
 
+                    # Verify and build frontend
                         npm ci
                         npm run cy:verify
                         npm run cy:info
 
                         npm run build
+
+                    # Clone other repositories
+                        cd ..
+                        git clone https://github.com/RAF-SI-2023/Banka-2-Backend.git ./Banka-2-Backend
+                        git clone https://github.com/RAF-SI-2023/Banka-2-Infrastructure.git ./Banka-2-Infrastructure
+
+                    # Wipe .env, then write the paths of all repositories
+                        cd ./Banka-2-Infrastructure
+                        echo "BACKEND_ABSOLUTE_PATH=/home/prow/go/src/github.com/RAF-SI-2023/Banka-2-Backend" > .env 
+                        echo "FRONTEND_ABSOLUTE_PATH=/home/prow/go/src/github.com/RAF-SI-2023/Banka-2-Frontend" >> .env
+                        echo "INFRASTRUCTURE_ABSOLUTE_PATH=/home/prow/go/src/github.com/RAF-SI-2023/Banka-2-Infrastructure" >> .env
+
+                    # Run Docker
+                        start-docker.sh
+                        docker compose up -d
+
+                    # Run Cypress end-to-end tests
+                        cd ..
+                        cd ./Banka-2-Frontend
+
+                        sleep 500
+                        npm install cypress --save-dev
+                        npx cypress run
+
+                        if [ -d "./cypress/screenshots" ]; then
+                            cp -r ./cypress/screenshots /path/to/destination
+                            echo "${GCSWEB_URL}/prow-logs/pr-logs/pull/${REPO_OWNER}_${REPO_NAME}/${PULL_NUMBER}/${JOB_NAME}/${BUILD_NUMBER}/artifacts/screenshots" > /logs/artifacts/screenshots.link.txt
+                        else
+                            echo "No screenshots to copy. All tests have passed."
+                        fi
                 securityContext:
                     privileged: true
                 imagePullPolicy: Always

@@ -39,7 +39,7 @@
 		</div>
 
 		<form
-			*ngIf="email != data.email"
+			*ngIf="email !== data.email"
 			[formGroup]="form"
 		>
 			<mat-form-field appearance="fill">
@@ -67,7 +67,7 @@
 		mat-dialog-close
 		color="accent"
 		type="submit"
-		*ngIf="email != data.email"
+		*ngIf="email !== data.email"
 		[disabled]="!form.valid"
 		(click)="createContract()"
 	>
