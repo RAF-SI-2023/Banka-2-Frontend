@@ -85,7 +85,6 @@ export class HomeComponent implements AfterViewInit {
 				Role.AGENT,
 			])
 		) {
-			console.log('kurac');
 			emailLocal = 'bankAccount@bank.rs';
 		} else {
 			emailLocal = localStorage.getItem('email');

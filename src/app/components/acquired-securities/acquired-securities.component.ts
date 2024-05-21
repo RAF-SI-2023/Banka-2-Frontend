@@ -90,12 +90,13 @@ export class AcquiredSecuritiesComponent implements OnInit, AfterViewInit {
 				autoFocus: false,
 			},
 		);
-		this.afterClose(dialogRef);
+		this.afterClose(dialogRef, row.accountNumber);
 	}
 
-	afterClose(dialogRef: any) {
+	afterClose(dialogRef: any, accountNumber: string) {
 		dialogRef.afterClosed().subscribe(() => {
-			this.getAccounts();
+			this.accountNumber.setValue(accountNumber);
+			this.getAllSecuritiesByAccountNumber(accountNumber);
 		});
 	}
 
@@ -109,12 +110,8 @@ export class AcquiredSecuritiesComponent implements OnInit, AfterViewInit {
 				map(response => {
 					this.accounts = response;
 					if (this.accounts.length > 0) {
-						const firstAccountNumber =
-							this.accounts[0].accountNumber;
-						this.accountNumber.setValue(firstAccountNumber);
-						this.getAllSecuritiesByAccountNumber(
-							firstAccountNumber,
-						);
+						this.accountNumber.setValue(this.accounts[0].accountNumber);
+						this.getAllSecuritiesByAccountNumber(this.accounts[0].accountNumber);
 					}
 					return response;
 				}),
