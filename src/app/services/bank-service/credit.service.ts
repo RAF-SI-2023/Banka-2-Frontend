@@ -11,8 +11,7 @@ import { CreditRequestDto } from '../../dtos/credit-request-dto';
 export class CreditService {
 	constructor(private httpClient: HttpClient) {}
 
-	// StockController
-	/// GET
+	// GET
 	getFindAll(accountNumber: string) {
 		return this.httpClient.get<CreditDto[]>(
 			environment.bankServiceApiUrl +
@@ -38,16 +37,16 @@ export class CreditService {
 		);
 	}
 
-	getCreditRequestById(id: number) {
+	getCreditRequestById(creditRequestId: number) {
 		return this.httpClient.get<CreditDto>(
 			environment.bankServiceApiUrl +
 				ApiRoutes.credits.getCreditRequestById +
 				'/' +
-				id,
+				creditRequestId,
 		);
 	}
 
-	/// POST
+	// POST
 	postCreateCreditRequest(creditRequestDto: CreditRequestDto) {
 		return this.httpClient.post<CreditRequestDto>(
 			environment.bankServiceApiUrl +
@@ -66,7 +65,7 @@ export class CreditService {
 		);
 	}
 
-	/// PUT
+	// PUT
 	putDenyCreditRequest(creditRequestId: number) {
 		return this.httpClient.put<number>(
 			environment.bankServiceApiUrl +

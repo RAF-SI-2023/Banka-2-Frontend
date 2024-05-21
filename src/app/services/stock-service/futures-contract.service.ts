@@ -10,7 +10,7 @@ import { FuturesContractDto } from 'src/app/dtos/futures-contract-dto';
 export class FuturesContractService {
 	constructor(private httpClient: HttpClient) {}
 
-	/// GET
+	// GET
 	getFindAllFutures() {
 		return this.httpClient.get<FuturesContractDto[]>(
 			environment.stockServiceApiUrl + ApiRoutes.futures.findAll,

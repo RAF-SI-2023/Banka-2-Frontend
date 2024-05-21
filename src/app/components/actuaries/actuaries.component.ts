@@ -1,10 +1,8 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 import { validateHorizontalPosition } from '@angular/cdk/overlay';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { AuthService } from 'src/app/services/iam-service/auth.service';
 import { UserDto } from 'src/app/dtos/user-dto';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -38,8 +36,6 @@ export class ActuariesComponent implements AfterViewInit {
 	activeUser: UserDto | null = null;
 
 	constructor(
-		private http: HttpClient,
-		private authService: AuthService,
 		private userService: UserService,
 		public dialog: MatDialog,
 	) {

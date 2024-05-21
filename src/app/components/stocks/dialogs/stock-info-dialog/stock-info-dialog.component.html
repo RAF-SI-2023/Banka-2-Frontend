@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Informacije</h2>
+<h2 mat-dialog-title>Informacije o akciji</h2>
 <mat-dialog-content class="mat-typography size">
 	<div
 		*ngIf="!isLoading"
@@ -6,15 +6,21 @@
 	>
 		<div class="info-row">
 			<span class="label">Simbol:</span>
-			<span>{{ newSelectedRow.symbol }}</span>
+			<span>{{
+				newSelectedRow.symbol ? newSelectedRow.symbol : '-'
+			}}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Opis:</span>
-			<span>{{ newSelectedRow.description }}</span>
+			<span>{{
+				newSelectedRow.description ? newSelectedRow.description : '-'
+			}}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Berza:</span>
-			<span>{{ newSelectedRow.exchange }}</span>
+			<span>{{
+				newSelectedRow.exchange ? newSelectedRow.exchange : '-'
+			}}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Datum poslednjeg ažuriranja:</span>
@@ -30,44 +36,76 @@
 		</div>
 		<div class="info-row">
 			<span class="label">Cena:</span>
-			<span>{{ newSelectedRow.price }}</span>
+			<span>{{ newSelectedRow.price ? newSelectedRow.price : '-' }}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Najniža prodavna cena:</span>
-			<span>{{ newSelectedRow.high }}</span>
+			<span>{{ newSelectedRow.high ? newSelectedRow.high : '-' }}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Najviša kupovna cena:</span>
-			<span>{{ newSelectedRow.low }}</span>
+			<span>{{ newSelectedRow.low ? newSelectedRow.low : '-' }}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Dnevna razlika u cenama:</span>
-			<span>{{ newSelectedRow.change }}</span>
+			<span>{{
+				newSelectedRow.change ? newSelectedRow.change : '-'
+			}}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Broj dnevno razmenjenih hartija:</span>
-			<span>{{ newSelectedRow.volume }}</span>
+			<span>{{
+				newSelectedRow.volume ? newSelectedRow.volume : '-'
+			}}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Broj emitovanih akcija:</span>
-			<span>{{ newSelectedRow.shares }}</span>
+			<span>{{
+				newSelectedRow.shares ? newSelectedRow.shares : '-'
+			}}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Godišnji prinos od dividendi:</span>
-			<span>{{ newSelectedRow.yield }}</span>
+			<span>{{ newSelectedRow.yield ? newSelectedRow.yield : '-' }}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Tržišna kapitalizacija:</span>
-			<span>{{ newSelectedRow.marketCap }}</span>
+			<span>{{
+				newSelectedRow.marketCap ? newSelectedRow.marketCap : '-'
+			}}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Količina ugovora:</span>
-			<span>{{ newSelectedRow.contractSize }}</span>
+			<span>{{
+				newSelectedRow.contractSize ? newSelectedRow.contractSize : '-'
+			}}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Marža za održavanje:</span>
-			<span>{{ newSelectedRow.maintenanceMargin }}</span>
+			<span>{{
+				newSelectedRow.maintenanceMargin
+					? newSelectedRow.maintenanceMargin
+					: '-'
+			}}</span>
 		</div>
+	</div>
+
+	<div>
+		<form [formGroup]="form">
+			<mat-form-field appearance="fill">
+				<mat-label>Količina za kupovinu akcija sa berze</mat-label>
+				<input
+					matInput
+					placeholder="Unesi količinu"
+					formControlName="amount"
+				/>
+				<mat-error
+					*ngIf="form.get('amount')?.hasError('containsNonDigits')"
+				>
+					Pogrešan format za količinu - podržane su samo cifre.
+				</mat-error>
+			</mat-form-field>
+		</form>
 	</div>
 
 	<div
@@ -81,6 +119,15 @@
 	</div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
+	<button
+		mat-raised-button
+		color="accent"
+		type="submit"
+		[disabled]="!form.valid"
+		(click)="createOrder()"
+	>
+		Kupi
+	</button>
 	<button
 		mat-raised-button
 		mat-dialog-close

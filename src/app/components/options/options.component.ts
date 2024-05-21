@@ -9,6 +9,7 @@ import { throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { OptionService } from 'src/app/services/stock-service/option.service';
 import { ActivatedRoute } from '@angular/router';
+import { OptionInfoDialogComponent } from './option-info-dialog/option-info-dialog.component';
 
 @Component({
 	selector: 'app-options',
@@ -48,7 +49,7 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 	constructor(
 		private optionService: OptionService,
 		public dialog: MatDialog,
-		private route: ActivatedRoute, // Inject ActivatedRoute
+		private route: ActivatedRoute,
 	) {
 		this.dataSource = new MatTableDataSource();
 		this.dataSourceCall = new MatTableDataSource();
@@ -59,7 +60,7 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 		this.route.params.subscribe(params => {
 			const stockListing = params['stockListing'];
 			if (stockListing) {
-				this.fetchAllData(stockListing); // Fetch data based on stockListing parameter
+				this.fetchAllData(stockListing);
 			}
 		});
 	}
@@ -81,6 +82,7 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 			this.dataSourceCall.paginator.firstPage();
 		}
 	}
+
 	applyFilterPut(event: Event) {
 		const filterValue = (event.target as HTMLInputElement).value;
 		this.dataSourcePut.filter = filterValue.trim().toLowerCase();
@@ -89,23 +91,24 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 			this.dataSourcePut.paginator.firstPage();
 		}
 	}
+
 	selectCallRow(row: OptionsDto): void {
-		if (this.selectedRowCall?.stockListing != row.stockListing) {
+		if (this.selectedRowCall?.strikePrice != row.strikePrice) {
 			this.selectedRowCall = row;
 		}
 	}
 
 	selectPutRow(row: OptionsDto): void {
-		if (this.selectedRowPut?.stockListing != row.stockListing) {
+		if (this.selectedRowPut?.strikePrice != row.strikePrice) {
 			this.selectedRowPut = row;
 		}
 	}
+
 	fetchAllData(stockListing: any): void {
 		this.optionService
 			.getFindAllOptionsByStockListing(stockListing)
 			.pipe(
 				map(dataSource => {
-					//console.log(dataSource);
 					this.dataSource.data = dataSource;
 					this.dataSourceCall.data = dataSource.filter(
 						item => item.optionType === 'CALL',
@@ -113,9 +116,6 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 					this.dataSourcePut.data = dataSource.filter(
 						item => item.optionType === 'PUT',
 					);
-					//console.log(this.dataSourceCall);
-					//console.log(this.dataSourcePut);
-
 					return dataSource;
 				}),
 				catchError(error => {
@@ -126,11 +126,17 @@ export class OptionsComponent implements AfterViewInit, OnInit {
 			.subscribe();
 	}
 
-	viewOptions(row: OptionsDto) {
-		// if (this.selectedRow != null) {
-		// 	const dialogRef = this.dialog.open(AgentInfoDialogComponent, {
-		// 		data: { selectedRow: row },
-		// 	});
-		// }
+	viewOptionsCall(row: OptionsDto) {
+		this.dialog.open(OptionInfoDialogComponent, {
+			data: row,
+			autoFocus: false,
+		});
+	}
+
+	viewOptionsPut(row: OptionsDto) {
+		this.dialog.open(OptionInfoDialogComponent, {
+			data: row,
+			autoFocus: false,
+		});
 	}
 }

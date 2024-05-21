@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, inject } from '@angular/core';
+import { Component, inject, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CreditRequestDto } from 'src/app/dtos/credit-request-dto';
 import { CreditService } from 'src/app/services/bank-service/credit.service';
@@ -10,7 +10,7 @@ import { Role } from 'src/app/dtos/decoded-token-dto';
 	templateUrl: './request-info-dialog.component.html',
 	styleUrls: ['./request-info-dialog.component.css'],
 })
-export class RequestInfoDialog implements OnInit {
+export class RequestInfoDialogComponent implements OnInit {
 	authService = inject(AuthService);
 
 	newSelectedRow: CreditRequestDto = { ...this.data.selectedRow };

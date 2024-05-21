@@ -10,25 +10,42 @@ import { ApiRoutes } from '../api-routes';
 export class SecuritiesService {
 	constructor(private httpClient: HttpClient) {}
 
+	// GET
 	getAllSecuritiesByAccountNumber(accountNumber: string) {
 		return this.httpClient.get<SecurityDto[]>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.securities.findAllByAccountNumber}/${accountNumber}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.security.findAllByAccountNumber}/${accountNumber}`,
 		);
 	}
-	getAllPublicSecurities() {
+
+	getAllOwnedSecurities() {
 		return this.httpClient.get<SecurityDto[]>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.securities.findAllPublic}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.security.findAll}`,
 		);
 	}
+
+	getAllPrivatelyOwnedSecurities() {
+		return this.httpClient.get<SecurityDto[]>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.security.findAllPrivate}`,
+		);
+	}
+
+	getAllCompanyOwnedSecurities() {
+		return this.httpClient.get<SecurityDto[]>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.security.findAllCompanies}`,
+		);
+	}
+
 	getSecurityBySymbol(symbol: string) {
 		return this.httpClient.get<SecurityDto[]>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.securities.findBySecuritySymbol}/${symbol}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.security.findBySecuritySymbol}/${symbol}`,
 		);
 	}
-	putSecurity(security: SecurityDto) {
+
+	// PUT
+	putSecurity(securityDto: SecurityDto) {
 		return this.httpClient.put<SecurityDto[]>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.securities.updateSecurity}`,
-			security,
+			`${environment.bankServiceApiUrl}${ApiRoutes.security.updateSecurity}`,
+			securityDto,
 		);
 	}
 }

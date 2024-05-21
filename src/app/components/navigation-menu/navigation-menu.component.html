@@ -15,33 +15,54 @@
 		/>
 	</a>
 	<!--  Bank Stock Toggle	-->
-	<mat-button-toggle-group name="bankStock" aria-label="Bank Stock"
-							 [value]="selectedToggle"
-							 (change)="onToggleChange($event)">
-		<mat-button-toggle value="bank" class="custom-toggle-button">
+	<mat-button-toggle-group
+		name="bankStock"
+		aria-label="Bank Stock"
+		[value]="selectedToggle"
+		(change)="onToggleChange($event)"
+	>
+		<mat-button-toggle
+			value="bank"
+			class="custom-toggle-button"
+		>
 			<mat-icon>account_balance</mat-icon> Banka
 		</mat-button-toggle>
-		<mat-button-toggle value="stock" class="custom-toggle-button">
+		<mat-button-toggle
+			value="stock"
+			class="custom-toggle-button"
+		>
 			<mat-icon>query_stats</mat-icon> Berza
 		</mat-button-toggle>
 	</mat-button-toggle-group>
 
 	<a
-		*ngIf="isBank && hasAccounts && !checkTokenRole([Role.SUPERVISOR, Role.AGENT])"
+		*ngIf="
+			isBank &&
+			hasAccounts &&
+			!checkTokenRole([Role.SUPERVISOR, Role.AGENT])
+		"
 		mat-button
 		routerLink="/bank-exchange"
 	>
 		Menjačnica
 	</a>
 	<a
-		*ngIf="isBank && hasAccounts && !checkTokenRole([Role.SUPERVISOR, Role.AGENT])"
+		*ngIf="
+			isBank &&
+			hasAccounts &&
+			!checkTokenRole([Role.SUPERVISOR, Role.AGENT])
+		"
 		mat-button
 		routerLink="/transactions"
 	>
 		Transakcije
 	</a>
 	<a
-		*ngIf="isBank && hasAccounts && !checkTokenRole([Role.SUPERVISOR, Role.AGENT])"
+		*ngIf="
+			isBank &&
+			hasAccounts &&
+			!checkTokenRole([Role.SUPERVISOR, Role.AGENT])
+		"
 		mat-button
 		routerLink="/credits"
 	>
@@ -49,11 +70,13 @@
 	</a>
 
 	<button
-		*ngIf="isStock && checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])"
+		*ngIf="
+			isStock && checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])
+		"
 		mat-button
 		[matMenuTriggerFor]="stockExchangeMenu"
 	>
-		Informacije
+		Podaci
 	</button>
 	<mat-menu #stockExchangeMenu="matMenu">
 		<button
@@ -104,14 +127,14 @@
 		mat-button
 		routerLink="/acquired-securities"
 	>
-		Stečene hartije od vrednosti
+		Stečene HOV
 	</a>
 	<a
 		*ngIf="isStock && hasAccounts"
 		mat-button
 		routerLink="/publicly-tradable-securities"
 	>
-		Javno trgovane hartije od vrednosti
+		Javno trgovane HOV
 	</a>
 
 	<div class="padding"></div>
@@ -161,18 +184,18 @@
 		<button
 			*ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])"
 			mat-menu-item
-			routerLink="/cards"
-		>
-			<mat-icon> credit_card </mat-icon>
-			<span> Podešavanje kartica </span>
-		</button>
-		<button
-			*ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])"
-			mat-menu-item
 			routerLink="/credit-requests"
 		>
 			<mat-icon> real_estate_agent </mat-icon>
 			<span> Zahtevi za kredite </span>
+		</button>
+		<button
+			*ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])"
+			mat-menu-item
+			routerLink="/cards"
+		>
+			<mat-icon> credit_card </mat-icon>
+			<span> Podešavanje kartica </span>
 		</button>
 	</mat-menu>
 	<button

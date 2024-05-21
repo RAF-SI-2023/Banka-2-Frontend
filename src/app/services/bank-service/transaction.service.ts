@@ -13,34 +13,33 @@ import { ExternalTransactionResponseDto } from 'src/app/dtos/external-transactio
 export class TransactionService {
 	constructor(private httpClient: HttpClient) {}
 
-	////////////////////////////////
-	//TransferTransactionController
-	///////////////////////////////
-
-	//GET
-	getAllTransactions(userId: number) {
+	// GET
+	getAllTransactionsByEmail(email: string) {
 		return this.httpClient.get<TransactionDto[]>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.getAllTransactions}/${userId}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.getAllTransactions}/${email}`,
 		);
 	}
-	//POST
-	postTransactionExternal(transaction: SimpleTransactionDto) {
-		return this.httpClient.post<ExternalTransactionResponseDto>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.createExternalTransaction}`,
-			transaction,
-		);
-	}
-	postTransactionInternal(transaction: SimpleTransactionDto) {
-		return this.httpClient.post<InternalTransactionResponseDto>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.createInternalTransaction}`,
-			transaction,
-		);
-	}
-	//PATCH
+
+	// PATCH
 	patchTransactionVerify(transactionId: number, verificationToken: string) {
 		return this.httpClient.patch(
 			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.patchVerifyTransaction}/${transactionId}?verificationToken=${verificationToken}`,
 			null,
+		);
+	}
+
+	// POST
+	postTransactionExternal(transactionDto: SimpleTransactionDto) {
+		return this.httpClient.post<ExternalTransactionResponseDto>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.createExternalTransaction}`,
+			transactionDto,
+		);
+	}
+
+	postTransactionInternal(transactionDto: SimpleTransactionDto) {
+		return this.httpClient.post<InternalTransactionResponseDto>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.createInternalTransaction}`,
+			transactionDto,
 		);
 	}
 }

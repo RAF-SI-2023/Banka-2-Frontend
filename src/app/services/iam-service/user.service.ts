@@ -11,6 +11,7 @@ import { EmployeeDto } from '../../dtos/employee-dto';
 import { AgentDto } from '../../dtos/agent-dto';
 import { AuthCredentialsDto } from '../../dtos/auth-credentials-dto';
 import { PasswordChangeTokenDto } from '../../dtos/password-change-token-dto';
+import { CompanyEmployeeDto } from 'src/app/dtos/company-employee-dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -27,7 +28,7 @@ export class UserService {
 
 	getFindById(id: number) {
 		return this.httpClient.get<
-			UserDto | PrivateClientDto | CorporateClientDto
+			UserDto | CompanyEmployeeDto | PrivateClientDto | CorporateClientDto
 		>(environment.iamServiceApiUrl + ApiRoutes.users.findById + '/' + id);
 	}
 
@@ -76,6 +77,13 @@ export class UserService {
 	postCreateCorporateClient(client: CorporateClientRequestDto) {
 		return this.httpClient.post<boolean>(
 			`${environment.iamServiceApiUrl}${ApiRoutes.users.createCorporateClient}`,
+			client,
+		);
+	}
+
+	postCreateCompanyEmployee(client: CompanyEmployeeDto) {
+		return this.httpClient.post<boolean>(
+			`${environment.iamServiceApiUrl}${ApiRoutes.users.createCompanyEmployee}`,
 			client,
 		);
 	}
