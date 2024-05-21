@@ -19,7 +19,7 @@ export class PublicSecurityInfoDialogComponent {
 		public dialogRef: MatDialogRef<PublicSecurityInfoDialogComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: SecurityDto,
 		private fb: FormBuilder,
-		private contractServce: ContractService,
+		private contractService: ContractService,
 	) {
 		this.form = this.fb.group({
 			amount: [null, [Validators.required, digitValidator()]],
@@ -33,7 +33,7 @@ export class PublicSecurityInfoDialogComponent {
 	createContract() {
 		const contractDto = this.form.value as unknown as ContractDto;
 
-		this.contractServce.postCreateContract(contractDto).subscribe({
+		this.contractService.postCreateContract(contractDto).subscribe({
 			next: response => {
 				console.log(response);
 			},
