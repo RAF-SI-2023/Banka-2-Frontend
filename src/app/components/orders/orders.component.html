@@ -60,6 +60,22 @@
 						[dataSource]="dataSource"
 						matSort
 					>
+						<ng-container matColumnDef="id">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								ID
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.id ? row.id : '-' }}
+							</td>
+						</ng-container>
+
 						<ng-container matColumnDef="orderActionType">
 							<th
 								*matHeaderCellDef

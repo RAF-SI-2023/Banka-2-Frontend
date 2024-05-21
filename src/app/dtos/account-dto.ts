@@ -11,4 +11,5 @@ export interface AccountDto {
 	expirationDate: number;
 	currencyCode: string;
 	maintenanceFee: number;
+	primaryAccount: boolean;
 }

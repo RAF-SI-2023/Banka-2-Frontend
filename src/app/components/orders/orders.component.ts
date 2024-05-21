@@ -20,6 +20,7 @@ import { OrderInfoDialogComponent } from './order-info-dialog/order-info-dialog.
 })
 export class OrdersComponent implements AfterViewInit {
 	displayedColumns: string[] = [
+		'id',
 		'orderActionType',
 		'listingType',
 		'securitiesSymbol',
@@ -60,10 +61,9 @@ export class OrdersComponent implements AfterViewInit {
 	}
 
 	selectRow(row: OrderDto): void {
-		// if (this.selectedRow?.id != row.id) {
-		// 	this.selectedRow = row;
-		// }
-		this.selectedRow = row;
+		if (this.selectedRow?.id != row.id) {
+			this.selectedRow = row;
+		}
 	}
 
 	viewOrder(row: OrderDto): void {
@@ -130,6 +130,7 @@ export class OrdersComponent implements AfterViewInit {
 				this.statuses.indexOf(status) === -1,
 		);
 	}
+
 	ngAfterViewInit() {
 		if (this.paginator) this.dataSource.paginator = this.paginator;
 		if (this.sort) this.dataSource.sort = this.sort;
