@@ -41,7 +41,7 @@ export class RequestInfoDialogComponent implements OnInit {
 	}
 
 	prepareValues() {
-		// replace null or empty values with a placeholder
+		// Replace null or empty values with a placeholder
 		for (const key in this.data.selectedRow) {
 			if (
 				this.data.selectedRow[key] == null ||

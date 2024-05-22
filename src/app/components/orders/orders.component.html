@@ -6,26 +6,45 @@
 				<form>
 					<mat-form-field class="example-chip-list">
 						<mat-label>Filtriraj po statusu</mat-label>
-						<mat-chip-grid #chipGrid aria-label="Fruit selection">
-							<mat-chip-row *ngFor="let status of statuses" (removed)="remove(status)">
-								{{status}}
-								<button matChipRemove [attr.aria-label]="'remove ' + status">
+						<mat-chip-grid
+							#chipGrid
+							aria-label="Fruit selection"
+						>
+							<mat-chip-row
+								*ngFor="let status of statuses"
+								(removed)="remove(status)"
+							>
+								{{ status }}
+								<button
+									matChipRemove
+									[attr.aria-label]="'remove ' + status"
+								>
 									<mat-icon>cancel</mat-icon>
 								</button>
 							</mat-chip-row>
 						</mat-chip-grid>
-						<input placeholder="Status" #statusInput [formControl]="statusCtrl"
-							   [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
-							   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-							   (matChipInputTokenEnd)="add($event)"/>
-						<mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-							<mat-option *ngFor="let status of filteredStatus | async" [value]="status">
-								{{status}}
+						<input
+							placeholder="Status"
+							#statusInput
+							[formControl]="statusCtrl"
+							[matChipInputFor]="chipGrid"
+							[matAutocomplete]="auto"
+							[matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+							(matChipInputTokenEnd)="add($event)"
+						/>
+						<mat-autocomplete
+							#auto="matAutocomplete"
+							(optionSelected)="selected($event)"
+						>
+							<mat-option
+								*ngFor="let status of filteredStatus | async"
+								[value]="status"
+							>
+								{{ status }}
 							</mat-option>
 						</mat-autocomplete>
 					</mat-form-field>
 				</form>
-
 			</div>
 		</mat-card-header>
 
@@ -41,6 +60,22 @@
 						[dataSource]="dataSource"
 						matSort
 					>
+						<ng-container matColumnDef="id">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								ID
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.id ? row.id : '-' }}
+							</td>
+						</ng-container>
+
 						<ng-container matColumnDef="orderActionType">
 							<th
 								*matHeaderCellDef
@@ -54,7 +89,9 @@
 								mat-cell
 							>
 								{{
-									row.orderActionType ? row.orderActionType : '-'
+									row.orderActionType
+										? row.orderActionType
+										: '-'
 								}}
 							</td>
 						</ng-container>
@@ -87,7 +124,11 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.securitiesSymbol ? row.securitiesSymbol : '-' }}
+								{{
+									row.securitiesSymbol
+										? row.securitiesSymbol
+										: '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -119,11 +160,13 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.settlementDate
-								? (row.settlementDate
-									| epochToDate
-									| date: 'dd.MM.yyyy.')
-								: '-'}}
+								{{
+									row.settlementDate
+										? (row.settlementDate
+											| epochToDate
+											| date: 'dd.MM.yyyy.')
+										: '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -171,9 +214,15 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.orderStatus === OrderStatus.APPROVED ? "Odobren" :
-								row.orderStatus === OrderStatus.DENIED ? "Odbijen" :
-								row.orderStatus === OrderStatus.WAITING_FOR_APPROVAL ? "Na čekanju" : '-'
+								{{
+									row.orderStatus === OrderStatus.APPROVED
+										? 'Odobren'
+										: row.orderStatus === OrderStatus.DENIED
+											? 'Odbijen'
+											: row.orderStatus ===
+												  OrderStatus.WAITING_FOR_APPROVAL
+												? 'Na čekanju'
+												: '-'
 								}}
 							</td>
 						</ng-container>

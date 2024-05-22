@@ -29,6 +29,15 @@ export class OrderService {
 		);
 	}
 
+	getOrderById(orderId: number) {
+		return this.httpClient.get<OrderDto>(
+			environment.bankServiceApiUrl +
+				ApiRoutes.order.getOrderById +
+				'/' +
+				orderId,
+		);
+	}
+
 	// POST
 	postCreateOrder(orderDto: OrderDto) {
 		return this.httpClient.post<OrderDto>(

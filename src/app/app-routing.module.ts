@@ -31,7 +31,7 @@ import { TransactionsAllComponent } from './components/transactions-all/transact
 import { RequestsComponent } from './components/acquired-securities/requests/requests.component';
 import { PubliclyTradableSecuritiesComponent } from './components/publicly-tradable-securities/publicly-tradable-securities.component';
 import { AcquiredSecuritiesComponent } from './components/acquired-securities/acquired-securities.component';
-import {OrdersComponent} from "./components/orders/orders.component";
+import { OrdersComponent } from './components/orders/orders.component';
 
 const routes: Routes = [
 	{
@@ -177,7 +177,7 @@ const routes: Routes = [
 		path: 'orders',
 		canActivate: [authGuard, roleGuard],
 		// data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
-	}
+	},
 ];
 
 @NgModule({

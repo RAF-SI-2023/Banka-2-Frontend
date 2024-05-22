@@ -7,7 +7,7 @@ export const ApiRoutes = {
 		allRoles: '/roles/all',
 	},
 	/// UserController
-	users: {
+	user: {
 		findAll: '/users/all',
 		findById: '/users',
 		findByEmail: '/users/email',
@@ -28,7 +28,7 @@ export const ApiRoutes = {
 		resetAgentsLeftLimit: '/users/agent-limit/reset',
 	},
 	/// CompanyController
-	companies: {
+	company: {
 		updateCompany: '/companies/update',
 		createCompany: '/companies/create',
 		findByPib: '/companies/pib',
@@ -40,7 +40,7 @@ export const ApiRoutes = {
 	},
 	// BANK-SERVICE
 	/// AccountController
-	accounts: {
+	account: {
 		findAccountsByEmail: '/accounts/find-by-email',
 		associateProfileInitialization:
 			'/accounts/associate-profile-initialization',
@@ -50,7 +50,7 @@ export const ApiRoutes = {
 		createBusinessAccount: '/accounts/create-account/business', // POSLOVNI
 	},
 	/// CreditController
-	credits: {
+	credit: {
 		findAll: '/credit/all/account-number',
 		findByCreditNumber: '/credit/credit-number',
 		createCreditRequest: '/credit/credit-requests/create',
@@ -60,7 +60,7 @@ export const ApiRoutes = {
 		denyCreditRequest: '/credit/credit-requests/deny',
 	},
 	/// CardController
-	cards: {
+	card: {
 		getCardsByIdentificationCardNumber: '/cards/id',
 		getCardsByAccountNumber: '/cards/account-number',
 		createCard: '/cards/create-card',
@@ -80,7 +80,7 @@ export const ApiRoutes = {
 		postExchangeCurrency: '/currency-exchange/exchange-currency',
 	},
 	// SecuritiesOwnershipsController
-	security: {
+	securities: {
 		findAll: '/securities-ownerships/all-available',
 		findAllPrivate: '/securities-ownerships/all-available-private',
 		findAllCompanies: '/securities-ownerships/all-available-companies',
@@ -94,6 +94,7 @@ export const ApiRoutes = {
 		getAllOrders: '/orders',
 		getNonApprovedOrders: '/orders/non-approved',
 		getApprovedOrders: '/orders/approved',
+		getOrderById: '/orders/find-by-id/',
 		approveOrder: '/orders/approve',
 		rejectOrder: '/orders/reject',
 	},
@@ -122,7 +123,7 @@ export const ApiRoutes = {
 		findByQuoteCurrency: '/forex/quote-currency',
 	},
 	/// FuturesContractController
-	futures: {
+	futuresContract: {
 		findAll: '/futures',
 		findById: '/futures',
 	},
