@@ -7,7 +7,7 @@
 -   Koristiti nazive na engleskom jeziku u kodu; prevesti ili transkribovati na
     srpski jezik za izgled
 -   Koristiti epoch time za datum i vreme u kodu; prebaciti ga u yyyy-MM-dd
-    standard za izgled
+    HH:mm:ss standard za izgled
 -   Pre commit-ovanja izmena potrebno je:
     -   pokrenuti aplikaciju i uveriti se da sve radi ispravno
     -   odraditi formatiranje koda:
