@@ -17,6 +17,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { BankExchangeService } from '../../services/bank-service/bank-exchange.service';
 import { Role } from 'src/app/dtos/decoded-token-dto';
 import { AuthService } from 'src/app/services/iam-service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-home',
@@ -55,6 +56,7 @@ export class HomeComponent implements AfterViewInit {
 	constructor(
 		public dialog: MatDialog,
 		private fb: FormBuilder,
+		private router: Router,
 	) {
 		this.accountNumberDataSource = new MatTableDataSource();
 		this.role = this.authService.getRoleFromToken();
@@ -122,4 +124,8 @@ export class HomeComponent implements AfterViewInit {
 	}
 
 	protected readonly Role = Role;
+
+	redirectToTransactionsAll() {
+		this.router.navigate(['/transactions/all']);
+	}
 }

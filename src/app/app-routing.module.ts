@@ -28,10 +28,10 @@ import { TransactionsComponent } from './components/transactions/transactions/tr
 import { BankExchangeComponent } from './components/bank-exchange/bank-exchange.component';
 import { FuturesContractsComponent } from './components/futures-contracts/futures-contracts.component';
 import { TransactionsAllComponent } from './components/transactions-all/transactions-all.component';
-import { RequestsComponent } from './components/acquired-securities/requests/requests.component';
 import { PubliclyTradableSecuritiesComponent } from './components/publicly-tradable-securities/publicly-tradable-securities.component';
 import { AcquiredSecuritiesComponent } from './components/acquired-securities/acquired-securities.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { ContractsComponent } from './components/contracts/contracts.component';
 
 const routes: Routes = [
 	{
@@ -60,45 +60,47 @@ const routes: Routes = [
 	{
 		component: TransactionsComponent,
 		path: 'transactions',
-		canActivate: [authGuard, accountGuard],
+		canActivate: [authGuard, accountGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.USER] },
 	},
 	{
 		component: TransactionsAllComponent,
 		path: 'transactions/all',
-		canActivate: [authGuard, accountGuard],
+		canActivate: [authGuard],
 	},
 	{
 		component: BankExchangeComponent,
 		path: 'bank-exchange',
-		canActivate: [authGuard, accountGuard],
+		canActivate: [authGuard, accountGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.USER] },
 	},
 	{
 		component: CreditsComponent,
 		path: 'credits',
-		canActivate: [authGuard, accountGuard],
+		canActivate: [authGuard, accountGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.USER] },
 	},
 	{
 		component: CreateCreditRequestComponent,
 		path: 'credits/create-credit-request',
-		canActivate: [authGuard, accountGuard],
+		canActivate: [authGuard, accountGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.USER] },
 	},
 	{
 		component: CurrencyExchangeComponent,
 		path: 'currency-exchange',
-		canActivate: [authGuard, roleGuard],
-		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
+		canActivate: [authGuard],
 	},
 	{
 		component: StocksComponent,
 		path: 'stocks',
-		canActivate: [authGuard, roleGuard],
-		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
+		canActivate: [authGuard],
 	},
 	{
 		component: OptionsComponent,
 		path: 'options/:stockListing',
 		canActivate: [authGuard, roleGuard],
-		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
+		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT, Role.USER] },
 	},
 	{
 		component: ForexComponent,
@@ -110,13 +112,7 @@ const routes: Routes = [
 		component: FuturesContractsComponent,
 		path: 'futures-contracts',
 		canActivate: [authGuard, roleGuard],
-		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
-	},
-	{
-		component: RequestsComponent,
-		path: 'acquired-securities/requests',
-		canActivate: [authGuard, roleGuard],
-		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT] },
+		data: { roles: [Role.ADMIN, Role.SUPERVISOR, Role.AGENT, Role.USER] },
 	},
 	{
 		component: UsersComponent,
@@ -134,7 +130,9 @@ const routes: Routes = [
 		component: CompaniesComponent,
 		path: 'companies',
 		canActivate: [authGuard, roleGuard],
-		data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
+		data: {
+			roles: [Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR, Role.AGENT],
+		},
 	},
 	{
 		component: AllCompanyEmployeesComponent,
@@ -163,20 +161,24 @@ const routes: Routes = [
 	{
 		component: PubliclyTradableSecuritiesComponent,
 		path: 'publicly-tradable-securities',
-		canActivate: [authGuard, roleGuard],
-		// data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
+		canActivate: [authGuard],
 	},
 	{
 		component: AcquiredSecuritiesComponent,
 		path: 'acquired-securities',
-		canActivate: [authGuard, roleGuard],
-		// data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
+		canActivate: [authGuard],
 	},
 	{
 		component: OrdersComponent,
 		path: 'orders',
 		canActivate: [authGuard, roleGuard],
-		// data: { roles: [Role.ADMIN, Role.EMPLOYEE] },
+		data: { roles: [Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR] },
+	},
+	{
+		component: ContractsComponent,
+		path: 'contracts',
+		canActivate: [authGuard, roleGuard],
+		data: { roles: [Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR] },
 	},
 ];
 

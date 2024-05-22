@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { isCompanyEmployeeDto } from 'src/app/dtos/company-employee-dto';
 import { AddCompanyEmployeeComponent } from './dialogs/add-company-employee/add-company-employee.component';
+import { UserInfoDialogComponent } from '../../users/dialogs/user-info-dialog/user-info-dialog.component';
 
 @Component({
 	selector: 'app-all-company-employees',
@@ -115,6 +116,14 @@ export class AllCompanyEmployeesComponent implements AfterViewInit {
 				}),
 			)
 			.subscribe();
+	}
+
+	viewUser(row: UserDto): void {
+		if (this.selectedRow != null) {
+			this.dialog.open(UserInfoDialogComponent, {
+				data: { selectedRow: row },
+			});
+		}
 	}
 
 	addEmployee() {

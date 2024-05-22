@@ -1,9 +1,7 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { OrderDto, OrderStatus } from '../../dtos/order-dto';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { OrderService } from '../../services/bank-service/order.service';
 import { catchError, map, startWith } from 'rxjs/operators';
 import { forkJoin, Observable, throwError } from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -11,27 +9,29 @@ import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
-import { OrderInfoDialogComponent } from './order-info-dialog/order-info-dialog.component';
+import { ContractInfoDialogComponent } from './contract-info-dialog/contract-info-dialog.component';
+import { ContractService } from 'src/app/services/otc-service/contract.service';
+import { ContractDto, ContractStatus } from 'src/app/dtos/contract-dto';
 
 @Component({
-	selector: 'app-orders',
-	templateUrl: './orders.component.html',
-	styleUrls: ['./orders.component.css'],
+	selector: 'app-contracts',
+	templateUrl: './contracts.component.html',
+	styleUrls: ['./contracts.component.css'],
 })
-export class OrdersComponent implements AfterViewInit {
+export class ContractsComponent implements AfterViewInit {
 	displayedColumns: string[] = [
 		'id',
-		'orderActionType',
-		'listingType',
-		'securitiesSymbol',
-		'quantity',
-		'settlementDate',
-		'limitPrice',
-		'stopPrice',
-		'orderStatus',
+		'ticker',
+		'volume',
+		'totalPrice',
+		'contractStatus',
+		'contractType',
+		'dateTimeCreated',
+		'sellerConfirmation',
+		'bankConfirmation',
 	];
-	dataSource = new MatTableDataSource<OrderDto>();
-	selectedRow: OrderDto | null = null;
+	dataSource = new MatTableDataSource<ContractDto>();
+	selectedRow: ContractDto | null = null;
 
 	separatorKeysCodes: number[] = [ENTER, COMMA];
 	statusCtrl = new FormControl('');
@@ -46,7 +46,7 @@ export class OrdersComponent implements AfterViewInit {
 	@ViewChild(MatSort) sort: MatSort | undefined;
 
 	constructor(
-		private orderService: OrderService,
+		private contractService: ContractService,
 		public dialog: MatDialog,
 	) {
 		this.filteredStatus = this.statusCtrl.valueChanges.pipe(
@@ -59,15 +59,15 @@ export class OrdersComponent implements AfterViewInit {
 		this.fetchAllData();
 	}
 
-	selectRow(row: OrderDto): void {
+	selectRow(row: ContractDto): void {
 		if (this.selectedRow?.id != row.id) {
 			this.selectedRow = row;
 		}
 	}
 
-	viewOrder(row: OrderDto): void {
+	viewContract(row: ContractDto): void {
 		if (this.selectedRow != null) {
-			const dialogRef = this.dialog.open(OrderInfoDialogComponent, {
+			const dialogRef = this.dialog.open(ContractInfoDialogComponent, {
 				data: { selectedRow: row },
 				autoFocus: false,
 			});
@@ -140,8 +140,8 @@ export class OrdersComponent implements AfterViewInit {
 	}
 
 	fetchAllData() {
-		this.orderService
-			.getAllOrders()
+		this.contractService
+			.getAllContracts()
 			.pipe(
 				map(dataSource => {
 					this.dataSource.data = dataSource;
@@ -158,16 +158,16 @@ export class OrdersComponent implements AfterViewInit {
 	fetchFilteredData() {
 		// Call all the necessary API endpoints to get the data
 		// and then combine the results into a single array
-		const apiCalls: Observable<OrderDto[]>[] = [];
+		const apiCalls: Observable<ContractDto[]>[] = [];
 
-		if (this.statuses.includes('Odobreno')) {
-			apiCalls.push(this.orderService.getApprovedOrders());
-		}
-		if (this.statuses.includes('Odbijeno')) {
-			apiCalls.push(this.orderService.getDeniedOrders());
-		}
+		// if (this.statuses.includes('Odobreno')) {
+		// 	apiCalls.push(this.orderService.getApprovedOrders());
+		// }
+		// if (this.statuses.includes('Odbijeno')) {
+		// 	apiCalls.push(this.orderService.getDeniedOrders());
+		// }
 		if (this.statuses.includes('Na čekanju')) {
-			apiCalls.push(this.orderService.getNonApprovedOrders());
+			apiCalls.push(this.contractService.getAllWaitingContracts());
 		}
 
 		//! Add if statement for 'Odbijeno' status when needed
@@ -177,7 +177,7 @@ export class OrdersComponent implements AfterViewInit {
 			forkJoin(apiCalls)
 				.pipe(
 					map(results => {
-						const combinedResults: OrderDto[] = [];
+						const combinedResults: ContractDto[] = [];
 						results.forEach(result =>
 							combinedResults.push(...result),
 						);
@@ -194,5 +194,5 @@ export class OrdersComponent implements AfterViewInit {
 		}
 	}
 
-	protected readonly OrderStatus = OrderStatus;
+	protected readonly ContractStatus = ContractStatus;
 }

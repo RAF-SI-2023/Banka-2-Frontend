@@ -8,8 +8,8 @@ import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { UserService } from 'src/app/services/iam-service/user.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ActuaryInfoDialogComponent } from './actuary-info-dialog/actuary-info-dialog.component';
 import { AddAgentDialogComponent } from './add-agent-dialog/add-agent-dialog.component';
+import { UserInfoDialogComponent } from '../users/dialogs/user-info-dialog/user-info-dialog.component';
 
 @Component({
 	selector: 'app-actuaries',
@@ -98,9 +98,9 @@ export class ActuariesComponent implements AfterViewInit {
 		return false;
 	}
 
-	viewAgent(row: UserDto): void {
+	viewUser(row: UserDto): void {
 		if (this.selectedRow != null) {
-			this.dialog.open(ActuaryInfoDialogComponent, {
+			this.dialog.open(UserInfoDialogComponent, {
 				data: { selectedRow: row },
 			});
 		}

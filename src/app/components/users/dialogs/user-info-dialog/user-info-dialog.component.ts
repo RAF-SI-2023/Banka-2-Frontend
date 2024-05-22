@@ -6,6 +6,7 @@ import { isCorporateClientDto } from '../../../../dtos/corporate-client-dto';
 import { isEmployeeDto } from '../../../../dtos/employee-dto';
 import { isAgentDto } from 'src/app/dtos/agent-dto';
 import { DatePipe, formatDate } from '@angular/common';
+import { isCompanyEmployeeDto } from 'src/app/dtos/company-employee-dto';
 
 @Component({
 	selector: 'app-user-info-dialog',
@@ -50,6 +51,8 @@ export class UserInfoDialogComponent {
 			return 'PRIVATE';
 		} else if (isCorporateClientDto(this.data.selectedRow)) {
 			return 'CORPORATE';
+		} else if (isCompanyEmployeeDto(this.data.selectedRow)) {
+			return 'COMPANY_EMPLOYEE';
 		} else if (isEmployeeDto(this.data.selectedRow)) {
 			return 'EMPLOYEE';
 		} else if (isAgentDto(this.data.selectedRow)) {
