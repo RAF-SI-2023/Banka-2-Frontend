@@ -9,6 +9,8 @@ export class EpochToDatePipe implements PipeTransform {
 			return null; // Return null if the epoch value is false
 		}
 
+		console.log('alo ', epoch);
+
 		let milliseconds: number;
 
 		if (epoch >= 0) {
@@ -27,7 +29,9 @@ export class EpochToDatePipe implements PipeTransform {
 					milliseconds = Math.floor(epoch / 1000000);
 					break;
 				default:
-					throw new Error('Invalid epoch format');
+					throw new Error(
+						`Invalid (positive) epoch format: ${epoch}`,
+					);
 			}
 		} else {
 			// Handle negative epoch values
@@ -45,7 +49,9 @@ export class EpochToDatePipe implements PipeTransform {
 					milliseconds = Math.ceil(epoch / 1000000);
 					break;
 				default:
-					throw new Error('Invalid epoch format');
+					throw new Error(
+						`Invalid (negative) epoch format: ${epoch}`,
+					);
 			}
 		}
 

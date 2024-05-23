@@ -137,6 +137,10 @@
 		Kupi
 	</button>
 	<button
+		*ngIf="
+			hasPib() ||
+			checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT])
+		"
 		mat-raised-button
 		mat-dialog-close
 		color="accent"

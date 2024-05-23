@@ -17,3 +17,9 @@ export interface ContractDto {
 	sellersEmail: string;
 	contractType: string;
 }
+
+export enum ContractStatus {
+	APPROVED = 'APPROVED',
+	REJECTED = 'REJECTED',
+	WAITING = 'WAITING',
+}

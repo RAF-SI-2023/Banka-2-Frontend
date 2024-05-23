@@ -50,17 +50,21 @@ import { ChangeLimitFormComponent } from './components/cards/change-limit-form/c
 import { BankExchangeComponent } from './components/bank-exchange/bank-exchange.component';
 import { FuturesContractsComponent } from './components/futures-contracts/futures-contracts.component';
 import { FuturesContractInfoDialogComponent } from './components/futures-contracts/futures-contract-info-dialog/futures-contract-info-dialog.component';
-import { ActuaryInfoDialogComponent } from './components/actuaries/actuary-info-dialog/actuary-info-dialog.component';
 import { PasswordChangeDialogComponent } from './components/user-profile/password-change-dialog/password-change-dialog.component';
 import { TransactionsAllComponent } from './components/transactions-all/transactions-all.component';
-import { RequestsComponent } from './components/acquired-securities/requests/requests.component';
-import { RequestInfoDialogComponent } from './components/acquired-securities/requests/request-info-dialog/request-info-dialog.component';
 import { AcquiredSecuritiesComponent } from './components/acquired-securities/acquired-securities.component';
 import { PubliclyTradableSecuritiesComponent } from './components/publicly-tradable-securities/publicly-tradable-securities.component';
 import { PublicSecurityInfoDialogComponent } from './components/publicly-tradable-securities/public-security-info-dialog/public-security-info-dialog.component';
 import { AcquiredSecuritiesInfoDialogComponent } from './components/acquired-securities/acquired-securities-info-dialog/acquired-securities-info-dialog.component';
 import { AllCompanyEmployeesComponent } from './components/companies/all-company-employees/all-company-employees.component';
 import { AddCompanyEmployeeComponent } from './components/companies/all-company-employees/dialogs/add-company-employee/add-company-employee.component';
+import { OptionInfoDialogComponent } from './components/options/option-info-dialog/option-info-dialog.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { OrderInfoDialogComponent } from './components/orders/order-info-dialog/order-info-dialog.component';
+import { ContractsComponent } from './components/contracts/contracts.component';
+import { ContractInfoDialogComponent } from './components/contracts/contract-info-dialog/contract-info-dialog.component';
 /// DIRECTIVES/PIPES
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
@@ -108,11 +112,6 @@ import {
 } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DATE_FORMAT } from './utils/constants';
-import { OptionInfoDialogComponent } from './components/options/option-info-dialog/option-info-dialog.component';
-import { OrdersComponent } from './components/orders/orders.component';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { OrderInfoDialogComponent } from './components/orders/order-info-dialog/order-info-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -149,8 +148,6 @@ import { OrderInfoDialogComponent } from './components/orders/order-info-dialog/
 		CreditsComponent,
 		CreditInfoDialogComponent,
 		CreateCreditRequestComponent,
-		RequestInfoDialogComponent,
-		RequestsComponent,
 		TranslatePipe,
 		UpdateCompanyDialogComponent,
 		AddCompanyDialogComponent,
@@ -171,10 +168,8 @@ import { OrderInfoDialogComponent } from './components/orders/order-info-dialog/
 		ChangeLimitFormComponent,
 		BankExchangeComponent,
 		FuturesContractInfoDialogComponent,
-		ActuaryInfoDialogComponent,
 		TransactionsAllComponent,
 		TransactionsAllInfoDialogComponent,
-		RequestsComponent,
 		AcquiredSecuritiesComponent,
 		PubliclyTradableSecuritiesComponent,
 		PublicSecurityInfoDialogComponent,
@@ -184,6 +179,8 @@ import { OrderInfoDialogComponent } from './components/orders/order-info-dialog/
 		OptionInfoDialogComponent,
 		OrdersComponent,
 		OrderInfoDialogComponent,
+		ContractsComponent,
+		ContractInfoDialogComponent,
 	],
 	imports: [
 		HttpClientModule,

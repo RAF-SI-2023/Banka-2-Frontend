@@ -2,6 +2,11 @@
 	place-items: center;
 }
 
+mat-card-header {
+	display: flex;
+	flex-direction: column;
+}
+
 .form-container {
 	display: flex;
 	width: 100%;

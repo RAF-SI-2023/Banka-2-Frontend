@@ -14,6 +14,6 @@ export interface OrderDto {
 
 export enum OrderStatus {
 	APPROVED = 'APPROVED',
-	WAITING_FOR_APPROVAL = 'WAITING_FOR_APPROVAL',
 	DENIED = 'DENIED',
+	WAITING_FOR_APPROVAL = 'WAITING_FOR_APPROVAL',
 }

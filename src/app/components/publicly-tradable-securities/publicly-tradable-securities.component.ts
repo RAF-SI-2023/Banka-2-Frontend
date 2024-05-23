@@ -79,8 +79,9 @@ export class PubliclyTradableSecuritiesComponent implements AfterViewInit {
 						switchMap(response => {
 							if (
 								this.hasPib(response) ||
-								response.role === 'AGENT' ||
-								response.role === 'SUPERVISOR'
+								response.role === 'EMPLOYEE' ||
+								response.role === 'SUPERVISOR' ||
+								response.role === 'AGENT'
 							) {
 								return this.securitiesService
 									.getAllCompanyOwnedSecurities()

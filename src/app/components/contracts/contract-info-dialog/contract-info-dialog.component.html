@@ -1,0 +1,177 @@
+<h2 mat-dialog-title>Informacije o ugovoru</h2>
+<mat-dialog-content class="mat-typography size">
+	<div
+		*ngIf="!isLoading"
+		class="full-width-grid"
+	>
+		<div class="info-row">
+			<span class="label">ID:</span>
+			<span>{{ newSelectedRow.id ? newSelectedRow.id : '-' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Komentar:</span>
+			<span>{{
+				newSelectedRow.comment ? newSelectedRow.comment : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Datum kreiranja:</span>
+			<span>{{
+				newSelectedRow.dateTimeCreated
+					? (newSelectedRow.dateTimeCreated
+						| epochToDate
+						| date: 'dd.MM.yyyy.')
+					: '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Datum realizacije:</span>
+			<span>{{
+				newSelectedRow.dateTimeRealized
+					? (newSelectedRow.dateTimeRealized
+						| epochToDate
+						| date: 'dd.MM.yyyy.')
+					: '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Kontakt telefon:</span>
+			<span>{{
+				newSelectedRow.contractNumber
+					? newSelectedRow.contractNumber
+					: '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Opis:</span>
+			<span>{{
+				newSelectedRow.description ? newSelectedRow.description : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Simbol:</span>
+			<span>{{
+				newSelectedRow.ticker ? newSelectedRow.ticker : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Količina:</span>
+			<span>{{
+				newSelectedRow.volume ? newSelectedRow.volume : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Cena:</span>
+			<span>{{
+				newSelectedRow.totalPrice ? newSelectedRow.totalPrice : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Status:</span>
+			<span>
+				{{
+					newSelectedRow.contractStatus === ContractStatus.APPROVED
+						? 'Odobreno'
+						: newSelectedRow.contractStatus ===
+							  ContractStatus.REJECTED
+							? 'Odbijeno'
+							: newSelectedRow.contractStatus ===
+								  ContractStatus.WAITING
+								? 'Na čekanju'
+								: '-'
+				}}</span
+			>
+		</div>
+		<div class="info-row">
+			<span class="label">PIB kupca:</span>
+			<span>{{
+				newSelectedRow.buyersPIB ? newSelectedRow.buyersPIB : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">PIB prodavca:</span>
+			<span>{{
+				newSelectedRow.sellersPIB ? newSelectedRow.sellersPIB : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Email kupca:</span>
+			<span>{{
+				newSelectedRow.buyersEmail ? newSelectedRow.buyersEmail : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Email prodavca:</span>
+			<span>{{
+				newSelectedRow.sellersEmail ? newSelectedRow.sellersEmail : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Tip:</span>
+			<span>
+				{{
+					newSelectedRow.contractType === 'PRIVATE_CONTRACT'
+						? 'Ugovor između fizičkih lica'
+						: newSelectedRow.contractStatus ===
+							  'LEGAL_ENTITY_CONTRACT'
+							? 'Ugovor između pravnih lica'
+							: '-'
+				}}</span
+			>
+		</div>
+		<div class="info-row">
+			<span class="label">Potvrda prodavca:</span>
+			<span> {{ newSelectedRow.sellerConfirmation ? '✔️' : '❌' }}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Potvrda banke:</span>
+			<span> {{ newSelectedRow.bankConfirmation ? '✔️' : '❌' }}</span>
+		</div>
+	</div>
+
+	<div
+		*ngIf="isLoading"
+		class="spinner-container"
+	>
+		<mat-progress-spinner
+			diameter="50"
+			mode="indeterminate"
+		></mat-progress-spinner>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button
+		*ngIf="
+			this.newSelectedRow.contractStatus === ContractStatus.WAITING &&
+			checkButtonCondition()
+		"
+		[disabled]="isLoading"
+		mat-raised-button
+		mat-dialog-close
+		color="accent"
+		cdkFocusInitial
+		(click)="approveContract()"
+	>
+		Odobri
+	</button>
+	<button
+		*ngIf="
+			this.newSelectedRow.contractStatus === ContractStatus.WAITING &&
+			checkButtonCondition()
+		"
+		[disabled]="isLoading"
+		mat-raised-button
+		mat-dialog-close
+		color="accent"
+		(click)="denyContract()"
+	>
+		Odbij
+	</button>
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
+		Zatvori
+	</button>
+</mat-dialog-actions>

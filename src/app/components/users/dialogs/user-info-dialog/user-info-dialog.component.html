@@ -109,6 +109,13 @@
 				newSelectedRow.leftOfLimit ? newSelectedRow.leftOfLimit : '-'
 			}}</span>
 		</div>
+		<div
+			*ngIf="checkDto() === 'COMPANY_EMPLOYEE'"
+			class="info-row"
+		>
+			<span class="label">PIB:</span>
+			<span>{{ newSelectedRow.pib ? newSelectedRow.pib : '-' }}</span>
+		</div>
 	</div>
 
 	<div

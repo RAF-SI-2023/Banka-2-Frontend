@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Informacije o zahtevu za kredit</h2>
+<h2 mat-dialog-title>Informacije o porudžbini</h2>
 <mat-dialog-content class="mat-typography size">
 	<div
 		*ngIf="!isLoading"
@@ -12,9 +12,9 @@
 			<span class="label">Status:</span>
 			<span>{{
 				newSelectedRow.orderStatus === OrderStatus.APPROVED
-					? 'Odobren'
+					? 'Odobreno'
 					: newSelectedRow.orderStatus === OrderStatus.DENIED
-						? 'Odbijen'
+						? 'Odbijeno'
 						: newSelectedRow.orderStatus ===
 							  OrderStatus.WAITING_FOR_APPROVAL
 							? 'Na čekanju'
@@ -22,13 +22,13 @@
 			}}</span>
 		</div>
 		<div class="info-row">
-			<span class="label">Tip listinga:</span>
+			<span class="label">Tip HOV:</span>
 			<span>{{
 				newSelectedRow.listingType ? newSelectedRow.listingType : '-'
 			}}</span>
 		</div>
 		<div class="info-row">
-			<span class="label">Akcija:</span>
+			<span class="label">Tip transakcije:</span>
 			<span>{{
 				newSelectedRow.orderActionType
 					? newSelectedRow.orderActionType
@@ -50,10 +50,12 @@
 			}}</span>
 		</div>
 		<div class="info-row">
-			<span class="label">Datum poravnanja:</span>
+			<span class="label">Datum isticanja ugovora:</span>
 			<span>{{
 				newSelectedRow.settlementDate
-					? newSelectedRow.settlementDate
+					? (newSelectedRow.settlementDate
+						| epochToDate
+						| date: 'dd.MM.yyyy.')
 					: '-'
 			}}</span>
 		</div>

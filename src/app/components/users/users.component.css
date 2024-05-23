@@ -2,6 +2,11 @@
 	place-items: center;
 }
 
+mat-card-header {
+	display: flex;
+	flex-direction: column;
+}
+
 .tableContainer {
 	margin-top: 2%;
 	display: grid;
