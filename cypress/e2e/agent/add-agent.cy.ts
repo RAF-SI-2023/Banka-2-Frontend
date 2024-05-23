@@ -1,6 +1,8 @@
+import { ADMIN_CREDENTIALS } from 'cypress/support/constants';
+
 describe('Adding Agent Dialog', () => {
 	beforeEach(() => {
-		cy.login('vasa_email_adresa_1@gmail.com', 'admin'); // Login as Admin
+		cy.login(ADMIN_CREDENTIALS.username, ADMIN_CREDENTIALS.password); // Login as Admin
 		cy.visit('/actuaries'); // Assuming your users component is accessible at /users route
 	});
 

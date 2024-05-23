@@ -1,3 +1,5 @@
+import { ADMIN_CREDENTIALS } from 'cypress/support/constants';
+
 describe('Router', () => {
 	const routes = [
 		{ path: '/', name: 'Landing page' },
@@ -12,7 +14,7 @@ describe('Router', () => {
 		{ path: '/currency-exchange', name: 'Currency Exchange page' },
 		{ path: '/forex', name: 'Forex page' },
 		{ path: '/options/XYZ', name: 'Options page' },
-		{ path: '/agents', name: 'Agents page' },
+		{ path: '/actuaries', name: 'Actuaries page' },
 		{ path: '/credits', name: 'Credits page' },
 		{
 			path: '/credits/create-credit-request',
@@ -24,7 +26,7 @@ describe('Router', () => {
 	];
 
 	beforeEach(() => {
-		cy.login('vasa_email_adresa_1@gmail.com', 'admin');
+		cy.login(ADMIN_CREDENTIALS.username, ADMIN_CREDENTIALS.password);
 	});
 
 	routes.forEach(route => {

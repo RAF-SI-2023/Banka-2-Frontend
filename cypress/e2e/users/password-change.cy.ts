@@ -1,7 +1,9 @@
+import { ADMIN_CREDENTIALS } from 'cypress/support/constants';
+
 describe('Change Password Dialog', () => {
 	beforeEach(() => {
 		// Assume you are logged in and on the page where the "Promeni lozinku" button is available
-		cy.login('vasa_email_adresa_1@gmail.com', 'admin');
+		cy.login(ADMIN_CREDENTIALS.username, ADMIN_CREDENTIALS.password);
 		cy.visit('/user-profile'); // Navigate to the page where the "Promeni lozinku" button is located
 	});
 
