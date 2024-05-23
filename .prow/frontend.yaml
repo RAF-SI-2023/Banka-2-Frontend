@@ -29,7 +29,7 @@ presubmits:
               docker compose up -d
               
               sleep 500
-              # npm install cypress --save-dev
+              npm install cypress --save-dev
               trap collectCypressMedia EXIT
               npx cypress run
           securityContext:
