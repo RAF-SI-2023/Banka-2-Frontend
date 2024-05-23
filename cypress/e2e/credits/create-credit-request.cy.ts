@@ -1,6 +1,6 @@
 describe('Create Credit Request', () => {
 	beforeEach(() => {
-		cy.login('vasa_email_adresa_1@gmail.com', 'admin'); // Login as Admin
+		cy.login('lukapavlovic032@gmail.com', 'admin'); // Login as Admin
 		cy.visit('/credits/create-credit-request'); // Assuming your users component is accessible at /users route
 	});
 

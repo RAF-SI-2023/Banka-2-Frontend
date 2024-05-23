@@ -29,6 +29,21 @@ export class OrderService {
 		);
 	}
 
+	getDeniedOrders() {
+		return this.httpClient.get<OrderDto[]>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.order.getDeniedOrders}`,
+		);
+	}
+
+	getOrderById(orderId: number) {
+		return this.httpClient.get<OrderDto>(
+			environment.bankServiceApiUrl +
+				ApiRoutes.order.getOrderById +
+				'/' +
+				orderId,
+		);
+	}
+
 	// POST
 	postCreateOrder(orderDto: OrderDto) {
 		return this.httpClient.post<OrderDto>(

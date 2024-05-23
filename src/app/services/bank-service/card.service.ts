@@ -13,20 +13,20 @@ export class CardService {
 	// GET
 	getCardsByIdentificationCardNumber(identificationCardNumber: number) {
 		return this.httpClient.get<CardDto[]>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.cards.getCardsByIdentificationCardNumber}/${identificationCardNumber}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.card.getCardsByIdentificationCardNumber}/${identificationCardNumber}`,
 		);
 	}
 
 	getCardsByAccountNumber(accountNumber: string) {
 		return this.httpClient.get<CardDto[]>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.cards.getCardsByAccountNumber}/${accountNumber}`,
+			`${environment.bankServiceApiUrl}${ApiRoutes.card.getCardsByAccountNumber}/${accountNumber}`,
 		);
 	}
 
 	// POST
 	postCreateCard(cardDto: CardDto) {
 		return this.httpClient.post<CardDto>(
-			environment.bankServiceApiUrl + ApiRoutes.cards.createCard,
+			environment.bankServiceApiUrl + ApiRoutes.card.createCard,
 			cardDto,
 		);
 	}
@@ -35,7 +35,7 @@ export class CardService {
 	putChangeCardStatus(identificationCardNumber: number) {
 		return this.httpClient.put<number>(
 			environment.bankServiceApiUrl +
-				ApiRoutes.cards.changeCardStatus +
+				ApiRoutes.card.changeCardStatus +
 				'/' +
 				identificationCardNumber,
 			null,
@@ -44,7 +44,7 @@ export class CardService {
 
 	putChangeCardLimit(cardDto: CardDto) {
 		return this.httpClient.put<number>(
-			environment.bankServiceApiUrl + ApiRoutes.cards.changeCardLimit,
+			environment.bankServiceApiUrl + ApiRoutes.card.changeCardLimit,
 			cardDto,
 		);
 	}

@@ -1,18 +1,21 @@
 describe('Deleting Employee', () => {
 	beforeEach(() => {
-		cy.login('vasa_email_adresa_1@gmail.com', 'admin'); // Login as Admin
+		cy.login('lukapavlovic032@gmail.com', 'admin'); // Login as Admin
 		cy.visit('/users'); // Assuming your users component is accessible at /users route
 	});
 
 	it('should delete an employee when "Obriši" button is clicked', () => {
 		// Assuming you have some users listed in a table
 		// Locate the user row you want to delete and click the "Obriši" button
+		cy.get('.mat-mdc-header-row > .cdk-column-id').click();
+		cy.get('.mat-mdc-header-row > .cdk-column-id').click();
+
 		cy.get('table')
-			.contains('tr', 'USER')
+			.contains('tr', 'test@example.com')
 			.within(() => {
 				// click the row where the user is located so that the row is selected
 				// select the specific cell in the row that containt USER or EMPLOYEE
-				cy.get('td').contains('USER').click();
+				cy.get('td').contains('test@example.com').click();
 			});
 		cy.get('[data-test="delete-button"]').click();
 

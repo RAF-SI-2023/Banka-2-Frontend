@@ -29,7 +29,7 @@ describe('Login Component', () => {
 
 	// Successful login test
 	it('should login with valid credentials', () => {
-		cy.get('input[type="email"]').type('vasa_email_adresa_1@gmail.com');
+		cy.get('input[type="email"]').type('lukapavlovic032@gmail.com');
 		cy.get('input[type="password"]').type('admin');
 		cy.get('button[type="submit"]').click();
 		cy.url().should('include', '/home');

@@ -1,6 +1,7 @@
 <section class="container">
 	<mat-card>
 		<mat-card-header>
+			<h2>Aktuari</h2>
 			<div class="form">
 				<div>
 					<mat-form-field>
@@ -185,7 +186,7 @@
 						<tr
 							mat-row
 							(click)="selectRow(row)"
-							(dblclick)="viewAgent(row)"
+							(dblclick)="viewUser(row)"
 							[class.row-selected]="selectedRow?.id === row.id"
 							*matRowDef="let row; columns: displayedColumns"
 						></tr>

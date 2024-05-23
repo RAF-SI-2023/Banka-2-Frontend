@@ -2,6 +2,7 @@
 	<mat-card>
 		<mat-card-header>
 			<div class="form">
+				<h2>Predstavnici kompanije (PIB: {{ pib }})</h2>
 				<div>
 					<mat-form-field>
 						<mat-label>Pretraži zaposlene</mat-label>
@@ -168,6 +169,7 @@
 						<tr
 							mat-row
 							(click)="selectRow(row)"
+							(dblclick)="viewUser(row)"
 							[class.row-selected]="selectedRow?.id === row.id"
 							*matRowDef="let row; columns: displayedColumns"
 						></tr>

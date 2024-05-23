@@ -1,15 +1,50 @@
 <section class="container">
 	<mat-card>
 		<mat-card-header>
+			<h2>Ugovori</h2>
 			<div class="form">
-				<mat-form-field>
-					<mat-label>Pretraži tržište stranih valuta</mat-label>
-					<input
-						#input
-						(keyup)="applyFilter($event)"
-						matInput
-					/>
-				</mat-form-field>
+				<form>
+					<mat-form-field class="example-chip-list">
+						<mat-label>Filtriraj po statusu</mat-label>
+						<mat-chip-grid
+							#chipGrid
+							aria-label="Status filter"
+						>
+							<mat-chip-row
+								*ngFor="let status of statuses"
+								(removed)="remove(status)"
+							>
+								{{ status }}
+								<button
+									matChipRemove
+									[attr.aria-label]="'remove ' + status"
+								>
+									<mat-icon>cancel</mat-icon>
+								</button>
+							</mat-chip-row>
+						</mat-chip-grid>
+						<input
+							placeholder="Status"
+							#statusInput
+							[formControl]="statusCtrl"
+							[matChipInputFor]="chipGrid"
+							[matAutocomplete]="auto"
+							[matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+							(matChipInputTokenEnd)="add($event)"
+						/>
+						<mat-autocomplete
+							#auto="matAutocomplete"
+							(optionSelected)="selected($event)"
+						>
+							<mat-option
+								*ngFor="let status of filteredStatus | async"
+								[value]="status"
+							>
+								{{ status }}
+							</mat-option>
+						</mat-autocomplete>
+					</mat-form-field>
+				</form>
 			</div>
 		</mat-card-header>
 
@@ -37,11 +72,11 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.id }}
+								{{ row.id ? row.id : '-' }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="symbol">
+						<ng-container matColumnDef="ticker">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
@@ -53,65 +88,27 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.symbol }}
+								{{ row.ticker ? row.ticker : '-' }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="description">
+						<ng-container matColumnDef="volume">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Opis
+								Količina
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.description }}
+								{{ row.volume ? row.volume : '-' }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="exchange">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Berza
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.exchange }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="lastRefresh">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Poslednje ažuriranje
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{
-									row.lastRefresh
-										? (row.lastRefresh
-											| epochToDate
-											| date: 'dd.MM.yyyy.')
-										: '-'
-								}}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="price">
+						<ng-container matColumnDef="totalPrice">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
@@ -123,108 +120,113 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.price }}
+								{{ row.totalPrice ? row.totalPrice : '-' }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="high">
+						<ng-container matColumnDef="contractStatus">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Najniža prodavna cena
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.high ? row.high : '-' }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="low">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Najviša kupovna cena
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.low ? row.low : '-' }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="change">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Dnevna razlika u cenama
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.change ? row.change : '-' }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="volume">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Broj dnevno razmenjenih hartija
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.volume ? row.volume : '-' }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="baseCurrency">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Bazna valuta
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.baseCurrency ? row.baseCurrency : '-' }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="quoteCurrency">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Kvotna valuta
+								Status
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
 								{{
-									row.quoteCurrency ? row.quoteCurrency : '-'
+									row.contractStatus ===
+									ContractStatus.APPROVED
+										? 'Odobreno'
+										: row.contractStatus ===
+											  ContractStatus.REJECTED
+											? 'Odbijeno'
+											: row.contractStatus ===
+												  ContractStatus.WAITING
+												? 'Na čekanju'
+												: '-'
 								}}
 							</td>
 						</ng-container>
 
+						<ng-container matColumnDef="contractType">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Tip
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{
+									row.contractType === 'PRIVATE_CONTRACT'
+										? 'Ugovor između fizičkih lica'
+										: row.contractStatus ===
+											  'LEGAL_ENTITY_CONTRACT'
+											? 'Ugovor između pravnih lica'
+											: '-'
+								}}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="dateTimeCreated">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Datum kreiranja
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{
+									row.dateTimeCreated
+										? (row.dateTimeCreated
+											| epochToDate
+											| date: 'dd.MM.yyyy.')
+										: '-'
+								}}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="sellerConfirmation">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Potvrda prodavca
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.sellerConfirmation ? '✔️' : '❌' }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="bankConfirmation">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Potvrda banke
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.bankConfirmation ? '✔️' : '❌' }}
+							</td>
+						</ng-container>
 						<tr
 							*matHeaderRowDef="displayedColumns"
 							mat-header-row
@@ -232,10 +234,7 @@
 						<tr
 							mat-row
 							(click)="selectRow(row)"
-							(dblclick)="viewForex(row)"
-							[class.row-selected]="
-								selectedRow?.symbol === row.symbol
-							"
+							(dblclick)="viewContract(row)"
 							*matRowDef="let row; columns: displayedColumns"
 						></tr>
 
@@ -247,9 +246,7 @@
 								class="mat-cell"
 								colspan="4"
 							>
-								Nije pronađen podatak za unetu vrednost: "{{
-									input.value
-								}}"
+								Nije pronađen podatak
 							</td>
 						</tr>
 					</table>

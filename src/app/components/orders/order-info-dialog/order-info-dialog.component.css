@@ -1,4 +1,6 @@
-.full-width {
+.full-width-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 	width: 100%;
 }
 

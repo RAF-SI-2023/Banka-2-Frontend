@@ -1,6 +1,6 @@
 describe('Adding Company Dialog', () => {
 	beforeEach(() => {
-		cy.login('vasa_email_adresa_1@gmail.com', 'admin'); // Login as Admin
+		cy.login('lukapavlovic032@gmail.com', 'admin'); // Login as Admin
 		cy.visit('/companies'); // Assuming your companies component is accessible at /companies route
 	});
 

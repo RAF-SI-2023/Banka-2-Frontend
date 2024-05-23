@@ -9,7 +9,12 @@ import { OrderService } from 'src/app/services/bank-service/order.service';
 import { OptionService } from 'src/app/services/stock-service/option.service';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
+import { isCompanyEmployeeDto } from 'src/app/dtos/company-employee-dto';
+import { UserDto } from 'src/app/dtos/user-dto';
+import { UserService } from 'src/app/services/iam-service/user.service';
+import { Role } from 'src/app/dtos/decoded-token-dto';
+import { AuthService } from 'src/app/services/iam-service/auth.service';
 
 @Component({
 	selector: 'app-stock-info-dialog',
@@ -21,18 +26,25 @@ export class StockInfoDialogComponent {
 	newSelectedRow: StockDto = { ...this.data.selectedRow };
 	isLoading = true;
 
+	activeUser: UserDto | null = null;
+	role: Role | null = null;
+
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
+		private fb: FormBuilder,
+		private router: Router,
 		private stockService: StockService,
 		private optionService: OptionService,
 		private orderService: OrderService,
-		private router: Router,
-		private fb: FormBuilder,
+		private userService: UserService,
+		private authService: AuthService,
 	) {
 		this.form = this.fb.group({
-			amount: [null, [Validators.required, digitValidator()]],
+			quantity: [null, [Validators.required, digitValidator()]],
+			allOrNone: [false],
 		});
 		this.fetchData();
+		this.role = this.authService.getRoleFromToken();
 	}
 
 	fetchData() {
@@ -46,7 +58,7 @@ export class StockInfoDialogComponent {
 	}
 
 	prepareValues() {
-		// replace null or empty values with a placeholder
+		// Replace null or empty values with a placeholder
 		for (const key in this.data.selectedRow) {
 			if (
 				this.data.selectedRow[key] == null ||
@@ -61,6 +73,13 @@ export class StockInfoDialogComponent {
 	createOrder() {
 		const orderDto = this.form.value as unknown as OrderDto;
 
+		orderDto.orderActionType = 'BUY';
+		orderDto.listingType = 'STOCK';
+		orderDto.securitiesSymbol = this.newSelectedRow.symbol;
+		orderDto.limitPrice = String(-1);
+		orderDto.stopPrice = String(-1);
+		orderDto.margin = false;
+
 		this.orderService.postCreateOrder(orderDto).subscribe({
 			next: response => {
 				console.log(response);
@@ -70,6 +89,36 @@ export class StockInfoDialogComponent {
 			},
 		});
 	}
+
+	fetchActiveUserData() {
+		this.userService
+			.getFindById(Number(localStorage.getItem('id')))
+			.pipe(
+				map(data => {
+					this.activeUser = data;
+					return this.activeUser;
+				}),
+				catchError(error => {
+					console.error('Error loading data.', error);
+					return throwError(() => error);
+				}),
+			)
+			.subscribe();
+	}
+
+	hasPib(): boolean {
+		if (this.activeUser && isCompanyEmployeeDto(this.activeUser)) {
+			return true;
+		}
+		return false;
+	}
+
+	checkTokenRole(roleArray: string[]) {
+		if (!this.role) return false;
+		return roleArray.includes(this.role);
+	}
+
+	protected readonly Role = Role;
 
 	viewOptionsPage() {
 		const stockListing = this.newSelectedRow.symbol;

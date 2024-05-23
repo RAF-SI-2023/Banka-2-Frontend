@@ -1,3 +1,8 @@
+mat-form-field {
+	margin-top: 3%;
+	width: 100%;
+}
+
 .full-width-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
