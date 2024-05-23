@@ -23,8 +23,11 @@ presubmits:
               npm ci
               npm run cy:verify
               npm run cy:info
+              
               npm run start
               
+              sleep 500
+              npm install cypress --save-dev
               trap collectCypressMedia EXIT
               npx cypress run
           securityContext:
