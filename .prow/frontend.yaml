@@ -23,7 +23,7 @@ presubmits:
               npm ci
               npm run cy:verify
               npm run cy:info
-              npm run build
+              npm run serve
               
               trap collectCypressMedia EXIT
               npx cypress run
