@@ -2,7 +2,7 @@ import { defineConfig } from 'cypress';
 
 export default defineConfig({
 	e2e: {
-		baseUrl: 'http://localhost:80',
+		baseUrl: 'http://localhost:4200',
 		screenshotOnRunFailure: true,
 		screenshotsFolder: 'cypress/screenshots',
 		setupNodeEvents(on, config) {
