@@ -23,11 +23,13 @@ presubmits:
               npm ci
               npm run cy:verify
               npm run cy:info
-              
-              npm run start
+
+              echo "FRONTEND_ABSOLUTE_PATH=/home/prow/go/src/github.com/RAF-SI-2023/Banka-2-Frontend" > .env 
+              start-docker.sh
+              docker compose up -d
               
               sleep 500
-              npm install cypress --save-dev
+              # npm install cypress --save-dev
               trap collectCypressMedia EXIT
               npx cypress run
           securityContext:
