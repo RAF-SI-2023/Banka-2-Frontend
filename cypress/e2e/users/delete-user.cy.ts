@@ -1,7 +1,4 @@
-import {
-	ADMIN_CREDENTIALS,
-	EMPLOYEE_CREDENTIALS,
-} from 'cypress/support/constants';
+import { ADMIN_CREDENTIALS } from 'cypress/support/constants';
 
 describe('Deleting User', () => {
 	beforeEach(() => {
