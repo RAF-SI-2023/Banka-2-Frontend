@@ -1,4 +1,7 @@
-import { ADMIN_CREDENTIALS } from 'cypress/support/constants';
+import {
+	ADMIN_CREDENTIALS,
+	TEST_AGENT_CREDENTIALS,
+} from 'cypress/support/constants';
 
 describe('Deleting User', () => {
 	beforeEach(() => {
@@ -10,11 +13,11 @@ describe('Deleting User', () => {
 		// Assuming you have some users listed in a table
 		// Locate the user row you want to delete and click the "Obriši" button
 		cy.get('table')
-			.contains('tr', 'test@example.com')
+			.contains('tr', TEST_AGENT_CREDENTIALS.username)
 			.within(() => {
 				// click the row where the user is located so that the row is selected
 				// select the specific cell in the row that contains USER
-				cy.get('td').contains('test@example.com').click();
+				cy.get('td').contains(TEST_AGENT_CREDENTIALS.username).click();
 			});
 		cy.get('[data-test="delete-button"]').click();
 

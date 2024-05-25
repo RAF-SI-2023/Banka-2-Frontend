@@ -23,7 +23,7 @@ describe('Login Component', () => {
 
 	// Check if invalid credentials show error message
 	it('should show error message for wrong credentials', () => {
-		cy.get('input[type="email"]').type('invalidemail@example.com');
+		cy.get('input[type="email"]').type('invalidemail@cypress.test');
 		cy.get('input[type="password"]').type('invalidpassword');
 		cy.get('button[type="submit"]').click();
 		cy.contains('Neautorizovan pristup!').should('exist');

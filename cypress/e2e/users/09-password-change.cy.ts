@@ -1,9 +1,9 @@
-import { ADMIN_CREDENTIALS } from 'cypress/support/constants';
+import { EMPLOYEE_CREDENTIALS } from 'cypress/support/constants';
 
 describe('Change Password Dialog', () => {
 	beforeEach(() => {
 		// Assume you are logged in and on the page where the "Promeni lozinku" button is available
-		cy.login(ADMIN_CREDENTIALS.username, ADMIN_CREDENTIALS.password);
+		cy.login(EMPLOYEE_CREDENTIALS.username, EMPLOYEE_CREDENTIALS.password);
 		cy.visit('/user-profile'); // Navigate to the page where the "Promeni lozinku" button is located
 	});
 
@@ -39,11 +39,13 @@ describe('Change Password Dialog', () => {
 		cy.get('#change-password-btn').click();
 
 		// Enter new password
-		cy.get('input[formControlName="newPassword"]').type('Newpassword123!');
+		cy.get('input[formControlName="newPassword"]').type(
+			EMPLOYEE_CREDENTIALS.password,
+		);
 
 		// Enter confirm password
 		cy.get('input[formControlName="confirmPassword"]').type(
-			'Newpassword123!',
+			EMPLOYEE_CREDENTIALS.password,
 		);
 
 		// Submit the form by clicking the "Promeni" button
