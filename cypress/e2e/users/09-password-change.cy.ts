@@ -51,7 +51,7 @@ describe('Change Password Dialog', () => {
 		// Submit the form by clicking the "Promeni" button
 		cy.get('[data-test="change-button"]').click();
 
-		cy.contains('Lozinka uspešno promenjena!').should('exist');
+		cy.contains('Zahtev je uspešan!').should('exist');
 	});
 
 	// Add more test cases to cover other scenarios, such as invalid passwords, form validation, etc.
