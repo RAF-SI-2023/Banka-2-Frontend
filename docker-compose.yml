@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+    frontend:
+        build:
+            context: ${FRONTEND_ABSOLUTE_PATH}/
+            dockerfile: ${FRONTEND_ABSOLUTE_PATH}/Dockerfile
+        container_name: frontend
+        ports:
+            - '80:80'

@@ -1,6 +1,11 @@
+import {
+	ADMIN_CREDENTIALS,
+	TEST_EMPLOYEE_CREDENTIALS,
+} from 'cypress/support/constants';
+
 describe('Adding Employee Dialog', () => {
 	beforeEach(() => {
-		cy.login('vasa_email_adresa_1@gmail.com', 'admin'); // Login as Admin
+		cy.login(ADMIN_CREDENTIALS.username, ADMIN_CREDENTIALS.password); // Login as Admin
 		cy.visit('/users'); // Assuming your users component is accessible at /users route
 	});
 
@@ -29,7 +34,7 @@ describe('Adding Employee Dialog', () => {
 	it('should add an employee when "Dodaj" button is clicked with valid data', () => {
 		cy.get('button').contains('Dodaj zaposlenog').click();
 
-		cy.get('input[name="email"]').type('test@example.com');
+		cy.get('input[name="email"]').type(TEST_EMPLOYEE_CREDENTIALS.username);
 		cy.get('input[name="name"]').type('John');
 		cy.get('input[name="surname"]').type('Doe');
 		cy.get('mat-select[name="gender"]')
@@ -41,7 +46,7 @@ describe('Adding Employee Dialog', () => {
 		cy.get('input[name="dateOfBirth"]')
 			.invoke('val', dateOfBirth)
 			.trigger('input');
-		cy.get('input[name="phone"]').type('1234567890');
+		cy.get('input[name="phone"]').type('+38163384894');
 		cy.get('input[name="address"]').type('123 Test St');
 		cy.get('input[name="position"]').type('Developer');
 		cy.get('input[name="department"]').type('IT');

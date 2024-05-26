@@ -1,6 +1,11 @@
+import {
+	ADMIN_CREDENTIALS,
+	TEST_AGENT_CREDENTIALS,
+} from 'cypress/support/constants';
+
 describe('Adding Agent Dialog', () => {
 	beforeEach(() => {
-		cy.login('vasa_email_adresa_1@gmail.com', 'admin'); // Login as Admin
+		cy.login(ADMIN_CREDENTIALS.username, ADMIN_CREDENTIALS.password); // Login as Admin
 		cy.visit('/actuaries'); // Assuming your users component is accessible at /users route
 	});
 
@@ -22,10 +27,10 @@ describe('Adding Agent Dialog', () => {
 		// Add more assertions based on your dialog's form fields
 	});
 
-	it('should add an employee when "Dodaj" button is clicked with valid data', () => {
+	it('should add an agent when "Dodaj" button is clicked with valid data', () => {
 		cy.get('button').contains('Dodaj agenta').click();
 
-		cy.get('input[name="email"]').type('test@example.com');
+		cy.get('input[name="email"]').type(TEST_AGENT_CREDENTIALS.username);
 		const dateOfBirth = '1990-01-01';
 		cy.get('input[name="dateOfBirth"]')
 			.invoke('val', dateOfBirth)

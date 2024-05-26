@@ -46,7 +46,7 @@
 		"@types/moment": "^2.13.0",
 		"@typescript-eslint/eslint-plugin": "5.62.0",
 		"@typescript-eslint/parser": "5.62.0",
-		"cypress": "^13.7.2",
+		"cypress": "^13.10.0",
 		"eslint": "^8.51.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-deprecation": "^2.0.0",
