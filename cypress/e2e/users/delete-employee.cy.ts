@@ -1,24 +1,26 @@
 import {
 	ADMIN_CREDENTIALS,
-	TEST_AGENT_CREDENTIALS,
+	TEST_EMPLOYEE_CREDENTIALS,
 } from 'cypress/support/constants';
 
-describe('Deleting User', () => {
+describe('Deleting Employee', () => {
 	beforeEach(() => {
 		cy.login(ADMIN_CREDENTIALS.username, ADMIN_CREDENTIALS.password); // Login as Admin
 		cy.visit('/users'); // Assuming your users component is accessible at /users route
 	});
 
-	it('should delete a user when "Obriši" button is clicked', () => {
+	it('should delete an agent when "Obriši" button is clicked', () => {
 		// Click the "ID" header twice to sort the table by ID in descending order
 		cy.get('th').contains('ID').click().click();
 
 		// Locate the user row you want to delete and click the "Obriši" button
 		cy.get('table')
-			.contains('tr', TEST_AGENT_CREDENTIALS.username)
+			.contains('tr', TEST_EMPLOYEE_CREDENTIALS.username)
 			.within(() => {
 				// click the row where the user is located so that the row is selected
-				cy.get('td').contains(TEST_AGENT_CREDENTIALS.username).click();
+				cy.get('td')
+					.contains(TEST_EMPLOYEE_CREDENTIALS.username)
+					.click();
 			});
 		cy.get('[data-test="delete-button"]').click();
 
@@ -27,7 +29,7 @@ describe('Deleting User', () => {
 
 		// Optionally verify the user is no longer present in the table
 		cy.get('table')
-			.contains('tr', TEST_AGENT_CREDENTIALS.username)
+			.contains('tr', TEST_EMPLOYEE_CREDENTIALS.username)
 			.should('not.exist');
 	});
 });
