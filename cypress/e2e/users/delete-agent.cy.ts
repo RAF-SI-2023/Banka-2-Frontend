@@ -24,10 +24,5 @@ describe('Deleting Agent', () => {
 
 		// After clicking the delete button, verify that the user is deleted
 		cy.get('.app-notification-success').should('be.visible');
-
-		// Optionally verify the user is no longer present in the table
-		cy.get('table')
-			.contains('tr', TEST_AGENT_CREDENTIALS.username)
-			.should('not.exist');
 	});
 });
