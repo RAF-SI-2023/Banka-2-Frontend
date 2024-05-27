@@ -54,7 +54,7 @@ import { PasswordChangeDialogComponent } from './components/user-profile/passwor
 import { TransactionsAllComponent } from './components/transactions-all/transactions-all.component';
 import { AcquiredSecuritiesComponent } from './components/acquired-securities/acquired-securities.component';
 import { PubliclyTradableSecuritiesComponent } from './components/publicly-tradable-securities/publicly-tradable-securities.component';
-import { PublicSecurityInfoDialogComponent } from './components/publicly-tradable-securities/public-security-info-dialog/public-security-info-dialog.component';
+import { PubliclyTradableSecurityInfoDialogComponent } from './components/publicly-tradable-securities/publicly-tradable-security-info-dialog/publicly-tradable-security-info-dialog.component';
 import { AcquiredSecuritiesInfoDialogComponent } from './components/acquired-securities/acquired-securities-info-dialog/acquired-securities-info-dialog.component';
 import { AllCompanyEmployeesComponent } from './components/companies/all-company-employees/all-company-employees.component';
 import { AddCompanyEmployeeComponent } from './components/companies/all-company-employees/dialogs/add-company-employee/add-company-employee.component';
@@ -172,7 +172,7 @@ import { DATE_FORMAT } from './utils/constants';
 		TransactionsAllInfoDialogComponent,
 		AcquiredSecuritiesComponent,
 		PubliclyTradableSecuritiesComponent,
-		PublicSecurityInfoDialogComponent,
+		PubliclyTradableSecurityInfoDialogComponent,
 		AcquiredSecuritiesInfoDialogComponent,
 		AllCompanyEmployeesComponent,
 		AddCompanyEmployeeComponent,
