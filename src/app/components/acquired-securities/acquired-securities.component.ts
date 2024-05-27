@@ -29,6 +29,7 @@ export class AcquiredSecuritiesComponent implements OnInit, AfterViewInit {
 		'quantity',
 		'quantityOfPubliclyAvailable',
 		'reservedQuantity',
+		'averageBuyingPrice',
 	];
 	dataSource = new MatTableDataSource<SecurityDto>();
 	selectedRow: SecurityDto | null = null;

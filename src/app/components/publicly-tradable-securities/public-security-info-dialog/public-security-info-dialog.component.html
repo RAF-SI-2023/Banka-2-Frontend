@@ -47,15 +47,32 @@
 				<input
 					matInput
 					placeholder="Unesi količinu"
-					formControlName="amount"
+					formControlName="volume"
 				/>
-				<mat-error *ngIf="form.get('amount')?.hasError('required')">
+				<mat-error *ngIf="form.get('volume')?.hasError('required')">
 					Količina je obavezna.</mat-error
 				>
 				<mat-error
-					*ngIf="form.get('amount')?.hasError('containsNonDigits')"
+					*ngIf="form.get('volume')?.hasError('containsNonDigits')"
 				>
 					Pogrešan format za količinu - podržane su samo cifre.
+				</mat-error>
+
+				<mat-label>Cena za kupovinu javno dostupne HOV</mat-label>
+				<input
+					matInput
+					placeholder="Unesi cenu"
+					formControlName="totalPrice"
+				/>
+				<mat-error *ngIf="form.get('totalPrice')?.hasError('required')">
+					Cena je obavezna.</mat-error
+				>
+				<mat-error
+					*ngIf="
+						form.get('totalPrice')?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format za cenu - podržane su samo cifre.
 				</mat-error>
 			</mat-form-field>
 		</form>
