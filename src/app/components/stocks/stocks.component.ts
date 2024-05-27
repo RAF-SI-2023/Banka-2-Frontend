@@ -62,7 +62,10 @@ export class StocksComponent implements AfterViewInit {
 	}
 
 	selectRow(row: StockDto): void {
-		if (this.selectedRow?.symbol != row.symbol) {
+		if (
+			this.selectedRow?.symbol != row.symbol ||
+			this.selectedRow?.exchange != row.exchange
+		) {
 			this.selectedRow = row;
 		}
 	}

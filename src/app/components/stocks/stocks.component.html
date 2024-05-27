@@ -224,7 +224,8 @@
 							(click)="selectRow(row)"
 							(dblclick)="viewStock(row)"
 							[class.row-selected]="
-								selectedRow?.symbol === row.symbol
+								selectedRow?.symbol === row.symbol &&
+								selectedRow?.exchange === row.exchange
 							"
 							*matRowDef="let row; columns: displayedColumns"
 						></tr>

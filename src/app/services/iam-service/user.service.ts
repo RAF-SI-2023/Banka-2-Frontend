@@ -28,8 +28,27 @@ export class UserService {
 
 	getFindById(id: number) {
 		return this.httpClient.get<
-			UserDto | CompanyEmployeeDto | PrivateClientDto | CorporateClientDto
+			| UserDto
+			| CompanyEmployeeDto
+			| PrivateClientDto
+			| CorporateClientDto
+			| CompanyEmployeeDto
 		>(environment.iamServiceApiUrl + ApiRoutes.user.findById + '/' + id);
+	}
+
+	getFindByEmail(email: string) {
+		return this.httpClient.get<
+			| UserDto
+			| CompanyEmployeeDto
+			| PrivateClientDto
+			| CorporateClientDto
+			| CompanyEmployeeDto
+		>(
+			environment.iamServiceApiUrl +
+				ApiRoutes.user.findByEmail +
+				'/' +
+				email,
+		);
 	}
 
 	// PATCH

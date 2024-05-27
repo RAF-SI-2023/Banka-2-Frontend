@@ -177,6 +177,26 @@
 							</td>
 						</ng-container>
 
+						<ng-container matColumnDef="averageBuyingPrice">
+							<th
+								mat-header-cell
+								*matHeaderCellDef
+								mat-sort-header
+							>
+								Prosečna kupovna cena
+							</th>
+							<td
+								mat-cell
+								*matCellDef="let row"
+							>
+								{{
+									row.averageBuyingPrice
+										? row.averageBuyingPrice
+										: '-'
+								}}
+							</td>
+						</ng-container>
+
 						<tr
 							mat-header-row
 							*matHeaderRowDef="displayedColumns"

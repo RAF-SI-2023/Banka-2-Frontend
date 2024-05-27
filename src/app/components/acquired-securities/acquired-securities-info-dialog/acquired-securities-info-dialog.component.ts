@@ -43,6 +43,7 @@ export class AcquiredSecuritiesInfoDialogComponent {
 				quantity: this.data.quantity,
 				quantityOfPubliclyAvailable: updatedQuantity,
 				reservedQuantity: this.data.reservedQuantity,
+				averageBuyingPrice: this.data.averageBuyingPrice,
 			};
 
 			if (

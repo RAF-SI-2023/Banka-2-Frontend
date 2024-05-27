@@ -7,6 +7,7 @@ export interface SecurityDto {
 	quantity: number;
 	quantityOfPubliclyAvailable: number;
 	reservedQuantity: number;
+	averageBuyingPrice: number;
 }
 // "id": 1,
 // "email": "milosvasiljevic007@gmail.com",

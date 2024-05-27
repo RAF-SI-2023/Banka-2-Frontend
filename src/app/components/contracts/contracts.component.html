@@ -235,6 +235,7 @@
 							mat-row
 							(click)="selectRow(row)"
 							(dblclick)="viewContract(row)"
+							[class.row-selected]="selectedRow?.id === row.id"
 							*matRowDef="let row; columns: displayedColumns"
 						></tr>
 
