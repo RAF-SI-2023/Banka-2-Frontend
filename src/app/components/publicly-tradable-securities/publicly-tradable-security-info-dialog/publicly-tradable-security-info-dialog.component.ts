@@ -11,16 +11,16 @@ import { ContractService } from 'src/app/services/otc-service/contract.service';
 import { UserService } from 'src/app/services/iam-service/user.service';
 
 @Component({
-	selector: 'app-public-security-info-dialog',
-	templateUrl: './public-security-info-dialog.component.html',
-	styleUrls: ['./public-security-info-dialog.component.css'],
+	selector: 'app-publicly-tradable-security-info-dialog',
+	templateUrl: './publicly-tradable-security-info-dialog.component.html',
+	styleUrls: ['./publicly-tradable-security-info-dialog.component.css'],
 })
-export class PublicSecurityInfoDialogComponent {
+export class PubliclyTradableSecurityInfoDialogComponent {
 	email = localStorage.getItem('email');
 	form: FormGroup;
 
 	constructor(
-		public dialogRef: MatDialogRef<PublicSecurityInfoDialogComponent>,
+		public dialogRef: MatDialogRef<PubliclyTradableSecurityInfoDialogComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: SecurityDto,
 		private fb: FormBuilder,
 		private contractService: ContractService,
