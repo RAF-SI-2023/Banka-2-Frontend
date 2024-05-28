@@ -37,6 +37,12 @@
 				data.reservedQuantity ? data.reservedQuantity : '-'
 			}}</span>
 		</div>
+		<div class="info-row">
+			<span class="label">Prosečna kupovna cena:</span>
+			<span>{{
+				data.averageBuyingPrice ? data.averageBuyingPrice : '-'
+			}}</span>
+		</div>
 
 		<form
 			*ngIf="email !== data.email"
@@ -57,7 +63,9 @@
 				>
 					Pogrešan format za količinu - podržane su samo cifre.
 				</mat-error>
+			</mat-form-field>
 
+			<mat-form-field appearance="fill">
 				<mat-label>Cena za kupovinu javno dostupne HOV</mat-label>
 				<input
 					matInput
