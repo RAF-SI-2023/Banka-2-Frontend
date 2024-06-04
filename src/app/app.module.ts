@@ -65,6 +65,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { OrderInfoDialogComponent } from './components/orders/order-info-dialog/order-info-dialog.component';
 import { ContractsComponent } from './components/contracts/contracts.component';
 import { ContractInfoDialogComponent } from './components/contracts/contract-info-dialog/contract-info-dialog.component';
+import { ChangeBlockFormComponent } from './components/cards/change-block-form/change-block-form.component';
 /// DIRECTIVES/PIPES
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
@@ -112,6 +113,7 @@ import {
 } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DATE_FORMAT } from './utils/constants';
+import { CardBlockStatusDialogComponent } from './components/cards/change-block-form/card-block-status-dialog/card-block-status-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -181,6 +183,8 @@ import { DATE_FORMAT } from './utils/constants';
 		OrderInfoDialogComponent,
 		ContractsComponent,
 		ContractInfoDialogComponent,
+  		ChangeBlockFormComponent,
+    CardBlockStatusDialogComponent,
 	],
 	imports: [
 		HttpClientModule,

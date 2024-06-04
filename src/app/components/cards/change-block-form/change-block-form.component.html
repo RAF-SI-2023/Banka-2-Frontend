@@ -1,0 +1,47 @@
+<section class="container">
+	<form
+		class="form-inputs"
+		[formGroup]="changeBlockForm"
+		#formDirective="ngForm"
+		(ngSubmit)="onSubmit(formDirective)"
+	>
+		<mat-form-field>
+			<mat-label>Broj kartice</mat-label>
+			<input
+				matInput
+				placeholder="Unesite broj kartice"
+				formControlName="identificationCardNumber"
+				required
+			/>
+			<mat-error
+				*ngIf="
+					changeBlockForm
+						.get('identificationCardNumber')
+						?.hasError('required')
+				"
+			>
+				Broj kartice je obavezan.
+			</mat-error>
+			<mat-error
+				*ngIf="
+					changeBlockForm
+						.get('identificationCardNumber')
+						?.hasError('invalidCardNumber')
+				"
+			>
+				Pogrešan format kartice.
+			</mat-error>
+		</mat-form-field>
+
+		<div class="buttons">
+			<button
+				mat-raised-button
+				color="accent"
+				type="submit"
+				[disabled]="!changeBlockForm.valid"
+			>
+				Promeni
+			</button>
+		</div>
+	</form>
+</section>

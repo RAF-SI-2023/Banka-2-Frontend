@@ -66,6 +66,8 @@ export const ApiRoutes = {
 		createCard: '/cards/create-card',
 		changeCardStatus: '/cards/change-status',
 		changeCardLimit: '/cards/change-card-limit',
+		changeCardBlock: '/cards/changeBlock',
+
 	},
 	// TransferTransactionController
 	transferTransaction: {

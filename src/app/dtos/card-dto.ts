@@ -8,4 +8,5 @@ export interface CardDto {
 	cvvCode: string;
 	limitCard: number;
 	status: boolean;
+	block: boolean;
 }
