@@ -178,7 +178,7 @@ const routes: Routes = [
 		component: ContractsComponent,
 		path: 'contracts',
 		canActivate: [authGuard, roleGuard],
-		data: { roles: [Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR] },
+		data: { roles: [Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR, Role.USER] },
 	},
 ];
 

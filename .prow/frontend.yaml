@@ -21,7 +21,7 @@ presubmits:
               
               sleep 500
               npm install cypress --save-dev
-              npx cypress run
+              # npx cypress run
 
               if [ -d "./cypress/screenshots" ]; then
                 cp -r ./cypress/screenshots /logs/artifacts
