@@ -16,6 +16,7 @@ import { CardDto } from 'src/app/dtos/card-dto';
 	styleUrls: ['./cards-info-dialog.component.css'],
 })
 export class CardsInfoDialogComponent {
+
 	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 	@ViewChild(MatSort) sort: MatSort | undefined;
 	displayedColumns: string[] = [
@@ -27,6 +28,7 @@ export class CardsInfoDialogComponent {
 		'cvvCode',
 		'limitCard',
 		'status',
+		'block',
 	];
 	dataSource = new MatTableDataSource<CardDto>();
 	newSelectedRow: AccountDto = { ...this.data.selectedAccount };
@@ -54,6 +56,7 @@ export class CardsInfoDialogComponent {
 			.getCardsByAccountNumber(this.newSelectedRow.accountNumber)
 			.pipe(
 				map(dataSource => {
+					console.log(dataSource);
 					this.dataSource.data = dataSource;
 					return dataSource;
 				}),
@@ -62,5 +65,24 @@ export class CardsInfoDialogComponent {
 				}),
 			)
 			.subscribe();
+	}
+
+	blockCard(card: CardDto) {
+		// console.log(this.cardRow?.identificationCardNumber);
+		this.cardService
+		.putChangeCardBlock(card.identificationCardNumber)
+		.pipe(
+			map(dataSource => {
+				this.fetchCards();
+
+				// console.log(dataSource);
+				// this.dataSource.data = dataSource;
+				// return dataSource;
+			}),
+			catchError(error => {
+				return throwError(() => error);
+			}),
+		)
+		.subscribe();
 	}
 }

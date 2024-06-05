@@ -48,4 +48,14 @@ export class CardService {
 			cardDto,
 		);
 	}
+
+	putChangeCardBlock(identificationCardNumber: number) {
+		return this.httpClient.put<number>(
+			environment.bankServiceApiUrl +
+				ApiRoutes.card.changeCardBlock +
+				'/' +
+				identificationCardNumber,
+			null,
+		);
+	}
 }
