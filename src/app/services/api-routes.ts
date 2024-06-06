@@ -167,6 +167,8 @@ export const ApiRoutes = {
 	contract: {
 		getAllContracts: '/contracts/all',
 		getAllWaitingContracts: '/contracts/all-waiting',
+		getAllApprovedContracts: '/contracts/all-approved',
+		getAllRejectedContracts: '/contracts/all-rejected',
 		getContractById: '/contracts',
 		createContract: '/contracts/create',
 		sellerApproveContractById: '/contracts/approve-seller',

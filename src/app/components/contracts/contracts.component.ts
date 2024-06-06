@@ -160,12 +160,12 @@ export class ContractsComponent implements AfterViewInit {
 		// and then combine the results into a single array
 		const apiCalls: Observable<ContractDto[]>[] = [];
 
-		// if (this.statuses.includes('Odobreno')) {
-		// 	apiCalls.push(this.orderService.getApprovedOrders());
-		// }
-		// if (this.statuses.includes('Odbijeno')) {
-		// 	apiCalls.push(this.orderService.getDeniedOrders());
-		// }
+		if (this.statuses.includes('Odobreno')) {
+			apiCalls.push(this.contractService.getAllApprovedContracts());
+		}
+		if (this.statuses.includes('Odbijeno')) {
+			apiCalls.push(this.contractService.getAllRejectedContracts());
+		}
 		if (this.statuses.includes('Na čekanju')) {
 			apiCalls.push(this.contractService.getAllWaitingContracts());
 		}

@@ -1,11 +1,10 @@
 <section class="container">
 	<mat-card>
 		<mat-card-header>
+			<h2>Profiti bankovnih transakcija</h2>
 			<div class="form">
 				<mat-form-field>
-					<mat-label
-						>Pretraži profite bankovnih transakcija</mat-label
-					>
+					<mat-label>Pretraži</mat-label>
 					<input
 						#input
 						(keyup)="applyFilter($event)"
@@ -55,7 +54,7 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.fee ? row.fee : '-' }}
+								{{ row.fee ? row.fee + ' RSD' : '-' }}
 							</td>
 						</ng-container>
 
@@ -85,7 +84,7 @@
 								mat-header-cell
 								mat-sort-header
 							>
-								Prodana valuta
+								Prodata valuta
 							</th>
 							<td
 								*matCellDef="let row"
