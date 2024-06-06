@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { ApiRoutes } from '../api-routes';
 import { HttpClient } from '@angular/common/http';
 import { ExchangeDto } from '../../dtos/exchange-dto';
@@ -30,6 +30,7 @@ export class ExchangeService {
 		return this.httpClient.get<ExchangeDto>(
 			environment.stockServiceApiUrl +
 				ApiRoutes.exchange.findByName +
+				'?exchange=' +
 				'/' +
 				name,
 		);

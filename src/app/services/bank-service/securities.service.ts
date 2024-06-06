@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SecurityDto } from 'src/app/dtos/security-dto';
-import { environment } from 'src/environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { ApiRoutes } from '../api-routes';
 
 @Injectable({

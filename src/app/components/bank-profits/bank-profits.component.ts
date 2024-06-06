@@ -4,7 +4,6 @@ import { catchError, map, throwError } from 'rxjs';
 import { BankProfitService } from 'src/app/services/bank-service/bank-profit.service';
 import { BankProfitDto } from 'src/app/dtos/bank-profit-dto';
 import { ActionAgentProfitService } from 'src/app/services/bank-service/action-agent-profit.service';
-import { TotalActionAgentProfitDto } from 'src/app/dtos/total-action-agent-profit-dto';
 import { BankTransferTransactionDetailsService } from 'src/app/services/bank-service/bank-transfer-transaction-details.service';
 
 @Component({
