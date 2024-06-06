@@ -30,7 +30,7 @@ export class ExchangeService {
 		return this.httpClient.get<ExchangeDto>(
 			environment.stockServiceApiUrl +
 				ApiRoutes.exchange.findByName +
-				'/' +
+				'?exchange=' +
 				name,
 		);
 	}
