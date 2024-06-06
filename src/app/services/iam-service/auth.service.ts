@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { LoginResponseDto } from '../../dtos/login-response-dto';
 import { AuthCredentialsDto } from '../../dtos/auth-credentials-dto';

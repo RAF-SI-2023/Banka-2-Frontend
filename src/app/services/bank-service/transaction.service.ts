@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { SimpleTransactionDto } from 'src/app/dtos/simple-transaction-dto';
 import { MoneyTransactionDto } from 'src/app/dtos/money-transaction-dto';

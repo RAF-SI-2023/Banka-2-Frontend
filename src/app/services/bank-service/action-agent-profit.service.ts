@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { ApiRoutes } from '../api-routes';
 import { ActionAgentProfitDto } from 'src/app/dtos/action-agent-profit-dto';
 import { TotalActionAgentProfitDto } from 'src/app/dtos/total-action-agent-profit-dto';
