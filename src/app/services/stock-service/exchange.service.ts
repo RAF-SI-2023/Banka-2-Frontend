@@ -26,6 +26,15 @@ export class ExchangeService {
 		);
 	}
 
+	getFindByName(name: string) {
+		return this.httpClient.get<ExchangeDto>(
+			environment.stockServiceApiUrl +
+				ApiRoutes.exchange.findByName +
+				'/' +
+				name,
+		);
+	}
+
 	getFindBySymbol(symbol: string) {
 		return this.httpClient.get<ExchangeDto>(
 			environment.stockServiceApiUrl +

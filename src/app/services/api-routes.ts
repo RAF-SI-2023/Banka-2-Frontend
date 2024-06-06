@@ -67,7 +67,6 @@ export const ApiRoutes = {
 		changeCardStatus: '/cards/change-status',
 		changeCardLimit: '/cards/change-card-limit',
 		changeCardBlock: '/cards/changeBlock',
-
 	},
 	// TransferTransactionController
 	transferTransaction: {
@@ -101,6 +100,28 @@ export const ApiRoutes = {
 		approveOrder: '/orders/approve',
 		rejectOrder: '/orders/reject',
 	},
+	// OrderTransactionController
+	orderTransaction: {
+		findAll: '/order-transactions',
+		findById: '/order-transactions/id',
+		findByOrderId: '/order-transactions/order-id',
+		findAllByAccountNumber: '/order-transactions/account-number',
+	},
+	// BankTransferTransactionDetailsController
+	bankTransferTransactionDetails: {
+		getAll: '/bank-transactions-details/all',
+		getTotalProfit: '/bank-transactions-details/total-profit',
+	},
+	// ActionAgentProfitController
+	actionAgentProfit: {
+		getAll: '/agent-profit/all',
+		getAllTotalProfitsByEmail: '/agent-profit/all-profits-by-users',
+		getAgentsTotalProfit: '/agent-profit/total-profit',
+	},
+	// BankProfitController
+	bankProfit: {
+		getAll: '/bank-profit/all',
+	},
 	// STOCK-SERVICE
 	/// CurrencyController
 	currency: {
@@ -115,6 +136,7 @@ export const ApiRoutes = {
 	exchange: {
 		findAll: '/exchange/all',
 		findById: '/exchange/id',
+		findByName: '/exchange/exchange-name',
 		findBySymbol: '/exchange/stockSymbol',
 		findByMICode: '/exchange/miCode',
 	},

@@ -2,33 +2,34 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { TransactionDto } from 'src/app/dtos/transaction-dto';
-import { TransactionService } from 'src/app/services/bank-service/transaction.service';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
+import { BankTransferTransactionDetailsService } from 'src/app/services/bank-service/bank-transfer-transaction-details.service';
+import { BankTransferTransactionDetailsDto } from 'src/app/dtos/bank-transfer-transaction-details-dto';
 
 @Component({
-	selector: 'transactions-all',
-	templateUrl: 'transactions-all.component.html',
-	styleUrls: ['./transactions-all.component.css'],
+	selector: 'app-bank-transactions-profits',
+	templateUrl: './bank-transactions-profits.component.html',
+	styleUrls: ['./bank-transactions-profits.component.css'],
 })
-export class TransactionsAllComponent implements AfterViewInit {
+export class BankTransactionsProfitsComponent implements AfterViewInit {
 	displayedColumns: string[] = [
 		'id',
+		'fee',
+		'boughtCurrency',
+		'soldCurrency',
 		'amount',
-		'createdAt',
-		'status',
-		'type',
+		'totalProfit',
 	];
-	dataSource = new MatTableDataSource<TransactionDto>();
-	selectedRow: TransactionDto | null = null;
+	dataSource = new MatTableDataSource<BankTransferTransactionDetailsDto>();
+	selectedRow: BankTransferTransactionDetailsDto | null = null;
 
 	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 	@ViewChild(MatSort) sort: MatSort | undefined;
 
 	constructor(
-		private transactionService: TransactionService,
+		private bankTransferTransactionDetailsService: BankTransferTransactionDetailsService,
 		public dialog: MatDialog,
 	) {
 		this.dataSource = new MatTableDataSource();
@@ -49,16 +50,15 @@ export class TransactionsAllComponent implements AfterViewInit {
 		}
 	}
 
-	selectRow(row: TransactionDto): void {
+	selectRow(row: BankTransferTransactionDetailsDto): void {
 		if (this.selectedRow?.id != row.id) {
 			this.selectedRow = row;
 		}
 	}
 
 	fetchAllData(): void {
-		const email = String(localStorage.getItem('email'));
-		this.transactionService
-			.getAllTransactionsByEmail(email)
+		this.bankTransferTransactionDetailsService
+			.getAll()
 			.pipe(
 				map(dataSource => {
 					this.dataSource.data = dataSource;

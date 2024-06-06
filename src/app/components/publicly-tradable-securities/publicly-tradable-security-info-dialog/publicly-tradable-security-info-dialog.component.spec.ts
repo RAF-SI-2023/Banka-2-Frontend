@@ -10,7 +10,9 @@ describe('PubliclyTradableSecurityInfoDialogComponent', () => {
 		TestBed.configureTestingModule({
 			declarations: [PubliclyTradableSecurityInfoDialogComponent],
 		});
-		fixture = TestBed.createComponent(PubliclyTradableSecurityInfoDialogComponent);
+		fixture = TestBed.createComponent(
+			PubliclyTradableSecurityInfoDialogComponent,
+		);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

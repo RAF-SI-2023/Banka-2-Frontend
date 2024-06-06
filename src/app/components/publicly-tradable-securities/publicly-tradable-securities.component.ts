@@ -26,7 +26,6 @@ export class PubliclyTradableSecuritiesComponent implements AfterViewInit {
 		'quantity',
 		'quantityOfPubliclyAvailable',
 		'reservedQuantity',
-		'averageBuyingPrice',
 	];
 	dataSource = new MatTableDataSource<SecurityDto>();
 	selectedRow: SecurityDto | null = null;

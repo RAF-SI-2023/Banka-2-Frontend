@@ -153,21 +153,28 @@
 
 				<ng-container matColumnDef="block">
 					<th
-					  *matHeaderCellDef
-					  mat-header-cell
-					  mat-sort-header
+						*matHeaderCellDef
+						mat-header-cell
+						mat-sort-header
 					>
-					  Block status
+						Block status
 					</th>
 					<td
-					  *matCellDef="let row"
-					  mat-cell
+						*matCellDef="let row"
+						mat-cell
 					>
 						<!-- false ili true -->
-					  <button *ngIf="!row.block" (click)="blockCard(row)" mat-raised-button color="accent">Block</button>
-					  <span *ngIf="row.block">Blokiran</span>
+						<button
+							*ngIf="!row.block"
+							(click)="blockCard(row)"
+							mat-raised-button
+							color="accent"
+						>
+							Block
+						</button>
+						<span *ngIf="row.block">Blokiran</span>
 					</td>
-				  </ng-container>
+				</ng-container>
 
 				<tr
 					*matHeaderRowDef="displayedColumns"

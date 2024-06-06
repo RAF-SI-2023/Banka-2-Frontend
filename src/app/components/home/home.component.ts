@@ -125,7 +125,11 @@ export class HomeComponent implements AfterViewInit {
 
 	protected readonly Role = Role;
 
-	redirectToTransactionsAll() {
-		this.router.navigate(['/transactions/all']);
+	redirectToMoneyTransactionsAll() {
+		this.router.navigate(['/money-transactions/all']);
+	}
+
+	redirectToOrderTransactionsAll() {
+		this.router.navigate(['/order-transactions/all']);
 	}
 }

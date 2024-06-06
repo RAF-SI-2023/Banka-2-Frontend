@@ -5,9 +5,10 @@
 }
 
 .redirect-button {
-	width: 12.5rem;
+	width: 17rem;
 	height: 2rem;
 	margin-bottom: 1rem;
+	margin-right: 1rem;
 }
 
 .mat-mdc-row:hover .mat-mdc-cell {

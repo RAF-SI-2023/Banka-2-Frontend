@@ -3,14 +3,14 @@ import { DropdownOption, DropdownOptions } from 'src/app/utils/constants';
 import { Router } from '@angular/router';
 
 @Component({
-	selector: 'app-transactions',
-	templateUrl: './transactions.component.html',
-	styleUrls: ['./transactions.component.css'],
+	selector: 'app-money-transactions',
+	templateUrl: './money-transactions.component.html',
+	styleUrls: ['./money-transactions.component.css'],
 })
-export class TransactionsComponent {
+export class MoneyTransactionsComponent {
 	constructor(private router: Router) {}
-	redirectToTransactionsAll() {
-		this.router.navigate(['/transactions/all']);
+	redirectToMoneyTransactionsAll() {
+		this.router.navigate(['/money-transactions/all']);
 	}
 
 	transactionsTypeOptions: DropdownOption[] = DropdownOptions.transactionType;

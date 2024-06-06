@@ -26,8 +26,8 @@ export class OrdersComponent implements AfterViewInit {
 		'securitiesSymbol',
 		'quantity',
 		'settlementDate',
-		'limitPrice',
-		'stopPrice',
+		// 'limitPrice',
+		// 'stopPrice',
 		'orderStatus',
 	];
 	dataSource = new MatTableDataSource<OrderDto>();

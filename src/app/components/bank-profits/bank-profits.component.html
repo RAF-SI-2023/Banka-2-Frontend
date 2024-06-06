@@ -1,0 +1,50 @@
+<section class="container">
+	<mat-card class="parent-card">
+		<mat-card-header>
+			<mat-card-title>Bankovni profiti</mat-card-title>
+		</mat-card-header>
+		<mat-card-content class="card-container">
+			<table>
+				<tbody>
+					<tr>
+						<td><b>Ukupni bankovni profit:</b></td>
+						<td>
+							{{ bankTotalProfit?.profit }}
+						</td>
+					</tr>
+					<tr>
+						<td><b>Ukupni bankovni profit od agenata:</b></td>
+						<td>{{ agentTotalProfit }}</td>
+					</tr>
+					<tr>
+						<td>
+							<b
+								>Ukupni bankovni profit od bankovnih
+								transakcija:</b
+							>
+						</td>
+						<td>
+							{{ bankTransactionsTotalProfit }}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<button
+				class="redirect-button"
+				mat-raised-button
+				(click)="redirectToAgentProfits()"
+			>
+				Lista profita od agenata
+			</button>
+
+			<button
+				class="redirect-button"
+				mat-raised-button
+				(click)="redirectToBankTransactionsProfits()"
+			>
+				Lista profita od bankovnih transakcija
+			</button>
+		</mat-card-content>
+	</mat-card>
+</section>

@@ -37,7 +37,3 @@
 .mat-mdc-row:hover .mat-mdc-cell {
 	background-color: #f5f5f5;
 }
-
-.unselectable {
-	user-select: none;
-}

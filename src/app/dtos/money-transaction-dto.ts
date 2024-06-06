@@ -1,4 +1,4 @@
-export interface TransactionDto {
+export interface MoneyTransactionDto {
 	id: string;
 	amount: number;
 	createdAt: number; // DateTime

@@ -3,7 +3,7 @@
 		<mat-card-header>
 			<div class="form">
 				<mat-form-field>
-					<mat-label>Pretraži transakcije</mat-label>
+					<mat-label>Pretraži narudžbinske transakcije</mat-label>
 					<input
 						#input
 						(keyup)="applyFilter($event)"
@@ -41,23 +41,25 @@
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="amount">
+						<ng-container matColumnDef="accountNumber">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Iznos
+								Broj računa
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.amount ? row.amount : '-' }}
+								{{
+									row.accountNumber ? row.accountNumber : '-'
+								}}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="createdAt">
+						<ng-container matColumnDef="date">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
@@ -70,8 +72,8 @@
 								mat-cell
 							>
 								{{
-									row.createdAt
-										? (row.createdAt
+									row.date
+										? (row.date
 											| epochToDate
 											| date: 'dd.MM.yyyy')
 										: '-'
@@ -79,35 +81,121 @@
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="status">
+						<ng-container matColumnDef="orderId">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Status
+								ID narudžbine
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.status ? row.status : '-' }}
+								{{ row.orderId ? row.orderId : '-' }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="type">
+						<ng-container matColumnDef="description">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Vrsta
+								Opis
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.type ? row.type : '-' }}
+								{{ row.description ? row.description : '-' }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="currency">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Valuta
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.currency ? row.currency : '-' }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="payAmount">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Iznos
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.payAmount ? row.payAmount : '-' }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="payoffAmount">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Iznos isplate
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.payoffAmount ? row.payoffAmount : '-' }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="reservedFunds">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Količina u rezervi
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{
+									row.reservedFunds ? row.reservedFunds : '-'
+								}}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="usedOfReservedFunds">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Iskorišćena rezerva
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{
+									row.usedOfReservedFunds
+										? row.usedOfReservedFunds
+										: '-'
+								}}
 							</td>
 						</ng-container>
 						<tr
