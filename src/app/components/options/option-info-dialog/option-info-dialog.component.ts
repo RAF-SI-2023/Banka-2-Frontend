@@ -6,7 +6,7 @@ import { OrderDto } from 'src/app/dtos/order-dto';
 import { OrderService } from 'src/app/services/bank-service/order.service';
 import { ExchangeService } from 'src/app/services/stock-service/exchange.service';
 import { StockService } from 'src/app/services/stock-service/stock.service';
-import { catchError, map, of, throwError } from 'rxjs';
+import { catchError, map, of } from 'rxjs';
 
 @Component({
 	selector: 'app-option-info-dialog',
@@ -30,7 +30,7 @@ export class OptionInfoDialogComponent {
 	}
 
 	getCurrency(): Promise<string> {
-		return new Promise((resolve, reject) => {
+		return new Promise(resolve => {
 			this.stockService
 				.getFindBySymbol(this.data.stockListing)
 				.subscribe({
