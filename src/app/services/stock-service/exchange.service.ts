@@ -31,6 +31,7 @@ export class ExchangeService {
 			environment.stockServiceApiUrl +
 				ApiRoutes.exchange.findByName +
 				'?exchange=' +
+				'/' +
 				name,
 		);
 	}

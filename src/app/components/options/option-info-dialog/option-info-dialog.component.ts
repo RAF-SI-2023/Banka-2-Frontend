@@ -82,7 +82,6 @@ export class OptionInfoDialogComponent {
 
 		orderDto.orderActionType = 'BUY';
 		orderDto.listingType = 'OPTION';
-
 		try {
 			const currency = await this.getCurrency();
 			orderDto.securitiesSymbol =
