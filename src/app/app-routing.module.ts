@@ -24,14 +24,18 @@ import { CreditsComponent } from './components/credits/credits.component';
 import { CreateCreditRequestComponent } from './components/create-credit-request/create-credit-request.component';
 import { CreditRequestsComponent } from './components/credit-requests/credit-requests.component';
 import { CardsComponent } from './components/cards/cards.component';
-import { TransactionsComponent } from './components/transactions/transactions/transactions.component';
+import { MoneyTransactionsComponent } from './components/money-transactions/money-transactions.component';
 import { BankExchangeComponent } from './components/bank-exchange/bank-exchange.component';
 import { FuturesContractsComponent } from './components/futures-contracts/futures-contracts.component';
-import { TransactionsAllComponent } from './components/transactions-all/transactions-all.component';
+import { MoneyTransactionsAllComponent } from './components/money-transactions-all/money-transactions-all.component';
 import { PubliclyTradableSecuritiesComponent } from './components/publicly-tradable-securities/publicly-tradable-securities.component';
 import { AcquiredSecuritiesComponent } from './components/acquired-securities/acquired-securities.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { ContractsComponent } from './components/contracts/contracts.component';
+import { OrderTransactionsAllComponent } from './components/order-transactions-all/order-transactions-all.component';
+import { BankProfitsComponent } from './components/bank-profits/bank-profits.component';
+import { AgentProfitsComponent } from './components/bank-profits/agent-profits/agent-profits.component';
+import { BankTransactionsProfitsComponent } from './components/bank-profits/bank-transactions-profits/bank-transactions-profits.component';
 
 const routes: Routes = [
 	{
@@ -58,15 +62,21 @@ const routes: Routes = [
 		canActivate: [authGuard],
 	},
 	{
-		component: TransactionsComponent,
-		path: 'transactions',
+		component: MoneyTransactionsComponent,
+		path: 'money-transactions',
 		canActivate: [authGuard, accountGuard, roleGuard],
 		data: { roles: [Role.ADMIN, Role.USER] },
 	},
 	{
-		component: TransactionsAllComponent,
-		path: 'transactions/all',
+		component: MoneyTransactionsAllComponent,
+		path: 'money-transactions/all',
 		canActivate: [authGuard],
+	},
+	{
+		component: OrderTransactionsAllComponent,
+		path: 'order-transactions/all',
+		canActivate: [authGuard],
+		data: { roles: [Role.ADMIN, Role.SUPERVISOR] },
 	},
 	{
 		component: BankExchangeComponent,
@@ -178,7 +188,33 @@ const routes: Routes = [
 		component: ContractsComponent,
 		path: 'contracts',
 		canActivate: [authGuard, roleGuard],
-		data: { roles: [Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR, Role.USER] },
+		data: {
+			roles: [Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR, Role.USER],
+		},
+	},
+	{
+		component: BankProfitsComponent,
+		path: 'bank-profits',
+		canActivate: [authGuard, roleGuard],
+		data: {
+			roles: [Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR],
+		},
+	},
+	{
+		component: AgentProfitsComponent,
+		path: 'bank-profits/agent-profits',
+		canActivate: [authGuard, roleGuard],
+		data: {
+			roles: [Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR],
+		},
+	},
+	{
+		component: BankTransactionsProfitsComponent,
+		path: 'bank-profits/bank-transactions-profits',
+		canActivate: [authGuard, roleGuard],
+		data: {
+			roles: [Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR],
+		},
 	},
 ];
 

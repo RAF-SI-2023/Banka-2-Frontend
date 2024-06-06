@@ -26,9 +26,9 @@ export class StocksComponent implements AfterViewInit {
 		'price',
 		'high',
 		'low',
-		'change',
-		'volume',
-		'shares',
+		// 'change',
+		// 'volume',
+		// 'shares',
 		'yield',
 	];
 	dataSource = new MatTableDataSource<StockDto>();

@@ -22,7 +22,7 @@ describe('Router', () => {
 		},
 		{ path: '/credit-requests', name: 'Credit Requests page' },
 		{ path: '/cards', name: 'Cards page' },
-		{ path: '/transactions', name: 'Transactions page' },
+		{ path: '/money-transactions', name: 'Money Transactions page' },
 	];
 
 	beforeEach(() => {

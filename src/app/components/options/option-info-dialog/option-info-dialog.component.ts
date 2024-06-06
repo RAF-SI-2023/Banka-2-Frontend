@@ -4,6 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { digitValidator } from 'src/app/utils/validators/digit.validator';
 import { OrderDto } from 'src/app/dtos/order-dto';
 import { OrderService } from 'src/app/services/bank-service/order.service';
+import { ExchangeService } from 'src/app/services/stock-service/exchange.service';
+import { StockService } from 'src/app/services/stock-service/stock.service';
+import { catchError, map, throwError } from 'rxjs';
 
 @Component({
 	selector: 'app-option-info-dialog',
@@ -17,6 +20,8 @@ export class OptionInfoDialogComponent {
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		private fb: FormBuilder,
 		private orderService: OrderService,
+		private stockService: StockService,
+		private exchangeService: ExchangeService,
 	) {
 		this.form = this.fb.group({
 			quantity: [null, [Validators.required, digitValidator()]],
@@ -29,7 +34,16 @@ export class OptionInfoDialogComponent {
 
 		orderDto.orderActionType = 'BUY';
 		orderDto.listingType = 'OPTION';
-		orderDto.securitiesSymbol = this.data.symbol;
+		orderDto.securitiesSymbol =
+			this.data.stockListing +
+			'|' +
+			this.data.optionType +
+			'|' +
+			this.data.strikePrice +
+			'|' +
+			this.data.settlementDate +
+			'|' +
+			'EUR';
 		orderDto.limitPrice = String(-1);
 		orderDto.stopPrice = String(-1);
 		orderDto.margin = false;

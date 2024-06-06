@@ -25,9 +25,18 @@
 			<button
 				class="redirect-button"
 				mat-raised-button
-				(click)="redirectToTransactionsAll()"
+				(click)="redirectToMoneyTransactionsAll()"
 			>
-				Lista transakcija
+				Lista novčanih transakcija
+			</button>
+
+			<button
+				*ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR])"
+				class="redirect-button"
+				mat-raised-button
+				(click)="redirectToOrderTransactionsAll()"
+			>
+				Lista narudžbenskih transakcija
 			</button>
 
 			<div class="tableContainer">

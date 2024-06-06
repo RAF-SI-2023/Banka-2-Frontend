@@ -19,10 +19,10 @@ export class FuturesContractsComponent implements AfterViewInit {
 	displayedColumns: string[] = [
 		'id',
 		'name',
-		'code',
+		// 'code',
 		'contractSize',
 		'contractUnit',
-		'openInterest',
+		// 'openInterest',
 		'settlementDate',
 		'maintenanceMargin',
 		'type',

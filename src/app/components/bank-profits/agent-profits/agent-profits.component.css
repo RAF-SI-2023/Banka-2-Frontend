@@ -1,0 +1,55 @@
+.container {
+	place-items: center;
+}
+
+.tableContainer {
+	display: grid;
+	height: 100%;
+	width: 100%;
+	background: #eee;
+}
+
+.form {
+	width: 100%;
+}
+
+table {
+	width: 100%;
+}
+
+.buttons {
+	margin-right: 1%;
+}
+
+.mat-mdc-form-field {
+	width: 100%;
+}
+
+.mat-header-cell {
+	text-align: center;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+	border-bottom: 1px solid transparent;
+	border-top: 1px solid transparent;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+	background-color: #f5f5f5;
+}
+
+/* .row-selected .mat-mdc-cell {
+	border-color: currentColor;
+	background-color: transparent;
+} */
+
+#paginatorContainer {
+	display: block;
+	flex-direction: column;
+	align-self: end;
+	width: 100%;
+}
+
+.unselectable {
+	user-select: none;
+}

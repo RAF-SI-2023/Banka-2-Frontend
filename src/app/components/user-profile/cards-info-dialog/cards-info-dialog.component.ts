@@ -16,7 +16,6 @@ import { CardDto } from 'src/app/dtos/card-dto';
 	styleUrls: ['./cards-info-dialog.component.css'],
 })
 export class CardsInfoDialogComponent {
-
 	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 	@ViewChild(MatSort) sort: MatSort | undefined;
 	displayedColumns: string[] = [
@@ -70,19 +69,15 @@ export class CardsInfoDialogComponent {
 	blockCard(card: CardDto) {
 		// console.log(this.cardRow?.identificationCardNumber);
 		this.cardService
-		.putChangeCardBlock(card.identificationCardNumber)
-		.pipe(
-			map(dataSource => {
-				this.fetchCards();
-
-				// console.log(dataSource);
-				// this.dataSource.data = dataSource;
-				// return dataSource;
-			}),
-			catchError(error => {
-				return throwError(() => error);
-			}),
-		)
-		.subscribe();
+			.putChangeCardBlock(card.identificationCardNumber)
+			.pipe(
+				map(_ => {
+					this.fetchCards();
+				}),
+				catchError(error => {
+					return throwError(() => error);
+				}),
+			)
+			.subscribe();
 	}
 }
