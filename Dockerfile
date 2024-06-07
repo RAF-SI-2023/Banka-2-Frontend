@@ -15,8 +15,8 @@ RUN npm install
 # Copy the source code to the working directory
 COPY . .
 
-# Generate the production build of the application
-RUN npm run build --prod
+# Generate the development build of the application
+RUN npm run build
 
 # Stage 2: Serve app with nginx server
 
