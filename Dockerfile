@@ -15,14 +15,8 @@ RUN npm install
 # Copy the source code to the working directory
 COPY . .
 
-# Generate the build of the application
-RUN if [ "$ENV" = "production" ]; then \
-        npm run build:prod; \
-    elif [ "$ENV" = "development" ]; then \
-        npm run build:dev; \
-    else \
-        npm run build; \
-    fi
+# Generate the production build of the application
+RUN npm run build --prod
 
 # Stage 2: Serve app with nginx server
 
