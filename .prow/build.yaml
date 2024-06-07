@@ -38,7 +38,7 @@ postsubmits:
               docker push harbor.k8s.elab.rs/${TEAM_NAME}/${SERVICE_NAME}:${commit_hash}
 
               helm upgrade --namespace="$TEAM_NAME-dev" --create-namespace --timeout=20m --atomic --install --set imageTag="${commit_hash}" "$TEAM_NAME-frontend" "oci://harbor.k8s.elab.rs/$TEAM_NAME/$TEAM_NAME-frontend/$TEAM_NAME-frontend"
-              if [ "$PULL_BASE_REF" == "main" ]; then
+              if [ "$PULL_BASE_REF" == "main-2" ]; then
                 helm upgrade --namespace="$TEAM_NAME-prod" --create-namespace --timeout=20m --atomic --install --set imageTag="${commit_hash}",host="$TEAM_NAME.si.raf.edu.rs" "$TEAM_NAME-frontend" "oci://harbor.k8s.elab.rs/$TEAM_NAME/$TEAM_NAME-frontend/$TEAM_NAME-frontend"
               fi
           securityContext:
