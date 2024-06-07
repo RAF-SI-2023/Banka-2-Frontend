@@ -23,6 +23,18 @@ export class ContractService {
 		);
 	}
 
+	getAllApprovedContracts() {
+		return this.httpClient.get<ContractDto[]>(
+			`${environment.otcServiceApiUrl}${ApiRoutes.contract.getAllApprovedContracts}`,
+		);
+	}
+
+	getAllRejectedContracts() {
+		return this.httpClient.get<ContractDto[]>(
+			`${environment.otcServiceApiUrl}${ApiRoutes.contract.getAllRejectedContracts}`,
+		);
+	}
+
 	getContractById(contractId: number) {
 		return this.httpClient.get<ContractDto[]>(
 			`${environment.otcServiceApiUrl}${ApiRoutes.contract.getContractById}/${contractId}`,
