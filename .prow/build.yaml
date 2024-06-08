@@ -23,26 +23,35 @@ postsubmits:
               echo "FRONTEND_ABSOLUTE_PATH=/home/prow/go/src/github.com/RAF-SI-2023/Banka-2-Frontend" >> .env
               echo "INFRASTRUCTURE_ABSOLUTE_PATH=/home/prow/go/src/github.com/RAF-SI-2023/Banka-2-Infrastructure" >> .env
 
-              TEAM_NAME="banka-2"
-              ENVIRONMENT="production"
-
               start-docker.sh
               docker login -u $HARBOR_USERNAME -p $HARBOR_PASSWORD harbor.k8s.elab.rs
               commit_hash=$(git rev-parse HEAD)
               
+              TEAM_NAME="banka-2"
+              
               SERVICE_NAME="frontend"
-              docker build --build-arg ENV=${ENVIRONMENT} -f "./images/${SERVICE_NAME}.Dockerfile" -t harbor.k8s.elab.rs/${TEAM_NAME}/${SERVICE_NAME}:latest ../Banka-2-Frontend/
+              ENVIRONMENT="development"
+              IMAGE_NAME="frontend-dev"
+              docker build --build-arg ENV=${ENVIRONMENT} -f "./images/${SERVICE_NAME}.Dockerfile" -t harbor.k8s.elab.rs/${TEAM_NAME}/${IMAGE_NAME}:latest ../Banka-2-Frontend/
+            
+              docker tag harbor.k8s.elab.rs/${TEAM_NAME}/${IMAGE_NAME}:latest harbor.k8s.elab.rs/${TEAM_NAME}/${IMAGE_NAME}:${commit_hash}
+            
+              docker push harbor.k8s.elab.rs/${TEAM_NAME}/${IMAGE_NAME}:latest
+              docker push harbor.k8s.elab.rs/${TEAM_NAME}/${IMAGE_NAME}:${commit_hash}
 
-              docker tag harbor.k8s.elab.rs/${TEAM_NAME}/${SERVICE_NAME}:latest harbor.k8s.elab.rs/${TEAM_NAME}/${SERVICE_NAME}:${commit_hash}
-
-              docker push harbor.k8s.elab.rs/${TEAM_NAME}/${SERVICE_NAME}:latest
-              docker push harbor.k8s.elab.rs/${TEAM_NAME}/${SERVICE_NAME}:${commit_hash}
+              ENVIRONMENT="production"
+              IMAGE_NAME="frontend"
+              docker build --build-arg ENV=${ENVIRONMENT} -f "./images/${SERVICE_NAME}.Dockerfile" -t harbor.k8s.elab.rs/${TEAM_NAME}/${IMAGE_NAME}:latest ../Banka-2-Frontend/
+            
+              docker tag harbor.k8s.elab.rs/${TEAM_NAME}/${IMAGE_NAME}:latest harbor.k8s.elab.rs/${TEAM_NAME}/${IMAGE_NAME}:${commit_hash}
+            
+              docker push harbor.k8s.elab.rs/${TEAM_NAME}/${IMAGE_NAME}:latest
+              docker push harbor.k8s.elab.rs/${TEAM_NAME}/${IMAGE_NAME}:${commit_hash}
 
               helm upgrade --namespace="$TEAM_NAME-dev" --create-namespace --timeout=20m --atomic --install --set imageTag="${commit_hash}" "$TEAM_NAME-frontend" "oci://harbor.k8s.elab.rs/$TEAM_NAME/$TEAM_NAME-frontend/$TEAM_NAME-frontend"
-              if [ "$PULL_BASE_REF" == "main-2" ]; then
+              if [ "$PULL_BASE_REF" == "main" ]; then
                 helm upgrade --namespace="$TEAM_NAME-prod" --create-namespace --timeout=20m --atomic --install --set imageTag="${commit_hash}",host="$TEAM_NAME.si.raf.edu.rs" "$TEAM_NAME-frontend" "oci://harbor.k8s.elab.rs/$TEAM_NAME/$TEAM_NAME-frontend/$TEAM_NAME-frontend"
               fi
           securityContext:
             privileged: true
           imagePullPolicy: Always
-
