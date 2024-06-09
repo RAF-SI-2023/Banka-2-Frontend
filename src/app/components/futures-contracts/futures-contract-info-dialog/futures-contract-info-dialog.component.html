@@ -88,6 +88,42 @@
 				</mat-error>
 			</mat-form-field>
 
+			<mat-form-field appearance="fill">
+				<mat-label>Limit cena</mat-label>
+				<input
+					matInput
+					placeholder="Unesi limit"
+					formControlName="limitPrice"
+				/>
+				<mat-error *ngIf="form.get('limitPrice')?.hasError('required')">
+					Limit je obavezan.
+				</mat-error>
+				<mat-error
+					*ngIf="
+						form.get('limitPrice')?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format za limit - podržane su samo cifre.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field appearance="fill">
+				<mat-label>Stop cena</mat-label>
+				<input
+					matInput
+					placeholder="Unesi stop cenu"
+					formControlName="stopPrice"
+				/>
+				<mat-error *ngIf="form.get('stopPrice')?.hasError('required')">
+					Stop cena je obavezna.
+				</mat-error>
+				<mat-error
+					*ngIf="form.get('stopPrice')?.hasError('containsNonDigits')"
+				>
+					Pogrešan format za stop cenu - podržane su samo cifre.
+				</mat-error>
+			</mat-form-field>
+
 			<mat-checkbox formControlName="allOrNone"
 				>Kupi sve odjednom</mat-checkbox
 			>

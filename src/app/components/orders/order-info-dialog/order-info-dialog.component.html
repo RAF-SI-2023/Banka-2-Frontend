@@ -56,6 +56,10 @@
 					? (newSelectedRow.settlementDate
 						| epochToDate
 						| date: 'dd.MM.yyyy.')
+						? (newSelectedRow.settlementDate
+							| epochToDate
+							| date: 'dd.MM.yyyy.')
+						: '-'
 					: '-'
 			}}</span>
 		</div>

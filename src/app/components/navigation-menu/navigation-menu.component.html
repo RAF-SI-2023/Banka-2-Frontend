@@ -37,6 +37,13 @@
 	</mat-button-toggle-group>
 
 	<a
+		*ngIf="isBank && hasAccounts && checkTokenRole([Role.ADMIN, Role.USER])"
+		mat-button
+		routerLink="/payments"
+	>
+		Uplata/isplata
+	</a>
+	<a
 		*ngIf="isBank && checkTokenRole([Role.ADMIN, Role.USER])"
 		mat-button
 		routerLink="/bank-exchange"

@@ -48,6 +48,11 @@ export const ApiRoutes = {
 		createDomesticAccount: '/accounts/create-account/domestic', // DINARSKI
 		createForeignAccount: '/accounts/create-account/foreign', // DEVIZNI
 		createBusinessAccount: '/accounts/create-account/business', // POSLOVNI
+		cashAccountState: '/cash-account-state',
+		depositWithdrawalAddition:
+			'/accounts/deposit-withdrawal/payment-addition',
+		depositWithdrawalSubtraction:
+			'/accounts/deposit-withdrawal/payment-subtraction',
 	},
 	/// CreditController
 	credit: {
@@ -106,6 +111,7 @@ export const ApiRoutes = {
 		findById: '/order-transactions/id',
 		findByOrderId: '/order-transactions/order-id',
 		findAllByAccountNumber: '/order-transactions/account-number',
+		findAllByEmail: '/order/transactions/email',
 	},
 	// BankTransferTransactionDetailsController
 	bankTransferTransactionDetails: {
