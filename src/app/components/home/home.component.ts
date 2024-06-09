@@ -37,8 +37,9 @@ export class HomeComponent implements AfterViewInit {
 	displayedAccountColumns: string[] = [
 		'accountType',
 		'accountNumber',
-		'availableBalance',
 		'currencyCode',
+		'availableBalance',
+		'reservedFunds',
 	];
 	accountNumberDataSource = new MatTableDataSource<AccountDto>();
 

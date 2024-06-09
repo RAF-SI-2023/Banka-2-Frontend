@@ -92,7 +92,9 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.status ? row.status : '-' }}
+								{{
+									row.status ? (row.status | translate) : '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -108,7 +110,7 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.type ? row.type : '-' }}
+								{{ row.type ? (row.type | translate) : '-' }}
 							</td>
 						</ng-container>
 						<tr

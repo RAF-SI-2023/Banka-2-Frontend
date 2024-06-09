@@ -25,6 +25,7 @@ export class AcquiredSecuritiesComponent implements OnInit, AfterViewInit {
 		'email',
 		'ownedByBank',
 		'accountNumber',
+		'listingType',
 		'securitiesSymbol',
 		'quantity',
 		'quantityOfPubliclyAvailable',

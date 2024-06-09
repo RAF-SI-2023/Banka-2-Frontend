@@ -25,6 +25,8 @@ export class OptionInfoDialogComponent {
 	) {
 		this.form = this.fb.group({
 			quantity: [null, [Validators.required, digitValidator()]],
+			limitPrice: [null, [Validators.required, digitValidator()]],
+			stopPrice: [null, [Validators.required, digitValidator()]],
 			allOrNone: [false],
 		});
 	}
@@ -94,8 +96,6 @@ export class OptionInfoDialogComponent {
 				this.data.settlementDate +
 				'|' +
 				currency;
-			orderDto.limitPrice = String(-1);
-			orderDto.stopPrice = String(-1);
 			orderDto.margin = false;
 
 			this.orderService.postCreateOrder(orderDto).subscribe({

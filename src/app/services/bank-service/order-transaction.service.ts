@@ -18,7 +18,7 @@ export class OrderTransactionService {
 	}
 
 	findById(id: number) {
-		return this.httpClient.get<OrderTransactionDto>(
+		return this.httpClient.get<OrderTransactionDto[]>(
 			environment.bankServiceApiUrl +
 				ApiRoutes.orderTransaction.findById +
 				'/' +
@@ -27,7 +27,7 @@ export class OrderTransactionService {
 	}
 
 	findByOrderId(orderId: number) {
-		return this.httpClient.get<OrderTransactionDto>(
+		return this.httpClient.get<OrderTransactionDto[]>(
 			environment.bankServiceApiUrl +
 				ApiRoutes.orderTransaction.findByOrderId +
 				'/' +
@@ -36,11 +36,20 @@ export class OrderTransactionService {
 	}
 
 	findAllByAccountNumber(accountNumber: number) {
-		return this.httpClient.get<OrderTransactionDto>(
+		return this.httpClient.get<OrderTransactionDto[]>(
 			environment.bankServiceApiUrl +
 				ApiRoutes.orderTransaction.findAllByAccountNumber +
 				'/' +
 				accountNumber,
+		);
+	}
+
+	findAllByEmail(email: string) {
+		return this.httpClient.get<OrderTransactionDto[]>(
+			environment.bankServiceApiUrl +
+				ApiRoutes.orderTransaction.findAllByEmail +
+				'/' +
+				email,
 		);
 	}
 }

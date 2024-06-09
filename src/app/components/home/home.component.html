@@ -78,23 +78,9 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.accountNumber }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="availableBalance">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Dostupno stanje
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.availableBalance }}
+								{{
+									row.accountNumber ? row.accountNumber : '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -110,7 +96,45 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.currencyCode }}
+								{{ row.currencyCode ? row.currencyCode : '-' }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="availableBalance">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Dostupno stanje
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{
+									row.availableBalance
+										? row.availableBalance
+										: '-'
+								}}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="reservedFunds">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Rezervisano stanje
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{
+									row.reservedFunds ? row.reservedFunds : '-'
+								}}
 							</td>
 						</ng-container>
 

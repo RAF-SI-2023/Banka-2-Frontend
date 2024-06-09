@@ -99,6 +99,22 @@
 							</td>
 						</ng-container>
 
+						<ng-container matColumnDef="listingType">
+							<th
+								mat-header-cell
+								*matHeaderCellDef
+								mat-sort-header
+							>
+								Tip HOV
+							</th>
+							<td
+								mat-cell
+								*matCellDef="let row"
+							>
+								{{ row.listingType ? row.listingType : '-' }}
+							</td>
+						</ng-container>
+
 						<ng-container matColumnDef="securitiesSymbol">
 							<th
 								mat-header-cell

@@ -25,6 +25,8 @@ export class FuturesContractInfoDialogComponent {
 	) {
 		this.form = this.fb.group({
 			quantity: [null, [Validators.required, digitValidator()]],
+			limitPrice: [null, [Validators.required, digitValidator()]],
+			stopPrice: [null, [Validators.required, digitValidator()]],
 			allOrNone: [false],
 		});
 		this.fetchData();
@@ -59,8 +61,6 @@ export class FuturesContractInfoDialogComponent {
 		orderDto.orderActionType = 'BUY';
 		orderDto.listingType = 'FUTURE';
 		orderDto.securitiesSymbol = this.newSelectedRow.name;
-		orderDto.limitPrice = String(-1);
-		orderDto.stopPrice = String(-1);
 		orderDto.margin = false;
 
 		this.orderService.postCreateOrder(orderDto).subscribe({
