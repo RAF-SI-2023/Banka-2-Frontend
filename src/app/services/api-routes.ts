@@ -111,7 +111,7 @@ export const ApiRoutes = {
 		findById: '/order-transactions/id',
 		findByOrderId: '/order-transactions/order-id',
 		findAllByAccountNumber: '/order-transactions/account-number',
-		findAllByEmail: '/order/transactions/email',
+		findAllByEmail: '/order-transactions/email',
 	},
 	// BankTransferTransactionDetailsController
 	bankTransferTransactionDetails: {
