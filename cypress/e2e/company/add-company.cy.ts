@@ -1,6 +1,8 @@
+import { ADMIN_CREDENTIALS } from 'cypress/support/constants';
+
 describe('Adding Company Dialog', () => {
 	beforeEach(() => {
-		cy.login('lukapavlovic032@gmail.com', 'admin'); // Login as Admin
+		cy.login(ADMIN_CREDENTIALS.username, ADMIN_CREDENTIALS.password); // Login as Admin
 		cy.visit('/companies'); // Assuming your companies component is accessible at /companies route
 	});
 

@@ -1,3 +1,5 @@
+import { ADMIN_CREDENTIALS } from 'cypress/support/constants';
+
 describe('Router', () => {
 	const routes = [
 		{ path: '/', name: 'Landing page' },
@@ -20,11 +22,11 @@ describe('Router', () => {
 		},
 		{ path: '/credit-requests', name: 'Credit Requests page' },
 		{ path: '/cards', name: 'Cards page' },
-		{ path: '/transactions', name: 'Transactions page' },
+		{ path: '/money-transactions', name: 'Money Transactions page' },
 	];
 
 	beforeEach(() => {
-		cy.login('lukapavlovic032@gmail.com', 'admin');
+		cy.login(ADMIN_CREDENTIALS.username, ADMIN_CREDENTIALS.password);
 	});
 
 	routes.forEach(route => {

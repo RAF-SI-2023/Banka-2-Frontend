@@ -8,7 +8,7 @@ import { of, throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { SecurityDto } from 'src/app/dtos/security-dto';
 import { SecuritiesService } from 'src/app/services/bank-service/securities.service';
-import { PublicSecurityInfoDialogComponent } from './public-security-info-dialog/public-security-info-dialog.component';
+import { PubliclyTradableSecurityInfoDialogComponent } from './publicly-tradable-security-info-dialog/publicly-tradable-security-info-dialog.component';
 import { UserService } from 'src/app/services/iam-service/user.service';
 
 @Component({
@@ -22,6 +22,7 @@ export class PubliclyTradableSecuritiesComponent implements AfterViewInit {
 		'email',
 		'ownedByBank',
 		'accountNumber',
+		'listingType',
 		'securitiesSymbol',
 		'quantity',
 		'quantityOfPubliclyAvailable',
@@ -148,7 +149,7 @@ export class PubliclyTradableSecuritiesComponent implements AfterViewInit {
 	}
 
 	viewSecurity(row: SecurityDto): void {
-		this.dialog.open(PublicSecurityInfoDialogComponent, {
+		this.dialog.open(PubliclyTradableSecurityInfoDialogComponent, {
 			data: row,
 			autoFocus: false,
 		});

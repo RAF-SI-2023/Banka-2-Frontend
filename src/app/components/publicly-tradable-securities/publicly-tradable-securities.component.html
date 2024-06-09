@@ -4,9 +4,7 @@
 			<h2>Javno trgovane hartije od vrednosti</h2>
 			<div class="form">
 				<mat-form-field>
-					<mat-label
-						>Pretraži javno trgovane hartije od vrednosti</mat-label
-					>
+					<mat-label>Pretraži</mat-label>
 					<input
 						#input
 						(keyup)="applyFilter($event)"
@@ -91,6 +89,22 @@
 								{{
 									row.accountNumber ? row.accountNumber : '-'
 								}}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="listingType">
+							<th
+								mat-header-cell
+								*matHeaderCellDef
+								mat-sort-header
+							>
+								Tip HOV
+							</th>
+							<td
+								mat-cell
+								*matCellDef="let row"
+							>
+								{{ row.listingType ? row.listingType : '-' }}
 							</td>
 						</ng-container>
 

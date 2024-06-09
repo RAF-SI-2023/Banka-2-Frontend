@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { ApiRoutes } from '../api-routes';
 import { ContractDto } from 'src/app/dtos/contract-dto';
 
@@ -20,6 +20,18 @@ export class ContractService {
 	getAllWaitingContracts() {
 		return this.httpClient.get<ContractDto[]>(
 			`${environment.otcServiceApiUrl}${ApiRoutes.contract.getAllWaitingContracts}`,
+		);
+	}
+
+	getAllApprovedContracts() {
+		return this.httpClient.get<ContractDto[]>(
+			`${environment.otcServiceApiUrl}${ApiRoutes.contract.getAllApprovedContracts}`,
+		);
+	}
+
+	getAllRejectedContracts() {
+		return this.httpClient.get<ContractDto[]>(
+			`${environment.otcServiceApiUrl}${ApiRoutes.contract.getAllRejectedContracts}`,
 		);
 	}
 

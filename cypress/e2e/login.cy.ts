@@ -1,3 +1,5 @@
+import { ADMIN_CREDENTIALS } from 'cypress/support/constants';
+
 describe('Login Component', () => {
 	beforeEach(() => {
 		cy.visit('/login'); // Assuming your login page is accessible at /login route
@@ -21,7 +23,7 @@ describe('Login Component', () => {
 
 	// Check if invalid credentials show error message
 	it('should show error message for wrong credentials', () => {
-		cy.get('input[type="email"]').type('invalidemail@example.com');
+		cy.get('input[type="email"]').type('invalidemail@cypress.test');
 		cy.get('input[type="password"]').type('invalidpassword');
 		cy.get('button[type="submit"]').click();
 		cy.contains('Neautorizovan pristup!').should('exist');
@@ -29,8 +31,8 @@ describe('Login Component', () => {
 
 	// Successful login test
 	it('should login with valid credentials', () => {
-		cy.get('input[type="email"]').type('lukapavlovic032@gmail.com');
-		cy.get('input[type="password"]').type('admin');
+		cy.get('input[type="email"]').type(ADMIN_CREDENTIALS.username);
+		cy.get('input[type="password"]').type(ADMIN_CREDENTIALS.password);
 		cy.get('button[type="submit"]').click();
 		cy.url().should('include', '/home');
 	});

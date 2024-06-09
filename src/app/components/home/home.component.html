@@ -25,9 +25,18 @@
 			<button
 				class="redirect-button"
 				mat-raised-button
-				(click)="redirectToTransactionsAll()"
+				(click)="redirectToMoneyTransactionsAll()"
 			>
-				Lista transakcija
+				Lista novčanih transakcija
+			</button>
+
+			<button
+				*ngIf="checkTokenRole([Role.ADMIN, Role.SUPERVISOR])"
+				class="redirect-button"
+				mat-raised-button
+				(click)="redirectToOrderTransactionsAll()"
+			>
+				Lista narudžbenskih transakcija
 			</button>
 
 			<div class="tableContainer">
@@ -69,23 +78,9 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.accountNumber }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="availableBalance">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Dostupno stanje
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.availableBalance }}
+								{{
+									row.accountNumber ? row.accountNumber : '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -101,7 +96,45 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.currencyCode }}
+								{{ row.currencyCode ? row.currencyCode : '-' }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="availableBalance">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Dostupno stanje
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{
+									row.availableBalance
+										? row.availableBalance
+										: '-'
+								}}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="reservedFunds">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Rezervisano stanje
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{
+									row.reservedFunds ? row.reservedFunds : '-'
+								}}
 							</td>
 						</ng-container>
 

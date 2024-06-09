@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { SimpleTransactionDto } from 'src/app/dtos/simple-transaction-dto';
-import { TransactionDto } from 'src/app/dtos/transaction-dto';
+import { MoneyTransactionDto } from 'src/app/dtos/money-transaction-dto';
 import { ApiRoutes } from '../api-routes';
 import { InternalTransactionResponseDto } from 'src/app/dtos/internal-transaction-response-dto';
 import { ExternalTransactionResponseDto } from 'src/app/dtos/external-transaction-response-dto';
@@ -15,7 +15,7 @@ export class TransactionService {
 
 	// GET
 	getAllTransactionsByEmail(email: string) {
-		return this.httpClient.get<TransactionDto[]>(
+		return this.httpClient.get<MoneyTransactionDto[]>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.transferTransaction.getAllTransactions}/${email}`,
 		);
 	}

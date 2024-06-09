@@ -57,6 +57,7 @@ export const DropdownOptions = {
 	cardSettingsType: [
 		{ label: 'Izrada nove kartice', value: 'IZRADA NOVE KARTICE' },
 		{ label: 'Promena statusa', value: 'PROMENA STATUSA' },
+		{ label: 'Promena blok statusa', value: 'PROMENA BLOK STATUSA' },
 		{ label: 'Promena limita', value: 'PROMENA LIMITA' },
 	],
 	cardTypeOptions: [

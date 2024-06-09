@@ -3,10 +3,12 @@ export interface SecurityDto {
 	email: string;
 	ownedByBank: boolean;
 	accountNumber: string;
+	listingType: string;
 	securitiesSymbol: string;
 	quantity: number;
 	quantityOfPubliclyAvailable: number;
 	reservedQuantity: number;
+	averageBuyingPrice: number;
 }
 // "id": 1,
 // "email": "milosvasiljevic007@gmail.com",

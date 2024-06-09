@@ -39,19 +39,26 @@
 	<a
 		*ngIf="isBank && hasAccounts && checkTokenRole([Role.ADMIN, Role.USER])"
 		mat-button
+		routerLink="/payments"
+	>
+		Uplata/isplata
+	</a>
+	<a
+		*ngIf="isBank && checkTokenRole([Role.ADMIN, Role.USER])"
+		mat-button
 		routerLink="/bank-exchange"
 	>
 		Menjačnica
 	</a>
 	<a
-		*ngIf="isBank && hasAccounts && checkTokenRole([Role.ADMIN, Role.USER])"
+		*ngIf="isBank && checkTokenRole([Role.ADMIN, Role.USER])"
 		mat-button
-		routerLink="/transactions"
+		routerLink="/money-transactions"
 	>
-		Transakcije
+		Novčane transakcije
 	</a>
 	<a
-		*ngIf="isBank && hasAccounts && checkTokenRole([Role.ADMIN, Role.USER])"
+		*ngIf="isBank && checkTokenRole([Role.ADMIN, Role.USER])"
 		mat-button
 		routerLink="/credits"
 	>
@@ -182,6 +189,15 @@
 		>
 	</button>
 	<mat-menu #adminMenu="matMenu">
+		<button
+			*ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR])"
+			mat-menu-item
+			routerLink="/bank-profits"
+		>
+			<mat-icon>assured_workload</mat-icon>
+			<span>Bankovni profiti</span>
+		</button>
+		<mat-divider></mat-divider>
 		<button
 			*ngIf="
 				checkTokenRole([

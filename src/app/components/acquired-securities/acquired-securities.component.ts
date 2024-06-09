@@ -25,10 +25,12 @@ export class AcquiredSecuritiesComponent implements OnInit, AfterViewInit {
 		'email',
 		'ownedByBank',
 		'accountNumber',
+		'listingType',
 		'securitiesSymbol',
 		'quantity',
 		'quantityOfPubliclyAvailable',
 		'reservedQuantity',
+		'averageBuyingPrice',
 	];
 	dataSource = new MatTableDataSource<SecurityDto>();
 	selectedRow: SecurityDto | null = null;

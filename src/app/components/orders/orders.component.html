@@ -165,12 +165,16 @@
 										? (row.settlementDate
 											| epochToDate
 											| date: 'dd.MM.yyyy.')
+											? (row.settlementDate
+												| epochToDate
+												| date: 'dd.MM.yyyy.')
+											: '-'
 										: '-'
 								}}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="limitPrice">
+						<!-- <ng-container matColumnDef="limitPrice">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
@@ -200,7 +204,7 @@
 							>
 								{{ row.stopPrice ? row.stopPrice : '-' }}
 							</td>
-						</ng-container>
+						</ng-container> -->
 
 						<ng-container matColumnDef="orderStatus">
 							<th

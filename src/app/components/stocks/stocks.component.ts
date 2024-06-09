@@ -26,9 +26,9 @@ export class StocksComponent implements AfterViewInit {
 		'price',
 		'high',
 		'low',
-		'change',
-		'volume',
-		'shares',
+		// 'change',
+		// 'volume',
+		// 'shares',
 		'yield',
 	];
 	dataSource = new MatTableDataSource<StockDto>();
@@ -62,7 +62,10 @@ export class StocksComponent implements AfterViewInit {
 	}
 
 	selectRow(row: StockDto): void {
-		if (this.selectedRow?.symbol != row.symbol) {
+		if (
+			this.selectedRow?.symbol != row.symbol ||
+			this.selectedRow?.exchange != row.exchange
+		) {
 			this.selectedRow = row;
 		}
 	}

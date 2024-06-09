@@ -27,6 +27,7 @@ export class CardsInfoDialogComponent {
 		'cvvCode',
 		'limitCard',
 		'status',
+		'block',
 	];
 	dataSource = new MatTableDataSource<CardDto>();
 	newSelectedRow: AccountDto = { ...this.data.selectedAccount };
@@ -54,8 +55,24 @@ export class CardsInfoDialogComponent {
 			.getCardsByAccountNumber(this.newSelectedRow.accountNumber)
 			.pipe(
 				map(dataSource => {
+					console.log(dataSource);
 					this.dataSource.data = dataSource;
 					return dataSource;
+				}),
+				catchError(error => {
+					return throwError(() => error);
+				}),
+			)
+			.subscribe();
+	}
+
+	blockCard(card: CardDto) {
+		// console.log(this.cardRow?.identificationCardNumber);
+		this.cardService
+			.putChangeCardBlock(card.identificationCardNumber)
+			.pipe(
+				map(_ => {
+					this.fetchCards();
 				}),
 				catchError(error => {
 					return throwError(() => error);

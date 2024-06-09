@@ -23,7 +23,6 @@ import { ForexComponent } from './components/forex/forex.component';
 import { OptionsComponent } from './components/options/options.component';
 import { UserInfoDialogComponent } from './components/users/dialogs/user-info-dialog/user-info-dialog.component';
 import { StockInfoDialogComponent } from './components/stocks/dialogs/stock-info-dialog/stock-info-dialog.component';
-import { TransactionsAllInfoDialogComponent } from './components/transactions-all/dialogs/transactions-all-info-dialog/transaction-all-info-dialog.component';
 import { CompaniesComponent } from './components/companies/companies.component';
 import { CompanyInfoDialogComponent } from './components/companies/dialogs/company-info-dialog/company-info-dialog.component';
 import { CurrencyInfoDialogComponent } from './components/currency-exchange/dialogs/currency-info-dialog/currency-info-dialog.component';
@@ -38,10 +37,10 @@ import { CreditRequestsComponent } from './components/credit-requests/credit-req
 import { CreditReqInfoDialogComponent } from './components/credit-requests/credit-req-info-dialog/credit-req-info-dialog.component';
 import { ForexInfoDialogComponent } from './components/forex/forex-info-dialog/forex-info-dialog.component';
 import { CardsInfoDialogComponent } from './components/user-profile/cards-info-dialog/cards-info-dialog.component';
-import { TransactionsComponent } from './components/transactions/transactions/transactions.component';
-import { ExternalFormComponent } from './components/transactions/external-form/external-form.component';
-import { InternalFormComponent } from './components/transactions/internal-form/internal-form.component';
-import { VerifyTransactionDialogComponent } from './components/transactions/verify-transaction-dialog/verify-transaction-dialog.component';
+import { MoneyTransactionsComponent } from './components/money-transactions/money-transactions.component';
+import { ExternalFormComponent } from './components/money-transactions/external-form/external-form.component';
+import { InternalFormComponent } from './components/money-transactions/internal-form/internal-form.component';
+import { VerifyTransactionDialogComponent } from './components/money-transactions/verify-transaction-dialog/verify-transaction-dialog.component';
 import { StockFilterComponent } from './components/stocks/dialogs/stock-filter/stock-filter.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { CreationFormComponent } from './components/cards/creation-form/creation-form.component';
@@ -51,10 +50,10 @@ import { BankExchangeComponent } from './components/bank-exchange/bank-exchange.
 import { FuturesContractsComponent } from './components/futures-contracts/futures-contracts.component';
 import { FuturesContractInfoDialogComponent } from './components/futures-contracts/futures-contract-info-dialog/futures-contract-info-dialog.component';
 import { PasswordChangeDialogComponent } from './components/user-profile/password-change-dialog/password-change-dialog.component';
-import { TransactionsAllComponent } from './components/transactions-all/transactions-all.component';
+import { MoneyTransactionsAllComponent } from './components/money-transactions-all/money-transactions-all.component';
 import { AcquiredSecuritiesComponent } from './components/acquired-securities/acquired-securities.component';
 import { PubliclyTradableSecuritiesComponent } from './components/publicly-tradable-securities/publicly-tradable-securities.component';
-import { PublicSecurityInfoDialogComponent } from './components/publicly-tradable-securities/public-security-info-dialog/public-security-info-dialog.component';
+import { PubliclyTradableSecurityInfoDialogComponent } from './components/publicly-tradable-securities/publicly-tradable-security-info-dialog/publicly-tradable-security-info-dialog.component';
 import { AcquiredSecuritiesInfoDialogComponent } from './components/acquired-securities/acquired-securities-info-dialog/acquired-securities-info-dialog.component';
 import { AllCompanyEmployeesComponent } from './components/companies/all-company-employees/all-company-employees.component';
 import { AddCompanyEmployeeComponent } from './components/companies/all-company-employees/dialogs/add-company-employee/add-company-employee.component';
@@ -65,6 +64,12 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { OrderInfoDialogComponent } from './components/orders/order-info-dialog/order-info-dialog.component';
 import { ContractsComponent } from './components/contracts/contracts.component';
 import { ContractInfoDialogComponent } from './components/contracts/contract-info-dialog/contract-info-dialog.component';
+import { ChangeBlockFormComponent } from './components/cards/change-block-form/change-block-form.component';
+import { OrderTransactionsAllComponent } from './components/order-transactions-all/order-transactions-all.component';
+import { BankProfitsComponent } from './components/bank-profits/bank-profits.component';
+import { AgentProfitsComponent } from './components/bank-profits/agent-profits/agent-profits.component';
+import { BankTransactionsProfitsComponent } from './components/bank-profits/bank-transactions-profits/bank-transactions-profits.component';
+import { PaymentsComponent } from './components/payments/payments.component';
 /// DIRECTIVES/PIPES
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
@@ -155,7 +160,7 @@ import { DATE_FORMAT } from './utils/constants';
 		CreditReqInfoDialogComponent,
 		ForexInfoDialogComponent,
 		FuturesContractsComponent,
-		TransactionsComponent,
+		MoneyTransactionsComponent,
 		ExternalFormComponent,
 		InternalFormComponent,
 		VerifyTransactionDialogComponent,
@@ -168,12 +173,11 @@ import { DATE_FORMAT } from './utils/constants';
 		ChangeLimitFormComponent,
 		BankExchangeComponent,
 		FuturesContractInfoDialogComponent,
-		TransactionsAllComponent,
-		TransactionsAllInfoDialogComponent,
+		MoneyTransactionsAllComponent,
 		AcquiredSecuritiesComponent,
-		PubliclyTradableSecuritiesComponent,
-		PublicSecurityInfoDialogComponent,
 		AcquiredSecuritiesInfoDialogComponent,
+		PubliclyTradableSecuritiesComponent,
+		PubliclyTradableSecurityInfoDialogComponent,
 		AllCompanyEmployeesComponent,
 		AddCompanyEmployeeComponent,
 		OptionInfoDialogComponent,
@@ -181,6 +185,12 @@ import { DATE_FORMAT } from './utils/constants';
 		OrderInfoDialogComponent,
 		ContractsComponent,
 		ContractInfoDialogComponent,
+		ChangeBlockFormComponent,
+		OrderTransactionsAllComponent,
+		BankProfitsComponent,
+		AgentProfitsComponent,
+		BankTransactionsProfitsComponent,
+		PaymentsComponent,
 	],
 	imports: [
 		HttpClientModule,

@@ -13,6 +13,7 @@
 					<mat-form-field>
 						<mat-label>Broj računa za uplatu</mat-label>
 						<mat-select
+							name="fromAccount"
 							formControlName="fromAccount"
 							placeholder="Izaberite račun"
 						>
@@ -50,6 +51,7 @@
 						<mat-select
 							formControlName="toAccount"
 							placeholder="Izaberite račun"
+							name="toAccount"
 						>
 							<mat-option
 								*ngFor="let option of accountOptionsSender"
@@ -109,6 +111,7 @@
 
 					<div class="buttons">
 						<button
+							data-test="exchange-button"
 							mat-raised-button
 							style="width: 100%"
 							color="accent"
@@ -128,7 +131,7 @@
 			<mat-card-header>
 				<div class="form header-margin">
 					<mat-form-field>
-						<mat-label>Pretraži kursnu listu</mat-label>
+						<mat-label>Pretraži</mat-label>
 						<input
 							#input
 							(keyup)="applyFilter($event)"

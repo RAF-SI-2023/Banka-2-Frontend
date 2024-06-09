@@ -1,7 +1,9 @@
+import { EMPLOYEE_CREDENTIALS } from 'cypress/support/constants';
+
 describe('Change Password Dialog', () => {
 	beforeEach(() => {
 		// Assume you are logged in and on the page where the "Promeni lozinku" button is available
-		cy.login('vasa_email_adresa_1@gmail.com', 'admin');
+		cy.login(EMPLOYEE_CREDENTIALS.username, EMPLOYEE_CREDENTIALS.password);
 		cy.visit('/user-profile'); // Navigate to the page where the "Promeni lozinku" button is located
 	});
 
@@ -37,17 +39,19 @@ describe('Change Password Dialog', () => {
 		cy.get('#change-password-btn').click();
 
 		// Enter new password
-		cy.get('input[formControlName="newPassword"]').type('Newpassword123!');
+		cy.get('input[formControlName="newPassword"]').type(
+			EMPLOYEE_CREDENTIALS.password,
+		);
 
 		// Enter confirm password
 		cy.get('input[formControlName="confirmPassword"]').type(
-			'Newpassword123!',
+			EMPLOYEE_CREDENTIALS.password,
 		);
 
 		// Submit the form by clicking the "Promeni" button
 		cy.get('[data-test="change-button"]').click();
 
-		cy.contains('Lozinka uspešno promenjena!').should('exist');
+		cy.contains('Zahtev je uspešan!').should('exist');
 	});
 
 	// Add more test cases to cover other scenarios, such as invalid passwords, form validation, etc.

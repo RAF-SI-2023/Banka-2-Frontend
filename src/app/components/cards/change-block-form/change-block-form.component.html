@@ -1,0 +1,66 @@
+<section class="container">
+	<ng-template
+		#dialogTemplate
+		let-data
+	>
+		<h2 mat-dialog-title>Blok status kartice promenjen!</h2>
+		<mat-dialog-content>
+			<p>{{ data.message }}</p>
+		</mat-dialog-content>
+		<mat-dialog-actions>
+			<button
+				mat-raised-button
+				mat-dialog-close
+				color="warn"
+			>
+				Zatvori
+			</button>
+		</mat-dialog-actions>
+	</ng-template>
+
+	<form
+		class="form-inputs"
+		[formGroup]="changeBlockForm"
+		#formDirective="ngForm"
+		(ngSubmit)="onSubmit(formDirective)"
+	>
+		<mat-form-field>
+			<mat-label>Broj kartice</mat-label>
+			<input
+				matInput
+				placeholder="Unesite broj kartice"
+				formControlName="identificationCardNumber"
+				required
+			/>
+			<mat-error
+				*ngIf="
+					changeBlockForm
+						.get('identificationCardNumber')
+						?.hasError('required')
+				"
+			>
+				Broj kartice je obavezan.
+			</mat-error>
+			<mat-error
+				*ngIf="
+					changeBlockForm
+						.get('identificationCardNumber')
+						?.hasError('invalidCardNumber')
+				"
+			>
+				Pogrešan format kartice.
+			</mat-error>
+		</mat-form-field>
+
+		<div class="buttons">
+			<button
+				mat-raised-button
+				color="accent"
+				type="submit"
+				[disabled]="!changeBlockForm.valid"
+			>
+				Promeni
+			</button>
+		</div>
+	</form>
+</section>

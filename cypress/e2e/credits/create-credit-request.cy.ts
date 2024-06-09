@@ -1,6 +1,8 @@
+import { ADMIN_CREDENTIALS } from 'cypress/support/constants';
+
 describe('Create Credit Request', () => {
 	beforeEach(() => {
-		cy.login('lukapavlovic032@gmail.com', 'admin'); // Login as Admin
+		cy.login(ADMIN_CREDENTIALS.username, ADMIN_CREDENTIALS.password); // Login as Admin
 		cy.visit('/credits/create-credit-request'); // Assuming your users component is accessible at /users route
 	});
 

@@ -4,7 +4,7 @@
 			<h2>Tržište stranih valuta (forex)</h2>
 			<div class="form">
 				<mat-form-field>
-					<mat-label>Pretraži tržište stranih valuta</mat-label>
+					<mat-label>Pretraži</mat-label>
 					<input
 						#input
 						(keyup)="applyFilter($event)"
@@ -128,7 +128,7 @@
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="high">
+						<!-- <ng-container matColumnDef="high">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
@@ -190,7 +190,7 @@
 							>
 								{{ row.volume ? row.volume : '-' }}
 							</td>
-						</ng-container>
+						</ng-container> -->
 
 						<ng-container matColumnDef="baseCurrency">
 							<th

@@ -37,8 +37,9 @@ export class HomeComponent implements AfterViewInit {
 	displayedAccountColumns: string[] = [
 		'accountType',
 		'accountNumber',
-		'availableBalance',
 		'currencyCode',
+		'availableBalance',
+		'reservedFunds',
 	];
 	accountNumberDataSource = new MatTableDataSource<AccountDto>();
 
@@ -125,7 +126,11 @@ export class HomeComponent implements AfterViewInit {
 
 	protected readonly Role = Role;
 
-	redirectToTransactionsAll() {
-		this.router.navigate(['/transactions/all']);
+	redirectToMoneyTransactionsAll() {
+		this.router.navigate(['/money-transactions/all']);
+	}
+
+	redirectToOrderTransactionsAll() {
+		this.router.navigate(['/order-transactions/all']);
 	}
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { ApiRoutes } from '../api-routes';
 import { CardDto } from 'src/app/dtos/card-dto';
 
@@ -46,6 +46,16 @@ export class CardService {
 		return this.httpClient.put<number>(
 			environment.bankServiceApiUrl + ApiRoutes.card.changeCardLimit,
 			cardDto,
+		);
+	}
+
+	putChangeCardBlock(identificationCardNumber: number) {
+		return this.httpClient.put<number>(
+			environment.bankServiceApiUrl +
+				ApiRoutes.card.changeCardBlock +
+				'/' +
+				identificationCardNumber,
+			null,
 		);
 	}
 }

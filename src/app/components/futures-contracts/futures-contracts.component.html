@@ -4,7 +4,7 @@
 			<h2>Terminski ugovori</h2>
 			<div class="form">
 				<mat-form-field>
-					<mat-label>Pretraži terminske ugovore</mat-label>
+					<mat-label>Pretraži</mat-label>
 					<input
 						#input
 						(keyup)="applyFilter($event)"
@@ -58,7 +58,7 @@
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="code">
+						<!-- <ng-container matColumnDef="code">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
@@ -72,7 +72,7 @@
 							>
 								{{ row.code ? row.code : '-' }}
 							</td>
-						</ng-container>
+						</ng-container> -->
 
 						<ng-container matColumnDef="contractSize">
 							<th
@@ -106,7 +106,7 @@
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="openInterest">
+						<!-- <ng-container matColumnDef="openInterest">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
@@ -120,7 +120,7 @@
 							>
 								{{ row.openInterest ? row.openInterest : '-' }}
 							</td>
-						</ng-container>
+						</ng-container> -->
 
 						<ng-container matColumnDef="settlementDate">
 							<th

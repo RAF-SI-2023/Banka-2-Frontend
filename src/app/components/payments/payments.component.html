@@ -1,0 +1,177 @@
+<div class="container">
+	<section class="container-left">
+		<mat-card class="exchange-mat-card">
+			<mat-card-header>
+				<mat-card-title>Uplata sredstava</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<form
+					[formGroup]="depositWithdrawalAdditionForm"
+					#formDirective="ngForm"
+					(ngSubmit)="sendDepositWithdrawalAddition(formDirective)"
+				>
+					<mat-form-field>
+						<mat-label>Broj računa primaoca</mat-label>
+						<input
+							matInput
+							placeholder="Unesite broj računa"
+							formControlName="accountNumber"
+							appBankAccountMask
+							required
+						/>
+						<mat-error
+							*ngIf="
+								depositWithdrawalAdditionForm
+									.get('accountNumber')
+									?.hasError('required')
+							"
+						>
+							Broj računa primaoca je obavezan.
+						</mat-error>
+						<mat-error
+							*ngIf="
+								depositWithdrawalAdditionForm
+									.get('accountNumber')
+									?.hasError('invalidBankAccountNumber')
+							"
+						>
+							Pogrešan format računa.
+						</mat-error>
+					</mat-form-field>
+
+					<mat-form-field>
+						<mat-label>Iznos</mat-label>
+						<input
+							matInput
+							placeholder="Unesite iznos novca"
+							formControlName="amount"
+							type="text"
+						/>
+						<mat-error
+							*ngIf="
+								depositWithdrawalAdditionForm
+									.get('amount')
+									?.hasError('required')
+							"
+						>
+							Iznos je obavezan.
+						</mat-error>
+						<mat-error
+							*ngIf="
+								depositWithdrawalAdditionForm
+									.get('amount')
+									?.hasError('containsNonDigits')
+							"
+						>
+							Pogrešan format za iznos novca - podržane su samo
+							cifre.
+						</mat-error>
+					</mat-form-field>
+
+					<div class="buttons">
+						<button
+							mat-raised-button
+							style="width: 100%"
+							color="accent"
+							type="submit"
+							[disabled]="!depositWithdrawalAdditionForm.valid"
+						>
+							Pošalji
+						</button>
+					</div>
+				</form>
+			</mat-card-content>
+		</mat-card>
+	</section>
+
+	<section class="container-right">
+		<mat-card class="exchange-mat-card">
+			<mat-card-header>
+				<mat-card-title>Isplata sredstava</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<form
+					[formGroup]="depositWithdrawalSubtractionForm"
+					#formDirective="ngForm"
+					(ngSubmit)="sendDepositWithdrawalSubtraction(formDirective)"
+				>
+					<mat-form-field>
+						<mat-label>Broj računa za isplatu</mat-label>
+						<mat-select
+							formControlName="accountNumber"
+							placeholder="Izaberite račun"
+						>
+							<mat-option
+								*ngFor="let option of accountOptionsSender"
+								[value]="option.accountNumber"
+							>
+								{{ option.accountNumber | accountNumberFormat }}
+							</mat-option>
+						</mat-select>
+						<mat-error
+							*ngIf="
+								depositWithdrawalSubtractionForm
+									.get('accountNumber')
+									?.hasError('required')
+							"
+						>
+							Broj računa za isplatu je obavezan.
+						</mat-error>
+					</mat-form-field>
+
+					<div class="unselectable">
+						<p *ngIf="availableBalanceFromAcc > -1">
+							Stanje vašeg računa za isplatu:
+							{{ availableBalanceFromAcc }}
+							{{ currencyCodeFromAcc }}
+						</p>
+						<p *ngIf="availableBalanceFromAcc === -1">
+							Stanje vašeg računa za isplatu: -
+						</p>
+					</div>
+
+					<mat-form-field>
+						<mat-label>Iznos</mat-label>
+						<input
+							matInput
+							placeholder="Unesite iznos novca"
+							formControlName="amount"
+							type="text"
+						/>
+						<mat-error
+							*ngIf="
+								depositWithdrawalSubtractionForm
+									.get('amount')
+									?.hasError('required')
+							"
+						>
+							Iznos je obavezan.
+						</mat-error>
+						<mat-error
+							*ngIf="
+								depositWithdrawalSubtractionForm
+									.get('amount')
+									?.hasError('containsNonDigits')
+							"
+						>
+							Pogrešan format za iznos novca - podržane su samo
+							cifre.
+						</mat-error>
+					</mat-form-field>
+
+					<div class="buttons">
+						<button
+							mat-raised-button
+							style="width: 100%"
+							color="accent"
+							type="submit"
+							[disabled]="!depositWithdrawalSubtractionForm.valid"
+						>
+							Pošalji
+						</button>
+					</div>
+				</form>
+			</mat-card-content>
+		</mat-card>
+	</section>
+</div>
