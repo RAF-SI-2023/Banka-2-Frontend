@@ -10,6 +10,7 @@
 			<mat-select
 				formControlName="senderAccountNumber"
 				placeholder="Izaberite račun"
+				name="fromAccountNumber"
 			>
 				<mat-option
 					*ngFor="let option of accountOptionsSender"
@@ -45,6 +46,7 @@
 			<mat-select
 				formControlName="receiverAccountNumber"
 				placeholder="Izaberite račun"
+				name="toAccountNumber"
 			>
 				<mat-option
 					*ngFor="let option of accountOptionsReciever"
@@ -99,6 +101,7 @@
 
 		<div class="buttons">
 			<button
+				data-test="submit-button"
 				mat-raised-button
 				color="accent"
 				type="submit"
