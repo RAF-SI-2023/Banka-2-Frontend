@@ -8,12 +8,12 @@
 .container-left {
 	display: grid;
 	align-items: center;
-	width: 39%;
+	width: 48%;
 	height: 100%;
 }
 
 .container-right {
-	width: 60%;
+	width: 51%;
 	height: 100%;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .exchange-mat-card {
-	height: 40rem;
+	height: 22.5rem;
 }
 
 mat-card-title {

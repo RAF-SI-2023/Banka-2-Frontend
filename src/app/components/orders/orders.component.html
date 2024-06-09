@@ -165,6 +165,10 @@
 										? (row.settlementDate
 											| epochToDate
 											| date: 'dd.MM.yyyy.')
+											? (row.settlementDate
+												| epochToDate
+												| date: 'dd.MM.yyyy.')
+											: '-'
 										: '-'
 								}}
 							</td>

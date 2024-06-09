@@ -32,7 +32,7 @@
 -   **Kada hoćete da odradite merge sa glavnim projektom (npr. završili ste
     issue ili jednu celinu), potrebno je da uradite prethodno navedenu stavku,
     popravite moguće konflikte, pa kreirate `Pull request` sa vašeg fork-a i da
-    izaberete da hoćete da merge-ujete sa `dev` granom glavnog projekta**
+    izaberete da hoćete da merge-ujete sa `dev` granom glavnog projekta!**
 
 ## Angular CLI
 

@@ -22,6 +22,7 @@ export class PubliclyTradableSecuritiesComponent implements AfterViewInit {
 		'email',
 		'ownedByBank',
 		'accountNumber',
+		'listingType',
 		'securitiesSymbol',
 		'quantity',
 		'quantityOfPubliclyAvailable',
