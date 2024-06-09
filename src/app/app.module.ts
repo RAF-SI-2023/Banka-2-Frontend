@@ -67,6 +67,9 @@ import { ContractInfoDialogComponent } from './components/contracts/contract-inf
 import { ChangeBlockFormComponent } from './components/cards/change-block-form/change-block-form.component';
 import { OrderTransactionsAllComponent } from './components/order-transactions-all/order-transactions-all.component';
 import { BankProfitsComponent } from './components/bank-profits/bank-profits.component';
+import { AgentProfitsComponent } from './components/bank-profits/agent-profits/agent-profits.component';
+import { BankTransactionsProfitsComponent } from './components/bank-profits/bank-transactions-profits/bank-transactions-profits.component';
+import { PaymentsComponent } from './components/payments/payments.component';
 /// DIRECTIVES/PIPES
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
@@ -114,8 +117,6 @@ import {
 } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DATE_FORMAT } from './utils/constants';
-import { AgentProfitsComponent } from './components/bank-profits/agent-profits/agent-profits.component';
-import { BankTransactionsProfitsComponent } from './components/bank-profits/bank-transactions-profits/bank-transactions-profits.component';
 
 @NgModule({
 	declarations: [
@@ -189,6 +190,7 @@ import { BankTransactionsProfitsComponent } from './components/bank-profits/bank
 		BankProfitsComponent,
 		AgentProfitsComponent,
 		BankTransactionsProfitsComponent,
+		PaymentsComponent,
 	],
 	imports: [
 		HttpClientModule,

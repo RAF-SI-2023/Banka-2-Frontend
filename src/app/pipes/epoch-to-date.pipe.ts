@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class EpochToDatePipe implements PipeTransform {
 	transform(epoch: number): Date | null {
-		if (!epoch && epoch !== 0) {
+		if ((!epoch && epoch !== 0) || epoch === -1) {
 			return null; // Return null if the epoch value is false
 		}
 

@@ -12,4 +12,4 @@ export const environment = {
 // stockServiceApiUrl: 'http://localhost:8001/api',
 // notificationServiceApiUrl: 'http://localhost:8002/api',
 // bankServiceApiUrl: 'http://localhost:8003/api',
-// otcServiceApiUrl: 'http://localhost:8004/api',ZZ
+// otcServiceApiUrl: 'http://localhost:8004/api',

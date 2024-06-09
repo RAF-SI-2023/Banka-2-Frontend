@@ -61,7 +61,7 @@ export class OrderTransactionsAllComponent implements AfterViewInit {
 
 	fetchAllData(): void {
 		this.orderTransactionService
-			.findAll()
+			.findAllByEmail(localStorage.getItem('email') || '')
 			.pipe(
 				map(dataSource => {
 					this.dataSource.data = dataSource;

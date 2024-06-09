@@ -14,6 +14,10 @@
 			<span>{{ data.accountNumber ? data.accountNumber : '-' }}</span>
 		</div>
 		<div class="info-row">
+			<span class="label">Tip HOV:</span>
+			<span>{{ data.listingType ? data.listingType : '-' }}</span>
+		</div>
+		<div class="info-row">
 			<span class="label">Simbol:</span>
 			<span>{{
 				data.securitiesSymbol ? data.securitiesSymbol : '-'
@@ -46,7 +50,7 @@
 
 		<form [formGroup]="form">
 			<mat-form-field appearance="fill">
-				<mat-label>Nova javno dostupna količina HOV</mat-label>
+				<mat-label>Količina</mat-label>
 				<input
 					matInput
 					placeholder="Unesi količinu"
@@ -74,6 +78,20 @@
 		[disabled]="!form.valid"
 	>
 		Izmeni količinu
+	</button>
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="accent"
+		type="submit"
+		(click)="createOrder()"
+		[disabled]="
+			!form.valid ||
+			data.listingType === 'OPTION' ||
+			data.listingType === 'FOREX'
+		"
+	>
+		Prodaj količinu berzi
 	</button>
 	<button
 		mat-raised-button

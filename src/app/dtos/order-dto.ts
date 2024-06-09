@@ -6,8 +6,8 @@ export interface OrderDto {
 	securitiesSymbol: string;
 	quantity: number;
 	settlementDate: number;
-	limitPrice: string;
-	stopPrice: string;
+	limitPrice: number;
+	stopPrice: number;
 	allOrNone: boolean;
 	margin: boolean;
 }

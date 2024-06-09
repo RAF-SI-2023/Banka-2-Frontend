@@ -3,6 +3,7 @@ export interface SecurityDto {
 	email: string;
 	ownedByBank: boolean;
 	accountNumber: string;
+	listingType: string;
 	securitiesSymbol: string;
 	quantity: number;
 	quantityOfPubliclyAvailable: number;

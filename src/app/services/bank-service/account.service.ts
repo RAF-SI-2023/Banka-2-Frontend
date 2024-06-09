@@ -7,6 +7,7 @@ import { ForeignAccountDto } from '../../dtos/foreign-account-dto';
 import { BusinessAccountDto } from '../../dtos/business-account-dto';
 import { AccountDto } from '../../dtos/account-dto';
 import { map } from 'rxjs/operators';
+import { DepositWithdrawalDto } from 'src/app/dtos/deposit-withdrawal-dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -18,6 +19,12 @@ export class AccountService {
 	getFindByEmail(email: string) {
 		return this.httpClient.get<AccountDto[]>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.account.findAccountsByEmail}/${email}`,
+		);
+	}
+
+	getFindBankAccounts() {
+		return this.httpClient.get<AccountDto[]>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.account.cashAccountState}`,
 		);
 	}
 
@@ -56,6 +63,22 @@ export class AccountService {
 		return this.httpClient.post<boolean>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.account.createBusinessAccount}`,
 			businessAccountDto,
+		);
+	}
+
+	postDepositWithdrawalAddition(depositWithdrawalDto: DepositWithdrawalDto) {
+		return this.httpClient.post<boolean>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.account.depositWithdrawalAddition}`,
+			depositWithdrawalDto,
+		);
+	}
+
+	postDepositWithdrawalSubtraction(
+		depositWithdrawalDto: DepositWithdrawalDto,
+	) {
+		return this.httpClient.post<boolean>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.account.depositWithdrawalSubtraction}`,
+			depositWithdrawalDto,
 		);
 	}
 
