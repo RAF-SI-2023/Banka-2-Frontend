@@ -1,0 +1,154 @@
+<h2 mat-dialog-title>Dodaj zaposlenog</h2>
+<mat-dialog-content class="mat-typography size">
+	<form
+		[formGroup]="createAccountForm"
+		(ngSubmit)="addMarginAccount()"
+	>
+		<div>
+
+			<mat-form-field class="full-width">
+				<mat-label>User id</mat-label>
+				<input
+					matInput
+					placeholder="Unesite ime"
+					formControlName="userId"
+					name="userId"
+				/>
+				<mat-error
+					*ngIf="createAccountForm.get('userId')?.hasError('required')"
+				>
+					User id je obavezan.
+				</mat-error>
+			</mat-form-field>
+
+        
+
+			<mat-form-field class="full-width">
+				<mat-label>Email</mat-label>
+				<input
+					matInput
+					placeholder="Unesite email adresu"
+					formControlName="email"
+					type="email"
+					name="email"
+				/>
+				<mat-error
+					*ngIf="
+						createAccountForm.get('email')?.hasError('required')
+					"
+				>
+					Email je obavezan.
+				</mat-error>
+				<mat-error
+					*ngIf="
+						createAccountForm
+							.get('email')
+							?.hasError('invalidEmail')
+					"
+				>
+					Pogrešan format email-a.
+				</mat-error>
+			</mat-form-field>
+
+            <mat-form-field class="form-field">
+                <mat-label>Valuta</mat-label>
+                <mat-select [(ngModel)]="currencyCode" placeholder="Izaberite valutu">
+                  <mat-option *ngFor="let option of currencyCodes" [value]="option.value">
+                    {{ option.label }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="full-width">
+				<mat-label>Kolicina balansa</mat-label>
+				<input
+					matInput
+					placeholder="Unesite kolicinu balansa"
+					formControlName="balance"
+					type="string"
+					name="balance"
+				/>
+				<mat-error
+					*ngIf="
+						createAccountForm.get('balance')?.hasError('required')
+					"
+				>
+					Kolicina balanca je obavezan.
+				</mat-error>
+			</mat-form-field>
+
+
+            <mat-form-field class="full-width">
+				<mat-label>Kolicina pozajmice</mat-label>
+				<input
+					matInput
+					placeholder="Unesite kolicinu balansa"
+					formControlName="loanValue"
+					type="number"
+					name="loanValue"
+				/>
+				<mat-error
+					*ngIf="
+						createAccountForm.get('loanValue')?.hasError('required')
+					"
+				>
+					Kolicina pozajmice je obavezan.
+				</mat-error>
+			</mat-form-field>
+
+            <mat-form-field class="full-width">
+				<mat-label>Kolicina pozajmice</mat-label>
+				<input
+					matInput
+					placeholder="Unesite kolicinu balansa"
+					formControlName="maintenanceMargin"
+					type="number"
+					name="maintenanceMargin"
+				/>
+				<mat-error
+					*ngIf="
+						createAccountForm.get('maintenanceMargin')?.hasError('required')
+					"
+				>
+                MaintenanceMargin pozajmice je obavezan.
+				</mat-error>
+			</mat-form-field>
+
+			<!-- <mat-form-field class="full-width">
+				<mat-label>Dozvole</mat-label>
+				<mat-select
+					formControlName="permissions"
+					multiple="true"
+				>
+					<mat-option
+						*ngFor="let permission of availablePermissions"
+						[value]="permission"
+					>
+						{{ permission }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field> -->
+
+		</div>
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button
+		data-test="dodaj-button"
+		mat-raised-button
+		mat-dialog-close
+		color="accent"
+		cdkFocusInitial
+		(click)="addMarginAccount()"
+		[disabled]="!createAccountForm.valid"
+	>
+		Dodaj
+	</button>
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
+		Zatvori
+	</button>
+</mat-dialog-actions>
