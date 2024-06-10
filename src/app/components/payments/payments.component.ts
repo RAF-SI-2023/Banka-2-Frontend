@@ -95,7 +95,7 @@ export class PaymentsComponent implements OnInit {
 
 	sendDepositWithdrawalAddition(formDirective: FormGroupDirective): void {
 		if (this.depositWithdrawalAdditionForm.valid) {
-			let depositWithdrawalDto = this.depositWithdrawalAdditionForm
+			const depositWithdrawalDto = this.depositWithdrawalAdditionForm
 				.value as unknown as DepositWithdrawalDto;
 			depositWithdrawalDto.accountNumber =
 				depositWithdrawalDto.accountNumber.replaceAll(/-/g, '');

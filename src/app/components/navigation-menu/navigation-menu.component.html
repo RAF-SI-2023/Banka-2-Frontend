@@ -85,6 +85,14 @@
 			<span>Valute i berze</span>
 		</button>
 		<button
+			*ngIf="
+				checkTokenRole([
+					Role.ADMIN,
+					Role.SUPERVISOR,
+					Role.AGENT,
+					Role.USER
+				])
+			"
 			mat-menu-item
 			[matMenuTriggerFor]="securityMenu"
 		>
@@ -93,6 +101,14 @@
 	</mat-menu>
 	<mat-menu #securityMenu="matMenu">
 		<button
+			*ngIf="
+				checkTokenRole([
+					Role.ADMIN,
+					Role.SUPERVISOR,
+					Role.AGENT,
+					Role.USER
+				])
+			"
 			mat-menu-item
 			routerLink="/stocks"
 		>

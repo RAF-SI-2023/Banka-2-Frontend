@@ -13,6 +13,8 @@ import { SecuritiesService } from 'src/app/services/bank-service/securities.serv
 import { AcquiredSecuritiesInfoDialogComponent } from './acquired-securities-info-dialog/acquired-securities-info-dialog.component';
 import { AccountService } from 'src/app/services/bank-service/account.service';
 import { AccountDto } from 'src/app/dtos/account-dto';
+import { Role } from 'src/app/dtos/decoded-token-dto';
+import { AuthService } from 'src/app/services/iam-service/auth.service';
 
 @Component({
 	selector: 'app-acquired-securities',
@@ -36,6 +38,7 @@ export class AcquiredSecuritiesComponent implements OnInit, AfterViewInit {
 	selectedRow: SecurityDto | null = null;
 	accounts: AccountDto[] = [];
 	accountNumber = new FormControl();
+	role: Role | null = null;
 
 	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 	@ViewChild(MatSort) sort: MatSort | undefined;
@@ -43,9 +46,11 @@ export class AcquiredSecuritiesComponent implements OnInit, AfterViewInit {
 	constructor(
 		private accountService: AccountService,
 		private securitiesService: SecuritiesService,
+		private authService: AuthService,
 		public dialog: MatDialog,
 	) {
 		this.dataSource = new MatTableDataSource();
+		this.role = this.authService.getRoleFromToken();
 	}
 
 	ngOnInit(): void {
@@ -97,14 +102,24 @@ export class AcquiredSecuritiesComponent implements OnInit, AfterViewInit {
 
 	afterClose(dialogRef: any, accountNumber: string) {
 		dialogRef.afterClosed().subscribe(() => {
-			this.accountNumber.setValue(accountNumber);
-			this.getAllSecuritiesByAccountNumber(accountNumber);
+			this.selectedRow = null;
+			setTimeout(() => {
+				this.accountNumber.setValue(accountNumber);
+				this.getAllSecuritiesByAccountNumber(accountNumber);
+			}, 1000);
 		});
 	}
 
 	getAccounts() {
-		const emailLocal = localStorage.getItem('email');
+		let emailLocal = localStorage.getItem('email');
 		if (!emailLocal) return;
+
+		if (this.checkTokenRole([Role.AGENT, Role.SUPERVISOR])) {
+			console.log('in', emailLocal);
+			emailLocal = 'bankAccount@bank.rs';
+		}
+
+		console.log(emailLocal);
 
 		this.accountService
 			.getFindByEmail(emailLocal)
@@ -126,5 +141,11 @@ export class AcquiredSecuritiesComponent implements OnInit, AfterViewInit {
 				}),
 			)
 			.subscribe();
+	}
+
+	checkTokenRole(roleArray: string[]) {
+		console.log(this.role);
+		if (!this.role) return false;
+		return roleArray.includes(this.role);
 	}
 }

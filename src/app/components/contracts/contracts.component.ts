@@ -25,7 +25,7 @@ export class ContractsComponent implements AfterViewInit {
 		'volume',
 		'totalPrice',
 		'contractStatus',
-		'contractType',
+		// 'contractType', TDO
 		'dateTimeCreated',
 		'sellerConfirmation',
 		'bankConfirmation',

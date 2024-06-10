@@ -11,6 +11,8 @@ import { CompanyInfoDialogComponent } from './dialogs/company-info-dialog/compan
 import { UpdateCompanyDialogComponent } from './dialogs/update-company-dialog/update-company-dialog.component';
 import { AddCompanyDialogComponent } from './dialogs/add-company-dialog/add-company-dialog.component';
 import { CompanyService } from 'src/app/services/iam-service/company.service';
+import { Role } from 'src/app/dtos/decoded-token-dto';
+import { AuthService } from 'src/app/services/iam-service/auth.service';
 
 @Component({
 	selector: 'app-companies',
@@ -34,12 +36,15 @@ export class CompaniesComponent implements AfterViewInit {
 	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 	@ViewChild(MatSort) sort: MatSort | undefined;
 	protected readonly validateHorizontalPosition = validateHorizontalPosition;
+	role: Role | null = null;
 
 	constructor(
 		private companyService: CompanyService,
+		private authService: AuthService,
 		public dialog: MatDialog,
 	) {
 		this.dataSource = new MatTableDataSource();
+		this.role = this.authService.getRoleFromToken();
 		this.fetchAllData();
 	}
 
@@ -148,4 +153,12 @@ export class CompaniesComponent implements AfterViewInit {
 				});
 		}
 	}
+
+	checkTokenRole(roleArray: string[]) {
+		console.log(this.role);
+		if (!this.role) return false;
+		return roleArray.includes(this.role);
+	}
+
+	protected readonly Role = Role;
 }
