@@ -3,14 +3,14 @@ import { TestBed } from '@angular/core/testing';
 import { MarginAccountsService } from './margin-accounts.service';
 
 describe('MarginAccountsService', () => {
-  let service: MarginAccountsService;
+	let service: MarginAccountsService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(MarginAccountsService);
-  });
+	beforeEach(() => {
+		TestBed.configureTestingModule({});
+		service = TestBed.inject(MarginAccountsService);
+	});
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+	it('should be created', () => {
+		expect(service).toBeTruthy();
+	});
 });

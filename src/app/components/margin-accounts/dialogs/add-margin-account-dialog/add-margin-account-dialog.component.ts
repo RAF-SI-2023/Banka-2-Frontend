@@ -3,22 +3,22 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MarginAccountDto } from 'src/app/dtos/margin-account-dto';
 import { MarginAccountsService } from 'src/app/services/bank-service/margin-accounts.service';
 import { DropdownOption, DropdownOptions } from 'src/app/utils/constants';
-import { emailValidator, phoneNumberValidator } from 'src/app/utils/validators';
+import { emailValidator } from 'src/app/utils/validators';
 
 @Component({
-  selector: 'app-add-margin-account-dialog',
-  templateUrl: './add-margin-account-dialog.component.html',
-  styleUrls: ['./add-margin-account-dialog.component.css']
+	selector: 'app-add-margin-account-dialog',
+	templateUrl: './add-margin-account-dialog.component.html',
+	styleUrls: ['./add-margin-account-dialog.component.css'],
 })
 export class AddMarginAccountDialogComponent {
-  availablePermissions: string[] = [
+	availablePermissions: string[] = [
 		'PERMISSION_1',
 		'PERMISSION_2',
 		'PERMISSION_3',
 		'PERMISSION_4',
 	];
 	permissions: string[] = [];
-  currencyCodes: DropdownOption[] = DropdownOptions.currencyCodes;
+	currencyCodes: DropdownOption[] = DropdownOptions.currencyCodes;
 
 	createAccountForm = this.fb.group({
 		// id: ['', [Validators.required]],
@@ -32,8 +32,7 @@ export class AddMarginAccountDialogComponent {
 		maintenanceMargin: [0, [Validators.required]],
 	});
 
-  currencyCode!: string | "";
-
+	currencyCode!: string | '';
 
 	constructor(
 		private marginAccountsService: MarginAccountsService,
@@ -50,16 +49,16 @@ export class AddMarginAccountDialogComponent {
 
 	addMarginAccount() {
 		if (this.createAccountForm.valid) {
+			const marginAccountDto = this.createAccountForm
+				.value as unknown as MarginAccountDto;
 
+			marginAccountDto.type = 'STOCK';
+			marginAccountDto.marginCall = true;
+			console.log(marginAccountDto);
 
-				const marginAccountDto = this.createAccountForm
-					.value as unknown as MarginAccountDto;
-        
-          marginAccountDto.type="STOCK";
-          marginAccountDto.marginCall=true;
-          console.log(marginAccountDto);
-        
-          this.marginAccountsService.postMarginsAccount(marginAccountDto).subscribe({
+			this.marginAccountsService
+				.postMarginsAccount(marginAccountDto)
+				.subscribe({
 					next: response => {
 						console.log(response);
 					},
@@ -67,12 +66,8 @@ export class AddMarginAccountDialogComponent {
 						console.error(error);
 					},
 				});
-			} else {
-				console.error('Form controls are null.');
-			}
+		} else {
+			console.error('Form controls are null.');
 		}
 	}
-
-
-
-
+}

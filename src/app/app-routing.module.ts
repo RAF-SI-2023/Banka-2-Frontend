@@ -78,7 +78,6 @@ const routes: Routes = [
 		component: OrderTransactionsAllComponent,
 		path: 'order-transactions/all',
 		canActivate: [authGuard],
-		data: { roles: [Role.ADMIN, Role.SUPERVISOR] },
 	},
 	{
 		component: BankExchangeComponent,

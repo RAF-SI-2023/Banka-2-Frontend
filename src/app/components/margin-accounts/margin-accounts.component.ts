@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { map, catchError, throwError, pipe } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 import { MarginAccountDto } from 'src/app/dtos/margin-account-dto';
 import { validateHorizontalPosition } from '@angular/cdk/overlay';
 import { MarginAccountsService } from 'src/app/services/bank-service/margin-accounts.service';
@@ -13,65 +13,63 @@ import { EditMarginAccountDialogComponent } from './dialogs/edit-margin-account-
 import { MarginAccountInfoDialogComponent } from './dialogs/margin-account-info-dialog/margin-account-info-dialog.component';
 
 @Component({
-  selector: 'app-margin-accounts',
-  templateUrl: './margin-accounts.component.html',
-  styleUrls: ['./margin-accounts.component.css']
+	selector: 'app-margin-accounts',
+	templateUrl: './margin-accounts.component.html',
+	styleUrls: ['./margin-accounts.component.css'],
 })
 export class MarginAccountsComponent implements AfterViewInit {
-  displayedColumns: string[] = [
-    'id',
-    'userId',
-    'email',
-    'currencyCode',
-    'accountNumber', 
-    'type', 
-    'balance', 
-    'loanValue', 
-    'maintenanceMargin', 
-    // 'marginCall',
-  ];
+	displayedColumns: string[] = [
+		'id',
+		'userId',
+		'email',
+		'currencyCode',
+		'accountNumber',
+		'type',
+		'balance',
+		'loanValue',
+		'maintenanceMargin',
+		// 'marginCall',
+	];
 
-  dataSource: MatTableDataSource<MarginAccountDto>;
+	dataSource: MatTableDataSource<MarginAccountDto>;
 	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 	@ViewChild(MatSort) sort: MatSort | undefined;
 	protected readonly validateHorizontalPosition = validateHorizontalPosition;
 
-
 	selectedRow: MarginAccountDto | null = null;
 
-  foreignCurrencyOptions: DropdownOption[] = DropdownOptions.currencyCodes;
+	foreignCurrencyOptions: DropdownOption[] = DropdownOptions.currencyCodes;
 
-  constructor(
-    private marginAccountService: MarginAccountsService,
-    public dialog: MatDialog,
-
-  ) {
-    this.dataSource = new MatTableDataSource();
-    this.fetchAllData();
-  }
-  ngAfterViewInit() {
+	constructor(
+		private marginAccountService: MarginAccountsService,
+		public dialog: MatDialog,
+	) {
+		this.dataSource = new MatTableDataSource();
+		this.fetchAllData();
+	}
+	ngAfterViewInit() {
 		if (this.paginator) this.dataSource.paginator = this.paginator;
 		if (this.sort) this.dataSource.sort = this.sort;
 	}
-  fetchAllData() {
-    const email = localStorage.getItem("email");
-    if(email!=null)
-    this.marginAccountService
-      .getAllByEmail(email)
-      .pipe(
-        map(dataSource => {
-          this.dataSource.data = dataSource;
-          return dataSource;
-        }),
-        catchError(error => {
-          console.error('Error loading data.', error);
-          return throwError(() => error);
-        }),
-      )
-      .subscribe();
-  }
+	fetchAllData() {
+		const email = localStorage.getItem('email');
+		if (email != null)
+			this.marginAccountService
+				.getAllByEmail(email)
+				.pipe(
+					map(dataSource => {
+						this.dataSource.data = dataSource;
+						return dataSource;
+					}),
+					catchError(error => {
+						console.error('Error loading data.', error);
+						return throwError(() => error);
+					}),
+				)
+				.subscribe();
+	}
 
-  applyFilter(event: Event) {
+	applyFilter(event: Event) {
 		const filterValue = (event.target as HTMLInputElement).value;
 		this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -88,13 +86,13 @@ export class MarginAccountsComponent implements AfterViewInit {
 		}
 	}
 
-  selectRow(row: MarginAccountDto) {
+	selectRow(row: MarginAccountDto) {
 		if (this.selectedRow?.id != row.id) {
 			this.selectedRow = row;
 		}
 	}
 
-  addMarginAccount() {
+	addMarginAccount() {
 		const dialogRef = this.dialog.open(AddMarginAccountDialogComponent, {
 			autoFocus: false,
 		});
@@ -109,10 +107,13 @@ export class MarginAccountsComponent implements AfterViewInit {
 
 	editMarginAccount() {
 		if (this.selectedRow != null) {
-			const dialogRef = this.dialog.open(EditMarginAccountDialogComponent, {
-				data: { selectedRow: this.selectedRow },
-				autoFocus: false,
-			});
+			const dialogRef = this.dialog.open(
+				EditMarginAccountDialogComponent,
+				{
+					data: { selectedRow: this.selectedRow },
+					autoFocus: false,
+				},
+			);
 
 			dialogRef.afterClosed().subscribe(() => {
 				this.selectedRow = null;
@@ -142,14 +143,12 @@ export class MarginAccountsComponent implements AfterViewInit {
 		}
 	}
 
-  viewAccount(row: MarginAccountDto){
-    if (this.selectedRow != null) {
+	viewAccount(row: MarginAccountDto) {
+		if (this.selectedRow != null) {
 			this.dialog.open(MarginAccountInfoDialogComponent, {
 				data: { selectedRow: row },
 				autoFocus: false,
 			});
 		}
-  }
-
-  
+	}
 }

@@ -17,12 +17,12 @@ import { EmployeeDto } from '../../dtos/employee-dto';
 import { AccountDto } from 'src/app/dtos/account-dto';
 import { CreditDto } from 'src/app/dtos/credit-dto';
 import { MatTableDataSource } from '@angular/material/table';
-import { CreditService } from 'src/app/services/bank-service/credit.service';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { AuthService } from 'src/app/services/iam-service/auth.service';
 import { AccountService } from 'src/app/services/bank-service/account.service';
 import { CardsInfoDialogComponent } from './cards-info-dialog/cards-info-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-user-profile',
@@ -51,9 +51,9 @@ export class UserProfileComponent implements OnInit {
 	constructor(
 		private iamService: UserService,
 		public dialog: MatDialog,
-		private creditService: CreditService,
 		private accountService: AccountService,
 		private authService: AuthService,
+		private router: Router,
 	) {
 		this.dataSource = new MatTableDataSource();
 		this.accountNumberDataSource = new MatTableDataSource();
@@ -157,5 +157,9 @@ export class UserProfileComponent implements OnInit {
 				autoFocus: false,
 			});
 		}
+	}
+
+	redirectToMarginAccounts() {
+		this.router.navigate(['/margin-accounts']);
 	}
 }

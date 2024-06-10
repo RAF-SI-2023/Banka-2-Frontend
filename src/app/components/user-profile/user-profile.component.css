@@ -115,3 +115,7 @@ mat-checkbox {
 .unselectable {
 	user-select: none;
 }
+
+.redirect-button {
+	margin-top: 1rem;
+}

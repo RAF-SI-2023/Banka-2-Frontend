@@ -1,7 +1,7 @@
 <section class="container">
 	<mat-card>
 		<mat-card-header>
-			<h2>Korisnici</h2>
+			<h2>Maržni računi</h2>
 			<div class="form">
 				<div>
 					<mat-form-field>
@@ -14,14 +14,13 @@
 					</mat-form-field>
 				</div>
 
-	
 				<!-- <button
 					mat-raised-button
 					class="buttons"
 					color="accent"
 					(click)="addMarginAccount()"
 				>
-					Napravi margin account
+					Napravi maržni račun
 				</button>
 				<button
 					mat-raised-button
@@ -29,7 +28,7 @@
 					color="accent"
 					(click)="editMarginAccount()"
 				>
-					Promeni margin account
+					Izmeni maržni račun
 				</button> -->
 				<button
 					data-test="delete-button"
@@ -38,7 +37,7 @@
 					color="warn"
 					(click)="deleteMarginAccount()"
 				>
-					Izbriši margin account
+					Izbriši maržni račun
 				</button>
 			</div>
 		</mat-card-header>
@@ -70,13 +69,13 @@
 							</td>
 						</ng-container>
 
-                        <ng-container matColumnDef="userId">
+						<ng-container matColumnDef="userId">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								user ID
+								Korisnički ID
 							</th>
 							<td
 								*matCellDef="let row"
@@ -86,7 +85,7 @@
 							</td>
 						</ng-container>
 
-                        <ng-container matColumnDef="email">
+						<ng-container matColumnDef="email">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
@@ -102,7 +101,7 @@
 							</td>
 						</ng-container>
 
-                        <ng-container matColumnDef="currencyCode">
+						<ng-container matColumnDef="currencyCode">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
@@ -118,13 +117,13 @@
 							</td>
 						</ng-container>
 
-                        <ng-container matColumnDef="accountNumber">
+						<ng-container matColumnDef="accountNumber">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Broj racuna
+								Broj računa
 							</th>
 							<td
 								*matCellDef="let row"
@@ -133,14 +132,14 @@
 								{{ row.accountNumber }}
 							</td>
 						</ng-container>
-	
-                        <ng-container matColumnDef="type">
+
+						<ng-container matColumnDef="type">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Tip
+								Tip HOV
 							</th>
 							<td
 								*matCellDef="let row"
@@ -149,14 +148,14 @@
 								{{ row.type }}
 							</td>
 						</ng-container>
-	
-                        <ng-container matColumnDef="balance">
+
+						<ng-container matColumnDef="balance">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Kolicina
+								Dostupno stanje
 							</th>
 							<td
 								*matCellDef="let row"
@@ -166,13 +165,13 @@
 							</td>
 						</ng-container>
 
-                        <ng-container matColumnDef="loanValue">
+						<ng-container matColumnDef="loanValue">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Kolicina duga
+								Iznos duga
 							</th>
 							<td
 								*matCellDef="let row"
@@ -181,15 +180,15 @@
 								{{ row.loanValue }}
 							</td>
 						</ng-container>
-	
-                        <ng-container matColumnDef="maintenanceMargin">
+
+						<ng-container matColumnDef="maintenanceMargin">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-                                Cena odrzavanja							
-                            </th>
+								Marža održavanja
+							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
@@ -198,13 +197,13 @@
 							</td>
 						</ng-container>
 
-                        <!-- <ng-container matColumnDef="marginCall">
+						<!-- <ng-container matColumnDef="marginCall">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-                            Poziv upozorenja
+                            	Poziv upozorenja
                             </th>
 							<td
 								*matCellDef="let row"

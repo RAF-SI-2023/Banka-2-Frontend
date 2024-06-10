@@ -5,7 +5,6 @@
 		(ngSubmit)="addMarginAccount()"
 	>
 		<div>
-
 			<mat-form-field class="full-width">
 				<mat-label>User id</mat-label>
 				<input
@@ -15,13 +14,13 @@
 					name="userId"
 				/>
 				<mat-error
-					*ngIf="createAccountForm.get('userId')?.hasError('required')"
+					*ngIf="
+						createAccountForm.get('userId')?.hasError('required')
+					"
 				>
 					User id je obavezan.
 				</mat-error>
 			</mat-form-field>
-
-        
 
 			<mat-form-field class="full-width">
 				<mat-label>Email</mat-label>
@@ -33,33 +32,35 @@
 					name="email"
 				/>
 				<mat-error
-					*ngIf="
-						createAccountForm.get('email')?.hasError('required')
-					"
+					*ngIf="createAccountForm.get('email')?.hasError('required')"
 				>
 					Email je obavezan.
 				</mat-error>
 				<mat-error
 					*ngIf="
-						createAccountForm
-							.get('email')
-							?.hasError('invalidEmail')
+						createAccountForm.get('email')?.hasError('invalidEmail')
 					"
 				>
 					Pogrešan format email-a.
 				</mat-error>
 			</mat-form-field>
 
-            <mat-form-field class="form-field">
-                <mat-label>Valuta</mat-label>
-                <mat-select [(ngModel)]="currencyCode" placeholder="Izaberite valutu">
-                  <mat-option *ngFor="let option of currencyCodes" [value]="option.value">
-                    {{ option.label }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+			<mat-form-field class="form-field">
+				<mat-label>Valuta</mat-label>
+				<mat-select
+					[(ngModel)]="currencyCode"
+					placeholder="Izaberite valutu"
+				>
+					<mat-option
+						*ngFor="let option of currencyCodes"
+						[value]="option.value"
+					>
+						{{ option.label }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
 
-              <mat-form-field class="full-width">
+			<mat-form-field class="full-width">
 				<mat-label>Kolicina balansa</mat-label>
 				<input
 					matInput
@@ -77,8 +78,7 @@
 				</mat-error>
 			</mat-form-field>
 
-
-            <mat-form-field class="full-width">
+			<mat-form-field class="full-width">
 				<mat-label>Kolicina pozajmice</mat-label>
 				<input
 					matInput
@@ -96,7 +96,7 @@
 				</mat-error>
 			</mat-form-field>
 
-            <mat-form-field class="full-width">
+			<mat-form-field class="full-width">
 				<mat-label>Kolicina pozajmice</mat-label>
 				<input
 					matInput
@@ -107,10 +107,12 @@
 				/>
 				<mat-error
 					*ngIf="
-						createAccountForm.get('maintenanceMargin')?.hasError('required')
+						createAccountForm
+							.get('maintenanceMargin')
+							?.hasError('required')
 					"
 				>
-                MaintenanceMargin pozajmice je obavezan.
+					MaintenanceMargin pozajmice je obavezan.
 				</mat-error>
 			</mat-form-field>
 
@@ -128,7 +130,6 @@
 					</mat-option>
 				</mat-select>
 			</mat-form-field> -->
-
 		</div>
 	</form>
 </mat-dialog-content>
