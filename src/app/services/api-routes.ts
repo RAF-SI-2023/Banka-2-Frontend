@@ -182,4 +182,20 @@ export const ApiRoutes = {
 		sellerDenyContractById: '/contracts/deny-seller',
 		bankDenyContractById: '/contracts/deny-bank',
 	},
+		// MarginsTransactionController
+		marginsTransaction:{
+			getMarginsTransaction:'/margins-transaction',
+			postMarginsTransaction:'/margins-transaction'
+		},
+		// MarginsAccountsController
+		marginsAccountService:{
+			getMarginsAccount:'/margins-account',
+			getAllByUserId:'/margins-account/all-userId',
+			getAllByEmail:'/margins-account/all-email',
+			getAllByAccountNumber:'/margins-account/all-account-number',
+			postMarginsAccount:'/margins-account',
+			putMarginsAccount:'/margins-account',
+			patchMarginsAccount:'/margins-account',
+			deleteMarginsAccount:'/margins-account',
+		},
 };
