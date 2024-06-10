@@ -23,6 +23,7 @@
 		</mat-card-header>
 		<mat-card-content>
 			<button
+				*ngIf="checkTokenRole([Role.ADMIN, Role.USER])"
 				class="redirect-button"
 				mat-raised-button
 				(click)="redirectToMoneyTransactionsAll()"
