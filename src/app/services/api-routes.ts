@@ -111,7 +111,7 @@ export const ApiRoutes = {
 		findById: '/order-transactions/id',
 		findByOrderId: '/order-transactions/order-id',
 		findAllByAccountNumber: '/order-transactions/account-number',
-		findAllByEmail: '/order/transactions/email',
+		findAllByEmail: '/order-transactions/email',
 	},
 	// BankTransferTransactionDetailsController
 	bankTransferTransactionDetails: {
@@ -181,5 +181,21 @@ export const ApiRoutes = {
 		bankApproveContractById: '/contracts/approve-bank',
 		sellerDenyContractById: '/contracts/deny-seller',
 		bankDenyContractById: '/contracts/deny-bank',
+	},
+	// MarginsTransactionController
+	marginsTransaction: {
+		getMarginsTransaction: '/margins-transaction',
+		postMarginsTransaction: '/margins-transaction',
+	},
+	// MarginsAccountsController
+	marginsAccountService: {
+		getMarginsAccount: '/margins-account',
+		getAllByUserId: '/margins-account/all-userId',
+		getAllByEmail: '/margins-account/all-email',
+		getAllByAccountNumber: '/margins-account/all-account-number',
+		postMarginsAccount: '/margins-account',
+		putMarginsAccount: '/margins-account',
+		patchMarginsAccount: '/margins-account',
+		deleteMarginsAccount: '/margins-account',
 	},
 };

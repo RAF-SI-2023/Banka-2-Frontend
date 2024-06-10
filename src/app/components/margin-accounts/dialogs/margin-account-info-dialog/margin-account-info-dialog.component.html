@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>Informacije o maržnom racunu</h2>
+<mat-dialog-content class="mat-typography size">
+	<div
+		*ngIf="!isLoading"
+		class="full-width"
+	>
+		<div class="info-row">
+			<span class="label">Korisnički ID:</span>
+			<span>{{
+				newSelectedRow.userId ? newSelectedRow.userId : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Email:</span>
+			<span>{{ newSelectedRow.email ? newSelectedRow.email : '-' }}</span>
+		</div>
+
+		<div class="info-row">
+			<span class="label">Valuta:</span>
+			<span>{{
+				newSelectedRow.currencyCode ? newSelectedRow.currencyCode : '-'
+			}}</span>
+		</div>
+
+		<div class="info-row">
+			<span class="label">Dostupno stanje:</span>
+			<span>{{
+				newSelectedRow.balance ? newSelectedRow.balance : '-'
+			}}</span>
+		</div>
+		<div class="info-row">
+			<span class="label">Iznos duga:</span>
+			<span>{{
+				newSelectedRow.loanValue ? newSelectedRow.loanValue : '-'
+			}}</span>
+		</div>
+
+		<div class="info-row">
+			<span class="label">Marža održavanja:</span>
+			<span>{{
+				newSelectedRow.maintenanceMargin
+					? newSelectedRow.maintenanceMargin
+					: '-'
+			}}</span>
+		</div>
+	</div>
+
+	<div
+		*ngIf="isLoading"
+		class="spinner-container"
+	>
+		<mat-progress-spinner
+			diameter="50"
+			mode="indeterminate"
+		></mat-progress-spinner>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
+		Zatvori
+	</button>
+</mat-dialog-actions>

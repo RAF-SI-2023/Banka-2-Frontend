@@ -1,7 +1,7 @@
 <section class="container">
 	<mat-card>
 		<mat-card-header>
-			<h2>Kompanije</h2>
+			<h2>Maržni računi</h2>
 			<div class="form">
 				<div>
 					<mat-form-field>
@@ -14,37 +14,30 @@
 					</mat-form-field>
 				</div>
 
-				<button
-					*ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])"
+				<!-- <button
 					mat-raised-button
 					class="buttons"
 					color="accent"
-					(click)="addCompany()"
+					(click)="addMarginAccount()"
 				>
-					Dodaj kompaniju
+					Napravi maržni račun
 				</button>
-
 				<button
-					*ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])"
 					mat-raised-button
 					class="buttons"
 					color="accent"
-					[disabled]="!selectedRow"
-					(click)="updateCompany()"
+					(click)="editMarginAccount()"
 				>
-					Izmeni kompaniju
-				</button>
-
+					Izmeni maržni račun
+				</button> -->
 				<button
-					*ngIf="checkTokenRole([Role.ADMIN, Role.EMPLOYEE])"
 					data-test="delete-button"
 					mat-raised-button
 					class="buttons"
 					color="warn"
-					[disabled]="!selectedRow"
-					(click)="deleteCompany()"
+					(click)="deleteMarginAccount()"
 				>
-					Izbriši kompaniju
+					Izbriši maržni račun
 				</button>
 			</div>
 		</mat-card-header>
@@ -76,133 +69,149 @@
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="companyName">
+						<ng-container matColumnDef="userId">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Ime kompanije
+								Korisnički ID
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.companyName }}
+								{{ row.userId }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="faxNumber">
+						<ng-container matColumnDef="email">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Broj faksa
+								Email
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.faxNumber }}
+								{{ row.email }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="phoneNumber">
+						<ng-container matColumnDef="currencyCode">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Broj telefona
+								Valuta
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.phoneNumber }}
+								{{ row.currencyCode }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="pib">
+						<ng-container matColumnDef="accountNumber">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								PIB
+								Broj računa
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.pib }}
+								{{ row.accountNumber }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="registryNumber">
+						<ng-container matColumnDef="type">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Registarski broj
+								Tip HOV
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.registryNumber }}
+								{{ row.type }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="identificationNumber">
+						<ng-container matColumnDef="balance">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Matični broj
+								Dostupno stanje
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.identificationNumber }}
+								{{ row.balance }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="activityCode">
+						<ng-container matColumnDef="loanValue">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Šifra delatnosti
+								Iznos duga
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.activityCode }}
+								{{ row.loanValue }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="address">
+						<ng-container matColumnDef="maintenanceMargin">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Adresa
+								Marža održavanja
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.address }}
+								{{ row.maintenanceMargin }}
 							</td>
 						</ng-container>
+
+						<!-- <ng-container matColumnDef="marginCall">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+                            	Poziv upozorenja
+                            </th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.marginCall }}
+							</td>
+						</ng-container> -->
 
 						<tr
 							*matHeaderRowDef="displayedColumns"
@@ -211,7 +220,7 @@
 						<tr
 							mat-row
 							(click)="selectRow(row)"
-							(dblclick)="viewCompany(row)"
+							(dblclick)="viewAccount(row)"
 							[class.row-selected]="selectedRow?.id === row.id"
 							*matRowDef="let row; columns: displayedColumns"
 						></tr>
