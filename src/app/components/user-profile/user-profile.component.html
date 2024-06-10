@@ -247,6 +247,7 @@
 			</div>
 
 			<button
+				*ngIf="user?.role === Role.ADMIN || user?.role === Role.USER"
 				class="redirect-button"
 				mat-raised-button
 				(click)="redirectToMarginAccounts()"
