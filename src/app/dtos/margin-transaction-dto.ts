@@ -7,4 +7,4 @@ export interface MarginTransactionDto {
 	type: string;
 	initialMargin: number;
 	maintenanceMargin: number;
-  }
+}

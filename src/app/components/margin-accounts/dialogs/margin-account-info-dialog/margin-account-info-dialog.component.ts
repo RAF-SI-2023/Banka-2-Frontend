@@ -3,12 +3,12 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MarginAccountsService } from 'src/app/services/bank-service/margin-accounts.service';
 
 @Component({
-  selector: 'app-margin-account-info-dialog',
-  templateUrl: './margin-account-info-dialog.component.html',
-  styleUrls: ['./margin-account-info-dialog.component.css']
+	selector: 'app-margin-account-info-dialog',
+	templateUrl: './margin-account-info-dialog.component.html',
+	styleUrls: ['./margin-account-info-dialog.component.css'],
 })
 export class MarginAccountInfoDialogComponent {
-  newSelectedRow = { ...this.data.selectedRow };
+	newSelectedRow = { ...this.data.selectedRow };
 	isLoading = true;
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
@@ -38,8 +38,4 @@ export class MarginAccountInfoDialogComponent {
 		}
 		this.newSelectedRow = { ...this.data.selectedRow };
 	}
-
-
-
-
 }

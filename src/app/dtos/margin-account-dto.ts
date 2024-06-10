@@ -1,5 +1,5 @@
 export interface MarginAccountDto {
-	id: number
+	id: number;
 	currencyCode: string;
 	accountNumber: string;
 	type: string;
@@ -7,7 +7,6 @@ export interface MarginAccountDto {
 	loanValue: number;
 	maintenanceMargin: number;
 	marginCall: boolean;
-
 }
 
 // "id": 0,

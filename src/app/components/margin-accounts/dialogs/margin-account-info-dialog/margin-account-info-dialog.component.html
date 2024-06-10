@@ -5,8 +5,10 @@
 		class="full-width"
 	>
 		<div class="info-row">
-			<span class="label">User ID:</span>
-			<span>{{ newSelectedRow.userId ? newSelectedRow.userId : '-' }}</span>
+			<span class="label">Korisnički ID:</span>
+			<span>{{
+				newSelectedRow.userId ? newSelectedRow.userId : '-'
+			}}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Email:</span>
@@ -15,31 +17,32 @@
 
 		<div class="info-row">
 			<span class="label">Valuta:</span>
-			<span>{{ newSelectedRow.currencyCode ? newSelectedRow.currencyCode : '-' }}</span>
+			<span>{{
+				newSelectedRow.currencyCode ? newSelectedRow.currencyCode : '-'
+			}}</span>
 		</div>
-		
-        <div class="info-row">
-			<span class="label">Stanje racunja:</span>
+
+		<div class="info-row">
+			<span class="label">Dostupno stanje:</span>
 			<span>{{
 				newSelectedRow.balance ? newSelectedRow.balance : '-'
 			}}</span>
 		</div>
-        <div class="info-row">
-			<span class="label">Kolicina pozajmice:</span>
+		<div class="info-row">
+			<span class="label">Iznos duga:</span>
 			<span>{{
 				newSelectedRow.loanValue ? newSelectedRow.loanValue : '-'
 			}}</span>
 		</div>
 
-        <div class="info-row">
-			<span class="label">Marža održavanja :</span>
+		<div class="info-row">
+			<span class="label">Marža održavanja:</span>
 			<span>{{
-				newSelectedRow.maintenanceMargin ? newSelectedRow.maintenanceMargin : '-'
+				newSelectedRow.maintenanceMargin
+					? newSelectedRow.maintenanceMargin
+					: '-'
 			}}</span>
 		</div>
-
-
-
 	</div>
 
 	<div
