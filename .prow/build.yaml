@@ -28,7 +28,7 @@ postsubmits:
               docker login -u $HARBOR_USERNAME -p $HARBOR_PASSWORD harbor.k8s.elab.rs
               
               TEAM_NAME="banka-2"
-              
+
               SERVICE_NAME="frontend"
               ENVIRONMENT="development"
               IMAGE_NAME="frontend-dev"
