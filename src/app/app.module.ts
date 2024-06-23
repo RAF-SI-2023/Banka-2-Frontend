@@ -117,6 +117,10 @@ import {
 } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DATE_FORMAT } from './utils/constants';
+import { MarginAccountsComponent } from './components/margin-accounts/margin-accounts.component';
+import { AddMarginAccountDialogComponent } from './components/margin-accounts/dialogs/add-margin-account-dialog/add-margin-account-dialog.component';
+import { EditMarginAccountDialogComponent } from './components/margin-accounts/dialogs/edit-margin-account-dialog/edit-margin-account-dialog.component';
+import { MarginAccountInfoDialogComponent } from './components/margin-accounts/dialogs/margin-account-info-dialog/margin-account-info-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -191,6 +195,10 @@ import { DATE_FORMAT } from './utils/constants';
 		AgentProfitsComponent,
 		BankTransactionsProfitsComponent,
 		PaymentsComponent,
+		MarginAccountsComponent,
+		AddMarginAccountDialogComponent,
+		EditMarginAccountDialogComponent,
+		MarginAccountInfoDialogComponent,
 	],
 	imports: [
 		HttpClientModule,

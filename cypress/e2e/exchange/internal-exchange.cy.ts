@@ -6,7 +6,6 @@ describe('Adding Company Dialog', () => {
 		cy.visit('/money-transactions'); // Assuming your companies component is accessible at /companies route
 	});
 
-
 	it('should exchange', () => {
 		// wait for a second
 		cy.wait(1000);
@@ -34,7 +33,5 @@ describe('Adding Company Dialog', () => {
 		cy.get('[data-test="submit-button"]').click();
 
 		cy.get('.app-notification-success').should('be.visible');
-
-	})
-
-})
+	});
+});

@@ -37,6 +37,7 @@ import { BankProfitsComponent } from './components/bank-profits/bank-profits.com
 import { AgentProfitsComponent } from './components/bank-profits/agent-profits/agent-profits.component';
 import { BankTransactionsProfitsComponent } from './components/bank-profits/bank-transactions-profits/bank-transactions-profits.component';
 import { PaymentsComponent } from './components/payments/payments.component';
+import { MarginAccountsComponent } from './components/margin-accounts/margin-accounts.component';
 
 const routes: Routes = [
 	{
@@ -77,7 +78,6 @@ const routes: Routes = [
 		component: OrderTransactionsAllComponent,
 		path: 'order-transactions/all',
 		canActivate: [authGuard],
-		data: { roles: [Role.ADMIN, Role.SUPERVISOR] },
 	},
 	{
 		component: BankExchangeComponent,
@@ -224,6 +224,10 @@ const routes: Routes = [
 		data: {
 			roles: [Role.ADMIN, Role.USER],
 		},
+	},
+	{
+		component: MarginAccountsComponent,
+		path: 'margin-accounts',
 	},
 ];
 
