@@ -16,7 +16,7 @@ export class FuturesContractInfoDialogComponent {
 	form: FormGroup;
 	newSelectedRow: FuturesContractDto = { ...this.data.selectedRow };
 	isLoading = true;
-
+	
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		private futuresContractService: FuturesContractService,
@@ -25,8 +25,8 @@ export class FuturesContractInfoDialogComponent {
 	) {
 		this.form = this.fb.group({
 			quantity: [null, [Validators.required, digitValidator()]],
-			limitPrice: [null, [Validators.required, digitValidator()]],
-			stopPrice: [null, [Validators.required, digitValidator()]],
+			limitPrice: [null, [ digitValidator()]],
+			stopPrice: [null, [ digitValidator()]],
 			allOrNone: [false],
 		});
 		this.fetchData();
@@ -62,6 +62,12 @@ export class FuturesContractInfoDialogComponent {
 		orderDto.listingType = 'FUTURE';
 		orderDto.securitiesSymbol = this.newSelectedRow.name;
 		orderDto.margin = false;
+		
+		//if empty == -1
+		orderDto.limitPrice = this.form.get('limitPrice')?.value || -1;
+		orderDto.stopPrice = this.form.get('stopPrice')?.value || -1;
+
+		// console.log(orderDto);
 
 		this.orderService.postCreateOrder(orderDto).subscribe({
 			next: response => {
