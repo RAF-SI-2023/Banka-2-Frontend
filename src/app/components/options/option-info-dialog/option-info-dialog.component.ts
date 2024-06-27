@@ -25,8 +25,8 @@ export class OptionInfoDialogComponent {
 	) {
 		this.form = this.fb.group({
 			quantity: [null, [Validators.required, digitValidator()]],
-			limitPrice: [null, [Validators.required, digitValidator()]],
-			stopPrice: [null, [Validators.required, digitValidator()]],
+			limitPrice: [null, [ digitValidator()]],
+			stopPrice: [null, [ digitValidator()]],
 			allOrNone: [false],
 		});
 	}
@@ -84,6 +84,8 @@ export class OptionInfoDialogComponent {
 
 		orderDto.orderActionType = 'BUY';
 		orderDto.listingType = 'OPTION';
+		orderDto.limitPrice = this.form.get('limitPrice')?.value || -1;
+		orderDto.stopPrice = this.form.get('stopPrice')?.value || -1;
 		try {
 			const currency = await this.getCurrency();
 			orderDto.securitiesSymbol =
@@ -97,7 +99,7 @@ export class OptionInfoDialogComponent {
 				'|' +
 				currency;
 			orderDto.margin = false;
-
+			console.log(orderDto);
 			this.orderService.postCreateOrder(orderDto).subscribe({
 				next: response => {
 					console.log(response);
@@ -106,6 +108,7 @@ export class OptionInfoDialogComponent {
 					console.error(error);
 				},
 			});
+
 		} catch (error) {
 			console.error('Failed to get currency:', error);
 		}

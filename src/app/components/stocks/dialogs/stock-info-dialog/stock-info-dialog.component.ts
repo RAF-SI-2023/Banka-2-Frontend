@@ -41,8 +41,8 @@ export class StockInfoDialogComponent {
 	) {
 		this.form = this.fb.group({
 			quantity: [null, [Validators.required, digitValidator()]],
-			limitPrice: [null, [Validators.required, digitValidator()]],
-			stopPrice: [null, [Validators.required, digitValidator()]],
+			limitPrice: [null, [digitValidator()]],
+			stopPrice: [null,  [digitValidator()]],
 			allOrNone: [false],
 		});
 		this.fetchData();
@@ -77,17 +77,24 @@ export class StockInfoDialogComponent {
 
 		orderDto.orderActionType = 'BUY';
 		orderDto.listingType = 'STOCK';
+
+		//if empty == -1
+		orderDto.limitPrice = this.form.get('limitPrice')?.value || -1;
+		orderDto.stopPrice = this.form.get('stopPrice')?.value || -1;
+
 		orderDto.securitiesSymbol = this.newSelectedRow.symbol;
 		orderDto.margin = false;
 
-		this.orderService.postCreateOrder(orderDto).subscribe({
-			next: response => {
-				console.log(response);
-			},
-			error: error => {
-				console.error(error);
-			},
-		});
+		console.log(orderDto);
+
+		// this.orderService.postCreateOrder(orderDto).subscribe({
+		// 	next: response => {
+		// 		console.log(response);
+		// 	},
+		// 	error: error => {
+		// 		console.error(error);
+		// 	},
+		// });
 	}
 
 	fetchActiveUserData() {
