@@ -121,6 +121,7 @@ import { MarginAccountsComponent } from './components/margin-accounts/margin-acc
 import { AddMarginAccountDialogComponent } from './components/margin-accounts/dialogs/add-margin-account-dialog/add-margin-account-dialog.component';
 import { EditMarginAccountDialogComponent } from './components/margin-accounts/dialogs/edit-margin-account-dialog/edit-margin-account-dialog.component';
 import { MarginAccountInfoDialogComponent } from './components/margin-accounts/dialogs/margin-account-info-dialog/margin-account-info-dialog.component';
+import { InterbankTradableSecuritiesComponent } from './components/interbank-tradable-securities/interbank-tradable-securities.component';
 
 @NgModule({
 	declarations: [
@@ -199,6 +200,7 @@ import { MarginAccountInfoDialogComponent } from './components/margin-accounts/d
 		AddMarginAccountDialogComponent,
 		EditMarginAccountDialogComponent,
 		MarginAccountInfoDialogComponent,
+  		InterbankTradableSecuritiesComponent,
 	],
 	imports: [
 		HttpClientModule,
