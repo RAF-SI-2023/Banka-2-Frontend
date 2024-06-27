@@ -198,4 +198,8 @@ export const ApiRoutes = {
 		patchMarginsAccount: '/margins-account',
 		deleteMarginsAccount: '/margins-account',
 	},
+	// BankOtcController
+	bankOtc: {
+		getBanksStocks: '/getBanksStocks',
+	},
 };
