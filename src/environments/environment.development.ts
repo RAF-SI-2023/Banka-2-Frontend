@@ -6,9 +6,6 @@ export const environment = {
 		'https://banka-2-dev.si.raf.edu.rs/notification-service/api',
 	bankServiceApiUrl: 'https://banka-2-dev.si.raf.edu.rs/bank-service/api',
 	otcServiceApiUrl: 'https://banka-2-dev.si.raf.edu.rs/otc-service/api',
-
-	
-
 };
 
 // iamServiceApiUrl: 'http://localhost:8000/api',
