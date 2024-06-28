@@ -30,7 +30,7 @@ export class NavigationMenuComponent implements OnInit, OnDestroy {
 	private changeDetector = inject(ChangeDetectorRef);
 
 	isBank = true; // Default to 'Bank'
-	isStock = false;
+	isStockMarket = false;
 	selectedToggle = 'bank';
 
 	activeUser: UserDto | null = null;
@@ -51,7 +51,7 @@ export class NavigationMenuComponent implements OnInit, OnDestroy {
 		this.fetchAccounts();
 		if (this.checkTokenRole([Role.EMPLOYEE, Role.SUPERVISOR, Role.AGENT])) {
 			this.isBank = false;
-			this.isStock = true;
+			this.isStockMarket = true;
 			this.selectedToggle = 'stock';
 		}
 	}
@@ -69,7 +69,7 @@ export class NavigationMenuComponent implements OnInit, OnDestroy {
 	onToggleChange(event: any): void {
 		const value = event.value;
 		this.isBank = value === 'bank';
-		this.isStock = value === 'stock';
+		this.isStockMarket = value === 'stock';
 		this.selectedToggle = value;
 	}
 
