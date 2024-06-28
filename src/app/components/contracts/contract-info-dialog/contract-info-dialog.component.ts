@@ -49,7 +49,7 @@ export class ContractInfoDialogComponent {
 		) {
 			return false;
 		} else if (
-			this.checkTokenRole([Role.USER ,Role.AGENT]) &&
+			this.checkTokenRole([Role.USER, Role.AGENT]) &&
 			this.newSelectedRow.sellerConfirmation
 		) {
 			return false;

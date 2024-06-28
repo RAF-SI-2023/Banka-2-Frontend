@@ -201,5 +201,7 @@ export const ApiRoutes = {
 	// BankOtcController
 	bankOtc: {
 		getBanksStocks: '/getBanksStocks',
+		getOffers: '/v1/otcTrade/getOffers',
+		getOurOffers: '/v1/otcTrade/getOurOffers',
 	},
 };

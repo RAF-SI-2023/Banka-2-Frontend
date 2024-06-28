@@ -1,5 +1,5 @@
 export interface BankOtcStockDto {
-    id: number,
+	id: number;
 	ticker: string;
 	amount: number;
 }

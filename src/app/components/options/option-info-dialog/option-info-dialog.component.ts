@@ -25,8 +25,8 @@ export class OptionInfoDialogComponent {
 	) {
 		this.form = this.fb.group({
 			quantity: [null, [Validators.required, digitValidator()]],
-			limitPrice: [null, [ digitValidator()]],
-			stopPrice: [null, [ digitValidator()]],
+			limitPrice: [null, [digitValidator()]],
+			stopPrice: [null, [digitValidator()]],
 			allOrNone: [false],
 		});
 	}
@@ -108,7 +108,6 @@ export class OptionInfoDialogComponent {
 					console.error(error);
 				},
 			});
-
 		} catch (error) {
 			console.error('Failed to get currency:', error);
 		}
