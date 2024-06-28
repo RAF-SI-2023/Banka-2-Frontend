@@ -1,7 +1,7 @@
 <section class="container">
 	<mat-card>
 		<mat-card-header>
-			<h2>Bakovni OTC ugovori</h2>
+			<h2>Međubankovne ponude</h2>
 			<div class="form">
 				<form>
 					<mat-form-field class="example-chip-list">
@@ -70,7 +70,7 @@
 								mat-header-cell
 								mat-sort-header
 							>
-								ID
+								ID ponude
 							</th>
 							<td
 								*matCellDef="let row"
@@ -85,7 +85,7 @@
 								mat-header-cell
 								mat-sort-header
 							>
-								ID
+								ID naše ponude
 							</th>
 							<td
 								*matCellDef="let row"
@@ -94,7 +94,7 @@
 								{{ row.myOfferId ? row.myOfferId : '-' }}
 							</td>
 						</ng-container>
-						<ng-container matColumnDef="ticekr">
+						<ng-container matColumnDef="ticker">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
@@ -166,7 +166,11 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.offerStatus ? row.offerStatus : '-' }}
+								{{
+									row.offerStatus
+										? (row.offerStatus | translate)
+										: '-'
+								}}
 							</td>
 
 							<tr
@@ -198,163 +202,6 @@
 					></mat-paginator>
 				</div>
 			</div>
-			<!--
-			<div class="tableContainer">
-				<div
-					class="mat-elevation-z8"
-					style="box-shadow: none"
-				>
-					<table
-						class="unselectable"
-						mat-table
-						[dataSource]="dataSourceOffer"
-						matSort
-					>
-						<ng-container matColumnDef="myOfferId">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								MyOfferId
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.id ? row.id : '-' }}
-							</td>
-						</ng-container>
-						<ng-container matColumnDef="offerId">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								OfferId
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.id ? row.id : '-' }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="ticker">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Simbol
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.ticker ? row.ticker : '-' }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="amount">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Količina
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.volume ? row.volume : '-' }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="price">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Cena
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.totalPrice ? row.totalPrice : '-' }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="offerStatus">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Status
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{
-									row.offerStatus ===
-									OfferStatus.PROCESSING
-										? 'Odobreno'
-										: row.contractStatus ===
-										OfferStatus.PROCESSING
-											? 'Odbijeno'
-											: row.contractStatus ===
-											OfferStatus.PROCESSING
-												? 'Na čekanju'
-												: '-'
-								}}
-						</td>
-						</ng-container>
-
-						<ng-container matColumnDef="bankId">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								bankId
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.id ? row.id : '-' }}
-							</td>
-						</ng-container>
-
-						
-
-						<tr
-							*matNoDataRow
-							class="mat-row"
-						>
-							<td
-								class="mat-cell"
-								colspan="4"
-							>
-								Nije pronađen podatak
-							</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<div id="paginatorContainer">
-				<mat-paginator
-					[hidePageSize]="true"
-					[pageSize]="10"
-				></mat-paginator>
-			</div>
-			-->
 		</mat-card-content>
 	</mat-card>
 </section>

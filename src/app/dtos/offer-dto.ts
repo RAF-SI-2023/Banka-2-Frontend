@@ -1,6 +1,6 @@
 export interface OfferDto {
 	offerId: number;
-	ticekr: string;
+	ticker: string;
 	amount: number;
 	price: number;
 	idBank: number;

@@ -87,14 +87,14 @@ export class StockInfoDialogComponent {
 
 		console.log(orderDto);
 
-		// this.orderService.postCreateOrder(orderDto).subscribe({
-		// 	next: response => {
-		// 		console.log(response);
-		// 	},
-		// 	error: error => {
-		// 		console.error(error);
-		// 	},
-		// });
+		this.orderService.postCreateOrder(orderDto).subscribe({
+			next: response => {
+				console.log(response);
+			},
+			error: error => {
+				console.error(error);
+			},
+		});
 	}
 
 	fetchActiveUserData() {

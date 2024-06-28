@@ -67,7 +67,7 @@ export class FuturesContractInfoDialogComponent {
 		orderDto.limitPrice = this.form.get('limitPrice')?.value || -1;
 		orderDto.stopPrice = this.form.get('stopPrice')?.value || -1;
 
-		// console.log(orderDto);
+		console.log(orderDto);
 
 		this.orderService.postCreateOrder(orderDto).subscribe({
 			next: response => {

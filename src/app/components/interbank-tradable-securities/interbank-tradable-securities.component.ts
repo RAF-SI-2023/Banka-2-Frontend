@@ -1,10 +1,9 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { BankOtcStockDto } from 'src/app/dtos/bank-otc-stock-dto';
-import { InterbankTradableSecuritiesService } from 'src/app/services/otc-service/interbank-tradable-securities.service';
+import { BankOtcService } from 'src/app/services/otc-service/bank-otc.service';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
@@ -20,11 +19,18 @@ export class InterbankTradableSecuritiesComponent implements AfterViewInit {
 	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 	@ViewChild(MatSort) sort: MatSort | undefined;
 
-	constructor(
-		private InterbankTradableSecuritiesService: InterbankTradableSecuritiesService,
-	) {
+	constructor(private bankOtcService: BankOtcService) {
 		this.dataSource = new MatTableDataSource();
 		this.fetchAllData();
+	}
+
+	applyFilter(event: Event) {
+		const filterValue = (event.target as HTMLInputElement).value;
+		this.dataSource.filter = filterValue.trim().toLowerCase();
+
+		if (this.dataSource.paginator) {
+			this.dataSource.paginator.firstPage();
+		}
 	}
 
 	ngAfterViewInit() {
@@ -33,7 +39,8 @@ export class InterbankTradableSecuritiesComponent implements AfterViewInit {
 	}
 
 	fetchAllData(): void {
-		this.InterbankTradableSecuritiesService.getBanksStocks()
+		this.bankOtcService
+			.getBanksStocks()
 			.pipe(
 				map(dataSource => {
 					this.dataSource.data = dataSource;

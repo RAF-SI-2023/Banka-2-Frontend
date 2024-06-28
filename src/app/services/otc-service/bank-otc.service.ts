@@ -9,7 +9,7 @@ import { MyOfferDto } from 'src/app/dtos/my-offer-dto';
 @Injectable({
 	providedIn: 'root',
 })
-export class InterbankTradableSecuritiesService {
+export class BankOtcService {
 	constructor(private httpClient: HttpClient) {}
 
 	// GET
@@ -30,4 +30,10 @@ export class InterbankTradableSecuritiesService {
 			environment.otcServiceApiUrl + ApiRoutes.bankOtc.getOurOffers,
 		);
 	}
+
+	// POST
+
+	// PUT
+
+	// DELETE
 }

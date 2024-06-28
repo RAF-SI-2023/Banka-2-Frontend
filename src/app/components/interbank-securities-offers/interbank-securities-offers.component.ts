@@ -3,32 +3,28 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { catchError, map, startWith } from 'rxjs/operators';
-import { forkJoin, Observable, throwError } from 'rxjs';
-import { COMMA, ENTER, M } from '@angular/cdk/keycodes';
+import { Observable, throwError } from 'rxjs';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
-//import { ContractInfoDialogComponent } from './contract/contract-info-dialog/contract-info-dialog.component';
-import { ContractDto } from 'src/app/dtos/contract-dto';
-import { InterbankTradableSecuritiesService } from 'src/app/services/otc-service/interbank-tradable-securities.service';
+import { BankOtcService } from 'src/app/services/otc-service/bank-otc.service';
 import { MyOfferDto } from 'src/app/dtos/my-offer-dto';
 import { OfferStatus } from 'src/app/dtos/my-offer-dto';
 import { OfferDto } from 'src/app/dtos/offer-dto';
 
 @Component({
-	selector: 'app-otc-offers',
-	templateUrl: './otc-offers.component.html',
-	styleUrls: ['./otc-offers.component.css'],
+	selector: 'app-interbank-securities-offers',
+	templateUrl: './interbank-securities-offers.component.html',
+	styleUrls: ['./interbank-securities-offers.component.css'],
 })
-export class OTCOfferComponent implements AfterViewInit {
+export class InterbankSecuritiesOffersComponent implements AfterViewInit {
 	displayedColumns: string[] = [
-		//'myOfferId',
-		'offerId',
-		'ticekr',
+		'myOfferId',
+		'ticker',
 		'amount',
 		'price',
-		'idBank',
 		'offerStatus',
 	];
 	dataSourceMyOffer = new MatTableDataSource<MyOfferDto>();
@@ -40,7 +36,7 @@ export class OTCOfferComponent implements AfterViewInit {
 	statusCtrl = new FormControl('');
 	filteredStatus: Observable<string[]>;
 	statuses: string[] = [];
-	allStatuses: string[] = ['Primljene Ponude', 'Naše Ponude'];
+	allStatuses: string[] = ['Primljene ponude', 'Poslate ponude'];
 
 	@ViewChild('statusInput') statusInput:
 		| ElementRef<HTMLInputElement>
@@ -49,7 +45,7 @@ export class OTCOfferComponent implements AfterViewInit {
 	@ViewChild(MatSort) sort: MatSort | undefined;
 
 	constructor(
-		private offerService: InterbankTradableSecuritiesService,
+		private bankOtcService: BankOtcService,
 		public dialog: MatDialog,
 	) {
 		this.filteredStatus = this.statusCtrl.valueChanges.pipe(
@@ -60,15 +56,15 @@ export class OTCOfferComponent implements AfterViewInit {
 		);
 		this.dataSourceMyOffer = new MatTableDataSource();
 		this.dataSourceOffer = new MatTableDataSource();
-		this.statuses.push('Primljene Ponude');
+		this.statuses.push('Primljene ponude');
 		this.fetchData();
 	}
 
-	/*selectRow(row: ContractDto): void {
-		if (this.selectedRow?.id != row.id) {
-			this.selectedRow = row;
-		}
-	}*/
+	// selectRow(row: ContractDto): void {
+	// 	if (this.selectedRow?.id != row.id) {
+	// 		this.selectedRow = row;
+	// 	}
+	// }
 
 	add(event: MatChipInputEvent): void {
 		const value = (event.value || '').trim();
@@ -97,7 +93,7 @@ export class OTCOfferComponent implements AfterViewInit {
 		this.fetchData();
 
 		if (this.statuses.length === 0) {
-			this.statuses.push('Primljene Ponude');
+			this.statuses.push('Primljene ponude');
 			this.fetchData();
 		}
 	}
@@ -131,17 +127,15 @@ export class OTCOfferComponent implements AfterViewInit {
 	}
 
 	fetchData() {
-		if (this.statuses.at(0) == 'Naše Ponude') {
+		if (this.statuses.at(0) == 'Poslate ponude') {
 			this.displayedColumns = [
 				'myOfferId',
-				//'offerId',
-				'ticekr',
+				'ticker',
 				'amount',
 				'price',
-				'idBank',
 				'offerStatus',
 			];
-			this.offerService
+			this.bankOtcService
 				.getOurOffers()
 				.pipe(
 					map(dataSourceMyOffer => {
@@ -157,15 +151,13 @@ export class OTCOfferComponent implements AfterViewInit {
 				.subscribe();
 		} else {
 			this.displayedColumns = [
-				//'myOfferId',
 				'offerId',
-				'ticekr',
+				'ticker',
 				'amount',
 				'price',
-				'idBank',
 				'offerStatus',
 			];
-			this.offerService
+			this.bankOtcService
 				.getOffers()
 				.pipe(
 					map(dataSourceOffer => {

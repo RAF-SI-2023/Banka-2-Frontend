@@ -1,7 +1,17 @@
 <section class="container">
 	<mat-card>
 		<mat-card-header>
-			<h2>Sve akcije</h2>
+			<h2>Međubankovne hartije od vrednosti u ponudi</h2>
+			<div class="form">
+				<mat-form-field>
+					<mat-label>Pretraži</mat-label>
+					<input
+						#input
+						(keyup)="applyFilter($event)"
+						matInput
+					/>
+				</mat-form-field>
+			</div>
 		</mat-card-header>
 
 		<mat-card-content>
@@ -69,6 +79,20 @@
 							mat-row
 							*matRowDef="let row; columns: displayedColumns"
 						></tr>
+
+						<tr
+							*matNoDataRow
+							class="mat-row"
+						>
+							<td
+								class="mat-cell"
+								colspan="4"
+							>
+								Nije pronađen podatak za unetu vrednost: "{{
+									input.value
+								}}"
+							</td>
+						</tr>
 					</table>
 				</div>
 			</div>

@@ -38,7 +38,8 @@ import { AgentProfitsComponent } from './components/bank-profits/agent-profits/a
 import { BankTransactionsProfitsComponent } from './components/bank-profits/bank-transactions-profits/bank-transactions-profits.component';
 import { PaymentsComponent } from './components/payments/payments.component';
 import { MarginAccountsComponent } from './components/margin-accounts/margin-accounts.component';
-import { OTCOfferComponent } from './components/otc-offers/otc-offers.component';
+import { InterbankTradableSecuritiesComponent } from './components/interbank-tradable-securities/interbank-tradable-securities.component';
+import { InterbankSecuritiesOffersComponent } from './components/interbank-securities-offers/interbank-securities-offers.component';
 
 const routes: Routes = [
 	{
@@ -229,13 +230,22 @@ const routes: Routes = [
 	{
 		component: MarginAccountsComponent,
 		path: 'margin-accounts',
+		canActivate: [authGuard],
 	},
 	{
-		component: OTCOfferComponent,
-		path: 'otc-offers',
+		component: InterbankTradableSecuritiesComponent,
+		path: 'interbank-tradable-securities',
 		canActivate: [authGuard, roleGuard],
 		data: {
-			roles: [Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR, Role.USER],
+			roles: [Role.ADMIN, Role.SUPERVISOR],
+		},
+	},
+	{
+		component: InterbankSecuritiesOffersComponent,
+		path: 'interbank-securities-offers',
+		canActivate: [authGuard, roleGuard],
+		data: {
+			roles: [Role.ADMIN, Role.SUPERVISOR],
 		},
 	},
 ];
