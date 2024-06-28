@@ -5,6 +5,7 @@ import { ApiRoutes } from '../api-routes';
 import { BankOtcStockDto } from '../../dtos/bank-otc-stock-dto';
 import { OfferDto } from 'src/app/dtos/offer-dto';
 import { MyOfferDto } from 'src/app/dtos/my-offer-dto';
+import { FrontendOfferDto } from 'src/app/dtos/frontend-offer-dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -32,8 +33,57 @@ export class BankOtcService {
 	}
 
 	// POST
+	postMakeOffer(frontendOfferDto: FrontendOfferDto) {
+		return this.httpClient.post<FrontendOfferDto>(
+			environment.otcServiceApiUrl + ApiRoutes.bankOtc.postMakeOffer,
+			frontendOfferDto,
+		);
+	}
+
+	postAcceptOffer(id: number) {
+		return this.httpClient.post<OfferDto>(
+			environment.otcServiceApiUrl +
+				ApiRoutes.bankOtc.postAcceptOffer +
+				'/' +
+				id,
+			null,
+		);
+	}
+
+	postDeclineOffer(id: number) {
+		return this.httpClient.post<OfferDto>(
+			environment.otcServiceApiUrl +
+				ApiRoutes.bankOtc.postDeclineOffer +
+				'/' +
+				id,
+			null,
+		);
+	}
 
 	// PUT
+	putRefresh() {
+		return this.httpClient.put<OfferDto>(
+			environment.otcServiceApiUrl + ApiRoutes.bankOtc.putRefresh,
+			null,
+		);
+	}
 
 	// DELETE
+	deleteMyOffer(id: number) {
+		return this.httpClient.delete<boolean>(
+			environment.otcServiceApiUrl +
+				ApiRoutes.bankOtc.deleteMyOffer +
+				'/' +
+				id,
+		);
+	}
+
+	deleteOffer(id: number) {
+		return this.httpClient.delete<boolean>(
+			environment.otcServiceApiUrl +
+				ApiRoutes.bankOtc.deleteOffer +
+				'/' +
+				id,
+		);
+	}
 }
