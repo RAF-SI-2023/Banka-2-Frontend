@@ -42,7 +42,7 @@ export class StockInfoDialogComponent {
 		this.form = this.fb.group({
 			quantity: [null, [Validators.required, digitValidator()]],
 			limitPrice: [null, [digitValidator()]],
-			stopPrice: [null,  [digitValidator()]],
+			stopPrice: [null, [digitValidator()]],
 			allOrNone: [false],
 		});
 		this.fetchData();

@@ -9,40 +9,41 @@ import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
 @Component({
-  selector: 'app-interbank-tradable-securities',
-  templateUrl: './interbank-tradable-securities.component.html',
-  styleUrls: ['./interbank-tradable-securities.component.css'],
+	selector: 'app-interbank-tradable-securities',
+	templateUrl: './interbank-tradable-securities.component.html',
+	styleUrls: ['./interbank-tradable-securities.component.css'],
 })
 export class InterbankTradableSecuritiesComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'ticker', 'amount'];
-  dataSource = new MatTableDataSource<BankOtcStockDto>();
+	displayedColumns: string[] = ['id', 'ticker', 'amount'];
+	dataSource = new MatTableDataSource<BankOtcStockDto>();
 
-  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
-  @ViewChild(MatSort) sort: MatSort | undefined;
+	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+	@ViewChild(MatSort) sort: MatSort | undefined;
 
-  constructor(private InterbankTradableSecuritiesService: InterbankTradableSecuritiesService) {
-    this.dataSource = new MatTableDataSource();
-    this.fetchAllData();
-  }
+	constructor(
+		private InterbankTradableSecuritiesService: InterbankTradableSecuritiesService,
+	) {
+		this.dataSource = new MatTableDataSource();
+		this.fetchAllData();
+	}
 
-  ngAfterViewInit() {
-    if (this.paginator) this.dataSource.paginator = this.paginator;
-    if (this.sort) this.dataSource.sort = this.sort;
-  }
+	ngAfterViewInit() {
+		if (this.paginator) this.dataSource.paginator = this.paginator;
+		if (this.sort) this.dataSource.sort = this.sort;
+	}
 
-  fetchAllData(): void {
-    this.InterbankTradableSecuritiesService
-      .getBanksStocks()
-      .pipe(
-        map(dataSource => {
-          this.dataSource.data = dataSource;
-          return dataSource;
-        }),
-        catchError(error => {
-          console.error('Error loading data.', error);
-          return throwError(() => error);
-        })
-      )
-      .subscribe();
-  }
+	fetchAllData(): void {
+		this.InterbankTradableSecuritiesService.getBanksStocks()
+			.pipe(
+				map(dataSource => {
+					this.dataSource.data = dataSource;
+					return dataSource;
+				}),
+				catchError(error => {
+					console.error('Error loading data.', error);
+					return throwError(() => error);
+				}),
+			)
+			.subscribe();
+	}
 }

@@ -38,6 +38,7 @@ import { AgentProfitsComponent } from './components/bank-profits/agent-profits/a
 import { BankTransactionsProfitsComponent } from './components/bank-profits/bank-transactions-profits/bank-transactions-profits.component';
 import { PaymentsComponent } from './components/payments/payments.component';
 import { MarginAccountsComponent } from './components/margin-accounts/margin-accounts.component';
+import { OTCOfferComponent } from './components/otc-offers/otc-offers.component';
 
 const routes: Routes = [
 	{
@@ -228,6 +229,14 @@ const routes: Routes = [
 	{
 		component: MarginAccountsComponent,
 		path: 'margin-accounts',
+	},
+	{
+		component: OTCOfferComponent,
+		path: 'otc-offers',
+		canActivate: [authGuard, roleGuard],
+		data: {
+			roles: [Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR, Role.USER],
+		},
 	},
 ];
 

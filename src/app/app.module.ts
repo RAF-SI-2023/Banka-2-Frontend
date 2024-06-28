@@ -70,6 +70,7 @@ import { BankProfitsComponent } from './components/bank-profits/bank-profits.com
 import { AgentProfitsComponent } from './components/bank-profits/agent-profits/agent-profits.component';
 import { BankTransactionsProfitsComponent } from './components/bank-profits/bank-transactions-profits/bank-transactions-profits.component';
 import { PaymentsComponent } from './components/payments/payments.component';
+import { OTCOfferComponent } from './components/otc-offers/otc-offers.component';
 /// DIRECTIVES/PIPES
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
@@ -200,7 +201,8 @@ import { InterbankTradableSecuritiesComponent } from './components/interbank-tra
 		AddMarginAccountDialogComponent,
 		EditMarginAccountDialogComponent,
 		MarginAccountInfoDialogComponent,
-  		InterbankTradableSecuritiesComponent,
+		InterbankTradableSecuritiesComponent,
+		OTCOfferComponent,
 	],
 	imports: [
 		HttpClientModule,
