@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>Nova ponuda</h2>
+<mat-dialog-content class="mat-typography size">
+  <div>
+    <form [formGroup]="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Ticker</mat-label>
+        <input matInput placeholder="Unesi ticker" formControlName="ticker" />
+        <mat-error *ngIf="form.get('ticker')?.hasError('required')">
+          Ticker je obavezna.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Količina</mat-label>
+        <input matInput placeholder="Unesi količinu" formControlName="amount" />
+        <mat-error *ngIf="form.get('amount')?.hasError('required')">
+          Limit je obavezan.
+        </mat-error>
+        <mat-error *ngIf="form.get('amount')?.hasError('invalidAmount')">
+          Unesena količina mora biti manja ili jednaka maksimalnoj količini ({{ maxAmount }}).
+        </mat-error>
+        <mat-error *ngIf="form.get('amount')?.hasError('containsNonDigits')">
+          Pogrešan format za količinu - podržane su samo cifre.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Cena</mat-label>
+        <input matInput placeholder="Unesi cenu" formControlName="price" />
+        <mat-error *ngIf="form.get('price')?.hasError('required')">
+          Stop cena je obavezna.
+        </mat-error>
+        <mat-error *ngIf="form.get('price')?.hasError('containsNonDigits')">
+          Pogrešan format za cenu - podržane su samo cifre.
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="accent" type="submit" [disabled]="!form.valid" (click)="createOrder()">
+    Posalji ponudu
+  </button>
+
+  <button mat-raised-button mat-dialog-close color="warn">
+    Otkazi ponudu
+  </button>
+</mat-dialog-actions>

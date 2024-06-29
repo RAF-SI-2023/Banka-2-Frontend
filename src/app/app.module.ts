@@ -123,6 +123,8 @@ import {
 } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DATE_FORMAT } from './utils/constants';
+import { NewInterbankOfferDialogComponent } from './components/interbank-tradable-securities/dialogs/new-interbank-offer-dialog/new-interbank-offer-dialog.component';
+import { ViewInterbankOfferDialogComponent } from './components/interbank-securities-offers/dialogs/view-interbank-offer-dialog/view-interbank-offer-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -203,6 +205,8 @@ import { DATE_FORMAT } from './utils/constants';
 		MarginAccountInfoDialogComponent,
 		InterbankTradableSecuritiesComponent,
 		InterbankSecuritiesOffersComponent,
+  NewInterbankOfferDialogComponent,
+  ViewInterbankOfferDialogComponent,
 	],
 	imports: [
 		HttpClientModule,

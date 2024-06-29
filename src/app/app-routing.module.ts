@@ -248,6 +248,14 @@ const routes: Routes = [
 			roles: [Role.ADMIN, Role.SUPERVISOR],
 		},
 	},
+	// {
+	// 	component: NewInterbankOfferDialogComponent,
+	// 	path: 'new-interbank-offer',
+	// 	canActivate: [authGuard, roleGuard],
+	// 	data: {
+	// 		roles: [Role.ADMIN, Role.SUPERVISOR],
+	// 	},
+	// },
 ];
 
 @NgModule({

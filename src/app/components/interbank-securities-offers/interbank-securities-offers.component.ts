@@ -13,6 +13,7 @@ import { BankOtcService } from 'src/app/services/otc-service/bank-otc.service';
 import { MyOfferDto } from 'src/app/dtos/my-offer-dto';
 import { OfferStatus } from 'src/app/dtos/my-offer-dto';
 import { OfferDto } from 'src/app/dtos/offer-dto';
+import { ViewInterbankOfferDialogComponent } from './dialogs/view-interbank-offer-dialog/view-interbank-offer-dialog.component';
 
 @Component({
 	selector: 'app-interbank-securities-offers',
@@ -28,9 +29,12 @@ export class InterbankSecuritiesOffersComponent implements AfterViewInit {
 		'offerStatus',
 	];
 	dataSourceMyOffer = new MatTableDataSource<MyOfferDto>();
+	// selectedRowMyOffer:MyOfferDto|null=null;
+	
 	dataSourceOffer = new MatTableDataSource<OfferDto>();
+	selectedRowOffer:OfferDto|null=null;
+
 	dataSource = new MatTableDataSource<any>();
-	//selectedRow: ContractDto | null = null;
 
 	separatorKeysCodes: number[] = [ENTER, COMMA];
 	statusCtrl = new FormControl('');
@@ -65,6 +69,29 @@ export class InterbankSecuritiesOffersComponent implements AfterViewInit {
 	// 		this.selectedRow = row;
 	// 	}
 	// }
+	selectRowOffer(row: OfferDto): void {
+	if (this.selectedRowOffer?.offerId != row.offerId) {
+		this.selectedRowOffer = row;
+	}
+	}
+
+	viewOffer(row: OfferDto) {
+		// Check if 'Primljene ponude' is selected
+		if (this.statuses.includes('Primljene ponude')) {
+		  const dialogRef = this.dialog.open(ViewInterbankOfferDialogComponent, {
+			data: row,
+			autoFocus: false,
+		  });
+	  
+		  dialogRef.afterClosed().subscribe(result => {
+			if (result) {
+			  // Handle the result if needed
+			}
+		  });
+		}
+	  }
+	  
+
 
 	add(event: MatChipInputEvent): void {
 		const value = (event.value || '').trim();
@@ -173,6 +200,5 @@ export class InterbankSecuritiesOffersComponent implements AfterViewInit {
 				.subscribe();
 		}
 	}
-
 	protected readonly OfferStatus = OfferStatus;
 }

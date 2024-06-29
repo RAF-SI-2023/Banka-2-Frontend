@@ -4,8 +4,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { BankOtcStockDto } from 'src/app/dtos/bank-otc-stock-dto';
 import { BankOtcService } from 'src/app/services/otc-service/bank-otc.service';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { NewInterbankOfferDialogComponent } from './dialogs/new-interbank-offer-dialog/new-interbank-offer-dialog.component';
 
 @Component({
 	selector: 'app-interbank-tradable-securities',
@@ -19,7 +21,10 @@ export class InterbankTradableSecuritiesComponent implements AfterViewInit {
 	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 	@ViewChild(MatSort) sort: MatSort | undefined;
 
-	constructor(private bankOtcService: BankOtcService) {
+	constructor(
+		private bankOtcService: BankOtcService,
+		public dialog: MatDialog,
+	) {
 		this.dataSource = new MatTableDataSource();
 		this.fetchAllData();
 	}
@@ -53,4 +58,35 @@ export class InterbankTradableSecuritiesComponent implements AfterViewInit {
 			)
 			.subscribe();
 	}
-}
+	openNewOfferDialog(row?: BankOtcStockDto): void {
+		if (row) {
+			console.log(row);
+		  const dialogRef = this.dialog.open(NewInterbankOfferDialogComponent, {
+			data: { ticker: row.ticker ,amount: row.amount}, // Pass ticker data to the dialog
+			autoFocus: false,
+		  });
+	
+		  dialogRef.afterClosed().subscribe(result => {
+			if (result) {
+			  // Handle the result if necessary
+			  this.fetchAllData();
+			}
+		  });
+		}
+	  }
+
+	  f5Page(): void {
+		// Example of an operation that returns an observable, e.g., bankOtcService.putRefresh()
+		this.bankOtcService.putRefresh()
+		  .subscribe(() => {
+			this.fetchAllData();
+			console.log('Data refreshed successfully after f5Page.');
+		  }, error => {
+			console.error('Error refreshing data after f5Page:', error);
+		  });
+	  }
+	
+	  private refreshData(): void {
+		this.fetchAllData();
+	  }
+	}
