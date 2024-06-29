@@ -63,15 +63,16 @@
 					placeholder="Unesi limit"
 					formControlName="limitPrice"
 				/>
-				<mat-error *ngIf="form.get('limitPrice')?.hasError('required')">
-					Limit je obavezan.
-				</mat-error>
+				<mat-hint
+					>Ako se unosi, limit cena mora da bude veća od najniže
+					prodavne cene.</mat-hint
+				>
 				<mat-error
 					*ngIf="
 						form.get('limitPrice')?.hasError('containsNonDigits')
 					"
 				>
-					Pogrešan format za limit - podržane su samo cifre.
+					Pogrešan format za limit cenu - podržane su samo cifre.
 				</mat-error>
 			</mat-form-field>
 
@@ -82,9 +83,10 @@
 					placeholder="Unesi stop cenu"
 					formControlName="stopPrice"
 				/>
-				<mat-error *ngIf="form.get('stopPrice')?.hasError('required')">
-					Stop cena je obavezna.
-				</mat-error>
+				<mat-hint
+					>Ako se unosi, stop cena mora da bude manja od najniže
+					prodavne cene.</mat-hint
+				>
 				<mat-error
 					*ngIf="form.get('stopPrice')?.hasError('containsNonDigits')"
 				>
