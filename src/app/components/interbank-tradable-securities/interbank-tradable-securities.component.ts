@@ -61,32 +61,37 @@ export class InterbankTradableSecuritiesComponent implements AfterViewInit {
 	openNewOfferDialog(row?: BankOtcStockDto): void {
 		if (row) {
 			console.log(row);
-		  const dialogRef = this.dialog.open(NewInterbankOfferDialogComponent, {
-			data: { ticker: row.ticker ,amount: row.amount}, // Pass ticker data to the dialog
-			autoFocus: false,
-		  });
-	
-		  dialogRef.afterClosed().subscribe(result => {
-			if (result) {
-			  // Handle the result if necessary
-			  this.fetchAllData();
-			}
-		  });
-		}
-	  }
+			const dialogRef = this.dialog.open(
+				NewInterbankOfferDialogComponent,
+				{
+					data: { ticker: row.ticker, amount: row.amount }, // Pass ticker data to the dialog
+					autoFocus: false,
+				},
+			);
 
-	  f5Page(): void {
-		// Example of an operation that returns an observable, e.g., bankOtcService.putRefresh()
-		this.bankOtcService.putRefresh()
-		  .subscribe(() => {
-			this.fetchAllData();
-			console.log('Data refreshed successfully after f5Page.');
-		  }, error => {
-			console.error('Error refreshing data after f5Page:', error);
-		  });
-	  }
-	
-	  private refreshData(): void {
-		this.fetchAllData();
-	  }
+			dialogRef.afterClosed().subscribe(result => {
+				if (result) {
+					// Handle the result if necessary
+					this.fetchAllData();
+				}
+			});
+		}
 	}
+
+	f5Page(): void {
+		// Example of an operation that returns an observable, e.g., bankOtcService.putRefresh()
+		this.bankOtcService.putRefresh().subscribe(
+			() => {
+				this.fetchAllData();
+				console.log('Data refreshed successfully after f5Page.');
+			},
+			error => {
+				console.error('Error refreshing data after f5Page:', error);
+			},
+		);
+	}
+
+	private refreshData(): void {
+		this.fetchAllData();
+	}
+}
