@@ -13,7 +13,6 @@ import { BankOtcService } from 'src/app/services/otc-service/bank-otc.service';
 import { MyOfferDto } from 'src/app/dtos/my-offer-dto';
 import { OfferStatus } from 'src/app/dtos/my-offer-dto';
 import { OfferDto } from 'src/app/dtos/offer-dto';
-import { ViewInterbankOfferDialogComponent } from './dialogs/view-interbank-offer-dialog/view-interbank-offer-dialog.component';
 
 @Component({
 	selector: 'app-interbank-securities-offers',
@@ -29,12 +28,9 @@ export class InterbankSecuritiesOffersComponent implements AfterViewInit {
 		'offerStatus',
 	];
 	dataSourceMyOffer = new MatTableDataSource<MyOfferDto>();
-	// selectedRowMyOffer:MyOfferDto|null=null;
-	
 	dataSourceOffer = new MatTableDataSource<OfferDto>();
-	selectedRowOffer:OfferDto|null=null;
-
 	dataSource = new MatTableDataSource<any>();
+	//selectedRow: ContractDto | null = null;
 
 	separatorKeysCodes: number[] = [ENTER, COMMA];
 	statusCtrl = new FormControl('');
@@ -47,6 +43,7 @@ export class InterbankSecuritiesOffersComponent implements AfterViewInit {
 		| undefined;
 	@ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 	@ViewChild(MatSort) sort: MatSort | undefined;
+	selectedRow: any;
 
 	constructor(
 		private bankOtcService: BankOtcService,
@@ -64,34 +61,34 @@ export class InterbankSecuritiesOffersComponent implements AfterViewInit {
 		this.fetchData();
 	}
 
-	// selectRow(row: ContractDto): void {
-	// 	if (this.selectedRow?.id != row.id) {
-	// 		this.selectedRow = row;
-	// 	}
-	// }
-	selectRowOffer(row: OfferDto): void {
-	if (this.selectedRowOffer?.offerId != row.offerId) {
-		this.selectedRowOffer = row;
-	}
+	selectRow(row: OfferDto | MyOfferDto): void {
+		this.selectedRow = row;
 	}
 
-	viewOffer(row: OfferDto) {
-		// Check if 'Primljene ponude' is selected
-		if (this.statuses.includes('Primljene ponude')) {
-		  const dialogRef = this.dialog.open(ViewInterbankOfferDialogComponent, {
-			data: row,
-			autoFocus: false,
-		  });
-	  
-		  dialogRef.afterClosed().subscribe(result => {
-			if (result) {
-			  // Handle the result if needed
-			}
-		  });
+	isSelected(row: any): boolean {
+		if (row?.offerId) {
+			return this.selectedRow?.offerId === row.offerId;
 		}
-	  }
-	  
+		if (row?.myOfferId) {
+			return this.selectedRow?.myOfferId === row.myOfferId;
+		}
+		return false;
+	}
 
+	deleteOffer(): void {
+		if (this.selectedRow?.offerId) {
+			this.bankOtcService
+				.deleteOffer(this.selectedRow.offerId)
+				.pipe(map(() => this.fetchData()))
+				.subscribe();
+		}
+		if (this.selectedRow?.myOfferId) {
+			this.bankOtcService
+				.deleteMyOffer(this.selectedRow.myOfferId)
+				.pipe(map(() => this.fetchData()))
+				.subscribe();
+		}
+	}
 
 	add(event: MatChipInputEvent): void {
 		const value = (event.value || '').trim();
@@ -166,6 +163,7 @@ export class InterbankSecuritiesOffersComponent implements AfterViewInit {
 				.getOurOffers()
 				.pipe(
 					map(dataSourceMyOffer => {
+						console.log(`got ${dataSourceMyOffer.length} offers`);
 						this.dataSourceMyOffer.data = dataSourceMyOffer;
 						this.dataSource = this.dataSourceMyOffer;
 						return dataSourceMyOffer;
@@ -188,6 +186,8 @@ export class InterbankSecuritiesOffersComponent implements AfterViewInit {
 				.getOffers()
 				.pipe(
 					map(dataSourceOffer => {
+						console.log(`got ${dataSourceOffer.length} offers`);
+
 						this.dataSourceOffer.data = dataSourceOffer;
 						this.dataSource = this.dataSourceOffer;
 						return dataSourceOffer;
@@ -200,5 +200,10 @@ export class InterbankSecuritiesOffersComponent implements AfterViewInit {
 				.subscribe();
 		}
 	}
+
+	isDisabled(): boolean {
+		return !this.selectedRow;
+	}
+
 	protected readonly OfferStatus = OfferStatus;
 }
