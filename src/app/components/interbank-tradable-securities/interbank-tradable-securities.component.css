@@ -1,51 +1,64 @@
 .container {
 	place-items: center;
-}
-
-mat-card-header {
+  }
+  
+  mat-card-header {
 	display: flex;
 	flex-direction: column;
-}
-
-.tableContainer {
+  }
+  
+  .form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+  }
+  
+  .button-container {
+	display: flex;
+	justify-content: flex-start;
+	margin-top: 10px; /* Adjust margin as needed */
+  }
+  
+  .tableContainer {
 	display: grid;
 	height: 100%;
 	width: 100%;
 	background: #eee;
-}
-
-table {
+  }
+  
+  table {
 	width: 100%;
-}
-
-.buttons {
+  }
+  
+  .buttons {
 	margin-right: 1%;
-}
-
-.mat-mdc-form-field {
+  }
+  
+  .mat-mdc-form-field {
 	width: 100%;
-}
-
-.mat-header-cell {
+  }
+  
+  .mat-header-cell {
 	text-align: center;
-}
-
-.mat-mdc-row:hover .mat-mdc-cell {
+  }
+  
+  .mat-mdc-row:hover .mat-mdc-cell {
 	background-color: #f5f5f5;
-}
-
-.row-selected .mat-mdc-cell {
+  }
+  
+  .row-selected .mat-mdc-cell {
 	border-color: currentColor;
 	background-color: transparent;
-}
-
-#paginatorContainer {
+  }
+  
+  #paginatorContainer {
 	display: block;
 	flex-direction: column;
 	align-self: end;
 	width: 100%;
-}
-
-.unselectable {
+  }
+  
+  .unselectable {
 	user-select: none;
-}
+  }
+  
