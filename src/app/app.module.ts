@@ -205,8 +205,8 @@ import { ViewInterbankOfferDialogComponent } from './components/interbank-securi
 		MarginAccountInfoDialogComponent,
 		InterbankTradableSecuritiesComponent,
 		InterbankSecuritiesOffersComponent,
-  NewInterbankOfferDialogComponent,
-  ViewInterbankOfferDialogComponent,
+		NewInterbankOfferDialogComponent,
+		ViewInterbankOfferDialogComponent,
 	],
 	imports: [
 		HttpClientModule,
