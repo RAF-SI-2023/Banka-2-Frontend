@@ -45,7 +45,7 @@
 					formControlName="price"
 				/>
 				<mat-error *ngIf="form.get('price')?.hasError('required')">
-					Stop cena je obavezna.
+					Cena je obavezna.
 				</mat-error>
 				<mat-error
 					*ngIf="form.get('price')?.hasError('containsNonDigits')"

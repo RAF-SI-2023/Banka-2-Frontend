@@ -7,7 +7,9 @@ import {
 	AbstractControl,
 } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-
+import { BankOtcService } from 'src/app/services/otc-service/bank-otc.service';
+import { FrontendOfferDto } from 'src/app/dtos/frontend-offer-dto';
+import { error } from 'cypress/types/jquery';
 @Component({
 	selector: 'app-new-interbank-offer-dialog',
 	templateUrl: './new-interbank-offer-dialog.component.html',
@@ -19,6 +21,7 @@ export class NewInterbankOfferDialogComponent {
 
 	constructor(
 		private fb: FormBuilder,
+		private otcService: BankOtcService,
 		@Inject(MAT_DIALOG_DATA)
 		public data: { ticker: string; amount: number },
 	) {
@@ -46,11 +49,22 @@ export class NewInterbankOfferDialogComponent {
 
 	createOrder(): void {
 		if (this.form.valid) {
-			// Handle form submission here, e.g., send data to backend
-			// You can access form values using this.form.value
-			console.log('Form submitted:', this.form.value);
+			
+			const frontendOfferDto: FrontendOfferDto = {
+                ticker: this.form.get('ticker')?.value,
+                amount: this.form.get('amount')?.value,
+                price: this.form.get('price')?.value,
+            };
 
-			// Close the dialog if needed
+			console.log('Form submitted:', this.form.value);
+			this.otcService.postMakeOffer(frontendOfferDto).subscribe(
+				response =>{
+					console.log(response);
+				},
+				error => {
+					console.error(error);
+				}
+			);
 		}
 	}
 }
