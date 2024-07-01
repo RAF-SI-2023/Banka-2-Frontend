@@ -14,8 +14,7 @@ export class ViewInterbankOfferDialogComponent {
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		private otcService: BankOtcService,
-		private dialogRef: MatDialogRef<ViewInterbankOfferDialogComponent>
-
+		private dialogRef: MatDialogRef<ViewInterbankOfferDialogComponent>,
 	) {
 		// Initialize newSelectedRow with selectedRow data
 		this.newSelectedRow = { ...this.data };
@@ -38,7 +37,8 @@ export class ViewInterbankOfferDialogComponent {
 		}
 	}
 
-	cancelOffer() { // Corrected the method name
+	cancelOffer() {
+		// Corrected the method name
 		const id = this.newSelectedRow.offerId;
 
 		console.log(id);
@@ -63,8 +63,6 @@ export class ViewInterbankOfferDialogComponent {
 		// 	this.newSelectedRow.offerStatus === 'FINISHED_DECLINED' ||
 		// 	this.newSelectedRow.offerStatus === 'FINISHED_ACCEPTED'
 		// );
-		return (
-			this.newSelectedRow.offerStatus != 'PROCESSING'
-		);
+		return this.newSelectedRow.offerStatus != 'PROCESSING';
 	}
 }

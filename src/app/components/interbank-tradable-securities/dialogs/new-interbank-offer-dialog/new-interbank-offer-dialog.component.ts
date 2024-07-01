@@ -1,15 +1,17 @@
 import { Component, Inject } from '@angular/core';
 import {
+	AbstractControl,
 	FormBuilder,
 	FormGroup,
-	Validators,
 	ValidatorFn,
-	AbstractControl,
+	Validators,
 } from '@angular/forms';
+import { tap, catchError, finalize } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BankOtcService } from 'src/app/services/otc-service/bank-otc.service';
 import { FrontendOfferDto } from 'src/app/dtos/frontend-offer-dto';
-import { error } from 'cypress/types/jquery';
+
 @Component({
 	selector: 'app-new-interbank-offer-dialog',
 	templateUrl: './new-interbank-offer-dialog.component.html',
@@ -25,14 +27,14 @@ export class NewInterbankOfferDialogComponent {
 		@Inject(MAT_DIALOG_DATA)
 		public data: { ticker: string; amount: number },
 	) {
-		this.maxAmount = data.amount; // Set the maximum amount from data
+		this.maxAmount = data.amount;
 
 		this.form = this.fb.group({
 			ticker: [
 				{ value: data.ticker, disabled: true },
 				Validators.required,
 			],
-			amount: ['', [Validators.required, this.amountValidator()]], // Add custom validator
+			amount: ['', [Validators.required, this.amountValidator()]],
 			price: ['', Validators.required],
 		});
 	}
@@ -56,14 +58,17 @@ export class NewInterbankOfferDialogComponent {
 			};
 
 			console.log('Form submitted:', this.form.value);
-			this.otcService.postMakeOffer(frontendOfferDto).subscribe(
-				response => {
-					console.log(response);
-				},
-				error => {
-					console.error(error);
-				},
-			);
+			this.otcService
+				.postMakeOffer(frontendOfferDto)
+				.pipe(
+					tap(response => console.log(response)),
+					catchError(error => {
+						console.error(error);
+						return of(null);
+					}),
+					finalize(() => {}),
+				)
+				.subscribe();
 		}
 	}
 }

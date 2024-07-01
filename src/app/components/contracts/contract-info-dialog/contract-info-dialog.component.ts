@@ -50,7 +50,11 @@ export class ContractInfoDialogComponent {
 			return false;
 		} else if (
 			this.checkTokenRole([Role.USER, Role.AGENT]) &&
-			this.newSelectedRow.sellerConfirmation
+			(this.newSelectedRow.sellersEmail !=
+				localStorage.getItem('email') ||
+				(this.newSelectedRow.sellersEmail ===
+					localStorage.getItem('email') &&
+					this.newSelectedRow.sellerConfirmation))
 		) {
 			return false;
 		}
