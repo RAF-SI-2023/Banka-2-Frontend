@@ -13,6 +13,7 @@ import { BankOtcService } from 'src/app/services/otc-service/bank-otc.service';
 import { MyOfferDto } from 'src/app/dtos/my-offer-dto';
 import { OfferStatus } from 'src/app/dtos/my-offer-dto';
 import { OfferDto } from 'src/app/dtos/offer-dto';
+import { ViewInterbankOfferDialogComponent } from './dialogs/view-interbank-offer-dialog/view-interbank-offer-dialog.component';
 
 @Component({
 	selector: 'app-interbank-securities-offers',
@@ -200,6 +201,21 @@ export class InterbankSecuritiesOffersComponent implements AfterViewInit {
 				.subscribe();
 		}
 	}
+
+	viewOffer(row: OfferDto) {
+
+		if (this.statuses.includes('Primljene ponude')) {
+		  const dialogRef = this.dialog.open(ViewInterbankOfferDialogComponent, {
+			data: row,
+			autoFocus: false,
+		  });
+	  
+		  dialogRef.afterClosed().subscribe(result => {	
+			//console.log("!!!!!!!!!!");
+			this.fetchData();
+		  });
+		}
+	  }
 
 	isDisabled(): boolean {
 		return !this.selectedRow;

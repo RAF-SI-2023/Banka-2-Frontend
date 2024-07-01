@@ -192,6 +192,7 @@
 								mat-row
 								*matRowDef="let row; columns: displayedColumns"
 								(click)="selectRow(row)"
+								(dblclick)="viewOffer(row)"
 								[ngClass]="{
 									highlight: isSelected(row)
 								}"
