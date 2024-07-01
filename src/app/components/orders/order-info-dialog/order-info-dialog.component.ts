@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { OrderDto, OrderStatus } from '../../../dtos/order-dto';
 import { OrderService } from '../../../services/bank-service/order.service';
+import { CreateMarginTransactionComponent } from '../create-margin-transaction/create-margin-transaction.component';
 
 @Component({
 	selector: 'app-order-info-dialog',
@@ -15,6 +16,8 @@ export class OrderInfoDialogComponent {
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		private orderService: OrderService,
+		private dialog: MatDialog 
+
 	) {
 		this.fetchData();
 		this.isLoading = false;
@@ -51,6 +54,19 @@ export class OrderInfoDialogComponent {
 			error: error => {
 				console.error(error);
 			},
+		});
+	}
+	newMargineTransaction(){
+		const dialogRef = this.dialog.open(CreateMarginTransactionComponent, {
+			// width: '400px', // Adjust as needed
+			data: { order: this.newSelectedRow }
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+			if (result) {
+				// Handle the result if needed
+				console.log('The dialog was closed with result:', result);
+			}
 		});
 	}
 
