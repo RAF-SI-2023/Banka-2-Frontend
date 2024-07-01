@@ -98,6 +98,7 @@
 					matInput
 					placeholder="Unesi količinu"
 					formControlName="quantity"
+
 				/>
 				<mat-error *ngIf="form.get('quantity')?.hasError('required')">
 					Količina je obavezna.
@@ -171,6 +172,7 @@
 		type="submit"
 		[disabled]="!form.valid"
 		(click)="createOrder()"
+		data-test="buy-button"
 	>
 		Kupi
 	</button>

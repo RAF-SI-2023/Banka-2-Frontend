@@ -35,6 +35,7 @@
 						<mat-autocomplete
 							#auto="matAutocomplete"
 							(optionSelected)="selected($event)"
+							data-test="statusAutocomplete"
 						>
 							<mat-option
 								*ngFor="let status of filteredStatus | async"

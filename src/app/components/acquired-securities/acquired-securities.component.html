@@ -9,6 +9,7 @@
 						[formControl]="accountNumber"
 						placeholder="Izaberite račun"
 						(selectionChange)="applyFilter($event)"
+						data-test="accountNumberSelect"
 					>
 						<mat-option
 							*ngFor="let option of accounts"
