@@ -203,19 +203,23 @@ export class InterbankSecuritiesOffersComponent implements AfterViewInit {
 	}
 
 	viewOffer(row: OfferDto) {
-
 		if (this.statuses.includes('Primljene ponude')) {
-		  const dialogRef = this.dialog.open(ViewInterbankOfferDialogComponent, {
-			data: row,
-			autoFocus: false,
-		  });
-	  
-		  dialogRef.afterClosed().subscribe(result => {	
-			//console.log("!!!!!!!!!!");
-			this.fetchData();
-		  });
+			const dialogRef = this.dialog.open(
+				ViewInterbankOfferDialogComponent,
+				{
+					data: row,
+					autoFocus: false,
+				},
+			);
+
+			dialogRef.afterClosed().subscribe(() => {
+				this.selectedRow = null;
+				setTimeout(() => {
+					this.fetchData();
+				}, 1000);
+			});
 		}
-	  }
+	}
 
 	isDisabled(): boolean {
 		return !this.selectedRow;

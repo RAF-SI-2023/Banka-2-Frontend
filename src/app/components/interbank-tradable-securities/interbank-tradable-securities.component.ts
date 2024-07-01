@@ -4,8 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { BankOtcStockDto } from 'src/app/dtos/bank-otc-stock-dto';
 import { BankOtcService } from 'src/app/services/otc-service/bank-otc.service';
-import { catchError, map, switchMap } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { catchError, tap, map, finalize } from 'rxjs/operators';
+import { throwError, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { NewInterbankOfferDialogComponent } from './dialogs/new-interbank-offer-dialog/new-interbank-offer-dialog.component';
 
@@ -80,19 +80,19 @@ export class InterbankTradableSecuritiesComponent implements AfterViewInit {
 	}
 
 	refreshOffers(): void {
-		// Example of an operation that returns an observable, e.g., bankOtcService.putRefresh()
-		this.bankOtcService.putRefresh().subscribe(
-			() => {
-				this.fetchAllData();
-				console.log('Data refreshed successfully.');
-			},
-			error => {
-				console.error('Error refreshing data:', error);
-			},
-		);
-	}
-
-	private refreshData(): void {
-		this.fetchAllData();
+		this.bankOtcService
+			.putRefresh()
+			.pipe(
+				tap(() => {
+					this.fetchAllData();
+					console.log('Data refreshed successfully.');
+				}),
+				catchError(error => {
+					console.error('Error refreshing data:', error);
+					return of(null);
+				}),
+				finalize(() => {}),
+			)
+			.subscribe();
 	}
 }
