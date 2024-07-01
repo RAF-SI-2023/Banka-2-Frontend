@@ -66,7 +66,7 @@
 	</a>
 
 	<button
-		*ngIf="isStock"
+		*ngIf="isStockMarket"
 		mat-button
 		[matMenuTriggerFor]="stockExchangeMenu"
 	>
@@ -120,7 +120,7 @@
 			mat-menu-item
 			routerLink="/forex"
 		>
-			<mat-icon>toll</mat-icon>
+			<mat-icon>local_atm</mat-icon>
 			<span>Forex</span>
 		</button>
 		<button
@@ -138,7 +138,7 @@
 
 	<a
 		*ngIf="
-			isStock &&
+			isStockMarket &&
 			checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT, Role.USER])
 		"
 		mat-button
@@ -148,7 +148,7 @@
 	</a>
 	<a
 		*ngIf="
-			isStock &&
+			isStockMarket &&
 			checkTokenRole([Role.ADMIN, Role.SUPERVISOR, Role.AGENT, Role.USER])
 		"
 		mat-button
@@ -159,7 +159,7 @@
 
 	<a
 		*ngIf="
-			isStock &&
+			isStockMarket &&
 			checkTokenRole([Role.ADMIN, Role.EMPLOYEE, Role.SUPERVISOR])
 		"
 		mat-button
@@ -170,7 +170,7 @@
 
 	<a
 		*ngIf="
-			isStock &&
+			isStockMarket &&
 			checkTokenRole([
 				Role.ADMIN,
 				Role.EMPLOYEE,
@@ -183,6 +183,34 @@
 	>
 		Ugovori
 	</a>
+
+	<button
+		*ngIf="isStockMarket && checkTokenRole([Role.ADMIN, Role.SUPERVISOR])"
+		mat-button
+		[matMenuTriggerFor]="interbankContracts"
+	>
+		<span
+			>Međubankovni ugovori<mat-icon class="dropdown-icon"
+				>arrow_drop_down</mat-icon
+			></span
+		>
+	</button>
+	<mat-menu #interbankContracts="matMenu">
+		<button
+			mat-menu-item
+			routerLink="/interbank-tradable-securities"
+		>
+			<mat-icon>fact_check</mat-icon>
+			<span>Sve HOV u ponudi</span>
+		</button>
+		<button
+			mat-menu-item
+			routerLink="/interbank-securities-offers"
+		>
+			<mat-icon>compare_arrows</mat-icon>
+			<span>Sve ponude</span>
+		</button>
+	</mat-menu>
 
 	<div class="padding"></div>
 

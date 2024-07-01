@@ -3,10 +3,6 @@ mat-form-field {
 	width: 100%;
 }
 
-mat-checkbox {
-	margin-top: 2%;
-}
-
 .full-width-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr;

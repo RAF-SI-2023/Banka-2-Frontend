@@ -168,6 +168,22 @@ export const ApiRoutes = {
 	options: {
 		findAllOptionsByStockListing: '/options/stock-listing',
 	},
+	/// MarginsTransactionController
+	marginsTransaction: {
+		getMarginsTransaction: '/margins-transaction',
+		postMarginsTransaction: '/margins-transaction',
+	},
+	/// MarginsAccountsController
+	marginsAccountService: {
+		getMarginsAccount: '/margins-account',
+		getAllByUserId: '/margins-account/all-userId',
+		getAllByEmail: '/margins-account/all-email',
+		getAllByAccountNumber: '/margins-account/all-account-number',
+		postMarginsAccount: '/margins-account',
+		putMarginsAccount: '/margins-account',
+		patchMarginsAccount: '/margins-account',
+		deleteMarginsAccount: '/margins-account',
+	},
 	// OTC-SERVICE
 	/// ContractController
 	contract: {
@@ -182,20 +198,16 @@ export const ApiRoutes = {
 		sellerDenyContractById: '/contracts/deny-seller',
 		bankDenyContractById: '/contracts/deny-bank',
 	},
-	// MarginsTransactionController
-	marginsTransaction: {
-		getMarginsTransaction: '/margins-transaction',
-		postMarginsTransaction: '/margins-transaction',
-	},
-	// MarginsAccountsController
-	marginsAccountService: {
-		getMarginsAccount: '/margins-account',
-		getAllByUserId: '/margins-account/all-userId',
-		getAllByEmail: '/margins-account/all-email',
-		getAllByAccountNumber: '/margins-account/all-account-number',
-		postMarginsAccount: '/margins-account',
-		putMarginsAccount: '/margins-account',
-		patchMarginsAccount: '/margins-account',
-		deleteMarginsAccount: '/margins-account',
+	/// BankOtcController
+	bankOtc: {
+		getBanksStocks: '/v1/otcTrade/getBanksStocks',
+		getOffers: '/v1/otcTrade/getOffers',
+		getOurOffers: '/v1/otcTrade/getOurOffers',
+		postMakeOffer: '/v1/otcTrade/makeOffer',
+		postAcceptOffer: '/v1/otcTrade/acceptOffer',
+		postDeclineOffer: '/v1/otcTrade/declineOffer',
+		putRefresh: '/v1/otcTrade/refresh',
+		deleteMyOffer: '/v1/otcTrade/deleteMyOffer',
+		deleteOffer: '/v1/otcTrade/deleteOffer',
 	},
 };

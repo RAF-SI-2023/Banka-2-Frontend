@@ -1,0 +1,222 @@
+<section class="container">
+	<mat-card>
+		<mat-card-header>
+			<h2>Međubankovne ponude</h2>
+			<div class="form">
+				<form>
+					<mat-form-field class="example-chip-list">
+						<mat-label>Filtriraj po vrsti ponude</mat-label>
+						<mat-chip-grid
+							#chipGrid
+							aria-label="Status filter"
+						>
+							<mat-chip-row
+								*ngFor="let status of statuses"
+								(removed)="remove(status)"
+							>
+								{{ status }}
+								<button
+									matChipRemove
+									[attr.aria-label]="'remove ' + status"
+								>
+									<mat-icon>cancel</mat-icon>
+								</button>
+							</mat-chip-row>
+							<input
+								placeholder=""
+								#statusInput
+								[formControl]="statusCtrl"
+								[matChipInputFor]="chipGrid"
+								[matAutocomplete]="auto"
+								[matChipInputSeparatorKeyCodes]="
+									separatorKeysCodes
+								"
+								(matChipInputTokenEnd)="add($event)"
+							/>
+							<mat-autocomplete
+								#auto="matAutocomplete"
+								(optionSelected)="selected($event)"
+							>
+								<mat-option
+									*ngFor="
+										let status of filteredStatus | async
+									"
+									[value]="status"
+								>
+									{{ status }}
+								</mat-option>
+							</mat-autocomplete>
+						</mat-chip-grid>
+					</mat-form-field>
+				</form>
+			</div>
+			<div>
+				<button
+					mat-raised-button
+					color="warn"
+					class="buttons"
+					(click)="deleteOffer()"
+					[disabled]="isDisabled()"
+				>
+					Obriši ponudu
+				</button>
+			</div>
+		</mat-card-header>
+
+		<mat-card-content>
+			<div class="tableContainer">
+				<div
+					class="mat-elevation-z8"
+					style="box-shadow: none"
+				>
+					<table
+						class="unselectable"
+						mat-table
+						[dataSource]="dataSource"
+						matSort
+					>
+						<ng-container matColumnDef="offerId">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								ID ponude
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.offerId ? row.offerId : '-' }}
+							</td>
+						</ng-container>
+						<ng-container matColumnDef="myOfferId">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								ID naše ponude
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.myOfferId ? row.myOfferId : '-' }}
+							</td>
+						</ng-container>
+						<ng-container matColumnDef="ticker">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Simbol
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.ticker ? row.ticker : '-' }}
+							</td>
+						</ng-container>
+						<ng-container matColumnDef="amount">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Količina
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.amount ? row.amount : '-' }}
+							</td>
+						</ng-container>
+						<ng-container matColumnDef="price">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Cena
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.price ? row.price : '-' }}
+							</td>
+						</ng-container>
+						<ng-container matColumnDef="idBank">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								ID banke
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.idBank ? row.idBank : '-' }}
+							</td>
+						</ng-container>
+						<ng-container matColumnDef="offerStatus">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Status
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{
+									row.offerStatus
+										? (row.offerStatus | translate)
+										: '-'
+								}}
+							</td>
+
+							<tr
+								*matHeaderRowDef="displayedColumns"
+								mat-header-row
+							></tr>
+							<tr
+								mat-row
+								*matRowDef="let row; columns: displayedColumns"
+								(click)="selectRow(row)"
+								[ngClass]="{
+									highlight: isSelected(row)
+								}"
+							></tr>
+						</ng-container>
+						<tr
+							*matNoDataRow
+							class="mat-row"
+						>
+							<td
+								class="mat-cell"
+								colspan="4"
+							>
+								Nije pronađen podatak
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div id="paginatorContainer">
+					<mat-paginator
+						[hidePageSize]="true"
+						[pageSize]="10"
+					></mat-paginator>
+				</div>
+			</div>
+		</mat-card-content>
+	</mat-card>
+</section>

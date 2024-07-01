@@ -70,6 +70,12 @@ import { BankProfitsComponent } from './components/bank-profits/bank-profits.com
 import { AgentProfitsComponent } from './components/bank-profits/agent-profits/agent-profits.component';
 import { BankTransactionsProfitsComponent } from './components/bank-profits/bank-transactions-profits/bank-transactions-profits.component';
 import { PaymentsComponent } from './components/payments/payments.component';
+import { MarginAccountsComponent } from './components/margin-accounts/margin-accounts.component';
+import { AddMarginAccountDialogComponent } from './components/margin-accounts/dialogs/add-margin-account-dialog/add-margin-account-dialog.component';
+import { EditMarginAccountDialogComponent } from './components/margin-accounts/dialogs/edit-margin-account-dialog/edit-margin-account-dialog.component';
+import { MarginAccountInfoDialogComponent } from './components/margin-accounts/dialogs/margin-account-info-dialog/margin-account-info-dialog.component';
+import { InterbankTradableSecuritiesComponent } from './components/interbank-tradable-securities/interbank-tradable-securities.component';
+import { InterbankSecuritiesOffersComponent } from './components/interbank-securities-offers/interbank-securities-offers.component';
 /// DIRECTIVES/PIPES
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
@@ -117,10 +123,8 @@ import {
 } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DATE_FORMAT } from './utils/constants';
-import { MarginAccountsComponent } from './components/margin-accounts/margin-accounts.component';
-import { AddMarginAccountDialogComponent } from './components/margin-accounts/dialogs/add-margin-account-dialog/add-margin-account-dialog.component';
-import { EditMarginAccountDialogComponent } from './components/margin-accounts/dialogs/edit-margin-account-dialog/edit-margin-account-dialog.component';
-import { MarginAccountInfoDialogComponent } from './components/margin-accounts/dialogs/margin-account-info-dialog/margin-account-info-dialog.component';
+import { NewInterbankOfferDialogComponent } from './components/interbank-tradable-securities/dialogs/new-interbank-offer-dialog/new-interbank-offer-dialog.component';
+import { ViewInterbankOfferDialogComponent } from './components/interbank-securities-offers/dialogs/view-interbank-offer-dialog/view-interbank-offer-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -199,6 +203,10 @@ import { MarginAccountInfoDialogComponent } from './components/margin-accounts/d
 		AddMarginAccountDialogComponent,
 		EditMarginAccountDialogComponent,
 		MarginAccountInfoDialogComponent,
+		InterbankTradableSecuritiesComponent,
+		InterbankSecuritiesOffersComponent,
+		NewInterbankOfferDialogComponent,
+		ViewInterbankOfferDialogComponent,
 	],
 	imports: [
 		HttpClientModule,
