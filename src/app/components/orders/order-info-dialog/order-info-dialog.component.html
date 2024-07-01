@@ -89,6 +89,19 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
 	<button
+	*ngIf="
+		this.newSelectedRow.orderStatus === OrderStatus.WAITING_FOR_APPROVAL
+	"
+	[disabled]="isLoading"
+	mat-raised-button
+	mat-dialog-close
+	color="accent"
+	cdkFocusInitial
+	(click)="newMargineTransaction()"
+>
+	Marzna tranzakcija
+</button>
+	<button
 		*ngIf="
 			this.newSelectedRow.orderStatus === OrderStatus.WAITING_FOR_APPROVAL
 		"

@@ -171,6 +171,8 @@ export const ApiRoutes = {
 	/// MarginsTransactionController
 	marginsTransaction: {
 		getMarginsTransaction: '/margins-transaction',
+		getMarginsTransactionAccount: '/margins-transaction/account',
+		getAllMarginsTransactionByEmail: '/margins-transaction/all-email',
 		postMarginsTransaction: '/margins-transaction',
 	},
 	/// MarginsAccountsController
