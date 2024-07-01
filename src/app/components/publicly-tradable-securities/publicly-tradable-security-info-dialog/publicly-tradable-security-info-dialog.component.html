@@ -89,6 +89,7 @@
 		*ngIf="email !== data.email"
 		[disabled]="!form.valid"
 		(click)="createContract()"
+		data-test="buy-button"
 	>
 		Kupi
 	</button>
