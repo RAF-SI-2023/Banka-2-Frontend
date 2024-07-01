@@ -8,6 +8,7 @@ mat-card-header {
 }
 
 .tableContainer {
+	margin-top: 2%;
 	display: grid;
 	height: 100%;
 	width: 100%;
@@ -62,12 +63,4 @@ table {
 
 .unselectable {
 	user-select: none;
-}
-
-.divButton {
-	padding: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	background-color: white;
 }
