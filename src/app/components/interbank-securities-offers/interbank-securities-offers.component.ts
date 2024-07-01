@@ -30,7 +30,6 @@ export class InterbankSecuritiesOffersComponent implements AfterViewInit {
 	dataSourceMyOffer = new MatTableDataSource<MyOfferDto>();
 	dataSourceOffer = new MatTableDataSource<OfferDto>();
 	dataSource = new MatTableDataSource<any>();
-	//selectedRow: ContractDto | null = null;
 
 	separatorKeysCodes: number[] = [ENTER, COMMA];
 	statusCtrl = new FormControl('');
@@ -137,6 +136,7 @@ export class InterbankSecuritiesOffersComponent implements AfterViewInit {
 	}
 
 	private _filter(value: string): string[] {
+		this.selectedRow = null;
 		const filterValue = value.toLowerCase();
 		return this.allStatuses.filter(
 			status =>

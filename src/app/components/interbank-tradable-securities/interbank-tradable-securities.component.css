@@ -16,10 +16,10 @@ mat-card-header {
 .button-container {
 	display: flex;
 	justify-content: flex-start;
-	margin-top: 10px; /* Adjust margin as needed */
 }
 
 .tableContainer {
+	margin-top: 2%;
 	display: grid;
 	height: 100%;
 	width: 100%;
@@ -44,6 +44,10 @@ table {
 
 .mat-mdc-row:hover .mat-mdc-cell {
 	background-color: #f5f5f5;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+	cursor: pointer;
 }
 
 .row-selected .mat-mdc-cell {

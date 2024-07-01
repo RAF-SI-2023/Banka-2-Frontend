@@ -58,6 +58,7 @@ export class InterbankTradableSecuritiesComponent implements AfterViewInit {
 			)
 			.subscribe();
 	}
+
 	openNewOfferDialog(row?: BankOtcStockDto): void {
 		if (row) {
 			console.log(row);
@@ -78,15 +79,15 @@ export class InterbankTradableSecuritiesComponent implements AfterViewInit {
 		}
 	}
 
-	f5Page(): void {
+	refreshOffers(): void {
 		// Example of an operation that returns an observable, e.g., bankOtcService.putRefresh()
 		this.bankOtcService.putRefresh().subscribe(
 			() => {
 				this.fetchAllData();
-				console.log('Data refreshed successfully after f5Page.');
+				console.log('Data refreshed successfully.');
 			},
 			error => {
-				console.error('Error refreshing data after f5Page:', error);
+				console.error('Error refreshing data:', error);
 			},
 		);
 	}

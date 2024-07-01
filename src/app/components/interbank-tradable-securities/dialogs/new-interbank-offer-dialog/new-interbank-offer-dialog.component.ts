@@ -49,21 +49,20 @@ export class NewInterbankOfferDialogComponent {
 
 	createOrder(): void {
 		if (this.form.valid) {
-			
 			const frontendOfferDto: FrontendOfferDto = {
-                ticker: this.form.get('ticker')?.value,
-                amount: this.form.get('amount')?.value,
-                price: this.form.get('price')?.value,
-            };
+				ticker: this.form.get('ticker')?.value,
+				amount: this.form.get('amount')?.value,
+				price: this.form.get('price')?.value,
+			};
 
 			console.log('Form submitted:', this.form.value);
 			this.otcService.postMakeOffer(frontendOfferDto).subscribe(
-				response =>{
+				response => {
 					console.log(response);
 				},
 				error => {
 					console.error(error);
-				}
+				},
 			);
 		}
 	}

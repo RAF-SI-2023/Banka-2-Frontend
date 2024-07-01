@@ -3,14 +3,14 @@
 	<div>
 		<form [formGroup]="form">
 			<mat-form-field appearance="fill">
-				<mat-label>Ticker</mat-label>
+				<mat-label>Simbol</mat-label>
 				<input
 					matInput
-					placeholder="Unesi ticker"
+					placeholder="Unesi simbol"
 					formControlName="ticker"
 				/>
 				<mat-error *ngIf="form.get('ticker')?.hasError('required')">
-					Ticker je obavezna.
+					Simbol je obavezna.
 				</mat-error>
 			</mat-form-field>
 
@@ -22,13 +22,13 @@
 					formControlName="amount"
 				/>
 				<mat-error *ngIf="form.get('amount')?.hasError('required')">
-					Limit je obavezan.
+					Količina je obavezna.
 				</mat-error>
 				<mat-error
 					*ngIf="form.get('amount')?.hasError('invalidAmount')"
 				>
 					Unesena količina mora biti manja ili jednaka maksimalnoj
-					količini ({{ maxAmount }}).
+					količini: ({{ maxAmount }}).
 				</mat-error>
 				<mat-error
 					*ngIf="form.get('amount')?.hasError('containsNonDigits')"
@@ -65,7 +65,7 @@
 		[disabled]="!form.valid"
 		(click)="createOrder()"
 	>
-		Posalji ponudu
+		Pošalji
 	</button>
 
 	<button
@@ -73,6 +73,6 @@
 		mat-dialog-close
 		color="warn"
 	>
-		Otkazi ponudu
+		Otkaži
 	</button>
 </mat-dialog-actions>

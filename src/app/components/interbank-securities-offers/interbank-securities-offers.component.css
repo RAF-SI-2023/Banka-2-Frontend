@@ -8,6 +8,7 @@ mat-card-header {
 }
 
 .tableContainer {
+	margin-top: 2%;
 	display: grid;
 	height: 100%;
 	width: 100%;
