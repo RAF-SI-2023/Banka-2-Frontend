@@ -64,11 +64,3 @@ table {
 .unselectable {
 	user-select: none;
 }
-
-.divButton {
-	padding: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	background-color: white;
-}
