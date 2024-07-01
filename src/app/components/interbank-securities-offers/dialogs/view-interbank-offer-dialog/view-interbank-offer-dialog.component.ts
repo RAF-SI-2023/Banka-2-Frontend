@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { OfferDto } from 'src/app/dtos/offer-dto';
 import { BankOtcService } from 'src/app/services/otc-service/bank-otc.service';
 
@@ -14,6 +14,8 @@ export class ViewInterbankOfferDialogComponent {
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		private otcService: BankOtcService,
+		private dialogRef: MatDialogRef<ViewInterbankOfferDialogComponent>
+
 	) {
 		// Initialize newSelectedRow with selectedRow data
 		this.newSelectedRow = { ...this.data };
@@ -27,6 +29,7 @@ export class ViewInterbankOfferDialogComponent {
 			this.otcService.postAcceptOffer(id).subscribe({
 				next: response => {
 					console.log(response);
+					this.dialogRef.close(true); // Pass true if you want to send a signal to the parent component
 				},
 				error: error => {
 					console.error(error);
@@ -34,7 +37,8 @@ export class ViewInterbankOfferDialogComponent {
 			});
 		}
 	}
-	cancleOffer() {
+
+	cancelOffer() { // Corrected the method name
 		const id = this.newSelectedRow.offerId;
 
 		console.log(id);
@@ -42,6 +46,7 @@ export class ViewInterbankOfferDialogComponent {
 			this.otcService.postDeclineOffer(id).subscribe({
 				next: response => {
 					console.log(response);
+					this.dialogRef.close(false); // Pass false if you want to send a signal to the parent component
 				},
 				error: error => {
 					console.error(error);
@@ -52,9 +57,14 @@ export class ViewInterbankOfferDialogComponent {
 
 	isButtonDisabled(): boolean {
 		// Disable the button if offerStatus is FINISHED_DECLINED or FINISHED_ACCEPTED
+		// return (
+		// 	this.newSelectedRow.offerStatus === 'ACCEPTED' ||
+		// 	this.newSelectedRow.offerStatus === 'DECLINED' ||
+		// 	this.newSelectedRow.offerStatus === 'FINISHED_DECLINED' ||
+		// 	this.newSelectedRow.offerStatus === 'FINISHED_ACCEPTED'
+		// );
 		return (
-			this.newSelectedRow.offerStatus === 'FINISHED_DECLINED' ||
-			this.newSelectedRow.offerStatus === 'FINISHED_ACCEPTED'
+			this.newSelectedRow.offerStatus != 'PROCESSING'
 		);
 	}
 }
