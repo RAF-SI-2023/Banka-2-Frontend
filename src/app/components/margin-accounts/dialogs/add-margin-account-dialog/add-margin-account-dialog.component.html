@@ -1,54 +1,14 @@
-<h2 mat-dialog-title>Dodaj zaposlenog</h2>
+<h2 mat-dialog-title>Napravi maržni račun</h2>
 <mat-dialog-content class="mat-typography size">
 	<form
 		[formGroup]="createAccountForm"
 		(ngSubmit)="addMarginAccount()"
 	>
 		<div>
-			<mat-form-field class="full-width">
-				<mat-label>User id</mat-label>
-				<input
-					matInput
-					placeholder="Unesite ime"
-					formControlName="userId"
-					name="userId"
-				/>
-				<mat-error
-					*ngIf="
-						createAccountForm.get('userId')?.hasError('required')
-					"
-				>
-					User id je obavezan.
-				</mat-error>
-			</mat-form-field>
-
-			<mat-form-field class="full-width">
-				<mat-label>Email</mat-label>
-				<input
-					matInput
-					placeholder="Unesite email adresu"
-					formControlName="email"
-					type="email"
-					name="email"
-				/>
-				<mat-error
-					*ngIf="createAccountForm.get('email')?.hasError('required')"
-				>
-					Email je obavezan.
-				</mat-error>
-				<mat-error
-					*ngIf="
-						createAccountForm.get('email')?.hasError('invalidEmail')
-					"
-				>
-					Pogrešan format email-a.
-				</mat-error>
-			</mat-form-field>
-
-			<mat-form-field class="form-field">
+			<mat-form-field>
 				<mat-label>Valuta</mat-label>
 				<mat-select
-					[(ngModel)]="currencyCode"
+					formControlName="currencyCode"
 					placeholder="Izaberite valutu"
 				>
 					<mat-option
@@ -58,13 +18,22 @@
 						{{ option.label }}
 					</mat-option>
 				</mat-select>
+				<mat-error
+					*ngIf="
+						createAccountForm
+							.get('currencyCode')
+							?.hasError('required')
+					"
+				>
+					Valuta je obavezna.
+				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
-				<mat-label>Kolicina balansa</mat-label>
+				<mat-label>Količina balansa</mat-label>
 				<input
 					matInput
-					placeholder="Unesite kolicinu balansa"
+					placeholder="Unesite količinu balansa"
 					formControlName="balance"
 					type="string"
 					name="balance"
@@ -74,15 +43,15 @@
 						createAccountForm.get('balance')?.hasError('required')
 					"
 				>
-					Kolicina balanca je obavezan.
+					Količina balansa je obavezna.
 				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
-				<mat-label>Kolicina pozajmice</mat-label>
+				<mat-label>Iznos duga</mat-label>
 				<input
 					matInput
-					placeholder="Unesite kolicinu balansa"
+					placeholder="Unesite iznos duga"
 					formControlName="loanValue"
 					type="number"
 					name="loanValue"
@@ -92,15 +61,15 @@
 						createAccountForm.get('loanValue')?.hasError('required')
 					"
 				>
-					Kolicina pozajmice je obavezan.
+					Iznos duga je obavezna.
 				</mat-error>
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
-				<mat-label>Kolicina pozajmice</mat-label>
+				<mat-label>Marža za održavanje</mat-label>
 				<input
 					matInput
-					placeholder="Unesite kolicinu balansa"
+					placeholder="Unesite margina održavanja"
 					formControlName="maintenanceMargin"
 					type="number"
 					name="maintenanceMargin"
@@ -112,24 +81,9 @@
 							?.hasError('required')
 					"
 				>
-					MaintenanceMargin pozajmice je obavezan.
+					Marža za održavanje je obavezna.
 				</mat-error>
 			</mat-form-field>
-
-			<!-- <mat-form-field class="full-width">
-				<mat-label>Dozvole</mat-label>
-				<mat-select
-					formControlName="permissions"
-					multiple="true"
-				>
-					<mat-option
-						*ngFor="let permission of availablePermissions"
-						[value]="permission"
-					>
-						{{ permission }}
-					</mat-option>
-				</mat-select>
-			</mat-form-field> -->
 		</div>
 	</form>
 </mat-dialog-content>

@@ -9,7 +9,7 @@ export class EpochToDatePipe implements PipeTransform {
 			return null; // Return null if the epoch value is false
 		}
 
-		console.log('alo ', epoch);
+		console.log('EpochToDatePipe: ', epoch);
 
 		let milliseconds: number;
 

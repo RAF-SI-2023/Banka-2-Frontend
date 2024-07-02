@@ -76,6 +76,10 @@ import { EditMarginAccountDialogComponent } from './components/margin-accounts/d
 import { MarginAccountInfoDialogComponent } from './components/margin-accounts/dialogs/margin-account-info-dialog/margin-account-info-dialog.component';
 import { InterbankTradableSecuritiesComponent } from './components/interbank-tradable-securities/interbank-tradable-securities.component';
 import { InterbankSecuritiesOffersComponent } from './components/interbank-securities-offers/interbank-securities-offers.component';
+import { NewInterbankOfferDialogComponent } from './components/interbank-tradable-securities/dialogs/new-interbank-offer-dialog/new-interbank-offer-dialog.component';
+import { ViewInterbankOfferDialogComponent } from './components/interbank-securities-offers/dialogs/view-interbank-offer-dialog/view-interbank-offer-dialog.component';
+import { CreateMarginTransactionComponent } from './components/orders/create-margin-transaction/create-margin-transaction.component';
+import { MarginTransactionsAllComponent } from './components/margin-transactions-all/margin-transactions-all.component';
 /// DIRECTIVES/PIPES
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { BankAccountMaskDirective } from './directives/bank-account-mask.directive';
@@ -123,9 +127,6 @@ import {
 } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DATE_FORMAT } from './utils/constants';
-import { NewInterbankOfferDialogComponent } from './components/interbank-tradable-securities/dialogs/new-interbank-offer-dialog/new-interbank-offer-dialog.component';
-import { ViewInterbankOfferDialogComponent } from './components/interbank-securities-offers/dialogs/view-interbank-offer-dialog/view-interbank-offer-dialog.component';
-import { CreateMarginTransactionComponent } from './components/orders/create-margin-transaction/create-margin-transaction.component';
 
 @NgModule({
 	declarations: [
@@ -208,7 +209,8 @@ import { CreateMarginTransactionComponent } from './components/orders/create-mar
 		InterbankSecuritiesOffersComponent,
 		NewInterbankOfferDialogComponent,
 		ViewInterbankOfferDialogComponent,
-  CreateMarginTransactionComponent,
+		CreateMarginTransactionComponent,
+		MarginTransactionsAllComponent,
 	],
 	imports: [
 		HttpClientModule,

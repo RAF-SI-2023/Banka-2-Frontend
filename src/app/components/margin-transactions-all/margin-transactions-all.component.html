@@ -1,46 +1,19 @@
 <section class="container">
 	<mat-card>
 		<mat-card-header>
-			<h2>Maržni računi</h2>
+			<h2>Narudžbinske transakcije</h2>
 			<div class="form">
-				<div>
-					<mat-form-field>
-						<mat-label>Pretraži</mat-label>
-						<input
-							#input
-							(keyup)="applyFilter($event)"
-							matInput
-						/>
-					</mat-form-field>
-				</div>
-
-				<button
-					mat-raised-button
-					class="buttons"
-					color="accent"
-					(click)="addMarginAccount()"
-				>
-					Napravi maržni račun
-				</button>
-				<!-- <button
-					mat-raised-button
-					class="buttons"
-					color="accent"
-					(click)="editMarginAccount()"
-				>
-					Izmeni maržni račun
-				</button> -->
-				<button
-					data-test="delete-button"
-					mat-raised-button
-					class="buttons"
-					color="warn"
-					(click)="deleteMarginAccount()"
-				>
-					Izbriši maržni račun
-				</button>
+				<mat-form-field>
+					<mat-label>Pretraži</mat-label>
+					<input
+						#input
+						(keyup)="applyFilter($event)"
+						matInput
+					/>
+				</mat-form-field>
 			</div>
 		</mat-card-header>
+
 		<mat-card-content>
 			<div class="tableContainer">
 				<div
@@ -65,39 +38,81 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.id }}
+								{{ row.id ? row.id : '-' }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="email">
+						<ng-container matColumnDef="userId">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Email
+								Korisnički ID
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.email }}
+								{{ row.userId ? row.userId : '-' }}
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="currencyCode">
+						<ng-container matColumnDef="orderId">
 							<th
 								*matHeaderCellDef
 								mat-header-cell
 								mat-sort-header
 							>
-								Valuta
+								ID narudžbine
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.currencyCode }}
+								{{ row.orderId ? row.orderId : '-' }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="marginsAccountId">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								ID maržnog računa
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{
+									row.marginsAccountId
+										? row.marginsAccountId
+										: '-'
+								}}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="createdAt">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Datum izvršenja
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{
+									row.createdAt
+										? (row.createdAt
+											| epochToDate
+											| date: 'dd.MM.yyyy.')
+										: '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -113,7 +128,41 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.accountNumber }}
+								{{
+									row.accountNumber ? row.accountNumber : '-'
+								}}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="description">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Opis
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.description ? row.description : '-' }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="currencyCode">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Valuta
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{ row.currencyCode ? row.currencyCode : '-' }}
 							</td>
 						</ng-container>
 
@@ -123,29 +172,13 @@
 								mat-header-cell
 								mat-sort-header
 							>
-								Tip HOV
+								Tip
 							</th>
 							<td
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.type }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="balance">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Dostupno stanje
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.balance }}
+								{{ row.type ? row.type : '-' }}
 							</td>
 						</ng-container>
 
@@ -161,7 +194,25 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.loanValue }}
+								{{ row.loanValue ? row.loanValue : '-' }}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="initialMargin">
+							<th
+								*matHeaderCellDef
+								mat-header-cell
+								mat-sort-header
+							>
+								Inicijalna marža
+							</th>
+							<td
+								*matCellDef="let row"
+								mat-cell
+							>
+								{{
+									row.initialMargin ? row.initialMargin : '-'
+								}}
 							</td>
 						</ng-container>
 
@@ -177,26 +228,13 @@
 								*matCellDef="let row"
 								mat-cell
 							>
-								{{ row.maintenanceMargin }}
+								{{
+									row.maintenanceMargin
+										? row.maintenanceMargin
+										: '-'
+								}}
 							</td>
 						</ng-container>
-
-						<!-- <ng-container matColumnDef="marginCall">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-                            	Poziv upozorenja
-                            </th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.marginCall }}
-							</td>
-						</ng-container> -->
-
 						<tr
 							*matHeaderRowDef="displayedColumns"
 							mat-header-row
@@ -204,13 +242,9 @@
 						<tr
 							mat-row
 							(click)="selectRow(row)"
-							(dblclick)="viewAccount(row)"
-							[class.row-selected]="
-								selectedRow?.accountNumber === row.accountNumber
-							"
+							[class.row-selected]="selectedRow?.id === row.id"
 							*matRowDef="let row; columns: displayedColumns"
 						></tr>
-
 						<tr
 							*matNoDataRow
 							class="mat-row"

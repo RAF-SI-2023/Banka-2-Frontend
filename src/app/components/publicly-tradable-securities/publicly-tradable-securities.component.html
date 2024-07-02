@@ -194,10 +194,7 @@
 							mat-row
 							(click)="selectRow(row)"
 							(dblclick)="viewSecurity(row)"
-							[class.row-selected]="
-								selectedRow?.securitiesSymbol ===
-								row.securitiesSymbol
-							"
+							[class.row-selected]="selectedRow?.id === row.id"
 							*matRowDef="let row; columns: displayedColumns"
 						></tr>
 

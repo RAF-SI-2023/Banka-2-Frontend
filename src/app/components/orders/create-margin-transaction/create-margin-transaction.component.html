@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Nova marzna tranzakcija</h2>
+<h2 mat-dialog-title>Nova maržna transakcija</h2>
 <mat-dialog-content class="mat-typography size">
 	<div>
 		<form [formGroup]="form">
@@ -9,47 +9,60 @@
 					placeholder="Unesi opis"
 					formControlName="description"
 				/>
-				<mat-error *ngIf="form.get('description')?.hasError('required')">
+				<mat-error
+					*ngIf="form.get('description')?.hasError('required')"
+				>
 					Opis je obavezan.
 				</mat-error>
 			</mat-form-field>
 
-		
 			<mat-form-field appearance="fill">
-				<mat-label>Inicijalni margin</mat-label>
+				<mat-label>Inicijalna margina</mat-label>
 				<input
 					matInput
-					placeholder="Unesi inicijalni margin"
+					placeholder="Unesi inicijalnu marginu"
 					formControlName="initialMargin"
 				/>
-				<mat-error *ngIf="form.get('initialMargin')?.hasError('required')">
-					Inicijalni margin je obavezna.
+				<mat-error
+					*ngIf="form.get('initialMargin')?.hasError('required')"
+				>
+					Inicijalna margina je obavezna.
 				</mat-error>
 				<mat-error
-					*ngIf="form.get('initialMargin')?.hasError('containsNonDigits')"
+					*ngIf="
+						form.get('initialMargin')?.hasError('containsNonDigits')
+					"
 				>
-					Pogrešan format za inicijalni margin - podržane su samo cifre.
+					Pogrešan format za inicijalnu marginu - podržane su samo
+					cifre.
 				</mat-error>
 			</mat-form-field>
 
-            <mat-form-field appearance="fill">
-				<mat-label>Odrzavajuci margin</mat-label>
+			<mat-form-field appearance="fill">
+				<mat-label>Marža za održavanje</mat-label>
 				<input
 					matInput
-					placeholder="Unesi inicijalni margin"
+					placeholder="Unesi marža za održavanje"
 					formControlName="maintenanceMargin"
 				/>
-				<mat-error *ngIf="form.get('maintenanceMargin')?.hasError('required')">
-					Maintenance margin je obavezna.
+				<mat-error
+					*ngIf="form.get('maintenanceMargin')?.hasError('required')"
+				>
+					Marža za održavanje je obavezna.
 				</mat-error>
 				<mat-error
-					*ngIf="form.get('maintenanceMargin')?.hasError('containsNonDigits')"
+					*ngIf="
+						form
+							.get('maintenanceMargin')
+							?.hasError('containsNonDigits')
+					"
 				>
-					Pogrešan format za odrzavajuci margin - podržane su samo cifre.
+					Pogrešan format za maržu za održavanje - podržane su samo
+					cifre.
 				</mat-error>
 			</mat-form-field>
 
-            <!-- <mat-form-field appearance="fill">
+			<!-- <mat-form-field appearance="fill">
 				<mat-label>Cena</mat-label>
 				<input
 					matInput

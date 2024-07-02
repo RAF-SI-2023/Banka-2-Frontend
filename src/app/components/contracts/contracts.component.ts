@@ -76,7 +76,7 @@ export class ContractsComponent implements AfterViewInit {
 				this.selectedRow = null;
 				setTimeout(() => {
 					this.fetchFilteredData();
-				}, 1000);
+				}, 2000);
 			});
 		}
 	}

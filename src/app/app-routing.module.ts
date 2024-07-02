@@ -40,6 +40,7 @@ import { PaymentsComponent } from './components/payments/payments.component';
 import { MarginAccountsComponent } from './components/margin-accounts/margin-accounts.component';
 import { InterbankTradableSecuritiesComponent } from './components/interbank-tradable-securities/interbank-tradable-securities.component';
 import { InterbankSecuritiesOffersComponent } from './components/interbank-securities-offers/interbank-securities-offers.component';
+import { MarginTransactionsAllComponent } from './components/margin-transactions-all/margin-transactions-all.component';
 
 const routes: Routes = [
 	{
@@ -248,14 +249,11 @@ const routes: Routes = [
 			roles: [Role.ADMIN, Role.SUPERVISOR],
 		},
 	},
-	// {
-	// 	component: NewInterbankOfferDialogComponent,
-	// 	path: 'new-interbank-offer',
-	// 	canActivate: [authGuard, roleGuard],
-	// 	data: {
-	// 		roles: [Role.ADMIN, Role.SUPERVISOR],
-	// 	},
-	// },
+	{
+		component: MarginTransactionsAllComponent,
+		path: 'margin-transactions/all',
+		canActivate: [authGuard, accountGuard],
+	},
 ];
 
 @NgModule({
