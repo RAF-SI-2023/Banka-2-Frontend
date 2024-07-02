@@ -6,7 +6,7 @@ import {
 	ValidatorFn,
 	Validators,
 } from '@angular/forms';
-import { tap, catchError, finalize } from 'rxjs/operators';
+import { catchError, finalize, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BankOtcService } from 'src/app/services/otc-service/bank-otc.service';

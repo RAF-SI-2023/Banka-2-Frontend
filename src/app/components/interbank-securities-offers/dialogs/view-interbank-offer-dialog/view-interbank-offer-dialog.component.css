@@ -1,7 +1,6 @@
 /* Increase overall dialog size */
 .mat-dialog-container {
-	min-width: 400px;
-	max-width: 600px;
+	width: 40rem;
 	padding: 24px;
 }
 

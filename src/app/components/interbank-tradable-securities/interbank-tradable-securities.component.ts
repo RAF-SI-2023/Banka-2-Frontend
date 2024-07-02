@@ -4,8 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { BankOtcStockDto } from 'src/app/dtos/bank-otc-stock-dto';
 import { BankOtcService } from 'src/app/services/otc-service/bank-otc.service';
-import { catchError, tap, map, finalize } from 'rxjs/operators';
-import { throwError, of } from 'rxjs';
+import { catchError, finalize, map, tap } from 'rxjs/operators';
+import { of, throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { NewInterbankOfferDialogComponent } from './dialogs/new-interbank-offer-dialog/new-interbank-offer-dialog.component';
 

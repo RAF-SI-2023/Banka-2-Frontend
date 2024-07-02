@@ -4,32 +4,39 @@ import { environment } from 'src/environments/environment';
 import { ApiRoutes } from '../api-routes';
 import { MarginTransactionSendDto } from 'src/app/dtos/margin-transaction-send-dto';
 import { MarginTransactionDto } from 'src/app/dtos/margin-transaction-dto';
+import { MarginTransactionResponseDto } from 'src/app/dtos/margin-transaction-response-dto';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class MarginTransactionService {
+	constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
+	// GET
+	getMarginsTransaction(marginTransactionSendDto: MarginTransactionSendDto) {
+		return this.httpClient.get<MarginTransactionDto>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.marginsTransaction.getMarginsTransaction}`,
+		);
+	}
 
-  //GET
-  getMarginsTransaction(marginTransactionSendDto :MarginTransactionSendDto) {
-		return this.httpClient.get<MarginTransactionDto>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.marginsTransaction.getMarginsTransaction}`
+	getAllMarginsTransactionByEmail(email: string) {
+		return this.httpClient.get<MarginTransactionResponseDto[]>(
+			`${environment.bankServiceApiUrl}${ApiRoutes.marginsTransaction.getAllMarginsTransactionByEmail}` +
+				'/' +
+				email,
 		);
 	}
-  getAllMarginsTransactionByEmail(email:string) {
+
+	getMarginsTransactionAccount(id: number) {
 		return this.httpClient.get<MarginTransactionDto>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.marginsTransaction.getAllMarginsTransactionByEmail}`+'/'+email,
+			`${environment.bankServiceApiUrl}${ApiRoutes.marginsTransaction.getMarginsTransactionAccount}` +
+				'/' +
+				id,
 		);
 	}
-  getMarginsTransactionAccount(id: number) {
-		return this.httpClient.get<MarginTransactionDto>(
-			`${environment.bankServiceApiUrl}${ApiRoutes.marginsTransaction.getMarginsTransactionAccount}`+'/'+id,
-		);
-	}
-  //POST
-  postMarginsTransaction(marginTransactionDto :MarginTransactionDto) {
+
+	// POST
+	postMarginsTransaction(marginTransactionDto: MarginTransactionDto) {
 		return this.httpClient.post<MarginTransactionDto>(
 			`${environment.bankServiceApiUrl}${ApiRoutes.marginsTransaction.postMarginsTransaction}`,
 			marginTransactionDto,

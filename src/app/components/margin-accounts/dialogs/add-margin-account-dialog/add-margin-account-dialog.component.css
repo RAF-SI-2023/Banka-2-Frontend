@@ -5,3 +5,7 @@
 .size {
 	width: 40rem;
 }
+
+mat-form-field {
+	width: 100%;
+}

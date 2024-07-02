@@ -1,7 +1,7 @@
-import {ADMIN_CREDENTIALS} from "../../support/constants";
+import { ADMIN_CREDENTIALS } from '../../support/constants';
 
 describe('Stock Sell', () => {
-	it( ' should sell DT stock', () => {
+	it(' should sell DT stock', () => {
 		cy.login(ADMIN_CREDENTIALS.username, ADMIN_CREDENTIALS.password);
 		cy.visit('/acquired-securities');
 
@@ -24,8 +24,7 @@ describe('Stock Sell', () => {
 		cy.get('[data-test="sell-quantity"]').click();
 
 		cy.get('.app-notification-success').should('be.visible');
-
-	})
+	});
 
 	it(' should accept the sell', () => {
 		cy.login(ADMIN_CREDENTIALS.username, ADMIN_CREDENTIALS.password);
@@ -45,5 +44,5 @@ describe('Stock Sell', () => {
 		cy.get('[data-test="accept-button"]').click();
 
 		cy.get('.app-notification-success').should('be.visible');
-	})
+	});
 });

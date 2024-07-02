@@ -20,7 +20,6 @@ import { MarginAccountInfoDialogComponent } from './dialogs/margin-account-info-
 export class MarginAccountsComponent implements AfterViewInit {
 	displayedColumns: string[] = [
 		'id',
-		'userId',
 		'email',
 		'currencyCode',
 		'accountNumber',
@@ -28,7 +27,6 @@ export class MarginAccountsComponent implements AfterViewInit {
 		'balance',
 		'loanValue',
 		'maintenanceMargin',
-		// 'marginCall',
 	];
 
 	dataSource: MatTableDataSource<MarginAccountDto>;
@@ -87,7 +85,7 @@ export class MarginAccountsComponent implements AfterViewInit {
 	}
 
 	selectRow(row: MarginAccountDto) {
-		if (this.selectedRow?.id != row.id) {
+		if (this.selectedRow?.accountNumber != row.accountNumber) {
 			this.selectedRow = row;
 		}
 	}
@@ -127,7 +125,7 @@ export class MarginAccountsComponent implements AfterViewInit {
 	deleteMarginAccount() {
 		if (this.selectedRow != null) {
 			this.marginAccountService
-				.deleteMarginsAccount(this.selectedRow.id)
+				.deleteMarginsAccount(this.selectedRow.userId)
 				.pipe(
 					catchError(error => {
 						console.error('Error loading data.', error);

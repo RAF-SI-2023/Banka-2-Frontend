@@ -1,10 +1,15 @@
-import {ADMIN_CREDENTIALS, TEST_USER_CREDENTIALS} from "../../support/constants";
+import {
+	ADMIN_CREDENTIALS,
+	TEST_USER_CREDENTIALS,
+} from '../../support/constants';
 
 describe('Stock Purchase', () => {
-
-    it(' should purchase DT stock', () => {
-	    cy.login(TEST_USER_CREDENTIALS.username, TEST_USER_CREDENTIALS.password);
-        cy.visit('/stocks');
+	it(' should purchase DT stock', () => {
+		cy.login(
+			TEST_USER_CREDENTIALS.username,
+			TEST_USER_CREDENTIALS.password,
+		);
+		cy.visit('/stocks');
 
 		cy.wait(1000);
 
@@ -19,11 +24,11 @@ describe('Stock Purchase', () => {
 		cy.get('[data-test="buy-button"]').click();
 
 		cy.get('.app-notification-success').should('be.visible');
-	})
+	});
 
 	it(' should accept the purchase', () => {
 		cy.login(ADMIN_CREDENTIALS.username, ADMIN_CREDENTIALS.password);
-        cy.visit('/orders');
+		cy.visit('/orders');
 
 		cy.get('input[placeholder="Status"]').click(); // Click to open the autocomplete options
 		cy.get('mat-option').contains('Na').click();
@@ -31,18 +36,21 @@ describe('Stock Purchase', () => {
 		cy.wait(1000);
 
 		cy.get('table')
-            .contains('tr', 'DT')
-            .within(() => {
-                cy.get('td').contains('DT').dblclick();
-            });
+			.contains('tr', 'DT')
+			.within(() => {
+				cy.get('td').contains('DT').dblclick();
+			});
 
-        cy.get('[data-test="accept-button"]').click();
+		cy.get('[data-test="accept-button"]').click();
 
-        cy.get('.app-notification-success').should('be.visible');
-	})
+		cy.get('.app-notification-success').should('be.visible');
+	});
 
 	it(' should have the stock in the portfolio', () => {
-		cy.login(TEST_USER_CREDENTIALS.username, TEST_USER_CREDENTIALS.password);
+		cy.login(
+			TEST_USER_CREDENTIALS.username,
+			TEST_USER_CREDENTIALS.password,
+		);
 		cy.visit('/acquired-securities');
 
 		cy.wait(1000);
@@ -53,9 +61,6 @@ describe('Stock Purchase', () => {
 		cy.get('mat-option').contains('333-4444-111111111').click();
 
 		// Check if the stock is in the portfolio
-		cy.get('table')
-			.contains('tr', 'DT')
-			.should('exist');
-
-	})
+		cy.get('table').contains('tr', 'DT').should('exist');
+	});
 });

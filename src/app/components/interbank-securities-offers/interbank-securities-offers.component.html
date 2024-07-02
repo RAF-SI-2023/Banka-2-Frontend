@@ -23,7 +23,6 @@
 								</button>
 							</mat-chip-row>
 							<input
-								placeholder="Status"
 								#statusInput
 								[formControl]="statusCtrl"
 								[matChipInputFor]="chipGrid"
@@ -211,12 +210,12 @@
 						</tr>
 					</table>
 				</div>
-				<div id="paginatorContainer">
-					<mat-paginator
-						[hidePageSize]="true"
-						[pageSize]="10"
-					></mat-paginator>
-				</div>
+			</div>
+			<div id="paginatorContainer">
+				<mat-paginator
+					[hidePageSize]="true"
+					[pageSize]="10"
+				></mat-paginator>
 			</div>
 		</mat-card-content>
 	</mat-card>

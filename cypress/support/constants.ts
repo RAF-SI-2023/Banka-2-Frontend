@@ -18,10 +18,10 @@ export const TEST_EMPLOYEE_CREDENTIALS = {
 
 export const TEST_USER_CREDENTIALS = {
 	username: 'lpavlovic11521rn@raf.rs',
-	password: 'private'
-}
+	password: 'private',
+};
 
 export const TEST_USER_2_CREDENTIALS = {
 	username: 'lukapa369@gmail.com',
-	password: 'private'
-}
+	password: 'private',
+};
