@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { BankOtcStockDto } from 'src/app/dtos/bank-otc-stock-dto';
 import { BankOtcService } from 'src/app/services/otc-service/bank-otc.service';
-import { catchError, finalize, map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { NewInterbankOfferDialogComponent } from './dialogs/new-interbank-offer-dialog/new-interbank-offer-dialog.component';
@@ -91,7 +91,6 @@ export class InterbankTradableSecuritiesComponent implements AfterViewInit {
 					console.error('Error refreshing data:', error);
 					return of(null);
 				}),
-				finalize(() => {}),
 			)
 			.subscribe();
 	}
