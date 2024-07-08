@@ -2,6 +2,8 @@
 
 ## Pravila
 
+### Formatiranje i standardizacija
+
 -   Koristiti camelCase
 -   Ne koristiti skraćenice u kodu
 -   Koristiti nazive na engleskom jeziku u kodu; prevesti ili transkribovati na
