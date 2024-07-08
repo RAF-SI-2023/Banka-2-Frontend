@@ -1,0 +1,103 @@
+<h2 mat-dialog-title>Nova maržna transakcija</h2>
+<mat-dialog-content class="mat-typography size">
+	<div>
+		<form [formGroup]="form">
+			<mat-form-field appearance="fill">
+				<mat-label>Opis</mat-label>
+				<input
+					matInput
+					placeholder="Unesi opis"
+					formControlName="description"
+				/>
+				<mat-error
+					*ngIf="form.get('description')?.hasError('required')"
+				>
+					Opis je obavezan.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field appearance="fill">
+				<mat-label>Inicijalna margina</mat-label>
+				<input
+					matInput
+					placeholder="Unesi inicijalnu marginu"
+					formControlName="initialMargin"
+				/>
+				<mat-error
+					*ngIf="form.get('initialMargin')?.hasError('required')"
+				>
+					Inicijalna margina je obavezna.
+				</mat-error>
+				<mat-error
+					*ngIf="
+						form.get('initialMargin')?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format za inicijalnu marginu - podržane su samo
+					cifre.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field appearance="fill">
+				<mat-label>Marža za održavanje</mat-label>
+				<input
+					matInput
+					placeholder="Unesi marža za održavanje"
+					formControlName="maintenanceMargin"
+				/>
+				<mat-error
+					*ngIf="form.get('maintenanceMargin')?.hasError('required')"
+				>
+					Marža za održavanje je obavezna.
+				</mat-error>
+				<mat-error
+					*ngIf="
+						form
+							.get('maintenanceMargin')
+							?.hasError('containsNonDigits')
+					"
+				>
+					Pogrešan format za maržu za održavanje - podržane su samo
+					cifre.
+				</mat-error>
+			</mat-form-field>
+
+			<!-- <mat-form-field appearance="fill">
+				<mat-label>Cena</mat-label>
+				<input
+					matInput
+					placeholder="Unesi cenu"
+					formControlName="price"
+				/>
+				<mat-error *ngIf="form.get('price')?.hasError('required')">
+					Cena je obavezna.
+				</mat-error>
+				<mat-error
+					*ngIf="form.get('price')?.hasError('containsNonDigits')"
+				>
+					Pogrešan format za cenu - podržane su samo cifre.
+				</mat-error>
+			</mat-form-field> -->
+		</form>
+	</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="accent"
+		type="submit"
+		[disabled]="!form.valid"
+		(click)="createOrder()"
+	>
+		Pošalji
+	</button>
+
+	<button
+		mat-raised-button
+		mat-dialog-close
+		color="warn"
+	>
+		Otkaži
+	</button>
+</mat-dialog-actions>
