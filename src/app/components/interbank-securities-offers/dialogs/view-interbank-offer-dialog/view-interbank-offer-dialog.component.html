@@ -1,0 +1,60 @@
+<h2 mat-dialog-title>Informacije o ponudi</h2>
+<div
+	mat-dialog-content
+	class="mat-typography"
+>
+	<div class="info-row">
+		<span class="label">ID ponude:</span>
+		<span>{{ newSelectedRow.offerId || '-' }}</span>
+	</div>
+	<div class="info-row">
+		<span class="label">Simbol:</span>
+		<span>{{ newSelectedRow.ticker || '-' }}</span>
+	</div>
+	<div class="info-row">
+		<span class="label">Količina:</span>
+		<span>{{ newSelectedRow.amount || '-' }}</span>
+	</div>
+	<div class="info-row">
+		<span class="label">Cena:</span>
+		<span>{{ newSelectedRow.price || '-' }}</span>
+	</div>
+	<div class="info-row">
+		<span class="label">ID banke:</span>
+		<span>{{ newSelectedRow.idBank || '-' }}</span>
+	</div>
+	<div class="info-row">
+		<span class="label">Status ponude:</span>
+		<span>{{ newSelectedRow.offerStatus || '-' }}</span>
+	</div>
+</div>
+<div
+	mat-dialog-actions
+	align="end"
+>
+	<button
+		mat-raised-button
+		color="accent"
+		[disabled]="isButtonDisabled()"
+		mat-dialog-close
+		(click)="acceptOffer()"
+	>
+		Odobri
+	</button>
+	<button
+		mat-raised-button
+		color="accent"
+		[disabled]="isButtonDisabled()"
+		(click)="cancelOffer()"
+	>
+		Odbij
+	</button>
+
+	<button
+		mat-raised-button
+		color="warn"
+		mat-dialog-close
+	>
+		Odustani
+	</button>
+</div>

@@ -133,4 +133,8 @@ export class HomeComponent implements AfterViewInit {
 	redirectToOrderTransactionsAll() {
 		this.router.navigate(['/order-transactions/all']);
 	}
+
+	redirectToMarginTransactionsAll() {
+		this.router.navigate(['/margin-transactions/all']);
+	}
 }

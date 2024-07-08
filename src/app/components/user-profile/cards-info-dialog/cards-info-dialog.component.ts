@@ -67,11 +67,10 @@ export class CardsInfoDialogComponent {
 	}
 
 	blockCard(card: CardDto) {
-		// console.log(this.cardRow?.identificationCardNumber);
 		this.cardService
 			.putChangeCardBlock(card.identificationCardNumber)
 			.pipe(
-				map(_ => {
+				map(() => {
 					this.fetchCards();
 				}),
 				catchError(error => {

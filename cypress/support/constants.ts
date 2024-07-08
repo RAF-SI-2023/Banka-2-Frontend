@@ -15,3 +15,13 @@ export const TEST_AGENT_CREDENTIALS = {
 export const TEST_EMPLOYEE_CREDENTIALS = {
 	username: 'employeeemail@cypress.test',
 };
+
+export const TEST_USER_CREDENTIALS = {
+	username: 'lpavlovic11521rn@raf.rs',
+	password: 'private',
+};
+
+export const TEST_USER_2_CREDENTIALS = {
+	username: 'lukapa369@gmail.com',
+	password: 'private',
+};

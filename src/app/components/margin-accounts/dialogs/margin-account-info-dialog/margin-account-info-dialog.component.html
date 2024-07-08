@@ -5,10 +5,8 @@
 		class="full-width"
 	>
 		<div class="info-row">
-			<span class="label">Korisnički ID:</span>
-			<span>{{
-				newSelectedRow.userId ? newSelectedRow.userId : '-'
-			}}</span>
+			<span class="label">ID:</span>
+			<span>{{ newSelectedRow.id ? newSelectedRow.id : '-' }}</span>
 		</div>
 		<div class="info-row">
 			<span class="label">Email:</span>
@@ -36,7 +34,7 @@
 		</div>
 
 		<div class="info-row">
-			<span class="label">Marža održavanja:</span>
+			<span class="label">Marža za održavanje:</span>
 			<span>{{
 				newSelectedRow.maintenanceMargin
 					? newSelectedRow.maintenanceMargin

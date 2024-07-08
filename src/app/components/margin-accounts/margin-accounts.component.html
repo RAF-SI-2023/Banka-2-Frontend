@@ -14,7 +14,7 @@
 					</mat-form-field>
 				</div>
 
-				<!-- <button
+				<button
 					mat-raised-button
 					class="buttons"
 					color="accent"
@@ -22,7 +22,7 @@
 				>
 					Napravi maržni račun
 				</button>
-				<button
+				<!-- <button
 					mat-raised-button
 					class="buttons"
 					color="accent"
@@ -66,22 +66,6 @@
 								mat-cell
 							>
 								{{ row.id }}
-							</td>
-						</ng-container>
-
-						<ng-container matColumnDef="userId">
-							<th
-								*matHeaderCellDef
-								mat-header-cell
-								mat-sort-header
-							>
-								Korisnički ID
-							</th>
-							<td
-								*matCellDef="let row"
-								mat-cell
-							>
-								{{ row.userId }}
 							</td>
 						</ng-container>
 
@@ -187,7 +171,7 @@
 								mat-header-cell
 								mat-sort-header
 							>
-								Marža održavanja
+								Marža za održavanje
 							</th>
 							<td
 								*matCellDef="let row"
@@ -221,7 +205,9 @@
 							mat-row
 							(click)="selectRow(row)"
 							(dblclick)="viewAccount(row)"
-							[class.row-selected]="selectedRow?.id === row.id"
+							[class.row-selected]="
+								selectedRow?.accountNumber === row.accountNumber
+							"
 							*matRowDef="let row; columns: displayedColumns"
 						></tr>
 

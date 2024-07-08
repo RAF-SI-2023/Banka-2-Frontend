@@ -59,7 +59,7 @@ export class PubliclyTradableSecuritiesComponent implements AfterViewInit {
 	}
 
 	selectRow(row: SecurityDto): void {
-		if (this.selectedRow?.securitiesSymbol != row.securitiesSymbol) {
+		if (this.selectedRow?.id != row.id) {
 			this.selectedRow = row;
 		}
 	}
@@ -80,9 +80,7 @@ export class PubliclyTradableSecuritiesComponent implements AfterViewInit {
 						switchMap(response => {
 							if (
 								this.hasPib(response) ||
-								response.role === 'EMPLOYEE' ||
-								response.role === 'SUPERVISOR' ||
-								response.role === 'AGENT'
+								response.role === 'EMPLOYEE'
 							) {
 								return this.securitiesService
 									.getAllCompanyOwnedSecurities()

@@ -39,6 +39,7 @@
 declare namespace Cypress {
 	interface Chainable {
 		login(email: string, password: string): Chainable;
+		logout(): Chainable;
 	}
 }
 
@@ -48,4 +49,14 @@ Cypress.Commands.add('login', (email: string, password: string) => {
 	cy.get('input[type="password"]').type(password);
 	cy.get('button[type="submit"]').click();
 	cy.url().should('include', '/home');
+});
+
+Cypress.Commands.add('logout', () => {
+	cy.get('mat-toolbar').within(() => {
+		// Click the more options button
+		cy.get('button[aria-label="Options"]').click();
+
+		// Click the logout button within the options menu
+		cy.get('mat-menu').contains('Izloguj se').click();
+	});
 });
